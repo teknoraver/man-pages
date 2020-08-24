@@ -1,0 +1,180 @@
+'\" t
+.\" Copyright (c) 2020 David Howells <dhowells@redhat.com>
+.\"
+.\" %%%LICENSE_START(VERBATIM)
+.\" Permission is granted to make and distribute verbatim copies of this
+.\" manual provided the copyright notice and this permission notice are
+.\" preserved on all copies.
+.\"
+.\" Permission is granted to copy and distribute modified versions of this
+.\" manual under the conditions for verbatim copying, provided that the
+.\" entire resulting derived work is distributed under the terms of a
+.\" permission notice identical to this one.
+.\"
+.\" Since the Linux kernel and libraries are constantly changing, this
+.\" manual page may be incorrect or out-of-date.  The author(s) assume no
+.\" responsibility for errors or omissions, or for damages resulting from
+.\" the use of the information contained herein.  The author(s) may not
+.\" have taken the same level of care in the production of this manual,
+.\" which is licensed free of charge, as they might when working
+.\" professionally.
+.\"
+.\" Formatted or processed versions of this manual, if unaccompanied by
+.\" the source, must acknowledge the copyright and authors of this work.
+.\" %%%LICENSE_END
+.\"
+.TH FSPICK 2 2020-08-24 "Linux" "Linux Programmer's Manual"
+.SH NAME
+fspick \- Select filesystem for reconfiguration
+.SH SYNOPSIS
+.nf
+.B #include <sys/types.h>
+.B #include <sys/mount.h>
+.B #include <unistd.h>
+.BR "#include <fcntl.h>           " "/* Definition of AT_* constants */"
+.PP
+.BI "int fspick(int " dirfd ", const char *" pathname ", unsigned int " flags );
+.fi
+.PP
+.IR Note :
+There is no glibc wrapper for this system call.
+.SH DESCRIPTION
+.PP
+.BR fspick ()
+creates a new filesystem configuration context within the kernel and attaches a
+pre-existing superblock to it so that it can be reconfigured (similar to
+.BR mount (8)
+with the "-o remount" option).  The configuration context is marked as being in
+reconfiguration mode and attached to a file descriptor, which is returned to
+the caller.  The file descriptor can be marked close-on-exec by setting
+.B FSPICK_CLOEXEC
+in
+.IR flags .
+.PP
+The target is whichever superblock backs the object determined by
+.IR dfd ", " pathname " and " flags .
+The following can be set in
+.I flags
+to control the pathwalk to that object:
+.TP
+.B FSPICK_SYMLINK_NOFOLLOW
+Don't follow symbolic links in the final component of the path.
+.TP
+.B FSPICK_NO_AUTOMOUNT
+Don't follow automounts in the final component of the path.
+.TP
+.B FSPICK_EMPTY_PATH
+Allow an empty string to be specified as the pathname.  This allows
+.I dirfd
+to specify the target mount exactly.
+.PP
+After calling fspick(), the file descriptor should be passed to the
+.BR fsconfig (2)
+system call, using that to specify the desired changes to filesystem and
+security parameters.
+.PP
+When the parameters are all set, the
+.BR fsconfig ()
+system call should then be called again with
+.B FSCONFIG_CMD_RECONFIGURE
+as the command argument to effect the reconfiguration.
+.PP
+After the reconfiguration has taken place, the context is wiped clean (apart
+from the superblock attachment, which remains) and can be reused to make
+another reconfiguration.
+.PP
+The file descriptor also serves as a channel by which more comprehensive error,
+warning and information messages may be retrieved from the kernel using
+.BR read (2).
+.SS Message Retrieval Interface
+The context file descriptor may be queried for message strings at any time by
+calling
+.BR read (2)
+on the file descriptor.  This will return formatted messages that are prefixed
+to indicate their class:
+.TP
+\fB"e <message>"\fP
+An error message string was logged.
+.TP
+\fB"i <message>"\fP
+An informational message string was logged.
+.TP
+\fB"w <message>"\fP
+An warning message string was logged.
+.PP
+Messages are removed from the queue as they're read and the queue has a limited
+depth of 8 messages, so it's possible for some to get lost.
+.SH RETURN VALUE
+On success, the function returns a file descriptor.  On error, \-1 is returned,
+and
+.I errno
+is set appropriately.
+.SH ERRORS
+The error values given below result from filesystem type independent errors.
+Additionally, each filesystem type may have its own special errors and its own
+special behavior.  See the Linux kernel source code for details.
+.TP
+.B EACCES
+A component of a path was not searchable.
+(See also
+.BR path_resolution (7).)
+.TP
+.B EFAULT
+.I pathname
+points outside the user address space.
+.TP
+.B EINVAL
+.I flags
+includes an undefined value.
+.TP
+.B ELOOP
+Too many links encountered during pathname resolution.
+.TP
+.B EMFILE
+The system has too many open files to create more.
+.TP
+.B ENFILE
+The process has too many open files to create more.
+.TP
+.B ENAMETOOLONG
+A pathname was longer than
+.BR MAXPATHLEN .
+.TP
+.B ENOENT
+A pathname was empty or had a nonexistent component.
+.TP
+.B ENOMEM
+The kernel could not allocate sufficient memory to complete the call.
+.TP
+.B EPERM
+The caller does not have the required privileges.
+.SH CONFORMING TO
+These functions are Linux-specific and should not be used in programs intended
+to be portable.
+.SH VERSIONS
+.BR fsopen "(), " fsmount "() and " fspick ()
+were added to Linux in kernel 5.2.
+.SH EXAMPLES
+To illustrate the process, here's an example whereby this can be used to
+reconfigure a filesystem:
+.PP
+.in +4n
+.nf
+sfd = fspick(AT_FDCWD, "/mnt", FSPICK_NO_AUTOMOUNT | FSPICK_CLOEXEC);
+fsconfig(sfd, FSCONFIG_SET_FLAG, "ro", NULL, 0);
+fsconfig(sfd, FSCONFIG_SET_STRING, "user_xattr", "false", 0);
+fsconfig(sfd, FSCONFIG_CMD_RECONFIGURE, NULL, NULL, 0);
+.fi
+.in
+.PP
+.SH NOTES
+Glibc does not (yet) provide a wrapper for the
+.BR fspick "()"
+system call; call it using
+.BR syscall (2).
+.SH SEE ALSO
+.BR mountpoint (1),
+.BR fsconfig (2),
+.BR fsopen (2),
+.BR path_resolution (7),
+.BR mount (8)
