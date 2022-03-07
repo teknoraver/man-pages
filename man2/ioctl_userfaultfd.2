@@ -207,6 +207,14 @@ in minor mode on hugetlbfs-backed memory areas.
 If this feature bit is set,
 the kernel supports registering userfaultfd ranges
 in minor mode on shmem-backed memory areas.
+.TP
+.BR UFFD_FEATURE_EXACT_ADDRESS " (since Linux 5.18)"
+If this feature bit is set,
+.I uffd_msg.pagefault.address
+will be set to the exact page-fault address that was reported by the hardware,
+and will not mask the offset within the page.
+Note that old Linux versions might indicate the exact address as well,
+even though the feature bit is not set.
 .PP
 The returned
 .I ioctls
