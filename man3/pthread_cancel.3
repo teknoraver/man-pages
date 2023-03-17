@@ -61,7 +61,7 @@ When a cancelation requested is acted on, the following steps occur for
 .I thread
 (in this order):
 .IP (1) 5
-Cancellation clean-up handlers are popped
+Cancelation clean-up handlers are popped
 (in the reverse of the order in which they were pushed) and called.
 (See
 .BR pthread_cleanup_push (3).)
