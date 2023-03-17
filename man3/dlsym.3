@@ -120,17 +120,21 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR dlsym ()
-is present in glibc 2.0 and later.
-.BR dlvsym ()
-first appeared in glibc 2.1.
 .SH STANDARDS
-POSIX.1-2001 describes
-.BR dlsym ().
-The
+.TP
+.BR dlsym ()
+POSIX.1-2008.
+.TP
 .BR dlvsym ()
-function is a GNU extension.
+GNU.
+.SH HISTORY
+.TP
+.BR dlsym ()
+glibc 2.0.
+POSIX.1-2001.
+.TP
+.BR dlvsym ()
+glibc 2.1.
 .SH NOTES
 There are several scenarios when the address of a global symbol is NULL.
 For example, a symbol can be placed at zero address by the linker, via

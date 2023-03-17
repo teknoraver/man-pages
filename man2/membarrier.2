@@ -280,27 +280,18 @@ system call is not implemented by this kernel.
 .B EPERM
 The current process was not registered prior to using private expedited
 commands.
-.SH VERSIONS
-The
-.BR membarrier ()
-system call was added in Linux 4.3.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 4.3.
 .PP
-Before Linux 5.10, the prototype for
-.BR membarrier ()
-was:
+Before Linux 5.10, the prototype was:
 .PP
 .in +4n
 .EX
 .BI "int membarrier(int " cmd ", int " flags );
 .EE
 .in
-.SH STANDARDS
-.BR membarrier ()
-is Linux-specific.
-.\" .SH SEE ALSO
-.\" FIXME See if the following syscalls make it into Linux 4.15 or later
-.\" .BR cpu_opv (2),
-.\" .BR rseq (2)
 .SH NOTES
 A memory barrier instruction is part of the instruction set of
 architectures with weakly ordered memory models.
@@ -463,3 +454,7 @@ main(int argc, char *argv[])
 }
 .EE
 .in
+.\" .SH SEE ALSO
+.\" FIXME See if the following syscalls make it into Linux 4.15 or later
+.\" .BR cpu_opv (2),
+.\" .BR rseq (2)

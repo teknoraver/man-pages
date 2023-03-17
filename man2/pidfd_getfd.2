@@ -103,13 +103,11 @@ The process referred to by
 .I pidfd
 does not exist
 (i.e., it has terminated and been waited on).
-.SH VERSIONS
-.BR pidfd_getfd ()
-first appeared in Linux 5.6.
-.\" commit 8649c322f75c96e7ced2fec201e123b2b073bf09
 .SH STANDARDS
-.BR pidfd_getfd ()
-is Linux specific.
+Linux.
+.SH HISTORY
+Linux 5.6.
+.\" commit 8649c322f75c96e7ced2fec201e123b2b073bf09
 .SH NOTES
 For a description of PID file descriptors, see
 .BR pidfd_open (2).

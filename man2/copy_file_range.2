@@ -185,12 +185,6 @@ are not on the same filesystem,
 and the source and target filesystems are not of the same type,
 or do not support cross-filesystem copy.
 .SH VERSIONS
-The
-.BR copy_file_range ()
-system call first appeared in Linux 4.5, but glibc 2.27 provides a user-space
-emulation when it is not available.
-.\" https://sourceware.org/git/?p=glibc.git;a=commit;f=posix/unistd.h;h=bad7a0c81f501fbbcc79af9eaa4b8254441c4a1f
-.PP
 A major rework of the kernel implementation occurred in Linux 5.3.
 Areas of the API that weren't clearly defined were clarified and the API bounds
 are much more strictly checked than on earlier kernels.
@@ -204,9 +198,12 @@ See BUGS for behavior prior to Linux 5.19.
 Applications should target the behaviour and requirements of Linux 5.19,
 that was also backported to earlier stable kernels.
 .SH STANDARDS
-The
-.BR copy_file_range ()
-system call is a nonstandard Linux and GNU extension.
+Linux, GNU.
+.SH HISTORY
+Linux 4.5,
+but glibc 2.27 provides a user-space
+emulation when it is not available.
+.\" https://sourceware.org/git/?p=glibc.git;a=commit;f=posix/unistd.h;h=bad7a0c81f501fbbcc79af9eaa4b8254441c4a1f
 .SH NOTES
 If
 .I fd_in

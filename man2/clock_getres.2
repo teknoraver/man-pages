@@ -327,25 +327,6 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH VERSIONS
-These system calls first appeared in Linux 2.6.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SUSv2.
-.PP
-On POSIX systems on which these functions are available, the symbol
-.B _POSIX_TIMERS
-is defined in \fI<unistd.h>\fP to a value greater than 0.
-The symbols
-.BR _POSIX_MONOTONIC_CLOCK ,
-.BR _POSIX_CPUTIME ,
-.B _POSIX_THREAD_CPUTIME
-indicate that
-.BR CLOCK_MONOTONIC ,
-.BR CLOCK_PROCESS_CPUTIME_ID ,
-.B CLOCK_THREAD_CPUTIME_ID
-are available.
-(See also
-.BR sysconf (3).)
-.SH NOTES
 POSIX.1 specifies the following:
 .RS
 .PP
@@ -370,12 +351,32 @@ clocks using
 On Linux, these clocks are not settable
 (i.e., no process has "appropriate privileges").
 .\" See http://bugzilla.kernel.org/show_bug.cgi?id=11972
-.\"
 .SS C library/kernel differences
 On some architectures, an implementation of
 .BR clock_gettime ()
 is provided in the
 .BR vdso (7).
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SUSv2.
+Linux 2.6.
+.PP
+On POSIX systems on which these functions are available, the symbol
+.B _POSIX_TIMERS
+is defined in \fI<unistd.h>\fP to a value greater than 0.
+The symbols
+.BR _POSIX_MONOTONIC_CLOCK ,
+.BR _POSIX_CPUTIME ,
+.B _POSIX_THREAD_CPUTIME
+indicate that
+.BR CLOCK_MONOTONIC ,
+.BR CLOCK_PROCESS_CPUTIME_ID ,
+.B CLOCK_THREAD_CPUTIME_ID
+are available.
+(See also
+.BR sysconf (3).)
+POSIX.1-2008 makes thes APIs mandatory.
 .\"
 .SS Historical note for SMP systems
 Before Linux added kernel support for

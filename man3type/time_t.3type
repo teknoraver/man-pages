@@ -45,38 +45,43 @@ It is an unsigned integer type
 capable of storing values al least in the range
 .RB [ 0 ,
 .BR 1000000 ].
-.SH VERSIONS
+.SH STANDARDS
 .TP
 .I time_t
+C11, POSIX.1-2008.
+.TP
+.I suseconds_t
+.TQ
+.I useconds_t
+POSIX.1-2008.
+.PD
+.SH HISTORY
+.TP
+.I time_t
+C89, POSIX.1-2001.
+.TP
+.I suseconds_t
+.TQ
+.I useconds_t
+POSIX.1-2001.
+.PP
 .I <sched.h>
 defines
 .I time_t
 since POSIX.1-2008.
-.TP
-.I suseconds_t
+.PP
 POSIX.1-2001 defined
 .I useconds_t
 in
 .I <unistd.h>
 too.
-.SH STANDARDS
-.PD 0
-.IR time_t :
-C99 and later;
-POSIX.1-2001 and later.
-.PP
-.IR suseconds_t ,
-.IR useconds_t :
-POSIX.1-2001 and later.
-.PD
 .SH NOTES
 On some architectures,
 the width of
 .I time_t
 can be controlled with the feature test macro
 .BR _TIME_BITS .
-.TP
-.I time_t
+.PP
 The following headers also provide
 .IR time_t :
 .IR <sched.h> ,
@@ -89,8 +94,7 @@ The following headers also provide
 .IR <sys/types.h> ,
 and
 .IR <utime.h> .
-.TP
-.I suseconds_t
+.PP
 The following headers also provide
 .IR suseconds_t :
 .I <sys/select.h>

@@ -164,17 +164,15 @@ was invoked as a 64-bit system call.
 .B ESRCH
 .RB ( set_thread_area ())
 A free TLS entry could not be located.
-.SH VERSIONS
-.BR set_thread_area ()
-first appeared in Linux 2.5.29.
-.BR get_thread_area ()
-first appeared in Linux 2.5.32.
 .SH STANDARDS
+Linux.
+.SH HISTORY
+.TP
 .BR set_thread_area ()
-and
+Linux 2.5.29.
+.TP
 .BR get_thread_area ()
-are Linux-specific and should not be used in programs that are intended
-to be portable.
+Linux 2.5.32.
 .SH NOTES
 These system calls are generally intended for use only by threading libraries.
 .PP

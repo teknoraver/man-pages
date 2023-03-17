@@ -113,23 +113,25 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR rawmemchr ()
-first appeared in glibc 2.1.
-.PP
-.BR memrchr ()
-first appeared in glibc 2.2.
 .SH STANDARDS
-.BR memchr ():
-POSIX.1-2001, POSIX.1-2008, C89, C99, SVr4, 4.3BSD.
-.PP
-The
+.TP
+.BR memchr ()
+C11, POSIX.1-2008.
+.TP
 .BR memrchr ()
-function is a GNU extension, available since glibc 2.1.91.
-.PP
-The
+.TQ
 .BR rawmemchr ()
-function is a GNU extension, available since glibc 2.1.
+GNU.
+.SH HISTORY
+.TP
+.BR memchr ()
+POSIX.1-2001, C89, SVr4, 4.3BSD.
+.TP
+.BR memrchr ()
+glibc 2.2.
+.TP
+.BR rawmemchr ()
+glibc 2.1.
 .SH SEE ALSO
 .BR bstring (3),
 .BR ffs (3),

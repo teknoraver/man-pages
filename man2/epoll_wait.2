@@ -207,25 +207,22 @@ is not an
 file descriptor, or
 .I maxevents
 is less than or equal to zero.
-.SH VERSIONS
-.BR epoll_wait ()
-was added in Linux 2.6.
-.\" To be precise: kernel 2.5.44.
-.\" The interface should be finalized by Linux 2.5.66.
-Library support is provided in glibc 2.3.2.
-.PP
-.BR epoll_pwait ()
-was added in Linux 2.6.19.
-Library support is provided in glibc 2.6.
-.PP
-.BR epoll_pwait2 ()
-was added in Linux 5.11.
 .SH STANDARDS
-.BR epoll_wait (),
-.BR epoll_pwait (),
-and
+Linux.
+.SH HISTORY
+.TP
+.BR epoll_wait ()
+Linux 2.6,
+.\" To be precise: Linux 2.5.44.
+.\" The interface should be finalized by Linux 2.5.66.
+glibc 2.3.2.
+.TP
+.BR epoll_pwait ()
+Linux 2.6.19,
+glibc 2.6.
+.TP
 .BR epoll_pwait2 ()
-are Linux-specific.
+Linux 5.11.
 .SH NOTES
 While one thread is blocked in a call to
 .BR epoll_wait (),

@@ -289,12 +289,23 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
-.BR fopen (),
-.BR freopen ():
-POSIX.1-2001, POSIX.1-2008, C89, C99.
-.PP
-.BR fdopen ():
-POSIX.1-2001, POSIX.1-2008.
+.TP
+.BR fopen ()
+.TQ
+.BR freopen ()
+C11, POSIX.1-2008.
+.TP
+.BR fdopen ()
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR fopen ()
+.TQ
+.BR freopen ()
+POSIX.1-2001, C89.
+.TP
+.BR fdopen ()
+POSIX.1-2001.
 .SH NOTES
 .SS glibc notes
 The GNU C library allows the following extensions for the string specified in

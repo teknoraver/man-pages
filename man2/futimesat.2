@@ -100,18 +100,7 @@ is relative and
 .I dirfd
 is a file descriptor referring to a file other than a directory.
 .SH VERSIONS
-.BR futimesat ()
-was added in Linux 2.6.16;
-library support was added in glibc 2.4.
-.SH STANDARDS
-This system call is nonstandard.
-It was implemented from a specification that was proposed for POSIX.1,
-but that specification was replaced by the one for
-.BR utimensat (2).
-.PP
-A similar system call exists on Solaris.
-.SH NOTES
-.SS glibc notes
+.SS glibc
 If
 .I pathname
 is NULL, then the glibc
@@ -119,6 +108,18 @@ is NULL, then the glibc
 wrapper function updates the times for the file referred to by
 .IR dirfd .
 .\" The Solaris futimesat() also has this strangeness.
+.SH STANDARDS
+None.
+.SH HISTORY
+Linux 2.6.16,
+glibc 2.4.
+.PP
+It was implemented from a specification that was proposed for POSIX.1,
+but that specification was replaced by the one for
+.BR utimensat (2).
+.PP
+A similar system call exists on Solaris.
+.SH NOTES
 .SH SEE ALSO
 .BR stat (2),
 .BR utimensat (2),

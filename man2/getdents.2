@@ -198,19 +198,19 @@ No such directory.
 .B ENOTDIR
 File descriptor does not refer to a directory.
 .SH STANDARDS
+None.
+.SH HISTORY
 SVr4.
 .\" SVr4 documents additional ENOLINK, EIO error conditions.
-.SH NOTES
-Library support for
+.TP
 .BR getdents64 ()
-was added in glibc 2.30;
+glibc 2.30.
+.SH NOTES
 glibc does not provide a wrapper for
 .BR getdents ();
 call
 .BR getdents ()
-(or
-.BR getdents64 ()
-on earlier glibc versions) using
+using
 .BR syscall (2).
 In that case you will need to define the
 .I linux_dirent

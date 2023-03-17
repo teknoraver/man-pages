@@ -81,12 +81,13 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
+None.
+.SH HISTORY
 4.3BSD, POSIX.1-2001.
-POSIX.1-2001 declares this function obsolete; use
+POSIX.1-2001 declares it obsolete, suggesting
 .BR nanosleep (2)
 instead.
-POSIX.1-2008 removes the specification of
-.BR usleep ().
+Removed in POSIX.1-2008.
 .PP
 On the original BSD implementation,
 and before glibc 2.2.2, the return type of this function is
@@ -98,7 +99,7 @@ and this is also the prototype used since glibc 2.2.2.
 Only the
 .B EINVAL
 error return is documented by SUSv2 and POSIX.1-2001.
-.SH NOTES
+.SH CAVEATS
 The interaction of this function with the
 .B SIGALRM
 signal, and with other timer functions such as

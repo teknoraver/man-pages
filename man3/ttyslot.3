@@ -122,14 +122,16 @@ T}	Thread safety	MT-Unsafe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-SUSv1; marked as LEGACY in SUSv2; removed in POSIX.1-2001.
-SUSv2 requires \-1 on error.
-.SH NOTES
+.SH VERSIONS
 The utmp file is found in various places on various systems, such as
 .IR /etc/utmp ,
 .IR /var/adm/utmp ,
 .IR /var/run/utmp .
+.SH STANDARDS
+None.
+.SH HISTORY
+SUSv1; marked as LEGACY in SUSv2; removed in POSIX.1-2001.
+SUSv2 requires \-1 on error.
 .PP
 The glibc2 implementation of this function reads the file
 .BR _PATH_TTYS ,

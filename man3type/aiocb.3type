@@ -28,7 +28,9 @@ Standard C library
 For further information about this structure, see
 .BR aio (7).
 .SH STANDARDS
-POSIX.1-2001 and later.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH SEE ALSO
 .BR aio_cancel (3),
 .BR aio_error (3),

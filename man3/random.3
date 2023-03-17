@@ -156,16 +156,10 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, 4.3BSD.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, 4.3BSD.
 .SH NOTES
-The
-.BR random ()
-function should not be used in multithreaded programs
-where reproducible behavior is required.
-Use
-.BR random_r (3)
-for that purpose.
-.PP
 Random-number generation is a complex topic.
 .I Numerical Recipes in C: The Art of Scientific Computing
 (William H.\& Press, Brian P.\& Flannery, Saul A.\& Teukolsky,
@@ -178,6 +172,14 @@ in depth, see Chapter 3 (Random Numbers) in Donald E.\& Knuth's
 .IR "The Art of Computer Programming" ,
 volume 2 (Seminumerical Algorithms), 2nd ed.; Reading, Massachusetts:
 Addison-Wesley Publishing Company, 1981.
+.SH CAVEATS
+The
+.BR random ()
+function should not be used in multithreaded programs
+where reproducible behavior is required.
+Use
+.BR random_r (3)
+for that purpose.
 .SH BUGS
 According to POSIX,
 .BR initstate ()

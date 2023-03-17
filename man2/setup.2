@@ -21,7 +21,7 @@ Standard C library
 .nf
 .B #include <unistd.h>
 .PP
-.B int setup(void);
+.B [[deprecated]] int setup(void);
 .fi
 .SH DESCRIPTION
 .BR setup ()
@@ -42,12 +42,11 @@ always returns \-1 for a user process.
 .TP
 .B EPERM
 Always, for a user process.
-.SH VERSIONS
-Since Linux 2.1.121, no such function exists anymore.
 .SH STANDARDS
-This function is Linux-specific, and should not be used in programs
-intended to be portable, or indeed in any programs at all.
-.SH NOTES
+Linux.
+.SH VERSIONS
+Removed in Linux 2.1.121.
+.PP
 The calling sequence varied: at some times
 .BR setup ()
 has had a single argument

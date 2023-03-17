@@ -1285,66 +1285,6 @@ flag was specified, and an incompatible lease was held on the file
 (see
 .BR fcntl (2)).
 .SH VERSIONS
-.BR openat ()
-was added in Linux 2.6.16;
-library support was added in glibc 2.4.
-.SH STANDARDS
-.BR open (),
-.BR creat ()
-SVr4, 4.3BSD, POSIX.1-2001, POSIX.1-2008.
-.PP
-.BR openat ():
-POSIX.1-2008.
-.PP
-.BR openat2 (2)
-is Linux-specific.
-.PP
-The
-.BR O_DIRECT ,
-.BR O_NOATIME ,
-.BR O_PATH ,
-and
-.B O_TMPFILE
-flags are Linux-specific.
-One must define
-.B _GNU_SOURCE
-to obtain their definitions.
-.PP
-The
-.BR O_CLOEXEC ,
-.BR O_DIRECTORY ,
-and
-.B O_NOFOLLOW
-flags are not specified in POSIX.1-2001,
-but are specified in POSIX.1-2008.
-Since glibc 2.12, one can obtain their definitions by defining either
-.B _POSIX_C_SOURCE
-with a value greater than or equal to 200809L or
-.B _XOPEN_SOURCE
-with a value greater than or equal to 700.
-In glibc 2.11 and earlier, one obtains the definitions by defining
-.BR _GNU_SOURCE .
-.PP
-As noted in
-.BR feature_test_macros (7),
-feature test macros such as
-.BR _POSIX_C_SOURCE ,
-.BR _XOPEN_SOURCE ,
-and
-.B _GNU_SOURCE
-must be defined before including
-.I any
-header files.
-.SH NOTES
-Under Linux, the
-.B O_NONBLOCK
-flag is sometimes used in cases where one wants to open
-but does not necessarily have the intention to read or write.
-For example,
-this may be used to open a device in order to get a file descriptor
-for use with
-.BR ioctl (2).
-.PP
 The (undefined) effect of
 .B O_RDONLY | O_TRUNC
 varies among implementations.
@@ -1355,94 +1295,6 @@ On many systems the file is actually truncated.
 .\" Tru64 5.1B: truncate
 .\" HP-UX 11.22: truncate
 .\" FreeBSD 4.7: truncate
-.PP
-Note that
-.BR open ()
-can open device special files, but
-.BR creat ()
-cannot create them; use
-.BR mknod (2)
-instead.
-.PP
-If the file is newly created, its
-.IR st_atime ,
-.IR st_ctime ,
-.I st_mtime
-fields
-(respectively, time of last access, time of last status change, and
-time of last modification; see
-.BR stat (2))
-are set
-to the current time, and so are the
-.I st_ctime
-and
-.I st_mtime
-fields of the
-parent directory.
-Otherwise, if the file is modified because of the
-.B O_TRUNC
-flag, its
-.I st_ctime
-and
-.I st_mtime
-fields are set to the current time.
-.PP
-The files in the
-.I /proc/[pid]/fd
-directory show the open file descriptors of the process with the PID
-.IR pid .
-The files in the
-.I /proc/[pid]/fdinfo
-directory show even more information about these file descriptors.
-See
-.BR proc (5)
-for further details of both of these directories.
-.PP
-The Linux header file
-.B <asm/fcntl.h>
-doesn't define
-.BR O_ASYNC ;
-the (BSD-derived)
-.B FASYNC
-synonym is defined instead.
-.\"
-.\"
-.SS Open file descriptions
-The term open file description is the one used by POSIX to refer to the
-entries in the system-wide table of open files.
-In other contexts, this object is
-variously also called an "open file object",
-a "file handle", an "open file table entry",
-or\[em]in kernel-developer parlance\[em]a
-.IR "struct file" .
-.PP
-When a file descriptor is duplicated (using
-.BR dup (2)
-or similar),
-the duplicate refers to the same open file description
-as the original file descriptor,
-and the two file descriptors consequently share
-the file offset and file status flags.
-Such sharing can also occur between processes:
-a child process created via
-.BR fork (2)
-inherits duplicates of its parent's file descriptors,
-and those duplicates refer to the same open file descriptions.
-.PP
-Each
-.BR open ()
-of a file creates a new open file description;
-thus, there may be multiple open file descriptions
-corresponding to a file inode.
-.PP
-On Linux, one can use the
-.BR kcmp (2)
-.B KCMP_FILE
-operation to test whether two file descriptors
-(in the same process or in two different processes)
-refer to the same open file description.
-.\"
-.\"
 .SS Synchronized I/O
 The POSIX.1-2008 "synchronized I/O" option
 specifies different variants of synchronized I/O,
@@ -1548,6 +1400,150 @@ system call, rather than the kernel's
 .BR open ()
 system call.
 For certain architectures, this is also true before glibc 2.26.
+.\"
+.SH STANDARDS
+.TP
+.BR open ()
+.TQ
+.BR creat ()
+.TQ
+.BR openat ()
+POSIX.1-2008.
+.PP
+.BR openat2 (2)
+Linux.
+.PP
+The
+.BR O_DIRECT ,
+.BR O_NOATIME ,
+.BR O_PATH ,
+and
+.B O_TMPFILE
+flags are Linux-specific.
+One must define
+.B _GNU_SOURCE
+to obtain their definitions.
+.PP
+The
+.BR O_CLOEXEC ,
+.BR O_DIRECTORY ,
+and
+.B O_NOFOLLOW
+flags are not specified in POSIX.1-2001,
+but are specified in POSIX.1-2008.
+Since glibc 2.12, one can obtain their definitions by defining either
+.B _POSIX_C_SOURCE
+with a value greater than or equal to 200809L or
+.B _XOPEN_SOURCE
+with a value greater than or equal to 700.
+In glibc 2.11 and earlier, one obtains the definitions by defining
+.BR _GNU_SOURCE .
+.SH HISTORY
+.TP
+.BR open ()
+.TQ
+.BR creat ()
+SVr4, 4.3BSD, POSIX.1-2001.
+.TP
+.BR openat ()
+POSIX.1-2008.
+Linux 2.6.16,
+glibc 2.4.
+.SH NOTES
+Under Linux, the
+.B O_NONBLOCK
+flag is sometimes used in cases where one wants to open
+but does not necessarily have the intention to read or write.
+For example,
+this may be used to open a device in order to get a file descriptor
+for use with
+.BR ioctl (2).
+.PP
+Note that
+.BR open ()
+can open device special files, but
+.BR creat ()
+cannot create them; use
+.BR mknod (2)
+instead.
+.PP
+If the file is newly created, its
+.IR st_atime ,
+.IR st_ctime ,
+.I st_mtime
+fields
+(respectively, time of last access, time of last status change, and
+time of last modification; see
+.BR stat (2))
+are set
+to the current time, and so are the
+.I st_ctime
+and
+.I st_mtime
+fields of the
+parent directory.
+Otherwise, if the file is modified because of the
+.B O_TRUNC
+flag, its
+.I st_ctime
+and
+.I st_mtime
+fields are set to the current time.
+.PP
+The files in the
+.I /proc/[pid]/fd
+directory show the open file descriptors of the process with the PID
+.IR pid .
+The files in the
+.I /proc/[pid]/fdinfo
+directory show even more information about these file descriptors.
+See
+.BR proc (5)
+for further details of both of these directories.
+.PP
+The Linux header file
+.B <asm/fcntl.h>
+doesn't define
+.BR O_ASYNC ;
+the (BSD-derived)
+.B FASYNC
+synonym is defined instead.
+.\"
+.\"
+.SS Open file descriptions
+The term open file description is the one used by POSIX to refer to the
+entries in the system-wide table of open files.
+In other contexts, this object is
+variously also called an "open file object",
+a "file handle", an "open file table entry",
+or\[em]in kernel-developer parlance\[em]a
+.IR "struct file" .
+.PP
+When a file descriptor is duplicated (using
+.BR dup (2)
+or similar),
+the duplicate refers to the same open file description
+as the original file descriptor,
+and the two file descriptors consequently share
+the file offset and file status flags.
+Such sharing can also occur between processes:
+a child process created via
+.BR fork (2)
+inherits duplicates of its parent's file descriptors,
+and those duplicates refer to the same open file descriptions.
+.PP
+Each
+.BR open ()
+of a file creates a new open file description;
+thus, there may be multiple open file descriptions
+corresponding to a file inode.
+.PP
+On Linux, one can use the
+.BR kcmp (2)
+.B KCMP_FILE
+operation to test whether two file descriptors
+(in the same process or in two different processes)
+refer to the same open file description.
 .\"
 .SS NFS
 There are many infelicities in the protocol underlying NFS, affecting

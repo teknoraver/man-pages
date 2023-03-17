@@ -47,11 +47,6 @@ over the last 1, 5, and 15 minutes, respectively.
 .SH RETURN VALUE
 If the load average was unobtainable, \-1 is returned; otherwise,
 the number of samples actually retrieved is returned.
-.\" .SH HISTORY
-.\" The
-.\" BR getloadavg ()
-.\" function appeared in
-.\" 4.3BSD Reno .
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -69,12 +64,11 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-This function is available since glibc 2.2.
 .SH STANDARDS
-Not in POSIX.1.
-Present on the BSDs and Solaris.
-.\" mdoc seems to have a bug - there must be no newline here
+BSD.
+.SH HISTORY
+4.3BSD-Reno, Solaris.
+glibc 2.2.
 .SH SEE ALSO
 .BR uptime (1),
 .BR proc (5)

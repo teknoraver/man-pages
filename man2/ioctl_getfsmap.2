@@ -335,13 +335,12 @@ The filesystem does not support this command.
 .TP
 .B EUCLEAN
 The filesystem metadata is corrupt and needs repair.
-.SH VERSIONS
-The
-.B FS_IOC_GETFSMAP
-operation first appeared in Linux 4.12.
 .SH STANDARDS
-This API is Linux-specific.
+Linux.
+.PP
 Not all filesystems support it.
+.SH HISTORY
+Linux 4.12.
 .SH EXAMPLES
 See
 .I io/fsmap.c

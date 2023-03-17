@@ -243,35 +243,24 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-The
-.BR strerror_l ()
-function first appeared in glibc 2.6.
-.PP
-The
-.BR strerrorname_np ()
-and
-.BR strerrordesc_np ()
-functions first appeared in glibc 2.32.
 .SH STANDARDS
+.TP
 .BR strerror ()
-is specified by POSIX.1-2001, POSIX.1-2008, C89, and C99.
+C11, POSIX.1-2008.
+.TP
 .BR strerror_r ()
-is specified by POSIX.1-2001 and POSIX.1-2008.
 .\" FIXME . for later review when Issue 8 is one day released...
 .\" A future POSIX.1 may remove strerror_r()
 .\" http://austingroupbugs.net/tag_view_page.php?tag_id=8
 .\" http://austingroupbugs.net/view.php?id=508
-.PP
+.TQ
 .BR strerror_l ()
-is specified in POSIX.1-2008.
-.PP
-The GNU-specific functions
-.BR strerror_r (),
-.BR strerrorname_np (),
-and
+POSIX.1-2008.
+.TP
+.BR strerrorname_np ()
+.TQ
 .BR strerrordesc_np ()
-are nonstandard extensions.
+GNU.
 .PP
 POSIX.1-2001 permits
 .BR strerror ()
@@ -292,6 +281,22 @@ to
 .B EINVAL
 if the error number is unknown.
 C99 and POSIX.1-2008 require the return value to be non-NULL.
+.SH HISTORY
+.TP
+.BR strerror ()
+POSIX.1-2001, C89.
+.TP
+.BR strerror_r ()
+POSIX.1-2001.
+.TP
+.BR strerror_l ()
+glibc 2.6.
+POSIX.1-2008.
+.TP
+.BR strerrorname_np ()
+.TQ
+.BR strerrordesc_np ()
+glibc 2.32.
 .SH NOTES
 The GNU C Library uses a buffer of 1024 characters for
 .BR strerror ().

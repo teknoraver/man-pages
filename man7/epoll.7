@@ -574,20 +574,18 @@ event for file descriptor 13 in your batch processing,
 you will discover the file descriptor had been
 previously removed and there will be no confusion.
 .SH VERSIONS
-The
-.B epoll
-API was introduced in Linux kernel 2.5.44.
-.\" Its interface should be finalized in Linux kernel 2.5.66.
-Support was added in glibc 2.3.2.
-.SH STANDARDS
-The
-.B epoll
-API is Linux-specific.
-Some other systems provide similar
-mechanisms, for example, FreeBSD has
+Some other systems provide similar mechanisms;
+for example,
+FreeBSD has
 .IR kqueue ,
 and Solaris has
 .IR /dev/poll .
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.5.44.
+.\" Its interface should be finalized in Linux 2.5.66.
+glibc 2.3.2.
 .SH NOTES
 The set of file descriptors that is being monitored via
 an epoll file descriptor can be viewed via the entry for

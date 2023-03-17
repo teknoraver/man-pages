@@ -99,12 +99,17 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR qsort_r ()
-was added in glibc 2.8.
 .SH STANDARDS
-.BR qsort ():
-POSIX.1-2001, POSIX.1-2008, C89, C99, SVr4, 4.3BSD.
+.TP
+.BR qsort ()
+C11, POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR qsort ()
+POSIX.1-2001, C89, SVr4, 4.3BSD.
+.TP
+.BR qsort_r ()
+glibc 2.8.
 .SH NOTES
 To compare C strings, the comparison function can call
 .BR strcmp (3),

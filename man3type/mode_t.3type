@@ -20,7 +20,9 @@ Standard C library
 Used for some file attributes (e.g., file mode).
 It is an integer type.
 .SH STANDARDS
-POSIX.1-2001 and later.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH NOTES
 The following headers also provide this type:
 .IR <fcntl.h> ,

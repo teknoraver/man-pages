@@ -192,12 +192,6 @@ in the middle of a region currently protected as
 would result in three mappings:
 two read/write mappings at each end and a read-only mapping in the middle.)
 .SH VERSIONS
-.BR pkey_mprotect ()
-first appeared in Linux 4.9;
-library support was added in glibc 2.27.
-.SH STANDARDS
-.BR mprotect ():
-POSIX.1-2001, POSIX.1-2008, SVr4.
 .\" SVr4 defines an additional error
 .\" code EAGAIN. The SVr4 error conditions don't map neatly onto Linux's.
 POSIX says that the behavior of
@@ -206,9 +200,6 @@ is unspecified if it is applied to a region of memory that
 was not obtained via
 .BR mmap (2).
 .PP
-.BR pkey_mprotect ()
-is a nonportable Linux extension.
-.SH NOTES
 On Linux, it is always permissible to call
 .BR mprotect ()
 on any address in a process's address space (except for the
@@ -266,6 +257,22 @@ When called this way, the operation of
 .BR pkey_mprotect ()
 is equivalent to
 .BR mprotect ().
+.SH STANDARDS
+.TP
+.BR mprotect ()
+POSIX.1-2008.
+.TP
+.BR pkey_mprotect ()
+Linux.
+.SH HISTORY
+.TP
+.BR mprotect ()
+POSIX.1-2001, SVr4.
+.TP
+.BR pkey_mprotect ()
+Linux 4.9,
+glibc 2.27.
+.SH NOTES
 .SH EXAMPLES
 .\" sigaction.2 refers to this example
 The program below demonstrates the use of

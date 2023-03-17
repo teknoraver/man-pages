@@ -385,20 +385,10 @@ but the caller is not privileged (Linux: does not have the
 .B CAP_SYS_RESOURCE
 capability).
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SVr4.
 .\" SVID does not document the EIDRM error condition.
-.SH NOTES
-The
-.BR IPC_INFO ,
-.BR MSG_STAT ,
-and
-.B MSG_INFO
-operations are used by the
-.BR ipcs (1)
-program to provide information on allocated resources.
-In the future these may modified or moved to a
-.I /proc
-filesystem interface.
 .PP
 Various fields in the \fIstruct msqid_ds\fP were
 typed as
@@ -413,6 +403,18 @@ a recompilation under glibc-2.1.91 or later should suffice.
 .B IPC_64
 flag in
 .IR cmd .)
+.SH NOTES
+The
+.BR IPC_INFO ,
+.BR MSG_STAT ,
+and
+.B MSG_INFO
+operations are used by the
+.BR ipcs (1)
+program to provide information on allocated resources.
+In the future these may modified or moved to a
+.I /proc
+filesystem interface.
 .SH SEE ALSO
 .BR msgget (2),
 .BR msgrcv (2),

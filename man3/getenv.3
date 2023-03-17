@@ -93,15 +93,20 @@ T}	Thread safety	MT-Safe env
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR secure_getenv ()
-first appeared in glibc 2.17.
 .SH STANDARDS
-.BR getenv ():
-POSIX.1-2001, POSIX.1-2008, C89, C99, SVr4, 4.3BSD.
-.PP
+.TP
+.BR getenv ()
+C11, POSIX.1-2008.
+.TP
 .BR secure_getenv ()
-is a GNU extension.
+GNU.
+.SH HISTORY
+.TP
+.BR getenv ()
+POSIX.1-2001, C89, C99, SVr4, 4.3BSD.
+.TP
+.BR secure_getenv ()
+glibc 2.17.
 .SH NOTES
 The strings in the environment list are of the form \fIname=value\fP.
 .PP

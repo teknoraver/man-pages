@@ -87,11 +87,11 @@ pthread_setcanceltype(oldtype, NULL);
 pthread_cleanup_pop(execute);
 .EE
 .in
-.\" SH VERSIONS
-.\" Available since glibc 2.0
 .SH STANDARDS
-These functions are nonstandard GNU extensions;
+GNU;
 hence the suffix "_np" (nonportable) in the names.
+.SH HISTORY
+glibc 2.0
 .SH SEE ALSO
 .BR pthread_cancel (3),
 .BR pthread_cleanup_push (3),

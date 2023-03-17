@@ -168,7 +168,15 @@ number of message queues
 .RB ( MSGMNI )
 would be exceeded.
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SVr4.
+.SS Linux
+Until Linux 2.3.20, Linux would return
+.B EIDRM
+for a
+.BR msgget ()
+on a message queue scheduled for deletion.
 .SH NOTES
 .B IPC_PRIVATE
 isn't a flag field but a
@@ -193,12 +201,6 @@ based on available system memory.
 Since Linux 3.19, the default value is 32,000.
 On Linux, this limit can be read and modified via
 .IR /proc/sys/kernel/msgmni .
-.SS Linux notes
-Until Linux 2.3.20, Linux would return
-.B EIDRM
-for a
-.BR msgget ()
-on a message queue scheduled for deletion.
 .SH BUGS
 The name choice
 .B IPC_PRIVATE

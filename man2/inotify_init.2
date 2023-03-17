@@ -80,15 +80,17 @@ The system-wide limit on the total number of open files has been reached.
 .TP
 .B ENOMEM
 Insufficient kernel memory is available.
-.SH VERSIONS
-.BR inotify_init ()
-first appeared in Linux 2.6.13;
-library support was added in glibc 2.4.
-.BR inotify_init1 ()
-was added in Linux 2.6.27;
-library support was added in glibc 2.9.
 .SH STANDARDS
-These system calls are Linux-specific.
+Linux.
+.SH HISTORY
+.TP
+.BR inotify_init ()
+Linux 2.6.13,
+glibc 2.4.
+.TP
+.BR inotify_init1 ()
+Linux 2.6.27,
+glibc 2.9.
 .SH SEE ALSO
 .BR inotify_add_watch (2),
 .BR inotify_rm_watch (2),

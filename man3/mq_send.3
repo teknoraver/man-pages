@@ -151,14 +151,16 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
+.SH VERSIONS
 On Linux,
 .BR mq_timedsend ()
 is a system call, and
 .BR mq_send ()
 is a library function layered on top of that system call.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH SEE ALSO
 .BR mq_close (3),
 .BR mq_getattr (3),

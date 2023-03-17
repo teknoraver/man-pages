@@ -48,7 +48,9 @@ and
 .I double_t
 are implementation-defined.
 .SH STANDARDS
-C99 and later; POSIX.1-2001 and later.
+C11, POSIX.1-2008.
+.SH HISTORY
+C99, POSIX.1-2001.
 .SH SEE ALSO
 .BR float.h (0p),
 .BR math.h (0p)

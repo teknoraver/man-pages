@@ -114,14 +114,12 @@ The standard streams are closed by a call to
 .BR exit (3)
 and by normal program termination.
 .SH STANDARDS
-The
-.IR stdin ,
-.IR stdout ,
-and
-.I stderr
-macros conform to C89
-and this standard also stipulates that these three
+C11, POSIX.1-2008.
+.PP
+The standards also stipulate that these three
 streams shall be open at program startup.
+.SH HISTORY
+C89, POSIX.1-2001.
 .SH NOTES
 The stream
 .I stderr

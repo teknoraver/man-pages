@@ -665,41 +665,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4, 4.4BSD.
-.\" SVr4 documents additional error codes ENXIO and ENODEV.
-.\" SUSv2 documents additional error codes EMFILE and EOVERFLOW.
-.PP
-On POSIX systems on which
-.BR mmap (),
-.BR msync (2),
-and
-.BR munmap ()
-are available,
-.B _POSIX_MAPPED_FILES
-is defined in \fI<unistd.h>\fP to a value greater than 0.
-(See also
-.BR sysconf (3).)
-.\" POSIX.1-2001: It shall be defined to -1 or 0 or 200112L.
-.\" -1: unavailable, 0: ask using sysconf().
-.\" glibc defines it to 1.
-.SH NOTES
-Memory mapped by
-.BR mmap ()
-is preserved across
-.BR fork (2),
-with the same attributes.
-.PP
-A file is mapped in multiples of the page size.
-For a file that is not
-a multiple of the page size,
-the remaining bytes in the partial page at the end of the mapping
-are zeroed when mapped,
-and modifications to that region are not written out to the file.
-The effect of
-changing the size of the underlying file of a mapping on the pages that
-correspond to added or removed regions of the file is unspecified.
-.PP
+.SH VERSIONS
 On some hardware architectures (e.g., i386),
 .B PROT_WRITE
 implies
@@ -760,6 +726,57 @@ The relevant flags are:
 .BR MAP_POPULATE ,
 and
 .BR MAP_STACK .
+.SS C library/kernel differences
+This page describes the interface provided by the glibc
+.BR mmap ()
+wrapper function.
+Originally, this function invoked a system call of the same name.
+Since Linux 2.4, that system call has been superseded by
+.BR mmap2 (2),
+and nowadays
+.\" Since around glibc 2.1/2.2, depending on the platform.
+the glibc
+.BR mmap ()
+wrapper function invokes
+.BR mmap2 (2)
+with a suitably adjusted value for
+.IR offset .
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SVr4, 4.4BSD.
+.\" SVr4 documents additional error codes ENXIO and ENODEV.
+.\" SUSv2 documents additional error codes EMFILE and EOVERFLOW.
+.PP
+On POSIX systems on which
+.BR mmap (),
+.BR msync (2),
+and
+.BR munmap ()
+are available,
+.B _POSIX_MAPPED_FILES
+is defined in \fI<unistd.h>\fP to a value greater than 0.
+(See also
+.BR sysconf (3).)
+.\" POSIX.1-2001: It shall be defined to -1 or 0 or 200112L.
+.\" -1: unavailable, 0: ask using sysconf().
+.\" glibc defines it to 1.
+.SH NOTES
+Memory mapped by
+.BR mmap ()
+is preserved across
+.BR fork (2),
+with the same attributes.
+.PP
+A file is mapped in multiples of the page size.
+For a file that is not
+a multiple of the page size,
+the remaining bytes in the partial page at the end of the mapping
+are zeroed when mapped,
+and modifications to that region are not written out to the file.
+The effect of
+changing the size of the underlying file of a mapping on the pages that
+correspond to added or removed regions of the file is unspecified.
 .PP
 An application can determine which pages of a mapping are
 currently resident in the buffer/page cache using
@@ -860,21 +877,6 @@ and
 .I length
 must both be a multiple of the underlying huge page size.
 .\"
-.SS C library/kernel differences
-This page describes the interface provided by the glibc
-.BR mmap ()
-wrapper function.
-Originally, this function invoked a system call of the same name.
-Since Linux 2.4, that system call has been superseded by
-.BR mmap2 (2),
-and nowadays
-.\" Since around glibc 2.1/2.2, depending on the platform.
-the glibc
-.BR mmap ()
-wrapper function invokes
-.BR mmap2 (2)
-with a suitably adjusted value for
-.IR offset .
 .SH BUGS
 On Linux, there are no guarantees like those suggested above under
 .BR MAP_NORESERVE .

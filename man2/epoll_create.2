@@ -28,7 +28,7 @@ creates a new
 instance.
 Since Linux 2.6.8, the
 .I size
-argument is ignored, but must be greater than zero; see NOTES.
+argument is ignored, but must be greater than zero; see HISTORY.
 .PP
 .BR epoll_create ()
 returns a file descriptor referring to the new epoll instance.
@@ -98,22 +98,20 @@ The system-wide limit on the total number of open files has been reached.
 .TP
 .B ENOMEM
 There was insufficient memory to create the kernel object.
-.SH VERSIONS
+.SH STANDARDS
+Linux.
+.SH HISTORY
+.TP
 .BR epoll_create ()
-was added in Linux 2.6.
-Library support is provided in glibc 2.3.2.
-.PP
+Linux 2.6,
+glibc 2.3.2.
 .\" To be precise: kernel 2.5.44.
 .\" The interface should be finalized by Linux kernel 2.5.66.
+.TP
 .BR epoll_create1 ()
-was added in Linux 2.6.27.
-Library support is provided in glibc 2.9.
-.SH STANDARDS
-.BR epoll_create ()
-and
-.BR epoll_create1 ()
-are Linux-specific.
-.SH NOTES
+Linux 2.6.27,
+glibc 2.9.
+.PP
 In the initial
 .BR epoll_create ()
 implementation, the

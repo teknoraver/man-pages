@@ -172,13 +172,12 @@ is not a permitted value for
 .B ENOTSUP
 The kernel does not support sleeping against this
 .IR clockid .
-.SH VERSIONS
-The
-.BR clock_nanosleep ()
-system call first appeared in Linux 2.6.
-Support is available since glibc 2.1.
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
+Linux 2.6,
+glibc 2.1.
 .SH NOTES
 If the interval specified in
 .I request

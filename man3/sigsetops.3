@@ -135,18 +135,8 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
-When creating a filled signal set, the glibc
-.BR sigfillset ()
-function does not include the two real-time signals used internally
-by the NPTL threading implementation.
-See
-.BR nptl (7)
-for details.
-.\"
-.SS glibc extensions
+.SH VERSIONS
+.SS GNU
 If the
 .B _GNU_SOURCE
 feature test macro is defined, then \fI<signal.h>\fP
@@ -184,6 +174,18 @@ Both functions return 0 on success, and \-1 on failure.
 .PP
 These functions are nonstandard (a few other systems provide similar
 functions) and their use should be avoided in portable applications.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
+.SH NOTES
+When creating a filled signal set, the glibc
+.BR sigfillset ()
+function does not include the two real-time signals used internally
+by the NPTL threading implementation.
+See
+.BR nptl (7)
+for details.
 .SH SEE ALSO
 .BR sigaction (2),
 .BR sigpending (2),

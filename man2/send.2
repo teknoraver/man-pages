@@ -437,21 +437,7 @@ will also receive a
 unless
 .B MSG_NOSIGNAL
 is set.
-.SH STANDARDS
-4.4BSD, SVr4, POSIX.1-2001.
-These interfaces first appeared in 4.2BSD.
-.PP
-POSIX.1-2001 describes only the
-.B MSG_OOB
-and
-.B MSG_EOR
-flags.
-POSIX.1-2008 adds a specification of
-.BR MSG_NOSIGNAL .
-The
-.B MSG_CONFIRM
-flag is a Linux extension.
-.SH NOTES
+.SH VERSIONS
 According to POSIX.1-2001, the
 .I msg_controllen
 field of the
@@ -470,7 +456,23 @@ but glibc currently types both as
 .\" __kernel_size_t type used to type these fields varies
 .\" across architectures, but socklen_t is always 32 bits,
 .\" as (at least with GCC) is int.
+.SH STANDARDS
+POSIX.1-2008.
 .PP
+.B MSG_CONFIRM
+is a Linux extension.
+.SH HISTORY
+4.4BSD, SVr4, POSIX.1-2001.
+(first appeared in 4.2BSD).
+.PP
+POSIX.1-2001 describes only the
+.B MSG_OOB
+and
+.B MSG_EOR
+flags.
+POSIX.1-2008 adds a specification of
+.BR MSG_NOSIGNAL .
+.SH NOTES
 See
 .BR sendmmsg (2)
 for information about a Linux-specific system call

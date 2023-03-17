@@ -113,18 +113,20 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-The
-.BR ntp_gettime ()
-function is available since glibc 2.1.
-The
-.BR ntp_gettimex ()
-function is available since glibc 2.12.
 .SH STANDARDS
+.TP
 .BR ntp_gettime ()
-is described in the NTP Kernel Application Program Interface.
+NTP Kernel Application Program Interface.
+.TP
 .BR ntp_gettimex ()
-is a GNU extension.
+GNU.
+.SH HISTORY
+.TP
+.BR ntp_gettime ()
+glibc 2.1.
+.TP
+.BR ntp_gettimex ()
+glibc 2.12.
 .SH SEE ALSO
 .BR adjtimex (2),
 .BR ntp_adjtime (3),

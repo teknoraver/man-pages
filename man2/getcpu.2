@@ -64,24 +64,11 @@ is set to indicate the error.
 .TP
 .B EFAULT
 Arguments point outside the calling process's address space.
-.SH VERSIONS
-.BR getcpu ()
-was added in Linux 2.6.19 for x86-64 and i386.
-Library support was added in glibc 2.29
-(Earlier glibc versions did not provide a wrapper for this system call,
-necessitating the use of
-.BR syscall (2).)
 .SH STANDARDS
-.BR getcpu ()
-is Linux-specific.
-.SH NOTES
-Linux makes a best effort to make this call as fast as possible.
-(On some architectures, this is done via an implementation in the
-.BR vdso (7).)
-The intention of
-.BR getcpu ()
-is to allow programs to make optimizations with per-CPU data
-or for NUMA optimization.
+Linux.
+.SH HISTORY
+Linux 2.6.19 (x86-64 and i386),
+glibc 2.29.
 .\"
 .SS C library/kernel differences
 The kernel system call has a third argument:
@@ -148,6 +135,14 @@ migrating threads between CPUs, and so the argument is now ignored.
 .\" although in practice the scheduler's attempt to maintain
 .\" soft CPU affinity means that the information is unlikely to change
 .\" over the course of the caching interval.
+.SH NOTES
+Linux makes a best effort to make this call as fast as possible.
+(On some architectures, this is done via an implementation in the
+.BR vdso (7).)
+The intention of
+.BR getcpu ()
+is to allow programs to make optimizations with per-CPU data
+or for NUMA optimization.
 .SH SEE ALSO
 .BR mbind (2),
 .BR sched_setaffinity (2),

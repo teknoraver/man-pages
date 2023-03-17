@@ -598,25 +598,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-The
-.BR getaddrinfo ()
-function is documented in RFC\ 2553.
-.SH NOTES
-.BR getaddrinfo ()
-supports the
-.IB address % scope-id
-notation for specifying the IPv6 scope-ID.
-.PP
-.BR AI_ADDRCONFIG ,
-.BR AI_ALL ,
-and
-.B AI_V4MAPPED
-are available since glibc 2.3.3.
-.B AI_NUMERICSERV
-is available since glibc 2.3.4.
-.PP
+.SH VERSIONS
 According to POSIX.1, specifying
 .\" POSIX.1-2001, POSIX.1-2008
 .I hints
@@ -627,6 +609,28 @@ The GNU C library instead assumes a value of
 .B (AI_V4MAPPED\~|\~AI_ADDRCONFIG)
 for this case,
 since this value is considered an improvement on the specification.
+.SH STANDARDS
+POSIX.1-2008.
+.TP
+.BR getaddrinfo ()
+RFC\ 2553.
+.SH HISTORY
+POSIX.1-2001.
+.TP
+.B AI_ADDRCONFIG
+.TQ
+.B AI_ALL
+.TQ
+.B AI_V4MAPPED
+glibc 2.3.3.
+.TP
+.B AI_NUMERICSERV
+glibc 2.3.4.
+.SH NOTES
+.BR getaddrinfo ()
+supports the
+.IB address % scope-id
+notation for specifying the IPv6 scope-ID.
 .SH EXAMPLES
 .\" getnameinfo.3 refers to this example
 .\" socket.2 refers to this example

@@ -181,14 +181,10 @@ resulting from a Memory Flow Controller (MFC) direct memory access.
 The functionality is not provided by the current system, because
 either the hardware does not provide SPUs or the spufs module is not
 loaded.
-.SH VERSIONS
-The
-.BR spu_run ()
-system call was added in Linux 2.6.16.
 .SH STANDARDS
-This call is Linux-specific and implemented only by the PowerPC
-architecture.
-Programs using this system call are not portable.
+Linux on PowerPC.
+.SH HISTORY
+Linux 2.6.16.
 .SH NOTES
 .BR spu_run ()
 is meant to be used from libraries that implement a more abstract

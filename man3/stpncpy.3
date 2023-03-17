@@ -16,10 +16,10 @@ Standard C library
 .nf
 .B #include <string.h>
 .PP
-.BI "char *stpncpy(char " dst "[restrict ." sz "], \
+.BI "char *strncpy(char " dst "[restrict ." sz "], \
 const char *restrict " src ,
 .BI "               size_t " sz );
-.BI "char *strncpy(char " dst "[restrict ." sz "], \
+.BI "char *stpncpy(char " dst "[restrict ." sz "], \
 const char *restrict " src ,
 .BI "               size_t " sz );
 .fi
@@ -52,29 +52,29 @@ An implementation of these functions might be:
 .in +4n
 .EX
 char *
-stpncpy(char *restrict dst, const char *restrict src, size_t sz)
-{
-    bzero(dst, sz);
-    return mempcpy(dst, src, strnlen(src, sz));
-}
-
-char *
 strncpy(char *restrict dst, const char *restrict src, size_t sz)
 {
     stpncpy(dst, src, sz);
     return dst;
 }
+
+char *
+stpncpy(char *restrict dst, const char *restrict src, size_t sz)
+{
+    bzero(dst, sz);
+    return mempcpy(dst, src, strnlen(src, sz));
+}
 .EE
 .in
 .SH RETURN VALUE
 .TP
-.BR stpncpy ()
-returns a pointer to
-one after the last character in the destination character sequence.
-.TP
 .BR strncpy ()
 returns
 .IR dst .
+.TP
+.BR stpncpy ()
+returns a pointer to
+one after the last character in the destination character sequence.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -95,13 +95,19 @@ T}	Thread safety	MT-Safe
 .sp 1
 .SH STANDARDS
 .TP
+.BR strncpy ()
+C11, POSIX.1-2008.
+.TP
 .BR stpncpy ()
 POSIX.1-2008.
-.\" Before that, it was a GNU extension.
-.\" It first appeared in glibc 1.07 in 1993.
+.SH STANDARDS
 .TP
 .BR strncpy ()
-POSIX.1-2001, POSIX.1-2008, C89, C99, SVr4, 4.3BSD.
+C89, POSIX.1-2001, SVr4, 4.3BSD.
+.TP
+.BR stpncpy ()
+glibc 1.07.
+POSIX.1-2008.
 .SH CAVEATS
 The name of these functions is confusing.
 These functions produce a null-padded character sequence,
@@ -134,14 +140,6 @@ main(void)
     char    buf2[20];
     size_t  len;
 
-    if (sizeof(buf1) < strlen("Hello world!"))
-        warnx("stpncpy: truncating character sequence");
-    p = stpncpy(buf1, "Hello world!", sizeof(buf1));
-    len = p \- buf1;
-
-    printf("[len = %zu]: ", len);
-    printf("%.*s\en", (int) len, buf1);  // "Hello world!"
-
     if (sizeof(buf2) < strlen("Hello world!"))
         warnx("strncpy: truncating character sequence");
     strncpy(buf2, "Hello world!", sizeof(buf2));
@@ -149,6 +147,14 @@ main(void)
 
     printf("[len = %zu]: ", len);
     printf("%.*s\en", (int) len, buf2);  // "Hello world!"
+
+    if (sizeof(buf1) < strlen("Hello world!"))
+        warnx("stpncpy: truncating character sequence");
+    p = stpncpy(buf1, "Hello world!", sizeof(buf1));
+    len = p \- buf1;
+
+    printf("[len = %zu]: ", len);
+    printf("%.*s\en", (int) len, buf1);  // "Hello world!"
 
     exit(EXIT_SUCCESS);
 }

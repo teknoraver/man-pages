@@ -94,17 +94,16 @@ The specified request does not apply to the kind of object that the
 file descriptor
 .I fd
 references.
-.SH STANDARDS
-No single standard.
+.SH VERSIONS
 Arguments, returns, and semantics of
 .BR ioctl ()
 vary according to the device driver in question (the call is used as a
 catch-all for operations that don't cleanly fit the UNIX stream I/O
 model).
-.PP
-The
-.BR ioctl ()
-system call appeared in Version 7 AT&T UNIX.
+.SH STANDARDS
+None.
+.SH HISTORY
+Version\~7 AT&T UNIX.
 .SH NOTES
 In order to use this call, one needs an open file descriptor.
 Often the

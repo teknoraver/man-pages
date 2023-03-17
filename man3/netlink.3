@@ -76,12 +76,12 @@ is in a form suitable for parsing.
 .BR NLMSG_PAYLOAD ()
 Return the length of the payload associated with the
 .IR nlmsghdr .
-.SH STANDARDS
-These macros are nonstandard Linux extensions.
-.SH NOTES
+.SH VERSIONS
 It is often better to use netlink via
 .I libnetlink
 than via the low-level kernel interface.
+.SH STANDARDS
+Linux.
 .SH SEE ALSO
 .BR libnetlink (3),
 .BR netlink (7)

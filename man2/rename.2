@@ -488,24 +488,28 @@ was specified in
 but the caller does not have the
 .B CAP_MKNOD
 capability.
-.SH VERSIONS
-.BR renameat ()
-was added in Linux 2.6.16;
-library support was added in glibc 2.4.
-.PP
-.BR renameat2 ()
-was added in Linux 3.15; library support was added in glibc 2.28.
 .SH STANDARDS
-.BR rename ():
-4.3BSD, C89, C99, POSIX.1-2001, POSIX.1-2008.
-.PP
-.BR renameat ():
+.TP
+.BR rename ()
+C11, POSIX.1-2008.
+.TP
+.BR renameat ()
 POSIX.1-2008.
-.PP
+.TP
 .BR renameat2 ()
-is Linux-specific.
-.SH NOTES
-.\"
+Linux.
+.SH HISTORY
+.TP
+.BR rename ()
+4.3BSD, C89, POSIX.1-2001.
+.TP
+.BR renameat ()
+Linux 2.6.16,
+glibc 2.4.
+.TP
+.BR renameat2 ()
+Linux 3.15,
+glibc 2.28.
 .SS glibc notes
 On older kernels where
 .BR renameat ()

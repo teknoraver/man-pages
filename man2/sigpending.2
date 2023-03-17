@@ -46,27 +46,9 @@ is set to indicate the error.
 .I set
 points to memory which is not a valid part of the process address space.
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
-See
-.BR sigsetops (3)
-for details on manipulating signal sets.
-.PP
-If a signal is both blocked and has a disposition of "ignored", it is
-.I not
-added to the mask of pending signals when generated.
-.PP
-The set of signals that is pending for a thread
-is the union of the set of signals that is pending for that thread
-and the set of signals that is pending for the process as a whole; see
-.BR signal (7).
-.PP
-A child created via
-.BR fork (2)
-initially has an empty pending signal set;
-the pending signal set is preserved across an
-.BR execve (2).
-.\"
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SS C library/kernel differences
 The original Linux system call was named
 .BR sigpending ().
@@ -93,7 +75,25 @@ The glibc
 wrapper function hides these details from us, transparently calling
 .BR rt_sigpending ()
 when the kernel provides it.
-.\"
+.SH NOTES
+See
+.BR sigsetops (3)
+for details on manipulating signal sets.
+.PP
+If a signal is both blocked and has a disposition of "ignored", it is
+.I not
+added to the mask of pending signals when generated.
+.PP
+The set of signals that is pending for a thread
+is the union of the set of signals that is pending for that thread
+and the set of signals that is pending for the process as a whole; see
+.BR signal (7).
+.PP
+A child created via
+.BR fork (2)
+initially has an empty pending signal set;
+the pending signal set is preserved across an
+.BR execve (2).
 .SH BUGS
 Up to and including glibc 2.2.1,
 there is a bug in the wrapper function for

@@ -91,10 +91,6 @@ while
 .BR setfsent ()
 returns 1.
 Upon failure or end-of-file, these functions return NULL and 0, respectively.
-.\" .SH HISTORY
-.\" The
-.\" .BR getfsent ()
-.\" function appeared in 4.0BSD; the other four functions appeared in 4.3BSD.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -122,9 +118,8 @@ T}
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-These functions are not in POSIX.1.
-Several operating systems have them, for example,
+.SH VERSIONS
+Several operating systems have these functions, for example,
 *BSD, SunOS, Digital UNIX, AIX (which also has a
 .BR getfstype ()).
 HP-UX has functions of the same names,
@@ -134,6 +129,12 @@ instead of a
 .IR "struct fstab" ,
 and calls these functions obsolete, superseded by
 .BR getmntent (3).
+.SH STANDARDS
+None.
+.SH HISTORY
+The
+.BR getfsent ()
+function appeared in 4.0BSD; the other four functions appeared in 4.3BSD.
 .SH NOTES
 These functions are not thread-safe.
 .PP

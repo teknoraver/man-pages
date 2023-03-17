@@ -284,11 +284,7 @@ structure, respectively.
 .BR STAILQ_HEAD_INITIALIZER ()
 returns an initializer that can be assigned to the queue
 .IR head .
-.SH STANDARDS
-Not in POSIX.1, POSIX.1-2001, or POSIX.1-2008.
-Present on the BSDs
-(STAILQ macros first appeared in 4.4BSD).
-.SH NOTES
+.SH VERSIONS
 Some BSDs provide SIMPLEQ instead of STAILQ.
 They are identical, but for historical reasons
 they were named differently on different BSDs.
@@ -309,6 +305,10 @@ fixes this limitation by allowing
 .I var
 to safely be removed from the list and freed from within the loop
 without interfering with the traversal.
+.SH STANDARDS
+BSD.
+.SH HISTORY
+4.4BSD.
 .SH EXAMPLES
 .\" SRC BEGIN (stailq.c)
 .EX

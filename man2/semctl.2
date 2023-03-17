@@ -503,10 +503,7 @@ and the value to which
 is to be set (for some semaphore of the set) is less than 0
 or greater than the implementation limit
 .BR SEMVMX .
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4.
-.\" SVr4 documents more error conditions EINVAL and EOVERFLOW.
-.PP
+.SH VERSIONS
 POSIX.1 specifies the
 .\" POSIX.1-2001, POSIX.1-2008
 .I sem_nsems
@@ -518,54 +515,6 @@ and the field is so defined on most other systems.
 It was also so defined on Linux 2.2 and earlier,
 but, since Linux 2.4, the field has the type
 .IR "unsigned\ long" .
-.SH NOTES
-The
-.BR IPC_INFO ,
-.BR SEM_STAT ,
-and
-.B SEM_INFO
-operations are used by the
-.BR ipcs (1)
-program to provide information on allocated resources.
-In the future these may modified or moved to a
-.I /proc
-filesystem interface.
-.PP
-Various fields in a \fIstruct semid_ds\fP were typed as
-.I short
-under Linux 2.2
-and have become
-.I long
-under Linux 2.4.
-To take advantage of this,
-a recompilation under glibc-2.1.91 or later should suffice.
-(The kernel distinguishes old and new calls by an
-.B IPC_64
-flag in
-.IR cmd .)
-.PP
-In some earlier versions of glibc, the
-.I semun
-union was defined in \fI<sys/sem.h>\fP, but POSIX.1 requires
-.\" POSIX.1-2001, POSIX.1-2008
-that the caller define this union.
-On versions of glibc where this union is \fInot\fP defined,
-the macro
-.B _SEM_SEMUN_UNDEFINED
-is defined in \fI<sys/sem.h>\fP.
-.PP
-The following system limit on semaphore sets affects a
-.BR semctl ()
-call:
-.TP
-.B SEMVMX
-Maximum value for
-.BR semval :
-implementation dependent (32767).
-.PP
-For greater portability, it is best to always call
-.BR semctl ()
-with four arguments.
 .\"
 .SS The sempid value
 POSIX.1 defines
@@ -609,6 +558,59 @@ operations.
 This was rectified
 .\" commit a5f4db877177d2a3d7ae62a7bac3a5a27e083d7f
 in Linux 4.6.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SVr4.
+.\" SVr4 documents more error conditions EINVAL and EOVERFLOW.
+.PP
+Various fields in a \fIstruct semid_ds\fP were typed as
+.I short
+under Linux 2.2
+and have become
+.I long
+under Linux 2.4.
+To take advantage of this,
+a recompilation under glibc-2.1.91 or later should suffice.
+(The kernel distinguishes old and new calls by an
+.B IPC_64
+flag in
+.IR cmd .)
+.PP
+In some earlier versions of glibc, the
+.I semun
+union was defined in \fI<sys/sem.h>\fP, but POSIX.1 requires
+.\" POSIX.1-2001, POSIX.1-2008
+that the caller define this union.
+On versions of glibc where this union is \fInot\fP defined,
+the macro
+.B _SEM_SEMUN_UNDEFINED
+is defined in \fI<sys/sem.h>\fP.
+.SH NOTES
+The
+.BR IPC_INFO ,
+.BR SEM_STAT ,
+and
+.B SEM_INFO
+operations are used by the
+.BR ipcs (1)
+program to provide information on allocated resources.
+In the future these may modified or moved to a
+.I /proc
+filesystem interface.
+.PP
+The following system limit on semaphore sets affects a
+.BR semctl ()
+call:
+.TP
+.B SEMVMX
+Maximum value for
+.BR semval :
+implementation dependent (32767).
+.PP
+For greater portability, it is best to always call
+.BR semctl ()
+with four arguments.
 .SH EXAMPLES
 See
 .BR shmop (2).

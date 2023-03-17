@@ -107,30 +107,22 @@ For the required permissions, see
 .TP
 .B ESRCH
 No process with the specified thread ID (and thread group ID) exists.
-.SH VERSIONS
-.BR tkill ()
-is supported since Linux 2.4.19 / 2.5.4.
-.BR tgkill ()
-was added in Linux 2.5.75.
-.PP
-Library support for
-.BR tgkill ()
-was added in glibc 2.30.
 .SH STANDARDS
+Linux.
+.SH HISTORY
+.TP
 .BR tkill ()
-and
+Linux 2.4.19 / 2.5.4.
+.TP
 .BR tgkill ()
-are Linux-specific and should not be used
-in programs that are intended to be portable.
+Linux 2.5.75,
+glibc 2.30.
 .SH NOTES
 See the description of
 .B CLONE_THREAD
 in
 .BR clone (2)
 for an explanation of thread groups.
-.PP
-Before glibc 2.30, there was also no wrapper function for
-.BR tgkill ().
 .SH SEE ALSO
 .BR clone (2),
 .BR gettid (2),

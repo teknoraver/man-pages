@@ -112,11 +112,18 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-These functions are provided since glibc 2.3.4.
 .SH STANDARDS
-These functions are nonstandard GNU extensions;
+GNU;
 hence the suffix "_np" (nonportable) in the names.
+.SH HISTORY
+glibc 2.3.4.
+.PP
+In glibc 2.3.3 only,
+versions of these functions were provided that did not have a
+.I cpusetsize
+argument.
+Instead the CPU set size given to the underlying system calls was always
+.IR sizeof(cpu_set_t) .
 .SH NOTES
 After a call to
 .BR pthread_setaffinity_np (),
@@ -136,13 +143,6 @@ These functions are implemented on top of the
 and
 .BR sched_getaffinity (2)
 system calls.
-.PP
-In glibc 2.3.3 only,
-versions of these functions were provided that did not have a
-.I cpusetsize
-argument.
-Instead the CPU set size given to the underlying system calls was always
-.IR sizeof(cpu_set_t) .
 .PP
 A new thread created by
 .BR pthread_create (3)

@@ -224,7 +224,9 @@ returns the number of bytes required to store a
 CPU set of the specified cardinality.
 .PP
 The other functions do not return a value.
-.SH VERSIONS
+.SH STANDARDS
+Linux.
+.SH HISTORY
 The
 .BR CPU_ZERO (),
 .BR CPU_SET (),
@@ -253,8 +255,6 @@ first appeared in glibc 2.6.
 and
 .BR CPU_EQUAL_S ()
 first appeared in glibc 2.7.
-.SH STANDARDS
-These interfaces are Linux-specific.
 .SH NOTES
 To duplicate a CPU set, use
 .BR memcpy (3).

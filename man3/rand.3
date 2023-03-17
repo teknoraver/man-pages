@@ -133,19 +133,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-The functions
-.BR rand ()
-and
-.BR srand ()
-conform to SVr4, 4.3BSD, C89, C99, POSIX.1-2001.
-The function
-.BR rand_r ()
-is from POSIX.1-2001.
-POSIX.1-2008 marks
-.BR rand_r ()
-as obsolete.
-.SH NOTES
+.SH VERSIONS
 The versions of
 .BR rand ()
 and
@@ -164,6 +152,25 @@ when good randomness is needed.
 (Use
 .BR random (3)
 instead.)
+.SH STANDARDS
+.TP
+.BR rand ()
+.TQ
+.BR srand ()
+C11, POSIX.1-2008.
+.TP
+.BR rand_r ()
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR rand ()
+.TQ
+.BR srand ()
+SVr4, 4.3BSD, C89, POSIX.1-2001.
+.TP
+.BR rand_r ()
+POSIX.1-2001.
+Obsolete in POSIX.1-2008.
 .SH EXAMPLES
 POSIX.1-2001 gives the following example of an implementation of
 .BR rand ()

@@ -62,15 +62,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-SVr4, 4.4BSD (the
-.BR getdtablesize ()
-function first appeared in 4.2BSD).
-It is not specified in POSIX.1;
-portable applications should employ
-.I sysconf(_SC_OPEN_MAX)
-instead of this call.
-.SH NOTES
+.SH VERSIONS
 The glibc version of
 .BR getdtablesize ()
 calls
@@ -83,6 +75,15 @@ when that fails.
 .\" The libc4 and libc5 versions return
 .\" .B OPEN_MAX
 .\" (set to 256 since Linux 0.98.4).
+.PP
+Portable applications should employ
+.I sysconf(_SC_OPEN_MAX)
+instead of this call.
+.SH STANDARDS
+None.
+.SH HISTORY
+SVr4, 4.4BSD
+(first appeared in 4.2BSD).
 .SH SEE ALSO
 .BR close (2),
 .BR dup (2),

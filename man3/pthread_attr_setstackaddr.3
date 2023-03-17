@@ -15,8 +15,10 @@ POSIX threads library
 .nf
 .B #include <pthread.h>
 .PP
+.B [[deprecated]]
 .BI "int pthread_attr_setstackaddr(pthread_attr_t *" attr \
 ", void *" stackaddr );
+.B [[deprecated]]
 .BI "int pthread_attr_getstackaddr(const pthread_attr_t *restrict " attr ,
 .BI "                              void **restrict " stackaddr );
 .fi
@@ -78,11 +80,12 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-These functions are provided since glibc 2.1.
 .SH STANDARDS
-POSIX.1-2001 specifies these functions but marks them as obsolete.
-POSIX.1-2008 removes the specification of these functions.
+None.
+.SH HISTORY
+glibc 2.1.
+Marked obsolete in POSIX.1-2001.
+Removed in POSIX.1-2008.
 .SH NOTES
 .I Do not use these functions!
 They cannot be portably used, since they provide no way of specifying

@@ -126,19 +126,21 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, C99.
+C11, POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, C99.
 .PP
-For
-.BR isinf (),
-the standards merely say that the return value is nonzero
-if and only if the argument has an infinite value.
-.SH NOTES
 In glibc 2.01 and earlier,
 .BR isinf ()
 returns a nonzero value (actually: 1) if
 .I x
 is positive infinity or negative infinity.
 (This is all that C99 requires.)
+.SH NOTES
+For
+.BR isinf (),
+the standards merely say that the return value is nonzero
+if and only if the argument has an infinite value.
 .SH SEE ALSO
 .BR finite (3),
 .BR INFINITY (3),

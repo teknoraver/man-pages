@@ -184,11 +184,6 @@ The system-wide limit on the total number of open files has been reached.
 .TP
 .B ENOMEM
 There was insufficient memory to create a new anonymous file.
-.SH VERSIONS
-The
-.BR memfd_create ()
-system call first appeared in Linux 3.17;
-glibc support was added in glibc 2.27.
 .TP
 .B EPERM
 The
@@ -203,9 +198,10 @@ group; see the description of
 in
 .BR proc (5).
 .SH STANDARDS
-The
-.BR memfd_create ()
-system call is Linux-specific.
+Linux.
+.SH HISTORY
+Linux 3.17,
+glibc 2.27.
 .SH NOTES
 .\" See also http://lwn.net/Articles/593918/
 .\" and http://lwn.net/Articles/594919/ and http://lwn.net/Articles/591108/

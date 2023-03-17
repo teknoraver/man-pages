@@ -365,29 +365,32 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR dlopen ()
-and
-.BR dlclose ()
-are present in glibc 2.0 and later.
-.BR dlmopen ()
-first appeared in glibc 2.3.4.
 .SH STANDARDS
-POSIX.1-2001 describes
+.TP
+.BR dlopen ()
+.TQ
 .BR dlclose ()
-and
-.BR dlopen ().
-The
+POSIX.1-2008.
+.TP
 .BR dlmopen ()
-function is a GNU extension.
-.PP
-The
-.BR RTLD_NOLOAD ,
-.BR RTLD_NODELETE ,
-and
+.TQ
+.B RTLD_NOLOAD
+.TQ
+.B RTLD_NODELETE
+GNU.
+.TP
 .B RTLD_DEEPBIND
-flags are GNU extensions;
-the first two of these flags are also present on Solaris.
+Solaris.
+.SH HISTORY
+.TP
+.BR dlopen ()
+.TQ
+.BR dlclose ()
+glibc 2.0.
+POSIX.1-2001.
+.TP
+.BR dlmopen ()
+glibc 2.3.4.
 .SH NOTES
 .SS dlmopen() and namespaces
 A link-map list defines an isolated namespace for the

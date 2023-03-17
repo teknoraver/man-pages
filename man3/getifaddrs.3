@@ -160,16 +160,9 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-The
-.BR getifaddrs ()
-function first appeared in glibc 2.3, but before glibc 2.3.3,
-the implementation supported only IPv4 addresses;
-IPv6 support was added in glibc 2.3.3.
-Support of address families other than IPv4 is available only
-on kernels that support netlink.
 .SH STANDARDS
-Not in POSIX.1.
+None.
+.SH HISTORY
 This function first appeared in BSDi and is
 present on the BSD systems, but with slightly different
 semantics documented\[em]returning one entry per interface,
@@ -188,6 +181,13 @@ differs on various systems.
 .\" appears to be confused and obsolete on this point.
 .\" i.e., commonly it still says one of them will be NULL, even if
 .\" the ifa_ifu union is already present
+.PP
+.BR getifaddrs ()
+first appeared in glibc 2.3, but before glibc 2.3.3,
+the implementation supported only IPv4 addresses;
+IPv6 support was added in glibc 2.3.3.
+Support of address families other than IPv4 is available only
+on kernels that support netlink.
 .SH NOTES
 The addresses returned on Linux will usually be the IPv4 and IPv6 addresses
 assigned to the interface, but also one

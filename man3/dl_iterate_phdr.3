@@ -200,12 +200,6 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH VERSIONS
-.BR dl_iterate_phdr ()
-has been supported since glibc 2.2.4.
-.SH STANDARDS
-The
-.BR dl_iterate_phdr ()
-function is not specified in any standard.
 Various other systems provide a version of this function,
 although details of the returned
 .I dl_phdr_info
@@ -217,14 +211,18 @@ On the BSDs and Solaris, the structure includes the fields
 and
 .I dlpi_phnum
 in addition to other implementation-specific fields.
-.SH NOTES
+.PP
 Future versions of the C library may add further fields to the
 .I dl_phdr_info
 structure; in that event, the
 .I size
 argument provides a mechanism for the callback function to discover
 whether it is running on a system with added fields.
-.PP
+.SH STANDARDS
+None.
+.SH HISTORY
+glibc 2.2.4.
+.SH NOTES
 The first object visited by
 .I callback
 is the main program.

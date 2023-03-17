@@ -548,13 +548,11 @@ T}	Thread safety	MT-Safe
 .TE
 .sp 1
 .SH STANDARDS
-None of these interfaces is described in POSIX.1
-.PP
+.TP
 .BR adjtimex ()
-and
+.TQ
 .BR clock_adjtime ()
-are Linux-specific and should not be used in programs
-intended to be portable.
+Linux.
 .PP
 The preferred API for the NTP daemon is
 .BR ntp_adjtime ().

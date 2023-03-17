@@ -61,19 +61,17 @@ The
 .BR isfdtype ()
 function can fail with any of the same errors as
 .BR fstat (2).
-.SH STANDARDS
-The
-.BR isfdtype ()
-function is not specified in any standard,
-but did appear in the draft POSIX.1g standard.
-It is present on OpenBSD and Tru64 UNIX
-(where the required header file in both cases is just
-.IR <sys/stat.h> ,
-as shown in the POSIX.1g draft),
-and possibly other systems.
-.SH NOTES
+.SH VERSIONS
 Portable applications should use
 .BR fstat (2)
 instead.
+.SH STANDARDS
+None.
+.SH HISTORY
+It appeared in the draft POSIX.1g standard.
+It is present on OpenBSD and Tru64 UNIX
+(where the required header file in both cases is just
+.IR <sys/stat.h> ,
+as shown in the POSIX.1g draft).
 .SH SEE ALSO
 .BR fstat (2)

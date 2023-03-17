@@ -159,11 +159,28 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
-The functions returning
-.I double
-conform to SVr4, 4.3BSD,
-POSIX.1-2001, and POSIX.1-2008.
-The others are nonstandard functions that also exist on the BSDs.
+.TP
+.BR j0 ()
+.TQ
+.BR j1 ()
+.TQ
+.BR jn ()
+POSIX.1-2008.
+.TP
+Others:
+BSD.
+.SH HISTORY
+.TP
+.BR j0 ()
+.TQ
+.BR j1 ()
+.TQ
+.BR jn ()
+SVr4, 4.3BSD,
+POSIX.1-2001, POSIX.1-2008.
+.TP
+Others:
+BSD.
 .SH BUGS
 There are errors of up to 2e\-16 in the values returned by
 .BR j0 (),

@@ -133,13 +133,15 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, C99.
-.SH NOTES
+.SH VERSIONS
 Not all hardware supports these functions,
 and where hardware support isn't provided, they will be emulated by macros.
 This will result in a performance penalty.
 Don't use these functions if NaN is of no concern for you.
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, C99.
 .SH SEE ALSO
 .BR fpclassify (3),
 .BR isnan (3)

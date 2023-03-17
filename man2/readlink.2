@@ -186,20 +186,20 @@ A component of the path prefix is not a directory.
 is relative and
 .I dirfd
 is a file descriptor referring to a file other than a directory.
-.SH VERSIONS
-.BR readlinkat ()
-was added in Linux 2.6.16;
-library support was added in glibc 2.4.
 .SH STANDARDS
-.BR readlink ():
-4.4BSD
-.RB ( readlink ()
-first appeared in 4.2BSD),
-POSIX.1-2001, POSIX.1-2008.
-.PP
-.BR readlinkat ():
 POSIX.1-2008.
-.SH NOTES
+.SH HISTORY
+.TP
+.BR readlink ()
+4.4BSD
+(first appeared in 4.2BSD),
+POSIX.1-2001, POSIX.1-2008.
+.TP
+.BR readlinkat ()
+POSIX.1-2008.
+Linux 2.6.16,
+glibc 2.4.
+.PP
 Up to and including glibc 2.4, the return type of
 .BR readlink ()
 was declared as
@@ -207,7 +207,20 @@ was declared as
 Nowadays, the return type is declared as
 .IR ssize_t ,
 as (newly) required in POSIX.1-2001.
-.PP
+.SS glibc
+On older kernels where
+.BR readlinkat ()
+is unavailable, the glibc wrapper function falls back to the use of
+.BR readlink ().
+When
+.I pathname
+is a relative pathname,
+glibc constructs a pathname based on the symbolic link in
+.I /proc/self/fd
+that corresponds to the
+.I dirfd
+argument.
+.SH NOTES
 Using a statically sized buffer might not provide enough room for the
 symbolic link contents.
 The required size for the buffer can be obtained from the
@@ -230,19 +243,6 @@ also addresses a common portability problem when using
 for the buffer size,
 as this constant is not guaranteed to be defined per POSIX
 if the system does not have such limit.
-.SS glibc notes
-On older kernels where
-.BR readlinkat ()
-is unavailable, the glibc wrapper function falls back to the use of
-.BR readlink ().
-When
-.I pathname
-is a relative pathname,
-glibc constructs a pathname based on the symbolic link in
-.I /proc/self/fd
-that corresponds to the
-.I dirfd
-argument.
 .SH EXAMPLES
 The following program allocates the buffer needed by
 .BR readlink ()

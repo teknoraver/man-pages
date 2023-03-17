@@ -28,6 +28,8 @@ for modes.
 .PP
 All are unsigned integer types.
 .SH STANDARDS
-POSIX.1-2001 and later.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH SEE ALSO
 .BR termios (3)

@@ -81,19 +81,7 @@ Out of memory.
 .TP
 .B EPERM
 The calling thread has insufficient privilege.
-.SH STANDARDS
-.BR ioperm ()
-is Linux-specific and should not be used in programs
-intended to be portable.
-.SH NOTES
-The
-.I /proc/ioports
-file shows the I/O ports that are currently allocated on the system.
-.PP
-Before Linux 2.4,
-permissions were not inherited by a child created by
-.BR fork (2).
-.PP
+.SH VERSIONS
 glibc has an
 .BR ioperm ()
 prototype both in
@@ -101,6 +89,16 @@ prototype both in
 and in
 .IR <sys/perm.h> .
 Avoid the latter, it is available on i386 only.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Before Linux 2.4,
+permissions were not inherited by a child created by
+.BR fork (2).
+.SH NOTES
+The
+.I /proc/ioports
+file shows the I/O ports that are currently allocated on the system.
 .SH SEE ALSO
 .BR iopl (2),
 .BR outb (2),

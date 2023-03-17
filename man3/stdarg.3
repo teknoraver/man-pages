@@ -224,16 +224,19 @@ T}	Thread safety	MT-Safe race:ap
 .ad
 .sp 1
 .SH STANDARDS
-The
-.BR va_start (),
-.BR va_arg (),
-and
+C11, POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR va_start ()
+.TQ
+.BR va_arg ()
+.TQ
 .BR va_end ()
-macros conform to C89.
-C99 defines the
+C89, POSIX.1-2001.
+.TP
 .BR va_copy ()
-macro.
-.SH BUGS
+C99, POSIX.1-2001.
+.SH CAVEATS
 Unlike the historical
 .B varargs
 macros, the

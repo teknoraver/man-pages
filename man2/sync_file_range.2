@@ -155,12 +155,6 @@ Out of disk space.
 refers to something other than a regular file, a block device, or
 a directory.
 .SH VERSIONS
-.BR sync_file_range ()
-appeared in Linux 2.6.17.
-.SH STANDARDS
-This system call is Linux-specific, and should be avoided
-in portable programs.
-.SH NOTES
 .SS sync_file_range2()
 Some architectures (e.g., PowerPC, ARM)
 need 64-bit arguments to be aligned in a suitable pair of registers.
@@ -188,7 +182,11 @@ system call that orders the arguments suitably:
 .PP
 The behavior of this system call is otherwise exactly the same as
 .BR sync_file_range ().
-.PP
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.6.17.
+.SS sync_file_range2()
 A system call with this signature first appeared on the ARM architecture
 in Linux 2.6.20, with the name
 .BR arm_sync_file_range ().
@@ -199,6 +197,7 @@ glibc transparently wraps
 .BR sync_file_range2 ()
 under the name
 .BR sync_file_range ().
+.SH NOTES
 .SH SEE ALSO
 .BR fdatasync (2),
 .BR fsync (2),

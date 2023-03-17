@@ -28,8 +28,9 @@ and
 .BR va_end (3)
 to traverse the list of arguments.
 .SH STANDARDS
-C99 and later;
-POSIX.1-2001 and later.
+C11, POSIX.1-2008.
+.SH HISTORY
+C89, POSIX.1-2001.
 .SH NOTES
 The following headers also provide
 .IR va_list :

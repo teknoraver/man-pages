@@ -64,20 +64,15 @@ does not refer to a file type to which
 .BR readahead ()
 can be applied.
 .SH VERSIONS
-The
-.BR readahead ()
-system call appeared in Linux 2.4.13;
-glibc support has been provided since glibc 2.3.
-.SH STANDARDS
-The
-.BR readahead ()
-system call is Linux-specific, and its use should be avoided
-in portable applications.
-.SH NOTES
 On some 32-bit architectures,
 the calling signature for this system call differs,
 for the reasons described in
 .BR syscall (2).
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.4.13,
+glibc 2.3.
 .SH BUGS
 .BR readahead ()
 attempts to schedule the reads in the background and return immediately.

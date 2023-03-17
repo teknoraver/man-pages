@@ -39,8 +39,8 @@ The system could not provide the required information
 .I /proc
 filesystem was not mounted).
 .SH STANDARDS
-These functions are GNU extensions.
-.SH NOTES
+GNU.
+.SH HISTORY
 Before glibc 2.23,
 these functions obtained the required information by scanning the
 .I MemTotal
@@ -51,7 +51,7 @@ fields of
 Since glibc 2.23,
 these functions obtain the required information by calling
 .BR sysinfo (2).
-.PP
+.SH NOTES
 The following
 .BR sysconf (3)
 calls provide a portable means of obtaining the same information as the

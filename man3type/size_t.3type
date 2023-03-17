@@ -84,9 +84,22 @@ by converting the value to
 .I intmax_t
 and using its length modifier
 .RB ( j ).
-.SH VERSIONS
+.SH STANDARDS
 .TP
 .I size_t
+C11, POSIX.1-2008.
+.TP
+.I ssize_t
+POSIX.1-2008.
+.PD
+.SH HISTORY
+.TP
+.I size_t
+C89, POSIX.1-2001.
+.TP
+.I ssize_t
+POSIX.1-2001.
+.PP
 .IR <aio.h> ,
 .IR <glob.h> ,
 .IR <grp.h> ,
@@ -99,8 +112,7 @@ and
 define
 .I size_t
 since POSIX.1-2008.
-.TP
-.I ssize_t
+.PP
 .IR <aio.h> ,
 .IR <mqueue.h> ,
 and
@@ -108,15 +120,6 @@ and
 define
 .I ssize_t
 since POSIX.1-2008.
-.SH STANDARDS
-.PD 0
-.IR size_t :
-C99 and later;
-POSIX.1-2001 and later.
-.PP
-.IR ssize_t :
-POSIX.1-2001 and later.
-.PD
 .SH NOTES
 .TP
 .I size_t

@@ -73,12 +73,19 @@ T}	Thread safety	MT-Safe locale
 .ad
 .sp 1
 .SH STANDARDS
-.BR strstr ():
-POSIX.1-2001, POSIX.1-2008, C89, C99.
-.PP
-The
+.TP
+.BR strstr ()
+C11, POSIX.1-2008.
+.TP
 .BR strcasestr ()
-function is a nonstandard extension.
+GNU.
+.SH HISTORY
+.TP
+.BR strstr ()
+POSIX.1-2001, C89.
+.TP
+.BR strcasestr ()
+GNU.
 .SH SEE ALSO
 .BR memchr (3),
 .BR memmem (3),

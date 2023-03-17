@@ -348,11 +348,9 @@ T}
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-.TP
-.BR getopt ():
-POSIX.1-2001, POSIX.1-2008, and POSIX.2,
-provided the environment variable
+.SH VERSIONS
+.BR getopt ()
+conforms to POSIX provided the environment variable
 .B POSIXLY_CORRECT
 is set.
 Otherwise, the elements of \fIargv\fP aren't really
@@ -361,11 +359,24 @@ because these functions permute them.
 Nevertheless,
 .I const
 is used in the prototype to be compatible with other systems.
+.SH STANDARDS
+.TP
+.BR getopt ()
+POSIX.1-2008.
+.TP
+.BR getopt_long ()
+.TQ
+.BR getopt_long_only ()
+GNU.
 .IP
 The use of \[aq]+\[aq] and \[aq]\-\[aq] in
 .I optstring
 is a GNU extension.
-.IP
+.SH HISTORY
+.TP
+.BR getopt ()
+POSIX.1-2001, and POSIX.2.
+.PP
 On some older implementations,
 .BR getopt ()
 was declared in
@@ -379,9 +390,6 @@ POSIX.1-1996 marked the use of
 for this purpose as LEGACY.
 POSIX.1-2001 does not require the declaration to appear in
 .IR <stdio.h> .
-.TP
-.BR getopt_long "() and " getopt_long_only ():
-These functions are GNU extensions.
 .SH NOTES
 A program that scans multiple argument vectors,
 or rescans the same vector more than once,

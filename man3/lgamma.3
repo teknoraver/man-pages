@@ -153,14 +153,41 @@ is raised.
 .\" glibc (as at 2.8) also supports an inexact
 .\" exception for various cases.
 .SH STANDARDS
-The
+.TP
 .BR lgamma ()
-functions are specified in C99, POSIX.1-2001, and POSIX.1-2008.
+.TQ
+.BR lgammaf ()
+.TQ
+.BR lgammal ()
+C11, POSIX.1-2008.
+.TP
 .I signgam
-is specified in POSIX.1-2001 and POSIX.1-2008, but not in C99.
-The
+POSIX.1-2008.
+.TP
 .BR lgamma_r ()
-functions are nonstandard, but present on several other systems.
+.TQ
+.BR lgammaf_r ()
+.TQ
+.BR lgammal_r ()
+None.
+.SH HISTORY
+.TP
+.BR lgamma ()
+.TQ
+.BR lgammaf ()
+.TQ
+.BR lgammal ()
+C99, POSIX.1-2001.
+.TP
+.I signgam
+POSIX.1-2001.
+.TP
+.BR lgamma_r ()
+.TQ
+.BR lgammaf_r ()
+.TQ
+.BR lgammal_r ()
+None.
 .SH BUGS
 In glibc 2.9 and earlier,
 .\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=6777

@@ -919,7 +919,70 @@ T}	Thread safety	MT-Safe locale
 .hy
 .ad
 .sp 1
-.SH VERSIONS
+.SH STANDARDS
+.TP
+.BR fprintf ()
+.TQ
+.BR printf ()
+.TQ
+.BR sprintf ()
+.TQ
+.BR vprintf ()
+.TQ
+.BR vfprintf ()
+.TQ
+.BR vsprintf ()
+.TQ
+.BR snprintf ()
+.TQ
+.BR vsnprintf ()
+C11, POSIX.1-2008.
+.TP
+.BR dprintf ()
+.TQ
+.BR vdprintf ()
+GNU, POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR fprintf ()
+.TQ
+.BR printf ()
+.TQ
+.BR sprintf ()
+.TQ
+.BR vprintf ()
+.TQ
+.BR vfprintf ()
+.TQ
+.BR vsprintf ()
+C89, POSIX.1-2001.
+.TP
+.BR snprintf ()
+.TQ
+.BR vsnprintf ()
+SUSv2, C99, POSIX.1-2001.
+.IP
+Concerning the return value of
+.BR snprintf (),
+SUSv2 and C99 contradict each other: when
+.BR snprintf ()
+is called with
+.IR size =0
+then SUSv2 stipulates an unspecified return value less than 1,
+while C99 allows
+.I str
+to be NULL in this case, and gives the return value (as always)
+as the number of characters that would have been written in case
+the output string has been large enough.
+POSIX.1-2001 and later align their specification of
+.BR snprintf ()
+with C99.
+.TP
+.BR dprintf ()
+.TQ
+.BR vdprintf ()
+GNU, POSIX.1-2008.
+.PP
 .\" Linux libc4 knows about the five C standard flags.
 .\" It knows about the length modifiers \fBh\fP, \fBl\fP, \fBL\fP,
 .\" and the conversions
@@ -959,42 +1022,7 @@ of the
 .B m
 conversion specifier, that is
 .IR %#m .
-.SH STANDARDS
-.BR fprintf (),
-.BR printf (),
-.BR sprintf (),
-.BR vprintf (),
-.BR vfprintf (),
-.BR vsprintf ():
-POSIX.1-2001, POSIX.1-2008, C89, C99.
-.PP
-.BR snprintf (),
-.BR vsnprintf ():
-POSIX.1-2001, POSIX.1-2008, C99.
-.PP
-The
-.BR dprintf ()
-and
-.BR vdprintf ()
-functions were originally GNU extensions that were later standardized
-in POSIX.1-2008.
-.PP
-Concerning the return value of
-.BR snprintf (),
-SUSv2 and C99 contradict each other: when
-.BR snprintf ()
-is called with
-.IR size =0
-then SUSv2 stipulates an unspecified return value less than 1,
-while C99 allows
-.I str
-to be NULL in this case, and gives the return value (as always)
-as the number of characters that would have been written in case
-the output string has been large enough.
-POSIX.1-2001 and later align their specification of
-.BR snprintf ()
-with C99.
-.SH NOTES
+.SH CAVEATS
 Some programs imprudently rely on code such as the following
 .PP
 .in +4n

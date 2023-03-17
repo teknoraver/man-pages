@@ -214,29 +214,21 @@ does not support the creation of symbolic links.
 .B EROFS
 .I linkpath
 is on a read-only filesystem.
-.SH VERSIONS
-.BR symlinkat ()
-was added in Linux 2.6.16;
-library support was added in glibc 2.4.
 .SH STANDARDS
-.BR symlink ():
-SVr4, 4.3BSD, POSIX.1-2001, POSIX.1-2008.
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR symlink ()
+SVr4, 4.3BSD, POSIX.1-2001.
 .\" SVr4 documents additional error codes EDQUOT and ENOSYS.
 .\" See
 .\" .BR open (2)
 .\" re multiple files with the same name, and NFS.
-.PP
-.BR symlinkat ():
+.TP
+.BR symlinkat ()
 POSIX.1-2008.
-.SH NOTES
-No checking of
-.I target
-is done.
-.PP
-Deleting the name referred to by a symbolic link will actually delete the
-file (unless it also has other hard links).
-If this behavior is not desired, use
-.BR link (2).
+Linux 2.6.16,
+glibc 2.4.
 .SS glibc notes
 On older kernels where
 .BR symlinkat ()
@@ -250,6 +242,15 @@ glibc constructs a pathname based on the symbolic link in
 that corresponds to the
 .I newdirfd
 argument.
+.SH NOTES
+No checking of
+.I target
+is done.
+.PP
+Deleting the name referred to by a symbolic link will actually delete the
+file (unless it also has other hard links).
+If this behavior is not desired, use
+.BR link (2).
 .SH SEE ALSO
 .BR ln (1),
 .BR namei (1),

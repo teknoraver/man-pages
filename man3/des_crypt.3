@@ -23,16 +23,17 @@ Standard C library
 .\" .B #include <des_crypt.h>
 .B #include <rpc/des_crypt.h>
 .PP
-.BI "int ecb_crypt(char *" key ", char " data [. datalen "], \
-unsigned int " datalen ,
-.BI "              unsigned int " mode );
-.BI "int cbc_crypt(char *" key ", char " data [. datalen "], \
-unsigned int " datalen ,
-.BI "              unsigned int " mode ", char *" ivec );
+.BI "[[deprecated]] int ecb_crypt(char *" key ", char " data [. datalen ],
+.BI "                             unsigned int " datalen ", \
+unsigned int " mode );
+.BI "[[deprecated]] int cbc_crypt(char *" key ", char " data [. datalen ],
+.BI "                             unsigned int " datalen ", \
+unsigned int " mode ,
+.BI "                             char *" ivec );
 .PP
-.BI "void des_setparity(char *" key );
+.BI "[[deprecated]] void des_setparity(char *" key );
 .PP
-.BI "int DES_FAILED(int " status );
+.BI "[[deprecated]] int DES_FAILED(int " status );
 .fi
 .SH DESCRIPTION
 .BR ecb_crypt ()
@@ -148,22 +149,18 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-These functions were added in glibc 2.1.
+.SH STANDARDS
+None.
+.SH HISTORY
+4.3BSD.
+glibc 2.1.
+Removed in glibc 2.28.
 .PP
 Because they employ the DES block cipher,
 which is no longer considered secure,
-.BR ecb_crypt (),
-.BR ecb_crypt (),
-.BR crypt_r (),
-and
-.BR des_setparity ()
-were removed in glibc 2.28.
+these functions were removed.
 Applications should switch to a modern cryptography library, such as
 .BR libgcrypt .
-.SH STANDARDS
-4.3BSD.
-Not in POSIX.1.
 .SH SEE ALSO
 .BR des (1),
 .BR crypt (3),

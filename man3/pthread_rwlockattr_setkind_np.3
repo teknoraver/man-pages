@@ -110,14 +110,10 @@ returns a nonzero error number.
 .B EINVAL
 .I pref
 specifies an unsupported value.
-.SH VERSIONS
-The
-.BR pthread_rwlockattr_getkind_np ()
-and
-.BR pthread_rwlockattr_setkind_np ()
-functions first appeared in glibc 2.1.
 .SH STANDARDS
-These functions are non-standard GNU extensions;
+GNU;
 hence the suffix "_np" (nonportable) in the names.
+.SH HISTORY
+glibc 2.1.
 .SH SEE ALSO
 .BR pthreads (7)

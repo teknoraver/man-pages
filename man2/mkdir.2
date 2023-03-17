@@ -204,25 +204,10 @@ does not support the creation of directories.
 .I pathname
 refers to a file on a read-only filesystem.
 .SH VERSIONS
-.BR mkdirat ()
-was added in Linux 2.6.16;
-library support was added in glibc 2.4.
-.SH STANDARDS
-.BR mkdir ():
-SVr4, BSD, POSIX.1-2001, POSIX.1-2008.
-.\" SVr4 documents additional EIO, EMULTIHOP
-.PP
-.BR mkdirat ():
-POSIX.1-2008.
-.SH NOTES
 Under Linux, apart from the permission bits, the
 .B S_ISVTX
 .I mode
 bit is also honored.
-.PP
-There are many infelicities in the protocol underlying NFS.
-Some of these affect
-.BR mkdir ().
 .SS glibc notes
 On older kernels where
 .BR mkdirat ()
@@ -236,6 +221,21 @@ glibc constructs a pathname based on the symbolic link in
 that corresponds to the
 .I dirfd
 argument.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR mkdir ()
+SVr4, BSD, POSIX.1-2001.
+.\" SVr4 documents additional EIO, EMULTIHOP
+.TP
+.BR mkdirat ()
+Linux 2.6.16,
+glibc 2.4.
+.SH NOTES
+There are many infelicities in the protocol underlying NFS.
+Some of these affect
+.BR mkdir ().
 .SH SEE ALSO
 .BR mkdir (1),
 .BR chmod (2),

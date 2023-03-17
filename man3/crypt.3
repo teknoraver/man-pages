@@ -187,11 +187,16 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
-.BR crypt ():
-POSIX.1-2001, POSIX.1-2008, SVr4, 4.3BSD.
+.TP
+.BR crypt ()
+POSIX.1-2008.
+.TP
 .BR crypt_r ()
-is a GNU extension.
-.SH NOTES
+GNU.
+.SH HISTORY
+.TP
+.BR crypt ()
+POSIX.1-2001, SVr4, 4.3BSD.
 .SS Availability in glibc
 The
 .BR crypt (),
@@ -217,6 +222,7 @@ for the function prototypes;
 otherwise
 .I libxcrypt
 is an ABI-compatible drop-in replacement.
+.SH NOTES
 .SS Features in glibc
 The glibc version of this function supports additional
 encryption algorithms.

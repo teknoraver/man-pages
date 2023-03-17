@@ -59,11 +59,7 @@ the
 .B CAP_SYS_RAWIO
 capability is required to raise the I/O privilege level
 above its current value.
-.SH STANDARDS
-.BR iopl ()
-is Linux-specific and should not be used in programs that are
-intended to be portable.
-.SH NOTES
+.SH VERSIONS
 .\" Libc5 treats it as a system call and has a prototype in
 .\" .IR <unistd.h> .
 .\" glibc1 does not have a prototype.
@@ -72,7 +68,9 @@ glibc2 has a prototype both in
 and in
 .IR <sys/perm.h> .
 Avoid the latter, it is available on i386 only.
-.PP
+.SH STANDARDS
+Linux.
+.SH HISTORY
 Prior to Linux 5.5
 .BR iopl ()
 allowed the thread to disable interrupts while running

@@ -121,12 +121,8 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.\" SH VERSIONS
-.\" Available since glibc 2.0
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
-On Linux, the
+.SH VERSIONS
+On glibc, the
 .BR pthread_cleanup_push ()
 and
 .BR pthread_cleanup_pop ()
@@ -151,6 +147,11 @@ and
 .BR pthread_cleanup_pop ()
 is undefined.
 Portable applications should avoid doing this.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
+glibc 2.0.
 .SH EXAMPLES
 The program below provides a simple example of the use of the functions
 described in this page.

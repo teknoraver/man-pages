@@ -244,22 +244,10 @@ must point to a location beneath the mount point of
 .BR spufs .
 By convention, it gets mounted in
 .IR /spu .
-.SH VERSIONS
-The
-.BR spu_create ()
-system call was added in Linux 2.6.16.
 .SH STANDARDS
-This call is Linux-specific and implemented only on the PowerPC
-architecture.
-Programs using this system call are not portable.
-.SH NOTES
-.BR spu_create ()
-is meant to be used from libraries that implement a more abstract
-interface to SPUs, not to be used from regular applications.
-See
-.UR http://www.bsc.es\:/projects\:/deepcomputing\:/linuxoncell/
-.UE
-for the recommended libraries.
+Linux on PowerPC.
+.SH HISTORY
+Linux 2.6.16.
 .PP
 Prior to the addition of the
 .B SPU_CREATE_AFFINITY_SPU
@@ -268,6 +256,14 @@ flag in Linux 2.6.23, the
 system call took only three arguments (i.e., there was no
 .I neighbor_fd
 argument).
+.SH NOTES
+.BR spu_create ()
+is meant to be used from libraries that implement a more abstract
+interface to SPUs, not to be used from regular applications.
+See
+.UR http://www.bsc.es\:/projects\:/deepcomputing\:/linuxoncell/
+.UE
+for the recommended libraries.
 .SH EXAMPLES
 See
 .BR spu_run (2)

@@ -62,9 +62,22 @@ T}	Thread safety	MT-Unsafe const:env
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-Available since glibc 2.0.
 .SH STANDARDS
+.TP
+.BR putenv ()
+POSIX.1-2008.
+.TP
+.BR clearenv ()
+None.
+.SH HISTORY
+.TP
+.BR putenv ()
+glibc 2.0.
+POSIX.1-2001.
+.TP
+.BR clearenv ()
+glibc 2.0.
+.PP
 Various UNIX variants (DG/UX, HP-UX, QNX, ...).
 POSIX.9 (bindings for FORTRAN77).
 POSIX.1-1996 did not accept

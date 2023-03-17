@@ -450,7 +450,7 @@ were specified in
 and this kernel was configured without
 .BR CONFIG_CHECKPOINT_RESTORE .
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4.
+POSIX.1-2008.
 .PP
 The
 .B MSG_EXCEPT
@@ -461,14 +461,16 @@ their definitions can be obtained by defining the
 .B _GNU_SOURCE
 .\" MSG_COPY since glibc 2.18
 feature test macro.
-.SH NOTES
+.SH HISTORY
+POSIX.1-2001, SVr4.
+.PP
 The
 .I msgp
 argument is declared as \fIstruct msgbuf\ *\fP in
 glibc 2.0 and 2.1.
 It is declared as \fIvoid\ *\fP
 in glibc 2.2 and later, as required by SUSv2 and SUSv3.
-.PP
+.SH NOTES
 The following limits on message queue resources affect the
 .BR msgsnd ()
 call:

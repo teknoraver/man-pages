@@ -22,7 +22,9 @@ Standard C library
 .SH DESCRIPTION
 Describes times in seconds and microseconds.
 .SH STANDARDS
-POSIX.1-2001 and later.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH NOTES
 The following headers also provide this type:
 .IR <sys/resource.h> ,

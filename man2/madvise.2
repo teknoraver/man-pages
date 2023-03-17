@@ -838,15 +838,6 @@ be created using the
 flag described elsewhere in this page)
 was encountered.
 .SH VERSIONS
-Since Linux 3.18,
-.\" commit d3ac21cacc24790eb45d735769f35753f5b56ceb
-support for this system call is optional,
-depending on the setting of the
-.B CONFIG_ADVISE_SYSCALLS
-configuration option.
-.SH STANDARDS
-.BR madvise ()
-is not specified by any standards.
 Versions of this system call, implementing a wide variety of
 .I advice
 values, exist on many other implementations.
@@ -865,8 +856,7 @@ with constants
 and
 .BR POSIX_MADV_DONTNEED ,
 and so on, with behavior close to the similarly named flags listed above.
-.SH NOTES
-.SS Linux notes
+.SS Linux
 The Linux implementation requires that the address
 .I addr
 be page-aligned, and allows
@@ -883,10 +873,17 @@ from the system call, as it should).
 will return zero iff
 .I advice
 is supported by the kernel and can be relied on to probe for support.
-.\" .SH HISTORY
-.\" The
-.\" .BR madvise ()
-.\" function first appeared in 4.4BSD.
+.SH STANDARDS
+None.
+.SH HISTORY
+First appeared in 4.4BSD.
+.PP
+Since Linux 3.18,
+.\" commit d3ac21cacc24790eb45d735769f35753f5b56ceb
+support for this system call is optional,
+depending on the setting of the
+.B CONFIG_ADVISE_SYSCALLS
+configuration option.
 .SH SEE ALSO
 .BR getrlimit (2),
 .BR memfd_secret (2),

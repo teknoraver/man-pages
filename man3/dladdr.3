@@ -231,14 +231,17 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR dladdr ()
-is present in glibc 2.0 and later.
-.BR dladdr1 ()
-first appeared in glibc 2.3.3.
 .SH STANDARDS
-These functions are nonstandard GNU extensions
-that are also present on Solaris.
+GNU.
+.SH HISTORY
+.TP
+.BR dladdr ()
+glibc 2.0.
+.TP
+.BR dladdr1 ()
+glibc 2.3.3.
+.PP
+Solaris.
 .SH BUGS
 Sometimes, the function pointers you pass to
 .BR dladdr ()

@@ -82,11 +82,12 @@ fails with the following errors:
 .TP
 .B EBUSY
 The spin lock is currently locked by another thread.
-.SH VERSIONS
-These functions were added in glibc 2.2.
 .SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+glibc 2.2.
 POSIX.1-2001.
-.SH NOTES
+.SH CAVEATS
 Applying any of the functions described on this page to
 an uninitialized spin lock results in undefined behavior.
 .PP

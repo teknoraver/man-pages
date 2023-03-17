@@ -197,16 +197,6 @@ T}	Thread safety	MT-Safe env
 .ad
 .sp 1
 .SH VERSIONS
-The
-.BR execvpe ()
-function first appeared in glibc 2.11.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.PP
-The
-.BR execvpe ()
-function is a GNU extension.
-.SH NOTES
 The default search path (used when the environment
 does not contain the variable \fBPATH\fR)
 shows some variation across systems.
@@ -254,6 +244,40 @@ and
 upon which they returned.
 They now return if any error other than the ones
 described above occurs.
+.SH STANDARDS
+.TP
+.B environ
+.TQ
+.BR execl ()
+.TQ
+.BR execlp ()
+.TQ
+.BR execle ()
+.TQ
+.BR execv ()
+.TQ
+.BR execvp ()
+POSIX.1-2008.
+.TP
+.BR execvpe ()
+GNU.
+.SH HISTORY
+.TP
+.B environ
+.TQ
+.BR execl ()
+.TQ
+.BR execlp ()
+.TQ
+.BR execle ()
+.TQ
+.BR execv ()
+.TQ
+.BR execvp ()
+POSIX.1-2001.
+.TP
+.BR execvpe ()
+glibc 2.11.
 .SH BUGS
 Before glibc 2.24,
 .BR execl ()

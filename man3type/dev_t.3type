@@ -22,7 +22,9 @@ It is an integer type.
 For further details of this type, see
 .BR makedev (3).
 .SH STANDARDS
-POSIX.1-2001 and later.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH NOTES
 The following header also provides this type:
 .IR <sys/stat.h> .

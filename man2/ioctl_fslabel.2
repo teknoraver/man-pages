@@ -46,17 +46,16 @@ This can appear if the filesystem does not support online label manipulation.
 .TP
 .B EPERM
 The calling process does not have sufficient permissions to set the label.
-.SH VERSIONS
-These
-.BR ioctl (2)
-operations first appeared in Linux 4.18.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 4.18.
+.PP
 They were previously known as
 .B BTRFS_IOC_GET_FSLABEL
 and
 .B BTRFS_IOC_SET_FSLABEL
 and were private to Btrfs.
-.SH STANDARDS
-This API is Linux-specific.
 .SH NOTES
 The maximum string length for this interface is
 .BR FSLABEL_MAX ,

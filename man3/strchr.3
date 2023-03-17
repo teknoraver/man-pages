@@ -101,16 +101,24 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR strchrnul ()
-was added in glibc 2.1.1.
 .SH STANDARDS
-.BR strchr (),
-.BR strrchr ():
-POSIX.1-2001, POSIX.1-2008, C89, C99, SVr4, 4.3BSD.
-.PP
+.TP
+.BR strchr ()
+.TQ
+.BR strrchr ()
+C11, POSIX.1-2008.
+.TP
 .BR strchrnul ()
-is a GNU extension.
+GNU.
+.SH HISTORY
+.TP
+.BR strchr ()
+.TQ
+.BR strrchr ()
+POSIX.1-2001, C89, SVr4, 4.3BSD.
+.TP
+.BR strchrnul ()
+glibc 2.1.1.
 .SH SEE ALSO
 .BR memchr (3),
 .BR string (3),

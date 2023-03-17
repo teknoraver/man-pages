@@ -156,8 +156,13 @@ for scanning
 .I uint8_t
 values.
 .SH STANDARDS
-C99 and later;
-POSIX.1-2001 and later.
+C11, POSIX.1-2008.
+.SH HISTORY
+C99, POSIX.1-2001.
+.PP
+The
+.RB [ U ] INT \fIN\fP _WIDTH
+macros were added in C23.
 .SH NOTES
 The following header also provides these types:
 .IR <inttypes.h> .

@@ -134,9 +134,12 @@ capability in the user namespace of the thread
 .TP
 .B ESRCH
 The thread whose ID is \fIpid\fP could not be found.
-.SH VERSIONS
-The CPU affinity system calls were introduced in Linux kernel 2.5.8.
-The system call wrappers were introduced in glibc 2.3.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.5.8,
+glibc 2.3.
+.PP
 Initially, the glibc interfaces included a
 .I cpusetsize
 argument, typed as
@@ -145,8 +148,6 @@ In glibc 2.3.3, the
 .I cpusetsize
 argument was removed, but was then restored in glibc 2.3.4, with type
 .IR size_t .
-.SH STANDARDS
-These system calls are Linux-specific.
 .SH NOTES
 After a call to
 .BR sched_setaffinity (),

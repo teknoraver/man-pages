@@ -33,9 +33,7 @@ The
 .I epoll_event
 structure specifies data that the kernel should save and
 return when the corresponding file descriptor becomes ready.
-.SH STANDARDS
-This type is Linux-specific.
-.SH NOTES
+.SH VERSIONS
 .SS C library/kernel differences
 The Linux kernel headers also provide this type,
 with a slightly different definition:
@@ -50,6 +48,8 @@ struct epoll_event {
 };
 .EE
 .in
+.SH STANDARDS
+Linux.
 .SH SEE ALSO
 .BR epoll_wait (2),
 .BR epoll_ctl (7)

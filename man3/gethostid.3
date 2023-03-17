@@ -106,18 +106,7 @@ T}
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-4.2BSD; these functions were dropped in 4.4BSD.
-SVr4 includes
-.BR gethostid ()
-but not
-.BR sethostid ().
-.PP
-POSIX.1-2001 and POSIX.1-2008 specify
-.BR gethostid ()
-but not
-.BR sethostid ().
-.SH NOTES
+.SH VERSIONS
 In the glibc implementation, the
 .I hostid
 is stored in the file
@@ -137,6 +126,19 @@ passes that hostname to
 in order to obtain the host's IPv4 address,
 and returns a value obtained by bit-twiddling the IPv4 address.
 (This value may not be unique.)
+.SH STANDARDS
+.TP
+.BR gethostid ()
+POSIX.1-2008.
+.TP
+.BR sethostid ()
+None.
+.SH HISTORY
+4.2BSD; dropped in 4.4BSD.
+SVr4 and POSIX.1-2001 include
+.BR gethostid ()
+but not
+.BR sethostid ().
 .SH BUGS
 It is impossible to ensure that the identifier is globally unique.
 .SH SEE ALSO

@@ -77,19 +77,12 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-Starting with glibc 2.33, the
-.BR ftime ()
-function and the
-.I <sys/timeb.h>
-header have been removed.
-To support old binaries,
-glibc continues to provide a compatibility symbol for
-applications linked against glibc 2.32 and earlier.
 .SH STANDARDS
+None.
+.SH HISTORY
+Removed in glibc 2.33.
 4.2BSD, POSIX.1-2001.
-POSIX.1-2008 removes the specification of
-.BR ftime ().
+Removed in POSIX.1-2008.
 .PP
 This function is obsolete.
 Don't use it.

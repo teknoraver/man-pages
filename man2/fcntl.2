@@ -1810,38 +1810,7 @@ was not open for writing
 or the current set of seals on the file already includes
 .BR F_SEAL_SEAL .
 .SH STANDARDS
-SVr4, 4.3BSD, POSIX.1-2001.
-Only the operations
-.BR F_DUPFD ,
-.BR F_GETFD ,
-.BR F_SETFD ,
-.BR F_GETFL ,
-.BR F_SETFL ,
-.BR F_GETLK ,
-.BR F_SETLK ,
-and
-.B F_SETLKW
-are specified in POSIX.1-2001.
-.PP
-.B F_GETOWN
-and
-.B F_SETOWN
-are specified in POSIX.1-2001.
-(To get their definitions, define either
-.\" .BR _BSD_SOURCE ,
-.\" or
-.B _XOPEN_SOURCE
-with the value 500 or greater, or
-.B _POSIX_C_SOURCE
-with the value 200809L or greater.)
-.PP
-.B F_DUPFD_CLOEXEC
-is specified in POSIX.1-2008.
-(To get this definition, define
-.B _POSIX_C_SOURCE
-with the value 200809L or greater, or
-.B _XOPEN_SOURCE
-with the value 700 or greater.)
+POSIX.1-2008.
 .PP
 .BR F_GETOWN_EX ,
 .BR F_SETOWN_EX ,
@@ -1874,6 +1843,40 @@ and
 .B F_GET_SEALS
 are Linux-specific.
 .\" FIXME . Once glibc adds support, add a note about FTM requirements
+.SH HISTORY
+SVr4, 4.3BSD, POSIX.1-2001.
+.PP
+Only the operations
+.BR F_DUPFD ,
+.BR F_GETFD ,
+.BR F_SETFD ,
+.BR F_GETFL ,
+.BR F_SETFL ,
+.BR F_GETLK ,
+.BR F_SETLK ,
+and
+.B F_SETLKW
+are specified in POSIX.1-2001.
+.PP
+.B F_GETOWN
+and
+.B F_SETOWN
+are specified in POSIX.1-2001.
+(To get their definitions, define either
+.\" .BR _BSD_SOURCE ,
+.\" or
+.B _XOPEN_SOURCE
+with the value 500 or greater, or
+.B _POSIX_C_SOURCE
+with the value 200809L or greater.)
+.PP
+.B F_DUPFD_CLOEXEC
+is specified in POSIX.1-2008.
+(To get this definition, define
+.B _POSIX_C_SOURCE
+with the value 200809L or greater, or
+.B _XOPEN_SOURCE
+with the value 700 or greater.)
 .SH NOTES
 The errors returned by
 .BR dup2 (2)

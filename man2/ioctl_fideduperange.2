@@ -181,19 +181,20 @@ and
 .I src_fd
 are not on the same mounted filesystem.
 .SH VERSIONS
-This ioctl operation first appeared in Linux 4.5.
+Some filesystems may limit the amount of data that can be deduplicated in a
+single call.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 4.5.
+.PP
 It was previously known as
 .B BTRFS_IOC_FILE_EXTENT_SAME
 and was private to Btrfs.
-.SH STANDARDS
-This API is Linux-specific.
 .SH NOTES
 Because a copy-on-write operation requires the allocation of new storage, the
 .BR fallocate (2)
 operation may unshare shared blocks to guarantee that subsequent writes will
 not fail because of lack of disk space.
-.PP
-Some filesystems may limit the amount of data that can be deduplicated in a
-single call.
 .SH SEE ALSO
 .BR ioctl (2)

@@ -176,13 +176,21 @@ Either
 or
 .I off_out
 was not NULL, but the corresponding file descriptor refers to a pipe.
-.SH VERSIONS
-The
-.BR splice ()
-system call first appeared in Linux 2.6.17;
-library support was added in glibc 2.5.
 .SH STANDARDS
-This system call is Linux-specific.
+Linux.
+.SH HISTORY
+Linux 2.6.17,
+glibc 2.5.
+.PP
+In Linux 2.6.30 and earlier,
+exactly one of
+.I fd_in
+and
+.I fd_out
+was required to be a pipe.
+Since Linux 2.6.31,
+.\" commit 7c77f0b3f9208c339a4b40737bb2cb0f0319bb8d
+both arguments may refer to pipes.
 .SH NOTES
 The three system calls
 .BR splice (),
@@ -234,16 +242,6 @@ only pointers are copied, not the pages of the buffer.
 .\" the data and choose to forward it to two or more different
 .\" users - for things like logging etc.).
 .\"
-.PP
-In Linux 2.6.30 and earlier,
-exactly one of
-.I fd_in
-and
-.I fd_out
-was required to be a pipe.
-Since Linux 2.6.31,
-.\" commit 7c77f0b3f9208c339a4b40737bb2cb0f0319bb8d
-both arguments may refer to pipes.
 .SH EXAMPLES
 See
 .BR tee (2).

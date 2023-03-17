@@ -15,8 +15,8 @@ Standard C library
 .nf
 .B #include <stdio.h>
 .PP
-.BI "char *tmpnam(char *" s );
-.BI "char *tmpnam_r(char *" s );
+.BI "[[deprecated]] char *tmpnam(char *" s );
+.BI "[[deprecated]] char *tmpnam_r(char *" s );
 .fi
 .PP
 .RS -4
@@ -106,16 +106,20 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
-.BR tmpnam ():
-SVr4, 4.3BSD, C89, C99, POSIX.1-2001.
-POSIX.1-2008 marks
+.TP
 .BR tmpnam ()
-as obsolete.
-.PP
+C11, POSIX.1-2008.
+.TP
 .BR tmpnam_r ()
-is a nonstandard extension that is also available
-.\" Appears to be on Solaris
-on a few other systems.
+None.
+.SH HISTORY
+.TP
+.BR tmpnam ()
+SVr4, 4.3BSD, C89, POSIX.1-2001.
+Obsolete in POSIX.1-2008.
+.TP
+.BR tmpnam_r ()
+Solaris.
 .SH NOTES
 The
 .BR tmpnam ()

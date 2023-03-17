@@ -23,7 +23,7 @@ Describes the initial expiration of a timer,
 and its interval,
 in seconds and nanoseconds.
 .SH STANDARDS
-Linux-specific.
+Linux.
 .SH NOTES
 The following header also provides this type:
 .IR <sys/timerfd.h> .

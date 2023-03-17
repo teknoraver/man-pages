@@ -575,7 +575,9 @@ that can be created per real user ID.
 .I /proc/sys/fs/inotify/max_user_watches
 This specifies an upper limit on the number of watches
 that can be created per real user ID.
-.SH VERSIONS
+.SH STANDARDS
+Linux.
+.SH HISTORY
 Inotify was merged into Linux 2.6.13.
 The required library interfaces were added in glibc 2.4.
 .RB ( IN_DONT_FOLLOW ,
@@ -583,8 +585,6 @@ The required library interfaces were added in glibc 2.4.
 and
 .B IN_ONLYDIR
 were added in glibc 2.5.)
-.SH STANDARDS
-The inotify API is Linux-specific.
 .SH NOTES
 Inotify file descriptors can be monitored using
 .BR select (2),

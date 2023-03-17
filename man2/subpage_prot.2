@@ -76,14 +76,13 @@ address space of the process or to a region that consists of huge pages.
 .TP
 .B ENOMEM
 Out of memory.
-.SH VERSIONS
-This system call is provided on the PowerPC architecture
-since Linux 2.6.25.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.6.25 (PowerPC).
+.PP
 The system call is provided only if the kernel is configured with
 .BR CONFIG_PPC_64K_PAGES .
-No library support is provided.
-.SH STANDARDS
-This system call is Linux-specific.
 .SH NOTES
 Normal page protections (at the 64-kB page level) also apply;
 the subpage protection mechanism is an additional constraint,

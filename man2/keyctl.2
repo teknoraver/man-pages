@@ -14,7 +14,7 @@ Standard C library
 .PP
 Alternatively, Linux Key Management Utilities
 .RI ( libkeyutils ", " \-lkeyutils );
-see NOTES.
+see VERSIONS.
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/keyctl.h>" "     /* Definition of " KEY* " constants */"
@@ -1947,10 +1947,6 @@ was
 .B KEYCTL_DH_COMPUTE
 and the initialization of crypto modules has timed out.
 .SH VERSIONS
-This system call first appeared in Linux 2.6.10.
-.SH STANDARDS
-This system call is a nonstandard Linux extension.
-.SH NOTES
 A wrapper is provided in the
 .I libkeyutils
 library.
@@ -1960,6 +1956,10 @@ header file.)
 However, rather than using this system call directly,
 you probably want to use the various library functions
 mentioned in the descriptions of individual operations above.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.6.10.
 .SH EXAMPLES
 The program below provide subset of the functionality of the
 .BR request\-key (8)

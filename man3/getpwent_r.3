@@ -144,10 +144,7 @@ or
 .BR getpwent_r ()
 are used in parallel in different threads of a program,
 then data races could occur.
-.SH STANDARDS
-These functions are GNU extensions, done in a style resembling
-the POSIX version of functions like
-.BR getpwnam_r (3).
+.SH VERSIONS
 Other systems use the prototype
 .PP
 .in +4n
@@ -166,6 +163,12 @@ getpwent_r(struct passwd *pwd, char *buf, int buflen,
            FILE **pw_fp);
 .EE
 .in
+.SH STANDARDS
+None.
+.SH HISTORY
+These functions are done in a style resembling
+the POSIX version of functions like
+.BR getpwnam_r (3).
 .SH NOTES
 The function
 .BR getpwent_r ()

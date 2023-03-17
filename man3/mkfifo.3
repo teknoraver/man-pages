@@ -181,16 +181,17 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH VERSIONS
-.BR mkfifoat ()
-was added in glibc 2.4.
 It is implemented using
-.BR mknodat (2),
-available since Linux 2.6.16.
+.BR mknodat (2).
 .SH STANDARDS
-.BR mkfifo ():
-POSIX.1-2001, POSIX.1-2008.
-.PP
-.BR mkfifoat ():
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR mkfifo ()
+POSIX.1-2001.
+.TP
+.BR mkfifoat ()
+glibc 2.4.
 POSIX.1-2008.
 .SH SEE ALSO
 .BR mkfifo (1),

@@ -246,9 +246,33 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
+.SH STANDARDS
+.TP
+.BR malloc ()
+.TQ
+.BR free ()
+.TQ
+.BR calloc ()
+.TQ
+.BR realloc ()
+C11, POSIX.1-2008.
+.TP
 .BR reallocarray ()
-was added in glibc 2.26.
+None.
+.SH HISTORY
+.TP
+.BR malloc ()
+.TQ
+.BR free ()
+.TQ
+.BR calloc ()
+.TQ
+.BR realloc ()
+POSIX.1-2001, C89.
+.TP
+.BR reallocarray ()
+glibc 2.26.
+OpenBSD 5.6, FreeBSD 11.0.
 .PP
 .BR malloc ()
 and related functions rejected sizes greater than
@@ -259,15 +283,6 @@ starting in glibc 2.30.
 preserved
 .I errno
 starting in glibc 2.33.
-.SH STANDARDS
-.BR malloc (),
-.BR free (),
-.BR calloc (),
-.BR realloc ():
-POSIX.1-2001, POSIX.1-2008, C89, C99.
-.PP
-.BR reallocarray ()
-is a nonstandard extension that first appeared in OpenBSD 5.6 and FreeBSD 11.0.
 .SH NOTES
 By default, Linux follows an optimistic memory allocation strategy.
 This means that when

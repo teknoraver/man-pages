@@ -178,29 +178,40 @@ and
 .BR getlogin_r ()
 call those functions,
 so we use race:utent to remind users.
-.SH STANDARDS
-.BR getlogin ()
-and
-.BR getlogin_r ():
-POSIX.1-2001, POSIX.1-2008.
-.PP
-System V has a
-.BR cuserid ()
-function which uses the real
-user ID rather than the effective user ID.
-The
-.BR cuserid ()
-function
-was included in the 1988 version of POSIX,
-but removed from the 1990 version.
-It was present in SUSv2, but removed in POSIX.1-2001.
-.PP
+.SH VERSIONS
 OpenBSD has
 .BR getlogin ()
 and
 .BR setlogin (),
 and a username
 associated with a session, even if it has no controlling terminal.
+.SH STANDARDS
+.TP
+.BR getlogin ()
+.TQ
+.BR getlogin_r ()
+POSIX.1-2008.
+.TP
+.BR cuserid ()
+None.
+.SH STANDARDS
+.TP
+.BR getlogin ()
+.TQ
+.BR getlogin_r ():
+POSIX.1-2001.
+OpenBSD.
+.TP
+.BR cuserid ()
+System V, POSIX.1-1988.
+Removed in POSIX.1-1990.
+SUSv2.
+Removed in POSIX.1-2001.
+.IP
+System V has a
+.BR cuserid ()
+function which uses the real
+user ID rather than the effective user ID.
 .SH BUGS
 Unfortunately, it is often rather easy to fool
 .BR getlogin ().

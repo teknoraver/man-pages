@@ -81,9 +81,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
+.SH VERSIONS
 .BR sigwait ()
 is implemented using
 .BR sigtimedwait (2).
@@ -95,6 +93,10 @@ are used internally by the NPTL threading implementation.
 See
 .BR nptl (7)
 for details.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH EXAMPLES
 See
 .BR pthread_sigmask (3).

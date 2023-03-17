@@ -56,21 +56,13 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR explicit_bzero ()
-first appeared in glibc 2.25.
 .SH STANDARDS
-The
-.BR bzero ()
-function is deprecated (marked as LEGACY in POSIX.1-2001); use
-.BR memset (3)
-in new programs.
-POSIX.1-2008 removes the specification of
-.BR bzero ().
-The
-.BR bzero ()
-function first appeared in 4.3BSD.
-.PP
+None.
+.SH HISTORY
+.TP
+.BR explicit_bzero ()
+glibc 2.25.
+.IP
 The
 .BR explicit_bzero ()
 function is a nonstandard extension that is also present on some of the BSDs.
@@ -78,6 +70,12 @@ Some other implementations have a similar function, such as
 .BR memset_explicit ()
 or
 .BR memset_s ().
+.TP
+.BR bzero ()
+4.3BSD.
+.IP
+Marked as LEGACY in POSIX.1-2001.
+Removed in POSIX.1-2008.
 .SH NOTES
 The
 .BR explicit_bzero ()

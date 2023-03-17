@@ -2435,7 +2435,14 @@ The specified process does not exist, or is not currently being traced
 by the caller, or is not stopped
 (for requests that require a stopped tracee).
 .SH STANDARDS
+None.
+.SH HISTORY
 SVr4, 4.3BSD.
+.PP
+Before Linux 2.6.26,
+.\" See commit 00cd5c37afd5f431ac186dd131705048c0a11fdb
+.BR init (1),
+the process with PID 1, may not be traced.
 .SH NOTES
 Although arguments to
 .BR ptrace ()
@@ -2451,11 +2458,6 @@ setting unused/ignored arguments to
 .I 0L
 or
 .IR "(void\ *)\ 0".
-.PP
-Before Linux 2.6.26,
-.\" See commit 00cd5c37afd5f431ac186dd131705048c0a11fdb
-.BR init (1),
-the process with PID 1, may not be traced.
 .PP
 A tracees parent continues to be the tracer even if that tracer calls
 .BR execve (2).

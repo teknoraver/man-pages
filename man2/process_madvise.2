@@ -183,18 +183,17 @@ See
 for
 .IR advice -specific
 errors.
-.SH VERSIONS
-This system call first appeared in Linux 5.10.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 5.10.
 .\" commit ecb8ac8b1f146915aa6b96449b66dd48984caacc
+.PP
 Support for this system call is optional,
 depending on the setting of the
 .B CONFIG_ADVISE_SYSCALLS
 configuration option.
-.SH STANDARDS
-The
-.BR process_madvise ()
-system call is Linux-specific.
-.SH NOTES
+.PP
 When this system call first appeared in Linux 5.10,
 permission to apply advice to another process was entirely governed by
 ptrace access mode

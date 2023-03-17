@@ -43,11 +43,18 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.\" .SH VERSIONS
-.\" Available since glibc 2.0
+.SH VERSIONS
+In the NPTL threading implementation,
+.BR pthread_kill_other_threads_np ()
+exists, but does nothing.
+(Nothing needs to be done,
+because the implementation does the right thing during an
+.BR execve (2).)
 .SH STANDARDS
-This function is a nonstandard GNU extension;
+GNU;
 hence the suffix "_np" (nonportable) in the name.
+.SH HISTORY
+glibc 2.0
 .SH NOTES
 .BR pthread_kill_other_threads_np ()
 is intended to be called just before a thread calls
@@ -57,13 +64,6 @@ This function is designed to address a limitation in the obsolete
 LinuxThreads implementation whereby the other threads of an application
 are not automatically terminated (as POSIX.1-2001 requires) during
 .BR execve (2).
-.PP
-In the NPTL threading implementation,
-.BR pthread_kill_other_threads_np ()
-exists, but does nothing.
-(Nothing needs to be done,
-because the implementation does the right thing during an
-.BR execve (2).)
 .SH SEE ALSO
 .BR execve (2),
 .BR pthread_cancel (3),

@@ -552,44 +552,9 @@ See
 .TP
 .B ETXTBSY
 The specified executable was open for writing by one or more processes.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4, 4.3BSD.
+.SH VERSIONS
 POSIX does not document the #! behavior, but it exists
 (with some variations) on other UNIX systems.
-.\" SVr4 documents additional error
-.\" conditions EAGAIN, EINTR, ELIBACC, ENOLINK, EMULTIHOP; POSIX does not
-.\" document ETXTBSY, EPERM, EFAULT, ELOOP, EIO, ENFILE, EMFILE, EINVAL,
-.\" EISDIR or ELIBBAD error conditions.
-.SH NOTES
-One sometimes sees
-.BR execve ()
-(and the related functions described in
-.BR exec (3))
-described as "executing a
-.I new
-process" (or similar).
-This is a highly misleading description:
-there is no new process;
-many attributes of the calling process remain unchanged
-(in particular, its PID).
-All that
-.BR execve ()
-does is arrange for an existing process (the calling process)
-to execute a new program.
-.PP
-Set-user-ID and set-group-ID processes can not be
-.BR ptrace (2)d.
-.PP
-The result of mounting a filesystem
-.I nosuid
-varies across Linux kernel versions:
-some will refuse execution of set-user-ID and set-group-ID
-executables when this would
-give the user powers they did not have already (and return
-.BR EPERM ),
-some will just ignore the set-user-ID and set-group-ID bits and
-.BR exec ()
-successfully.
 .PP
 On Linux,
 .I argv
@@ -623,23 +588,6 @@ resource limit changes, then the value reported by
 will also change,
 to reflect the fact that the limit on space for holding
 command-line arguments and environment variables has changed.
-.PP
-In most cases where
-.BR execve ()
-fails, control returns to the original executable image,
-and the caller of
-.BR execve ()
-can then handle the error.
-However, in (rare) cases (typically caused by resource exhaustion),
-failure may occur past the point of no return:
-the original executable image has been torn down,
-but the new image could not be completely built.
-In such cases, the kernel kills the process with a
-.\" commit 19d860a140beac48a1377f179e693abe86a9dac9
-.B SIGSEGV
-.RB ( SIGKILL
-until Linux 3.17)
-signal.
 .\"
 .SS Interpreter scripts
 The kernel imposes a maximum length on the text that follows the
@@ -671,15 +619,72 @@ are used to delimit the arguments.
 .PP
 Linux (like most other modern UNIX systems)
 ignores the set-user-ID and set-group-ID bits on scripts.
-.\"
-.\" .SH BUGS
-.\" Some Linux versions have failed to check permissions on ELF
-.\" interpreters.  This is a security hole, because it allows users to
-.\" open any file, such as a rewinding tape device, for reading.  Some
-.\" Linux versions have also had other security holes in
-.\" .BR execve ()
-.\" that could be exploited for denial of service by a suitably crafted
-.\" ELF binary. There are no known problems with Linux 2.0.34 or Linux 2.2.15.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SVr4, 4.3BSD.
+.\" SVr4 documents additional error
+.\" conditions EAGAIN, EINTR, ELIBACC, ENOLINK, EMULTIHOP; POSIX does not
+.\" document ETXTBSY, EPERM, EFAULT, ELOOP, EIO, ENFILE, EMFILE, EINVAL,
+.\" EISDIR or ELIBBAD error conditions.
+.PP
+With UNIX\ V6, the argument list of an
+.BR exec ()
+call was ended by 0,
+while the argument list of
+.I main
+was ended by \-1.
+Thus, this argument list was not directly usable in a further
+.BR exec ()
+call.
+Since UNIX\ V7, both are NULL.
+.SH NOTES
+One sometimes sees
+.BR execve ()
+(and the related functions described in
+.BR exec (3))
+described as "executing a
+.I new
+process" (or similar).
+This is a highly misleading description:
+there is no new process;
+many attributes of the calling process remain unchanged
+(in particular, its PID).
+All that
+.BR execve ()
+does is arrange for an existing process (the calling process)
+to execute a new program.
+.PP
+Set-user-ID and set-group-ID processes can not be
+.BR ptrace (2)d.
+.PP
+The result of mounting a filesystem
+.I nosuid
+varies across Linux kernel versions:
+some will refuse execution of set-user-ID and set-group-ID
+executables when this would
+give the user powers they did not have already (and return
+.BR EPERM ),
+some will just ignore the set-user-ID and set-group-ID bits and
+.BR exec ()
+successfully.
+.PP
+In most cases where
+.BR execve ()
+fails, control returns to the original executable image,
+and the caller of
+.BR execve ()
+can then handle the error.
+However, in (rare) cases (typically caused by resource exhaustion),
+failure may occur past the point of no return:
+the original executable image has been torn down,
+but the new image could not be completely built.
+In such cases, the kernel kills the process with a
+.\" commit 19d860a140beac48a1377f179e693abe86a9dac9
+.B SIGSEGV
+.RB ( SIGKILL
+until Linux 3.17)
+signal.
 .SS execve() and EAGAIN
 A more detailed explanation of the
 .B EAGAIN
@@ -755,17 +760,6 @@ process flag.
 The flag is also cleared if a subsequent call to
 .BR fork (2)
 by this process succeeds.
-.SS Historical
-With UNIX\ V6, the argument list of an
-.BR exec ()
-call was ended by 0,
-while the argument list of
-.I main
-was ended by \-1.
-Thus, this argument list was not directly usable in a further
-.BR exec ()
-call.
-Since UNIX\ V7, both are NULL.
 .\"
 .\" .SH BUGS
 .\" Some Linux versions have failed to check permissions on ELF

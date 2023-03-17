@@ -76,23 +76,7 @@ capability is required.
 .B RLIMIT_NICE
 resource limit in
 .BR setrlimit (2).)
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4, 4.3BSD.
-However, the raw system call and (g)libc
-(earlier than glibc 2.2.4) return value is nonstandard, see below.
-.\" SVr4 documents an additional
-.\" .B EINVAL
-.\" error code.
-.SH NOTES
-For further details on the nice value, see
-.BR sched (7).
-.PP
-.IR Note :
-the addition of the "autogroup" feature in Linux 2.6.38 means that
-the nice value no longer has its traditional effect in many circumstances.
-For details, see
-.BR sched (7).
-.\"
+.SH VERSIONS
 .SS C library/kernel differences
 POSIX.1 specifies that
 .BR nice ()
@@ -107,6 +91,22 @@ Since glibc 2.2.4, the
 wrapper function provided by glibc provides conformance to POSIX.1 by calling
 .BR getpriority (2)
 to obtain the new nice value, which is then returned to the caller.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SVr4, 4.3BSD.
+.\" SVr4 documents an additional
+.\" .B EINVAL
+.\" error code.
+.SH NOTES
+For further details on the nice value, see
+.BR sched (7).
+.PP
+.IR Note :
+the addition of the "autogroup" feature in Linux 2.6.38 means that
+the nice value no longer has its traditional effect in many circumstances.
+For details, see
+.BR sched (7).
 .SH SEE ALSO
 .BR nice (1),
 .BR renice (1),

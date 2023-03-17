@@ -128,9 +128,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
+.SH VERSIONS
 There are two different versions of
 .BR basename ()
 - the POSIX version described above, and the GNU version, which one gets
@@ -155,6 +153,10 @@ With glibc, one gets the POSIX version of
 when
 .I <libgen.h>
 is included, and the GNU version otherwise.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH BUGS
 In the glibc implementation,
 the POSIX versions of these functions modify the

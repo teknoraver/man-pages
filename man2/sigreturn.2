@@ -52,12 +52,14 @@ at the point where it was interrupted by the signal.
 .SH RETURN VALUE
 .BR sigreturn ()
 never returns.
-.SH STANDARDS
+.SH VERSIONS
 Many UNIX-type systems have a
 .BR sigreturn ()
 system call or near equivalent.
 However, this call is not specified in POSIX,
 and details of its behavior vary across systems.
+.SH STANDARDS
+None.
 .SH NOTES
 .BR sigreturn ()
 exists only to allow the implementation of signal handlers.

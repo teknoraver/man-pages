@@ -96,17 +96,17 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-The
-.BR if_nameindex ()
-function first appeared in glibc 2.1, but before glibc 2.3.4,
+.SH STANDARDS
+POSIX.1-2008, RFC\ 3493.
+.SH HISTORY
+glibc 2.1.
+POSIX.1-2001. 
+BSDi.
+.PP
+Before glibc 2.3.4,
 the implementation supported only interfaces with IPv4 addresses.
 Support of interfaces that don't have IPv4 addresses is available only
 on kernels that support netlink.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, RFC\ 3493.
-.PP
-This function first appeared in BSDi.
 .SH EXAMPLES
 The program below demonstrates the use of the functions described
 on this page.

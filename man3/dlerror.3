@@ -48,11 +48,13 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR dlerror ()
-is present in glibc 2.0 and later.
 .SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+glibc 2.0.
 POSIX.1-2001.
+.PP
+SunOS.
 .SH NOTES
 The message returned by
 .BR dlerror ()
@@ -69,8 +71,6 @@ calls.
 .\" .in +5
 .\" .B "const char *dlerror(void);"
 .\" .in
-.SS History
-This function is part of the dlopen API, derived from SunOS.
 .SH EXAMPLES
 See
 .BR dlopen (3).

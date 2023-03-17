@@ -68,29 +68,9 @@ points to memory which is not a valid part of the process address space.
 The call was interrupted by a signal;
 .BR signal (7).
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
-Normally,
-.BR sigsuspend ()
-is used in conjunction with
-.BR sigprocmask (2)
-in order to prevent delivery of a signal during the execution of a
-critical code section.
-The caller first blocks the signals with
-.BR sigprocmask (2).
-When the critical code has completed, the caller then waits for the
-signals by calling
-.BR sigsuspend ()
-with the signal mask that was returned by
-.BR sigprocmask (2)
-(in the
-.I oldset
-argument).
-.PP
-See
-.BR sigsetops (3)
-for details on manipulating signal sets.
-.\"
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SS C library/kernel differences
 The original Linux system call was named
 .BR sigsuspend ().
@@ -118,6 +98,27 @@ wrapper function hides these details from us, transparently calling
 .BR rt_sigsuspend ()
 when the kernel provides it.
 .\"
+.SH NOTES
+Normally,
+.BR sigsuspend ()
+is used in conjunction with
+.BR sigprocmask (2)
+in order to prevent delivery of a signal during the execution of a
+critical code section.
+The caller first blocks the signals with
+.BR sigprocmask (2).
+When the critical code has completed, the caller then waits for the
+signals by calling
+.BR sigsuspend ()
+with the signal mask that was returned by
+.BR sigprocmask (2)
+(in the
+.I oldset
+argument).
+.PP
+See
+.BR sigsetops (3)
+for details on manipulating signal sets.
 .SH SEE ALSO
 .BR kill (2),
 .BR pause (2),

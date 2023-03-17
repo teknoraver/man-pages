@@ -1553,25 +1553,7 @@ See the discussion of the
 .B ENOSPC
 error above.
 .SH VERSIONS
-The
-.BR clone3 ()
-system call first appeared in Linux 5.3.
-.\" There is no entry for
-.\" .BR clone ()
-.\" in libc5.
-.\" glibc2 provides
-.\" .BR clone ()
-.\" as described in this manual page.
-.SH STANDARDS
-These system calls
-are Linux-specific and should not be used in programs
-intended to be portable.
-.SH NOTES
-One use of these systems calls
-is to implement threads: multiple flows of control in a program that
-run concurrently in a shared address space.
-.PP
-Note that the glibc
+The glibc
 .BR clone ()
 wrapper function makes some changes
 in the memory pointed to by
@@ -1587,31 +1569,10 @@ is used to recursively create children,
 do not use the buffer employed for the parent's stack
 as the stack of the child.
 .PP
-The
-.BR kcmp (2)
-system call can be used to test whether two processes share various
-resources such as a file descriptor table,
-System V semaphore undo operations, or a virtual address space.
-.PP
-Handlers registered using
-.BR pthread_atfork (3)
-are not executed during a clone call.
-.PP
-In the Linux 2.4.x series,
-.B CLONE_THREAD
-generally does not make the parent of the new thread the same
-as the parent of the calling process.
-However, from Linux 2.4.7 to Linux 2.4.18 the
-.B CLONE_THREAD
-flag implied the
-.B CLONE_PARENT
-flag (as in Linux 2.6.0 and later).
-.PP
 On i386,
 .BR clone ()
 should not be called through vsyscall, but directly through
 .IR "int $0x80" .
-.\"
 .SS C library/kernel differences
 The raw
 .BR clone ()
@@ -1748,7 +1709,29 @@ and
 .I stack_size
 specifies the size of the stack pointed to by
 .IR stack_base .
+.SH STANDARDS
+Linux.
+.SH HISTORY
+.TP
+.BR clone3 ()
+Linux 5.3.
+.\" There is no entry for
+.\" .BR clone ()
+.\" in libc5.
+.\" glibc2 provides
+.\" .BR clone ()
+.\" as described in this manual page.
 .SS Linux 2.4 and earlier
+In the Linux 2.4.x series,
+.B CLONE_THREAD
+generally does not make the parent of the new thread the same
+as the parent of the calling process.
+However, from Linux 2.4.7 to Linux 2.4.18 the
+.B CLONE_THREAD
+flag implied the
+.B CLONE_PARENT
+flag (as in Linux 2.6.0 and later).
+.PP
 In Linux 2.4 and earlier,
 .BR clone ()
 does not take arguments
@@ -1756,6 +1739,20 @@ does not take arguments
 .IR tls ,
 and
 .IR child_tid .
+.SH NOTES
+One use of these systems calls
+is to implement threads: multiple flows of control in a program that
+run concurrently in a shared address space.
+.PP
+The
+.BR kcmp (2)
+system call can be used to test whether two processes share various
+resources such as a file descriptor table,
+System V semaphore undo operations, or a virtual address space.
+.PP
+Handlers registered using
+.BR pthread_atfork (3)
+are not executed during a clone call.
 .SH BUGS
 GNU C library versions 2.3.4 up to and including 2.24
 contained a wrapper function for

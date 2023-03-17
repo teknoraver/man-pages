@@ -75,12 +75,10 @@ is the return value of whatever system call is being restarted.
 .I errno
 is set as per the errors for whatever system call is being restarted by
 .BR restart_syscall ().
-.SH VERSIONS
-The
-.BR restart_syscall ()
-system call is present since Linux 2.6.
 .SH STANDARDS
-This system call is Linux-specific.
+Linux.
+.SH HISTORY
+Linux 2.6.
 .SH NOTES
 There is no glibc wrapper for this system call,
 because it is intended for use only by the kernel and

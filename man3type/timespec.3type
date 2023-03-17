@@ -32,14 +32,15 @@ and
 .I long long
 on X32.
 It can be safely down-cast to any concrete 32-bit integer type for processing.
-.SH STANDARDS
-C11 and later;
-POSIX.1-2001 and later.
 .SH VERSIONS
 Prior to C23,
 .I tv_nsec
 was
 .IR long .
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH NOTES
 The following headers also provide this type:
 .IR <aio.h> ,

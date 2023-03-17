@@ -203,48 +203,17 @@ T}	Thread safety	MT-Safe env
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-.BR getcwd ()
-conforms to POSIX.1-2001.
-Note however that POSIX.1-2001 leaves the behavior of
+.SH VERSIONS
+POSIX.1-2001 leaves the behavior of
 .BR getcwd ()
 unspecified if
 .I buf
 is NULL.
 .PP
-.BR getwd ()
-is present in POSIX.1-2001, but marked LEGACY.
-POSIX.1-2008 removes the specification of
-.BR getwd ().
-Use
-.BR getcwd ()
-instead.
 POSIX.1-2001
 does not define any errors for
 .BR getwd ().
-.PP
-.BR get_current_dir_name ()
-is a GNU extension.
-.SH NOTES
-Under Linux, these functions make use of the
-.BR getcwd ()
-system call (available since Linux 2.1.92).
-On older systems they would query
-.IR /proc/self/cwd .
-If both system call and proc filesystem are missing, a
-generic implementation is called.
-Only in that case can
-these calls fail under Linux with
-.BR EACCES .
-.PP
-These functions are often used to save the location of the current working
-directory for the purpose of returning to it later.
-Opening the current
-directory (".") and calling
-.BR fchdir (2)
-to return is usually a faster and more reliable alternative when sufficiently
-many file descriptors are available, especially on platforms other than Linux.
-.\"
+.SH VERSIONS
 .SS C library/kernel differences
 On Linux, the kernel provides a
 .BR getcwd ()
@@ -282,6 +251,46 @@ functions described in this page
 should consider checking whether the returned pathname starts
 with '/' or '(' to avoid misinterpreting an unreachable path
 as a relative pathname.
+.SH STANDARDS
+.TP
+.BR getcwd ()
+POSIX.1-2008.
+.TP
+.BR get_current_dir_name ()
+GNU.
+.TP
+.BR getwd ()
+None.
+.SH HISTORY
+.TP
+.BR getcwd ()
+POSIX.1-2001.
+.TP
+.BR getwd ()
+POSIX.1-2001, but marked LEGACY.
+Removed in POSIX.1-2008.
+Use
+.BR getcwd ()
+instead.
+.PP
+Under Linux, these functions make use of the
+.BR getcwd ()
+system call (available since Linux 2.1.92).
+On older systems they would query
+.IR /proc/self/cwd .
+If both system call and proc filesystem are missing, a
+generic implementation is called.
+Only in that case can
+these calls fail under Linux with
+.BR EACCES .
+.SH NOTES
+These functions are often used to save the location of the current working
+directory for the purpose of returning to it later.
+Opening the current
+directory (".") and calling
+.BR fchdir (2)
+to return is usually a faster and more reliable alternative when sufficiently
+many file descriptors are available, especially on platforms other than Linux.
 .SH BUGS
 Since the Linux 2.6.36 change that added "(unreachable)" in the
 circumstances described above, the glibc implementation of

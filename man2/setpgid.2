@@ -229,27 +229,37 @@ For
 .I pid
 is not the calling process and not a child of the calling process.
 .SH STANDARDS
-.BR setpgid ()
-and the version of
-.BR getpgrp ()
-with no arguments
-conform to POSIX.1-2001.
-.PP
-POSIX.1-2001 also specifies
+.TP
 .BR getpgid ()
-and the version of
-.BR setpgrp ()
-that takes no arguments.
-(POSIX.1-2008 marks this
-.BR setpgrp ()
-specification as obsolete.)
-.PP
-The version of
-.BR getpgrp ()
-with one argument and the version of
-.BR setpgrp ()
-that takes two arguments derive from 4.2BSD,
-and are not specified by POSIX.1.
+.TQ
+.BR setpgid ()
+.TQ
+.BR getpgrp "() (no args)"
+.TQ
+.BR setpgrp "() (no args)"
+POSIX.1-2008 (but see HISTORY).
+.TP
+.BR setpgrp "() (2 args)"
+.TQ
+.BR getpgrp "() (1 arg)"
+None.
+.SH HISTORY
+.TP
+.BR getpgid ()
+.TQ
+.BR setpgid ()
+.TQ
+.BR getpgrp "() (no args)"
+POSIX.1-2001.
+.TP
+.BR setpgrp "() (no args)"
+POSIX.1-2001.
+POSIX.1-2008 marks it as obsolete.
+.TP
+.BR setpgrp "() (2 args)"
+.TQ
+.BR getpgrp "() (1 arg)"
+4.2BSD.
 .SH NOTES
 A child created via
 .BR fork (2)

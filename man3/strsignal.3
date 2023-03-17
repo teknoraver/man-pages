@@ -132,29 +132,32 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR sigdescr_np ()
-and
-.BR sigabbrev_np ()
-first appeared in glibc 2.32.
-.PP
-Starting with glibc 2.32,
-.\" glibc commit b1ccfc061feee9ce616444ded8e1cd5acf9fa97f
-the
-.I sys_siglist
-symbol is no longer exported by glibc.
 .SH STANDARDS
-.BR strsignal ():
+.TP
+.BR strsignal ()
 POSIX.1-2008.
-Present on Solaris and the BSDs.
-.PP
+.TP
 .BR sigdescr_np ()
-and
+.TQ
 .BR sigabbrev_np ()
-are GNU extensions.
-.PP
+GNU.
+.TP
 .I sys_siglist
-is nonstandard, but present on many other systems.
+None.
+.\" glibc commit b1ccfc061feee9ce616444ded8e1cd5acf9fa97f
+.SH HISTORY
+.TP
+.BR strsignal ()
+POSIX.1-2008.
+Solaris, BSD.
+.TP
+.BR sigdescr_np ()
+.TQ
+.BR sigabbrev_np ()
+glibc 2.32.
+.TP
+.I sys_siglist
+Removed in glibc 2.32.
 .SH NOTES
 .BR sigdescr_np ()
 and

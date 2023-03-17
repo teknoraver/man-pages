@@ -86,12 +86,6 @@ is invalid.
 Addresses in the specified range are partially or completely outside
 the caller's address space.
 .SH VERSIONS
-Support for
-.BR posix_madvise ()
-was added in glibc 2.2.
-.SH STANDARDS
-POSIX.1-2001.
-.SH NOTES
 POSIX.1 permits an implementation to generate an error if
 .I len
 is 0.
@@ -108,6 +102,11 @@ is treated as a no-op, because the corresponding
 value,
 .BR MADV_DONTNEED ,
 has destructive semantics.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+glibc 2.2.
+POSIX.1-2001.
 .SH SEE ALSO
 .BR madvise (2),
 .BR posix_fadvise (2)

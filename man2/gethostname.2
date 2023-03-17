@@ -109,13 +109,7 @@ the caller did not have the
 .B CAP_SYS_ADMIN
 capability in the user namespace associated with its UTS namespace (see
 .BR namespaces (7)).
-.SH STANDARDS
-SVr4, 4.4BSD  (these interfaces first appeared in 4.2BSD).
-POSIX.1-2001 and POSIX.1-2008 specify
-.BR gethostname ()
-but not
-.BR sethostname ().
-.SH NOTES
+.SH VERSIONS
 SUSv2 guarantees that "Host names are limited to 255 bytes".
 POSIX.1 guarantees that "Host names (not including
 the terminating null byte) are limited to
@@ -148,6 +142,19 @@ set to
 .BR ENAMETOOLONG ;
 in this case, a terminating null byte is not included in the returned
 .IR name .
+.SH STANDARDS
+.TP
+.BR gethostname ()
+POSIX.1-2008.
+.TP
+.BR sethostname ()
+None.
+.SH HISTORY
+SVr4, 4.4BSD (these interfaces first appeared in 4.2BSD).
+POSIX.1-2001 and POSIX.1-2008 specify
+.BR gethostname ()
+but not
+.BR sethostname ().
 .PP
 Versions of glibc before glibc 2.2
 .\" At least glibc 2.0 and glibc 2.1, older versions not checked

@@ -98,14 +98,7 @@ is NULL or
 is longer than
 .I len
 bytes.
-.SH STANDARDS
-POSIX does not specify these calls.
-.\" But they appear on most systems...
-.SH NOTES
-Since Linux 1.0, the limit on the length of a domain name,
-including the terminating null byte, is 64 bytes.
-In older kernels, it was 8 bytes.
-.PP
+.SH VERSIONS
 On most Linux architectures (including x86),
 there is no
 .BR getdomainname ()
@@ -115,6 +108,13 @@ as a library function that returns a copy of the
 .I domainname
 field returned from a call to
 .BR uname (2).
+.SH STANDARDS
+None.
+.\" But they appear on most systems...
+.SH HISTORY
+Since Linux 1.0, the limit on the length of a domain name,
+including the terminating null byte, is 64 bytes.
+In older kernels, it was 8 bytes.
 .SH SEE ALSO
 .BR gethostname (2),
 .BR sethostname (2),

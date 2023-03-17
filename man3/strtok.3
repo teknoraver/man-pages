@@ -171,14 +171,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-.TP
-.BR strtok ()
-POSIX.1-2001, POSIX.1-2008, C89, C99, SVr4, 4.3BSD.
-.TP
-.BR strtok_r ()
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
+.SH VERSIONS
 On some implementations,
 .\" Tru64, according to its manual page
 .I *saveptr
@@ -186,6 +179,20 @@ is required to be NULL on the first call to
 .BR strtok_r ()
 that is being used to parse
 .IR str .
+.SH STANDARDS
+.TP
+.BR strtok ()
+C11, POSIX.1-2008.
+.TP
+.BR strtok_r ()
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR strtok ()
+POSIX.1-2001, C89, SVr4, 4.3BSD.
+.TP
+.BR strtok_r ()
+POSIX.1-2001.
 .SH BUGS
 Be cautious when using these functions.
 If you do use them, note that:

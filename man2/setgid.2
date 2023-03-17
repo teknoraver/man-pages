@@ -54,19 +54,7 @@ The calling process is not privileged (does not have the
 .I gid
 does not match the real group ID or saved set-group-ID of
 the calling process.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4.
-.SH NOTES
-The original Linux
-.BR setgid ()
-system call supported only 16-bit group IDs.
-Subsequently, Linux 2.4 added
-.BR setgid32 ()
-supporting 32-bit IDs.
-The glibc
-.BR setgid ()
-wrapper function transparently deals with the variation across kernel versions.
-.\"
+.SH VERSIONS
 .SS C library/kernel differences
 At the kernel level, user IDs and group IDs are a per-thread attribute.
 However, POSIX requires that all threads in a process
@@ -81,6 +69,20 @@ that when one thread changes credentials,
 all of the other threads in the process also change their credentials.
 For details, see
 .BR nptl (7).
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SVr4.
+.PP
+The original Linux
+.BR setgid ()
+system call supported only 16-bit group IDs.
+Subsequently, Linux 2.4 added
+.BR setgid32 ()
+supporting 32-bit IDs.
+The glibc
+.BR setgid ()
+wrapper function transparently deals with the variation across kernel versions.
 .SH SEE ALSO
 .BR getgid (2),
 .BR setegid (2),

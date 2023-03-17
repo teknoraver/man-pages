@@ -220,16 +220,34 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR twalk_r ()
-is available since glibc 2.30.
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4.
-The functions
+.TP
+.BR tsearch ()
+.TQ
+.BR tfind ()
+.TQ
+.BR tdelete ()
+.TQ
+.BR twalk ()
+POSIX.1-2008.
+.TP
 .BR tdestroy ()
-and
+.TQ
 .BR twalk_r ()
-are GNU extensions.
+GNU.
+.SH HISTORY
+.TP
+.BR tsearch ()
+.TQ
+.BR tfind ()
+.TQ
+.BR tdelete ()
+.TQ
+.BR twalk ()
+POSIX.1-2001, POSIX.1-2008, SVr4.
+.TP
+.BR twalk_r ()
+glibc 2.30.
 .SH NOTES
 .BR twalk ()
 takes a pointer to the root, while the other functions

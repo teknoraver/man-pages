@@ -19,7 +19,7 @@ Standard C library
 .nf
 .B #include <sys/fsuid.h>
 .PP
-.BI "int setfsgid(gid_t " fsgid );
+.BI "[[deprecated]] int setfsgid(gid_t " fsgid );
 .fi
 .SH DESCRIPTION
 On Linux, a process has both a filesystem group ID and an effective group ID.
@@ -48,14 +48,21 @@ saved set-group-ID, or current the filesystem user ID.
 .SH RETURN VALUE
 On both success and failure,
 this call returns the previous filesystem group ID of the caller.
-.SH VERSIONS
-This system call is present since Linux 1.2.
-.\" This system call is present since Linux 1.1.44
-.\" and in libc since libc 4.7.6.
 .SH STANDARDS
-.BR setfsgid ()
-is Linux-specific and should not be used in programs intended
-to be portable.
+Linux.
+.SH HISTORY
+Linux 1.2.
+.\" Linux 1.1.44
+.\" and in libc since libc 4.7.6.
+.SS C library/kernel differences
+In glibc 2.15 and earlier,
+when the wrapper for this system call determines that the argument can't be
+passed to the kernel without integer truncation (because the kernel
+is old and does not support 32-bit group IDs),
+it will return \-1 and set \fIerrno\fP to
+.B EINVAL
+without attempting
+the system call.
 .SH NOTES
 The filesystem group ID concept and the
 .BR setfsgid ()
@@ -78,15 +85,6 @@ supporting 32-bit IDs.
 The glibc
 .BR setfsgid ()
 wrapper function transparently deals with the variation across kernel versions.
-.SS C library/kernel differences
-In glibc 2.15 and earlier,
-when the wrapper for this system call determines that the argument can't be
-passed to the kernel without integer truncation (because the kernel
-is old and does not support 32-bit group IDs),
-it will return \-1 and set \fIerrno\fP to
-.B EINVAL
-without attempting
-the system call.
 .SH BUGS
 No error indications of any kind are returned to the caller,
 and the fact that both successful and unsuccessful calls return

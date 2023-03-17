@@ -116,15 +116,28 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
-.\" 4.3BSD-Reno, not (first) 4.3BSD.
+.TP
 .BR strdup ()
-conforms to SVr4, 4.3BSD, POSIX.1-2001.
+.TQ
 .BR strndup ()
-conforms to POSIX.1-2008.
+POSIX.1-2008.
+.TP
 .BR strdupa ()
-and
+.TQ
 .BR strndupa ()
-are GNU extensions.
+GNU.
+.SH HISTORY
+.TP
+.BR strdup ()
+SVr4, 4.3BSD-Reno, POSIX.1-2001.
+.TP
+.BR strndup ()
+POSIX.1-2008.
+.TP
+.BR strdupa ()
+.TQ
+.BR strndupa ()
+GNU.
 .SH SEE ALSO
 .BR alloca (3),
 .BR calloc (3),

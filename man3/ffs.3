@@ -90,17 +90,17 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-.BR ffs ():
-POSIX.1-2001, POSIX.1-2008, 4.3BSD.
-.PP
-The
-.BR ffsl ()
-and
-.BR ffsll ()
-functions are glibc extensions.
-.SH NOTES
+.SH VERSIONS
 BSD systems have a prototype in
 .IR <string.h> .
+.SH STANDARDS
+.TP
+.BR ffs ()
+POSIX.1-2001, POSIX.1-2008, 4.3BSD.
+.TP
+.BR ffsl ()
+.TQ
+.BR ffsll ()
+GNU.
 .SH SEE ALSO
 .BR memchr (3)

@@ -43,9 +43,7 @@ T}	Thread safety	MT-Unsafe sig:SIGCHLD/linux
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
+.SH VERSIONS
 On Linux,
 .BR sleep ()
 is implemented via
@@ -53,7 +51,7 @@ is implemented via
 See the
 .BR nanosleep (2)
 man page for a discussion of the clock used.
-.SS Portability notes
+.PP
 On some systems,
 .BR sleep ()
 may be implemented using
@@ -66,7 +64,11 @@ mixing calls to
 and
 .BR sleep ()
 is a bad idea.
-.PP
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
+.SH CAVEATS
 Using
 .BR longjmp (3)
 from a signal handler or modifying the handling of

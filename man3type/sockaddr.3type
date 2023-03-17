@@ -109,7 +109,9 @@ stored in network byte order.
 .I sockaddr_un
 Describes a UNIX domain socket address.
 .SH STANDARDS
-POSIX.1-2001 and later.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH NOTES
 .I socklen_t
 is also defined in

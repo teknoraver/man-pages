@@ -91,13 +91,9 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-Not in POSIX.1.
+.SH VERSIONS
 A similar function appears on the BSDs.
-The
-.BR daemon ()
-function first appeared in 4.4BSD.
-.SH NOTES
+.PP
 The glibc implementation can also return \-1 when
 .I /dev/null
 exists but is not a character device with the expected
@@ -105,6 +101,10 @@ major and minor numbers.
 In this case,
 .I errno
 need not be set.
+.SH STANDARDS
+None.
+.SH HISTORY
+4.4BSD.
 .SH BUGS
 The GNU C library implementation of this function was taken from BSD,
 and does not employ the double-fork technique (i.e.,

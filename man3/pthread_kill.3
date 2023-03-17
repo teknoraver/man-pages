@@ -66,16 +66,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
-Signal dispositions are process-wide:
-if a signal handler is installed,
-the handler will be invoked in the thread
-.IR thread ,
-but if the disposition of the signal is "stop", "continue", or "terminate",
-this action will affect the whole process.
-.PP
+.SH VERSIONS
 The glibc implementation of
 .BR pthread_kill ()
 gives an error
@@ -98,6 +89,17 @@ lifetime has ended produces undefined behavior,
 and an attempt to use an invalid thread ID in a call to
 .BR pthread_kill ()
 can, for example, cause a segmentation fault.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
+.SH NOTES
+Signal dispositions are process-wide:
+if a signal handler is installed,
+the handler will be invoked in the thread
+.IR thread ,
+but if the disposition of the signal is "stop", "continue", or "terminate",
+this action will affect the whole process.
 .SH SEE ALSO
 .BR kill (2),
 .BR sigaction (2),

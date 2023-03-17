@@ -189,27 +189,35 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR mkostemp ()
-is available since glibc 2.7.
-.BR mkstemps ()
-and
-.BR mkostemps ()
-are available since glibc 2.11.
 .SH STANDARDS
-.BR mkstemp ():
-4.3BSD, POSIX.1-2001.
-.PP
-.BR mkstemps ():
-unstandardized, but appears on several other systems.
+.TP
+.BR mkstemp ()
+POSIX.1-2001.
+.TP
+.BR mkstemps ()
+BSD.
 .\" mkstemps() appears to be at least on the BSDs, Mac OS X, Solaris,
 .\" and Tru64.
-.PP
+.TP
 .BR mkostemp ()
-and
-.BR mkostemps ():
-are glibc extensions.
-.SH NOTES
+.TQ
+.BR mkostemps ()
+GNU.
+.SH HISTORY
+.TP
+.BR mkstemp ()
+4.3BSD, POSIX.1-2001.
+.TP
+.BR mkstemps ()
+glibc 2.11.
+BSD, Mac OS X, Solaris, Tru64.
+.TP
+.BR mkostemp ()
+glibc 2.7.
+.TP
+.BR mkostemps ()
+glibc 2.11.
+.PP
 In glibc versions 2.06 and earlier, the file is created with permissions 0666,
 that is, read and write for all users.
 This old behavior may be

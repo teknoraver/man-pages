@@ -831,7 +831,10 @@ flag.
 See
 .BR EACCES ,
 above.
-.SH VERSIONS
+.\"
+.SH STANDARDS
+Linux.
+.SH HISTORY
 The definitions of
 .BR MS_DIRSYNC ,
 .BR MS_MOVE ,
@@ -844,11 +847,7 @@ The definitions of
 and
 .B MS_UNBINDABLE
 were added to glibc headers in glibc 2.12.
-.\"
-.SH STANDARDS
-This function is Linux-specific and should not be used in
-programs intended to be portable.
-.SH NOTES
+.PP
 Since Linux 2.4 a single filesystem can be mounted at
 multiple mount points, and multiple mounts can be stacked
 on the same mount point.
@@ -884,6 +883,7 @@ Since Linux 2.4 the set-user-ID and set-group-ID bits are
 just silently ignored in this case.
 .\" The change is in patch-2.4.0-prerelease.
 .\"
+.SH NOTES
 .SS Mount namespaces
 Starting with Linux 2.4.19, Linux provides mount namespaces.
 A mount namespace is the set of filesystem mounts that

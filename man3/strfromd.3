@@ -174,22 +174,18 @@ T}	Thread safety	MT-Safe locale
 .ad
 .sp 1
 Note: these attributes are preliminary.
-.SH VERSIONS
-The
-.BR strfromd (),
-.BR strfromf (),
-and
-.BR strfroml ()
-functions are available since glibc 2.25.
 .SH STANDARDS
-C99, ISO/IEC TS 18661-1.
-.SH NOTES
-The
-.BR strfromd (),
-.BR strfromf (),
-and
+ISO/IEC TS 18661-1.
+.SH VERSIONS
+.TP
+.BR strfromd ()
+.TQ
+.BR strfromf ()
+.TQ
 .BR strfroml ()
-functions take account of the
+glibc 2.25.
+.SH NOTES
+These functions take account of the
 .B LC_NUMERIC
 category of the current locale.
 .SH EXAMPLES

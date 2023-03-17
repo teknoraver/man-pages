@@ -209,17 +209,7 @@ It is expected that a future version of POSIX.1
 will require that
 .BR readdir ()
 be thread-safe when concurrently employed on different directory streams.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4, 4.3BSD.
-.SH NOTES
-A directory stream is opened using
-.BR opendir (3).
-.PP
-The order in which filenames are read by successive calls to
-.BR readdir ()
-depends on the filesystem implementation;
-it is unlikely that the names will be sorted in any fashion.
-.PP
+.SH VERSIONS
 Only the fields
 .I d_name
 and (as an XSI extension)
@@ -290,6 +280,18 @@ In such cases, the
 field will contain a value that exceeds the size of the glibc
 .I dirent
 structure shown above.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SVr4, 4.3BSD.
+.SH NOTES
+A directory stream is opened using
+.BR opendir (3).
+.PP
+The order in which filenames are read by successive calls to
+.BR readdir ()
+depends on the filesystem implementation;
+it is unlikely that the names will be sorted in any fashion.
 .SH SEE ALSO
 .BR getdents (2),
 .BR read (2),

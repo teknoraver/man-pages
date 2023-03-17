@@ -83,20 +83,21 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-The functions
-.BR __ppc_set_ppr_med (),
-.BR __ppc_set_ppr_low (),
-and
-.BR __ppc_set_ppr_med_low ()
-are provided since glibc 2.18.
-The functions
-.BR __ppc_set_ppr_very_low ()
-and
-.BR __ppc_set_ppr_med_high ()
-first appeared in glibc 2.23.
 .SH STANDARDS
-These functions are nonstandard GNU extensions.
+GNU.
+.SH HISTORY
+.TP
+.BR __ppc_set_ppr_med ()
+.TQ
+.BR __ppc_set_ppr_low ()
+.TQ
+.BR __ppc_set_ppr_med_low ()
+glibc 2.18.
+.TP
+.BR __ppc_set_ppr_very_low ()
+.TQ
+.BR __ppc_set_ppr_med_high ()
+glibc 2.23.
 .SH NOTES
 The functions
 .BR __ppc_set_ppr_very_low ()

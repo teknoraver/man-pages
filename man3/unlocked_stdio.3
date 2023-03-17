@@ -159,16 +159,28 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
-The four functions
-.BR getc_unlocked (),
-.BR getchar_unlocked (),
-.BR putc_unlocked (),
+.TP
+.BR getc_unlocked ()
+.TQ
+.BR getchar_unlocked ()
+.TQ
+.BR putc_unlocked ()
+.TQ
 .BR putchar_unlocked ()
-are in POSIX.1-2001 and POSIX.1-2008.
-.PP
-The nonstandard
-.BR *_unlocked ()
-variants occur on a few UNIX systems, and are available in recent glibc.
+POSIX.1-2008.
+.TP
+Others:
+None.
+.SH HISTORY
+.TP
+.BR getc_unlocked ()
+.TQ
+.BR getchar_unlocked ()
+.TQ
+.BR putc_unlocked ()
+.TQ
+.BR putchar_unlocked ()
+POSIX.1-2001.
 .\" E.g., in HP-UX 10.0. In HP-UX 10.30 they are called obsolescent, and
 .\" moved to a compatibility library.
 .\" Available in HP-UX 10.0: clearerr_unlocked, fclose_unlocked,
@@ -180,7 +192,6 @@ variants occur on a few UNIX systems, and are available in recent glibc.
 .\" putchar_unlocked, puts_unlocked, putws_unlocked, putw_unlocked,
 .\" putwc_unlocked, putwchar_unlocked, rewind_unlocked, setvbuf_unlocked,
 .\" ungetc_unlocked, ungetwc_unlocked.
-They should probably not be used.
 .SH SEE ALSO
 .BR flockfile (3),
 .BR stdio (3)

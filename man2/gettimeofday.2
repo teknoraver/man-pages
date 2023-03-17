@@ -169,7 +169,20 @@ The calling process has insufficient privilege to call
 under Linux the
 .B CAP_SYS_TIME
 capability is required.
+.SH VERSIONS
+.SS C library/kernel differences
+On some architectures, an implementation of
+.BR gettimeofday ()
+is provided in the
+.BR vdso (7).
 .SH STANDARDS
+.TP
+.BR gettimeofday ()
+POSIX.1-2008 (obsolete).
+.TP
+.BR settimeofday ()
+None.
+.SH HISTORY
 SVr4, 4.3BSD.
 POSIX.1-2001 describes
 .BR gettimeofday ()
@@ -180,30 +193,11 @@ POSIX.1-2008 marks
 as obsolete, recommending the use of
 .BR clock_gettime (2)
 instead.
-.SH NOTES
-The time returned by
-.BR gettimeofday ()
-.I is
-affected by discontinuous jumps in the system time
-(e.g., if the system administrator manually changes the system time).
-If you need a monotonically increasing clock, see
-.BR clock_gettime (2).
-.PP
-Macros for operating on
-.I timeval
-structures are described in
-.BR timeradd (3).
 .PP
 Traditionally, the fields of
 .I struct timeval
 were of type
 .IR long .
-.\"
-.SS C library/kernel differences
-On some architectures, an implementation of
-.BR gettimeofday ()
-is provided in the
-.BR vdso (7).
 .\"
 .SS The tz_dsttime field
 On a non-Linux kernel, with glibc, the
@@ -264,6 +258,19 @@ this period is determined by unpredictable political
 decisions.
 So this method of representing timezones
 has been abandoned.
+.SH NOTES
+The time returned by
+.BR gettimeofday ()
+.I is
+affected by discontinuous jumps in the system time
+(e.g., if the system administrator manually changes the system time).
+If you need a monotonically increasing clock, see
+.BR clock_gettime (2).
+.PP
+Macros for operating on
+.I timeval
+structures are described in
+.BR timeradd (3).
 .SH SEE ALSO
 .BR date (1),
 .BR adjtimex (2),

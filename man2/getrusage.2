@@ -199,7 +199,8 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4, 4.3BSD.
+POSIX.1-2008.
+.PP
 POSIX.1 specifies
 .BR getrusage (),
 but specifies only the fields
@@ -209,9 +210,8 @@ and
 .PP
 .B RUSAGE_THREAD
 is Linux-specific.
-.SH NOTES
-Resource usage metrics are preserved across an
-.BR execve (2).
+.SH HISTORY
+POSIX.1-2001, SVr4, 4.3BSD.
 .PP
 Before Linux 2.6.9, if the disposition of
 .B SIGCHLD
@@ -239,6 +239,9 @@ All new applications should be written using
 (Since Linux 2.33, glibc no longer provides an
 .BR vtimes ()
 implementation.)
+.SH NOTES
+Resource usage metrics are preserved across an
+.BR execve (2).
 .PP
 See also the description of
 .IR /proc/ pid /stat

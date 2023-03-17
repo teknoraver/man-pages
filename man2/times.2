@@ -101,19 +101,25 @@ is set to indicate the error.
 .B EFAULT
 .I tms
 points outside the process's address space.
+.SH VERSIONS
+On Linux,
+the
+.I buf
+argument can be specified as NULL,
+with the result that
+.BR times ()
+just returns a function result.
+However,
+POSIX does not specify this behavior,
+and most
+other UNIX implementations require a non-NULL value for
+.IR buf .
 .SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
 POSIX.1-2001,
-POSIX.1-2008,
 SVr4,
 4.3BSD.
-.SH NOTES
-The number of clock ticks per second can be obtained using:
-.PP
-.in +4n
-.EX
-sysconf(_SC_CLK_TCK);
-.EE
-.in
 .PP
 In POSIX.1-1996 the symbol \fBCLK_TCK\fP (defined in
 .IR <time.h> )
@@ -141,28 +147,6 @@ This nonconformance is rectified in Linux 2.6.9 and later.
 .\"	or waitpid() returns the process ID of this terminated child.
 .PP
 On Linux,
-the
-.I buf
-argument can be specified as NULL,
-with the result that
-.BR times ()
-just returns a function result.
-However,
-POSIX does not specify this behavior,
-and most
-other UNIX implementations require a non-NULL value for
-.IR buf .
-.PP
-Note that
-.BR clock (3)
-also returns a value of type
-.IR clock_t ,
-but this value is measured in units of
-.BR CLOCKS_PER_SEC ,
-not the clock ticks used by
-.BR times ().
-.PP
-On Linux,
 the \[lq]arbitrary point in the past\[rq]
 from which the return value of
 .BR times ()
@@ -183,7 +167,7 @@ instead.
 .\" .PP
 .\" On older systems the number of clock ticks per second is given
 .\" by the variable HZ.
-.SS Historical
+.PP
 SVr1-3 returns
 .I long
 and the struct members are of type
@@ -196,6 +180,23 @@ for the struct members,
 because it had no type
 .I time_t
 yet.
+.SH NOTES
+The number of clock ticks per second can be obtained using:
+.PP
+.in +4n
+.EX
+sysconf(_SC_CLK_TCK);
+.EE
+.in
+.PP
+Note that
+.BR clock (3)
+also returns a value of type
+.IR clock_t ,
+but this value is measured in units of
+.BR CLOCKS_PER_SEC ,
+not the clock ticks used by
+.BR times ().
 .SH BUGS
 A limitation of the Linux system call conventions on some architectures
 (notably i386) means that on Linux 2.6 there is a small time window

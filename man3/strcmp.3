@@ -94,9 +94,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, C89, C99, SVr4, 4.3BSD.
-.SH NOTES
+.SH VERSIONS
 POSIX.1 specifies only that:
 .RS
 .PP
@@ -114,6 +112,10 @@ the last compared byte in
 from the last compared byte in
 .IR s1 .
 (If the two characters are equal, this difference is 0.)
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, C89, SVr4, 4.3BSD.
 .SH EXAMPLES
 The program below can be used to demonstrate the operation of
 .BR strcmp ()

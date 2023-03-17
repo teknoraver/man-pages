@@ -199,19 +199,49 @@ T}	Thread safety	MT-Unsafe const:locale env
 .ad
 .sp 1
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, C89, C99.
-.PP
-The C standards specify only the categories
-.BR LC_ALL ,
-.BR LC_COLLATE ,
-.BR LC_CTYPE ,
-.BR LC_MONETARY ,
-.BR LC_NUMERIC ,
-and
-.BR LC_TIME .
-POSIX.1 adds
-.BR LC_MESSAGES .
-The remaining categories are GNU extensions.
+C11, POSIX.1-2008.
+.SS Categories
+.TP
+.B LC_ALL
+.TQ
+.B LC_COLLATE
+.TQ
+.B LC_CTYPE
+.TQ
+.B LC_MONETARY
+.TQ
+.B LC_NUMERIC
+.TQ
+.B LC_TIME
+C11, POSIX.1-2008.
+.TP
+.BR LC_MESSAGES
+POSIX.1-2008.
+.TP
+Others:
+GNU.
+.SH HISTORY
+POSIX.1-2001, C89.
+.SS Categories
+.TP
+.B LC_ALL
+.TQ
+.B LC_COLLATE
+.TQ
+.B LC_CTYPE
+.TQ
+.B LC_MONETARY
+.TQ
+.B LC_NUMERIC
+.TQ
+.B LC_TIME
+C89, POSIX.1-2001.
+.TP
+.BR LC_MESSAGES
+POSIX.1-2001.
+.TP
+Others:
+GNU.
 .SH SEE ALSO
 .BR locale (1),
 .BR localedef (1),

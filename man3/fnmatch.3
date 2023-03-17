@@ -122,10 +122,20 @@ T}	Thread safety	MT-Safe env locale
 .ad
 .sp 1
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, POSIX.2.
-The
-.BR FNM_FILE_NAME ", " FNM_LEADING_DIR ", and " FNM_CASEFOLD
-flags are GNU extensions.
+.TP
+.BR fnmatch ()
+POSIX.1-2008.
+.TP
+.B FNM_FILE_NAME
+.TQ
+.B FNM_LEADING_DIR
+.TQ
+.B FNM_CASEFOLD
+GNU.
+.SH HISTORY
+.TP
+.BR fnmatch ()
+POSIX.1-2001, POSIX.2.
 .SH SEE ALSO
 .BR sh (1),
 .BR glob (3),

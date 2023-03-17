@@ -165,15 +165,15 @@ No thread matching
 and
 .I tid
 was found.
-.SH VERSIONS
-The
-.BR rt_sigqueueinfo ()
-system call was added in Linux 2.2.
-The
-.BR rt_tgsigqueueinfo ()
-system call was added in Linux 2.6.31.
 .SH STANDARDS
-These system calls are Linux-specific.
+Linux.
+.SH HISTORY
+.TP
+.BR rt_sigqueueinfo ()
+Linux 2.2.
+.TP
+.BR rt_tgsigqueueinfo ()
+Linux 2.6.31.
 .SH NOTES
 Since these system calls are not intended for application use,
 there are no glibc wrapper functions; use

@@ -102,16 +102,21 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-The
-.BR towlower_l ()
-function first appeared in glibc 2.3.
 .SH STANDARDS
-.BR towlower ():
-C99, POSIX.1-2001 (XSI);
-present as an XSI extension in POSIX.1-2008, but marked obsolete.
-.PP
-.BR towlower_l ():
+.TP
+.BR towlower ()
+C11, POSIX.1-2008 (XSI).
+.TP
+.BR towlower_l ()
+POSIX.1-2008.
+.SH STANDARDS
+.TP
+.BR towlower ()
+C99, POSIX.1-2001 (XSI).
+Obsolete in POSIX.1-2008 (XSI).
+.TP
+.BR towlower_l ()
+glibc 2.3.
 POSIX.1-2008.
 .SH NOTES
 The behavior of these functions depends on the

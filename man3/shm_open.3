@@ -239,18 +239,6 @@ T}	Thread safety	MT-Safe locale
 .ad
 .sp 1
 .SH VERSIONS
-These functions are provided in glibc 2.2 and later.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.PP
-POSIX.1-2001 says that the group ownership of a newly created shared
-memory object is set to either the calling process's effective group ID
-or "a system default group ID".
-POSIX.1-2008 says that the group ownership
-may be set to either the calling process's effective group ID
-or, if the object is visible in the filesystem,
-the group ID of the parent directory.
-.SH NOTES
 POSIX leaves the behavior of the combination of
 .B O_RDONLY
 and
@@ -264,6 +252,19 @@ of a dedicated
 .BR tmpfs (5)
 filesystem that is normally mounted under
 .IR /dev/shm .
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+glibc 2.2.
+POSIX.1-2001.
+.PP
+POSIX.1-2001 says that the group ownership of a newly created shared
+memory object is set to either the calling process's effective group ID
+or "a system default group ID".
+POSIX.1-2008 says that the group ownership
+may be set to either the calling process's effective group ID
+or, if the object is visible in the filesystem,
+the group ID of the parent directory.
 .SH EXAMPLES
 The programs below employ POSIX shared memory and POSIX unnamed semaphores
 to exchange a piece of data.

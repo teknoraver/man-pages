@@ -141,14 +141,28 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
-.BR setjmp (),
-.BR longjmp ():
-POSIX.1-2001, POSIX.1-2008, C89, C99.
+.TP
+.BR setjmp ()
+.TQ
+.BR longjmp ()
+C11, POSIX.1-2008.
+.TP
+.BR sigsetjmp ()
+.TQ
+.BR siglongjmp ()
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR setjmp ()
+.TQ
+.BR longjmp ()
+POSIX.1-2001, C89.
+.TP
+.BR sigsetjmp ()
+.TQ
+.BR siglongjmp ()
+POSIX.1-2001.
 .PP
-.BR sigsetjmp (),
-.BR siglongjmp ():
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
 POSIX does not specify whether
 .BR setjmp ()
 will save the signal mask
@@ -188,7 +202,7 @@ with calls to
 with a nonzero
 .I savesigs
 argument.
-.PP
+.SH NOTES
 .BR setjmp ()
 and
 .BR longjmp ()
@@ -203,7 +217,7 @@ if you want to portably save and restore signal masks, use
 and
 .BR siglongjmp ().
 See also the discussion of program readability below.
-.PP
+.SH CAVEATS
 The compiler may optimize variables into registers, and
 .BR longjmp ()
 may restore the values of other registers in addition to the
@@ -259,7 +273,7 @@ calls may not even be in the same source code module.
 In summary, nonlocal gotos can make programs harder to understand
 and maintain, and an alternative should be used if possible.
 .\"
-.SS Caveats
+.SS Undefined Behavior
 If the function which called
 .BR setjmp ()
 returns before

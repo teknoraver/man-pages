@@ -861,15 +861,11 @@ but the kernel does not support the filter return action specified by
 .B ESRCH
 Another thread caused a failure during thread sync, but its ID could not
 be determined.
-.SH VERSIONS
-The
-.BR seccomp ()
-system call first appeared in Linux 3.17.
-.\" FIXME . Add glibc version
 .SH STANDARDS
-The
-.BR seccomp ()
-system call is a nonstandard Linux extension.
+Linux.
+.SH HISTORY
+Linux 3.17.
+.\" FIXME . Add glibc version
 .SH NOTES
 Rather than hand-coding seccomp filters as shown in the example below,
 you may prefer to employ the

@@ -110,8 +110,53 @@ The wait was interrupted by a signal handler; see
 .B EINVAL
 .I timeout
 was invalid.
+.SH VERSIONS
+.SS C library/kernel differences
+On Linux,
+.BR sigwaitinfo ()
+is a library function implemented on top of
+.BR sigtimedwait ().
+.PP
+The glibc wrapper functions for
+.BR sigwaitinfo ()
+and
+.BR sigtimedwait ()
+silently ignore attempts to wait for the two real-time signals that
+are used internally by the NPTL threading implementation.
+See
+.BR nptl (7)
+for details.
+.PP
+The original Linux system call was named
+.BR sigtimedwait ().
+However, with the addition of real-time signals in Linux 2.2,
+the fixed-size, 32-bit
+.I sigset_t
+type supported by that system call was no longer fit for purpose.
+Consequently, a new system call,
+.BR rt_sigtimedwait (),
+was added to support an enlarged
+.I sigset_t
+type.
+The new system call takes a fourth argument,
+.IR "size_t sigsetsize" ,
+which specifies the size in bytes of the signal set in
+.IR set .
+This argument is currently required to have the value
+.I sizeof(sigset_t)
+(or the error
+.B EINVAL
+results).
+The glibc
+.BR sigtimedwait ()
+wrapper function hides these details from us, transparently calling
+.BR rt_sigtimedwait ()
+when the kernel provides it.
+.\"
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH NOTES
 In normal usage, the calling program blocks the signals in
 .I set
@@ -171,49 +216,6 @@ unspecified, permitting the possibility that this has the same meaning
 as a call to
 .BR sigwaitinfo (),
 and indeed this is what is done on Linux.
-.\"
-.SS C library/kernel differences
-On Linux,
-.BR sigwaitinfo ()
-is a library function implemented on top of
-.BR sigtimedwait ().
-.PP
-The glibc wrapper functions for
-.BR sigwaitinfo ()
-and
-.BR sigtimedwait ()
-silently ignore attempts to wait for the two real-time signals that
-are used internally by the NPTL threading implementation.
-See
-.BR nptl (7)
-for details.
-.PP
-The original Linux system call was named
-.BR sigtimedwait ().
-However, with the addition of real-time signals in Linux 2.2,
-the fixed-size, 32-bit
-.I sigset_t
-type supported by that system call was no longer fit for purpose.
-Consequently, a new system call,
-.BR rt_sigtimedwait (),
-was added to support an enlarged
-.I sigset_t
-type.
-The new system call takes a fourth argument,
-.IR "size_t sigsetsize" ,
-which specifies the size in bytes of the signal set in
-.IR set .
-This argument is currently required to have the value
-.I sizeof(sigset_t)
-(or the error
-.B EINVAL
-results).
-The glibc
-.BR sigtimedwait ()
-wrapper function hides these details from us, transparently calling
-.BR rt_sigtimedwait ()
-when the kernel provides it.
-.\"
 .SH SEE ALSO
 .BR kill (2),
 .BR sigaction (2),

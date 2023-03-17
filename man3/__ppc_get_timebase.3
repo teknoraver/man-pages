@@ -36,16 +36,17 @@ Time Base Register.
 .BR __ppc_get_timebase_freq ()
 returns a 64-bit unsigned integer that represents the frequency at
 which the Time Base Register is updated.
-.SH VERSIONS
-GNU C Library support for
-.\" commit d9dc34cd569bcfe714fe8c708e58c028106e8b2e
-.BR __ppc_get_timebase ()
-has been provided since glibc 2.16 and
-.\" commit 8ad11b9a9cf1de82bd7771306b42070b91417c11
-.BR __ppc_get_timebase_freq ()
-has been available since glibc 2.17.
 .SH STANDARDS
-Both functions are nonstandard GNU extensions.
+GNU.
+.SH HISTORY
+.TP
+.BR __ppc_get_timebase ()
+.\" commit d9dc34cd569bcfe714fe8c708e58c028106e8b2e
+glibc 2.16.
+.TP
+.BR __ppc_get_timebase_freq ()
+.\" commit 8ad11b9a9cf1de82bd7771306b42070b91417c11
+glibc 2.17.
 .SH EXAMPLES
 The following program will calculate the time, in microseconds, spent
 between two calls to

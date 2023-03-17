@@ -88,27 +88,16 @@ to any error specified for
 .BR write (2)
 or
 .BR lseek (2).
-.SH VERSIONS
-The
-.BR pread ()
-and
-.BR pwrite ()
-system calls were added in Linux 2.1.60;
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
+.PP
+Added in Linux 2.1.60;
 the entries in the i386 system call table were added in Linux 2.1.69.
 C library support (including emulation using
 .BR lseek (2)
 on older kernels without the system calls) was added in glibc 2.1.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
-The
-.BR pread ()
-and
-.BR pwrite ()
-system calls are especially useful in multithreaded applications.
-They allow multiple threads to perform I/O on the same file descriptor
-without being affected by changes to the file offset by other threads.
-.\"
 .SS C library/kernel differences
 On Linux, the underlying system calls were renamed
 in Linux 2.6:
@@ -130,6 +119,14 @@ On some 32-bit architectures,
 the calling signature for these system calls differ,
 for the reasons described in
 .BR syscall (2).
+.SH NOTES
+The
+.BR pread ()
+and
+.BR pwrite ()
+system calls are especially useful in multithreaded applications.
+They allow multiple threads to perform I/O on the same file descriptor
+without being affected by changes to the file offset by other threads.
 .SH BUGS
 POSIX requires that opening a file with the
 .B O_APPEND

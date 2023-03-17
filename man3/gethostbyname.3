@@ -381,24 +381,35 @@ or
 are used in parallel in different threads of a program,
 then data races could occur.
 .SH STANDARDS
-POSIX.1-2001 specifies
-.BR gethostbyname (),
-.BR gethostbyaddr (),
-.BR sethostent (),
-.BR endhostent (),
-.BR gethostent (),
-and
-.IR h_errno ;
-.BR gethostbyname (),
-.BR gethostbyaddr (),
-and
+.TP
+.BR sethostent ()
+.TQ
+.BR endhostent ()
+.TQ
+.BR gethostent ()
+POSIX.1-2008.
+.TP
+.BR gethostent_r ()
+GNU.
+.TP
+Others:
+None.
+.SH HISTORY
+.TP
+.BR sethostent ()
+.TQ
+.BR endhostent ()
+.TQ
+.BR gethostent ()
+POSIX.1-2001.
+.TP
+.BR gethostbyname ()
+.TQ
+.BR gethostbyaddr ()
+.TQ
 .I h_errno
-are marked obsolescent in that standard.
-POSIX.1-2008 removes the specifications of
-.BR gethostbyname (),
-.BR gethostbyaddr (),
-and
-.IR h_errno ,
+Marked obsolescent in POSIX.1-2001.
+Removed in POSIX.1-2008,
 recommending the use of
 .BR getaddrinfo (3)
 and

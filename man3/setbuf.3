@@ -160,12 +160,18 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
-The
+.TP
 .BR setbuf ()
-and
+.TQ
 .BR setvbuf ()
-functions conform to C89 and C99.
-.SH NOTES
+C11, POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR setbuf ()
+.TQ
+.BR setvbuf ()
+C89, POSIX.1-2001.
+.SH CAVEATS
 POSIX notes
 .\" https://www.austingroupbugs.net/view.php?id=397#c799
 .\" 0000397: setbuf and errno

@@ -107,14 +107,16 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR fdopendir ()
-is available since glibc 2.4.
 .SH STANDARDS
+POSIX.1-2008.
+.SH STANDARDS
+.TP
 .BR opendir ()
-is present on SVr4, 4.3BSD, and specified in POSIX.1-2001.
+SVr4, 4.3BSD, POSIX.1-2001.
+.TP
 .BR fdopendir ()
-is specified in POSIX.1-2008.
+POSIX.1-2008.
+glibc 2.4.
 .SH NOTES
 Filename entries can be read from a directory stream using
 .BR readdir (3).

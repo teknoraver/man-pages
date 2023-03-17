@@ -83,18 +83,11 @@ does not support protection keys.
 Applications should always be prepared to handle this error, since
 factors outside of the application's control can reduce the number
 of available pkeys.
-.SH VERSIONS
-.BR pkey_alloc ()
-and
-.BR pkey_free ()
-were added in Linux 4.9;
-library support was added in glibc 2.27.
 .SH STANDARDS
-The
-.BR pkey_alloc ()
-and
-.BR pkey_free ()
-system calls are Linux-specific.
+Linux.
+.SH HISTORY
+Linux 4.9,
+glibc 2.27.
 .SH NOTES
 .BR pkey_alloc ()
 is always safe to call regardless of whether or not the operating system

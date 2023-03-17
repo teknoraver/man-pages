@@ -77,15 +77,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, C89, C99, SVr4, 4.3BSD, SUSv2.
-.SH NOTES
-POSIX.1-2001 specifies:
-an error message may be written to
-.I stdout
-if the stream
-cannot be opened.
-.PP
+.SH VERSIONS
 The standard does not specify the directory that
 .BR tmpfile ()
 will use.
@@ -96,6 +88,16 @@ in
 .IR <stdio.h> ,
 and if that fails, then the directory
 .IR /tmp .
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, C89, SVr4, 4.3BSD, SUSv2.
+.SH NOTES
+POSIX.1-2001 specifies:
+an error message may be written to
+.I stdout
+if the stream
+cannot be opened.
 .SH SEE ALSO
 .BR exit (3),
 .BR mkstemp (3),

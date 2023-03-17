@@ -97,9 +97,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
+.SH VERSIONS
 On ancient systems,
 .\" e.g., SunOS, Linux libc4 and libc5
 the arguments of these functions were of type \fIstruct qelem *\fP,
@@ -126,6 +124,10 @@ The above is the POSIX version.
 Some systems place them in \fI<string.h>\fP.
 .\" Linux libc4 and libc 5 placed them
 .\" in \fI<stdlib.h>\fP.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH BUGS
 In glibc 2.4 and earlier, it was not possible to specify
 .I prev

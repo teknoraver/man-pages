@@ -142,9 +142,7 @@ space at the time of a
 .BR write (2)
 system call, and some previous write failed due to insufficient
 storage space.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, 4.3BSD.
-.PP
+.SH VERSIONS
 On POSIX systems on which
 .BR fdatasync ()
 is available,
@@ -157,12 +155,16 @@ to a value greater than 0.
 .\" POSIX.1-2001: It shall be defined to -1 or 0 or 200112L.
 .\" -1: unavailable, 0: ask using sysconf().
 .\" glibc defines them to 1.
-.SH NOTES
+.PP
 On some UNIX systems (but not Linux),
 .I fd
 must be a
 .I writable
 file descriptor.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, 4.3BSD.
 .PP
 In Linux 2.2 and earlier,
 .BR fdatasync ()

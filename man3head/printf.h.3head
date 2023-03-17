@@ -221,7 +221,9 @@ On error, it should return \-1.
 .TP
 .B EINVAL
 The specifier was not a valid character.
-.SH VERSIONS
+.SH STANDARDS
+GNU.
+.SH HISTORY
 .BR \%register_printf_function (3)
 is an older function similar to
 .BR \%register_printf_specifier (),
@@ -231,8 +233,6 @@ That function can't handle user-defined types.
 .BR \%register_printf_specifier ()
 superseeds
 .BR \%register_printf_function (3).
-.SH STANDARDS
-These nonstandard functions are present in glibc.
 .SH EXAMPLES
 The following example program registers the 'b' and 'B' specifiers
 to print integers in binary format,

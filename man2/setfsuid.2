@@ -19,7 +19,7 @@ Standard C library
 .nf
 .B #include <sys/fsuid.h>
 .PP
-.BI "int setfsuid(uid_t " fsuid );
+.BI "[[deprecated]] int setfsuid(uid_t " fsuid );
 .fi
 .SH DESCRIPTION
 On Linux, a process has both a filesystem user ID and an effective user ID.
@@ -59,15 +59,13 @@ saved set-user-ID, or current filesystem user ID.
 .SH RETURN VALUE
 On both success and failure,
 this call returns the previous filesystem user ID of the caller.
-.SH VERSIONS
-This system call is present since Linux 1.2.
-.\" This system call is present since Linux 1.1.44
-.\" and in libc since libc 4.7.6.
 .SH STANDARDS
-.BR setfsuid ()
-is Linux-specific and should not be used in programs intended
-to be portable.
-.SH NOTES
+Linux.
+.SH HISTORY
+Linux 1.2.
+.\" Linux 1.1.44
+.\" and in libc since libc 4.7.6.
+.PP
 At the time when this system call was introduced, one process
 could send a signal to another process with the same effective user ID.
 This meant that if a privileged process changed its effective user ID

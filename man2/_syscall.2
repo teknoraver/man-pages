@@ -68,9 +68,9 @@ you call the system call by
 .SH FILES
 .I /usr/include/linux/unistd.h
 .SH STANDARDS
-The use of these macros is Linux-specific, and deprecated.
-.SH NOTES
-Starting around kernel 2.6.18, the _syscall macros were removed
+Linux.
+.SH HISTORY
+Starting around Linux 2.6.18, the _syscall macros were removed
 from header files supplied to user space.
 Use
 .BR syscall (2)
@@ -79,7 +79,7 @@ instead.
 on those architectures,
 .BR syscall (2)
 was always required.)
-.PP
+.SH NOTES
 The _syscall() macros
 .I "do not"
 produce a prototype.

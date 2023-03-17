@@ -144,8 +144,13 @@ or
 .BR endnetgrent ()
 are used in parallel in different threads of a program,
 then data races could occur.
+.SH VERSIONS
+In the BSD implementation,
+.BR setnetgrent ()
+returns void.
 .SH STANDARDS
-These functions are not in POSIX.1, but
+None.
+.SH HISTORY
 .BR setnetgrent (),
 .BR endnetgrent (),
 .BR getnetgrent (),
@@ -155,10 +160,6 @@ are available on most UNIX systems.
 .BR getnetgrent_r ()
 is not widely available on other systems.
 .\" getnetgrent_r() is on Solaris 8 and AIX 5.1, but not the BSDs.
-.SH NOTES
-In the BSD implementation,
-.BR setnetgrent ()
-returns void.
 .SH SEE ALSO
 .BR sethostent (3),
 .BR setprotoent (3),

@@ -89,12 +89,6 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH VERSIONS
-The
-.BR pthread_sigqueue ()
-function first appeared in glibc 2.11.
-.SH STANDARDS
-This function is a GNU extension.
-.SH NOTES
 The glibc implementation of
 .BR pthread_sigqueue ()
 gives an error
@@ -104,6 +98,10 @@ used internally by the NPTL threading implementation.
 See
 .BR nptl (7)
 for details.
+.SH STANDARDS
+GNU.
+.SH HISTORY
+glibc 2.11.
 .SH SEE ALSO
 .BR rt_tgsigqueueinfo (2),
 .BR sigaction (2),

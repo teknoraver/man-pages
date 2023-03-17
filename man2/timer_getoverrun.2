@@ -76,10 +76,6 @@ is set to indicate the error.
 .I timerid
 is not a valid timer ID.
 .SH VERSIONS
-This system call is available since Linux 2.6.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
 When timer notifications are delivered via signals
 .RB ( SIGEV_SIGNAL ),
 on Linux it is also possible to obtain the overrun count via the
@@ -96,6 +92,11 @@ POSIX.1 discusses timer overruns only in the context of
 timer notifications using signals.
 .\" FIXME . Austin bug filed, 11 Feb 09
 .\" https://www.austingroupbugs.net/view.php?id=95
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+Linux 2.6.
+POSIX.1-2001.
 .SH BUGS
 POSIX.1 specifies that if the timer overrun count
 is equal to or greater than an implementation-defined maximum,

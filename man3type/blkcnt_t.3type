@@ -20,7 +20,9 @@ Standard C library
 Used for file block counts.
 It is a signed integer type.
 .SH STANDARDS
-POSIX.1-2001 and later.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH NOTES
 The following header also provides this type:
 .IR <sys/stat.h> .

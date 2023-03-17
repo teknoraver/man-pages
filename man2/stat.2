@@ -306,15 +306,16 @@ calls
 on a file whose size exceeds
 .I (1<<31)\-1
 bytes.
-.SH VERSIONS
-.BR fstatat ()
-was added in Linux 2.6.16;
-library support was added in glibc 2.4.
 .SH STANDARDS
-.BR stat (),
-.BR fstat (),
-.BR lstat ():
-SVr4, 4.3BSD, POSIX.1-2001, POSIX.1.2008.
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR stat ()
+.TQ
+.BR fstat ()
+.TQ
+.BR lstat ()
+SVr4, 4.3BSD, POSIX.1-2001.
 .\" SVr4 documents additional
 .\" .BR fstat ()
 .\" error conditions EINTR, ENOLINK, and EOVERFLOW.  SVr4
@@ -323,9 +324,11 @@ SVr4, 4.3BSD, POSIX.1-2001, POSIX.1.2008.
 .\" and
 .\" .BR lstat ()
 .\" error conditions EINTR, EMULTIHOP, ENOLINK, and EOVERFLOW.
-.PP
-.BR fstatat ():
+.TP
+.BR fstatat ()
 POSIX.1-2008.
+Linux 2.6.16,
+glibc 2.4.
 .PP
 According to POSIX.1-2001,
 .BR lstat ()
@@ -349,7 +352,6 @@ fields may be less portable.
 (They were introduced in BSD.
 The interpretation differs between systems,
 and possibly on a single system when NFS mounts are involved.)
-.SH NOTES
 .SS C library/kernel differences
 Over time, increases in the size of the
 .I stat

@@ -302,15 +302,11 @@ for this operation.
 .I fd
 is a PID file descriptor but the process it refers to no longer exists
 (i.e., it has terminated and been waited on).
-.SH VERSIONS
-The
-.BR setns ()
-system call first appeared in Linux 3.0;
-library support was added in glibc 2.14.
 .SH STANDARDS
-The
-.BR setns ()
-system call is Linux-specific.
+Linux.
+.SH VERSIONS
+Linux 3.0,
+glibc 2.14.
 .SH NOTES
 For further information on the
 .IR /proc/ pid /ns/

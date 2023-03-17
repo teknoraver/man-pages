@@ -159,7 +159,32 @@ or (since Linux 2.6.22) one of the
 fields in the structure pointed to by
 .I new_value
 contains a value outside the range [0, 999999].
+.SH VERSIONS
+The standards are silent on the meaning of the call:
+.PP
+.in +4n
+.EX
+setitimer(which, NULL, &old_value);
+.EE
+.in
+.PP
+Many systems (Solaris, the BSDs, and perhaps others)
+treat this as equivalent to:
+.PP
+.in +4n
+.EX
+getitimer(which, &old_value);
+.EE
+.in
+.PP
+In Linux, this is treated as being equivalent to a call in which the
+.I new_value
+fields are zero; that is, the timer is disabled.
+.IR "Don't use this Linux misfeature" :
+it is nonportable and unnecessary.
 .SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
 POSIX.1-2001, SVr4, 4.4BSD (this call first appeared in 4.2BSD).
 POSIX.1-2008 marks
 .BR getitimer ()
@@ -194,29 +219,6 @@ and the three interfaces
 and
 .BR usleep (3)
 unspecified.
-.PP
-The standards are silent on the meaning of the call:
-.PP
-.in +4n
-.EX
-setitimer(which, NULL, &old_value);
-.EE
-.in
-.PP
-Many systems (Solaris, the BSDs, and perhaps others)
-treat this as equivalent to:
-.PP
-.in +4n
-.EX
-getitimer(which, &old_value);
-.EE
-.in
-.PP
-In Linux, this is treated as being equivalent to a call in which the
-.I new_value
-fields are zero; that is, the timer is disabled.
-.IR "Don't use this Linux misfeature" :
-it is nonportable and unnecessary.
 .SH BUGS
 The generation and delivery of a signal are distinct, and
 only one instance of each of the signals listed above may be pending

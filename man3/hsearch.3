@@ -235,19 +235,35 @@ T}	Thread safety	MT-Safe race:htab
 .ad
 .sp 1
 .SH STANDARDS
-The functions
-.BR hcreate (),
-.BR hsearch (),
-and
+.TP
+.BR hcreate ()
+.TQ
+.BR hsearch ()
+.TQ
 .BR hdestroy ()
-are from SVr4, and are described in POSIX.1-2001 and POSIX.1-2008.
-.PP
-The functions
-.BR hcreate_r (),
-.BR hsearch_r (),
-and
+POSIX.1-2008.
+.TP
+.BR hcreate_r ()
+.TQ
+.BR hsearch_r ()
+.TQ
 .BR hdestroy_r ()
-are GNU extensions.
+GNU.
+.SH HISTORY
+.TP
+.BR hcreate ()
+.TQ
+.BR hsearch ()
+.TQ
+.BR hdestroy ()
+SVr4, POSIX.1-2001.
+.TP
+.BR hcreate_r ()
+.TQ
+.BR hsearch_r ()
+.TQ
+.BR hdestroy_r ()
+GNU.
 .SH NOTES
 Hash table implementations are usually more efficient when the
 table contains enough free space to minimize collisions.

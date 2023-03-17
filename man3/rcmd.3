@@ -271,20 +271,20 @@ T}	Thread safety	MT-Safe locale
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-The functions
-.BR iruserok_af (),
-.BR rcmd_af (),
-.BR rresvport_af (),
-and
-.BR ruserok_af ()
-functions are provided since glibc 2.2.
 .SH STANDARDS
-Not in POSIX.1.
-Present on the BSDs, Solaris, and many other systems.
-These
-functions appeared in
-4.2BSD.
+BSD.
+.SH HISTORY
+.TP
+.BR iruserok_af ()
+.TQ
+.BR rcmd_af ()
+.TQ
+.BR rresvport_af ()
+.TQ
+.BR ruserok_af ()
+glibc 2.2.
+.PP
+Solaris, 4.2BSD.
 The "_af" variants are more recent additions,
 and are not present on as wide a range of systems.
 .SH BUGS

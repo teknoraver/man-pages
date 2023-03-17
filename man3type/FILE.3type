@@ -19,8 +19,9 @@ Standard C library
 .SH DESCRIPTION
 An object type used for streams.
 .SH STANDARDS
-C99 and later;
-POSIX.1-2001 and later.
+C11, POSIX.1-2008.
+.SH HISTORY
+C89, POSIX.1-2001.
 .SH NOTES
 The following header also provides this type:
 .IR <wchar.h> .

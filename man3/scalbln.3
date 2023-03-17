@@ -145,11 +145,12 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-These functions were added in glibc 2.1.
 .SH STANDARDS
-C99, POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
+C11, POSIX.1-2008.
+.SH HISTORY
+glibc 2.1.
+C99, POSIX.1-2001.
+.SH HISTORY
 These functions differ from the obsolete functions described in
 .BR scalb (3)
 in the type of their second argument.
@@ -158,7 +159,7 @@ of an integral type, while those in
 .BR scalb (3)
 have a second argument of type
 .IR double .
-.PP
+.SH NOTES
 If
 .B FLT_RADIX
 equals 2 (which is usual), then

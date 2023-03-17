@@ -420,12 +420,24 @@ flag and the caller does not have the
 .B CAP_SYS_NICE
 privilege.
 .\" ---------------------------------------------------------------
-.SH VERSIONS
-The
-.BR mbind ()
-system call was added in Linux 2.6.7.
 .SH STANDARDS
-This system call is Linux-specific.
+Linux.
+.SH HISTORY
+Linux 2.6.7.
+.PP
+Support for huge page policy was added with Linux 2.6.16.
+For interleave policy to be effective on huge page mappings the
+policied memory needs to be tens of megabytes or larger.
+.PP
+Before Linux 5.7.
+.\" commit dcf1763546d76c372f3136c8d6b2b6e77f140cf0
+.B MPOL_MF_STRICT
+was ignored on huge page mappings.
+.PP
+.B MPOL_MF_MOVE
+and
+.B MPOL_MF_MOVE_ALL
+are available only on Linux 2.6.16 and later.
 .SH NOTES
 For information on library support, see
 .BR numa (7).
@@ -468,20 +480,6 @@ with an empty set of nodes.
 This method will work for
 .BR set_mempolicy (2),
 as well.
-.PP
-Support for huge page policy was added with Linux 2.6.16.
-For interleave policy to be effective on huge page mappings the
-policied memory needs to be tens of megabytes or larger.
-.PP
-Before Linux 5.7.
-.\" commit dcf1763546d76c372f3136c8d6b2b6e77f140cf0
-.B MPOL_MF_STRICT
-was ignored on huge page mappings.
-.PP
-.B MPOL_MF_MOVE
-and
-.B MPOL_MF_MOVE_ALL
-are available only on Linux 2.6.16 and later.
 .SH SEE ALSO
 .BR get_mempolicy (2),
 .BR getcpu (2),

@@ -75,23 +75,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, C89, C99, SVr4, 4.3BSD.
-.SH NOTES
-Functions registered using
-.BR atexit ()
-(and
-.BR on_exit (3))
-are not called if a process terminates abnormally because
-of the delivery of a signal.
-.PP
-If one of the registered functions calls
-.BR _exit (2),
-then any remaining functions are not invoked,
-and the other process termination steps performed by
-.BR exit (3)
-are not performed.
-.PP
+.SH VERSIONS
 POSIX.1 says that the result of calling
 .\" POSIX.1-2001, POSIX.1-2008
 .BR exit (3)
@@ -109,6 +93,24 @@ portable programs should not invoke
 .BR exit (3)
 inside a function registered using
 .BR atexit ().
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, C89, C99, SVr4, 4.3BSD.
+.SH NOTES
+Functions registered using
+.BR atexit ()
+(and
+.BR on_exit (3))
+are not called if a process terminates abnormally because
+of the delivery of a signal.
+.PP
+If one of the registered functions calls
+.BR _exit (2),
+then any remaining functions are not invoked,
+and the other process termination steps performed by
+.BR exit (3)
+are not performed.
 .PP
 The
 .BR atexit ()

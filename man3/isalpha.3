@@ -227,71 +227,124 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .\" FIXME: need a thread-safety statement about the *_l functions
-.SH VERSIONS
-.BR isalnum_l (),
-.BR isalpha_l (),
-.BR isblank_l (),
-.BR iscntrl_l (),
-.BR isdigit_l (),
-.BR isgraph_l (),
-.BR islower_l (),
-.BR isprint_l (),
-.BR ispunct_l (),
-.BR isspace_l (),
-.BR isupper_l (),
-.BR isxdigit_l (),
-and
-.BR isascii_l ()
-are available since glibc 2.3.
 .SH STANDARDS
-C89 specifies
-.BR isalnum (),
-.BR isalpha (),
-.BR iscntrl (),
-.BR isdigit (),
-.BR isgraph (),
-.BR islower (),
-.BR isprint (),
-.BR ispunct (),
-.BR isspace (),
-.BR isupper (),
-and
-.BR isxdigit (),
-but not
+.TP
+.BR isalnum ()
+.TQ
+.BR isalpha ()
+.TQ
+.BR iscntrl ()
+.TQ
+.BR isdigit ()
+.TQ
+.BR isgraph ()
+.TQ
+.BR islower ()
+.TQ
+.BR isprint ()
+.TQ
+.BR ispunct ()
+.TQ
+.BR isspace ()
+.TQ
+.BR isupper ()
+.TQ
+.BR isxdigit ()
+.TQ
+.BR isblank ()
+C11, POSIX.1-2008.
+.TP
 .BR isascii ()
-and
-.BR isblank ().
-POSIX.1-2001
-also specifies those functions, and also
-.BR isascii ()
-(as an XSI extension)
-and
-.BR isblank ().
-C99 specifies all of the preceding functions, except
-.BR isascii ().
-.PP
-POSIX.1-2008 marks
-.BR isascii ()
-as obsolete,
-noting that it cannot be used portably in a localized application.
-.PP
-POSIX.1-2008 specifies
-.BR isalnum_l (),
-.BR isalpha_l (),
-.BR isblank_l (),
-.BR iscntrl_l (),
-.BR isdigit_l (),
-.BR isgraph_l (),
-.BR islower_l (),
-.BR isprint_l (),
-.BR ispunct_l (),
-.BR isspace_l (),
-.BR isupper_l (),
-and
-.BR isxdigit_l ().
-.PP
+.TQ
+.BR isalnum_l ()
+.TQ
+.BR isalpha_l ()
+.TQ
+.BR isblank_l ()
+.TQ
+.BR iscntrl_l ()
+.TQ
+.BR isdigit_l ()
+.TQ
+.BR isgraph_l ()
+.TQ
+.BR islower_l ()
+.TQ
+.BR isprint_l ()
+.TQ
+.BR ispunct_l ()
+.TQ
+.BR isspace_l ()
+.TQ
+.BR isupper_l ()
+.TQ
+.BR isxdigit_l ()
+POSIX.1-2008.
+.TP
 .BR isascii_l ()
-is a GNU extension.
+GNU.
+.SH HISTORY
+.TP
+.BR isalnum ()
+.TQ
+.BR isalpha ()
+.TQ
+.BR iscntrl ()
+.TQ
+.BR isdigit ()
+.TQ
+.BR isgraph ()
+.TQ
+.BR islower ()
+.TQ
+.BR isprint ()
+.TQ
+.BR ispunct ()
+.TQ
+.BR isspace ()
+.TQ
+.BR isupper ()
+.TQ
+.BR isxdigit ()
+C89, POSIX.1-2001.
+.TP
+.BR isblank ()
+C99, POSIX.1-2001.
+.TP
+.BR isascii ()
+POSIX.1-2001 (XSI).
+.IP
+POSIX.1-2008 marks it as obsolete,
+noting that it cannot be used portably in a localized application.
+.TP
+.BR isalnum_l ()
+.TQ
+.BR isalpha_l ()
+.TQ
+.BR isblank_l ()
+.TQ
+.BR iscntrl_l ()
+.TQ
+.BR isdigit_l ()
+.TQ
+.BR isgraph_l ()
+.TQ
+.BR islower_l ()
+.TQ
+.BR isprint_l ()
+.TQ
+.BR ispunct_l ()
+.TQ
+.BR isspace_l ()
+.TQ
+.BR isupper_l ()
+.TQ
+.BR isxdigit_l ()
+glibc 2.3.
+POSIX.1-2008.
+.TP
+.BR isascii_l ()
+glibc 2.3.
 .SH NOTES
 The standards require that the argument
 .I c

@@ -38,24 +38,27 @@ used in glibc.
 .I loff_t
 is a 64-bit version of the type,
 introduced by the Linux kernel.
+.SH STANDARDS
+.TP
+.I off_t
+POSIX.1-2008.
+.TP
+.I off64_t
+GNU and some BSDs.
+.TP
+.I loff_t
+Linux.
 .SH VERSIONS
+.TP
+.I off_t
+POSIX.1-2001.
+.PP
 .I <aio.h>
 and
 .I <stdio.h>
 define
 .I off_t
 since POSIX.1-2008.
-.SH STANDARDS
-.PD 0
-.IR off_t :
-POSIX.1-2001 and later.
-.PP
-.IR off64_t :
-Present in glibc and some BSDs.
-.PP
-.IR loff_t :
-Linux-specific.
-.PD
 .SH NOTES
 On some architectures,
 the width of

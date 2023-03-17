@@ -105,8 +105,14 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+The function
+.BR wcsrtombs (3)
+provides a better interface to the same functionality.
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, C99.
+C11, POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, C99.
 .SH NOTES
 The behavior of
 .BR wcstombs ()
@@ -114,10 +120,6 @@ depends on the
 .B LC_CTYPE
 category of the
 current locale.
-.PP
-The function
-.BR wcsrtombs (3)
-provides a better interface to the same functionality.
 .SH SEE ALSO
 .BR mblen (3),
 .BR mbstowcs (3),

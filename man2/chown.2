@@ -278,15 +278,6 @@ The file is marked immutable or append-only.
 .B EROFS
 The named file resides on a read-only filesystem.
 .SH VERSIONS
-.BR fchownat ()
-was added in Linux 2.6.16;
-library support was added in glibc 2.4.
-.SH STANDARDS
-.BR chown (),
-.BR fchown (),
-.BR lchown ():
-4.4BSD, SVr4, POSIX.1-2001, POSIX.1-2008.
-.PP
 The 4.4BSD version can be
 used only by the superuser (that is, ordinary users cannot give away files).
 .\" chown():
@@ -295,9 +286,21 @@ used only by the superuser (that is, ordinary users cannot give away files).
 .\" fchown():
 .\" SVr4 documents additional EINVAL, EIO, EINTR, and ENOLINK
 .\" error conditions.
-.PP
-.BR fchownat ():
+.SH STANDARDS
 POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR chown ()
+.TQ
+.BR fchown ()
+.TQ
+.BR lchown ()
+4.4BSD, SVr4, POSIX.1-2001.
+.TP
+.BR fchownat ()
+POSIX.1-2008.
+Linux 2.6.16,
+glibc 2.4.
 .SH NOTES
 .SS Ownership of new files
 When a new file is created (by, for example,

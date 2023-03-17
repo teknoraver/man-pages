@@ -372,11 +372,11 @@ The CPU affinity mask of the thread specified by
 does not include all CPUs in the system
 (see
 .BR sched_setaffinity (2)).
-.SH VERSIONS
-These system calls first appeared in Linux 3.14.
-.\" FIXME . Add glibc version
 .SH STANDARDS
-These system calls are nonstandard Linux extensions.
+Linux.
+.SH HISTORY
+Linux 3.14.
+.\" FIXME . Add glibc version
 .SH NOTES
 glibc does not provide wrappers for these system calls; call them using
 .BR syscall (2).

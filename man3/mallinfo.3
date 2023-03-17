@@ -150,19 +150,17 @@ would modify the global internal objects with atomics, that make sure
 .BR mallinfo ()/
 .BR mallinfo2 ()
 is safe enough, others modify with non-atomically maybe not.
-.SH VERSIONS
-.\" mallinfo(): Available already in glibc 2.0, possibly earlier
-The
-.BR mallinfo2 ()
-function was added
-.\" commit e3960d1c57e57f33e0e846d615788f4ede73b945
-in glibc 2.33.
 .SH STANDARDS
-These functions are not specified by POSIX or the C standards.
-A
+None.
+.SH HISTORY
+.TP
 .BR mallinfo ()
-function exists on many System V derivatives,
-and was specified in the SVID.
+glibc 2.0.
+SVID.
+.TP
+.BR mallinfo2 ()
+.\" commit e3960d1c57e57f33e0e846d615788f4ede73b945
+glibc 2.33.
 .SH BUGS
 .\" FIXME . http://sourceware.org/bugzilla/show_bug.cgi?id=208
 .\" See the 24 Aug 2011 mail by Paul Pluzhnikov:

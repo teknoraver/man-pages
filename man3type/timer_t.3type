@@ -20,7 +20,9 @@ Standard C library
 Used for timer ID returned by
 .BR timer_create (2).
 .SH STANDARDS
-POSIX.1-2001 and later.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH NOTES
 The following header also provides
 .IR timer_t :

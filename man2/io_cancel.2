@@ -11,7 +11,7 @@ Standard C library
 .PP
 Alternatively, Asynchronous I/O library
 .RI ( libaio ", " \-laio );
-see NOTES.
+see VERSIONS.
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/aio_abi.h>" "    /* Definition of needed types */"
@@ -29,7 +29,7 @@ The wrapper function provided by
 uses a different type for the
 .I ctx_id
 argument.
-See NOTES.
+See VERSIONS.
 .PP
 The
 .BR io_cancel ()
@@ -50,7 +50,7 @@ completion queue.
 On success,
 .BR io_cancel ()
 returns 0.
-For the failure return, see NOTES.
+For the failure return, see VERSIONS.
 .SH ERRORS
 .TP
 .B EAGAIN
@@ -66,12 +66,6 @@ The AIO context specified by \fIctx_id\fP is invalid.
 .BR io_cancel ()
 is not implemented on this architecture.
 .SH VERSIONS
-The asynchronous I/O system calls first appeared in Linux 2.5.
-.SH STANDARDS
-.BR io_cancel ()
-is Linux-specific and should not be used
-in programs that are intended to be portable.
-.SH NOTES
 You probably want to use the
 .BR io_cancel ()
 wrapper function provided by
@@ -98,6 +92,10 @@ then the return value follows the usual conventions for
 indicating an error: \-1, with
 .I errno
 set to a (positive) value that indicates the error.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.5.
 .SH SEE ALSO
 .BR io_destroy (2),
 .BR io_getevents (2),

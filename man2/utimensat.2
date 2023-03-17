@@ -387,43 +387,6 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH VERSIONS
-.BR utimensat ()
-was added in Linux 2.6.22;
-glibc support was added with glibc 2.6.
-.PP
-Support for
-.BR futimens ()
-first appeared in glibc 2.6.
-.SH STANDARDS
-.BR futimens ()
-and
-.BR utimensat ()
-are specified in POSIX.1-2008.
-.SH NOTES
-.BR utimensat ()
-obsoletes
-.BR futimesat (2).
-.PP
-On Linux, timestamps cannot be changed for a file marked immutable,
-and the only change permitted for files marked append-only is to
-set the timestamps to the current time.
-(This is consistent with the historical behavior of
-.BR utime (2)
-and
-.BR utimes (2)
-on Linux.)
-.PP
-If both
-.I tv_nsec
-fields are specified as
-.BR UTIME_OMIT ,
-then the Linux implementation of
-.BR utimensat ()
-succeeds even if the file referred to by
-.I dirfd
-and
-.I pathname
-does not exist.
 .SS C library/kernel ABI differences
 On Linux,
 .BR futimens ()
@@ -455,6 +418,43 @@ disallows passing NULL as the value for
 the wrapper function returns the error
 .B EINVAL
 in this case.
+.SH STANDARDS
+POSIX.1-2008.
+.SH VERSIONS
+.TP
+.BR utimensat ()
+Linux 2.6.22,
+glibc 2.6.
+POSIX.1-2008.
+.TP
+.BR futimens ()
+glibc 2.6.
+POSIX.1-2008.
+.SH NOTES
+.BR utimensat ()
+obsoletes
+.BR futimesat (2).
+.PP
+On Linux, timestamps cannot be changed for a file marked immutable,
+and the only change permitted for files marked append-only is to
+set the timestamps to the current time.
+(This is consistent with the historical behavior of
+.BR utime (2)
+and
+.BR utimes (2)
+on Linux.)
+.PP
+If both
+.I tv_nsec
+fields are specified as
+.BR UTIME_OMIT ,
+then the Linux implementation of
+.BR utimensat ()
+succeeds even if the file referred to by
+.I dirfd
+and
+.I pathname
+does not exist.
 .SH BUGS
 Several bugs afflict
 .BR utimensat ()

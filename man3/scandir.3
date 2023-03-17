@@ -202,21 +202,29 @@ T}	Thread safety	MT-Safe locale
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR versionsort ()
-was added in glibc 2.1.
-.PP
-.BR scandirat ()
-was added in glibc 2.15.
 .SH STANDARDS
-.BR alphasort (),
-.BR scandir ():
-4.3BSD, POSIX.1-2008.
-.PP
+.TP
+.BR alphasort ()
+.TQ
+.BR scandir ()
+POSIX.1-2008.
+.TP
 .BR versionsort ()
-and
+.TQ
 .BR scandirat ()
-are GNU extensions.
+GNU.
+.SH HISTORY
+.TP
+.BR alphasort ()
+.TQ
+.BR scandir ()
+4.3BSD, POSIX.1-2008.
+.TP
+.BR versionsort ()
+glibc 2.1.
+.TP
+.BR scandirat ()
+glibc 2.15.
 .\" .LP
 .\" The functions
 .\" .BR scandir ()

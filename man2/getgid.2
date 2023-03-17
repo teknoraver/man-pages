@@ -27,25 +27,7 @@ and never modify
 .\" https://www.austingroupbugs.net/view.php?id=511
 .\" 0000511: getuid and friends should not modify errno
 .IR errno .
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, 4.3BSD.
-.SH NOTES
-The original Linux
-.BR getgid ()
-and
-.BR getegid ()
-system calls supported only 16-bit group IDs.
-Subsequently, Linux 2.4 added
-.BR getgid32 ()
-and
-.BR getegid32 (),
-supporting 32-bit IDs.
-The glibc
-.BR getgid ()
-and
-.BR getegid ()
-wrapper functions transparently deal with the variations across kernel versions.
-.PP
+.SH VERSIONS
 On Alpha, instead of a pair of
 .BR getgid ()
 and
@@ -61,6 +43,26 @@ wrapper functions transparently deal with this.
 See
 .BR syscall (2)
 for details regarding register mapping.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, 4.3BSD.
+.PP
+The original Linux
+.BR getgid ()
+and
+.BR getegid ()
+system calls supported only 16-bit group IDs.
+Subsequently, Linux 2.4 added
+.BR getgid32 ()
+and
+.BR getegid32 (),
+supporting 32-bit IDs.
+The glibc
+.BR getgid ()
+and
+.BR getegid ()
+wrapper functions transparently deal with the variations across kernel versions.
 .SH SEE ALSO
 .BR getresgid (2),
 .BR setgid (2),

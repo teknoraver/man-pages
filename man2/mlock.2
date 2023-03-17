@@ -256,19 +256,49 @@ to perform the requested operation.
 (Linux 2.6.8 and earlier) The caller was not privileged
 .RB ( CAP_IPC_LOCK ).
 .SH VERSIONS
-.BR mlock2 ()
-is available since Linux 4.4;
-glibc support was added in glibc 2.27.
-.SH STANDARDS
+.SS Linux
+Under Linux,
 .BR mlock (),
-.BR munlock (),
+.BR mlock2 (),
+and
+.BR munlock ()
+automatically round
+.I addr
+down to the nearest page boundary.
+However, the POSIX.1 specification of
+.BR mlock ()
+and
+.BR munlock ()
+allows an implementation to require that
+.I addr
+is page aligned, so portable applications should ensure this.
+.PP
+The
+.I VmLck
+field of the Linux-specific
+.I /proc/[pid]/status
+file shows how many kilobytes of memory the process with ID
+.I PID
+has locked using
+.BR mlock (),
+.BR mlock2 (),
 .BR mlockall (),
 and
-.BR munlockall ():
-POSIX.1-2001, POSIX.1-2008, SVr4.
-.PP
+.BR mmap (2)
+.BR MAP_LOCKED .
+.SH STANDARDS
+.TP
+.BR mlock ()
+.TQ
+.BR munlock ()
+.TQ
+.BR mlockall ()
+.TQ
+.BR munlockall ()
+POSIX.1-2008.
+.TP
 .BR mlock2 ()
-is Linux specific.
+Linux.
 .PP
 On POSIX systems on which
 .BR mlock ()
@@ -294,6 +324,20 @@ is defined in \fI<unistd.h>\fP to a value greater than 0.
 .\" POSIX.1-2001: It shall be defined to -1 or 0 or 200112L.
 .\" -1: unavailable, 0: ask using sysconf().
 .\" glibc defines it to 1.
+.SH HISTORY
+.TP
+.BR mlock ()
+.TQ
+.BR munlock ()
+.TQ
+.BR mlockall ()
+.TQ
+.BR munlockall ()
+POSIX.1-2001, POSIX.1-2008, SVr4.
+.TP
+.BR mlock2 ()
+Linux 4.4,
+glibc 2.27.
 .SH NOTES
 Memory locking has two main applications: real-time algorithms and
 high-security data processing.
@@ -392,36 +436,6 @@ flag allow efficient memory locking for applications that deal with
 large mappings where only a (small) portion of pages in the mapping are touched.
 In such cases, locking all of the pages in a mapping would incur
 a significant penalty for memory locking.
-.SS Linux notes
-Under Linux,
-.BR mlock (),
-.BR mlock2 (),
-and
-.BR munlock ()
-automatically round
-.I addr
-down to the nearest page boundary.
-However, the POSIX.1 specification of
-.BR mlock ()
-and
-.BR munlock ()
-allows an implementation to require that
-.I addr
-is page aligned, so portable applications should ensure this.
-.PP
-The
-.I VmLck
-field of the Linux-specific
-.I /proc/[pid]/status
-file shows how many kilobytes of memory the process with ID
-.I PID
-has locked using
-.BR mlock (),
-.BR mlock2 (),
-.BR mlockall (),
-and
-.BR mmap (2)
-.BR MAP_LOCKED .
 .SS Limits and permissions
 In Linux 2.6.8 and earlier,
 a process must be privileged

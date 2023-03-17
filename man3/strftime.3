@@ -541,17 +541,23 @@ T}	Thread safety	MT-Safe env locale
 .ad
 .sp 1
 .SH STANDARDS
-.BR strftime ():
-SVr4, C89, C99.
-.PD 0
-.PP
-.PD
-.BR strftime_l ():
+.TP
+.BR strftime ()
+C11, POSIX.1-2008.
+.TP
+.BR strftime_l ()
 POSIX.1-2008.
-.PP
+.SH HISTORY
+.TP
+.BR strftime ()
+SVr4, C89.
 .\" FIXME strftime() is in POSIX.1-2001 and POSIX.1-2008, but the details
 .\" in the standards changed across versions. Investigate and
 .\" write up.
+.TP
+.BR strftime_l ()
+POSIX.1-2008.
+.PP
 There are strict inclusions between the set of conversions
 given in ANSI C (unmarked), those given in the Single UNIX Specification
 (marked SU), those given in Olson's timezone package (marked TZ),

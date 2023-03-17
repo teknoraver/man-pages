@@ -46,7 +46,9 @@ Contains members related to the formatting of numeric values.
 In the "C" locale, its members have the values
 shown in the comments above.
 .SH STANDARDS
-C11 and later; POSIX.1-2001 and later.
+C11, POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH SEE ALSO
 .BR setlocale (3),
 .BR localeconv (3),

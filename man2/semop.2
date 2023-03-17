@@ -355,15 +355,12 @@ is greater than
 .BR SEMVMX ,
 the implementation dependent maximum value for
 .IR semval .
-.SH VERSIONS
-.BR semtimedop ()
-first appeared in Linux 2.5.52,
-and was subsequently backported into Linux 2.4.22.
-glibc support for
-.BR semtimedop ()
-first appeared in Linux 2.3.3.
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4.
+POSIX.1-2008.
+.SH VERSIONS
+Linux 2.5.52 (backported into Linux 2.4.22),
+glibc 2.3.3.
+POSIX.1-2001, SVr4.
 .\" SVr4 documents additional error conditions EINVAL, EFBIG, ENOSPC.
 .SH NOTES
 The

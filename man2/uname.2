@@ -56,24 +56,10 @@ is set to indicate the error.
 .B EFAULT
 .I buf
 is not valid.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4, 4.4BSD.
-.PP
+.SH VERSIONS
 The
 .I domainname
 member (the NIS or YP domain name) is a GNU extension.
-.SH NOTES
-The kernel has the name, release, version, and supported machine type built in.
-Conversely, the
-.I nodename
-field is configured by the administrator to match the network
-(this is what the BSD historically calls the "hostname",
-and is set via
-.BR sethostname (2)).
-Similarly, the
-.I domainname
-field is set via
-.BR setdomainname (2).
 .PP
 The length of the fields in the struct varies.
 Some operating systems
@@ -90,13 +76,10 @@ Clearly, it is a bad
 idea to use any of these constants; just use sizeof(...).
 SVr4 uses 257, "to support Internet hostnames"
 \[em] this is the largest value likely to be encountered in the wild.
-.PP
-Part of the utsname information is also accessible via
-.IR /proc/sys/kernel/ { ostype ,
-.IR hostname ,
-.IR osrelease ,
-.IR version ,
-.IR domainname }.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SVr4, 4.4BSD.
 .SS C library/kernel differences
 Over time, increases in the size of the
 .I utsname
@@ -125,6 +108,25 @@ The glibc
 .BR uname ()
 wrapper function hides these details from applications,
 invoking the most recent version of the system call provided by the kernel.
+.SH NOTES
+The kernel has the name, release, version, and supported machine type built in.
+Conversely, the
+.I nodename
+field is configured by the administrator to match the network
+(this is what the BSD historically calls the "hostname",
+and is set via
+.BR sethostname (2)).
+Similarly, the
+.I domainname
+field is set via
+.BR setdomainname (2).
+.PP
+Part of the utsname information is also accessible via
+.IR /proc/sys/kernel/ { ostype ,
+.IR hostname ,
+.IR osrelease ,
+.IR version ,
+.IR domainname }.
 .SH SEE ALSO
 .BR uname (1),
 .BR getdomainname (2),

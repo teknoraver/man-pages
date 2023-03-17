@@ -32,18 +32,11 @@ in
 On success, returns the thread ID of the calling thread.
 .SH ERRORS
 This call is always successful.
-.SH VERSIONS
-The
-.BR gettid ()
-system call first appeared in Linux 2.4.11.
-Library support was added in glibc 2.30.
-(Earlier glibc versions did not provide a wrapper for this system call,
-necessitating the use of
-.BR syscall (2).)
 .SH STANDARDS
-.BR gettid ()
-is Linux-specific and should not be used in programs that
-are intended to be portable.
+Linux.
+.SH HISTORY
+Linux 2.4.11,
+glibc 2.30.
 .SH NOTES
 The thread ID returned by this call is not the same thing as a
 POSIX thread ID (i.e., the opaque value returned by

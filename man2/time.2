@@ -47,12 +47,7 @@ wrapper function invokes an implementation provided by the
 an invalid address may instead trigger a
 .B SIGSEGV
 signal.
-.SH STANDARDS
-SVr4, 4.3BSD, C89, C99, POSIX.1-2001.
-.\" Under 4.3BSD, this call is obsoleted by
-.\" .BR gettimeofday (2).
-POSIX does not specify any error conditions.
-.SH NOTES
+.SH VERSIONS
 POSIX.1 defines
 .I seconds since the Epoch
 using a formula that approximates the number of seconds between a
@@ -88,6 +83,17 @@ range.
 Applications intended to run after 2038 should use ABIs with
 .I time_t
 wider than 32 bits.
+.SS C library/kernel differences
+On some architectures, an implementation of
+.BR time ()
+is provided in the
+.BR vdso (7).
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+SVr4, 4.3BSD, C89, POSIX.1-2001.
+.\" Under 4.3BSD, this call is obsoleted by
+.\" .BR gettimeofday (2).
 .SH BUGS
 Error returns from this system call are indistinguishable from
 successful reports that the time is a few seconds
@@ -102,12 +108,6 @@ argument is obsolescent and should always be NULL in new code.
 When
 .I tloc
 is NULL, the call cannot fail.
-.\"
-.SS C library/kernel differences
-On some architectures, an implementation of
-.BR time ()
-is provided in the
-.BR vdso (7).
 .SH SEE ALSO
 .BR date (1),
 .BR gettimeofday (2),

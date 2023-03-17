@@ -88,25 +88,6 @@ allocate space at the time of a
 system call, and some previous write failed due to insufficient
 storage space.
 .SH VERSIONS
-.BR syncfs ()
-first appeared in Linux 2.6.39;
-library support was added in glibc 2.14.
-.SH STANDARDS
-.BR sync ():
-POSIX.1-2001, POSIX.1-2008, SVr4, 4.3BSD.
-.PP
-.BR syncfs ()
-is Linux-specific.
-.SH NOTES
-Since glibc 2.2.2, the Linux prototype for
-.BR sync ()
-is as listed above,
-following the various standards.
-In glibc 2.2.1 and earlier,
-it was "int sync(void)", and
-.BR sync ()
-always returned 0.
-.PP
 According to the standard specification (e.g., POSIX.1-2001),
 .BR sync ()
 schedules the writes, but may return before the actual
@@ -120,6 +101,30 @@ provide the same guarantees as
 .BR fsync ()
 called on every file in
 the system or filesystem respectively.
+.SH STANDARDS
+.TP
+.BR sync ()
+POSIX.1-2008.
+.TP
+.BR syncfs ()
+Linux.
+.SH HISTORY
+.TP
+.BR sync ()
+POSIX.1-2001, SVr4, 4.3BSD.
+.TP
+.BR syncfs ()
+Linux 2.6.39,
+glibc 2.14.
+.PP
+Since glibc 2.2.2, the Linux prototype for
+.BR sync ()
+is as listed above,
+following the various standards.
+In glibc 2.2.1 and earlier,
+it was "int sync(void)", and
+.BR sync ()
+always returned 0.
 .PP
 In mainline kernel versions prior to Linux 5.8,
 .BR syncfs ()

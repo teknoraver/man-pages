@@ -147,27 +147,7 @@ The calling thread does not have appropriate privileges.
 .TP
 .B ESRCH
 The thread whose ID is \fIpid\fP could not be found.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008 (but see BUGS below).
-The \fBSCHED_BATCH\fP and \fBSCHED_IDLE\fP policies are Linux-specific.
-.SH NOTES
-Further details of the semantics of all of the above "normal"
-and "real-time" scheduling policies can be found in the
-.BR sched (7)
-manual page.
-That page also describes an additional policy,
-.BR SCHED_DEADLINE ,
-which is settable only via
-.BR sched_setattr (2).
-.PP
-POSIX systems on which
-.BR sched_setscheduler ()
-and
-.BR sched_getscheduler ()
-are available define
-.B _POSIX_PRIORITY_SCHEDULING
-in \fI<unistd.h>\fP.
-.PP
+.SH VERSIONS
 POSIX.1 does not detail the permissions that an unprivileged
 thread requires in order to call
 .BR sched_setscheduler (),
@@ -196,6 +176,32 @@ and
 instead of the
 .BR sched_* (2)
 system calls.)
+.SH STANDARDS
+POSIX.1-2008 (but see BUGS below).
+.PP
+.B SCHED_BATCH
+and
+.B SCHED_IDLE
+are Linux-specific.
+.SH HISTORY
+POSIX.1-2001.
+.SH NOTES
+Further details of the semantics of all of the above "normal"
+and "real-time" scheduling policies can be found in the
+.BR sched (7)
+manual page.
+That page also describes an additional policy,
+.BR SCHED_DEADLINE ,
+which is settable only via
+.BR sched_setattr (2).
+.PP
+POSIX systems on which
+.BR sched_setscheduler ()
+and
+.BR sched_getscheduler ()
+are available define
+.B _POSIX_PRIORITY_SCHEDULING
+in \fI<unistd.h>\fP.
 .SH BUGS
 POSIX.1 says that on success,
 .BR sched_setscheduler ()

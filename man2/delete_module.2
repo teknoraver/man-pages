@@ -160,9 +160,8 @@ but the reference count of this module is nonzero and
 was not specified in
 .IR flags .
 .SH STANDARDS
-.BR delete_module ()
-is Linux-specific.
-.SH NOTES
+Linux.
+.SH HISTORY
 The
 .BR delete_module ()
 system call is not supported by glibc.
@@ -173,16 +172,6 @@ it is (before glibc 2.23) sufficient to
 manually declare the interface in your code;
 alternatively, you can invoke the system call using
 .BR syscall (2).
-.PP
-The uninterruptible sleep that may occur if
-.B O_NONBLOCK
-is omitted from
-.I flags
-is considered undesirable, because the sleeping process is left
-in an unkillable state.
-As at Linux 3.7, specifying
-.B O_NONBLOCK
-is optional, but in future kernels it is likely to become mandatory.
 .SS Linux 2.4 and earlier
 In Linux 2.4 and earlier, the system call took only one argument:
 .PP
@@ -197,6 +186,16 @@ Some further details of differences in the behavior of
 in Linux 2.4 and earlier are
 .I not
 currently explained in this manual page.
+.SH NOTES
+The uninterruptible sleep that may occur if
+.B O_NONBLOCK
+is omitted from
+.I flags
+is considered undesirable, because the sleeping process is left
+in an unkillable state.
+As at Linux 3.7, specifying
+.B O_NONBLOCK
+is optional, but in future kernels it is likely to become mandatory.
 .SH SEE ALSO
 .BR create_module (2),
 .BR init_module (2),

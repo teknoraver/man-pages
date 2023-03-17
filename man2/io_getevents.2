@@ -8,6 +8,10 @@ io_getevents \- read asynchronous I/O events from the completion queue
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
+.PP
+Alternatively, Asynchronous I/O library
+.RI ( libaio ", " \-laio );
+see VERSIONS.
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/aio_abi.h>" "    /* Definition of " *io_* " types */"
@@ -32,7 +36,7 @@ The wrapper function provided by
 uses a different type for the
 .I ctx_id
 argument.
-See NOTES.
+See VERSIONS.
 .PP
 The
 .BR io_getevents ()
@@ -67,7 +71,7 @@ It may also be a nonzero value less than
 .IR min_nr ,
 if the call was interrupted by a signal handler.
 .PP
-For the failure return, see NOTES.
+For the failure return, see VERSIONS.
 .SH ERRORS
 .TP
 .B EFAULT
@@ -86,12 +90,6 @@ out of range.
 .BR io_getevents ()
 is not implemented on this architecture.
 .SH VERSIONS
-The asynchronous I/O system calls first appeared in Linux 2.5.
-.SH STANDARDS
-.BR io_getevents ()
-is Linux-specific and should not be used in
-programs that are intended to be portable.
-.SH NOTES
 You probably want to use the
 .BR io_getevents ()
 wrapper function provided by
@@ -118,6 +116,10 @@ then the return value follows the usual conventions for
 indicating an error: \-1, with
 .I errno
 set to a (positive) value that indicates the error.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.5.
 .SH BUGS
 An invalid
 .I ctx_id

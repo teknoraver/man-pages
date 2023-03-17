@@ -46,6 +46,6 @@ Therefore, a user
 .I must
 zero-fill this structure on initialization.
 .SH STANDARDS
-This type is Linux-specific.
+Linux.
 .SH SEE ALSO
 .BR openat2 (2)

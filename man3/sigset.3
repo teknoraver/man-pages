@@ -15,11 +15,11 @@ Standard C library
 .PP
 .B typedef void (*sighandler_t)(int);
 .PP
-.BI "sighandler_t sigset(int " sig ", sighandler_t " disp );
+.BI "[[deprecated]] sighandler_t sigset(int " sig ", sighandler_t " disp );
 .PP
-.BI "int sighold(int " sig );
-.BI "int sigrelse(int " sig );
-.BI "int sigignore(int " sig );
+.BI "[[deprecated]] int sighold(int " sig );
+.BI "[[deprecated]] int sigrelse(int " sig );
+.BI "[[deprecated]] int sigignore(int " sig );
 .fi
 .PP
 .RS -4
@@ -171,15 +171,16 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
-SVr4, POSIX.1-2001, POSIX.1-2008.
-These functions are obsolete: do not use them in new programs.
-POSIX.1-2008 marks
-.BR sighold (),
-.BR sigignore (),
-.BR sigpause (3),
-.BR sigrelse (),
-and
-.BR sigset ()
+POSIX.1-2008.
+.TP
+.I sighandler_t
+GNU.
+POSIX.1 uses the same type but without a
+.IR typedef .
+.SH HISTORY
+glibc 2.1.
+SVr4, POSIX.1-2001.
+POSIX.1-2008 marks these functions
 as obsolete, recommending the use of
 .BR sigaction (2),
 .BR sigprocmask (2),
@@ -188,14 +189,6 @@ and
 .BR sigsuspend (2)
 instead.
 .SH NOTES
-These functions appeared in glibc 2.1.
-.PP
-The
-.I sighandler_t
-type is a GNU extension; it is used on this page only to make the
-.BR sigset ()
-prototype more easily readable.
-.PP
 The
 .BR sigset ()
 function provides reliable signal handling semantics (as when calling

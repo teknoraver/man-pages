@@ -81,14 +81,15 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+On architectures where the floating-point formats are not IEEE 754 compliant,
+these functions may treat a negative zero as positive.
 .SH STANDARDS
-C99, POSIX.1-2001, POSIX.1-2008.
-.\" 4.3BSD.
+C11, POSIX.1-2008.
+.PP
 This function is defined in IEC 559 (and the appendix with
 recommended functions in IEEE 754/IEEE 854).
-.SH NOTES
-On architectures where the floating-point formats are not IEEE 754 compliant,
-these
-functions may treat a negative zero as positive.
+.SH HISTORY
+C99, POSIX.1-2001, 4.3BSD.
 .SH SEE ALSO
 .BR signbit (3)

@@ -109,27 +109,7 @@ The value in the
 field was not in the range [0, 999999999] or
 .I tv_sec
 was negative.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
-If the interval specified in
-.I req
-is not an exact multiple of the granularity underlying clock (see
-.BR time (7)),
-then the interval will be rounded up to the next multiple.
-Furthermore, after the sleep completes, there may still be a delay before
-the CPU becomes free to once again execute the calling thread.
-.PP
-The fact that
-.BR nanosleep ()
-sleeps for a relative interval can be problematic if the call
-is repeatedly restarted after being interrupted by signals,
-since the time between the interruptions and restarts of the call
-will lead to drift in the time when the sleep finally completes.
-This problem can be avoided by using
-.BR clock_nanosleep (2)
-with an absolute time value.
-.PP
+.SH VERSIONS
 POSIX.1 specifies that
 .BR nanosleep ()
 should measure time against the
@@ -161,7 +141,11 @@ function; ...
 Consequently, these time services shall expire when the requested relative
 interval elapses, independently of the new or old value of the clock.
 .RE
-.SS Old behavior
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
+.PP
 In order to support applications requiring much more precise pauses
 (e.g., in order to control some time-critical hardware),
 .BR nanosleep ()
@@ -173,6 +157,24 @@ or
 .BR SCHED_RR .
 This special extension was removed in Linux 2.5.39,
 and is thus not available in Linux 2.6.0 and later kernels.
+.SH NOTES
+If the interval specified in
+.I req
+is not an exact multiple of the granularity underlying clock (see
+.BR time (7)),
+then the interval will be rounded up to the next multiple.
+Furthermore, after the sleep completes, there may still be a delay before
+the CPU becomes free to once again execute the calling thread.
+.PP
+The fact that
+.BR nanosleep ()
+sleeps for a relative interval can be problematic if the call
+is repeatedly restarted after being interrupted by signals,
+since the time between the interruptions and restarts of the call
+will lead to drift in the time when the sleep finally completes.
+This problem can be avoided by using
+.BR clock_nanosleep (2)
+with an absolute time value.
 .SH BUGS
 If a program that catches signals and uses
 .BR nanosleep ()

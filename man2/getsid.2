@@ -56,15 +56,16 @@ No process with process ID
 .I pid
 was found.
 .SH VERSIONS
-This system call is available since Linux 2.0.
-.\" Linux has this system call since Linux 1.3.44.
-.\" There is libc support since libc 5.2.19.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4.
-.SH NOTES
 Linux does not return
 .BR EPERM .
-.PP
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SVr4.
+Linux 2.0.
+.\" Linux has this system call since Linux 1.3.44.
+.\" There is libc support since libc 5.2.19.
+.SH NOTES
 See
 .BR credentials (7)
 for a description of sessions and session IDs.

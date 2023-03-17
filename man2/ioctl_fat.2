@@ -208,25 +208,24 @@ does not refer to an object in a FAT filesystem.
 .PP
 For further error values, see
 .BR ioctl (2).
-.SH VERSIONS
-.B VFAT_IOCTL_READDIR_BOTH
-and
-.B VFAT_IOCTL_READDIR_SHORT
-first appeared in Linux 2.0.
-.PP
-.B FAT_IOCTL_GET_ATTRIBUTES
-and
-.B FAT_IOCTL_SET_ATTRIBUTES
-first appeared
-.\" just before we got Git history
-in Linux 2.6.12.
-.PP
-.B FAT_IOCTL_GET_VOLUME_ID
-was introduced in version 3.11
-.\" commit 6e5b93ee55d401f1619092fb675b57c28c9ed7ec
-of the Linux kernel.
 .SH STANDARDS
-This API is Linux-specific.
+Linux.
+.SH HISTORY
+.TP
+.B VFAT_IOCTL_READDIR_BOTH
+.TQ
+.B VFAT_IOCTL_READDIR_SHORT
+Linux 2.0.
+.TP
+.B FAT_IOCTL_GET_ATTRIBUTES
+.TQ
+.B FAT_IOCTL_SET_ATTRIBUTES
+.\" just before we got Git history
+Linux 2.6.12.
+.TP
+.B FAT_IOCTL_GET_VOLUME_ID
+Linux 3.11.
+.\" commit 6e5b93ee55d401f1619092fb675b57c28c9ed7ec
 .SH EXAMPLES
 .SS Toggling the archive flag
 The following program demonstrates the usage of

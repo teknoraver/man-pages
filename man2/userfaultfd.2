@@ -632,17 +632,13 @@ The caller is not privileged (does not have the
 capability in the initial user namespace), and
 .I /proc/sys/vm/unprivileged_userfaultfd
 has the value 0.
-.SH VERSIONS
-The
-.BR userfaultfd ()
-system call first appeared in Linux 4.3.
-.PP
-The support for hugetlbfs and shared memory areas and
-non-page-fault events was added in Linux 4.11
 .SH STANDARDS
-.BR userfaultfd ()
-is Linux-specific and should not be used in programs intended to be
-portable.
+Linux.
+.SH HISTORY
+Linux 4.3.
+.PP
+Support for hugetlbfs and shared memory areas and
+non-page-fault events was added in Linux 4.11
 .SH NOTES
 The userfaultfd mechanism can be used as an alternative to
 traditional user-space paging techniques based on the use of the

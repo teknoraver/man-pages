@@ -83,8 +83,16 @@ T}	Thread safety	MT-Safe locale
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+POSIX.1 leaves the return value of
+.BR atoi ()
+on error unspecified.
+On glibc, musl libc, and uClibc, 0 is returned on error.
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, C99, SVr4, 4.3BSD.
+C11, POSIX.1-2008.
+.SH HISTORY
+C99, POSIX.1-2001, SVr4, 4.3BSD.
+.PP
 C89 and
 POSIX.1-1996 include the functions
 .BR atoi ()
@@ -102,11 +110,6 @@ only.
 .\" .BR atoll ()
 .\" function is present since glibc 2.0.2, but
 .\" not in libc4 or libc5.
-.SH NOTES
-POSIX.1 leaves the return value of
-.BR atoi ()
-on error unspecified.
-On glibc, musl libc, and uClibc, 0 is returned on error.
 .SH BUGS
 .I errno
 is not set on error so there is no way to distinguish between 0 as an

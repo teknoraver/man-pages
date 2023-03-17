@@ -13,7 +13,7 @@ Standard C library
 .nf
 .B #include <time.h>
 .PP
-.BI "time_t timelocal(struct tm *" tm );
+.BI "[[deprecated]] time_t timelocal(struct tm *" tm );
 .BI "time_t timegm(struct tm *" tm );
 .PP
 .fi
@@ -79,9 +79,10 @@ T}	Thread safety	MT-Safe env locale
 .ad
 .sp 1
 .SH STANDARDS
-These functions are nonstandard GNU extensions
-that are also present on the BSDs.
-.SH NOTES
+BSD.
+.SH HISTORY
+GNU, BSD.
+.PP
 The
 .BR timelocal ()
 function is equivalent to the POSIX standard function

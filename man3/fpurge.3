@@ -68,13 +68,15 @@ T}	Thread safety	MT-Safe race:stream
 .ad
 .sp 1
 .SH STANDARDS
-These functions are nonstandard and not portable.
-The function
+None.
+.SH HISTORY
+.TP
 .BR fpurge ()
-was introduced in 4.4BSD and is not available under Linux.
-The function
+4.4BSD.
+Not available under Linux.
+.TP
 .BR __fpurge ()
-was introduced in Solaris, and is present in glibc 2.1.95 and later.
+Solaris, glibc 2.1.95.
 .SH NOTES
 Usually it is a mistake to want to discard input buffers.
 .SH SEE ALSO

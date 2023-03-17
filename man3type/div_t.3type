@@ -48,7 +48,9 @@ is the type of the value returned by the
 .BR imaxdiv (3)
 function.
 .SH STANDARDS
-C99 and later; POSIX.1-2001 and later.
+C11, POSIX.1-2008.
+.SH HISTORY
+C99, POSIX.1-2001.
 .SH SEE ALSO
 .BR div (3),
 .BR imaxdiv (3),

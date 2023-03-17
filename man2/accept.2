@@ -254,26 +254,6 @@ The value
 .B ERESTARTSYS
 may be seen during a trace.
 .SH VERSIONS
-The
-.BR accept4 ()
-system call is available starting with Linux 2.6.28;
-support in glibc is available starting with glibc 2.10.
-.SH STANDARDS
-.BR accept ():
-POSIX.1-2001, POSIX.1-2008,
-SVr4, 4.4BSD
-.RB ( accept ()
-first appeared in 4.2BSD).
-.\" The BSD man page documents five possible error returns
-.\" (EBADF, ENOTSOCK, EOPNOTSUPP, EWOULDBLOCK, EFAULT).
-.\" POSIX.1-2001 documents errors
-.\" EAGAIN, EBADF, ECONNABORTED, EINTR, EINVAL, EMFILE,
-.\" ENFILE, ENOBUFS, ENOMEM, ENOTSOCK, EOPNOTSUPP, EPROTO, EWOULDBLOCK.
-.\" In addition, SUSv2 documents EFAULT and ENOSR.
-.PP
-.BR accept4 ()
-is a nonstandard Linux extension.
-.PP
 On Linux, the new socket returned by
 .BR accept ()
 does \fInot\fP inherit file status flags such as
@@ -288,6 +268,30 @@ Portable programs should not rely on inheritance or noninheritance
 of file status flags and always explicitly set all required flags on
 the socket returned from
 .BR accept ().
+.SH STANDARDS
+.TP
+.BR accept ()
+POSIX.1-2008.
+.TP
+.BR accept4 ()
+Linux.
+.PP
+.SH HISTORY
+.TP
+.BR accept ()
+POSIX.1-2001, SVr4, 4.4BSD
+.RB ( accept ()
+first appeared in 4.2BSD).
+.\" The BSD man page documents five possible error returns
+.\" (EBADF, ENOTSOCK, EOPNOTSUPP, EWOULDBLOCK, EFAULT).
+.\" POSIX.1-2001 documents errors
+.\" EAGAIN, EBADF, ECONNABORTED, EINTR, EINVAL, EMFILE,
+.\" ENFILE, ENOBUFS, ENOMEM, ENOTSOCK, EOPNOTSUPP, EPROTO, EWOULDBLOCK.
+.\" In addition, SUSv2 documents EFAULT and ENOSR.
+.TP
+.BR accept4 ()
+Linux 2.6.28,
+glibc 2.10.
 .SH NOTES
 There may not always be a connection waiting after a
 .B SIGIO

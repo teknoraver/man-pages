@@ -80,9 +80,6 @@ from big-endian order to host byte order.
 The functions with names of the form "le\fInn\fPtoh" convert
 from little-endian order to host byte order.
 .SH VERSIONS
-These functions were added in glibc 2.9.
-.SH STANDARDS
-These functions are nonstandard.
 Similar functions are present on the BSDs,
 where the required header file is
 .I <sys/endian.h>
@@ -96,7 +93,11 @@ whereby the
 component always appears at the end of the function name
 (thus, for example, in NetBSD, FreeBSD, and glibc,
 the equivalent of OpenBSDs "betoh32" is "be32toh").
-.SH NOTES
+.SH STANDARDS
+None.
+.SH HISTORY
+glibc 2.9.
+.PP
 These functions are similar to the older
 .BR byteorder (3)
 family of functions.

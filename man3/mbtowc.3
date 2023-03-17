@@ -127,8 +127,16 @@ T}	Thread safety	MT-Unsafe race
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+This function is not multithread safe.
+The function
+.BR mbrtowc (3)
+provides
+a better interface to the same functionality.
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, C99.
+C11, POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, C99.
 .SH NOTES
 The behavior of
 .BR mbtowc ()
@@ -136,12 +144,6 @@ depends on the
 .B LC_CTYPE
 category of the
 current locale.
-.PP
-This function is not multithread safe.
-The function
-.BR mbrtowc (3)
-provides
-a better interface to the same functionality.
 .SH SEE ALSO
 .BR MB_CUR_MAX (3),
 .BR mblen (3),

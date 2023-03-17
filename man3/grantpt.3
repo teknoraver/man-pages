@@ -84,14 +84,6 @@ T}	Thread safety	MT-Safe locale
 .ad
 .sp 1
 .SH VERSIONS
-.BR grantpt ()
-is provided since glibc 2.1.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
-This is part of the UNIX 98 pseudoterminal support, see
-.BR pts (4).
-.PP
 Many systems implement this function via a set-user-ID helper binary
 called "pt_chown".
 On Linux systems with a devpts filesystem (present since Linux 2.2),
@@ -103,6 +95,14 @@ so that nothing must be done by
 Thus, no such helper binary is required
 (and indeed it is configured to be absent during the
 glibc build that is typical on many systems).
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+glibc 2.1.
+POSIX.1-2001.
+.PP
+This is part of the UNIX 98 pseudoterminal support, see
+.BR pts (4).
 .SH SEE ALSO
 .BR open (2),
 .BR posix_openpt (3),

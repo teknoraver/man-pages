@@ -80,9 +80,7 @@ capability in its user namespace) and
 .I egid
 does not match the current real group ID, current effective group ID,
 or current saved set-group-ID.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, 4.3BSD.
-.SH NOTES
+.SH VERSIONS
 Setting the effective user (group) ID to the
 saved set-user-ID (saved set-group-ID) is
 possible since Linux 1.1.37 (1.1.38).
@@ -122,6 +120,10 @@ are implemented as library functions that call, respectively,
 .BR setreuid (2)
 and
 .BR setregid (2).
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, 4.3BSD.
 .SH SEE ALSO
 .BR geteuid (2),
 .BR setresuid (2),

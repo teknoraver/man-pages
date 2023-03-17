@@ -421,29 +421,44 @@ is invalid.
 .B ENOMEM
 Unable to allocate memory for internal tables.
 .SH VERSIONS
-.BR pselect ()
-was added in Linux 2.6.16.
-Prior to this,
-.BR pselect ()
-was emulated in glibc (but see BUGS).
-.SH STANDARDS
+On some other UNIX systems,
+.\" Darwin, according to a report by Jeremy Sequoia, relayed by Josh Triplett
 .BR select ()
-conforms to POSIX.1-2001, POSIX.1-2008, and
-4.4BSD
-.RB ( select ()
-first appeared in 4.2BSD).
+can fail with the error
+.B EAGAIN
+if the system fails to allocate kernel-internal resources, rather than
+.B ENOMEM
+as Linux does.
+POSIX specifies this error for
+.BR poll (2),
+but not for
+.BR select ().
+Portable programs may wish to check for
+.B EAGAIN
+and loop, just as with
+.BR EINTR .
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR select ()
+POSIX.1-2001, 4.4BSD (first appeared in 4.2BSD).
+.IP
 Generally portable to/from
 non-BSD systems supporting clones of the BSD socket layer (including
 System\ V variants).
 However, note that the System\ V variant typically
 sets the timeout variable before returning, but the BSD variant does not.
-.PP
+.TP
 .BR pselect ()
-is defined in POSIX.1g, and in
-POSIX.1-2001 and POSIX.1-2008.
-.PP
+Linux 2.6.16.
+POSIX.1g, POSIX.1-2001.
+.IP
+Prior to this,
+it was emulated in glibc (but see BUGS).
+.TP
 .B fd_set
-is defined in POSIX.1-2001 and later.
+POSIX.1-2001.
 .SH NOTES
 The following header also provides the
 .I fd_set
@@ -474,23 +489,6 @@ and
 is not affected by the
 .B O_NONBLOCK
 flag.
-.PP
-On some other UNIX systems,
-.\" Darwin, according to a report by Jeremy Sequoia, relayed by Josh Triplett
-.BR select ()
-can fail with the error
-.B EAGAIN
-if the system fails to allocate kernel-internal resources, rather than
-.B ENOMEM
-as Linux does.
-POSIX specifies this error for
-.BR poll (2),
-but not for
-.BR select ().
-Portable programs may wish to check for
-.B EAGAIN
-and loop, just as with
-.BR EINTR .
 .\"
 .SS The self-pipe trick
 On systems that lack

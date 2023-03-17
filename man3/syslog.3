@@ -281,14 +281,35 @@ T}	Thread safety	MT-Safe env locale
 .ad
 .sp 1
 .SH STANDARDS
-The functions
-.BR openlog (),
-.BR closelog (),
-and
+.TP
 .BR syslog ()
-(but not
-.BR vsyslog ())
-are specified in SUSv2, POSIX.1-2001, and POSIX.1-2008.
+.TQ
+.BR openlog ()
+.TQ
+.BR closelog ()
+POSIX.1-2008.
+.TP
+.BR vsyslog ()
+None.
+.SH HISTORY
+.TP
+.BR syslog ()
+4.2BSD, SUSv2, POSIX.1-2001.
+.TP
+.BR openlog ()
+.TQ
+.BR closelog ()
+4.3BSD, SUSv2, POSIX.1-2001.
+.\" .SH HISTORY
+.\" 4.3BSD documents
+.\" .BR setlogmask ().
+.TP
+.BR vsyslog ()
+4.3BSD-Reno.
+.\" Of course early v* functions used the
+.\" .I <varargs.h>
+.\" mechanism, which is not compatible with
+.\" .IR <stdarg.h> .
 .PP
 POSIX.1-2001 specifies only the
 .B LOG_USER
@@ -310,22 +331,6 @@ value for
 .I option
 is not specified by POSIX.1-2001 or POSIX.1-2008, but is available
 in most versions of UNIX.
-.\" .SH HISTORY
-.\" A
-.\" .BR syslog ()
-.\" function call appeared in 4.2BSD.
-.\" 4.3BSD documents
-.\" .BR openlog (),
-.\" .BR syslog (),
-.\" .BR closelog (),
-.\" and
-.\" .BR setlogmask ().
-.\" 4.3BSD-Reno also documents
-.\" .BR vsyslog ().
-.\" Of course early v* functions used the
-.\" .I <varargs.h>
-.\" mechanism, which is not compatible with
-.\" .IR <stdarg.h> .
 .SH NOTES
 The argument
 .I ident

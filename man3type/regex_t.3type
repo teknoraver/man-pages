@@ -47,7 +47,11 @@ capable of storing the largest value that can be stored in either an
 type or a
 .I ssize_t
 type.
-.SH VERSIONS
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
+.PP
 Prior to POSIX.1-2008,
 the type was
 capable of storing the largest value that can be stored in either an
@@ -55,7 +59,5 @@ capable of storing the largest value that can be stored in either an
 type or a
 .I ssize_t
 type.
-.SH STANDARDS
-POSIX.1-2001 and later.
 .SH SEE ALSO
 .BR regex (3)

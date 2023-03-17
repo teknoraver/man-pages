@@ -201,9 +201,7 @@ T}
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
+.SH VERSIONS
 The POSIX.1 specification for
 .BR strptime (3)
 contains conversion specifications using the
@@ -217,6 +215,10 @@ In glibc,
 is implemented using
 .BR strptime (3),
 so that precisely the same conversions are supported by both.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH EXAMPLES
 The program below calls
 .BR getdate ()

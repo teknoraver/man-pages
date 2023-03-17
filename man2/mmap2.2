@@ -58,11 +58,6 @@ is not a multiple of the system page size.
 can also return any of the errors described in
 .BR mmap (2).
 .SH VERSIONS
-.BR mmap2 ()
-is available since Linux 2.3.31.
-.SH STANDARDS
-This system call is Linux-specific.
-.SH NOTES
 On architectures where this system call is present,
 the glibc
 .BR mmap ()
@@ -78,6 +73,10 @@ is actually the system page size, rather than 4096 bytes.
 .\" ia64 can have page sizes ranging from 4 kB to 64 kB.
 .\" On cris, it looks like the unit might also be the page size,
 .\" which is 8192 bytes. -- mtk, June 2007
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.3.31.
 .SH SEE ALSO
 .BR getpagesize (2),
 .BR mmap (2),

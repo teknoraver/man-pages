@@ -1738,9 +1738,10 @@ and the timeout expired before the operation completed.
 .\"
 .\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 .\"
-.SH VERSIONS
-Futexes were first made available in a stable kernel release
-with Linux 2.6.0.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.6.0.
 .PP
 Initial futex support was merged in Linux 2.5.7 but with different
 semantics from what was described above.
@@ -1748,19 +1749,6 @@ A four-argument system call with the semantics
 described in this page was introduced in Linux 2.5.40.
 A fifth argument was added in Linux 2.5.70,
 and a sixth argument was added in Linux 2.6.7.
-.SH STANDARDS
-This system call is Linux-specific.
-.SH NOTES
-Several higher-level programming abstractions are implemented via futexes,
-including POSIX semaphores and
-various POSIX threads synchronization mechanisms
-(mutexes, condition variables, read-write locks, and barriers).
-.\" TODO FIXME(Torvald) Above, we cite this section and claim it contains
-.\" details on the synchronization semantics; add the C11 equivalents
-.\" here (or whatever we find consensus for).
-.\"
-.\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-.\"
 .SH EXAMPLES
 The program below demonstrates use of futexes in a program where a parent
 process and a child process use a pair of futexes located inside a

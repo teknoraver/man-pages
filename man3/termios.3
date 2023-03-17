@@ -1126,23 +1126,59 @@ T}	Thread safety	MT-Safe
 .\" So, it is safety in Linux kernel.
 .hy
 .SH STANDARDS
-.BR tcgetattr (),
-.BR tcsetattr (),
-.BR tcsendbreak (),
-.BR tcdrain (),
-.BR tcflush (),
-.BR tcflow (),
-.BR cfgetispeed (),
-.BR cfgetospeed (),
-.BR cfsetispeed (),
-and
+.TP
+.BR tcgetattr ()
+.TQ
+.BR tcsetattr ()
+.TQ
+.BR tcsendbreak ()
+.TQ
+.BR tcdrain ()
+.TQ
+.BR tcflush ()
+.TQ
+.BR tcflow ()
+.TQ
+.BR cfgetispeed ()
+.TQ
+.BR cfgetospeed ()
+.TQ
+.BR cfsetispeed ()
+.TQ
 .BR cfsetospeed ()
-are specified in POSIX.1-2001.
-.PP
+POSIX.1-2008.
+.TP
 .BR cfmakeraw ()
-and
+.TQ
 .BR cfsetspeed ()
-are nonstandard, but available on the BSDs.
+BSD.
+.SH HISTORY
+.TP
+.BR tcgetattr ()
+.TQ
+.BR tcsetattr ()
+.TQ
+.BR tcsendbreak ()
+.TQ
+.BR tcdrain ()
+.TQ
+.BR tcflush ()
+.TQ
+.BR tcflow ()
+.TQ
+.BR cfgetispeed ()
+.TQ
+.BR cfgetospeed ()
+.TQ
+.BR cfsetispeed ()
+.TQ
+.BR cfsetospeed ()
+POSIX.1-2001.
+.TP
+.BR cfmakeraw ()
+.TQ
+.BR cfsetspeed ()
+BSD.
 .SH NOTES
 UNIX\ V7 and several later systems have a list of baud rates
 where after the values

@@ -371,28 +371,10 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH VERSIONS
-.BR nftw ()
-is available since glibc 2.1.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4, SUSv1.
-POSIX.1-2008 marks
-.BR ftw ()
-as obsolete.
-.SH NOTES
-POSIX.1-2008 notes that the results are unspecified if
-.I fn
-does not preserve the current working directory.
-.PP
-The function
-.BR nftw ()
-and the use of \fBFTW_SL\fP with
-.BR ftw ()
-were introduced in SUSv1.
-.PP
 In some implementations (e.g., glibc),
 .BR ftw ()
-will never use \fBFTW_SL\fP, on other systems \fBFTW_SL\fP occurs only
-for symbolic links that do not point to an existing file,
+will never use \fBFTW_SL\fP; on other systems \fBFTW_SL\fP occurs only
+for symbolic links that do not point to an existing file;
 and again on other systems
 .BR ftw ()
 will use \fBFTW_SL\fP for each symbolic link.
@@ -406,6 +388,24 @@ is passed in
 .IR typeflag .
 For predictable results, use
 .BR nftw ().
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR ftw ()
+POSIX.1-2001, SVr4, SUSv1.
+POSIX.1-2008 marks it as obsolete.
+.TP
+.BR nftw ()
+glibc 2.1.
+POSIX.1-2001, SUSv1.
+.TP
+.B FTW_SL
+POSIX.1-2001, SUSv1.
+.SH NOTES
+POSIX.1-2008 notes that the results are unspecified if
+.I fn
+does not preserve the current working directory.
 .SH BUGS
 According to POSIX.1-2008, when the
 .I typeflag

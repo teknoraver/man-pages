@@ -149,13 +149,14 @@ capability).
 .I path
 resides on a read-only filesystem.
 .SH STANDARDS
-.BR utime ():
-SVr4, POSIX.1-2001.
-POSIX.1-2008 marks
+POSIX.1-2008.
+.SH HISTORY
+.TP
 .BR utime ()
-as obsolete.
-.PP
-.BR utimes ():
+SVr4, POSIX.1-2001.
+POSIX.1-2008 marks it as obsolete.
+.TP
+.BR utimes ()
 4.3BSD, POSIX.1-2001.
 .SH NOTES
 Linux does not allow changing the timestamps on an immutable file,

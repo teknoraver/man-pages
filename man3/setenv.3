@@ -120,13 +120,9 @@ T}	Thread safety	MT-Unsafe const:env
 .ad
 .sp 1
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, 4.3BSD.
-.SH NOTES
-POSIX.1 does not require
-.BR setenv ()
-or
-.BR unsetenv ()
-to be reentrant.
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, 4.3BSD.
 .PP
 Prior to glibc 2.2.2,
 .BR unsetenv ()
@@ -135,6 +131,12 @@ as returning
 .IR void ;
 more recent glibc versions follow the
 POSIX.1-compliant prototype shown in the SYNOPSIS.
+.SH CAVEATS
+POSIX.1 does not require
+.BR setenv ()
+or
+.BR unsetenv ()
+to be reentrant.
 .SH BUGS
 POSIX.1 specifies that if
 .I name

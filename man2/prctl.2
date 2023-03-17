@@ -2502,12 +2502,6 @@ is not
 nor
 .BR PR_SPEC_DISABLE_NOEXEC .
 .SH VERSIONS
-The
-.BR prctl ()
-system call was introduced in Linux 2.1.57.
-.\" The library interface was added in glibc 2.0.6
-.SH STANDARDS
-This call is Linux-specific.
 IRIX has a
 .BR prctl ()
 system call (also introduced in Linux 2.1.44
@@ -2524,6 +2518,11 @@ and options to get the maximum number of processes per user,
 get the maximum number of processors the calling process can use,
 find out whether a specified process is currently blocked,
 get or set the maximum stack size, and so on.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.1.57,
+glibc 2.0.6
 .SH SEE ALSO
 .BR signal (2),
 .BR core (5)

@@ -243,15 +243,13 @@ is set to indicate the error.
 .TP
 .B EINVAL
 The kernel was unable to change the personality.
-.SH VERSIONS
-This system call first appeared in Linux 1.1.20
-(and thus first in a stable kernel release with Linux 1.2.0);
-library support was added in glibc 2.3.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 1.1.20,
+.\" (and thus first in a stable kernel release with Linux 1.2.0)
+glibc 2.3.
 .\" personality wrapper first appeared in glibc 1.90,
 .\" <sys/personality.h> was added later in glibc 2.2.91.
-.SH STANDARDS
-.BR personality ()
-is Linux-specific and should not be used in programs intended to
-be portable.
 .SH SEE ALSO
 .BR setarch (8)

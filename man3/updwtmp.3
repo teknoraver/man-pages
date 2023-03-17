@@ -57,10 +57,7 @@ T}	Thread safety	MT-Unsafe sig:ALRM timer
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-Not in POSIX.1.
-Present on Solaris, NetBSD, and perhaps other systems.
-.SH NOTES
+.SH VERSIONS
 For consistency with the other "utmpx" functions (see
 .BR getutxent (3)),
 glibc provides (since glibc 2.1):
@@ -78,6 +75,10 @@ This function performs the same task as
 but differs in that it takes a
 .I utmpx
 structure as its last argument.
+.SH STANDARDS
+None.
+.SH HISTORY
+Solaris, NetBSD.
 .SH SEE ALSO
 .BR getutxent (3),
 .BR wtmp (5)

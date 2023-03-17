@@ -264,23 +264,54 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH VERSIONS
+.SS C library/kernel differences
+There are two underlying Linux system calls:
 .BR eventfd ()
-is available since Linux 2.6.22.
-Working support is provided since glibc 2.8.
-.\" eventfd() is in glibc 2.7, but reportedly does not build
-The
+and the more recent
+.BR eventfd2 ().
+The former system call does not implement a
+.I flags
+argument.
+The latter system call implements the
+.I flags
+values described above.
+The glibc wrapper function will use
 .BR eventfd2 ()
-system call (see NOTES) is available since Linux 2.6.27.
+where it is available.
+.SS Additional glibc features
+The GNU C library defines an additional type,
+and two functions that attempt to abstract some of the details of
+reading and writing on an eventfd file descriptor:
+.PP
+.in +4n
+.EX
+typedef uint64_t eventfd_t;
+
+int eventfd_read(int fd, eventfd_t *value);
+int eventfd_write(int fd, eventfd_t value);
+.EE
+.in
+.PP
+The functions perform the read and write operations on an
+eventfd file descriptor,
+returning 0 if the correct number of bytes was transferred,
+or \-1 otherwise.
+.SH STANDARDS
+Linux, GNU.
+.SH HISTORY
+.TP
+.BR eventfd ()
+Linux 2.6.22,
+glibc 2.8.
+.\" eventfd() is in glibc 2.7, but reportedly does not build
+.TP
+.BR eventfd2 ()
+Linux 2.6.27 (see VERSIONS).
 Since glibc 2.9, the
 .BR eventfd ()
 wrapper will employ the
 .BR eventfd2 ()
 system call, if it is supported by the kernel.
-.SH STANDARDS
-.BR eventfd ()
-and
-.BR eventfd2 ()
-are Linux-specific.
 .SH NOTES
 Applications can use an eventfd file descriptor instead of a pipe (see
 .BR pipe (2))
@@ -320,39 +351,6 @@ directory.
 See
 .BR proc (5)
 for further details.
-.\"
-.SS C library/kernel differences
-There are two underlying Linux system calls:
-.BR eventfd ()
-and the more recent
-.BR eventfd2 ().
-The former system call does not implement a
-.I flags
-argument.
-The latter system call implements the
-.I flags
-values described above.
-The glibc wrapper function will use
-.BR eventfd2 ()
-where it is available.
-.SS Additional glibc features
-The GNU C library defines an additional type,
-and two functions that attempt to abstract some of the details of
-reading and writing on an eventfd file descriptor:
-.PP
-.in +4n
-.EX
-typedef uint64_t eventfd_t;
-
-int eventfd_read(int fd, eventfd_t *value);
-int eventfd_write(int fd, eventfd_t value);
-.EE
-.in
-.PP
-The functions perform the read and write operations on an
-eventfd file descriptor,
-returning 0 if the correct number of bytes was transferred,
-or \-1 otherwise.
 .SH EXAMPLES
 The following program creates an eventfd file descriptor
 and then forks to create a child process.

@@ -466,12 +466,11 @@ and an escape from the root during path resolution was detected.
 contains
 .BR RESOLVE_NO_XDEV ,
 and a path component crosses a mount point.
-.SH VERSIONS
-.BR openat2 ()
-first appeared in Linux 5.6.
-.\" commit fddb5d430ad9fa91b49b1d34d0202ffe2fa0e179
 .SH STANDARDS
-This system call is Linux-specific.
+Linux.
+.SH HISTORY
+Linux 5.6.
+.\" commit fddb5d430ad9fa91b49b1d34d0202ffe2fa0e179
 .PP
 The semantics of
 .B RESOLVE_BENEATH

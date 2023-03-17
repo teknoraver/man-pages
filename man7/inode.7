@@ -426,6 +426,10 @@ in that directory can be renamed or deleted only by the owner
 of the file, by the owner of the directory, and by a privileged
 process.
 .SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
+.PP
 POSIX.1-1990 did not describe the
 .BR S_IFMT ,
 .BR S_IFSOCK ,
@@ -441,16 +445,13 @@ constants, but instead specified the use of
 the macros
 .BR S_ISDIR ()
 and so on.
-The
-.B S_IF*
-constants are present in POSIX.1-2001 and later.
 .PP
 The
 .BR S_ISLNK ()
 and
 .BR S_ISSOCK ()
 macros were not in
-POSIX.1-1996, but both are present in POSIX.1-2001;
+POSIX.1-1996;
 the former is from SVID 4, the latter from SUSv2.
 .PP
 UNIX\ V7 (and later systems) had

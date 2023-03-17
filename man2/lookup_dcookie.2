@@ -65,14 +65,14 @@ required to look up cookie values.
 .TP
 .B ERANGE
 The buffer was not large enough to hold the path of the directory entry.
-.SH VERSIONS
-Available since Linux 2.5.43.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.5.43.
+.PP
 The
 .B ENAMETOOLONG
-error return was added in Linux 2.5.70.
-.SH STANDARDS
-.BR lookup_dcookie ()
-is Linux-specific.
+error was added in Linux 2.5.70.
 .SH NOTES
 .BR lookup_dcookie ()
 is a special-purpose system call, currently used only by the

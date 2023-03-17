@@ -366,15 +366,15 @@ The specified
 is not valid.
 This error will occur if, for example, the file has been deleted.
 .SH VERSIONS
-These system calls first appeared in Linux 2.6.39.
-Library support is provided since glibc 2.14.
-.SH STANDARDS
-These system calls are nonstandard Linux extensions.
-.PP
 FreeBSD has a broadly similar pair of system calls in the form of
 .BR getfh ()
 and
 .BR openfh ().
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.6.39,
+glibc 2.14.
 .SH NOTES
 A file handle can be generated in one process using
 .BR name_to_handle_at ()

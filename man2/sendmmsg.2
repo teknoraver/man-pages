@@ -126,14 +126,11 @@ See also BUGS.
 .\"
 .\"     This matches the behavior of other syscalls like read/write - it
 .\"     is not an error if less than the requested number of elements are sent.
-.SH VERSIONS
-The
-.BR sendmmsg ()
-system call was added in Linux 3.0.
-Support in glibc was added in Linux 2.14.
 .SH STANDARDS
-.BR sendmmsg ()
-is Linux-specific.
+Linux.
+.SH HISTORY
+Linux 3.0,
+glibc 2.14.
 .SH NOTES
 The value specified in
 .I vlen

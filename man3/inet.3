@@ -40,10 +40,11 @@ Standard C library
 .PP
 .BI "[[deprecated]] char *inet_ntoa(struct in_addr " in );
 .PP
-.BI "struct in_addr inet_makeaddr(in_addr_t " net ", in_addr_t " host );
+.BI "[[deprecated]] struct in_addr inet_makeaddr(in_addr_t " net ,
+.BI "                                            in_addr_t " host );
 .PP
-.BI "in_addr_t inet_lnaof(struct in_addr " in );
-.BI "in_addr_t inet_netof(struct in_addr " in );
+.BI "[[deprecated]] in_addr_t inet_lnaof(struct in_addr " in );
+.BI "[[deprecated]] in_addr_t inet_netof(struct in_addr " in );
 .fi
 .PP
 .RS -4
@@ -228,16 +229,20 @@ T}	Thread safety	MT-Safe
 .ad
 .sp 1
 .SH STANDARDS
-.BR inet_addr (),
-.BR inet_ntoa ():
-POSIX.1-2001, POSIX.1-2008, 4.3BSD.
-.PP
+.TP
+.BR inet_addr ()
+.TQ
+.BR inet_ntoa ()
+POSIX.1-2008.
+.TP
 .BR inet_aton ()
-is not specified in POSIX.1, but is available on most systems.
-.SH NOTES
-On x86 architectures, the host byte order is Least Significant Byte
-first (little endian), whereas the network byte order, as used on the
-Internet, is Most Significant Byte first (big endian).
+None.
+.SH STANDARDS
+.TP
+.BR inet_addr ()
+.TQ
+.BR inet_ntoa ()
+POSIX.1-2001, 4.3BSD.
 .PP
 .BR inet_lnaof (),
 .BR inet_netof (),
@@ -270,6 +275,10 @@ Classful network addresses are now obsolete,
 having been superseded by Classless Inter-Domain Routing (CIDR),
 which divides addresses into network and host components at
 arbitrary bit (rather than byte) boundaries.
+.SH NOTES
+On x86 architectures, the host byte order is Least Significant Byte
+first (little endian), whereas the network byte order, as used on the
+Internet, is Most Significant Byte first (big endian).
 .SH EXAMPLES
 An example of the use of
 .BR inet_aton ()

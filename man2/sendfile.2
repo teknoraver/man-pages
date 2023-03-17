@@ -165,34 +165,15 @@ the input file or the output file.
 .I offset
 is not NULL but the input file is not seekable.
 .SH VERSIONS
-.BR sendfile ()
-first appeared in Linux 2.2.
-The include file
-.I <sys/sendfile.h>
-is present since glibc 2.1.
-.SH STANDARDS
-Not specified in POSIX.1-2001, nor in other standards.
-.PP
 Other UNIX systems implement
 .BR sendfile ()
 with different semantics and prototypes.
 It should not be used in portable programs.
-.SH NOTES
-.BR sendfile ()
-will transfer at most 0x7ffff000 (2,147,479,552) bytes,
-returning the number of bytes actually transferred.
-.\" commit e28cc71572da38a5a12c1cfe4d7032017adccf69
-(This is true on both 32-bit and 64-bit systems.)
-.PP
-If you plan to use
-.BR sendfile ()
-for sending files to a TCP socket, but need
-to send some header data in front of the file contents, you will find
-it useful to employ the
-.B TCP_CORK
-option, described in
-.BR tcp (7),
-to minimize the number of packets and to tune performance.
+.SH STANDARDS
+None.
+.SH HISTORY
+Linux 2.2,
+glibc 2.1.
 .PP
 In Linux 2.4 and earlier,
 .I out_fd
@@ -211,6 +192,22 @@ argument.
 The glibc
 .BR sendfile ()
 wrapper function transparently deals with the kernel differences.
+.SH NOTES
+.BR sendfile ()
+will transfer at most 0x7ffff000 (2,147,479,552) bytes,
+returning the number of bytes actually transferred.
+.\" commit e28cc71572da38a5a12c1cfe4d7032017adccf69
+(This is true on both 32-bit and 64-bit systems.)
+.PP
+If you plan to use
+.BR sendfile ()
+for sending files to a TCP socket, but need
+to send some header data in front of the file contents, you will find
+it useful to employ the
+.B TCP_CORK
+option, described in
+.BR tcp (7),
+to minimize the number of packets and to tune performance.
 .PP
 Applications may wish to fall back to
 .BR read (2)

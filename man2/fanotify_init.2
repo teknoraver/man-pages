@@ -460,9 +460,6 @@ The fanotify API is available only if the kernel was configured with
 .B EPERM
 The operation is not permitted because the caller lacks a required capability.
 .SH VERSIONS
-.BR fanotify_init ()
-was introduced in Linux 2.6.36 and enabled in Linux 2.6.37.
-.PP
 Prior to Linux 5.13,
 .\" commit 7cea2a3c505e87a9d6afc78be4a7f7be636a73a7
 calling
@@ -516,7 +513,10 @@ A user will also not receive the pid that generated the event, unless the
 listening process itself generated the event.
 .RE
 .SH STANDARDS
-This system call is Linux-specific.
+Linux.
+.SH HISTORY
+Linux 2.6.37.
+.\" was introduced in Linux 2.6.36 and enabled in Linux 2.6.37.
 .SH BUGS
 The following bug was present before Linux 3.18:
 .IP \[bu] 3

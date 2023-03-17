@@ -44,19 +44,11 @@ it returns a positive error number to indicate the error.
 .TP
 .B EINVAL
 The mutex is either not robust or is not in an inconsistent state.
-.SH VERSIONS
-.BR pthread_mutex_consistent ()
-was added in glibc 2.12.
 .SH STANDARDS
 POSIX.1-2008.
-.SH NOTES
-.BR pthread_mutex_consistent ()
-simply informs the implementation that the state (shared data)
-guarded by the mutex has been restored to a consistent state and that
-normal operations can now be performed with the mutex.
-It is the application's responsibility to ensure that the
-shared data has been restored to a consistent state before calling
-.BR pthread_mutex_consistent ().
+.SH HISTORY
+glibc 2.12.
+POSIX.1-2008.
 .PP
 Before the addition of
 .BR pthread_mutex_consistent ()
@@ -73,6 +65,14 @@ was defined:
 This GNU-specific API, which first appeared in glibc 2.4,
 is nowadays obsolete and should not be used in new programs;
 since glibc 2.34 it has been marked as deprecated.
+.SH NOTES
+.BR pthread_mutex_consistent ()
+simply informs the implementation that the state (shared data)
+guarded by the mutex has been restored to a consistent state and that
+normal operations can now be performed with the mutex.
+It is the application's responsibility to ensure that the
+shared data has been restored to a consistent state before calling
+.BR pthread_mutex_consistent ().
 .SH EXAMPLES
 See
 .BR pthread_mutexattr_setrobust (3).

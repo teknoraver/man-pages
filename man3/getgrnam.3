@@ -220,9 +220,7 @@ T}	Thread safety	MT-Safe locale
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4, 4.3BSD.
-.SH NOTES
+.SH VERSIONS
 The formulation given above under "RETURN VALUE" is from POSIX.1.
 .\" POSIX.1-2001, POSIX.1-2008
 It does not call "not found" an error, hence does not specify what value
@@ -244,6 +242,10 @@ situation: 0, ENOENT, EBADF, ESRCH, EWOULDBLOCK, EPERM, and probably others.
 .\" FreeBSD 4.8, OpenBSD 3.2, NetBSD 1.6 - give EPERM
 .\" SunOS 5.8 - gives EBADF
 .\" Tru64 5.1b, HP-UX-11i, SunOS 5.7 - give 0
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SVr4, 4.3BSD.
 .SH SEE ALSO
 .BR endgrent (3),
 .BR fgetgrent (3),

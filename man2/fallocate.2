@@ -463,17 +463,17 @@ or
 but the file referred to by
 .I fd
 is currently being executed.
-.SH VERSIONS
-.BR fallocate ()
-is available since Linux 2.6.23.
-Support is provided since glibc 2.10.
-The
-.B FALLOC_FL_*
-flags are defined in glibc headers only since glibc 2.18.
-.\" See http://sourceware.org/bugzilla/show_bug.cgi?id=14964
 .SH STANDARDS
+Linux.
+.SH HISTORY
+.TP
 .BR fallocate ()
-is Linux-specific.
+Linux 2.6.23,
+glibc 2.10.
+.TP
+.B FALLOC_FL_*
+glibc 2.18.
+.\" See http://sourceware.org/bugzilla/show_bug.cgi?id=14964
 .SH SEE ALSO
 .BR fallocate (1),
 .BR ftruncate (2),

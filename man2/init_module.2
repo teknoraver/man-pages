@@ -244,15 +244,13 @@ fails and
 is set to the value returned by the
 .I init
 function.
-.SH VERSIONS
-.BR finit_module ()
-is available since Linux 3.8.
 .SH STANDARDS
-.BR init_module ()
-and
+Linux.
+.SH HISTORY
+.TP
 .BR finit_module ()
-are Linux-specific.
-.SH NOTES
+Linux 3.8.
+.PP
 The
 .BR init_module ()
 system call is not supported by glibc.
@@ -263,15 +261,6 @@ it is (before glibc 2.23) sufficient to
 manually declare the interface in your code;
 alternatively, you can invoke the system call using
 .BR syscall (2).
-.PP
-Information about currently loaded modules can be found in
-.I /proc/modules
-and in the file trees under the per-module subdirectories under
-.IR /sys/module .
-.PP
-See the Linux kernel source file
-.I include/linux/module.h
-for some useful background information.
 .SS Linux 2.4 and earlier
 In Linux 2.4 and earlier, the
 .BR init_module ()
@@ -336,6 +325,15 @@ and
 are expected to point within the module body and be
 initialized as appropriate for kernel space, that is, relocated with
 the rest of the module.
+.SH NOTES
+Information about currently loaded modules can be found in
+.I /proc/modules
+and in the file trees under the per-module subdirectories under
+.IR /sys/module .
+.PP
+See the Linux kernel source file
+.I include/linux/module.h
+for some useful background information.
 .SH SEE ALSO
 .BR create_module (2),
 .BR delete_module (2),

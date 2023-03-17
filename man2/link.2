@@ -335,26 +335,6 @@ is an empty string, and
 .I olddirfd
 refers to a directory.
 .SH VERSIONS
-.BR linkat ()
-was added in Linux 2.6.16;
-library support was added in glibc 2.4.
-.SH STANDARDS
-.BR link ():
-SVr4, 4.3BSD, POSIX.1-2001 (but see NOTES), POSIX.1-2008.
-.\" SVr4 documents additional ENOLINK and
-.\" EMULTIHOP error conditions; POSIX.1 does not document ELOOP.
-.\" X/OPEN does not document EFAULT, ENOMEM or EIO.
-.PP
-.BR linkat ():
-POSIX.1-2008.
-.SH NOTES
-Hard links, as created by
-.BR link (),
-cannot span filesystems.
-Use
-.BR symlink (2)
-if this is required.
-.PP
 POSIX.1-2001 says that
 .BR link ()
 should dereference
@@ -385,7 +365,7 @@ is dereferenced if it is a symbolic link.
 For precise control over the treatment of symbolic links when
 creating a link, use
 .BR linkat ().
-.SS glibc notes
+.SS glibc
 On older kernels where
 .BR linkat ()
 is unavailable, the glibc wrapper function falls back to the use of
@@ -405,6 +385,29 @@ that correspond to the
 and
 .I newdirfd
 arguments.
+.SH STANDARDS
+.TP
+.BR link ()
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR link ()
+SVr4, 4.3BSD, POSIX.1-2001 (but see VERSIONS).
+.\" SVr4 documents additional ENOLINK and
+.\" EMULTIHOP error conditions; POSIX.1 does not document ELOOP.
+.\" X/OPEN does not document EFAULT, ENOMEM or EIO.
+.TP
+.BR linkat ()
+POSIX.1-2008.
+Linux 2.6.16,
+glibc 2.4.
+.SH NOTES
+Hard links, as created by
+.BR link (),
+cannot span filesystems.
+Use
+.BR symlink (2)
+if this is required.
 .SH BUGS
 On NFS filesystems, the return code may be wrong in case the NFS server
 performs the link creation and dies before it can say so.

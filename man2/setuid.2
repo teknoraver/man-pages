@@ -100,35 +100,7 @@ The user is not privileged (Linux: does not have the
 capability in its user namespace) and
 .I uid
 does not match the real UID or saved set-user-ID of the calling process.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4.
-Not quite compatible with the 4.4BSD call, which
-sets all of the real, saved, and effective user IDs.
-.\" SVr4 documents an additional EINVAL error condition.
-.SH NOTES
-Linux has the concept of the filesystem user ID, normally equal to the
-effective user ID.
-The
-.BR setuid ()
-call also sets the filesystem user ID of the calling process.
-See
-.BR setfsuid (2).
-.PP
-If
-.I uid
-is different from the old effective UID, the process will
-be forbidden from leaving core dumps.
-.PP
-The original Linux
-.BR setuid ()
-system call supported only 16-bit user IDs.
-Subsequently, Linux 2.4 added
-.BR setuid32 ()
-supporting 32-bit IDs.
-The glibc
-.BR setuid ()
-wrapper function transparently deals with the variation across kernel versions.
-.\"
+.SH VERSIONS
 .SS C library/kernel differences
 At the kernel level, user IDs and group IDs are a per-thread attribute.
 However, POSIX requires that all threads in a process
@@ -143,6 +115,37 @@ that when one thread changes credentials,
 all of the other threads in the process also change their credentials.
 For details, see
 .BR nptl (7).
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SVr4.
+.PP
+Not quite compatible with the 4.4BSD call, which
+sets all of the real, saved, and effective user IDs.
+.\" SVr4 documents an additional EINVAL error condition.
+.PP
+The original Linux
+.BR setuid ()
+system call supported only 16-bit user IDs.
+Subsequently, Linux 2.4 added
+.BR setuid32 ()
+supporting 32-bit IDs.
+The glibc
+.BR setuid ()
+wrapper function transparently deals with the variation across kernel versions.
+.SH NOTES
+Linux has the concept of the filesystem user ID, normally equal to the
+effective user ID.
+The
+.BR setuid ()
+call also sets the filesystem user ID of the calling process.
+See
+.BR setfsuid (2).
+.PP
+If
+.I uid
+is different from the old effective UID, the process will
+be forbidden from leaving core dumps.
 .SH SEE ALSO
 .BR getuid (2),
 .BR seteuid (2),

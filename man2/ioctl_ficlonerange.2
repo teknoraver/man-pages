@@ -110,15 +110,16 @@ Swap files cannot share storage.
 .B EXDEV
 .IR dest_fd " and " src_fd
 are not on the same mounted filesystem.
-.SH VERSIONS
-These ioctl operations first appeared in Linux 4.5.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 4.5.
+.PP
 They were previously known as
 .B BTRFS_IOC_CLONE
 and
 .BR BTRFS_IOC_CLONE_RANGE ,
 and were private to Btrfs.
-.SH STANDARDS
-This API is Linux-specific.
 .SH NOTES
 Because a copy-on-write operation requires the allocation of new storage, the
 .BR fallocate (2)

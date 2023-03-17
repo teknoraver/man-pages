@@ -265,9 +265,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
+.SH VERSIONS
 .SS C library/kernel differences
 The
 .BR mq_open ()
@@ -285,6 +283,10 @@ so the C library function passes
 without the preceding slash (i.e.,
 .IR name+1 )
 to the system call.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH BUGS
 Before Linux 2.6.14,
 the process umask was not applied to the permissions specified in

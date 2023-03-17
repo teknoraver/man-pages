@@ -113,15 +113,15 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR open_memstream ()
-was already available in glibc 1.0.x.
-.BR open_wmemstream ()
-is available since glibc 2.4.
 .SH STANDARDS
 POSIX.1-2008.
-These functions are not specified in POSIX.1-2001,
-and are not widely available on other systems.
+.SH HISTORY
+.TP
+.BR open_memstream ()
+glibc 1.0.x.
+.TP
+.BR open_wmemstream ()
+glibc 2.4.
 .SH NOTES
 There is no file descriptor associated with the file stream
 returned by these functions

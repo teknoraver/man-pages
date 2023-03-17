@@ -132,9 +132,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
+.SH VERSIONS
 On Linux,
 .BR mq_getattr ()
 and
@@ -142,6 +140,10 @@ and
 are library functions layered on top of the
 .BR mq_getsetattr (2)
 system call.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH EXAMPLES
 The program below can be used to show the default
 .I mq_maxmsg

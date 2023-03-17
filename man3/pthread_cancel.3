@@ -119,11 +119,7 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.\" .SH VERSIONS
-.\" Available since glibc 2.0
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008.
-.SH NOTES
+.SH VERSIONS
 On Linux, cancelation is implemented using signals.
 Under the NPTL threading implementation,
 the first real-time signal (i.e., signal 32) is used for this purpose.
@@ -131,6 +127,11 @@ On LinuxThreads, the second real-time signal is used,
 if real-time signals are available, otherwise
 .B SIGUSR2
 is used.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+glibc 2.0
+POSIX.1-2001.
 .SH EXAMPLES
 The program below creates a thread and then cancels it.
 The main thread joins with the canceled thread to check

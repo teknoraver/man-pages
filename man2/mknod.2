@@ -241,19 +241,6 @@ does not support the type of node requested.
 .I pathname
 refers to a file on a read-only filesystem.
 .SH VERSIONS
-.BR mknodat ()
-was added in Linux 2.6.16;
-library support was added in glibc 2.4.
-.SH STANDARDS
-.BR mknod ():
-SVr4, 4.4BSD, POSIX.1-2001 (but see below), POSIX.1-2008.
-.\" The Linux version differs from the SVr4 version in that it
-.\" does not require root permission to create pipes, also in that no
-.\" EMULTIHOP, ENOLINK, or EINTR error is documented.
-.PP
-.BR mknodat ():
-POSIX.1-2008.
-.SH NOTES
 POSIX.1-2001 says: "The only portable use of
 .BR mknod ()
 is to create a FIFO-special file.
@@ -278,7 +265,21 @@ cannot be used to create directories.
 One should make directories with
 .BR mkdir (2).
 .\" and one should make UNIX domain sockets with socket(2) and bind(2).
-.PP
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR mknod ()
+SVr4, 4.4BSD, POSIX.1-2001 (but see VERSIONS).
+.\" The Linux version differs from the SVr4 version in that it
+.\" does not require root permission to create pipes, also in that no
+.\" EMULTIHOP, ENOLINK, or EINTR error is documented.
+.TP
+.BR mknodat ()
+Linux 2.6.16,
+glibc 2.4.
+POSIX.1-2008.
+.SH NOTES
 There are many infelicities in the protocol underlying NFS.
 Some of these affect
 .BR mknod ()

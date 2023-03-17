@@ -460,7 +460,34 @@ or
 .I pid
 is equal to
 .BR INT_MIN .
+.SH VERSIONS
+.SS C library/kernel differences
+.BR wait ()
+is actually a library function that (in glibc) is implemented as a call to
+.BR wait4 (2).
+.PP
+On some architectures, there is no
+.BR waitpid ()
+system call;
+.\" e.g., i386 has the system call, but not x86-64
+instead, this interface is implemented via a C library
+wrapper function that calls
+.BR wait4 (2).
+.PP
+The raw
+.BR waitid ()
+system call takes a fifth argument, of type
+.IR "struct rusage\ *" .
+If this argument is non-NULL,
+then it is used to return resource usage information about the child,
+in the same manner as
+.BR wait4 (2).
+See
+.BR getrusage (2)
+for details.
 .SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
 SVr4, 4.3BSD, POSIX.1-2001.
 .SH NOTES
 A child that terminates, but has not been waited for becomes a "zombie".
@@ -577,30 +604,6 @@ Since Linux 4.7,
 the
 .B __WALL
 flag is automatically implied if the child is being ptraced.
-.SS C library/kernel differences
-.BR wait ()
-is actually a library function that (in glibc) is implemented as a call to
-.BR wait4 (2).
-.PP
-On some architectures, there is no
-.BR waitpid ()
-system call;
-.\" e.g., i386 has the system call, but not x86-64
-instead, this interface is implemented via a C library
-wrapper function that calls
-.BR wait4 (2).
-.PP
-The raw
-.BR waitid ()
-system call takes a fifth argument, of type
-.IR "struct rusage\ *" .
-If this argument is non-NULL,
-then it is used to return resource usage information about the child,
-in the same manner as
-.BR wait4 (2).
-See
-.BR getrusage (2)
-for details.
 .SH BUGS
 According to POSIX.1-2008, an application calling
 .BR waitid ()

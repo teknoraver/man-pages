@@ -89,16 +89,20 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR futimes ()
-is available since glibc 2.3.
-.BR lutimes ()
-is available since glibc 2.6, and is implemented using the
-.BR utimensat (2)
-system call, which is supported since Linux 2.6.22.
 .SH STANDARDS
-These functions are not specified in any standard.
-Other than Linux, they are available only on the BSDs.
+Linux, BSD.
+.SH HISTORY
+.TP
+.BR futimes ()
+glibc 2.3.
+.TP
+.BR lutimes ()
+glibc 2.6.
+.SH NOTES
+.BR lutimes ()
+is implemented using the
+.BR utimensat (2)
+system call.
 .SH SEE ALSO
 .BR utime (2),
 .BR utimensat (2),

@@ -61,18 +61,16 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+The BSDs expose the definitions for these macros via
+.IR <sys/types.h> .
 .SH STANDARDS
-The
-.BR makedev (),
-.BR major (),
-and
-.BR minor ()
-functions are not specified in POSIX.1,
-but are present on many other systems.
-.\" The BSDs, HP-UX, Solaris, AIX, Irix.
+None.
+.SH HISTORY
+BSD, HP-UX, Solaris, AIX, Irix.
 .\" The header location is inconsistent:
 .\" Could be sys/mkdev.h, sys/sysmacros.h, or sys/types.h.
-.SH NOTES
+.PP
 These interfaces are defined as macros.
 Since glibc 2.3.3,
 they have been aliases for three GNU-specific functions:
@@ -82,11 +80,10 @@ and
 .BR gnu_dev_minor ().
 The latter names are exported, but the traditional names are more portable.
 .PP
-The BSDs expose the definitions for these macros via
-.IR <sys/types.h> .
 Depending on the version,
-glibc also exposes definitions for these macros from that
-header file if suitable feature test macros are defined.
+glibc also exposes definitions for these macros from
+.IR <sys/types.h>
+if suitable feature test macros are defined.
 However, this behavior was deprecated in glibc 2.25,
 .\" glibc commit dbab6577c6684c62bd2521c1c29dc25c3cac966f
 and since glibc 2.28,

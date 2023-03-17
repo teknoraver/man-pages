@@ -109,17 +109,12 @@ T}
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR makecontext ()
-and
-.BR swapcontext ()
-are provided since glibc 2.1.
 .SH STANDARDS
+None.
+.SH HISTORY
+glibc 2.1.
 SUSv2, POSIX.1-2001.
-POSIX.1-2008 removes the specifications of
-.BR makecontext ()
-and
-.BR swapcontext (),
+Removed in POSIX.1-2008,
 citing portability issues, and
 recommending that applications be rewritten to use POSIX threads instead.
 .SH NOTES

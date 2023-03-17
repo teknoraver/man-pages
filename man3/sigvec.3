@@ -13,13 +13,14 @@ Standard C library
 .nf
 .B #include <signal.h>
 .PP
-.BI "int sigvec(int " sig ", const struct sigvec *" vec ", struct sigvec *" ovec );
+.BI "[[deprecated]] int sigvec(int " sig ", const struct sigvec *" vec ,
+.BI "                          struct sigvec *" ovec );
 .PP
-.BI "int sigmask(int " signum );
+.BI "[[deprecated]] int sigmask(int " signum );
 .PP
-.BI "int sigblock(int " mask );
-.BI "int sigsetmask(int " mask );
-.B int siggetmask(void);
+.BI "[[deprecated]] int sigblock(int " mask );
+.BI "[[deprecated]] int sigsetmask(int " mask );
+.B [[deprecated]] int siggetmask(void);
 .fi
 .PP
 .RS -4
@@ -229,19 +230,24 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-Starting with glibc 2.21, the GNU C library no longer exports the
-.BR sigvec ()
-function as part of the ABI.
-(To ensure backward compatibility,
-the glibc symbol versioning scheme continues to export the interface
-to binaries linked against older versions of the library.)
 .SH STANDARDS
-All of these functions were in
-4.3BSD, except
-.BR siggetmask (),
-whose origin is unclear.
-These functions are obsolete: do not use them in new programs.
+None.
+.SH HISTORY
+.TP
+.BR sigvec ()
+.TQ
+.BR sigblock ()
+.TQ
+.BR sigmask ()
+.TQ
+.BR sigsetmask ()
+4.3BSD.
+.TP
+.BR siggetmask ()
+Unclear origin.
+.TP
+.BR sigvec ()
+Removed in glibc 2.21.
 .SH NOTES
 On 4.3BSD, the
 .BR signal ()

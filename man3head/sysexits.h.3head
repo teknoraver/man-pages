@@ -185,14 +185,14 @@ Something was found in an unconfigured or misconfigured state.
 The numerical values corresponding to the symbolical ones
 are given in parenthesis for easy reference.
 .SH STANDARDS
-Not in POSIX.1.
-Present on the BSDs.
+BSD.
+.SH HISTORY
 The
 .I <sysexits.h>
 file appeared in 4.0BSD for use by the deliverymail utility,
 later renamed to
 .BR sendmail (8).
-.SH BUGS
+.SH CAVEATS
 The choice of an appropriate exit value is often ambiguous.
 .SH SEE ALSO
 .BR err (3),

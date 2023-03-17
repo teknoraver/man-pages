@@ -252,20 +252,20 @@ was not specified in
 is relative and
 .I dirfd
 is a file descriptor referring to a file other than a directory.
-.SH VERSIONS
-.BR unlinkat ()
-was added in Linux 2.6.16;
-library support was added in glibc 2.4.
 .SH STANDARDS
-.BR unlink ():
-SVr4, 4.3BSD, POSIX.1-2001, POSIX.1-2008.
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR unlink ()
+SVr4, 4.3BSD, POSIX.1-2001.
 .\" SVr4 documents additional error
 .\" conditions EINTR, EMULTIHOP, ETXTBSY, ENOLINK.
-.PP
-.BR unlinkat ():
+.TP
+.BR unlinkat ()
 POSIX.1-2008.
-.SH NOTES
-.SS glibc notes
+Linux 2.6.16,
+glibc 2.4.
+.SS glibc
 On older kernels where
 .BR unlinkat ()
 is unavailable, the glibc wrapper function falls back to the use of

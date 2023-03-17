@@ -110,11 +110,11 @@ T}
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR posix_fallocate ()
-is available since glibc 2.1.94.
 .SH STANDARDS
-POSIX.1-2001.
+POSIX.1-2008.
+.SH HISTORY
+glibc 2.1.94.
+POSIX.1-2001
 .PP
 POSIX.1-2008 says that an implementation
 .I shall
@@ -138,7 +138,7 @@ was less than 0, and
 give the error if
 .I len
 equals zero.
-.SH NOTES
+.SH CAVEATS
 In the glibc implementation,
 .BR posix_fallocate ()
 is implemented using the

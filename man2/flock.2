@@ -121,16 +121,7 @@ The kernel ran out of memory for allocating lock records.
 The file is locked and the
 .B LOCK_NB
 flag was selected.
-.SH STANDARDS
-4.4BSD (the
-.BR flock ()
-call first appeared in 4.2BSD).
-A version of
-.BR flock (),
-possibly implemented in terms of
-.BR fcntl (2),
-appears on most UNIX systems.
-.SH NOTES
+.SH VERSIONS
 Since Linux 2.0,
 .BR flock ()
 is implemented as a system call in its own right rather
@@ -153,38 +144,43 @@ and
 locks
 .I do
 interact with one another.)
+.SS CIFS details
+Up to Linux 5.4,
+.BR flock ()
+is not propagated over SMB.
+A file with such locks will not appear locked for remote clients.
 .PP
+Since Linux 5.5,
 .BR flock ()
-places advisory locks only; given suitable permissions on a file,
-a process is free to ignore the use of
-.BR flock ()
-and perform I/O on the file.
-.PP
-.BR flock ()
-and
+locks are emulated with SMB byte-range locks on the entire file.
+Similarly to NFS, this means that
 .BR fcntl (2)
-locks have different semantics with respect to forked processes and
-.BR dup (2).
-On systems that implement
+and
 .BR flock ()
-using
-.BR fcntl (2),
-the semantics of
-.BR flock ()
-will be different from those described in this manual page.
+locks interact with one another.
+Another important side-effect is that the locks are not advisory anymore:
+any IO on a locked file will always fail with
+.B EACCES
+when done from a separate file descriptor.
+This difference originates from the design of locks in the SMB protocol,
+which provides mandatory locking semantics.
 .PP
-Converting a lock
-(shared to exclusive, or vice versa) is not guaranteed to be atomic:
-the existing lock is first removed, and then a new lock is established.
-Between these two steps,
-a pending lock request by another process may be granted,
-with the result that the conversion either blocks, or fails if
-.B LOCK_NB
-was specified.
-(This is the original BSD behavior,
-and occurs on many other implementations.)
-.\" Kernel 2.5.21 changed things a little: during lock conversion
-.\" it is now the highest priority process that will get the lock -- mtk
+Remote and mandatory locking semantics may vary with
+SMB protocol, mount options and server type.
+See
+.BR mount.cifs (8)
+for additional information.
+.SH STANDARDS
+BSD.
+.SH HISTORY
+4.4BSD (the
+.BR flock ()
+call first appeared in 4.2BSD).
+A version of
+.BR flock (),
+possibly implemented in terms of
+.BR fcntl (2),
+appears on most UNIX systems.
 .SS NFS details
 Up to Linux 2.6.11,
 .BR flock ()
@@ -222,32 +218,38 @@ see the discussion of the
 .I "local_lock"
 option in
 .BR nfs (5).
-.SS CIFS details
-Up to Linux 5.4,
+.SH NOTES
 .BR flock ()
-is not propagated over SMB.
-A file with such locks will not appear locked for remote clients.
+places advisory locks only; given suitable permissions on a file,
+a process is free to ignore the use of
+.BR flock ()
+and perform I/O on the file.
 .PP
-Since Linux 5.5,
 .BR flock ()
-locks are emulated with SMB byte-range locks on the entire file.
-Similarly to NFS, this means that
-.BR fcntl (2)
 and
+.BR fcntl (2)
+locks have different semantics with respect to forked processes and
+.BR dup (2).
+On systems that implement
 .BR flock ()
-locks interact with one another.
-Another important side-effect is that the locks are not advisory anymore:
-any IO on a locked file will always fail with
-.B EACCES
-when done from a separate file descriptor.
-This difference originates from the design of locks in the SMB protocol,
-which provides mandatory locking semantics.
+using
+.BR fcntl (2),
+the semantics of
+.BR flock ()
+will be different from those described in this manual page.
 .PP
-Remote and mandatory locking semantics may vary with
-SMB protocol, mount options and server type.
-See
-.BR mount.cifs (8)
-for additional information.
+Converting a lock
+(shared to exclusive, or vice versa) is not guaranteed to be atomic:
+the existing lock is first removed, and then a new lock is established.
+Between these two steps,
+a pending lock request by another process may be granted,
+with the result that the conversion either blocks, or fails if
+.B LOCK_NB
+was specified.
+(This is the original BSD behavior,
+and occurs on many other implementations.)
+.\" Kernel 2.5.21 changed things a little: during lock conversion
+.\" it is now the highest priority process that will get the lock -- mtk
 .SH SEE ALSO
 .BR flock (1),
 .BR close (2),

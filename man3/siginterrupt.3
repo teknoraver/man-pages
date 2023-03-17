@@ -19,7 +19,7 @@ Standard C library
 .nf
 .B #include <signal.h>
 .PP
-.BI "int siginterrupt(int " sig ", int " flag );
+.BI "[[deprecated]] int siginterrupt(int " sig ", int " flag );
 .fi
 .PP
 .RS -4
@@ -86,10 +86,11 @@ T}
 .ad
 .sp 1
 .SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
 4.3BSD, POSIX.1-2001.
-POSIX.1-2008 marks
-.BR siginterrupt ()
-as obsolete, recommending the use of
+Obsolete in POSIX.1-2008,
+recommending the use of
 .BR sigaction (2)
 with the
 .B SA_RESTART

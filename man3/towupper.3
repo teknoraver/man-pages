@@ -101,17 +101,22 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-The
-.BR towupper_l ()
-function first appeared in glibc 2.3.
 .SH STANDARDS
-.BR towupper ():
-C99, POSIX.1-2001 (XSI);
-present as an XSI extension in POSIX.1-2008, but marked obsolete.
-.PP
-.BR towupper_l ():
+.TP
+.BR towupper ()
+C11, POSIX.1-2008 (XSI).
+.TP
+.BR towupper_l ()
 POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR towupper ()
+C99, POSIX.1-2001 (XSI).
+Obsolete in POSIX.1-2008 (XSI).
+.TP
+.BR towupper_l ()
+POSIX.1-2008.
+glibc 2.3.
 .SH NOTES
 The behavior of these functions depends on the
 .B LC_CTYPE

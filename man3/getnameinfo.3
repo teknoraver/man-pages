@@ -228,11 +228,19 @@ T}	Thread safety	MT-Safe env locale
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-.BR getnameinfo ()
-is provided since glibc 2.1.
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, RFC\ 2553.
+POSIX.1-2008.
+RFC\ 2553.
+.SH HISTORY
+glibc 2.1.
+POSIX.1-2001.
+.PP
+Before glibc 2.2, the
+.I hostlen
+and
+.I servlen
+arguments were typed as
+.IR size_t .
 .SH NOTES
 In order to assist the programmer in choosing reasonable sizes
 for the supplied buffers,
@@ -264,13 +272,6 @@ in recent versions of BIND's
 header file.
 The latter is a guess based on the services listed
 in the current Assigned Numbers RFC.
-.PP
-Before glibc 2.2, the
-.I hostlen
-and
-.I servlen
-arguments were typed as
-.IR size_t .
 .SH EXAMPLES
 The following code tries to get the numeric hostname and service name,
 for a given socket address.

@@ -109,8 +109,15 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+The function
+.BR mbsrtowcs (3)
+provides a better interface to the same
+functionality.
 .SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, C99.
+C11, POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, C99.
 .SH NOTES
 The behavior of
 .BR mbstowcs ()
@@ -118,11 +125,6 @@ depends on the
 .B LC_CTYPE
 category of the
 current locale.
-.PP
-The function
-.BR mbsrtowcs (3)
-provides a better interface to the same
-functionality.
 .SH EXAMPLES
 The program below illustrates the use of
 .BR mbstowcs (),

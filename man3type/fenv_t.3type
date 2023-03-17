@@ -28,6 +28,8 @@ represents the floating-point status flags collectively.
 For further details see
 .BR fenv (3).
 .SH STANDARDS
-C99 and later; POSIX.1-2001 and later.
+C11, POSIX.1-2008.
+.SH HISTORY
+C99, POSIX.1-2001.
 .SH SEE ALSO
 .BR fenv (3)

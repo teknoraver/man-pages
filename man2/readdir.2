@@ -100,9 +100,7 @@ No such directory.
 .TP
 .B ENOTDIR
 File descriptor does not refer to a directory.
-.SH STANDARDS
-This system call is Linux-specific.
-.SH NOTES
+.SH VERSIONS
 You will need to define the
 .I old_linux_dirent
 structure yourself.
@@ -111,6 +109,8 @@ However, probably you should use
 instead.
 .PP
 This system call does not exist on x86-64.
+.SH STANDARDS
+Linux.
 .SH SEE ALSO
 .BR getdents (2),
 .BR readdir (3)

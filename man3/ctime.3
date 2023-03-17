@@ -300,31 +300,77 @@ T}
 .hy
 .ad
 .sp 1
-.SH STANDARDS
-POSIX.1-2001.
-C89 and C99 specify
-.BR asctime (),
-.BR ctime (),
-.BR gmtime (),
-.BR localtime (),
-and
-.BR mktime ().
-POSIX.1-2008 marks
-.BR asctime (),
-.BR asctime_r (),
-.BR ctime (),
-and
-.BR ctime_r ()
-as obsolete,
-recommending the use of
-.BR strftime (3)
-instead.
-.PP
+.SH VERSIONS
 POSIX doesn't specify the parameters of
 .BR ctime_r ()
 to be
 .IR restrict ;
 that is specific to glibc.
+.PP
+In many implementations, including glibc, a 0 in
+.I tm_mday
+is interpreted as meaning the last day of the preceding month.
+.PP
+According to POSIX.1-2001,
+.BR localtime ()
+is required to behave as though
+.BR tzset (3)
+was called, while
+.BR localtime_r ()
+does not have this requirement.
+.\" See http://thread.gmane.org/gmane.comp.time.tz/2034/
+For portable code,
+.BR tzset (3)
+should be called before
+.BR localtime_r ().
+.SH STANDARDS
+.TP
+.BR asctime ()
+.TQ
+.BR ctime ()
+.TQ
+.BR gmtime ()
+.TQ
+.BR localtime ()
+.TQ
+.BR mktime ()
+C11, POSIX.1-2008.
+.TP
+.BR asctime_r ()
+.TQ
+.BR ctime_r ()
+.TQ
+.BR gmtime_r ()
+.TQ
+.BR localtime_r ()
+POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR gmtime ()
+.TQ
+.BR localtime ()
+.TQ
+.BR mktime ()
+C89, POSIX.1-2001.
+.TP
+.BR asctime ()
+.TQ
+.BR ctime ()
+C89, POSIX.1-2001.
+Marked obsolete in POSIX.1-2008 (recommending
+.BR strftime (3)).
+.TP
+.BR gmtime_r ()
+.TQ
+.BR localtime_r ()
+POSIX.1-2001.
+.TP
+.BR asctime_r ()
+.TQ
+.BR ctime_r ()
+POSIX.1-2001.
+Marked obsolete in POSIX.1-2008 (recommending
+.BR strftime (3)).
 .SH NOTES
 The four functions
 .BR asctime (),
@@ -354,23 +400,6 @@ a broken-down time structure and an array of type
 Execution of any of the functions may overwrite the information returned
 in either of these objects by any of the other functions."
 This can occur in the glibc implementation.
-.PP
-In many implementations, including glibc, a 0 in
-.I tm_mday
-is interpreted as meaning the last day of the preceding month.
-.PP
-According to POSIX.1-2001,
-.BR localtime ()
-is required to behave as though
-.BR tzset (3)
-was called, while
-.BR localtime_r ()
-does not have this requirement.
-.\" See http://thread.gmane.org/gmane.comp.time.tz/2034/
-For portable code,
-.BR tzset (3)
-should be called before
-.BR localtime_r ().
 .SH SEE ALSO
 .BR date (1),
 .BR gettimeofday (2),

@@ -267,61 +267,7 @@ is not a directory.
 .TP
 .B EOVERFLOW
 Some values were too large to be represented in the returned struct.
-.SH STANDARDS
-Linux-specific.
-The Linux
-.BR statfs ()
-was inspired by the 4.4BSD one
-(but they do not use the same structure).
-.SH NOTES
-The
-.I __fsword_t
-type used for various fields in the
-.I statfs
-structure definition is a glibc internal type,
-not intended for public use.
-This leaves the programmer in a bit of a conundrum when trying to copy
-or compare these fields to local variables in a program.
-Using
-.I "unsigned\ int"
-for such variables suffices on most systems.
-.PP
-The original Linux
-.BR statfs ()
-and
-.BR fstatfs ()
-system calls were not designed with extremely large file sizes in mind.
-Subsequently, Linux 2.6
-added new
-.BR statfs64 ()
-and
-.BR fstatfs64 ()
-system calls that employ a new structure,
-.IR statfs64 .
-The new structure contains the same fields as the original
-.I statfs
-structure, but the sizes of various fields are increased,
-to accommodate large file sizes.
-The glibc
-.BR statfs ()
-and
-.BR fstatfs ()
-wrapper functions transparently deal with the kernel differences.
-.PP
-Some systems have only \fI<sys/vfs.h>\fP, other systems also have
-\fI<sys/statfs.h>\fP, where the former includes the latter.
-So it seems
-including the former is the best choice.
-.PP
-LSB has deprecated the library calls
-.BR statfs ()
-and
-.BR fstatfs ()
-and tells us to use
-.BR statvfs (3)
-and
-.BR fstatvfs (3)
-instead.
+.SH VERSIONS
 .SS The f_fsid field
 Solaris, Irix, and POSIX have a system call
 .BR statvfs (2)
@@ -366,6 +312,62 @@ Under some operating systems, the
 can be used as the second argument to the
 .BR sysfs (2)
 system call.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+The Linux
+.BR statfs ()
+was inspired by the 4.4BSD one
+(but they do not use the same structure).
+.PP
+The original Linux
+.BR statfs ()
+and
+.BR fstatfs ()
+system calls were not designed with extremely large file sizes in mind.
+Subsequently, Linux 2.6
+added new
+.BR statfs64 ()
+and
+.BR fstatfs64 ()
+system calls that employ a new structure,
+.IR statfs64 .
+The new structure contains the same fields as the original
+.I statfs
+structure, but the sizes of various fields are increased,
+to accommodate large file sizes.
+The glibc
+.BR statfs ()
+and
+.BR fstatfs ()
+wrapper functions transparently deal with the kernel differences.
+.PP
+LSB has deprecated the library calls
+.BR statfs ()
+and
+.BR fstatfs ()
+and tells us to use
+.BR statvfs (3)
+and
+.BR fstatvfs (3)
+instead.
+.SH NOTES
+The
+.I __fsword_t
+type used for various fields in the
+.I statfs
+structure definition is a glibc internal type,
+not intended for public use.
+This leaves the programmer in a bit of a conundrum when trying to copy
+or compare these fields to local variables in a program.
+Using
+.I "unsigned\ int"
+for such variables suffices on most systems.
+.PP
+Some systems have only \fI<sys/vfs.h>\fP, other systems also have
+\fI<sys/statfs.h>\fP, where the former includes the latter.
+So it seems
+including the former is the best choice.
 .SH BUGS
 From Linux 2.6.38 up to and including Linux 3.1,
 .\" broken in commit ff0c7d15f9787b7e8c601533c015295cc68329f8

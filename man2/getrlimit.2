@@ -559,18 +559,15 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
-.SH VERSIONS
-The
-.BR prlimit ()
-system call is available since Linux 2.6.36.
-Library support is available since glibc 2.13.
 .SH STANDARDS
-.BR getrlimit (),
-.BR setrlimit ():
-POSIX.1-2001, POSIX.1-2008, SVr4, 4.3BSD.
-.PP
-.BR prlimit ():
-Linux-specific.
+.TP
+.BR getrlimit ()
+.TQ
+.BR setrlimit ()
+POSIX.1-2008.
+.TP
+.BR prlimit ()
+Linux.
 .PP
 .B RLIMIT_MEMLOCK
 and
@@ -587,6 +584,16 @@ it is nevertheless present on most implementations.
 and
 .B RLIMIT_SIGPENDING
 are Linux-specific.
+.SH HISTORY
+.TP
+.BR getrlimit ()
+.TQ
+.BR setrlimit ()
+POSIX.1-2001, SVr4, 4.3BSD.
+.TP
+.BR prlimit ()
+Linux 2.6.36,
+glibc 2.13.
 .SH NOTES
 A child process created via
 .BR fork (2)

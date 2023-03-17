@@ -169,11 +169,14 @@ or
 .BR endpwent ()
 are used in parallel in different threads of a program,
 then data races could occur.
-.SH STANDARDS
-POSIX.1-2001, POSIX.1-2008, SVr4, 4.3BSD.
+.SH VERSIONS
 The
 .I pw_gecos
 field is not specified in POSIX, but is present on most implementations.
+.SH STANDARDS
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001, SVr4, 4.3BSD.
 .SH SEE ALSO
 .BR fgetpwent (3),
 .BR getpw (3),

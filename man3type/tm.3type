@@ -75,21 +75,6 @@ UTC doesn't permit double leap seconds,
 so it was limited to
 .B 60
 in C99.
-.SH STANDARDS
-C90 and later;
-POSIX.1-2001 and later.
-.PP
-.I tm_gmtoff
-and
-.I tm_zone
-originate from 4.3BSD-Tahoe (where
-.I tm_zone
-is a
-.IR "char *" ).
-.SH NOTES
-.I tm_sec
-can represent a leap second with the value
-.BR 60 .
 .PP
 .BR timezone (3),
 as a variable, is an XSI extension: some systems provide the V7-compatible
@@ -104,6 +89,22 @@ field provides an alternative (with the opposite sign) for those systems.
 points to static storage and may be overridden on subsequent calls to
 .BR localtime (3)
 and similar functions (however, this never happens under glibc).
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+C89, POSIX.1-2001.
+.PP
+.I tm_gmtoff
+and
+.I tm_zone
+originate from 4.3BSD-Tahoe (where
+.I tm_zone
+is a
+.IR "char *" ).
+.SH NOTES
+.I tm_sec
+can represent a leap second with the value
+.BR 60 .
 .SH SEE ALSO
 .BR ctime (3),
 .BR strftime (3),
