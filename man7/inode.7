@@ -426,18 +426,6 @@ in that directory can be renamed or deleted only by the owner
 of the file, by the owner of the directory, and by a privileged
 process.
 .SH STANDARDS
-If you need to obtain the definition of the
-.I blkcnt_t
-or
-.I blksize_t
-types from
-.IR <sys/stat.h> ,
-then define
-.B _XOPEN_SOURCE
-with the value 500 or greater (before including
-.I any
-header files).
-.PP
 POSIX.1-1990 did not describe the
 .BR S_IFMT ,
 .BR S_IFSOCK ,
