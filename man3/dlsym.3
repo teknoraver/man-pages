@@ -102,11 +102,6 @@ these functions return the address associated with
 On failure, they return NULL;
 the cause of the error can be diagnosed using
 .BR dlerror (3).
-.SH VERSIONS
-.BR dlsym ()
-is present in glibc 2.0 and later.
-.BR dlvsym ()
-first appeared in glibc 2.1.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -125,6 +120,11 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR dlsym ()
+is present in glibc 2.0 and later.
+.BR dlvsym ()
+first appeared in glibc 2.1.
 .SH STANDARDS
 POSIX.1-2001 describes
 .BR dlsym ().

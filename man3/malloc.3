@@ -226,19 +226,6 @@ or
 .B RLIMIT_DATA
 limit described in
 .BR getrlimit (2).
-.SH VERSIONS
-.BR reallocarray ()
-was added in glibc 2.26.
-.PP
-.BR malloc ()
-and related functions rejected sizes greater than
-.B PTRDIFF_MAX
-starting in glibc 2.30.
-.PP
-.BR free ()
-preserved
-.I errno
-starting in glibc 2.33.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -259,6 +246,19 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR reallocarray ()
+was added in glibc 2.26.
+.PP
+.BR malloc ()
+and related functions rejected sizes greater than
+.B PTRDIFF_MAX
+starting in glibc 2.30.
+.PP
+.BR free ()
+preserved
+.I errno
+starting in glibc 2.33.
 .SH STANDARDS
 .BR malloc (),
 .BR free (),

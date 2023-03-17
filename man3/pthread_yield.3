@@ -35,8 +35,6 @@ on error, it returns an error number.
 On Linux, this call always succeeds
 (but portable and future-proof applications should nevertheless
 handle a possible error return).
-.SH VERSIONS
-Since glibc 2.34, this function is marked as deprecated.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -54,6 +52,8 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+Since glibc 2.34, this function is marked as deprecated.
 .SH STANDARDS
 This call is nonstandard, but present on several other systems.
 Use the standardized

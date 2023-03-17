@@ -78,13 +78,6 @@ may also fail for any of the errors specified for
 .BR sendto (2),
 or
 .BR malloc (3).
-.SH VERSIONS
-The
-.BR if_nameindex ()
-function first appeared in glibc 2.1, but before glibc 2.3.4,
-the implementation supported only interfaces with IPv4 addresses.
-Support of interfaces that don't have IPv4 addresses is available only
-on kernels that support netlink.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -103,6 +96,13 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+The
+.BR if_nameindex ()
+function first appeared in glibc 2.1, but before glibc 2.3.4,
+the implementation supported only interfaces with IPv4 addresses.
+Support of interfaces that don't have IPv4 addresses is available only
+on kernels that support netlink.
 .SH STANDARDS
 POSIX.1-2001, POSIX.1-2008, RFC\ 3493.
 .PP

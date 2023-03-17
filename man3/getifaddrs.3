@@ -142,14 +142,6 @@ for any of the errors specified for
 .BR malloc (3),
 or
 .BR realloc (3).
-.SH VERSIONS
-The
-.BR getifaddrs ()
-function first appeared in glibc 2.3, but before glibc 2.3.3,
-the implementation supported only IPv4 addresses;
-IPv6 support was added in glibc 2.3.3.
-Support of address families other than IPv4 is available only
-on kernels that support netlink.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -168,6 +160,14 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+The
+.BR getifaddrs ()
+function first appeared in glibc 2.3, but before glibc 2.3.3,
+the implementation supported only IPv4 addresses;
+IPv6 support was added in glibc 2.3.3.
+Support of address families other than IPv4 is available only
+on kernels that support netlink.
 .SH STANDARDS
 Not in POSIX.1.
 This function first appeared in BSDi and is

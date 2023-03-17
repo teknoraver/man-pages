@@ -67,10 +67,6 @@ obtaining the per-process CPU-time clock of another process.)
 .B ESRCH
 There is no process with the ID
 .IR pid .
-.SH VERSIONS
-The
-.BR clock_getcpuclockid ()
-function is available since glibc 2.2.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -88,6 +84,10 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+The
+.BR clock_getcpuclockid ()
+function is available since glibc 2.2.
 .SH STANDARDS
 POSIX.1-2001, POSIX.1-2008.
 .SH NOTES

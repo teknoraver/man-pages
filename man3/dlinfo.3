@@ -200,9 +200,6 @@ On success,
 returns 0.
 On failure, it returns \-1; the cause of the error can be diagnosed using
 .BR dlerror (3).
-.SH VERSIONS
-.BR dlinfo ()
-first appeared in glibc 2.3.3.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -220,6 +217,9 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR dlinfo ()
+first appeared in glibc 2.3.3.
 .SH STANDARDS
 This function is a nonstandard GNU extension.
 .SH NOTES

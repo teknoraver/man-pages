@@ -246,19 +246,6 @@ Could not mount (internal) anonymous inode device.
 .B ENOMEM
 There was insufficient memory to create a new
 eventfd file descriptor.
-.SH VERSIONS
-.BR eventfd ()
-is available since Linux 2.6.22.
-Working support is provided since glibc 2.8.
-.\" eventfd() is in glibc 2.7, but reportedly does not build
-The
-.BR eventfd2 ()
-system call (see NOTES) is available since Linux 2.6.27.
-Since glibc 2.9, the
-.BR eventfd ()
-wrapper will employ the
-.BR eventfd2 ()
-system call, if it is supported by the kernel.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -276,6 +263,19 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR eventfd ()
+is available since Linux 2.6.22.
+Working support is provided since glibc 2.8.
+.\" eventfd() is in glibc 2.7, but reportedly does not build
+The
+.BR eventfd2 ()
+system call (see NOTES) is available since Linux 2.6.27.
+Since glibc 2.9, the
+.BR eventfd ()
+wrapper will employ the
+.BR eventfd2 ()
+system call, if it is supported by the kernel.
 .SH STANDARDS
 .BR eventfd ()
 and

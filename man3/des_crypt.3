@@ -129,19 +129,6 @@ the macro
 is false only for the first two statuses.
 .\" So far the Sun page
 .\" Some additions - aeb
-.SH VERSIONS
-These functions were added in glibc 2.1.
-.PP
-Because they employ the DES block cipher,
-which is no longer considered secure,
-.BR ecb_crypt (),
-.BR ecb_crypt (),
-.BR crypt_r (),
-and
-.BR des_setparity ()
-were removed in glibc 2.28.
-Applications should switch to a modern cryptography library, such as
-.BR libgcrypt .
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -161,6 +148,19 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+These functions were added in glibc 2.1.
+.PP
+Because they employ the DES block cipher,
+which is no longer considered secure,
+.BR ecb_crypt (),
+.BR ecb_crypt (),
+.BR crypt_r (),
+and
+.BR des_setparity ()
+were removed in glibc 2.28.
+Applications should switch to a modern cryptography library, such as
+.BR libgcrypt .
 .SH STANDARDS
 4.3BSD.
 Not in POSIX.1.

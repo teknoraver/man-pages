@@ -94,12 +94,6 @@ the given memory area.
 The
 .BR rawmemchr ()
 function returns a pointer to the matching byte.
-.SH VERSIONS
-.BR rawmemchr ()
-first appeared in glibc 2.1.
-.PP
-.BR memrchr ()
-first appeared in glibc 2.2.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -119,6 +113,12 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR rawmemchr ()
+first appeared in glibc 2.1.
+.PP
+.BR memrchr ()
+first appeared in glibc 2.2.
 .SH STANDARDS
 .BR memchr ():
 POSIX.1-2001, POSIX.1-2008, C89, C99, SVr4, 4.3BSD.

@@ -218,9 +218,6 @@ any of the predefined classes.
 The printstring
 is the string printed when a message of this class is processed by
 .BR fmtmsg ().
-.SH VERSIONS
-.BR fmtmsg ()
-is provided since glibc 2.1.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -252,6 +249,9 @@ Since glibc 2.16,
 the
 .BR fmtmsg ()
 function uses a lock to protect the static variable, so it is thread-safe.
+.SH VERSIONS
+.BR fmtmsg ()
+is provided since glibc 2.1.
 .SH STANDARDS
 The functions
 .BR fmtmsg ()

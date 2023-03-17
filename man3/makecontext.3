@@ -85,11 +85,6 @@ to indicate the error.
 .TP
 .B ENOMEM
 Insufficient stack space left.
-.SH VERSIONS
-.BR makecontext ()
-and
-.BR swapcontext ()
-are provided since glibc 2.1.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -114,6 +109,11 @@ T}
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR makecontext ()
+and
+.BR swapcontext ()
+are provided since glibc 2.1.
 .SH STANDARDS
 SUSv2, POSIX.1-2001.
 POSIX.1-2008 removes the specifications of

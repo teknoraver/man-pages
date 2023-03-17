@@ -172,10 +172,6 @@ All of these functions may fail and set
 .I errno
 for any of the errors specified for
 .BR execve (2).
-.SH VERSIONS
-The
-.BR execvpe ()
-function first appeared in glibc 2.11.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -200,6 +196,10 @@ T}	Thread safety	MT-Safe env
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+The
+.BR execvpe ()
+function first appeared in glibc 2.11.
 .SH STANDARDS
 POSIX.1-2001, POSIX.1-2008.
 .PP

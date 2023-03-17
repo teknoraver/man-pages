@@ -95,11 +95,6 @@ pointer.
 Otherwise, NULL is returned and
 .I errno
 is set to indicate the error.
-.SH VERSIONS
-.BR open_memstream ()
-was already available in glibc 1.0.x.
-.BR open_wmemstream ()
-is available since glibc 2.4.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -118,6 +113,11 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR open_memstream ()
+was already available in glibc 1.0.x.
+.BR open_wmemstream ()
+is available since glibc 2.4.
 .SH STANDARDS
 POSIX.1-2008.
 These functions are not specified in POSIX.1-2001,

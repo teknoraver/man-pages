@@ -58,8 +58,6 @@ is invalid, or the stack address attribute is set in
 .\" Can happen (but unlikely) while trying to allocate memory for cpuset
 .RB ( pthread_setattr_default_np ())
 Insufficient memory.
-.SH VERSIONS
-These functions are available since glibc 2.18.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -78,6 +76,8 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+These functions are available since glibc 2.18.
 .SH STANDARDS
 These functions are nonstandard GNU extensions;
 hence the suffix "_np" (nonportable) in their names.

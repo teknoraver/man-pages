@@ -213,11 +213,6 @@ In this case, an error message is
 .\" error via dlerror() for this case.
 available via
 .BR dlerror (3).
-.SH VERSIONS
-.BR dladdr ()
-is present in glibc 2.0 and later.
-.BR dladdr1 ()
-first appeared in glibc 2.3.3.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -236,6 +231,11 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR dladdr ()
+is present in glibc 2.0 and later.
+.BR dladdr1 ()
+first appeared in glibc 2.3.3.
 .SH STANDARDS
 These functions are nonstandard GNU extensions
 that are also present on Solaris.

@@ -141,8 +141,6 @@ An invalid multibyte sequence has been encountered in the input.
 .TP
 .B EINVAL
 An incomplete multibyte sequence has been encountered in the input.
-.SH VERSIONS
-This function is available since glibc 2.1.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -167,6 +165,8 @@ function is MT-Safe, as long as callers arrange for
 mutual exclusion on the
 .I cd
 argument.
+.SH VERSIONS
+This function is available since glibc 2.1.
 .SH STANDARDS
 POSIX.1-2001, POSIX.1-2008.
 .SH NOTES

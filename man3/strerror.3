@@ -216,16 +216,6 @@ is not a valid error number.
 .TP
 .B ERANGE
 Insufficient storage was supplied to contain the error description string.
-.SH VERSIONS
-The
-.BR strerror_l ()
-function first appeared in glibc 2.6.
-.PP
-The
-.BR strerrorname_np ()
-and
-.BR strerrordesc_np ()
-functions first appeared in glibc 2.32.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -253,6 +243,16 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+The
+.BR strerror_l ()
+function first appeared in glibc 2.6.
+.PP
+The
+.BR strerrorname_np ()
+and
+.BR strerrordesc_np ()
+functions first appeared in glibc 2.32.
 .SH STANDARDS
 .BR strerror ()
 is specified by POSIX.1-2001, POSIX.1-2008, C89, and C99.

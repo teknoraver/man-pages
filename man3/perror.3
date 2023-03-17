@@ -99,13 +99,6 @@ Thus, if a failing call is not immediately followed by a call to
 the value of
 .I errno
 should be saved.
-.SH VERSIONS
-Since glibc 2.32, the declarations of
-.I sys_errlist
-and
-.I sys_nerr
-are no longer exposed by
-.IR <stdio.h> .
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -123,6 +116,13 @@ T}	Thread safety	MT-Safe race:stderr
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+Since glibc 2.32, the declarations of
+.I sys_errlist
+and
+.I sys_nerr
+are no longer exposed by
+.IR <stdio.h> .
 .SH STANDARDS
 .BR perror (),
 .IR errno :

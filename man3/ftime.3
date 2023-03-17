@@ -60,15 +60,6 @@ fields are unspecified; avoid relying on them.
 .SH RETURN VALUE
 This function always returns 0.
 (POSIX.1-2001 specifies, and some systems document, a \-1 error return.)
-.SH VERSIONS
-Starting with glibc 2.33, the
-.BR ftime ()
-function and the
-.I <sys/timeb.h>
-header have been removed.
-To support old binaries,
-glibc continues to provide a compatibility symbol for
-applications linked against glibc 2.32 and earlier.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -86,6 +77,15 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+Starting with glibc 2.33, the
+.BR ftime ()
+function and the
+.I <sys/timeb.h>
+header have been removed.
+To support old binaries,
+glibc continues to provide a compatibility symbol for
+applications linked against glibc 2.32 and earlier.
 .SH STANDARDS
 4.2BSD, POSIX.1-2001.
 POSIX.1-2008 removes the specification of

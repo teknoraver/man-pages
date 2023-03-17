@@ -113,17 +113,6 @@ A block of memory was freed twice.
 and
 .BR mcheck_pedantic ()
 return 0 on success, or \-1 on error.
-.SH VERSIONS
-The
-.BR mcheck_pedantic ()
-and
-.BR mcheck_check_all ()
-functions are available since glibc 2.2.
-The
-.BR mcheck ()
-and
-.BR mprobe ()
-functions are present since at least glibc 2.0
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -147,6 +136,17 @@ T}
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+The
+.BR mcheck_pedantic ()
+and
+.BR mcheck_check_all ()
+functions are available since glibc 2.2.
+The
+.BR mcheck ()
+and
+.BR mprobe ()
+functions are present since at least glibc 2.0
 .SH STANDARDS
 These functions are GNU extensions.
 .SH NOTES

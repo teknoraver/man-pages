@@ -145,21 +145,6 @@ argument was not a power of two, or was not a multiple of
 .TP
 .B ENOMEM
 There was insufficient memory to fulfill the allocation request.
-.SH VERSIONS
-The functions
-.BR memalign (),
-.BR valloc (),
-and
-.BR pvalloc ()
-have been available since at least glibc 2.0.
-.PP
-The function
-.BR aligned_alloc ()
-was added in glibc 2.16.
-.PP
-The function
-.BR posix_memalign ()
-is available since glibc 2.1.91.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -183,6 +168,21 @@ T}	Thread safety	MT-Unsafe init
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+The functions
+.BR memalign (),
+.BR valloc (),
+and
+.BR pvalloc ()
+have been available since at least glibc 2.0.
+.PP
+The function
+.BR aligned_alloc ()
+was added in glibc 2.16.
+.PP
+The function
+.BR posix_memalign ()
+is available since glibc 2.1.91.
 .SH STANDARDS
 The function
 .BR valloc ()

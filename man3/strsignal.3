@@ -109,17 +109,6 @@ functions return the appropriate description string.
 The returned string is statically allocated and valid for
 the lifetime of the program.
 These functions return NULL for an invalid signal number.
-.SH VERSIONS
-.BR sigdescr_np ()
-and
-.BR sigabbrev_np ()
-first appeared in glibc 2.32.
-.PP
-Starting with glibc 2.32,
-.\" glibc commit b1ccfc061feee9ce616444ded8e1cd5acf9fa97f
-the
-.I sys_siglist
-symbol is no longer exported by glibc.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -143,6 +132,17 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR sigdescr_np ()
+and
+.BR sigabbrev_np ()
+first appeared in glibc 2.32.
+.PP
+Starting with glibc 2.32,
+.\" glibc commit b1ccfc061feee9ce616444ded8e1cd5acf9fa97f
+the
+.I sys_siglist
+symbol is no longer exported by glibc.
 .SH STANDARDS
 .BR strsignal ():
 POSIX.1-2008.

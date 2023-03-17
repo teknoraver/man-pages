@@ -540,11 +540,6 @@ for the process specified by
 .B ESRCH
 Could not find a process with the ID specified in
 .IR pid .
-.SH VERSIONS
-The
-.BR prlimit ()
-system call is available since Linux 2.6.36.
-Library support is available since glibc 2.13.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -564,6 +559,11 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+The
+.BR prlimit ()
+system call is available since Linux 2.6.36.
+Library support is available since glibc 2.13.
 .SH STANDARDS
 .BR getrlimit (),
 .BR setrlimit ():

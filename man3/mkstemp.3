@@ -169,13 +169,6 @@ were not XXXXXX.
 .PP
 These functions may also fail with any of the errors described for
 .BR open (2).
-.SH VERSIONS
-.BR mkostemp ()
-is available since glibc 2.7.
-.BR mkstemps ()
-and
-.BR mkostemps ()
-are available since glibc 2.11.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -196,6 +189,13 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR mkostemp ()
+is available since glibc 2.7.
+.BR mkstemps ()
+and
+.BR mkostemps ()
+are available since glibc 2.11.
 .SH STANDARDS
 .BR mkstemp ():
 4.3BSD, POSIX.1-2001.

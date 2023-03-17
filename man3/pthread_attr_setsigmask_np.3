@@ -68,8 +68,6 @@ On error, these functions return a positive error number.
 .B ENOMEM
 .RB ( pthread_attr_setsigmask_np ())
 Could not allocate memory.
-.SH VERSIONS
-These functions are provided since glibc 2.32.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -88,6 +86,8 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+These functions are provided since glibc 2.32.
 .SH STANDARDS
 These functions are nonstandard GNU extensions;
 hence the suffix "_np" (nonportable) in the names.

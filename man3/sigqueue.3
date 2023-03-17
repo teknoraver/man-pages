@@ -97,11 +97,6 @@ For the required permissions, see
 .B ESRCH
 No process has a PID matching
 .IR pid .
-.SH VERSIONS
-.BR sigqueue ()
-and the underlying
-.BR rt_sigqueueinfo (2)
-system call first appeared in Linux 2.2.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -119,6 +114,11 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR sigqueue ()
+and the underlying
+.BR rt_sigqueueinfo (2)
+system call first appeared in Linux 2.2.
 .SH STANDARDS
 POSIX.1-2001, POSIX.1-2008.
 .SH NOTES

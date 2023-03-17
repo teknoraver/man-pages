@@ -130,12 +130,6 @@ returns a pointer to the array
 .BR malloc (3)ed
 by the call;
 on error, NULL is returned.
-.SH VERSIONS
-.BR backtrace (),
-.BR backtrace_symbols (),
-and
-.BR backtrace_symbols_fd ()
-are provided since glibc 2.1.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -155,6 +149,12 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR backtrace (),
+.BR backtrace_symbols (),
+and
+.BR backtrace_symbols_fd ()
+are provided since glibc 2.1.
 .SH STANDARDS
 These functions are GNU extensions.
 .SH NOTES

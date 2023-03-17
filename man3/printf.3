@@ -895,6 +895,30 @@ or more means that the output was truncated.
 (See also below under NOTES.)
 .PP
 If an output error is encountered, a negative value is returned.
+.SH ATTRIBUTES
+For an explanation of the terms used in this section, see
+.BR attributes (7).
+.ad l
+.nh
+.TS
+allbox;
+lbx lb lb
+l l l.
+Interface	Attribute	Value
+T{
+.BR printf (),
+.BR fprintf (),
+.BR sprintf (),
+.BR snprintf (),
+.BR vprintf (),
+.BR vfprintf (),
+.BR vsprintf (),
+.BR vsnprintf ()
+T}	Thread safety	MT-Safe locale
+.TE
+.hy
+.ad
+.sp 1
 .SH VERSIONS
 .\" Linux libc4 knows about the five C standard flags.
 .\" It knows about the length modifiers \fBh\fP, \fBl\fP, \fBL\fP,
@@ -935,30 +959,6 @@ of the
 .B m
 conversion specifier, that is
 .IR %#m .
-.SH ATTRIBUTES
-For an explanation of the terms used in this section, see
-.BR attributes (7).
-.ad l
-.nh
-.TS
-allbox;
-lbx lb lb
-l l l.
-Interface	Attribute	Value
-T{
-.BR printf (),
-.BR fprintf (),
-.BR sprintf (),
-.BR snprintf (),
-.BR vprintf (),
-.BR vfprintf (),
-.BR vsprintf (),
-.BR vsnprintf ()
-T}	Thread safety	MT-Safe locale
-.TE
-.hy
-.ad
-.sp 1
 .SH STANDARDS
 .BR fprintf (),
 .BR printf (),

@@ -180,12 +180,6 @@ The path in \fIdirp\fR is not a directory.
 is a relative pathname and
 .I dirfd
 is a file descriptor referring to a file other than a directory.
-.SH VERSIONS
-.BR versionsort ()
-was added in glibc 2.1.
-.PP
-.BR scandirat ()
-was added in glibc 2.15.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -208,6 +202,12 @@ T}	Thread safety	MT-Safe locale
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR versionsort ()
+was added in glibc 2.1.
+.PP
+.BR scandirat ()
+was added in glibc 2.15.
 .SH STANDARDS
 .BR alphasort (),
 .BR scandir ():

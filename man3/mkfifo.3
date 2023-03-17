@@ -162,12 +162,6 @@ is a file descriptor referring to a file other than a directory.
 .TP
 .B EROFS
 \fIpathname\fP refers to a read-only filesystem.
-.SH VERSIONS
-.BR mkfifoat ()
-was added in glibc 2.4.
-It is implemented using
-.BR mknodat (2),
-available since Linux 2.6.16.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -186,6 +180,12 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR mkfifoat ()
+was added in glibc 2.4.
+It is implemented using
+.BR mknodat (2),
+available since Linux 2.6.16.
 .SH STANDARDS
 .BR mkfifo ():
 POSIX.1-2001, POSIX.1-2008.

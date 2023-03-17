@@ -26,8 +26,6 @@ except the calling thread.
 The cancelation state and cancelation type of the
 to-be-terminated threads are ignored,
 and the cleanup handlers are not called in those threads.
-.\" .SH VERSIONS
-.\" Available since glibc 2.0
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -45,6 +43,8 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.\" .SH VERSIONS
+.\" Available since glibc 2.0
 .SH STANDARDS
 This function is a nonstandard GNU extension;
 hence the suffix "_np" (nonportable) in the name.

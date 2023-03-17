@@ -346,13 +346,6 @@ returns 0; on error, it returns a nonzero value.
 .PP
 Errors from these functions can be diagnosed using
 .BR dlerror (3).
-.SH VERSIONS
-.BR dlopen ()
-and
-.BR dlclose ()
-are present in glibc 2.0 and later.
-.BR dlmopen ()
-first appeared in glibc 2.3.4.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -372,6 +365,13 @@ T}	Thread safety	MT-Safe
 .hy
 .ad
 .sp 1
+.SH VERSIONS
+.BR dlopen ()
+and
+.BR dlclose ()
+are present in glibc 2.0 and later.
+.BR dlmopen ()
+first appeared in glibc 2.3.4.
 .SH STANDARDS
 POSIX.1-2001 describes
 .BR dlclose ()
