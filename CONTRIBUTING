@@ -138,14 +138,14 @@ Description
        (1)  First use make(1)'s -t option, so that make(1) knows that it only
             needs to lint again pages that you will touch.
 
-                $ make -t lint
+                $ make -t lint >/dev/null
 
-       (2)  Touch the page that you'll edit, and run make(1) again, to see
-            which warnings you'll still see from that page that are not your
-            fault.
+       (2)  Run make(1) again, asking it to imagine that the page wou'll
+            modify has been touched, to see which warnings you'll still see
+            from that page that are not your fault.
 
-                $ touch man2/membarrier.2  # replace by the page you'll modify
-                $ make -k lint
+                $ # replace 'man2/membarrier.2' by the page you'll modify
+                $ make -W man2/membarrier.2 -k lint
 
        (3)  Apply your changes, and then run make(1) again.  You can ignore
             warnings that you saw in step (2), but if you see any new ones,
