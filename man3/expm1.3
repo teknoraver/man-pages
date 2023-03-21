@@ -130,7 +130,7 @@ C99, POSIX.1-2001, POSIX.1-2008.
 .\" BSD.
 .SH BUGS
 Before glibc 2.17,
-.\" http://sources.redhat.com/bugzilla/show_bug.cgi?id=6778
+.\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=6778
 on certain architectures (e.g., x86, but not x86_64)
 .BR expm1 ()
 raised a bogus underflow floating-point exception
@@ -139,7 +139,7 @@ for some large negative
 values (where the function result approaches \-1).
 .PP
 Before approximately glibc 2.11,
-.\" http://sources.redhat.com/bugzilla/show_bug.cgi?id=6814
+.\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=6814
 .\" e.g., expm1(1e5) through expm1(1.00199970127e5),
 .\" but not expm1(1.00199970128e5) and beyond.
 .BR expm1 ()
@@ -155,7 +155,7 @@ Before glibc 2.11,
 .\" From the source (sysdeps/i386/fpu/s_expm1.S) it looks
 .\" like the changes were in glibc 2.11.
 the glibc implementation did not set
-.\" http://sources.redhat.com/bugzilla/show_bug.cgi?id=6788
+.\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=6788
 .I errno
 to
 .B ERANGE

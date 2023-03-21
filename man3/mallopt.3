@@ -462,7 +462,7 @@ a call of the form:
 .\" setting the M_MXFAST limit rounds up:    (s + SIZE_SZ) & ~MALLOC_ALIGN_MASK)
 .\" malloc requests are rounded up:
 .\"    (req) + SIZE_SZ + MALLOC_ALIGN_MASK) & ~MALLOC_ALIGN_MASK
-.\" http://sources.redhat.com/bugzilla/show_bug.cgi?id=12129
+.\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=12129
 .PP
 .in +4n
 .EX
@@ -494,7 +494,7 @@ the bytes of the region are initialized to the byte specified in
 However, there is an
 .RI off-by- sizeof(size_t)
 error in the implementation:
-.\" FIXME . http://sources.redhat.com/bugzilla/show_bug.cgi?id=12140
+.\" FIXME . https://www.sourceware.org/bugzilla/show_bug.cgi?id=12140
 instead of initializing precisely the block of memory
 being freed by the call
 .IR free(p) ,
