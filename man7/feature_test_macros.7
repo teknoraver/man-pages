@@ -655,15 +655,15 @@ For example, a program where
 size argument is variable
 can now be fortified.
 .IP
-Use of this macro requires compiler support, available with
-.BR gcc (1)
-since glibc 4.0.
-.IP
+Use of this macro requires compiler support, available since
+gcc 4.0 and clang 2.6.
 Use of
 .B _FORTIFY_SOURCE
-set to 3 requires
-.BR gcc (1)
-version 12.0 or later.
+set to 3 requires gcc 12.0 or later, or clang 9.0 or later,
+in conjunction with glibc 2.33 or later.
+.\" glibc is not an absolute requirement (gcc has libssp; NetBSD/newlib
+.\" and Darwin each have their own implementation), but let's keep it
+.\" simple.
 .SS Default definitions, implicit definitions, and combining definitions
 If no feature test macros are explicitly defined,
 then the following feature test macros are defined by default:
