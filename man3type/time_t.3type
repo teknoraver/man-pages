@@ -35,14 +35,14 @@ it is an integer type.
 .I suseconds_t
 Used for time in microseconds.
 It is a signed integer type
-capable of storing values al least in the range
+capable of storing values at least in the range
 .RB [ \-1 ,
 .BR 1000000 ].
 .TP
 .I useconds_t
 Used for time in microseconds.
 It is an unsigned integer type
-capable of storing values al least in the range
+capable of storing values at least in the range
 .RB [ 0 ,
 .BR 1000000 ].
 .SH STANDARDS

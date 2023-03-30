@@ -35,7 +35,7 @@ capable of storing values in the range
 .I ssize_t
 Used for a count of bytes or an error indication.
 It is a signed integer type
-capable of storing values al least in the range
+capable of storing values at least in the range
 .RB [ \-1 ,
 .BR SSIZE_MAX ].
 .SS Use with printf(3) and scanf(3)
