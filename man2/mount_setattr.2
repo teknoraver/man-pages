@@ -675,12 +675,12 @@ Currently, the following filesystems support ID-mapped mounts:
 The mount must not already be ID-mapped.
 This also implies that the ID mapping of a mount cannot be altered.
 .IP \[bu]
+The mount must not have any writers.
+.\" commit 1bbcd277a53e08d619ffeec56c5c9287f2bf42f
+.IP \[bu]
 The mount must be a detached mount;
 that is,
 it must have been created by calling
-.IP \[bu]
-The mount must not have any writers.
-.\" commit 1bbcd277a53e08d619ffeec56c5c9287f2bf42f
 .BR open_tree (2)
 with the
 .B OPEN_TREE_CLONE
