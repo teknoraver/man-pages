@@ -24,7 +24,7 @@
 \m[maroon]GNU/Linux\m[]
 .sp 18p
 .ps 16
-\f[BMB]THE MAN PAGES BOOK\fP
+\f[BMB]THE MAN-PAGES BOOK\fP
 .sp 30p
 .sp 1.4i
 .ps 12
