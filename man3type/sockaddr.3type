@@ -112,6 +112,11 @@ Describes a UNIX domain socket address.
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
+.PP
+.I socklen_t
+was invented by POSIX.
+See also
+.BR accept (2).
 .SH NOTES
 .I socklen_t
 is also defined in
