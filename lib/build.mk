@@ -1,6 +1,6 @@
 ########################################################################
-# Copyright (C) 2021, 2022  Alejandro Colomar <alx@kernel.org>
-# SPDX-License-Identifier:  GPL-2.0  OR  LGPL-2.0
+# Copyright (C) 2021 - 2023  Alejandro Colomar <alx@kernel.org>
+# SPDX-License-Identifier:  GPL-3.0-or-later  OR  LGPL-3.0-or-later
 ########################################################################
 
 
@@ -16,7 +16,6 @@ builddir := .tmp
 
 SYSCONFDIR := $(srcdir)/etc
 
-_SRCDIR := $(builddir)/src
 _MANDIR := $(builddir)/man
 
 
@@ -29,11 +28,9 @@ NONSO_MAN := $(shell $(FIND) $(MANDIR)/man*/ -type f \
 		| $(XARGS) $(GREP) -l '^\.TH ' \
 		| $(SORT))
 _MANDIRS := $(patsubst $(MANDIR)/%,$(_MANDIR)/%/,$(MANDIRS))
-_SRCDIRS := $(patsubst $(MANDIR)/%,$(_SRCDIR)/%/,$(MANDIRS))
 
 
 $(_MANDIRS): %/: | $$(dir %) $(_MANDIR)/
-$(_SRCDIRS): %/: | $$(dir %) $(_SRCDIR)/
 
 
 $(builddir)/%/:

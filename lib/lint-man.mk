@@ -21,15 +21,15 @@ MANDOCFLAGS         := $(DEFAULT_MANDOCFLAGS) $(EXTRA_MANDOCFLAGS)
 MANDOC              := mandoc
 
 
-_LINT_man_mandoc:=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.lint-man.mandoc.touch,$(NONSO_MAN))
-_LINT_man_tbl   :=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.lint-man.tbl.touch,$(NONSO_MAN))
+_LINT_man_mandoc:=$(patsubst $(MANDIR)/%,$(_MANDIR)/%.lint-man.mandoc.touch,$(NONSO_MAN))
+_LINT_man_tbl   :=$(patsubst $(MANDIR)/%,$(_MANDIR)/%.lint-man.tbl.touch,$(NONSO_MAN))
 
 
 linters_man := mandoc tbl
 lint_man    := $(foreach x,$(linters_man),lint-man-$(x))
 
 
-$(_LINT_man_mandoc): $(_LINTDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% | $$(@D)/
+$(_LINT_man_mandoc): $(_MANDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% | $$(@D)/
 	$(info LINT (mandoc)	$@)
 	! ($(MANDOC) $(MANDOCFLAGS) $< 2>&1 \
 	   | $(GREP) -v 'STYLE: lower case character in document title:' \
@@ -43,7 +43,7 @@ $(_LINT_man_mandoc): $(_LINTDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% | $$(@D)/
 	| $(GREP) '.' >&2
 	touch $@
 
-$(_LINT_man_tbl): $(_LINTDIR)/%.lint-man.tbl.touch: $(MANDIR)/% | $$(@D)/
+$(_LINT_man_tbl): $(_MANDIR)/%.lint-man.tbl.touch: $(MANDIR)/% | $$(@D)/
 	$(info LINT (tbl comment)	$@)
 	if $(GREP) -q '^\.TS$$' $< && ! $(HEAD) -n1 $< | $(GREP) -q '\\" t$$'; \
 	then \

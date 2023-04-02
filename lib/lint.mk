@@ -1,6 +1,6 @@
 ########################################################################
-# Copyright (C) 2021, 2022  Alejandro Colomar <alx@kernel.org>
-# SPDX-License-Identifier:  GPL-2.0  OR  LGPL-2.0
+# Copyright (C) 2021 - 2023  Alejandro Colomar <alx@kernel.org>
+# SPDX-License-Identifier:  GPL-3.0-or-later  OR  LGPL-3.0-or-later
 ########################################################################
 
 
@@ -8,20 +8,7 @@ ifndef MAKEFILE_LINT_INCLUDED
 MAKEFILE_LINT_INCLUDED := 1
 
 
-include $(srcdir)/lib/build.mk
-include $(srcdir)/lib/src.mk
-
-
-_LINTDIR   := $(builddir)/lint
-
-
-_LINTDIRS := $(patsubst $(MANDIR)/%,$(_LINTDIR)/%/,$(MANDIRS))
-
-
 lint := lint-c lint-man
-
-
-$(_LINTDIRS): %/: | $$(dir %) $(_LINTDIR)/
 
 
 .PHONY: lint
