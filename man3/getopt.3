@@ -31,7 +31,7 @@ Standard C library
 .nf
 .B #include <unistd.h>
 .PP
-.BI "int getopt(int " argc ", char *const " argv [],
+.BI "int getopt(int " argc ", char *" argv [],
 .BI "           const char *" optstring );
 .PP
 .BI "extern char *" optarg ;
@@ -39,10 +39,10 @@ Standard C library
 .PP
 .B #include <getopt.h>
 .PP
-.BI "int getopt_long(int " argc ", char *const " argv [],
+.BI "int getopt_long(int " argc ", char *" argv [],
 .BI "           const char *" optstring ,
 .BI "           const struct option *" longopts ", int *" longindex );
-.BI "int getopt_long_only(int " argc ", char *const " argv [],
+.BI "int getopt_long_only(int " argc ", char *" argv [],
 .BI "           const char *" optstring ,
 .BI "           const struct option *" longopts ", int *" longindex );
 .fi
@@ -349,16 +349,18 @@ T}
 .ad
 .sp 1
 .SH VERSIONS
-.BR getopt ()
-conforms to POSIX provided the environment variable
+POSIX specifies that the
+.I argv
+array argument should be
+.IR const ,
+but these functions permute its elements
+unless the environment variable
 .B POSIXLY_CORRECT
 is set.
-Otherwise, the elements of \fIargv\fP aren't really
-.IR const ,
-because these functions permute them.
-Nevertheless,
 .I const
-is used in the prototype to be compatible with other systems.
+is used in the actual prototype to be compatible with other systems;
+however, this page doesn't show the qualifier,
+to avoid confusing readers.
 .SH STANDARDS
 .TP
 .BR getopt ()
