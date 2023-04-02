@@ -92,7 +92,7 @@ Description
              -  rm(1)
              -  rmdir(1)
 
-          -  For linting man(7) source:
+          -  For linting/building/checking man(7) source:
              -  eqn(1)
              -  grotty(1)
              -  head(1)
@@ -101,7 +101,7 @@ Description
              -  tbl(1)
              -  troff(1) >= 1.23.0 - GNU troff is required.
 
-          -  For linting C source:
+          -  For linting/building C source:
              -  cc(1) - GCC or Clang
              -  clang-tidy(1)
              -  cpplint(1)
@@ -124,10 +124,10 @@ Description
           -  man(1)
           -  groff(1) | mandoc(1)
 
-   Lint (experimental)
-       You can lint both the manual pages, and the example C programs
-       contained in them.  See 'make help' for a list of targets that can be
-       used.
+   Lint & check
+       You can lint and check both the manual pages, and the example C
+       programs contained in them.  See 'make help' for a list of targets that
+       can be used.
 
 Files
    Makefile, lib/install-man.mk, lib/install.mk

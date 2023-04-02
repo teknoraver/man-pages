@@ -9,51 +9,10 @@ MAKEFILE_LINT_MAN_INCLUDED := 1
 
 
 include $(srcdir)/lib/cmd.mk
+include $(srcdir)/lib/build.mk
 include $(srcdir)/lib/lint.mk
 include $(srcdir)/lib/src.mk
 
-
-TMACDIR := $(SYSCONFDIR)/groff/tmac
-
-
-MANWIDTH          ?= 80
-TROFF_LINE_LENGTH := $(shell $(EXPR) $(MANWIDTH) - 2)
-TROFF_OUT_DEVICE  := $(shell $(LOCALE) charmap \
-                             | $(GREP) -i 'utf-*8' >/dev/null \
-                                 && $(ECHO) utf8 \
-                                 || $(ECHO) ascii)
-
-DEFAULT_PRECONVFLAGS :=
-EXTRA_PRECONVFLAGS   :=
-PRECONVFLAGS         := $(DEFAULT_PRECONVFLAGS) $(EXTRA_PRECONVFLAGS)
-PRECONV              := preconv
-
-TBL := tbl
-
-DEFAULT_EQNFLAGS := -T$(TROFF_OUT_DEVICE)
-EXTRA_EQNFLAGS   :=
-EQNFLAGS         := $(DEFAULT_EQNFLAGS) $(EXTRA_EQNFLAGS)
-EQN              := eqn
-
-TMACFILES            := $(shell $(FIND) $(TMACDIR) -not -type d | $(SORT))
-TMACNAMES            := $(basename $(notdir $(TMACFILES)))
-TROFF_CHECKSTYLE_LVL := 3
-DEFAULT_TROFFFLAGS   := -man
-DEFAULT_TROFFFLAGS   += -t
-DEFAULT_TROFFFLAGS   += -M $(TMACDIR)
-DEFAULT_TROFFFLAGS   += $(foreach x,$(TMACNAMES),-m $(x))
-DEFAULT_TROFFFLAGS   += -rCHECKSTYLE=$(TROFF_CHECKSTYLE_LVL)
-DEFAULT_TROFFFLAGS   += -ww
-DEFAULT_TROFFFLAGS   += -T$(TROFF_OUT_DEVICE)
-DEFAULT_TROFFFLAGS   += -rLL=$(TROFF_LINE_LENGTH)n
-EXTRA_TROFFFLAGS     :=
-TROFFFLAGS           := $(DEFAULT_TROFFFLAGS) $(EXTRA_TROFFFLAGS)
-TROFF                := troff
-
-DEFAULT_GROTTYFLAGS := -c
-EXTRA_GROTTYFLAGS   :=
-GROTTYFLAGS         := $(DEFAULT_GROTTYFLAGS) $(EXTRA_GROTTYFLAGS)
-GROTTY              := grotty
 
 DEFAULT_COLFLAGS := -b
 DEFAULT_COLFLAGS += -p
@@ -69,16 +28,11 @@ MANDOCFLAGS         := $(DEFAULT_MANDOCFLAGS) $(EXTRA_MANDOCFLAGS)
 MANDOC              := mandoc
 
 
-_LINT_man_groff_tbl    :=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.tbl,$(LINTMAN))
-_LINT_man_groff_eqn    :=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.eqn,$(LINTMAN))
-_LINT_man_groff_troff  :=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.troff,$(LINTMAN))
-_LINT_man_groff_grotty :=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.grotty,$(LINTMAN))
-_LINT_man_groff_col    :=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.col,$(LINTMAN))
-_LINT_man_groff_grep   :=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.grep,$(LINTMAN))
+_LINT_man_groff_grep :=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.grep,$(NONSO_MAN))
 
-_LINT_man_groff :=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.lint-man.groff.touch,$(LINTMAN))
-_LINT_man_mandoc:=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.lint-man.mandoc.touch,$(LINTMAN))
-_LINT_man_tbl   :=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.lint-man.tbl.touch,$(LINTMAN))
+_LINT_man_groff :=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.lint-man.groff.touch,$(NONSO_MAN))
+_LINT_man_mandoc:=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.lint-man.mandoc.touch,$(NONSO_MAN))
+_LINT_man_tbl   :=$(patsubst $(MANDIR)/%,$(_LINTDIR)/%.lint-man.tbl.touch,$(NONSO_MAN))
 
 
 linters_man := groff mandoc tbl

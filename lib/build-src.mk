@@ -10,7 +10,6 @@ MAKEFILE_BUILD_SRC_INCLUDED := 1
 
 include $(srcdir)/lib/build.mk
 include $(srcdir)/lib/cmd.mk
-include $(srcdir)/lib/lint.mk
 include $(srcdir)/lib/src.mk
 include $(srcdir)/lib/verbose.mk
 
@@ -56,7 +55,7 @@ LD  := $(CC) $(CFLAGS)
 MAN := man
 
 
-_SRCPAGEDIRS   := $(patsubst $(MANDIR)/%,$(_SRCDIR)/%.d,$(LINTMAN))
+_SRCPAGEDIRS   := $(patsubst $(MANDIR)/%,$(_SRCDIR)/%.d,$(NONSO_MAN))
 
 _UNITS_src_src := $(patsubst $(MANDIR)/%,$(_SRCDIR)/%,$(shell \
 		$(FIND) $(MANDIR)/man*/ -type f \

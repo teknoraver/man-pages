@@ -8,21 +8,31 @@ ifndef MAKEFILE_BUILD_INCLUDED
 MAKEFILE_BUILD_INCLUDED := 1
 
 
+include $(srcdir)/lib/cmd.mk
 include $(srcdir)/lib/src.mk
 
 
 builddir := .tmp
 
+SYSCONFDIR := $(srcdir)/etc
+
 _SRCDIR := $(builddir)/src
+_MANDIR := $(builddir)/man
 
 
 MKDIR := mkdir -p
 RM    := rm
 
 
+NONSO_MAN := $(shell $(FIND) $(MANDIR)/man*/ -type f \
+		| $(GREP) '$(MANEXT)' \
+		| $(XARGS) $(GREP) -l '^\.TH ' \
+		| $(SORT))
+_MANDIRS := $(patsubst $(MANDIR)/%,$(_MANDIR)/%/,$(MANDIRS))
 _SRCDIRS := $(patsubst $(MANDIR)/%,$(_SRCDIR)/%/,$(MANDIRS))
 
 
+$(_MANDIRS): %/: | $$(dir %) $(_MANDIR)/
 $(_SRCDIRS): %/: | $$(dir %) $(_SRCDIR)/
 
 
@@ -32,7 +42,7 @@ $(builddir)/%/:
 
 
 .PHONY: build
-build: build-html
+build: build-catman build-html build-src
 	@:
 
 .PHONY: clean

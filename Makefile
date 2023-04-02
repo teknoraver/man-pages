@@ -50,7 +50,14 @@ help:
 	$(info	)
 	$(info	clean			Remove $$(builddir))
 	$(info	)
-	$(info	build			Alias for "build-html")
+	$(info	build			Wrapper for "build-catman build-html build-src")
+	$(info	)
+	$(info	build-catman		Build cat pages; alias for "build-catman-grotty")
+	$(info	build-catman-preconv	preconv(1) step of "build-catman")
+	$(info	build-catman-tbl	tbl(1) step of "build-catman")
+	$(info	build-catman-eqn	eqn(1) step of "build-catman")
+	$(info	build-catman-troff	troff(1) step of "build-catman")
+	$(info	build-catman-grotty	grotty(1) step of "build-catman")
 	$(info	)
 	$(info	build-html		Build HTML manual pages)
 	$(info	html			Alias for "build-html")
@@ -70,14 +77,11 @@ help:
 	$(info	lint-man		Wrapper for lint-man-* targets)
 	$(info	lint-man-mandoc		Lint man pages with mandoc(1))
 	$(info	lint-man-tbl		Lint man pages about '\" t' comment for tbl(1))
-	$(info	lint-man-groff		Alias for "lint-man-groff-grep")
-	$(info	lint-man-groff-preconv	Lint man pages with preconv(1))
-	$(info	lint-man-groff-tbl	Lint man pages with tbl(1))
-	$(info	lint-man-groff-eqn	Lint man pages with eqn(1))
-	$(info	lint-man-groff-troff	Lint man pages with troff(1))
-	$(info	lint-man-groff-grotty	Lint man pages with grotty(1))
-	$(info	lint-man-groff-col	Lint man pages with col(1))
-	$(info	lint-man-groff-grep	Lint man pages with grep(1))
+	$(info	)
+	$(info	check			Alias for "check-catman")
+	$(info	check-catman		Check cat pages; alias for "check-catman-grep")
+	$(info	check-catman-col	Filter cat pages with col(1))
+	$(info	check-catman-grep	Check cat pages with grep(1))
 	$(info	)
 	$(info	[un]install		Alias for "[un]install-man")
 	$(info	[un]install-man		Wrapper for [un]install-man* targets)
@@ -109,7 +113,10 @@ help:
 .SECONDEXPANSION:
 
 
+include $(srcdir)/lib/check.mk
+include $(srcdir)/lib/check-catman.mk
 include $(srcdir)/lib/build.mk
+include $(srcdir)/lib/build-catman.mk
 include $(srcdir)/lib/build-html.mk
 include $(srcdir)/lib/build-src.mk
 include $(srcdir)/lib/dist.mk
