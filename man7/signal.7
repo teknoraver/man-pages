@@ -927,7 +927,7 @@ For a discussion of async-signal-safe functions, see
 .BR signal\-safety (7).
 .PP
 The
-.I /proc/[pid]/task/[tid]/status
+.IR /proc/ pid /task/ tid /status
 file contains various fields that show the signals
 that a thread is blocking
 .RI ( SigBlk ),
@@ -943,7 +943,7 @@ as well as the set of pending signals that are directed
 to the process as a whole
 .RI ( ShdPnd ).
 The corresponding fields in
-.I /proc/[pid]/status
+.IR /proc/ pid /status
 show the information for the main thread.
 See
 .BR proc (5)

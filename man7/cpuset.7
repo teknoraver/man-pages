@@ -342,13 +342,13 @@ See \fBScheduler Relax Domain Level\fR, below, for further details.
 In addition to the above pseudo-files in each directory below
 .IR /dev/cpuset ,
 each process has a pseudo-file,
-.IR /proc/<pid>/cpuset ,
+.IR /proc/ pid /cpuset ,
 that displays the path of the process's cpuset directory
 relative to the root of the cpuset filesystem.
 .\" ================== proc status ==================
 .PP
 Also the
-.I /proc/<pid>/status
+.IR /proc/ pid /status
 file for each process has four added lines,
 displaying the process's
 .I Cpus_allowed
@@ -854,7 +854,7 @@ CPUs and memory nodes.
 .SS Mask format
 The \fBMask Format\fR is used to represent CPU and memory-node bit masks
 in the
-.I /proc/<pid>/status
+.IR /proc/ pid /status
 file.
 .PP
 This format displays each 32-bit
@@ -1240,7 +1240,7 @@ a cpuset into a different directory.
 Attempted to
 .BR read (2)
 a
-.I /proc/<pid>/cpuset
+.IR /proc/ pid /cpuset
 file for a cpuset path that is longer than the kernel page size.
 .TP
 .B ENAMETOOLONG

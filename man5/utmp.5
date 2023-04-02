@@ -176,7 +176,8 @@ with null bytes.
 and other terminal emulators directly create a
 \fBUSER_PROCESS\fP record and generate the \fIut_id\fP by using the
 string that suffix part of the terminal name (the characters
-following \fI/dev/[pt]ty\fP).
+following
+.IR /dev/ [pt] ty ).
 If they find a \fBDEAD_PROCESS\fP for this ID,
 they recycle it, otherwise they create a new entry.
 If they can, they

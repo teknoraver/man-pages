@@ -78,7 +78,7 @@ and
 is too small to hold the thread name.
 .PP
 If either of these functions fails to open
-.IR /proc/self/task/[tid]/comm ,
+.IR /proc/self/task/ tid /comm ,
 then the call may fail with one of the errors described in
 .BR open (2).
 .SH ATTRIBUTES
@@ -111,7 +111,7 @@ internally writes to the thread-specific
 file under the
 .I /proc
 filesystem:
-.IR /proc/self/task/[tid]/comm .
+.IR /proc/self/task/ tid /comm .
 .BR pthread_getname_np ()
 retrieves it from the same location.
 .SH EXAMPLES

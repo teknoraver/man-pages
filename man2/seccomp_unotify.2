@@ -980,7 +980,7 @@ in order to continue a system call, the supervisor should be sure that
 another security mechanism or the kernel itself will sufficiently block
 the system call if its arguments are rewritten to something unsafe.
 .\"
-.SS Caveats regarding the use of /proc/[tid]/mem
+.SS Caveats regarding the use of \fI/proc/\fPtid\fI/mem\fP
 The discussion above noted the need to use the
 .B SECCOMP_IOCTL_NOTIF_ID_VALID
 .BR ioctl (2)

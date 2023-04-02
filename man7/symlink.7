@@ -67,7 +67,9 @@ known as "magic links", which
 can be found in certain pseudofilesystems such as
 .BR proc (5)
 (examples include
-.IR /proc/[pid]/exe " and " /proc/[pid]/fd/* ).
+.IR /proc/ pid /exe
+and
+.IR /proc/ pid /fd/ *).
 Unlike normal symbolic links, magic links are not resolved through
 pathname-expansion, but instead act as direct references to the kernel's own
 representation of a file handle.

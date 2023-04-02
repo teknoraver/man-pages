@@ -718,7 +718,7 @@ A bind operation
 was requested where
 .I source
 referred a mount namespace magic link (i.e., a
-.I /proc/[pid]/ns/mnt
+.IR /proc/ pid /ns/mnt
 magic link or a bind mount to such a link)
 and the propagation type of the parent mount of
 .I target
@@ -938,16 +938,16 @@ the parent of the new mount is the previous mount that was stacked
 at that location.
 .PP
 The parental relationship between mounts can be discovered via the
-.I /proc/[pid]/mountinfo
+.IR /proc/ pid /mountinfo
 file (see below).
 .\"
-.SS /proc/[pid]/mounts and /proc/[pid]/mountinfo
+.SS \fI/proc/\fPpid\fI/mounts\fP and \fI/proc/\fPpid\fI/mountinfo\fP
 The Linux-specific
-.I /proc/[pid]/mounts
+.IR /proc/ pid /mounts
 file exposes the list of mounts in the mount
 namespace of the process with the specified ID.
 The
-.I /proc/[pid]/mountinfo
+.IR /proc/ pid /mountinfo
 file exposes even more information about mounts,
 including the propagation type and mount ID information that makes it
 possible to discover the parental relationship between mounts.

@@ -168,39 +168,39 @@ cciss/c2d0:   36.38GB       RAID 0
 .\"
 .SS Files in /sys
 .TP
-.I /sys/bus/pci/devices/<dev>/ccissX/cXdY/model
+.IR /sys/bus/pci/devices/ dev /cciss X /c X d Y /model
 Displays the SCSI INQUIRY page 0 model for logical drive
 .I Y
 of controller
 .IR X .
 .TP
-.I /sys/bus/pci/devices/<dev>/ccissX/cXdY/rev
+.IR /sys/bus/pci/devices/ dev /cciss X /c X d Y /rev
 Displays the SCSI INQUIRY page 0 revision for logical drive
 .I Y
 of controller
 .IR X .
 .TP
-.I /sys/bus/pci/devices/<dev>/ccissX/cXdY/unique_id
+.IR /sys/bus/pci/devices/ dev /cciss X /c X d Y /unique_id
 Displays the SCSI INQUIRY page 83 serial number for logical drive
 .I Y
 of controller
 .IR X .
 .TP
-.I /sys/bus/pci/devices/<dev>/ccissX/cXdY/vendor
+.IR /sys/bus/pci/devices/ dev /cciss X /c X d Y /vendor
 Displays the SCSI INQUIRY page 0 vendor for logical drive
 .I Y
 of controller
 .IR X .
 .TP
-.I /sys/bus/pci/devices/<dev>/ccissX/cXdY/block:cciss!cXdY
+.IR /sys/bus/pci/devices/ dev /cciss X /c X d Y /block:cciss!c X d Y
 A symbolic link to
-.IR /sys/block/cciss!cXdY .
+.IR /sys/block/cciss!c X d Y.
 .TP
-.I /sys/bus/pci/devices/<dev>/ccissX/rescan
+.IR /sys/bus/pci/devices/ dev /cciss X /rescan
 When this file is written to, the driver rescans the controller
 to discover any new, removed, or modified logical drives.
 .TP
-.I /sys/bus/pci/devices/<dev>/ccissX/resettable
+.IR /sys/bus/pci/devices/ dev /cciss X /resettable
 A value of 1 displayed in this file indicates that
 the "reset_devices=1" kernel parameter (used by
 .BR kdump )
@@ -209,19 +209,19 @@ A value of 0 indicates that the
 "reset_devices=1" kernel parameter will not be honored.
 Some models of Smart Array are not able to honor this parameter.
 .TP
-.I /sys/bus/pci/devices/<dev>/ccissX/cXdY/lunid
+.IR /sys/bus/pci/devices/ dev /cciss X /c X d Y /lunid
 Displays the 8-byte LUN ID used to address logical drive
 .I Y
 of controller
 .IR X .
 .TP
-.I /sys/bus/pci/devices/<dev>/ccissX/cXdY/raid_level
+.IR /sys/bus/pci/devices/ dev /cciss X /c X d Y /raid_level
 Displays the RAID level of logical drive
 .I Y
 of controller
 .IR X .
 .TP
-.I /sys/bus/pci/devices/<dev>/ccissX/cXdY/usage_count
+.IR /sys/bus/pci/devices/ dev /cciss X /c X d Y /usage_count
 Displays the usage count (number of opens) of logical drive
 .I Y
 of controller

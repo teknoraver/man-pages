@@ -796,7 +796,7 @@ is hazardous because it forcibly removes preexisting mappings,
 making it easy for a multithreaded process to corrupt its own address space.
 .PP
 For example, suppose that thread A looks through
-.I /proc/<pid>/maps
+.IR /proc/ pid /maps
 in order to locate an unused address range that it can map using
 .BR MAP_FIXED ,
 while thread B simultaneously acquires part or all of that same
@@ -1026,10 +1026,10 @@ main(int argc, char *argv[])
 .PP
 The descriptions of the following files in
 .BR proc (5):
-.IR /proc/[pid]/maps ,
-.IR /proc/[pid]/map_files ,
+.IR /proc/ pid /maps ,
+.IR /proc/ pid /map_files ,
 and
-.IR /proc/[pid]/smaps .
+.IR /proc/ pid /smaps .
 .PP
 B.O. Gallmeister, POSIX.4, O'Reilly, pp. 128\[en]129 and 389\[en]391.
 .\"
