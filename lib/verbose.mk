@@ -12,10 +12,8 @@ ifdef V
 HIDE_ERR :=
 else
 HIDE_ERR := 2>/dev/null
+.SILENT:
 endif
-
-
-$(V).SILENT:
 
 
 endif  # MAKEFILE_VERBOSE_INCLUDED
