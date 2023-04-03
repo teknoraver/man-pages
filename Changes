@@ -96,3 +96,9 @@ Changes to individual pages
 The manual pages (and other files in the repository) have been improved
 beyond what this changelog covers.  To learn more about changes applied
 to individual pages, use git(1).
+
+
+==================== Changes in man-pages-6.04.01 =================
+
+-  Add LANDLOCK_ACCESS_FS_TRUNCATE to the Changes file.
+-  Keep file modes in the release tarball.
