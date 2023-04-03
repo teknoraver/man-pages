@@ -66,6 +66,7 @@ proc.5
 
 landlock.7
 	LANDLOCK_ACCESS_FS_REFER	(Linux 5.19)
+	LANDLOCK_ACCESS_FS_TRUNCATE	(Linux 6.02)
 
 udp.7
 	UDP_GRO				(Linux 5.0)
