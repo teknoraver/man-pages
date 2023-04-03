@@ -55780,3 +55780,103 @@ timespec.3type
 The manual pages (and other files in the repository) have been improved
 beyond what this changelog covers.  To learn more about changes applied
 to individual pages, use git(1).
+
+
+==================== Changes in man-pages-6.04 ====================
+
+Released: 2023-04-03, Aldaya
+
+
+Contributors
+------------
+
+The following people contributed patches/fixes, reports, notes,
+ideas, and discussions that have been incorporated in changes in
+this release:
+
+Ahelenia Ziemiańska <nabijaczleweli@nabijaczleweli.xyz>
+Alejandro Colomar <alx@kernel.org>
+Andrew Clayton <andrew@digital-domain.net>
+Brian Inglis <Brian.Inglis@Shaw.ca>
+"Carlos O'Donell" <carlos@redhat.com>
+Christian Brauner <brauner@kernel.org>
+Christoph Lameter <cl@linux.com>
+Dmitry Goncharov <dgoncharov@users.sf.net>
+"Dmitry V. Levin" <ldv@strace.io>
+Elliott Hughes <enh@google.com>
+Elvira Khabirova <lineprinter0@gmail.com>
+Fotios Valasiadis <fvalasiad@gmail.com>
+"G. Branden Robinson" <g.branden.robinson@gmail.com>
+Guy Shefy <guyshefyb@gmail.com>
+Günther Noack <gnoack3000@gmail.com>
+Helge Kreutzmann <debian@helgefjell.de>
+Iker Pedrosa <ipedrosa@redhat.com>
+Jack Pearson <jack@pearson.onl>
+Jakub Wilk <jwilk@jwilk.net>
+Marco Bonelli <marco@mebeim.net>
+Matt Jolly <Matt.Jolly@footclan.ninja>
+Mickaël Salaün <mic@digikod.net>
+Nate Eldredge <nate@thatsmathematics.com>
+Oskari Pirhonen <xxc3ncoredxx@gmail.com>
+Patrick Reader <_@pxeger.com>
+Paul Eggert <eggert@cs.ucla.edu>
+Paul Smith <psmith@gnu.org>
+Ralph Corderoy <ralph@inputplus.co.uk>
+Rodrigo Campos <rodrigo@sdfg.com.ar>
+Samanta Navarro <ferivoz@riseup.net>
+Serge Hallyn <serge@hallyn.com>
+Simon Horman <simon.horman@corigine.com>
+Timo Stark <t.stark@nginx.com>
+Tom Schwindl <schwindl@posteo.de>
+"Valentin V. Bartenev" <vbartenev@gmail.com>
+Vincent Lefevre <vincent@vinc17.net>
+Vladislav Ivanishin <vlad@ispras.ru>
+Willem de Bruijn <willemb@google.com>
+Wu Zhenyu <wuzhenyu@ustc.edu>
+Yedidyah Bar David <didi@redhat.com>
+Younes Manton <younes.m@gmail.com>
+<imachug@yandex.ru>
+<pabeni@redhat.com>
+
+
+Apologies if I missed anyone!
+
+
+Newly documented interfaces in existing pages
+---------------------------------------------
+
+proc.5
+	KPF_PGTABLE			(Linux 4.18)
+
+landlock.7
+	LANDLOCK_ACCESS_FS_REFER	(Linux 5.19)
+	LANDLOCK_ACCESS_FS_TRUNCATE	(Linux 6.02)
+
+udp.7
+	UDP_GRO				(Linux 5.0)
+	UDP_SEGMENT			(Linux 4.18)
+
+
+Global changes
+--------------
+
+-  Sections:
+   -  Add HISTORY.
+   -  HISTORY: Restore C89 references.
+   -  Repurpose VERSIONS.
+   -  Simplify STANDARDS.
+   -  SYNOPSIS: Mark several functions as deprecated.
+
+-  Build system:
+   -  Support installing in different mandirs
+      (e.g., man3typedir='/usr/share/man/man3').
+   -  Support installing compressed pages (Z='.gz').
+   -  Support installing link pages as symlinks (LINK_PAGES='symlink').
+
+
+Changes to individual pages
+---------------------------
+
+The manual pages (and other files in the repository) have been improved
+beyond what this changelog covers.  To learn more about changes applied
+to individual pages, use git(1).
