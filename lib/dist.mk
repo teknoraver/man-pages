@@ -35,8 +35,8 @@ $(_DISTPAGES): $(_DISTDIR)/man%: $(srcdir)/man% FORCE | $$(@D)/
 	$(SED) -i "/^.TH/s/(date)/$$(git log --format=%cs -1 -- $<)/" $@
 
 $(_DISTOTHERS): $(_DISTDIR)/%: $(srcdir)/% | $$(@D)/
-	$(info INSTALL	$@)
-	$(INSTALL_DATA) -T $< $@
+	$(info CP	$@)
+	$(CP) -T $< $@
 
 
 $(DISTFILE): $(_DISTFILES) | $$(@D)/
