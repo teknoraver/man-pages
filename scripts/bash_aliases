@@ -65,7 +65,8 @@ man_section()
 				-e "/^\.SH $s/p" \
 				-e "/^\.SH $s/,/^\.SH/{/^\.SH/!p}";
 		 done;) \
-		|man -P cat -l - 2>/dev/null;
+		|mandoc -Tutf8 2>/dev/null \
+		|col -pbx;
 	done;
 }
 
