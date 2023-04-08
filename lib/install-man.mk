@@ -167,7 +167,8 @@ $(_manpages):
 		$@
 ifeq ($(LINK_PAGES),symlink)
 	if $(GREP) '^\.so ' <$@ >/dev/null; then \
-		$(SED) 's,^\.so \(.*\),../\1,' <$@ \
+		$(GREP) '\.so ' <$@ \
+		| $(SED) 's,^\.so \(.*\),../\1,' \
 		| $(XARGS) -I tgt $(LN) -fsT tgt $@; \
 	fi
 endif
