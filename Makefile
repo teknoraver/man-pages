@@ -176,6 +176,7 @@ help-variables:
 	$(info	MAN2HTML	{EXTRA_,}MAN2HTMLFLAGS)
 	$(info	)
 	$(info	BZIP2)
+	$(info	CP)
 	$(info	ECHO)
 	$(info	EXPR)
 	$(info	FIND)
