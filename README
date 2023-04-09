@@ -94,3 +94,31 @@ See also
 
    Website
        <http://www.kernel.org/doc/man-pages/index.html>.
+
+   Downstream packages
+       Arch man-pages
+             <https://archlinux.org/packages/core/any/man-pages/>
+       Debian manpages
+             <https://tracker.debian.org/pkg/manpages>
+       Fedora rpms/manpages
+             <https://src.fedoraproject.org/rpms/man-pages>
+       Gentoo sys-apps/man-pages
+             <https://packages.gentoo.org/packages/sys-apps/man-pages>
+       openSUSE man-pages
+             <https://software.opensuse.org/package/man-pages>
+
+   Related projects
+       Debian manpages-l10n
+             <https://manpages-l10n-team.pages.debian.net/manpages-l10n/>
+       GNU C Library (glibc)
+             <https://www.gnu.org/software/libc/>
+       GNU Compiler Collection (GCC)
+             <https://gcc.gnu.org/>
+       GNU roff (groff)
+             <https://www.gnu.org/software/groff/>
+       Linux kernel
+             <https://www.kernel.org/doc/html/latest/
+       man-db
+             <https://man-db.gitlab.io/man-db/>
+       mandoc
+             <https://mandoc.bsd.lv/>
