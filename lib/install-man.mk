@@ -23,10 +23,11 @@ endif
 
 Z :=
 ifeq ($(Z),)
+else ifeq ($(Z),.bz2)
 else ifeq ($(Z),.gz)
 else
 $(warning "Z": "$(Z)")
-$(error Valid values for "Z": ["", ".gz"])
+$(error Valid values for "Z": ["", ".bz2", ".gz"])
 endif
 
 
@@ -172,7 +173,12 @@ ifeq ($(LINK_PAGES),symlink)
 		| $(XARGS) -I tgt $(LN) -fsT tgt $@; \
 	fi
 endif
-ifeq ($(Z),.gz)
+ifeq ($(Z),.bz2)
+	if ! $(TEST) -L $@; then \
+		$(BZIP2) <$@ \
+		| $(SPONGE) $@; \
+	fi
+else ifeq ($(Z),.gz)
 	if ! $(TEST) -L $@; then \
 		$(GZIP) - <$@ \
 		| $(SPONGE) $@; \

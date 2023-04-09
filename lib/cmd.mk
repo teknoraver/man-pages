@@ -8,6 +8,7 @@ ifndef MAKEFILE_CMD_INCLUDED
 MAKEFILE_CMD_INCLUDED := 1
 
 
+BZIP2      := bzip2
 CP         := cp
 ECHO       := echo
 EXPR       := expr
