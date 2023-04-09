@@ -24,7 +24,7 @@ _DISTPAGES  := $(filter     $(_DISTDIR)/man%,$(_DISTFILES))
 _DISTOTHERS := $(filter-out $(_DISTDIR)/man%,$(_DISTFILES))
 
 DISTFILE    := $(builddir)/$(DISTNAME).tar
-compression := gz xz
+compression := bz2 gz xz
 dist        := $(foreach x,$(compression),dist-$(x))
 
 
@@ -46,6 +46,10 @@ $(DISTFILE): $(_DISTFILES) | $$(@D)/
 	| $(SED) 's,^,$(_DISTDIR)/,' \
 	| $(XARGS) $(TAR) rf $@ -C $(srcdir) \
 		--transform 's,^$(_DISTDIR),$(DISTNAME),'
+
+$(DISTFILE).bz2: %.bz2: % | $$(@D)/
+	$(info BZIP2	$@)
+	$(BZIP2) -kf $<
 
 $(DISTFILE).gz: %.gz: % | $$(@D)/
 	$(info GZIP	$@)

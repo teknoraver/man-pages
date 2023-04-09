@@ -102,6 +102,7 @@ help:
 	$(info	)
 	$(info	dist			Wrapper for dist-* targets)
 	$(info	dist-tar		Create a tarball of the repository)
+	$(info	dist-bz2		Create a compressed tarball (.tar.bz2))
 	$(info	dist-gz			Create a compressed tarball (.tar.gz))
 	$(info	dist-xz			Create a compressed tarball (.tar.xz))
 	$(info	)
