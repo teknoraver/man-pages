@@ -25,6 +25,7 @@ Description
        Relevant mailing lists may include:
 
            Cc: LKML <linux-kernel@vger.kernel.org>
+           Cc: Linux API <linux-api@vger.kernel.org>
            Cc: Glibc <libc-alpha@sourceware.org>
 
        For other kernel mailing lists and maintainers, check the <MAINTAINERS>
