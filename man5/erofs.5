@@ -11,13 +11,17 @@ is a create-once read-only filesystem,
 with support for compression and a multi-device backing store.
 .PP
 There are two inode formats:
-.br
-\[bu] 32-byte compact with 16-bit UID/GID, 32-bit file size, and no file times,
-and
-.br
-\[bu] 64-byte extended with 32-bit UID/GID, 64-bit file size,
+.IP \[bu] 3
+32-byte compact with 16-bit UID/GID,
+32-bit file size,
+and no file times
+.PD 0
+.IP \[bu]
+64-byte extended with 32-bit UID/GID,
+64-bit file size,
 and a modification time
 .RI ( st_mtim ).
+.PD
 .\" See fs/erofs/super.c:shmem_parse_options for options it supports.
 .SS Mount options
 .TP
