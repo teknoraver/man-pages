@@ -206,11 +206,7 @@ Bugs
 See also
        man-pages(7)
 
-       <https://www.kernel.org/doc/man-pages/contributing.html>
        <https://www.kernel.org/doc/man-pages/linux-man-ml.html>
-       <https://www.kernel.org/doc/man-pages/patches.html>
-       <https://www.kernel.org/doc/man-pages/reporting_bugs.html>
-       <https://www.kernel.org/doc/man-pages/reporting_code_bugs.html>
        <https://www.kernel.org/doc/man-pages/missing_pages.html>
        <https://www.kernel.org/doc/man-pages/code_of_conduct.html>
        <https://www.kernel.org/doc/Documentation/process/submitting-patches.rst>
