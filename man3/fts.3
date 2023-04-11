@@ -23,8 +23,8 @@ Standard C library
 .B #include <sys/stat.h>
 .B #include <fts.h>
 .PP
-.BI "FTS *fts_open(char * const *" path_argv ", int " options ,
-.BI "              int (*" compar ")(const FTSENT **, const FTSENT **));"
+.BI "FTS *fts_open(char *const *" path_argv ", int " options ,
+.BI "              int (*_Nullable " compar ")(const FTSENT **, const FTSENT **));"
 .PP
 .BI "FTSENT *fts_read(FTS *" ftsp );
 .PP
