@@ -722,6 +722,17 @@ for any of the errors specified for
 and
 .BR malloc (3).
 .PP
+In addition,
+.BR fts_open ()
+may fail and set
+.I errno
+as follows:
+.TP
+.B ENOENT
+Any element of
+.I path_argv
+was an empty string.
+.PP
 The function
 .BR fts_close ()
 may fail and set
