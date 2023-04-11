@@ -14,6 +14,7 @@ include $(srcdir)/lib/verbose.mk
 
 DISTNAME    := $(shell $(GIT) describe $(HIDE_ERR))
 DISTVERSION := $(patsubst man-pages-%,%,$(DISTNAME))
+DISTDATE    := $(shell $(GIT) log -1 --format='%aD')
 
 
 endif  # MAKEFILE_VERSION_INCLUDED

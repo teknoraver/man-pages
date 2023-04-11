@@ -18,6 +18,13 @@ include $(srcdir)/lib/verbose.mk
 
 _DISTDIR := $(builddir)/dist
 
+DEFAULT_TARFLAGS := --sort=name
+DEFAULT_TARFLAGS += --owner=root:0
+DEFAULT_TARFLAGS += --group=root:0
+DEFAULT_TARFLAGS += --mtime='$(DISTDATE)'
+EXTRA_TARFLAGS   :=
+TARFLAGS         := $(DEFAULT_TARFLAGS) $(EXTRA_TARFLAGS)
+
 DISTFILES   := $(shell $(GIT) ls-files $(HIDE_ERR) | $(SED) 's,^,$(srcdir)/,')
 _DISTFILES  := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))
 _DISTPAGES  := $(filter     $(_DISTDIR)/man%,$(_DISTFILES))
@@ -41,10 +48,10 @@ $(_DISTOTHERS): $(_DISTDIR)/%: $(srcdir)/% | $$(@D)/
 
 $(DISTFILE): $(_DISTFILES) | $$(@D)/
 	$(info TAR	$@)
-	$(TAR) cf $@ -T /dev/null
+	$(TAR) $(TARFLAGS) -cf $@ -T /dev/null
 	$(GIT) ls-files \
 	| $(SED) 's,^,$(_DISTDIR)/,' \
-	| $(XARGS) $(TAR) rf $@ -C $(srcdir) \
+	| $(XARGS) $(TAR) $(TARFLAGS) -rf $@ -C $(srcdir) \
 		--transform 's,^$(_DISTDIR),$(DISTNAME),'
 
 $(DISTFILE).bz2: %.bz2: % | $$(@D)/
