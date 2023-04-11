@@ -58,7 +58,7 @@ GROTTY              := grotty
 _MAN_tbl       := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.tbl,$(NONSO_MAN))
 _MAN_eqn       := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.eqn,$(NONSO_MAN))
 _CATMAN_troff  := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.troff,$(NONSO_MAN))
-_CATMAN_grotty := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.grotty,$(NONSO_MAN))
+_CATMAN_set    := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.set,$(NONSO_MAN))
 _CATMAN        := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat,$(NONSO_MAN))
 
 
@@ -75,11 +75,11 @@ $(_CATMAN_troff): %.cat.troff: %.eqn | $$(@D)/
 	$(EQN) -T$(NROFF_OUT_DEVICE) $(EQNFLAGS) <$< 2>&1 >$@ \
 	| ( ! $(GREP) ^ )
 
-$(_CATMAN_grotty): %.cat.grotty: %.cat.troff | $$(@D)/
+$(_CATMAN_set): %.cat.set: %.cat.troff | $$(@D)/
 	$(info	TROFF	$@)
 	$(TROFF) -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS) <$< >$@
 
-$(_CATMAN): %.cat: %.cat.grotty | $$(@D)/
+$(_CATMAN): %.cat: %.cat.set | $$(@D)/
 	$(info	GROTTY	$@)
 	$(GROTTY) $(GROTTYFLAGS) <$< >$@
 
@@ -97,7 +97,7 @@ build-catman-eqn: $(_CATMAN_troff)
 	@:
 
 .PHONY: build-catman-troff
-build-catman-troff: $(_CATMAN_grotty)
+build-catman-troff: $(_CATMAN_set)
 	@:
 
 .PHONY: build-catman-grotty
