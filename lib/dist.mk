@@ -50,6 +50,7 @@ $(DISTFILE): $(_DISTFILES) | $$(@D)/
 $(DISTFILE).bz2: %.bz2: % | $$(@D)/
 	$(info BZIP2	$@)
 	$(BZIP2) -kf $<
+	touch $@
 
 $(DISTFILE).gz: %.gz: % | $$(@D)/
 	$(info GZIP	$@)
