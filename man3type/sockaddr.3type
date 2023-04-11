@@ -117,6 +117,14 @@ POSIX.1-2001.
 was invented by POSIX.
 See also
 .BR accept (2).
+.PP
+These structures were invented before modern ISO C strict-aliasing rules.
+If aliasing rules are applied strictly,
+these structures would be extremely difficult to use
+without invoking Undefined Behavior.
+POSIX Issue 8 will fix this by requiring that implementations
+make sure that these structures
+can be safely used as they were designed.
 .SH NOTES
 .I socklen_t
 is also defined in
