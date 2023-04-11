@@ -95,17 +95,12 @@ Description
 
             -  Create the tarball:
 
-                   $ make dist
-
-               Since it takes a few seconds, you may prefer to run it in
-               parallel:
-
-                   $ make -j dist
+                   $ make -Bj4 dist
 
                Alternatively, you may want to only create a specific kind of
                tarball with one of the following targets:
 
-                   $ make dist-tar dist-xz dist-gz
+                   $ make -Bj4 dist-tar dist-xz dist-gz
 
             -  Sign the tarball:
 
@@ -195,9 +190,9 @@ Files
        Linux software map.  See also <https://lsm.qqx.org/>.
 
    .tmp/man-pages-<version>.tar{,.xz,.gz}
-       Generated tarballs.  You can generate all with 'make dist', or generate
-       only some of them, with 'make dist-tar', 'make dist-xz', or
-       'make dist-gz'.
+       Generated tarballs.  You can generate all with 'make -B dist', or
+       generate only some of them, with 'make -B dist-tar', 'make -B dist-xz',
+       or 'make -B dist-gz'.
 
 Versions
        Use the DISTVERSION variable when running make(1) to specify a version
@@ -205,7 +200,7 @@ Versions
        This needs to be done from the git repository, and won't work from an
        extracted tarball.
 
-           $ make dist-xz DISTVERSION=6.01+43
+           $ make -B dist-xz DISTVERSION=6.01+43
 
 Caveats
        The version and date of last modification for each page is hardcoded
