@@ -32,7 +32,7 @@ $(_DISTPAGES): $(_DISTDIR)/man%: $(srcdir)/man% | $$(@D)/
 	$(info INSTALL	$@)
 	$(INSTALL_DATA) -T $< $@
 	$(SED) -i '/^.TH/s/(unreleased)/$(DISTVERSION)/' $@
-	$(SED) -i "/^.TH/s/(date)/$$(git log --format=%cs -1 -- $<)/" $@
+	$(SED) -i "/^.TH/s/(date)/$$(git log --format=%cs -1 -- $< $(HIDE_ERR))/" $@
 
 $(_DISTOTHERS): $(_DISTDIR)/%: $(srcdir)/% | $$(@D)/
 	$(info CP	$@)
