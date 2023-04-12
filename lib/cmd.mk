@@ -20,6 +20,7 @@ HEAD       := head
 INSTALL    := install
 LN         := ln
 LOCALE     := locale
+LZIP       := lzip
 PKGCONF    := pkgconf
 SED        := sed
 SORT       := sort

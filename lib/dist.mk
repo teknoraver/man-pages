@@ -31,7 +31,7 @@ _DISTPAGES  := $(filter     $(_DISTDIR)/man%,$(_DISTFILES))
 _DISTOTHERS := $(filter-out $(_DISTDIR)/man%,$(_DISTFILES))
 
 DISTFILE    := $(builddir)/$(DISTNAME).tar
-compression := bz2 gz xz
+compression := bz2 gz lz xz
 dist        := $(foreach x,$(compression),dist-$(x))
 
 
@@ -62,6 +62,11 @@ $(DISTFILE).bz2: %.bz2: % | $$(@D)/
 $(DISTFILE).gz: %.gz: % | $$(@D)/
 	$(info GZIP	$@)
 	$(GZIP) -knf $<
+
+$(DISTFILE).lz: %.lz: % | $$(@D)/
+	$(info LZIP	$@)
+	$(LZIP) -kf $<
+	touch $@
 
 $(DISTFILE).xz: %.xz: % | $$(@D)/
 	$(info XZ	$@)
