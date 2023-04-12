@@ -134,7 +134,7 @@ include $(srcdir)/lib/verbose.mk
 help-variables:
 	$(info	V		Define to non-empty string for verbose output)
 	$(info	)
-	$(info	LINK_PAGES	How to install link pages.  ["so", "symlink"])
+	$(info	LINK_PAGES	How to install link pages.  [".so", "symlink"])
 	$(info	Z		Install pages compressed.  ["", ".bz2", ".gz", ".lz", ".xz"])
 	$(info	)
 	$(info	DISTNAME	$$(git describe))
