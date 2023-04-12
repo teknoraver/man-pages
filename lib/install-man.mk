@@ -25,9 +25,10 @@ Z :=
 ifeq ($(Z),)
 else ifeq ($(Z),.bz2)
 else ifeq ($(Z),.gz)
+else ifeq ($(Z),.lz)
 else
 $(warning "Z": "$(Z)")
-$(error Valid values for "Z": ["", ".bz2", ".gz"])
+$(error Valid values for "Z": ["", ".bz2", ".gz", ".lz"])
 endif
 
 
@@ -181,6 +182,11 @@ ifeq ($(Z),.bz2)
 else ifeq ($(Z),.gz)
 	if ! $(TEST) -L $@; then \
 		$(GZIP) - <$@ \
+		| $(SPONGE) $@; \
+	fi
+else ifeq ($(Z),.lz)
+	if ! $(TEST) -L $@; then \
+		$(LZIP) - <$@ \
 		| $(SPONGE) $@; \
 	fi
 endif
