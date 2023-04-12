@@ -13,9 +13,10 @@ ifeq ($(Z),)
 else ifeq ($(Z),.bz2)
 else ifeq ($(Z),.gz)
 else ifeq ($(Z),.lz)
+else ifeq ($(Z),.xz)
 else
 $(warning "Z": "$(Z)")
-$(error Valid values for "Z": ["", ".bz2", ".gz", ".lz"])
+$(error Valid values for "Z": ["", ".bz2", ".gz", ".lz", ".xz"])
 endif
 
 

@@ -180,6 +180,11 @@ else ifeq ($(Z),.lz)
 		$(LZIP) $(LZIPFLAGS) - <$@ \
 		| $(SPONGE) $@; \
 	fi
+else ifeq ($(Z),.xz)
+	if ! $(TEST) -L $@; then \
+		$(XZ) $(XZFLAGS) - <$@ \
+		| $(SPONGE) $@; \
+	fi
 endif
 
 $(_mandirs): %/: | $$(dir %) $(_mandir)/
