@@ -200,6 +200,29 @@ which causes round-robin selection of name servers from among those listed.
 This has the effect of spreading the query load among all listed servers,
 rather than having all clients try the first listed server first every time.
 .TP
+.B no\-aaaa (since glibc 2.36)
+.\" f282cdbe7f436c75864e5640a409a10485e9abb2
+Sets
+.B RES_NOAAAA
+in
+.IR _res.options ,
+which suppresses AAAA queries made by the stub resolver,
+including AAAA lookups triggered by NSS-based interfaces such as
+.BR getaddrinfo (3).
+Only DNS lookups are affected: IPv6 data in
+.BR hosts (5)
+is still used,
+.BR getaddrinfo (3)
+with
+.B AI_PASSIVE
+will stillproduce IPv6 addresses,
+and configured IPv6 name servers are still used.
+To produce correct Name Error (NXDOMAIN) results,
+AAAA queries are translated to A queries.
+This option is intended preliminary for diagnostic purposes,
+to rule out that AAAA DNS queries have adverse impact.
+It is incompatible with EDNS0 usage and DNSSEC validation by applications.
+.TP
 .B no\-check\-names
 .\" since glibc 2.2
 Sets
