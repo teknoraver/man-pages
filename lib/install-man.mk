@@ -9,6 +9,7 @@ MAKEFILE_INSTALL_MAN_INCLUDED := 1
 
 
 include $(srcdir)/lib/cmd.mk
+include $(srcdir)/lib/compress.mk
 include $(srcdir)/lib/install.mk
 include $(srcdir)/lib/src.mk
 
@@ -19,16 +20,6 @@ else ifeq ($(LINK_PAGES),symlink)
 else
 $(warning "LINK_PAGES": "$(LINK_PAGES)")
 $(error Valid values for "LINK_PAGES": [".so", "symlink"])
-endif
-
-Z :=
-ifeq ($(Z),)
-else ifeq ($(Z),.bz2)
-else ifeq ($(Z),.gz)
-else ifeq ($(Z),.lz)
-else
-$(warning "Z": "$(Z)")
-$(error Valid values for "Z": ["", ".bz2", ".gz", ".lz"])
 endif
 
 
@@ -176,17 +167,17 @@ ifeq ($(LINK_PAGES),symlink)
 endif
 ifeq ($(Z),.bz2)
 	if ! $(TEST) -L $@; then \
-		$(BZIP2) <$@ \
+		$(BZIP2) $(BZIP2FLAGS) <$@ \
 		| $(SPONGE) $@; \
 	fi
 else ifeq ($(Z),.gz)
 	if ! $(TEST) -L $@; then \
-		$(GZIP) - <$@ \
+		$(GZIP) $(GZIPFLAGS) - <$@ \
 		| $(SPONGE) $@; \
 	fi
 else ifeq ($(Z),.lz)
 	if ! $(TEST) -L $@; then \
-		$(LZIP) - <$@ \
+		$(LZIP) $(LZIPFLAGS) - <$@ \
 		| $(SPONGE) $@; \
 	fi
 endif

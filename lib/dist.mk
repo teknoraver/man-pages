@@ -10,6 +10,7 @@ MAKEFILE_DIST_INCLUDED := 1
 
 include $(srcdir)/lib/build.mk
 include $(srcdir)/lib/cmd.mk
+include $(srcdir)/lib/compress.mk
 include $(srcdir)/lib/install.mk
 include $(srcdir)/lib/version.mk
 include $(srcdir)/lib/verbose.mk
@@ -56,21 +57,21 @@ $(DISTFILE): $(_DISTFILES) | $$(@D)/
 
 $(DISTFILE).bz2: %.bz2: % | $$(@D)/
 	$(info BZIP2	$@)
-	$(BZIP2) -kf $<
+	$(BZIP2) $(BZIP2FLAGS) -kf $<
 	touch $@
 
 $(DISTFILE).gz: %.gz: % | $$(@D)/
 	$(info GZIP	$@)
-	$(GZIP) -knf $<
+	$(GZIP) $(GZIPFLAGS) -knf $<
 
 $(DISTFILE).lz: %.lz: % | $$(@D)/
 	$(info LZIP	$@)
-	$(LZIP) -kf $<
+	$(LZIP) $(LZIPFLAGS) -kf $<
 	touch $@
 
 $(DISTFILE).xz: %.xz: % | $$(@D)/
 	$(info XZ	$@)
-	$(XZ) -kf $<
+	$(XZ) $(XZFLAGS) -kf $<
 
 
 .PHONY: dist-tar
