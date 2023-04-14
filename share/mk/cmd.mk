@@ -21,6 +21,7 @@ INSTALL    := install
 LN         := ln
 LOCALE     := locale
 LZIP       := lzip
+MANDOC     := mandoc
 PKGCONF    := pkgconf
 SED        := sed
 SORT       := sort

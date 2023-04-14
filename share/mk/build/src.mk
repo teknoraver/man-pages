@@ -52,7 +52,6 @@ LDLIBS         := $(DEFAULT_LDLIBS) $(EXTRA_LDLIBS)
 
 CC  := cc
 LD  := $(CC) $(CFLAGS)
-MAN := man
 
 
 _SRCPAGEDIRS   := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.d,$(NONSO_MAN))
@@ -84,7 +83,7 @@ $(_UNITS_src_src):
 		-e '/^\.TH/,/^\.SH/{/^\.SH/!p}' \
 		-e '/^\.SH EXAMPLES/p' \
 		-e "/^\... SRC BEGIN ($(@F))$$/,/^\... SRC END$$/p" \
-	| $(MAN) -P cat -l - \
+	| $(MANDOC) -Tutf8 \
 	| $(SED) '/^[^ ]/d' \
 	| $(SED) 's/^       //' \
 	>$@

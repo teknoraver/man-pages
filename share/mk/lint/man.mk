@@ -18,7 +18,6 @@ DEFAULT_MANDOCFLAGS := -man
 DEFAULT_MANDOCFLAGS += -Tlint
 EXTRA_MANDOCFLAGS   :=
 MANDOCFLAGS         := $(DEFAULT_MANDOCFLAGS) $(EXTRA_MANDOCFLAGS)
-MANDOC              := mandoc
 
 
 _LINT_man_mandoc:=$(patsubst $(MANDIR)/%,$(_MANDIR)/%.lint-man.mandoc.touch,$(NONSO_MAN))

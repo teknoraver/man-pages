@@ -106,7 +106,7 @@ Description
              -  clang-tidy(1)
              -  cpplint(1)
              -  iwyu(1)
-             -  man(1)
+             -  mandoc(1)
              -  mkdir(1)
              -  pkg-config(1)
              -  tac(1)

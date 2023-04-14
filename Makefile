@@ -176,7 +176,6 @@ help-variables:
 	$(info	GROTTY		{EXTRA_,}GROTTYFLAGS)
 	$(info	COL		{EXTRA_,}COLFLAGS)
 	$(info	)
-	$(info	MAN)
 	$(info	MANDOC		{EXTRA_,}MANDOCFLAGS)
 	$(info	MAN2HTML	{EXTRA_,}MAN2HTMLFLAGS)
 	$(info	)
