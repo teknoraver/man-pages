@@ -131,6 +131,7 @@ include $(srcdir)/lib/lint-man.mk
 include $(srcdir)/lib/verbose.mk
 
 
+.PHONY: help-variables
 help-variables:
 	$(info	V		Define to non-empty string for verbose output)
 	$(info	)
