@@ -60,11 +60,9 @@ _SRCPAGEDIRS   := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.d,$(NONSO_MAN))
 _UNITS_src_src := $(patsubst $(MANDIR)/%,$(_MANDIR)/%,$(shell \
 		$(FIND) $(MANDIR)/man*/ -type f \
 		| $(GREP) '$(MANEXT)' \
-		| $(XARGS) $(GREP) -l '^\.TH ' \
-		| while read m; do \
-		    <$$m \
-		    $(SED) -n "s,^\... SRC BEGIN (\(.*.[ch]\))$$,$$m.d/\1,p"; \
-		done \
+		| $(XARGS) $(GREP) -H '^\.\\" SRC BEGIN ' \
+		| $(SED) 's,:\.\\" SRC BEGIN (,.d/,' \
+		| $(SED) 's/)//' \
 		| $(SORT)))
 _UNITS_src_h   := $(filter %.h,$(_UNITS_src_src))
 _UNITS_src_c   := $(filter %.c,$(_UNITS_src_src))
