@@ -34,8 +34,8 @@ $(_MANDIRS): %/: | $$(dir %) $(_MANDIR)/
 
 
 $(builddir)/%/:
-	+$(info MKDIR	$(@D)/)
-	+$(MKDIR) $(@D)
+	+$(info MKDIR	$@)
+	+$(MKDIR) $@
 
 
 .PHONY: build
