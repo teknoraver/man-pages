@@ -8,10 +8,10 @@ ifndef MAKEFILE_BUILD_SRC_INCLUDED
 MAKEFILE_BUILD_SRC_INCLUDED := 1
 
 
-include $(srcdir)/lib/build.mk
-include $(srcdir)/lib/cmd.mk
-include $(srcdir)/lib/src.mk
-include $(srcdir)/lib/verbose.mk
+include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/verbose.mk
 
 
 PKGCONF_LIBS := libbsd-overlay

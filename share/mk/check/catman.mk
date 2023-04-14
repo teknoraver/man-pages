@@ -8,11 +8,11 @@ ifndef MAKEFILE_CHECK_CATMAN_INCLUDED
 MAKEFILE_CHECK_CATMAN_INCLUDED := 1
 
 
-include $(srcdir)/lib/cmd.mk
-include $(srcdir)/lib/build.mk
-include $(srcdir)/lib/build-catman.mk
-include $(srcdir)/lib/check.mk
-include $(srcdir)/lib/src.mk
+include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/build/catman.mk
+include $(MAKEFILEDIR)/check/_.mk
+include $(MAKEFILEDIR)/src.mk
 
 
 DEFAULT_COLFLAGS := -b

@@ -90,7 +90,7 @@ Description
 
             In case you're creating a tarball for distributing a random
             commit, it might be interesting to tweak a few parameters; check
-            the variables available at <lib/dist.mk>, and any makefiles
+            the variables available at <share/mk/dist.mk>, and any makefiles
             included by that one.  See the "Versions" section below.
 
             -  Create the tarball:
@@ -182,7 +182,7 @@ Files
    Changes, Changes.old
        Change log.  Includes most relevant changes.
 
-   Makefile, lib/dist.mk, lib/version.mk
+   Makefile, share/mk/dist.mk, share/mk/version.mk
        Main makefiles used for releasing (however, others may also be used by
        inclusion).
 

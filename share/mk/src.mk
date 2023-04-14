@@ -8,7 +8,7 @@ ifndef MAKEFILE_SRC_INCLUDED
 MAKEFILE_SRC_INCLUDED := 1
 
 
-include $(srcdir)/lib/cmd.mk
+include $(MAKEFILEDIR)/cmd.mk
 
 
 MANDIR := $(srcdir)

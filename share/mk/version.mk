@@ -8,8 +8,8 @@ ifndef MAKEFILE_VERSION_INCLUDED
 MAKEFILE_VERSION_INCLUDED := 1
 
 
-include $(srcdir)/lib/cmd.mk
-include $(srcdir)/lib/verbose.mk
+include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/verbose.mk
 
 
 DISTNAME    := $(shell $(GIT) describe $(HIDE_ERR))

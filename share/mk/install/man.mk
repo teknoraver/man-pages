@@ -8,10 +8,10 @@ ifndef MAKEFILE_INSTALL_MAN_INCLUDED
 MAKEFILE_INSTALL_MAN_INCLUDED := 1
 
 
-include $(srcdir)/lib/cmd.mk
-include $(srcdir)/lib/compress.mk
-include $(srcdir)/lib/install.mk
-include $(srcdir)/lib/src.mk
+include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/compress.mk
+include $(MAKEFILEDIR)/install/_.mk
+include $(MAKEFILEDIR)/src.mk
 
 
 LINK_PAGES := .so

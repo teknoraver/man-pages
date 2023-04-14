@@ -8,10 +8,10 @@ ifndef MAKEFILE_LINT_MAN_INCLUDED
 MAKEFILE_LINT_MAN_INCLUDED := 1
 
 
-include $(srcdir)/lib/cmd.mk
-include $(srcdir)/lib/build.mk
-include $(srcdir)/lib/lint.mk
-include $(srcdir)/lib/src.mk
+include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/lint/_.mk
+include $(MAKEFILEDIR)/src.mk
 
 
 DEFAULT_MANDOCFLAGS := -man

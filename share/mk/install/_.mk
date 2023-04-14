@@ -8,7 +8,7 @@ ifndef MAKEFILE_INSTALL_INCLUDED
 MAKEFILE_INSTALL_INCLUDED := 1
 
 
-include $(srcdir)/lib/cmd.mk
+include $(MAKEFILEDIR)/cmd.mk
 
 
 DESTDIR :=

@@ -8,9 +8,9 @@ ifndef MAKEFILE_BUILD_CATMAN_INCLUDED
 MAKEFILE_BUILD_CATMAN_INCLUDED := 1
 
 
-include $(srcdir)/lib/build.mk
-include $(srcdir)/lib/cmd.mk
-include $(srcdir)/lib/src.mk
+include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/src.mk
 
 
 TMACDIR := $(SYSCONFDIR)/groff/tmac

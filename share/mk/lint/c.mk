@@ -8,9 +8,9 @@ ifndef MAKEFILE_LINT_C_INCLUDED
 MAKEFILE_LINT_C_INCLUDED := 1
 
 
-include $(srcdir)/lib/build-src.mk
-include $(srcdir)/lib/cmd.mk
-include $(srcdir)/lib/lint.mk
+include $(MAKEFILEDIR)/build/src.mk
+include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/lint/_.mk
 
 
 DEFAULT_CHECKPATCHFLAGS :=

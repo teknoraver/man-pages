@@ -8,16 +8,16 @@ ifndef MAKEFILE_DIST_INCLUDED
 MAKEFILE_DIST_INCLUDED := 1
 
 
-include $(srcdir)/lib/build.mk
-include $(srcdir)/lib/cmd.mk
-include $(srcdir)/lib/compress.mk
-include $(srcdir)/lib/install.mk
-include $(srcdir)/lib/version.mk
-include $(srcdir)/lib/verbose.mk
-
+include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/compress.mk
+include $(MAKEFILEDIR)/install/_.mk
+include $(MAKEFILEDIR)/version.mk
+include $(MAKEFILEDIR)/verbose.mk
 
 
 _DISTDIR := $(builddir)/dist
+
 
 DEFAULT_TARFLAGS := --sort=name
 DEFAULT_TARFLAGS += --owner=root:0
@@ -25,6 +25,7 @@ DEFAULT_TARFLAGS += --group=root:0
 DEFAULT_TARFLAGS += --mtime='$(DISTDATE)'
 EXTRA_TARFLAGS   :=
 TARFLAGS         := $(DEFAULT_TARFLAGS) $(EXTRA_TARFLAGS)
+
 
 DISTFILES   := $(shell $(GIT) ls-files $(HIDE_ERR) | $(SED) 's,^,$(srcdir)/,')
 _DISTFILES  := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))

@@ -37,7 +37,9 @@ MAKEFLAGS += --no-print-directory
 MAKEFLAGS += --warn-undefined-variables
 
 
-srcdir := .
+srcdir      := .
+DATAROOTDIR := $(srcdir)/share
+MAKEFILEDIR := $(DATAROOTDIR)/mk
 
 
 .PHONY: all
@@ -115,20 +117,20 @@ help:
 .SECONDEXPANSION:
 
 
-include $(srcdir)/lib/check.mk
-include $(srcdir)/lib/check-catman.mk
-include $(srcdir)/lib/build.mk
-include $(srcdir)/lib/build-catman.mk
-include $(srcdir)/lib/build-html.mk
-include $(srcdir)/lib/build-src.mk
-include $(srcdir)/lib/dist.mk
-include $(srcdir)/lib/install.mk
-include $(srcdir)/lib/install-html.mk
-include $(srcdir)/lib/install-man.mk
-include $(srcdir)/lib/lint.mk
-include $(srcdir)/lib/lint-c.mk
-include $(srcdir)/lib/lint-man.mk
-include $(srcdir)/lib/verbose.mk
+include $(MAKEFILEDIR)/check/_.mk
+include $(MAKEFILEDIR)/check/catman.mk
+include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/build/catman.mk
+include $(MAKEFILEDIR)/build/html.mk
+include $(MAKEFILEDIR)/build/src.mk
+include $(MAKEFILEDIR)/dist.mk
+include $(MAKEFILEDIR)/install/_.mk
+include $(MAKEFILEDIR)/install/html.mk
+include $(MAKEFILEDIR)/install/man.mk
+include $(MAKEFILEDIR)/lint/_.mk
+include $(MAKEFILEDIR)/lint/c.mk
+include $(MAKEFILEDIR)/lint/man.mk
+include $(MAKEFILEDIR)/verbose.mk
 
 
 .PHONY: help-variables
