@@ -1633,7 +1633,10 @@ a new process inherits its parent's
 setting.
 A process must be privileged
 .RB ( CAP_SYS_RESOURCE )
-to update this file.
+to update this file,
+although a process can always increase its own
+.I oom_adj
+setting (since Linux 2.6.20).
 .IP
 Since Linux 2.6.36, use of this file is deprecated in favor of
 .IR /proc/ pid /oom_score_adj .
