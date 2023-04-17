@@ -130,20 +130,20 @@ Description
        can be used.
 
 Files
-   Makefile, lib/install-man.mk, lib/install.mk
+   Makefile, share/mk/install-man.mk, share/mk/install.mk
        Main makefiles for installing (however, others may also be used by
        inclusion).
 
-   lib/cmd.mk
+   share/mk/cmd.mk
        Command variables.
 
-   lib/install-html.mk
+   share/mk/install-html.mk
        Makefile to install HTML manual pages.
 
-   lib/verbose.mk
+   share/mk/verbose.mk
        Handle verbose settings.
 
-   lib/*.mk
+   share/mk/*
        Other makefiles.
 
    man*/*
