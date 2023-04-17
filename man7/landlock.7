@@ -394,11 +394,14 @@ accessible through these system call families:
 Future Landlock evolutions will enable to restrict them.
 .SH EXAMPLES
 We first need to create the ruleset that will contain our rules.
+.PP
 For this example,
 the ruleset will contain rules that only allow read actions,
 but write actions will be denied.
 The ruleset then needs to handle both of these kinds of actions.
-See below for the description of filesystem actions.
+See the
+.B DESCRIPTION
+section for the description of filesystem actions.
 .PP
 .in +4n
 .EX
@@ -421,7 +424,65 @@ attr.handled_access_fs =
         LANDLOCK_ACCESS_FS_MAKE_SYM |
         LANDLOCK_ACCESS_FS_REFER |
         LANDLOCK_ACCESS_FS_TRUNCATE;
+.EE
+.in
+.PP
+To be compatible with older Linux versions,
+we detect the available Landlock ABI version,
+and only use the available subset of access rights:
+.PP
+.in +4n
+.EX
+/*
+ * Table of available file system access rights by ABI version,
+ * numbers hardcoded to keep the example short.
+ */
+__u64 landlock_fs_access_rights[] = {
+    (1ULL << 13) \- 1,  /* ABI v1                 */
+    (1ULL << 14) \- 1,  /* ABI v2: add "refer"    */
+    (1ULL << 15) \- 1,  /* ABI v3: add "truncate" */
+};
 
+int abi = landlock_create_ruleset(NULL, 0,
+                                  LANDLOCK_CREATE_RULESET_VERSION);
+if (abi <= 0) {
+    /*
+     * Kernel too old, not compiled with Landlock,
+     * or Landlock was not enabled at boot time.
+     */
+    perror("Giving up \- No Landlock support");
+    exit(EXIT_FAILURE);
+}
+abi = MIN(abi, 3);
+
+/* Only use the available rights in the ruleset. */
+attr.handled_access_fs &= landlock_fs_access_rights[abi \- 1];
+.EE
+.in
+.PP
+The available access rights for each ABI version are listed in the
+.B VERSIONS
+section.
+.PP
+If our program needed to create hard links
+or rename files between different directories
+.RB ( LANDLOCK_ACCESS_FS_REFER ),
+we would require the following change to the backwards compatibility logic:
+Directory reparenting is not possible
+in a process restricted with Landlock ABI version 1.
+Therefore,
+if the program needed to do file reparenting,
+and if only Landlock ABI version 1 was available,
+we could not restrict the process.
+.PP
+Now that the ruleset attributes are determined,
+we create the Landlock ruleset
+and acquire a file descriptor as a handle to it,
+using
+.BR landlock_create_ruleset (2):
+.PP
+.in +4n
+.EX
 ruleset_fd = landlock_create_ruleset(&attr, sizeof(attr), 0);
 if (ruleset_fd == \-1) {
     perror("Failed to create a ruleset");
@@ -430,9 +491,13 @@ if (ruleset_fd == \-1) {
 .EE
 .in
 .PP
-We can now add a new rule to this ruleset thanks to the returned file
-descriptor referring to this ruleset.
-The rule will only allow reading the file hierarchy
+We can now add a new rule to the ruleset through the ruleset's file descriptor.
+The requested access rights must be a subset of the access rights
+which were specified in
+.I attr.handled_access_fs
+at ruleset creation time.
+.PP
+In this example, the rule will only allow reading the file hierarchy
 .IR /usr .
 Without another rule, write actions would then be denied by the ruleset.
 To add
