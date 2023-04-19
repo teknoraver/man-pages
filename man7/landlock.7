@@ -445,7 +445,7 @@ __u64 landlock_fs_access_rights[] = {
 
 int abi = landlock_create_ruleset(NULL, 0,
                                   LANDLOCK_CREATE_RULESET_VERSION);
-if (abi <= 0) {
+if (abi == \-1) {
     /*
      * Kernel too old, not compiled with Landlock,
      * or Landlock was not enabled at boot time.
