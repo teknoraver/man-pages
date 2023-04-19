@@ -80,9 +80,11 @@ The
 .I nmatch
 and
 .I pmatch
-arguments to
 .BR regexec ()
-are ignored if the pattern buffer supplied was compiled with this flag set.
+arguments will be ignored for this purpose (but
+.I pmatch
+may still be used for
+.BR REG_STARTEND ).
 .TP
 .B REG_NEWLINE
 Match-any-character operators don't match a newline.
