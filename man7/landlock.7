@@ -451,7 +451,7 @@ if (abi == \-1) {
      * or Landlock was not enabled at boot time.
      */
     perror("Unable to use Landlock");
-    exit(EXIT_FAILURE);
+    return;  /* Graceful fallback: Do nothing. */
 }
 abi = MIN(abi, 3);
 
