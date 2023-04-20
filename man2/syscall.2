@@ -64,6 +64,12 @@ In general, a 0 return value indicates success.
 A \-1 return value indicates an error,
 and an error number is stored in
 .IR errno .
+.SH ERRORS
+.TP
+.B ENOSYS
+The requested system call number is not implemented.
+.PP
+Other errors are specific to the invoked system call.
 .SH NOTES
 .BR syscall ()
 first appeared in
