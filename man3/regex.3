@@ -26,8 +26,8 @@ Standard C library
 .BI "            int " eflags );
 .PP
 .BI "size_t regerror(int " errcode ", const regex_t *_Nullable restrict " preg ,
-.BI "            char " errbuf "[restrict ." errbuf_size "], \
-size_t " errbuf_size );
+.BI "            char " errbuf "[_Nullable restrict ." errbuf_size ],
+.BI "            size_t " errbuf_size );
 .BI "void regfree(regex_t *" preg );
 .fi
 .SH DESCRIPTION
