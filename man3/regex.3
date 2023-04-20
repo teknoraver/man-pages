@@ -38,21 +38,13 @@ for subsequent
 .BR regexec ()
 searches.
 .PP
-.BR regcomp ()
-is supplied with
-.IR preg ,
-a pointer to a pattern buffer storage area;
-.IR regex ,
-a pointer to the null-terminated string and
-.IR cflags ,
-flags used to determine the type of compilation.
-.PP
-All regular expression searching must be done via a compiled pattern
-buffer, thus
-.BR regexec ()
-must always be supplied with the address of a
-.BR regcomp ()-initialized
-pattern buffer.
+On success, the pattern buffer at
+.I *preg
+is initialized.
+.I regex
+is a null-terminated string.
+The locale must be the same when running
+.BR regexec ().
 .PP
 .I cflags
 is the
