@@ -43,7 +43,8 @@ main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    if ((fp = fopen(argv[1], "r")) == NULL) {
+    fp = fopen(argv[1], "r");
+    if (fp == NULL) {
         perror(argv[1]);
         exit(EXIT_FAILURE);
     }
