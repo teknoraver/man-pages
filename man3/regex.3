@@ -226,27 +226,20 @@ and
 .BR regexec ()
 into error message strings.
 .PP
-.BR regerror ()
-is passed the error code,
-.IR errcode ,
-the pattern buffer,
-.IR preg ,
-a pointer to a character string buffer,
-.IR errbuf ,
-and the size of the string buffer,
-.IR errbuf_size .
-It returns the size of the
-.I errbuf
-required to contain the null-terminated error message string.
-If both
-.I errbuf
-and
+If
+.I preg
+isn't a null pointer,
+.I errcode
+must be the latest error returned from an operation on
+.IR preg .
+.PP
+If
 .I errbuf_size
-are nonzero,
-.I errbuf
-is filled in with the first
-.I "errbuf_size \- 1"
-characters of the error message and a terminating null byte (\[aq]\e0\[aq]).
+isn't 0, up to
+.I errbuf_size
+bytes are copied to
+.IR errbuf ;
+the error string is always null-terminated, and truncated to fit.
 .SS Freeing
 .BR regfree ()
 deinitializes the pattern buffer at
@@ -263,6 +256,9 @@ returns zero for a successful compilation or an error code for failure.
 returns zero for a successful match or
 .B REG_NOMATCH
 for failure.
+.PP
+.BR regerror ()
+returns the size of the buffer required to hold the string.
 .SH ERRORS
 The following errors can be returned by
 .BR regcomp ():
