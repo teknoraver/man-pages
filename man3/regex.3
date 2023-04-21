@@ -60,6 +60,21 @@ is a null-terminated string.
 The locale must be the same when running
 .BR regexec ().
 .PP
+After
+.BR regcomp ()
+succeeds,
+.I preg->re_nsub
+holds the number of subexpressions in
+.IR regex .
+Thus, a value of
+.I preg->re_nsub
++ 1
+passed as
+.I nmatch
+to
+.BR regexec ()
+is sufficient to capture all matches.
+.PP
 .I cflags
 is the
 bitwise OR
@@ -192,22 +207,6 @@ must be at least
 .IR N+1 .)
 Any unused structure elements will contain the value \-1.
 .PP
-The
-.I regmatch_t
-structure which is the type of
-.I pmatch
-is defined in
-.IR <regex.h> .
-.PP
-.in +4n
-.EX
-typedef struct {
-    regoff_t rm_so;
-    regoff_t rm_eo;
-} regmatch_t;
-.EE
-.in
-.PP
 Each
 .I rm_so
 element that is not \-1 indicates the start offset of the next largest
@@ -218,7 +217,7 @@ element indicates the end offset of the match,
 which is the offset of the first character after the matching text.
 .PP
 .I regoff_t
-It is a signed integer type
+is a signed integer type
 capable of storing the largest value that can be stored in either an
 .I ptrdiff_t
 type or a
@@ -348,12 +347,27 @@ POSIX.1-2008.
 POSIX.1-2001.
 .PP
 Prior to POSIX.1-2008,
-the type was
+.I regoff_t
+was required to be
 capable of storing the largest value that can be stored in either an
 .I off_t
 type or a
 .I ssize_t
 type.
+.SH CAVEATS
+.I re_nsub
+is only required to be initialized if
+.B REG_NOSUB
+wasn't specified, but all known implementations initialize it regardless.
+.\" glibc, musl, 4.4BSD, illumos
+.PP
+Both
+.I regex_t
+and
+.I regmatch_t
+may (and do) have more members, in any order.
+Always reference them by name.
+.\" illumos has two more start/end pairs and the first one is of pointers
 .SH EXAMPLES
 .EX
 #include <stdint.h>
