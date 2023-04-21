@@ -131,23 +131,26 @@ compilation flag
 above).
 .TP
 .B REG_STARTEND
-Use
-.I pmatch[0]
-on the input string, starting at byte
-.I pmatch[0].rm_so
-and ending before byte
-.IR pmatch[0].rm_eo .
+Match
+.RI [ "string + pmatch[0].rm_so" , " string + pmatch[0].rm_eo" )
+instead of
+.RI [ string , " string + strlen(string)" ).
 This allows matching embedded NUL bytes
 and avoids a
 .BR strlen (3)
-on large strings.
-It does not use
+on known-length strings.
+If any matches are returned
+.RB ( REG_NOSUB
+wasn't passed to
+.BR regcomp (),
+the match succeeded, and
 .I nmatch
-on input, and does not change
-.B REG_NOTBOL
-or
-.B REG_NEWLINE
-processing.
+> 0), they overwrite
+.I pmatch
+as usual, and the match offsets remain relative to
+.I string
+(not
+.IR "string + pmatch[0].rm_so" ).
 This flag is a BSD extension, not present in POSIX.
 .SS Match offsets
 Unless
