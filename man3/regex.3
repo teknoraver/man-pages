@@ -96,16 +96,14 @@ Subsequent
 searches using this pattern buffer will be case insensitive.
 .TP
 .B REG_NOSUB
-Do not report position of matches.
-The
-.I nmatch
-and
-.I pmatch
+Report only overall success.
 .BR regexec ()
-arguments will be ignored for this purpose (but
+will use only
 .I pmatch
-may still be used for
-.BR REG_STARTEND ).
+for
+.BR REG_STARTEND ,
+ignoring
+.IR nmatch .
 .TP
 .B REG_NEWLINE
 Match-any-character operators don't match a newline.
