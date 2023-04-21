@@ -232,12 +232,12 @@ is filled in with the first
 .I "errbuf_size \- 1"
 characters of the error message and a terminating null byte (\[aq]\e0\[aq]).
 .SS Freeing
-Supplying
 .BR regfree ()
-with a precompiled pattern buffer,
-.IR preg ,
-will free the memory allocated to the pattern buffer by the compiling
-process,
+deinitializes the pattern buffer at
+.IR *preg ,
+freeing any associated memory;
+.I *preg
+must have been initialized via
 .BR regcomp ().
 .SH RETURN VALUE
 .BR regcomp ()
