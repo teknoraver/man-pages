@@ -31,15 +31,12 @@ Standard C library
 .BI "void regfree(regex_t *" preg );
 .PP
 .B typedef struct {
-.BR "    size_t    re_nsub;" "  /* Number of parenthesized subexpressions */"
+.B "    size_t    re_nsub;"
 .B } regex_t;
 .PP
 .B typedef struct {
-.BR "    regoff_t  rm_so;" "    /* Byte offset from start of string"
-                           to start of substring */
-.BR "    regoff_t  rm_eo;" "    /* Byte offset from start of string to"
-                           the first character after the end of
-                           substring */
+.B "    regoff_t  rm_so;"
+.B "    regoff_t  rm_eo;"
 .B } regmatch_t;
 .PP
 .BR typedef " /* ... */  " regoff_t;
