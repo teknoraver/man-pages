@@ -29,6 +29,20 @@ Standard C library
 .BI "            char " errbuf "[_Nullable restrict ." errbuf_size ],
 .BI "            size_t " errbuf_size );
 .BI "void regfree(regex_t *" preg );
+.PP
+.B typedef struct {
+.BR "    size_t    re_nsub;" "  /* Number of parenthesized subexpressions */"
+.B } regex_t;
+.PP
+.B typedef struct {
+.BR "    regoff_t  rm_so;" "    /* Byte offset from start of string"
+                           to start of substring */
+.BR "    regoff_t  rm_eo;" "    /* Byte offset from start of string to"
+                           the first character after the end of
+                           substring */
+.B } regmatch_t;
+.PP
+.BR typedef " /* ... */  " regoff_t;
 .fi
 .SH DESCRIPTION
 .SS Compilation
@@ -202,6 +216,14 @@ The relative
 .I rm_eo
 element indicates the end offset of the match,
 which is the offset of the first character after the matching text.
+.PP
+.I regoff_t
+It is a signed integer type
+capable of storing the largest value that can be stored in either an
+.I ptrdiff_t
+type or a
+.I ssize_t
+type.
 .SS Error reporting
 .BR regerror ()
 is used to turn the error codes that can be returned by both
@@ -324,6 +346,14 @@ T}	Thread safety	MT-Safe
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
+.PP
+Prior to POSIX.1-2008,
+the type was
+capable of storing the largest value that can be stored in either an
+.I off_t
+type or a
+.I ssize_t
+type.
 .SH EXAMPLES
 .EX
 #include <stdint.h>
