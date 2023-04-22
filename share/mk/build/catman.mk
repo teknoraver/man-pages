@@ -35,19 +35,24 @@ EXTRA_EQNFLAGS   :=
 EQNFLAGS         := $(DEFAULT_EQNFLAGS) $(EXTRA_EQNFLAGS)
 EQN              := eqn
 
-TMACFILES            := $(shell $(FIND) $(TMACDIR) -not -type d | $(SORT))
-TMACNAMES            := $(basename $(notdir $(TMACFILES)))
-TROFF_CHECKSTYLE_LVL := 3
-DEFAULT_TROFFFLAGS   := -man
-DEFAULT_TROFFFLAGS   += -t
-DEFAULT_TROFFFLAGS   += -M $(TMACDIR)
-DEFAULT_TROFFFLAGS   += $(foreach x,$(TMACNAMES),-m $(x))
-DEFAULT_TROFFFLAGS   += -rCHECKSTYLE=$(TROFF_CHECKSTYLE_LVL)
+DEFAULT_TROFFFLAGS   := -t
 DEFAULT_TROFFFLAGS   += -ww
 DEFAULT_TROFFFLAGS   += -rLL=$(NROFF_LINE_LENGTH)n
 EXTRA_TROFFFLAGS     :=
 TROFFFLAGS           := $(DEFAULT_TROFFFLAGS) $(EXTRA_TROFFFLAGS)
 TROFF                := troff
+
+TROFF_CHECKSTYLE_LVL   := 3
+DEFAULT_TROFFFLAGS_MAN := $(TROFFFLAGS)
+DEFAULT_TROFFFLAGS_MAN := -M $(TMACDIR)
+DEFAULT_TROFFFLAGS_MAN += -m checkstyle
+DEFAULT_TROFFFLAGS_MAN += -rCHECKSTYLE=$(TROFF_CHECKSTYLE_LVL)
+EXTRA_TROFFFLAGS_MAN   :=
+TROFFFLAGS_MAN         := $(DEFAULT_TROFFFLAGS_MAN) $(EXTRA_TROFFFLAGS_MAN)
+
+DEFAULT_TROFFFLAGS_MDOC := $(TROFFFLAGS)
+EXTRA_TROFFFLAGS_MDOC   :=
+TROFFFLAGS_MDOC         := $(DEFAULT_TROFFFLAGS_MDOC) $(EXTRA_TROFFFLAGS_MDOC)
 
 DEFAULT_GROTTYFLAGS := -c
 EXTRA_GROTTYFLAGS   :=
@@ -55,11 +60,12 @@ GROTTYFLAGS         := $(DEFAULT_GROTTYFLAGS) $(EXTRA_GROTTYFLAGS)
 GROTTY              := grotty
 
 
-_MAN_tbl       := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.tbl,$(NONSO_MAN))
-_MAN_eqn       := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.eqn,$(NONSO_MAN))
-_CATMAN_troff  := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.troff,$(NONSO_MAN))
-_CATMAN_set    := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.set,$(NONSO_MAN))
-_CATMAN        := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat,$(NONSO_MAN))
+_MAN_tbl        := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.tbl,$(NONSO_MAN) $(NONSO_MDOC))
+_MAN_eqn        := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.eqn,$(NONSO_MAN) $(NONSO_MDOC))
+_CATMAN_troff   := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.troff,$(NONSO_MAN) $(NONSO_MDOC))
+_CATMAN_MAN_set := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.set,$(NONSO_MAN))
+_CATMAN_MDOC_set:= $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.set,$(NONSO_MDOC))
+_CATMAN         := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat,$(NONSO_MAN) $(NONSO_MDOC))
 
 
 $(_MAN_tbl): $(_MANDIR)/%.tbl: $(MANDIR)/% | $$(@D)/
@@ -75,9 +81,14 @@ $(_CATMAN_troff): %.cat.troff: %.eqn | $$(@D)/
 	$(EQN) -T$(NROFF_OUT_DEVICE) $(EQNFLAGS) <$< 2>&1 >$@ \
 	| ( ! $(GREP) ^ )
 
-$(_CATMAN_set): %.cat.set: %.cat.troff | $$(@D)/
-	$(info	TROFF	$@)
-	$(TROFF) -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS) <$< 2>&1 >$@ \
+$(_CATMAN_MAN_set): %.cat.set: %.cat.troff | $$(@D)/
+	$(info	TROFF -man	$@)
+	$(TROFF) -man -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS_MAN) <$< 2>&1 >$@ \
+	| ( ! $(GREP) ^ )
+
+$(_CATMAN_MDOC_set): %.cat.set: %.cat.troff | $$(@D)/
+	$(info	TROFF -mdoc	$@)
+	$(TROFF) -mdoc -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS_MDOC) <$< 2>&1 >$@ \
 	| ( ! $(GREP) ^ )
 
 $(_CATMAN): %.cat: %.cat.set | $$(@D)/
@@ -97,8 +108,16 @@ build-catman-tbl: $(_MAN_eqn)
 build-catman-eqn: $(_CATMAN_troff)
 	@:
 
+.PHONY: build-catman-troff-man
+build-catman-troff-man: $(_CATMAN_MAN_set)
+	@:
+
+.PHONY: build-catman-troff-mdoc
+build-catman-troff-mdoc: $(_CATMAN_MDOC_set)
+	@:
+
 .PHONY: build-catman-troff
-build-catman-troff: $(_CATMAN_set)
+build-catman-troff: build-catman-troff-man build-catman-troff-mdoc
 	@:
 
 .PHONY: build-catman-grotty
