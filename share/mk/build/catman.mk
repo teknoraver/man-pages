@@ -77,7 +77,8 @@ $(_CATMAN_troff): %.cat.troff: %.eqn | $$(@D)/
 
 $(_CATMAN_set): %.cat.set: %.cat.troff | $$(@D)/
 	$(info	TROFF	$@)
-	$(TROFF) -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS) <$< >$@
+	$(TROFF) -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS) <$< 2>&1 >$@ \
+	| ( ! $(GREP) ^ )
 
 $(_CATMAN): %.cat: %.cat.set | $$(@D)/
 	$(info	GROTTY	$@)
