@@ -1,6 +1,6 @@
 ########################################################################
-# Copyright (C) 2022  Alejandro Colomar <alx@kernel.org>
-# SPDX-License-Identifier:  GPL-3.0
+# Copyright 2022, Alejandro Colomar <alx@kernel.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
 ########################################################################
 
 
