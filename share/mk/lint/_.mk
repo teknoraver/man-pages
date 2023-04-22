@@ -16,4 +16,4 @@ lint: $(lint)
 	@:
 
 
-endif  # MAKEFILE_LINT_INCLUDED
+endif  # include guard

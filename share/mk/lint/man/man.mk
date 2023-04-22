@@ -69,4 +69,4 @@ lint-man: $(lint_man)
 	@:
 
 
-endif  # MAKEFILE_LINT_MAN_MAN_INCLUDED
+endif  # include guard

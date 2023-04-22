@@ -210,4 +210,4 @@ uninstall-man: $(_mandir_rmdir) $(uninstall_manX)
 	@:
 
 
-endif  # MAKEFILE_INSTALL_MAN_INCLUDED
+endif  # include guard

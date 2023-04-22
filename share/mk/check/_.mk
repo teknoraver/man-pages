@@ -16,4 +16,4 @@ check: $(check)
 	@:
 
 
-endif  # MAKEFILE_CHECK_INCLUDED
+endif  # include guard

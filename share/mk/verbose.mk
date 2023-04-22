@@ -16,4 +16,4 @@ HIDE_ERR := 2>/dev/null
 endif
 
 
-endif  # MAKEFILE_VERBOSE_INCLUDED
+endif  # include guard

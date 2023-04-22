@@ -40,4 +40,4 @@ uninstall: uninstall-man
 	@:
 
 
-endif  # MAKEFILE_INSTALL_INCLUDED
+endif  # include guard

@@ -17,4 +17,4 @@ DISTVERSION := $(patsubst man-pages-%,%,$(DISTNAME))
 DISTDATE    := $(shell $(GIT) log -1 --format='%aD')
 
 
-endif  # MAKEFILE_VERSION_INCLUDED
+endif  # include guard

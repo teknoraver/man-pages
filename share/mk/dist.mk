@@ -88,4 +88,4 @@ dist: $(dist)
 	@:
 
 
-endif  # MAKEFILE_DIST_INCLUDED
+endif  # include guard

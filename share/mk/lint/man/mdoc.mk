@@ -42,4 +42,4 @@ lint-mdoc: $(lint_mdoc)
 	@:
 
 
-endif  # MAKEFILE_LINT_MAN_MDOC_INCLUDED
+endif  # include guard

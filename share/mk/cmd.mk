@@ -38,4 +38,4 @@ INSTALL_DIR  := $(INSTALL) -m 755 -d
 RMDIR        := rmdir --ignore-fail-on-non-empty
 
 
-endif  # MAKEFILE_CMD_INCLUDED
+endif  # include guard

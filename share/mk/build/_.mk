@@ -52,4 +52,4 @@ clean:
 	$(RM) -rf $(builddir)
 
 
-endif  # MAKEFILE_BUILD_INCLUDED
+endif  # include guard

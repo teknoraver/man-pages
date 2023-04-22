@@ -35,4 +35,4 @@ MAN7PAGES      := $(filter %.7,$(MANPAGES))
 MAN8PAGES      := $(filter %.8,$(MANPAGES))
 
 
-endif  # MAKEFILE_SRC_INCLUDED
+endif  # include guard

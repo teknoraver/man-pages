@@ -98,4 +98,4 @@ lint-c: $(lint_c)
 	@:
 
 
-endif  # MAKEFILE_LINT_C_INCLUDED
+endif  # include guard

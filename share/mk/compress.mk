@@ -37,4 +37,4 @@ EXTRA_XZFLAGS      :=
 XZFLAGS            := $(DEFAULT_XZFLAGS) $(EXTRA_XZFLAGS)
 
 
-endif  # MAKEFILE_COMPRESS_INCLUDED
+endif  # include guard

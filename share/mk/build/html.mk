@@ -43,4 +43,4 @@ build-html html: $(_HTMLPAGES)
 	@:
 
 
-endif  # MAKEFILE_BUILD_HTML_INCLUDED
+endif  # include guard

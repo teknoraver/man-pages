@@ -40,4 +40,4 @@ uninstall-html: $(_htmldir_rmdir) $(_htmldirs_rmdir) $(_htmlpages_rm)
 	@:
 
 
-endif  # MAKEFILE_INSTALL_HTML_INCLUDED
+endif  # include guard

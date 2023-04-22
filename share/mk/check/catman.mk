@@ -50,4 +50,4 @@ check-catman: check-catman-grep
 	@:
 
 
-endif  # MAKEFILE_CHECK_CATMAN_INCLUDED
+endif  # include guard

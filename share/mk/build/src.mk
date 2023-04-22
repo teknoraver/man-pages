@@ -113,4 +113,4 @@ build-src-ld:  $(_UNITS_src_bin)
 build-src: build-src-ld
 
 
-endif  # MAKEFILE_BUILD_SRC_INCLUDED
+endif  # include guard

@@ -129,4 +129,4 @@ build-catman: build-catman-grotty
 	@:
 
 
-endif  # MAKEFILE_BUILD_CATMAN_INCLUDED
+endif  # include guard
