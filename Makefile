@@ -50,9 +50,11 @@ help:
 	$(info	)
 	$(info	build			Wrapper for "build-catman build-html build-src")
 	$(info	)
+	$(info	build-pre		Preprocess man pages; alias for "build-pre-tbl")
+	$(info	build-pre-preconv	Preprocess man pages with preconv(1))
+	$(info	build-pre-tbl		Preprocess man pages with tbl(1))
+	$(info	)
 	$(info	build-catman		Build cat pages; alias for "build-catman-grotty")
-	$(info	build-catman-preconv	preconv(1) step of "build-catman")
-	$(info	build-catman-tbl	tbl(1) step of "build-catman")
 	$(info	build-catman-eqn	eqn(1) step of "build-catman")
 	$(info	build-catman-troff	Wrapper for build-catman-troff-* targets)
 	$(info	build-catman-troff-man	troff(1) step of "build-catman" for man(7) pages)
@@ -122,6 +124,7 @@ include $(MAKEFILEDIR)/check/catman.mk
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/catman.mk
 include $(MAKEFILEDIR)/build/html.mk
+include $(MAKEFILEDIR)/build/pre.mk
 include $(MAKEFILEDIR)/build/src.mk
 include $(MAKEFILEDIR)/dist.mk
 include $(MAKEFILEDIR)/install/_.mk

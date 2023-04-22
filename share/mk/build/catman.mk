@@ -23,13 +23,6 @@ NROFF_OUT_DEVICE  := $(shell $(LOCALE) charmap \
                                  && $(ECHO) utf8 \
                                  || $(ECHO) ascii)
 
-DEFAULT_PRECONVFLAGS :=
-EXTRA_PRECONVFLAGS   :=
-PRECONVFLAGS         := $(DEFAULT_PRECONVFLAGS) $(EXTRA_PRECONVFLAGS)
-PRECONV              := preconv
-
-TBL := tbl
-
 DEFAULT_EQNFLAGS :=
 EXTRA_EQNFLAGS   :=
 EQNFLAGS         := $(DEFAULT_EQNFLAGS) $(EXTRA_EQNFLAGS)
@@ -60,21 +53,11 @@ GROTTYFLAGS         := $(DEFAULT_GROTTYFLAGS) $(EXTRA_GROTTYFLAGS)
 GROTTY              := grotty
 
 
-_MAN_tbl        := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.tbl,$(NONSO_MAN) $(NONSO_MDOC))
-_MAN_eqn        := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.eqn,$(NONSO_MAN) $(NONSO_MDOC))
 _CATMAN_troff   := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.troff,$(NONSO_MAN) $(NONSO_MDOC))
 _CATMAN_MAN_set := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.set,$(NONSO_MAN))
 _CATMAN_MDOC_set:= $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.set,$(NONSO_MDOC))
 _CATMAN         := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat,$(NONSO_MAN) $(NONSO_MDOC))
 
-
-$(_MAN_tbl): $(_MANDIR)/%.tbl: $(MANDIR)/% | $$(@D)/
-	$(info	PRECONV	$@)
-	$(PRECONV) $(PRECONVFLAGS) $< >$@
-
-$(_MAN_eqn): %.eqn: %.tbl | $$(@D)/
-	$(info	TBL	$@)
-	$(TBL) <$< >$@
 
 $(_CATMAN_troff): %.cat.troff: %.eqn | $$(@D)/
 	$(info	EQN	$@)
@@ -95,14 +78,6 @@ $(_CATMAN): %.cat: %.cat.set | $$(@D)/
 	$(info	GROTTY	$@)
 	$(GROTTY) $(GROTTYFLAGS) <$< >$@
 
-
-.PHONY: build-catman-preconv
-build-catman-preconv: $(_MAN_tbl)
-	@:
-
-.PHONY: build-catman-tbl
-build-catman-tbl: $(_MAN_eqn)
-	@:
 
 .PHONY: build-catman-eqn
 build-catman-eqn: $(_CATMAN_troff)
