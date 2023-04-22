@@ -8,7 +8,7 @@ ifndef MAKEFILE_LINT_INCLUDED
 MAKEFILE_LINT_INCLUDED := 1
 
 
-lint := lint-c lint-man
+lint := lint-c lint-man lint-mdoc
 
 
 .PHONY: lint

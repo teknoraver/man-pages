@@ -65,7 +65,7 @@ help:
 	$(info	build-src-cc		Compile C programs from EXAMPLES)
 	$(info	build-src-ld		Link C programs from EXAMPLES)
 	$(info	)
-	$(info	lint			Wrapper for "lint-c lint-man")
+	$(info	lint			Wrapper for "lint-c lint-man lint-mdoc")
 	$(info	lint-c			Wrapper for lint-c-* targets)
 	$(info	lint-c-checkpatch	Lint C programs from EXAMPLES with checkpatch(1))
 	$(info	lint-c-clang-tidy	Lint C programs from EXAMPLES with clang-tidy(1))
@@ -73,8 +73,10 @@ help:
 	$(info	lint-c-cpplint		Lint C programs from EXAMPLES with cpplint(1))
 	$(info	lint-c-iwyu		Lint C programs from EXAMPLES with iwyu(1))
 	$(info	lint-man		Wrapper for lint-man-* targets)
-	$(info	lint-man-mandoc		Lint man pages with mandoc(1))
-	$(info	lint-man-tbl		Lint man pages about '\" t' comment for tbl(1))
+	$(info	lint-man-mandoc		Lint man(7) pages with mandoc(1))
+	$(info	lint-man-tbl		Lint man(7) pages about '\" t' comment for tbl(1))
+	$(info	lint-mdoc		Wrapper for lint-mdoc-* targets)
+	$(info	lint-mdoc-mandoc	Lint mdoc(7) pages with mandoc(1))
 	$(info	)
 	$(info	check			Alias for "check-catman")
 	$(info	check-catman		Check cat pages; alias for "check-catman-grep")
@@ -125,7 +127,9 @@ include $(MAKEFILEDIR)/install/html.mk
 include $(MAKEFILEDIR)/install/man.mk
 include $(MAKEFILEDIR)/lint/_.mk
 include $(MAKEFILEDIR)/lint/c.mk
-include $(MAKEFILEDIR)/lint/man.mk
+include $(MAKEFILEDIR)/lint/man/_.mk
+include $(MAKEFILEDIR)/lint/man/man.mk
+include $(MAKEFILEDIR)/lint/man/mdoc.mk
 include $(MAKEFILEDIR)/verbose.mk
 
 

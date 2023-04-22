@@ -1,27 +1,22 @@
 ########################################################################
-# Copyright (C) 2021 - 2023  Alejandro Colomar <alx@kernel.org>
-# SPDX-License-Identifier:  GPL-3.0-or-later  OR  LGPL-3.0-or-later
+# Copyright 2021-2023, Alejandro Colomar <alx@kernel.org>
+# SPDX-License-Identifier: GPL-3.0-or-later OR LGPL-3.0-or-later
 ########################################################################
 
 
-ifndef MAKEFILE_LINT_MAN_INCLUDED
-MAKEFILE_LINT_MAN_INCLUDED := 1
+ifndef MAKEFILE_LINT_MAN_MAN_INCLUDED
+MAKEFILE_LINT_MAN_MAN_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/lint/_.mk
+include $(MAKEFILEDIR)/lint/man/_.mk
 include $(MAKEFILEDIR)/src.mk
 
 
-DEFAULT_MANDOCFLAGS := -man
-DEFAULT_MANDOCFLAGS += -Tlint
-EXTRA_MANDOCFLAGS   :=
-MANDOCFLAGS         := $(DEFAULT_MANDOCFLAGS) $(EXTRA_MANDOCFLAGS)
-
-
-_LINT_man_mandoc:=$(patsubst $(MANDIR)/%,$(_MANDIR)/%.lint-man.mandoc.touch,$(NONSO_MAN))
-_LINT_man_tbl   :=$(patsubst $(MANDIR)/%,$(_MANDIR)/%.lint-man.tbl.touch,$(NONSO_MAN))
+_LINT_man_mandoc :=$(patsubst $(MANDIR)/%,$(_MANDIR)/%.lint-man.mandoc.touch,$(NONSO_MAN))
+_LINT_man_tbl    :=$(patsubst $(MANDIR)/%,$(_MANDIR)/%.lint-man.tbl.touch,$(NONSO_MAN))
 
 
 linters_man := mandoc tbl
@@ -30,7 +25,7 @@ lint_man    := $(foreach x,$(linters_man),lint-man-$(x))
 
 $(_LINT_man_mandoc): $(_MANDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% | $$(@D)/
 	$(info LINT (mandoc)	$@)
-	! ($(MANDOC) $(MANDOCFLAGS) $< 2>&1 \
+	! ($(MANDOC) -man $(MANDOCFLAGS) $< 2>&1 \
 	   | $(GREP) -v 'STYLE: lower case character in document title:' \
 	   | $(GREP) -v 'UNSUPP: ignoring macro in table:' \
 	   | $(GREP) -v 'WARNING: cannot parse date, using it verbatim: TH (date)' \
@@ -74,4 +69,4 @@ lint-man: $(lint_man)
 	@:
 
 
-endif  # MAKEFILE_LINT_MAN_INCLUDED
+endif  # MAKEFILE_LINT_MAN_MAN_INCLUDED

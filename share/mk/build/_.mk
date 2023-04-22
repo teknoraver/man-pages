@@ -27,6 +27,10 @@ NONSO_MAN := $(shell $(FIND) $(MANDIR)/man*/ -type f \
 		| $(GREP) '$(MANEXT)' \
 		| $(XARGS) $(GREP) -l '^\.TH ' \
 		| $(SORT))
+NONSO_MDOC := $(shell $(FIND) $(MANDIR)/man*/ -type f \
+		| $(GREP) '$(MANEXT)' \
+		| $(XARGS) $(GREP) -l '^\.Dt ' \
+		| $(SORT))
 _MANDIRS := $(patsubst $(MANDIR)/%,$(_MANDIR)/%/,$(MANDIRS))
 
 
