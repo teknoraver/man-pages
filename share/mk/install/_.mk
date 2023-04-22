@@ -18,7 +18,7 @@ datarootdir := $(prefix)/share
 docdir      := $(datarootdir)/doc
 
 
-%/:
+$(DESTDIR)%/:
 	+$(info INSTALL	$@)
 	+$(INSTALL_DIR) $@
 
