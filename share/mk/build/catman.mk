@@ -9,11 +9,9 @@ MAKEFILE_BUILD_CATMAN_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/build/groff.mk
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/src.mk
-
-
-TMACDIR := $(SYSCONFDIR)/groff/tmac
 
 
 MANWIDTH          ?= 80
@@ -23,29 +21,9 @@ NROFF_OUT_DEVICE  := $(shell $(LOCALE) charmap \
                                  && $(ECHO) utf8 \
                                  || $(ECHO) ascii)
 
-DEFAULT_EQNFLAGS :=
-EXTRA_EQNFLAGS   :=
-EQNFLAGS         := $(DEFAULT_EQNFLAGS) $(EXTRA_EQNFLAGS)
-EQN              := eqn
-
-DEFAULT_TROFFFLAGS   := -t
-DEFAULT_TROFFFLAGS   += -ww
-DEFAULT_TROFFFLAGS   += -rLL=$(NROFF_LINE_LENGTH)n
-EXTRA_TROFFFLAGS     :=
-TROFFFLAGS           := $(DEFAULT_TROFFFLAGS) $(EXTRA_TROFFFLAGS)
-TROFF                := troff
-
-TROFF_CHECKSTYLE_LVL   := 3
-DEFAULT_TROFFFLAGS_MAN := $(TROFFFLAGS)
-DEFAULT_TROFFFLAGS_MAN := -M $(TMACDIR)
-DEFAULT_TROFFFLAGS_MAN += -m checkstyle
-DEFAULT_TROFFFLAGS_MAN += -rCHECKSTYLE=$(TROFF_CHECKSTYLE_LVL)
-EXTRA_TROFFFLAGS_MAN   :=
-TROFFFLAGS_MAN         := $(DEFAULT_TROFFFLAGS_MAN) $(EXTRA_TROFFFLAGS_MAN)
-
-DEFAULT_TROFFFLAGS_MDOC := $(TROFFFLAGS)
-EXTRA_TROFFFLAGS_MDOC   :=
-TROFFFLAGS_MDOC         := $(DEFAULT_TROFFFLAGS_MDOC) $(EXTRA_TROFFFLAGS_MDOC)
+DEFAULT_NROFFFLAGS := -rLL=$(NROFF_LINE_LENGTH)n
+EXTRA_NROFFFLAGS   :=
+NROFFFLAGS         := $(DEFAULT_NROFFFLAGS) $(EXTRA_NROFFFLAGS)
 
 DEFAULT_GROTTYFLAGS := -c
 EXTRA_GROTTYFLAGS   :=
@@ -66,12 +44,14 @@ $(_CATMAN_troff): %.cat.troff: %.eqn | $$(@D)/
 
 $(_CATMAN_MAN_set): %.cat.set: %.cat.troff | $$(@D)/
 	$(info	TROFF -man	$@)
-	$(TROFF) -man -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS_MAN) <$< 2>&1 >$@ \
+	<$< 2>&1 >$@ \
+	$(TROFF) -man -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS_MAN) $(NROFFFLAGS) \
 	| ( ! $(GREP) ^ )
 
 $(_CATMAN_MDOC_set): %.cat.set: %.cat.troff | $$(@D)/
 	$(info	TROFF -mdoc	$@)
-	$(TROFF) -mdoc -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS_MDOC) <$< 2>&1 >$@ \
+	<$< 2>&1 >$@ \
+	$(TROFF) -mdoc -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS_MDOC) $(NROFFFLAGS) \
 	| ( ! $(GREP) ^ )
 
 $(_CATMAN): %.cat: %.cat.set | $$(@D)/
