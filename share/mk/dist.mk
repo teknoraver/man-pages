@@ -37,6 +37,11 @@ compression := bz2 gz lz xz
 dist        := $(foreach x,$(compression),dist-$(x))
 
 
+$(builddir)/dist/%/:
+	+$(info INSTALL	$@)
+	+$(INSTALL_DIR) $@
+
+
 $(_DISTPAGES): $(_DISTDIR)/man%: $(srcdir)/man% | $$(@D)/
 	$(info INSTALL	$@)
 	$(INSTALL_DATA) -T $< $@
