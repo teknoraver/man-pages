@@ -54,7 +54,7 @@ CC  := cc
 LD  := $(CC) $(CFLAGS)
 
 
-_SRCPAGEDIRS   := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.d,$(NONSO_MAN))
+_SRCPAGEDIRS   := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.d/,$(NONSO_MAN))
 
 _UNITS_src_src := $(patsubst $(MANDIR)/%,$(_MANDIR)/%,$(shell \
 		$(FIND) $(MANDIR)/man*/ -type f \
@@ -69,12 +69,12 @@ _UNITS_src_o   := $(patsubst %.c,%.o,$(_UNITS_src_c))
 _UNITS_src_bin := $(patsubst %.c,%,$(_UNITS_src_c))
 
 
-$(_SRCPAGEDIRS): $(_MANDIR)/%.d: $(MANDIR)/% | $$(@D)/
+$(_SRCPAGEDIRS): $(_MANDIR)/%.d/: $(MANDIR)/%
 	+$(info MKDIR	$@)
 	+$(MKDIR) $@
 	+touch $@
 
-$(_UNITS_src_src): $$(patsubst $(_MANDIR)/%.d,$(MANDIR)/%,$$(@D)) | $$(@D)
+$(_UNITS_src_src): $$(patsubst $(_MANDIR)/%.d,$(MANDIR)/%,$$(@D)) | $$(@D)/
 $(_UNITS_src_c):   $$(filter $$(@D)/%.h,$(_UNITS_src_h))
 $(_UNITS_src_src):
 	$(info SED	$@)

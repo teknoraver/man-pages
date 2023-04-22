@@ -18,7 +18,7 @@ _htmldir := $(DESTDIR)$(htmldir_)
 
 
 _htmlpages      := $(patsubst $(_HTMLDIR)/%,$(_htmldir)/%,$(_HTMLPAGES))
-_htmldirs       := $(patsubst $(_HTMLDIR)/%,$(_htmldir)/%,$(_HTMLDIRS))
+_htmldirs       := $(patsubst $(MANDIR)/%,$(_htmldir)/%,$(MANDIRS))
 _htmlpages_rm   := $(addsuffix -rm,$(wildcard $(_htmlpages)))
 _htmldirs_rmdir := $(addsuffix -rmdir,$(wildcard $(_htmldirs)))
 _htmldir_rmdir  := $(addsuffix -rmdir,$(wildcard $(_htmldir)/))
@@ -27,8 +27,6 @@ _htmldir_rmdir  := $(addsuffix -rmdir,$(wildcard $(_htmldir)/))
 $(_htmlpages): $(_htmldir)/%: $(_HTMLDIR)/% | $$(@D)/
 	$(info INSTALL	$@)
 	$(INSTALL_DATA) -T $< $@
-
-$(_htmldirs): %/: | $$(dir %) $(_htmldir)/
 
 
 .PHONY: install-html

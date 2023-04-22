@@ -19,7 +19,7 @@ docdir      := $(datarootdir)/doc
 
 
 %/:
-	+$(info INSTALL	$@/)
+	+$(info INSTALL	$@)
 	+$(INSTALL_DIR) $@
 
 %-rm:

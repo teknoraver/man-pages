@@ -187,8 +187,6 @@ else ifeq ($(Z),.xz)
 	fi
 endif
 
-$(_mandirs): %/: | $$(dir %) $(_mandir)/
-
 $(_mandirs_rmdir): $(_mandir)/man%/-rmdir: $$(_man%pages_rm) FORCE
 $(_mandir_rmdir): $(uninstall_manX) FORCE
 
