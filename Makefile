@@ -177,7 +177,7 @@ help-variables:
 	$(info	PRECONV		{EXTRA_,}PRECONVFLAGS)
 	$(info	TBL)
 	$(info	EQN		{EXTRA_,}EQNFLAGS)
-	$(info	TROFF		{EXTRA_,}TROFFFLAGS)
+	$(info	TROFF		{EXTRA_,}TROFFFLAGS{,_MAN,_MDOC})
 	$(info	GROTTY		{EXTRA_,}GROTTYFLAGS)
 	$(info	COL		{EXTRA_,}COLFLAGS)
 	$(info	)
