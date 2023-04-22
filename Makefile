@@ -18,11 +18,7 @@
 # - Variables ending in '_rm' refer to files that can be removed (exist).
 # - Variables ending in '_rmdir' refer to dirs that can be removed (exist).
 # - Targets of the form '%-rm' remove their corresponding file '%'.
-# - Targets of the form '%/.-rmdir' remove their corresponding dir '%/'.
-# - Targets of the form '%/.' create their corresponding directory '%/'.
-# - Every file or directory to be created depends on its parent directory.
-#   This avoids race conditions caused by `mkdir -p`.  Only the root
-#   directories are created with parents.
+# - Targets of the form '%-rmdir' remove their corresponding dir '%'.
 # - The 'FORCE' target is used to make phony some variables that can't be
 #   .PHONY to avoid some optimizations.
 #
