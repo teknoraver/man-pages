@@ -174,6 +174,8 @@ help-variables:
 	$(info	)
 	$(info	# Command variables (and flags):)
 	$(info	)
+	$(info	-		MANWIDTH)
+	$(info	-		NROFF_OUT_DEVICE)
 	$(info	PRECONV		{EXTRA_,}PRECONVFLAGS)
 	$(info	TBL)
 	$(info	EQN		{EXTRA_,}EQNFLAGS)
