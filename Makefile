@@ -48,7 +48,7 @@ help:
 	$(info	)
 	$(info	clean			Remove $$(builddir))
 	$(info	)
-	$(info	build			Wrapper for "build-catman build-html build-src")
+	$(info	build			Wrapper for build-* targets)
 	$(info	)
 	$(info	build-pre		Preprocess man pages; alias for "build-pre-tbl")
 	$(info	build-pre-preconv	Preprocess man pages with preconv(1))
@@ -64,7 +64,14 @@ help:
 	$(info	build-html		Build HTML manual pages)
 	$(info	html			Alias for "build-html")
 	$(info	)
-	$(info	build-ps		Build ps manual pages; alias for "build-ps-grops")
+	$(info	build-pdf		Build PDF manual pages; alias for "build-pdf-grops")
+	$(info	build-pdf-eqn		eqn(1) step of "build-pdf")
+	$(info	build-pdf-troff		Wrapper for build-pdf-troff-* targets)
+	$(info	build-pdf-troff-man	troff(1) step of "build-pdf" for man(7) pages)
+	$(info	build-pdf-troff-mdoc	troff(1) step of "build-pdf" for mdoc(7) pages)
+	$(info	build-pdf-gropdf	gropdf(1) step of "build-pdf")
+	$(info	)
+	$(info	build-ps		Build PostScript manual pages; alias for "build-ps-grops")
 	$(info	build-ps-eqn		eqn(1) step of "build-ps")
 	$(info	build-ps-troff		Wrapper for build-ps-troff-* targets)
 	$(info	build-ps-troff-man	troff(1) step of "build-ps" for man(7) pages)
@@ -131,6 +138,7 @@ include $(MAKEFILEDIR)/check/catman.mk
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/catman.mk
 include $(MAKEFILEDIR)/build/html.mk
+include $(MAKEFILEDIR)/build/pdf.mk
 include $(MAKEFILEDIR)/build/pre.mk
 include $(MAKEFILEDIR)/build/ps.mk
 include $(MAKEFILEDIR)/build/src.mk
@@ -188,6 +196,7 @@ help-variables:
 	$(info	TBL)
 	$(info	EQN		{EXTRA_,}EQNFLAGS)
 	$(info	TROFF		{EXTRA_,}TROFFFLAGS{,_MAN,_MDOC}	{EXTRA_,}NROFFFLAGS)
+	$(info	GROPDF		{EXTRA_,}GROPDFFLAGS)
 	$(info	GROPS		{EXTRA_,}GROPSFLAGS)
 	$(info	GROTTY		{EXTRA_,}GROTTYFLAGS)
 	$(info	COL		{EXTRA_,}COLFLAGS)
