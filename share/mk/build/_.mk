@@ -39,7 +39,7 @@ $(builddir)/%/:
 
 
 .PHONY: build
-build: build-catman build-html build-src
+build: build-catman build-html build-ps build-src
 	@:
 
 .PHONY: clean

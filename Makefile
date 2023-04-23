@@ -64,6 +64,13 @@ help:
 	$(info	build-html		Build HTML manual pages)
 	$(info	html			Alias for "build-html")
 	$(info	)
+	$(info	build-ps		Build ps manual pages; alias for "build-ps-grops")
+	$(info	build-ps-eqn		eqn(1) step of "build-ps")
+	$(info	build-ps-troff		Wrapper for build-ps-troff-* targets)
+	$(info	build-ps-troff-man	troff(1) step of "build-ps" for man(7) pages)
+	$(info	build-ps-troff-mdoc	troff(1) step of "build-ps" for mdoc(7) pages)
+	$(info	build-ps-grops		grops(1) step of "build-ps")
+	$(info	)
 	$(info	build-src		Alias for "build-src-ld")
 	$(info	build-src-c		Extract C programs from EXAMPLES)
 	$(info	build-src-cc		Compile C programs from EXAMPLES)
@@ -125,6 +132,7 @@ include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/catman.mk
 include $(MAKEFILEDIR)/build/html.mk
 include $(MAKEFILEDIR)/build/pre.mk
+include $(MAKEFILEDIR)/build/ps.mk
 include $(MAKEFILEDIR)/build/src.mk
 include $(MAKEFILEDIR)/dist.mk
 include $(MAKEFILEDIR)/install/_.mk
@@ -180,6 +188,7 @@ help-variables:
 	$(info	TBL)
 	$(info	EQN		{EXTRA_,}EQNFLAGS)
 	$(info	TROFF		{EXTRA_,}TROFFFLAGS{,_MAN,_MDOC}	{EXTRA_,}NROFFFLAGS)
+	$(info	GROPS		{EXTRA_,}GROPSFLAGS)
 	$(info	GROTTY		{EXTRA_,}GROTTYFLAGS)
 	$(info	COL		{EXTRA_,}COLFLAGS)
 	$(info	)
