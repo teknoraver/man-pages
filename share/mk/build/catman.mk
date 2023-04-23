@@ -43,13 +43,13 @@ $(_CATMAN_troff): %.cat.troff: %.eqn | $$(@D)/
 	| ( ! $(GREP) ^ )
 
 $(_CATMAN_MAN_set): %.cat.set: %.cat.troff | $$(@D)/
-	$(info	TROFF -man	$@)
+	$(info	TROFF	$@)
 	<$< 2>&1 >$@ \
 	$(TROFF) -man -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS_MAN) $(NROFFFLAGS) \
 	| ( ! $(GREP) ^ )
 
 $(_CATMAN_MDOC_set): %.cat.set: %.cat.troff | $$(@D)/
-	$(info	TROFF -mdoc	$@)
+	$(info	TROFF	$@)
 	<$< 2>&1 >$@ \
 	$(TROFF) -mdoc -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS_MDOC) $(NROFFFLAGS) \
 	| ( ! $(GREP) ^ )
