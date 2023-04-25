@@ -27,7 +27,9 @@ EXTRA_TARFLAGS   :=
 TARFLAGS         := $(DEFAULT_TARFLAGS) $(EXTRA_TARFLAGS)
 
 
-DISTFILES   := $(shell $(GIT) ls-files $(HIDE_ERR) | $(SED) 's,^,$(srcdir)/,')
+DISTFILES   := $(shell $(GIT) ls-files $(HIDE_ERR) \
+			| $(SED) 's,^,$(srcdir)/,' \
+			| $(SED) 's,:,\\:,g')
 _DISTFILES  := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))
 _DISTPAGES  := $(filter     $(_DISTDIR)/man%,$(_DISTFILES))
 _DISTOTHERS := $(filter-out $(_DISTDIR)/man%,$(_DISTFILES))

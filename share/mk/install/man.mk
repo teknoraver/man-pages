@@ -191,8 +191,30 @@ $(_mandirs_rmdir): $(_mandir)/man%/-rmdir: $$(_man%pages_rm) FORCE
 $(_mandir_rmdir): $(uninstall_manX) FORCE
 
 
-.PHONY: $(install_manX)
-$(install_manX): install-man%: $$(_man%pages);
+.PHONY: install-man1
+install-man1:      $(_man1pages);
+.PHONY: install-man2
+install-man2:      $(_man2pages);
+.PHONY: install-man2type
+install-man2type:  $(_man2typepages);
+.PHONY: install-man3
+install-man3:      $(_man3pages);
+.PHONY: install-man3const
+install-man3const: $(_man3constpages);
+.PHONY: install-man3head
+install-man3head:  $(_man3headpages);
+.PHONY: install-man3type
+install-man3type:  $(_man3typepages);
+.PHONY: install-man4
+install-man4:      $(_man4pages);
+.PHONY: install-man5
+install-man5:      $(_man5pages);
+.PHONY: install-man6
+install-man6:      $(_man6pages);
+.PHONY: install-man7
+install-man7:      $(_man7pages);
+.PHONY: install-man8
+install-man8:      $(_man8pages);
 
 .PHONY: install-man
 install-man: $(install_manX);

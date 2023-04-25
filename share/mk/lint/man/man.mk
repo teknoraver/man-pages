@@ -60,8 +60,10 @@ $(_LINT_man_tbl): $(_MANDIR)/%.lint-man.tbl.touch: $(MANDIR)/% | $$(@D)/
 	touch $@
 
 
-.PHONY: $(lint_man)
-$(lint_man): lint-man-%: $$(_LINT_man_%);
+.PHONY: lint-man-mandoc
+lint-man-mandoc: $(_LINT_man_mandoc);
+.PHONY: lint-man-tbl
+lint-man-tbl:    $(_LINT_man_tbl);
 
 .PHONY: lint-man
 lint-man: $(lint_man);

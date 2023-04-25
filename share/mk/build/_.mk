@@ -26,11 +26,13 @@ RM    := rm
 NONSO_MAN := $(shell $(FIND) $(MANDIR)/man*/ -type f \
 		| $(GREP) '$(MANEXT)' \
 		| $(XARGS) $(GREP) -l '^\.TH ' \
-		| $(SORT))
+		| $(SORT) \
+		| $(SED) 's,:,\\:,g')
 NONSO_MDOC := $(shell $(FIND) $(MANDIR)/man*/ -type f \
 		| $(GREP) '$(MANEXT)' \
 		| $(XARGS) $(GREP) -l '^\.Dt ' \
-		| $(SORT))
+		| $(SORT) \
+		| $(SED) 's,:,\\:,g')
 
 
 $(builddir)/%/:

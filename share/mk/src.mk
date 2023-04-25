@@ -17,7 +17,8 @@ MANEXT := \.[0-9]\w*$
 
 MANPAGES := $(shell $(FIND) $(MANDIR)/man*/ -type f \
 		| $(GREP) '$(MANEXT)' \
-		| $(SORT))
+		| $(SORT) \
+		| $(SED) 's,:,\\:,g')
 MANDIRS  := $(shell $(FIND) $(MANDIR)/man* -type d \
 		| $(SORT))
 
