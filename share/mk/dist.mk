@@ -81,16 +81,13 @@ $(DISTFILE).xz: %.xz: % | $$(@D)/
 
 
 .PHONY: dist-tar
-dist-tar: $(DISTFILE)
-	@:
+dist-tar: $(DISTFILE);
 
 .PHONY: $(dist)
-$(dist): dist-%: $(DISTFILE).%
-	@:
+$(dist): dist-%: $(DISTFILE).%;
 
 .PHONY: dist
-dist: $(dist)
-	@:
+dist: $(dist);
 
 
 endif  # include guard

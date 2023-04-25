@@ -47,28 +47,22 @@ $(_PDFMAN): %.pdf: %.pdf.set | $$(@D)/
 
 
 .PHONY: build-pdf-eqn
-build-pdf-eqn: $(_PDFMAN_troff)
-	@:
+build-pdf-eqn: $(_PDFMAN_troff);
 
 .PHONY: build-pdf-troff-man
-build-pdf-troff-man: $(_PDFMAN_MAN_set)
-	@:
+build-pdf-troff-man: $(_PDFMAN_MAN_set);
 
 .PHONY: build-pdf-troff-mdoc
-build-pdf-troff-mdoc: $(_PDFMAN_MDOC_set)
-	@:
+build-pdf-troff-mdoc: $(_PDFMAN_MDOC_set);
 
 .PHONY: build-pdf-troff
-build-pdf-troff: build-pdf-troff-man build-pdf-troff-mdoc
-	@:
+build-pdf-troff: build-pdf-troff-man build-pdf-troff-mdoc;
 
 .PHONY: build-pdf-gropdf
-build-pdf-gropdf: $(_PDFMAN)
-	@:
+build-pdf-gropdf: $(_PDFMAN);
 
 .PHONY: build-pdf
-build-pdf: build-pdf-gropdf
-	@:
+build-pdf: build-pdf-gropdf;
 
 
 endif  # include guard

@@ -47,28 +47,22 @@ $(_PSMAN): %.ps: %.ps.set | $$(@D)/
 
 
 .PHONY: build-ps-eqn
-build-ps-eqn: $(_PSMAN_troff)
-	@:
+build-ps-eqn: $(_PSMAN_troff);
 
 .PHONY: build-ps-troff-man
-build-ps-troff-man: $(_PSMAN_MAN_set)
-	@:
+build-ps-troff-man: $(_PSMAN_MAN_set);
 
 .PHONY: build-ps-troff-mdoc
-build-ps-troff-mdoc: $(_PSMAN_MDOC_set)
-	@:
+build-ps-troff-mdoc: $(_PSMAN_MDOC_set);
 
 .PHONY: build-ps-troff
-build-ps-troff: build-ps-troff-man build-ps-troff-mdoc
-	@:
+build-ps-troff: build-ps-troff-man build-ps-troff-mdoc;
 
 .PHONY: build-ps-grops
-build-ps-grops: $(_PSMAN)
-	@:
+build-ps-grops: $(_PSMAN);
 
 .PHONY: build-ps
-build-ps: build-ps-grops
-	@:
+build-ps: build-ps-grops;
 
 
 endif  # include guard

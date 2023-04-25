@@ -38,16 +38,13 @@ $(_CHECK_catman): %.check-catman.touch: %.cat.grep | $$(@D)/
 
 
 .PHONY: check-catman-col
-check-catman-col: $(_CHECK_catman_grep)
-	@:
+check-catman-col: $(_CHECK_catman_grep);
 
 .PHONY: check-catman-grep
-check-catman-grep: $(_CHECK_catman)
-	@:
+check-catman-grep: $(_CHECK_catman);
 
 .PHONY: check-catman
-check-catman: check-catman-grep
-	@:
+check-catman: check-catman-grep;
 
 
 endif  # include guard

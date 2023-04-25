@@ -60,28 +60,22 @@ $(_CATMAN): %.cat: %.cat.set | $$(@D)/
 
 
 .PHONY: build-catman-eqn
-build-catman-eqn: $(_CATMAN_troff)
-	@:
+build-catman-eqn: $(_CATMAN_troff);
 
 .PHONY: build-catman-troff-man
-build-catman-troff-man: $(_CATMAN_MAN_set)
-	@:
+build-catman-troff-man: $(_CATMAN_MAN_set);
 
 .PHONY: build-catman-troff-mdoc
-build-catman-troff-mdoc: $(_CATMAN_MDOC_set)
-	@:
+build-catman-troff-mdoc: $(_CATMAN_MDOC_set);
 
 .PHONY: build-catman-troff
-build-catman-troff: build-catman-troff-man build-catman-troff-mdoc
-	@:
+build-catman-troff: build-catman-troff-man build-catman-troff-mdoc;
 
 .PHONY: build-catman-grotty
-build-catman-grotty: $(_CATMAN)
-	@:
+build-catman-grotty: $(_CATMAN);
 
 .PHONY: build-catman
-build-catman: build-catman-grotty
-	@:
+build-catman: build-catman-grotty;
 
 
 endif  # include guard

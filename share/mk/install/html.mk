@@ -30,12 +30,10 @@ $(_htmlpages): $(_htmldir)/%: $(_HTMLDIR)/% | $$(@D)/
 
 
 .PHONY: install-html
-install-html: $(_htmlpages)
-	@:
+install-html: $(_htmlpages);
 
 .PHONY: uninstall-html
-uninstall-html: $(_htmldir_rmdir) $(_htmldirs_rmdir) $(_htmlpages_rm)
-	@:
+uninstall-html: $(_htmldir_rmdir) $(_htmldirs_rmdir) $(_htmlpages_rm);
 
 
 endif  # include guard

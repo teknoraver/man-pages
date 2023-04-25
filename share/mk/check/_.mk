@@ -12,8 +12,7 @@ check := check-catman
 
 
 .PHONY: check
-check: $(check)
-	@:
+check: $(check);
 
 
 endif  # include guard

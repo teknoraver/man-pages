@@ -34,12 +34,10 @@ $(_LINT_mdoc_mandoc): $(_MANDIR)/%.lint-mdoc.mandoc.touch: $(MANDIR)/% | $$(@D)/
 
 
 .PHONY: $(lint_mdoc)
-$(lint_mdoc): lint-mdoc-%: $$(_LINT_mdoc_%)
-	@:
+$(lint_mdoc): lint-mdoc-%: $$(_LINT_mdoc_%);
 
 .PHONY: lint-mdoc
-lint-mdoc: $(lint_mdoc)
-	@:
+lint-mdoc: $(lint_mdoc);
 
 
 endif  # include guard

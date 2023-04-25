@@ -36,8 +36,7 @@ $(_HTMLPAGES): $(_HTMLDIR)/%$(htmlext): $(MANDIR)/% | $$(@D)/
 
 
 .PHONY: build-html html
-build-html html: $(_HTMLPAGES)
-	@:
+build-html html: $(_HTMLPAGES);
 
 
 endif  # include guard

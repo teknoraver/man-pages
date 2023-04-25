@@ -32,12 +32,10 @@ $(DESTDIR)%/:
 
 
 .PHONY: install
-install: install-man
-	@:
+install: install-man;
 
 .PHONY: uninstall
-uninstall: uninstall-man
-	@:
+uninstall: uninstall-man;
 
 
 endif  # include guard

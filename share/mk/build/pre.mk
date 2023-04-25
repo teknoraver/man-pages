@@ -35,16 +35,13 @@ $(_MAN_eqn): %.eqn: %.tbl | $$(@D)/
 
 
 .PHONY: build-pre-preconv
-build-pre-preconv: $(_MAN_tbl)
-	@:
+build-pre-preconv: $(_MAN_tbl);
 
 .PHONY: build-pre-tbl
-build-pre-tbl: $(_MAN_eqn)
-	@:
+build-pre-tbl: $(_MAN_eqn);
 
 .PHONY: build-pre
-build-pre: build-pre-tbl
-	@:
+build-pre: build-pre-tbl;
 
 
 endif  # include guard

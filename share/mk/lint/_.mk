@@ -12,8 +12,7 @@ lint := lint-c lint-man lint-mdoc
 
 
 .PHONY: lint
-lint: $(lint)
-	@:
+lint: $(lint);
 
 
 endif  # include guard

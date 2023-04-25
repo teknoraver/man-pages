@@ -61,12 +61,10 @@ $(_LINT_man_tbl): $(_MANDIR)/%.lint-man.tbl.touch: $(MANDIR)/% | $$(@D)/
 
 
 .PHONY: $(lint_man)
-$(lint_man): lint-man-%: $$(_LINT_man_%)
-	@:
+$(lint_man): lint-man-%: $$(_LINT_man_%);
 
 .PHONY: lint-man
-lint-man: $(lint_man)
-	@:
+lint-man: $(lint_man);
 
 
 endif  # include guard

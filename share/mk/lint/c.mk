@@ -90,12 +90,10 @@ $(_LINT_c_iwyu): %.lint-c.iwyu.touch: %.c
 
 
 .PHONY: $(lint_c)
-$(lint_c): lint-c-%: $$(_LINT_c_%)
-	@:
+$(lint_c): lint-c-%: $$(_LINT_c_%);
 
 .PHONY: lint-c
-lint-c: $(lint_c)
-	@:
+lint-c: $(lint_c);
 
 
 endif  # include guard

@@ -98,16 +98,13 @@ $(_UNITS_src_bin): %: %.o
 
 
 .PHONY: build-src-c
-build-src-c:   $(_UNITS_src_c)
-	@:
+build-src-c:   $(_UNITS_src_c);
 
 .PHONY: build-src-cc
-build-src-cc:  $(_UNITS_src_o)
-	@:
+build-src-cc:  $(_UNITS_src_o);
 
 .PHONY: build-src-ld
-build-src-ld:  $(_UNITS_src_bin)
-	@:
+build-src-ld:  $(_UNITS_src_bin);
 
 .PHONY: build-src
 build-src: build-src-ld

@@ -38,8 +38,7 @@ MAKEFILEDIR := $(DATAROOTDIR)/mk
 
 
 .PHONY: all
-all: build
-	@:
+all: build;
 
 .PHONY: help
 help:

@@ -192,20 +192,16 @@ $(_mandir_rmdir): $(uninstall_manX) FORCE
 
 
 .PHONY: $(install_manX)
-$(install_manX): install-man%: $$(_man%pages)
-	@:
+$(install_manX): install-man%: $$(_man%pages);
 
 .PHONY: install-man
-install-man: $(install_manX)
-	@:
+install-man: $(install_manX);
 
 .PHONY: $(uninstall_manX)
-$(uninstall_manX): uninstall-man%: $$(_man%pages_rm) $$(_man%dir_rmdir)
-	@:
+$(uninstall_manX): uninstall-man%: $$(_man%pages_rm) $$(_man%dir_rmdir);
 
 .PHONY: uninstall-man
-uninstall-man: $(_mandir_rmdir) $(uninstall_manX)
-	@:
+uninstall-man: $(_mandir_rmdir) $(uninstall_manX);
 
 
 endif  # include guard
