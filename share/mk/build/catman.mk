@@ -40,19 +40,19 @@ _CATMAN         := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat,$(NONSO_MAN) $(NONSO_
 $(_CATMAN_troff): %.cat.troff: %.eqn | $$(@D)/
 	$(info	EQN	$@)
 	$(EQN) -T$(NROFF_OUT_DEVICE) $(EQNFLAGS) <$< 2>&1 >$@ \
-	| ( ! $(GREP) ^ )
+	| ( ! $(GREP) ^ ) >&2
 
 $(_CATMAN_MAN_set): %.cat.set: %.cat.troff | $$(@D)/
 	$(info	TROFF	$@)
 	<$< 2>&1 >$@ \
 	$(TROFF) -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS_MAN) $(NROFFFLAGS) \
-	| ( ! $(GREP) ^ )
+	| ( ! $(GREP) ^ ) >&2
 
 $(_CATMAN_MDOC_set): %.cat.set: %.cat.troff | $$(@D)/
 	$(info	TROFF	$@)
 	<$< 2>&1 >$@ \
 	$(TROFF) -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS_MDOC) $(NROFFFLAGS) \
-	| ( ! $(GREP) ^ )
+	| ( ! $(GREP) ^ ) >&2
 
 $(_CATMAN): %.cat: %.cat.set | $$(@D)/
 	$(info	GROTTY	$@)
