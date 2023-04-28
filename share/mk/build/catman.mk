@@ -22,7 +22,8 @@ NROFF_OUT_DEVICE     := $(shell $(LOCALE) charmap \
                                     && $(ECHO) utf8 \
                                     || $(ECHO) ascii)
 
-DEFAULT_NROFFFLAGS := -rLL=$(NROFF_LINE_LENGTH)n
+DEFAULT_NROFFFLAGS := -T$(NROFF_OUT_DEVICE)
+DEFAULT_NROFFFLAGS += -rLL=$(NROFF_LINE_LENGTH)n
 DEFAULT_NROFFFLAGS += -rCHECKSTYLE=$(TROFF_CHECKSTYLE_LVL)
 EXTRA_NROFFFLAGS   :=
 NROFFFLAGS         := $(DEFAULT_NROFFFLAGS) $(EXTRA_NROFFFLAGS)
@@ -46,14 +47,12 @@ $(_CATMAN_troff): %.cat.troff: %.eqn | $$(@D)/
 
 $(_CATMAN_MAN_set): %.cat.set: %.cat.troff | $$(@D)/
 	$(info	TROFF	$@)
-	<$< 2>&1 >$@ \
-	$(TROFF) -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS_MAN) $(NROFFFLAGS) \
+	$(TROFF) $(TROFFFLAGS_MAN) $(NROFFFLAGS) <$< 2>&1 >$@ \
 	| ( ! $(GREP) ^ ) >&2
 
 $(_CATMAN_MDOC_set): %.cat.set: %.cat.troff | $$(@D)/
 	$(info	TROFF	$@)
-	<$< 2>&1 >$@ \
-	$(TROFF) -T$(NROFF_OUT_DEVICE) $(TROFFFLAGS_MDOC) $(NROFFFLAGS) \
+	$(TROFF) $(TROFFFLAGS_MDOC) $(NROFFFLAGS) <$< 2>&1 >$@ \
 	| ( ! $(GREP) ^ ) >&2
 
 $(_CATMAN): %.cat: %.cat.set | $$(@D)/
