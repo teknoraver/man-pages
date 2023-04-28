@@ -14,14 +14,16 @@ include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/src.mk
 
 
-MANWIDTH          ?= 80
-NROFF_LINE_LENGTH := $(shell $(EXPR) $(MANWIDTH) - 2)
-NROFF_OUT_DEVICE  := $(shell $(LOCALE) charmap \
-                             | $(GREP) -i 'utf-*8' >/dev/null \
-                                 && $(ECHO) utf8 \
-                                 || $(ECHO) ascii)
+MANWIDTH             ?= 80
+TROFF_CHECKSTYLE_LVL := 3
+NROFF_LINE_LENGTH    := $(shell $(EXPR) $(MANWIDTH) - 2)
+NROFF_OUT_DEVICE     := $(shell $(LOCALE) charmap \
+                                | $(GREP) -i 'utf-*8' >/dev/null \
+                                    && $(ECHO) utf8 \
+                                    || $(ECHO) ascii)
 
 DEFAULT_NROFFFLAGS := -rLL=$(NROFF_LINE_LENGTH)n
+DEFAULT_NROFFFLAGS += -rCHECKSTYLE=$(TROFF_CHECKSTYLE_LVL)
 EXTRA_NROFFFLAGS   :=
 NROFFFLAGS         := $(DEFAULT_NROFFFLAGS) $(EXTRA_NROFFFLAGS)
 
