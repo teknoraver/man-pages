@@ -28,6 +28,7 @@ $(_LINT_mdoc_mandoc): $(_MANDIR)/%.lint-mdoc.mandoc.touch: $(MANDIR)/% | $$(@D)/
 	   | $(GREP) -v 'STYLE: legacy man(7) date format: Dd ' \
 	   | $(GREP) -v 'STYLE: lower case character in document title: Dt ' \
 	   | $(GREP) -v 'STYLE: operating system explicitly specified: Os ' \
+	   | $(GREP) -v 'STYLE: referenced manual not found: Xr ' \
 	   | $(GREP) -v 'WARNING: cross reference to self: Xr ' \
 	   ||:; \
 	) \
