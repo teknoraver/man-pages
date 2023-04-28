@@ -25,6 +25,7 @@ lint_mdoc    := $(foreach x,$(linters_mdoc),lint-mdoc-$(x))
 $(_LINT_mdoc_mandoc): $(_MANDIR)/%.lint-mdoc.mandoc.touch: $(MANDIR)/% | $$(@D)/
 	$(info LINT (mandoc)	$@)
 	! ($(MANDOC) -mdoc $(MANDOCFLAGS) $< 2>&1 \
+	   | $(GREP) -v 'STYLE: lower case character in document title: Dt ' \
 	   | $(GREP) -v 'STYLE: operating system explicitly specified: Os ' \
 	   | $(GREP) -v 'WARNING: cross reference to self: Xr ' \
 	   ||:; \
