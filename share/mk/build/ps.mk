@@ -28,18 +28,18 @@ _PSMAN         := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.ps,$(NONSO_MAN) $(NONSO_MD
 
 $(_PSMAN_troff): %.ps.troff: %.eqn | $$(@D)/
 	$(info	EQN	$@)
-	$(EQN) -Tps $(EQNFLAGS) <$< 2>&1 >$@ \
-	| ( ! $(GREP) ^ ) >&2
+	! ($(EQN) -Tps $(EQNFLAGS) <$< 2>&1 >$@) \
+	| $(GREP) ^ >&2
 
 $(_PSMAN_MAN_set): %.ps.set: %.ps.troff | $$(@D)/
 	$(info	TROFF	$@)
-	$(TROFF) -Tps $(TROFFFLAGS_MAN) <$< 2>&1 >$@ \
-	| ( ! $(GREP) ^ ) >&2
+	! ($(TROFF) -Tps $(TROFFFLAGS_MAN) <$< 2>&1 >$@) \
+	| $(GREP) ^ >&2
 
 $(_PSMAN_MDOC_set): %.ps.set: %.ps.troff | $$(@D)/
 	$(info	TROFF	$@)
-	$(TROFF) -Tps $(TROFFFLAGS_MDOC) <$< 2>&1 >$@ \
-	| ( ! $(GREP) ^ ) >&2
+	! ($(TROFF) -Tps $(TROFFFLAGS_MDOC) <$< 2>&1 >$@) \
+	| $(GREP) ^ >&2
 
 $(_PSMAN): %.ps: %.ps.set | $$(@D)/
 	$(info	GROPS	$@)

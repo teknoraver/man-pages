@@ -28,18 +28,18 @@ _PDFMAN         := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.pdf,$(NONSO_MAN) $(NONSO_
 
 $(_PDFMAN_troff): %.pdf.troff: %.eqn | $$(@D)/
 	$(info	EQN	$@)
-	$(EQN) -Tpdf $(EQNFLAGS) <$< 2>&1 >$@ \
-	| ( ! $(GREP) ^ ) >&2
+	! ($(EQN) -Tpdf $(EQNFLAGS) <$< 2>&1 >$@) \
+	| $(GREP) ^ >&2
 
 $(_PDFMAN_MAN_set): %.pdf.set: %.pdf.troff | $$(@D)/
 	$(info	TROFF	$@)
-	$(TROFF) -Tpdf $(TROFFFLAGS_MAN) <$< 2>&1 >$@ \
-	| ( ! $(GREP) ^ ) >&2
+	! ($(TROFF) -Tpdf $(TROFFFLAGS_MAN) <$< 2>&1 >$@) \
+	| $(GREP) ^ >&2
 
 $(_PDFMAN_MDOC_set): %.pdf.set: %.pdf.troff | $$(@D)/
 	$(info	TROFF	$@)
-	$(TROFF) -Tpdf $(TROFFFLAGS_MDOC) <$< 2>&1 >$@ \
-	| ( ! $(GREP) ^ ) >&2
+	! ($(TROFF) -Tpdf $(TROFFFLAGS_MDOC) <$< 2>&1 >$@) \
+	| $(GREP) ^ >&2
 
 $(_PDFMAN): %.pdf: %.pdf.set | $$(@D)/
 	$(info	GROPDF	$@)
