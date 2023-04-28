@@ -29,7 +29,7 @@ $(_LINT_mdoc_mandoc): $(_MANDIR)/%.lint-mdoc.mandoc.touch: $(MANDIR)/% | $$(@D)/
 	   | $(GREP) -v 'WARNING: cross reference to self: Xr ' \
 	   ||:; \
 	) \
-	| $(GREP) '.' >&2
+	| $(GREP) ^ >&2
 	touch $@
 
 

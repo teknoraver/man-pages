@@ -34,7 +34,7 @@ $(_LINT_man_mandoc): $(_MANDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% | $$(@D)/
 	   | $(GREP) -v 'WARNING: undefined escape, printing literally: \\\\' \
 	   ||:; \
 	) \
-	| $(GREP) '.' >&2
+	| $(GREP) ^ >&2
 	touch $@
 
 $(_LINT_man_tbl): $(_MANDIR)/%.lint-man.tbl.touch: $(MANDIR)/% | $$(@D)/
