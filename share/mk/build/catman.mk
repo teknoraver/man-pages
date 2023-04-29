@@ -49,6 +49,7 @@ $(_CATMAN_MAN_set): %.cat.set: %.cat.troff | $$(@D)/
 	$(info	TROFF	$@)
 	! ($(TROFF) $(TROFFFLAGS_MAN) $(NROFFFLAGS) <$< 2>&1 >$@ \
 	   | $(GREP) -v 'style: .TH missing fifth argument and second argument' \
+	   | $(GREP) -v 'style: blank line in input$$' \
 	   ||:; \
 	) \
 	| $(GREP) ^ >&2
