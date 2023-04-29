@@ -20,18 +20,18 @@ MANPAGES := $(shell $(FIND) $(MANDIR)/ -type f \
 		| $(SORT) \
 		| $(SED) 's,:,\\:,g')
 
-MAN1PAGES      := $(filter %.1,$(MANPAGES))
-MAN2PAGES      := $(filter %.2,$(MANPAGES))
-MAN2TYPEPAGES  := $(filter %.2type,$(MANPAGES))
-MAN3PAGES      := $(filter %.3,$(MANPAGES))
-MAN3CONSTPAGES := $(filter %.3const,$(MANPAGES))
-MAN3HEADPAGES  := $(filter %.3head,$(MANPAGES))
-MAN3TYPEPAGES  := $(filter %.3type,$(MANPAGES))
-MAN4PAGES      := $(filter %.4,$(MANPAGES))
-MAN5PAGES      := $(filter %.5,$(MANPAGES))
-MAN6PAGES      := $(filter %.6,$(MANPAGES))
-MAN7PAGES      := $(filter %.7,$(MANPAGES))
-MAN8PAGES      := $(filter %.8,$(MANPAGES))
+MAN1PAGES      := $(filter $(MANDIR)/man1/%,$(filter %.1,$(MANPAGES)))
+MAN2PAGES      := $(filter $(MANDIR)/man2/%,$(filter %.2,$(MANPAGES)))
+MAN2TYPEPAGES  := $(filter $(MANDIR)/man2type/%,$(filter %.2type,$(MANPAGES)))
+MAN3PAGES      := $(filter $(MANDIR)/man3/%,$(filter %.3,$(MANPAGES)))
+MAN3CONSTPAGES := $(filter $(MANDIR)/man3const/%,$(filter %.3const,$(MANPAGES)))
+MAN3HEADPAGES  := $(filter $(MANDIR)/man3head/%,$(filter %.3head,$(MANPAGES)))
+MAN3TYPEPAGES  := $(filter $(MANDIR)/man3type/%,$(filter %.3type,$(MANPAGES)))
+MAN4PAGES      := $(filter $(MANDIR)/man4/%,$(filter %.4,$(MANPAGES)))
+MAN5PAGES      := $(filter $(MANDIR)/man5/%,$(filter %.5,$(MANPAGES)))
+MAN6PAGES      := $(filter $(MANDIR)/man6/%,$(filter %.6,$(MANPAGES)))
+MAN7PAGES      := $(filter $(MANDIR)/man7/%,$(filter %.7,$(MANPAGES)))
+MAN8PAGES      := $(filter $(MANDIR)/man8/%,$(filter %.8,$(MANPAGES)))
 
 
 endif  # include guard
