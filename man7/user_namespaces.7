@@ -1258,14 +1258,14 @@ update_map(char *mapping, char *map_file)
     close(fd);
 }
 
-/* Linux 3.19 made a change in the handling of setgroups(2) and the
-   \[aq]gid_map\[aq] file to address a security issue.  The issue allowed
-   *unprivileged* users to employ user namespaces in order to drop groups.
-   The upshot of the 3.19 changes is that in order to update the
-   \[aq]gid_maps\[aq] file, use of the setgroups() system call in this
-   user namespace must first be disabled by writing "deny" to one of
-   the /proc/PID/setgroups files for this namespace.  That is the
-   purpose of the following function. */
+/* Linux 3.19 made a change in the handling of setgroups(2) and
+   the \[aq]gid_map\[aq] file to address a security issue.  The issue
+   allowed *unprivileged* users to employ user namespaces in
+   order to drop groups.  The upshot of the 3.19 changes is that
+   in order to update the \[aq]gid_maps\[aq] file, use of the setgroups()
+   system call in this user namespace must first be disabled by
+   writing "deny" to one of the /proc/PID/setgroups files for
+   this namespace.  That is the purpose of the following function.  */
 
 static void
 proc_setgroups_write(pid_t child_pid, char *str)
