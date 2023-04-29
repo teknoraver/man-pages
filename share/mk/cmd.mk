@@ -35,7 +35,6 @@ XZ         := xz
 
 INSTALL_DATA := $(INSTALL) -m 644
 INSTALL_DIR  := $(INSTALL) -m 755 -d
-RMDIR        := rmdir --ignore-fail-on-non-empty
 
 
 endif  # include guard

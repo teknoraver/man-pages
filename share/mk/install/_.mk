@@ -26,10 +26,6 @@ $(DESTDIR)%/:
 	$(info RM	$*)
 	$(RM) $*
 
-%-rmdir:
-	$(info RMDIR	$(@D))
-	$(RMDIR) $(@D)
-
 
 .PHONY: install
 install: install-man;

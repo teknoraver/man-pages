@@ -16,11 +16,7 @@
 #   is in a variable of the same name but without the '_'.  The subdir is
 #   named after this project: <*/man>.
 # - Variables ending in '_rm' refer to files that can be removed (exist).
-# - Variables ending in '_rmdir' refer to dirs that can be removed (exist).
 # - Targets of the form '%-rm' remove their corresponding file '%'.
-# - Targets of the form '%-rmdir' remove their corresponding dir '%'.
-# - The 'FORCE' target is used to make phony some variables that can't be
-#   .PHONY to avoid some optimizations.
 #
 ########################################################################
 
@@ -242,4 +238,3 @@ help-variables:
 
 
 .DELETE_ON_ERROR:
-FORCE:

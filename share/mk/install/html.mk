@@ -18,10 +18,7 @@ _htmldir := $(DESTDIR)$(htmldir_)
 
 
 _htmlpages      := $(patsubst $(_HTMLDIR)/%,$(_htmldir)/%,$(_HTMLPAGES))
-_htmldirs       := $(patsubst $(MANDIR)/%,$(_htmldir)/%,$(MANDIRS))
 _htmlpages_rm   := $(addsuffix -rm,$(wildcard $(_htmlpages)))
-_htmldirs_rmdir := $(addsuffix -rmdir,$(wildcard $(_htmldirs)))
-_htmldir_rmdir  := $(addsuffix -rmdir,$(wildcard $(_htmldir)/))
 
 
 $(_htmlpages): $(_htmldir)/%: $(_HTMLDIR)/% | $$(@D)/
@@ -33,7 +30,7 @@ $(_htmlpages): $(_htmldir)/%: $(_HTMLDIR)/% | $$(@D)/
 install-html: $(_htmlpages);
 
 .PHONY: uninstall-html
-uninstall-html: $(_htmldir_rmdir) $(_htmldirs_rmdir) $(_htmlpages_rm);
+uninstall-html: $(_htmlpages_rm);
 
 
 endif  # include guard

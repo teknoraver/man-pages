@@ -63,14 +63,6 @@ _man5dir      := $(DESTDIR)$(man5dir)
 _man6dir      := $(DESTDIR)$(man6dir)
 _man7dir      := $(DESTDIR)$(man7dir)
 _man8dir      := $(DESTDIR)$(man8dir)
-_mandirs      := $(_man1dir)/ \
-                 $(_man2dir)/ $(_man2typedir)/ \
-                 $(_man3dir)/ $(_man3constdir)/ $(_man3headdir)/ $(_man3typedir)/ \
-                 $(_man4dir)/ \
-                 $(_man5dir)/ \
-                 $(_man6dir)/ \
-                 $(_man7dir)/ \
-                 $(_man8dir)/ \
 
 _man1pages      := $(patsubst $(MANDIR)/man1/%,$(_man1dir)/%$(Z),$(MAN1PAGES))
 _man2pages      := $(patsubst $(MANDIR)/man2/%,$(_man2dir)/%$(Z),$(MAN2PAGES))
@@ -106,24 +98,8 @@ _man6pages_rm     := $(addsuffix -rm,$(wildcard $(_man6pages)))
 _man7pages_rm     := $(addsuffix -rm,$(wildcard $(_man7pages)))
 _man8pages_rm     := $(addsuffix -rm,$(wildcard $(_man8pages)))
 
-_mandirs_rmdir     := $(addsuffix -rmdir,$(wildcard $(_mandirs)))
-_man1dir_rmdir     := $(addsuffix -rmdir,$(wildcard $(_man1dir)))
-_man2dir_rmdir     := $(addsuffix -rmdir,$(wildcard $(_man2dir)))
-_man2typedir_rmdir := $(addsuffix -rmdir,$(wildcard $(_man2typedir)))
-_man3dir_rmdir     := $(addsuffix -rmdir,$(wildcard $(_man3dir)))
-_man3constdir_rmdir:= $(addsuffix -rmdir,$(wildcard $(_man3constdir)))
-_man3headdir_rmdir := $(addsuffix -rmdir,$(wildcard $(_man3headdir)))
-_man3typedir_rmdir := $(addsuffix -rmdir,$(wildcard $(_man3typedir)))
-_man4dir_rmdir     := $(addsuffix -rmdir,$(wildcard $(_man4dir)))
-_man5dir_rmdir     := $(addsuffix -rmdir,$(wildcard $(_man5dir)))
-_man6dir_rmdir     := $(addsuffix -rmdir,$(wildcard $(_man6dir)))
-_man7dir_rmdir     := $(addsuffix -rmdir,$(wildcard $(_man7dir)))
-_man8dir_rmdir     := $(addsuffix -rmdir,$(wildcard $(_man8dir)))
-_mandir_rmdir      := $(addsuffix -rmdir,$(wildcard $(_mandir)/))
-
 MAN_SECTIONS     := 1 2 2type 3 3const 3head 3type 4 5 6 7 8
 install_manX     := $(foreach x,$(MAN_SECTIONS),install-man$(x))
-installdirs_manX := $(foreach x,$(MAN_SECTIONS),installdirs-man$(x))
 uninstall_manX   := $(foreach x,$(MAN_SECTIONS),uninstall-man$(x))
 
 
@@ -187,9 +163,6 @@ else ifeq ($(Z),.xz)
 	fi
 endif
 
-$(_mandirs_rmdir): $(_mandir)/man%/-rmdir: $$(_man%pages_rm) FORCE
-$(_mandir_rmdir): $(uninstall_manX) FORCE
-
 
 .PHONY: install-man1
 install-man1:      $(_man1pages);
@@ -220,10 +193,10 @@ install-man8:      $(_man8pages);
 install-man: $(install_manX);
 
 .PHONY: $(uninstall_manX)
-$(uninstall_manX): uninstall-man%: $$(_man%pages_rm) $$(_man%dir_rmdir);
+$(uninstall_manX): uninstall-man%: $$(_man%pages_rm);
 
 .PHONY: uninstall-man
-uninstall-man: $(_mandir_rmdir) $(uninstall_manX);
+uninstall-man: $(uninstall_manX);
 
 
 endif  # include guard

@@ -19,8 +19,6 @@ MANPAGES := $(shell $(FIND) $(MANDIR)/man*/ -type f \
 		| $(GREP) '$(MANEXT)' \
 		| $(SORT) \
 		| $(SED) 's,:,\\:,g')
-MANDIRS  := $(shell $(FIND) $(MANDIR)/man* -type d \
-		| $(SORT))
 
 MAN1PAGES      := $(filter %.1,$(MANPAGES))
 MAN2PAGES      := $(filter %.2,$(MANPAGES))
