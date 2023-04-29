@@ -57,7 +57,7 @@ LD  := $(CC) $(CFLAGS)
 _SRCPAGEDIRS   := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.d/,$(NONSO_MAN))
 
 _UNITS_src_src := $(patsubst $(MANDIR)/%,$(_MANDIR)/%,$(shell \
-		$(FIND) $(MANDIR)/man*/ -type f \
+		$(FIND) $(MANDIR)/ -type f \
 		| $(GREP) '$(MANEXT)' \
 		| $(XARGS) $(GREP) -H '^\.\\" SRC BEGIN ' \
 		| $(SED) 's,:\.\\" SRC BEGIN (,.d/,' \
