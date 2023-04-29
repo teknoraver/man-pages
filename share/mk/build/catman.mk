@@ -50,6 +50,7 @@ $(_CATMAN_MAN_set): %.cat.set: %.cat.troff | $$(@D)/
 	! ($(TROFF) $(TROFFFLAGS_MAN) $(NROFFFLAGS) <$< 2>&1 >$@ \
 	   | $(GREP) -v 'style: .TH missing fifth argument and second argument' \
 	   | $(GREP) -v 'style: blank line in input$$' \
+	   | $(GREP) -v 'style: use of deprecated macro: .PD$$' \
 	   ||:; \
 	) \
 	| $(GREP) ^ >&2
