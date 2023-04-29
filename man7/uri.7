@@ -29,25 +29,84 @@
 .SH NAME
 uri, url, urn \- uniform resource identifier (URI), including a URL or URN
 .SH SYNOPSIS
-.nf
-.HP 0.2i
-URI = [ absoluteURI | relativeURI ] [ "#" fragment ]
-.HP
-absoluteURI = scheme ":" ( hierarchical_part | opaque_part )
-.HP
-relativeURI = ( net_path | absolute_path | relative_path ) [ "?" query ]
-.HP
-scheme = "http" | "ftp" | "gopher" | "mailto" | "news" | "telnet" |
-         "file" | "man" | "info" | "whatis" | "ldap" | "wais" | \&...
-.HP
-hierarchical_part = ( net_path | absolute_path ) [ "?" query ]
-.HP
-net_path = "//" authority [ absolute_path ]
-.HP
-absolute_path = "/"  path_segments
-.HP
-relative_path = relative_segment [ absolute_path ]
-.fi
+.SY "\fIURI\fP \fR=\fP"
+.RI [\~ absoluteURI
+|
+.IR relativeURI \~]
+.RB [\~\[dq] # \[dq]\~\c
+.IR fragment \~]
+.YS
+.PP
+.SY "\fIabsoluteURI\fP \fR=\fP"
+.I scheme\~\c
+.RB \[dq] : \[dq]
+.RI (\~ hierarchical_part
+|
+.IR opaque_part \~)
+.YS
+.PP
+.SY "\fIrelativeURI\fP \fR=\fP"
+.RI (\~ net_path
+|
+.I absolute_path
+|
+.IR relative_path \~)
+.RB [\~\[dq] ? \[dq]\~\c
+.IR query \~]
+.YS
+.PP
+.SY "\fIscheme\fP \fR=\fP"
+.RB \[dq] http \[dq]
+|
+.RB \[dq] ftp \[dq]
+|
+.RB \[dq] gopher \[dq]
+|
+.RB \[dq] mailto \[dq]
+|
+.RB \[dq] news \[dq]
+|
+.RB \[dq] telnet \[dq]
+|
+.RB \[dq] file \[dq]
+|
+.RB \[dq] ftp \[dq]
+|
+.RB \[dq] man \[dq]
+|
+.RB \[dq] info \[dq]
+|
+.RB \[dq] whatis \[dq]
+|
+.RB \[dq] ldap \[dq]
+|
+.RB \[dq] wais \[dq]
+| \&...
+.YS
+.PP
+.SY "\fIhierarchical_part\fP \fR=\fP"
+.RI (\~ net_path
+|
+.IR absolute_path \~)
+.RB [\~\[dq] ? \[dq]\~\c
+.IR query \~]
+.YS
+.PP
+.SY "\fInet_path\fP \fR=\fP"
+.RB \[dq] // \[dq]\~\c
+.I authority
+.RI [\~ absolute_path \~]
+.YS
+.PP
+.SY "\fIabsolute_path\fP \fR=\fP"
+.RB \[dq] / \[dq]\~\c
+.I path_segments
+.YS
+.PP
+.SY "\fIrelative_path\fP \fR=\fP"
+.I relative_segment
+.RI [\~ absolute_path \~]
+.YS
 .SH DESCRIPTION
 A Uniform Resource Identifier (URI) is a short string of characters
 identifying an abstract or physical resource (for example, a web page).
@@ -96,7 +155,7 @@ For example, many URL schemes
 permit the authority to be the following format, called here an
 .I ip_server
 (square brackets show what's optional):
-.HP
+.PP
 .IR "ip_server = " [ user " [ : " password " ] @ ] " host " [ : " port ]
 .PP
 This format allows you to optionally insert a username,
