@@ -47,7 +47,10 @@ $(_CATMAN_troff): %.cat.troff: %.eqn | $$(@D)/
 
 $(_CATMAN_MAN_set): %.cat.set: %.cat.troff | $$(@D)/
 	$(info	TROFF	$@)
-	! ($(TROFF) $(TROFFFLAGS_MAN) $(NROFFFLAGS) <$< 2>&1 >$@) \
+	! ($(TROFF) $(TROFFFLAGS_MAN) $(NROFFFLAGS) <$< 2>&1 >$@ \
+	   | $(GREP) -v 'style: .TH missing fifth argument and second argument' \
+	   ||:; \
+	) \
 	| $(GREP) ^ >&2
 
 $(_CATMAN_MDOC_set): %.cat.set: %.cat.troff | $$(@D)/
