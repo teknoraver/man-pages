@@ -15,6 +15,8 @@ include $(MAKEFILEDIR)/lint/man/_.mk
 include $(MAKEFILEDIR)/src.mk
 
 
+mandoc_man_ignore_grep := $(DATAROOTDIR)/lint/mandoc/man.ignore.grep
+
 _LINT_man_mandoc :=$(patsubst $(MANDIR)/%,$(_MANDIR)/%.lint-man.mandoc.touch,$(NONSO_MAN))
 _LINT_man_tbl    :=$(patsubst $(MANDIR)/%,$(_MANDIR)/%.lint-man.tbl.touch,$(NONSO_MAN))
 
@@ -23,15 +25,10 @@ linters_man := mandoc tbl
 lint_man    := $(foreach x,$(linters_man),lint-man-$(x))
 
 
-$(_LINT_man_mandoc): $(_MANDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% | $$(@D)/
+$(_LINT_man_mandoc): $(_MANDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% $(mandoc_man_ignore_grep) | $$(@D)/
 	$(info LINT (mandoc)	$@)
 	! ($(MANDOC) -man $(MANDOCFLAGS) $< 2>&1 \
-	   | $(GREP) -v 'STYLE: lower case character in document title:' \
-	   | $(GREP) -v 'UNSUPP: ignoring macro in table:' \
-	   | $(GREP) -v 'WARNING: cannot parse date, using it verbatim: TH (date)' \
-	   | $(GREP) -v 'WARNING: empty block: UR' \
-	   | $(GREP) -v 'WARNING: missing date, using "": TH' \
-	   | $(GREP) -v 'WARNING: undefined escape, printing literally: \\\\' \
+	   | $(GREP) -v -f '$(mandoc_man_ignore_grep)' \
 	   ||:; \
 	) \
 	| $(GREP) ^ >&2

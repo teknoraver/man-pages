@@ -14,6 +14,8 @@ include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/src.mk
 
 
+groff_man_ignore_grep := $(DATAROOTDIR)/lint/groff/man.ignore.grep
+
 MANWIDTH             ?= 80
 TROFF_CHECKSTYLE_LVL := 3
 NROFF_LINE_LENGTH    := $(shell $(EXPR) $(MANWIDTH) - 2)
@@ -45,13 +47,10 @@ $(_CATMAN_troff): %.cat.troff: %.eqn | $$(@D)/
 	! ($(EQN) -T$(NROFF_OUT_DEVICE) $(EQNFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
-$(_CATMAN_MAN_set): %.cat.set: %.cat.troff | $$(@D)/
+$(_CATMAN_MAN_set): %.cat.set: %.cat.troff $(groff_man_ignore_grep) | $$(@D)/
 	$(info	TROFF	$@)
 	! ($(TROFF) $(TROFFFLAGS_MAN) $(NROFFFLAGS) <$< 2>&1 >$@ \
-	   | $(GREP) -v 'style: .TH missing fifth argument and second argument' \
-	   | $(GREP) -v 'style: blank line in input$$' \
-	   | $(GREP) -v 'style: use of deprecated macro: .PD$$' \
-	   | $(GREP) -v 'style: use of deprecated macro: .UC$$' \
+	   | $(GREP) -v -f '$(groff_man_ignore_grep)' \
 	   ||:; \
 	) \
 	| $(GREP) ^ >&2

@@ -15,6 +15,8 @@ include $(MAKEFILEDIR)/lint/man/_.mk
 include $(MAKEFILEDIR)/src.mk
 
 
+mandoc_mdoc_ignore_grep := $(DATAROOTDIR)/lint/mandoc/mdoc.ignore.grep
+
 _LINT_mdoc_mandoc:=$(patsubst $(MANDIR)/%,$(_MANDIR)/%.lint-mdoc.mandoc.touch,$(NONSO_MDOC))
 
 
@@ -22,14 +24,10 @@ linters_mdoc := mandoc
 lint_mdoc    := $(foreach x,$(linters_mdoc),lint-mdoc-$(x))
 
 
-$(_LINT_mdoc_mandoc): $(_MANDIR)/%.lint-mdoc.mandoc.touch: $(MANDIR)/% | $$(@D)/
+$(_LINT_mdoc_mandoc): $(_MANDIR)/%.lint-mdoc.mandoc.touch: $(MANDIR)/% $(mandoc_mdoc_ignore_grep) | $$(@D)/
 	$(info LINT (mandoc)	$@)
 	! ($(MANDOC) -mdoc $(MANDOCFLAGS) $< 2>&1 \
-	   | $(GREP) -v 'STYLE: legacy man(7) date format: Dd ' \
-	   | $(GREP) -v 'STYLE: lower case character in document title: Dt ' \
-	   | $(GREP) -v 'STYLE: operating system explicitly specified: Os ' \
-	   | $(GREP) -v 'STYLE: referenced manual not found: Xr ' \
-	   | $(GREP) -v 'WARNING: cross reference to self: Xr ' \
+	   | $(GREP) -v -f '$(mandoc_mdoc_ignore_grep)' \
 	   ||:; \
 	) \
 	| $(GREP) ^ >&2
