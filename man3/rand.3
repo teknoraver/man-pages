@@ -181,13 +181,13 @@ possibly useful when one needs the same sequence on two different machines.
 .in +4n
 .EX
 static unsigned long next = 1;
-
+\&
 /* RAND_MAX assumed to be 32767 */
 int myrand(void) {
     next = next * 1103515245 + 12345;
     return((unsigned)(next/65536) % 32768);
 }
-
+\&
 void mysrand(unsigned int seed) {
     next = seed;
 }
@@ -207,32 +207,32 @@ the program uses a random seed.
 .EX
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     int           r;
     unsigned int  seed, nloops;
-
+\&
     if (argc != 3) {
         fprintf(stderr, "Usage: %s <seed> <nloops>\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     seed = atoi(argv[1]);
     nloops = atoi(argv[2]);
-
+\&
     if (seed == \-1) {
         seed = arc4random();
         printf("seed: %u\en", seed);
     }
-
+\&
     srand(seed);
     for (unsigned int j = 0; j < nloops; j++) {
         r =  rand();
         printf("%d\en", r);
     }
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

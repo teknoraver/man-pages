@@ -264,7 +264,7 @@ executing the following calls:
 .EX
 sigset_t origmask;
 int timeout;
-
+\&
 timeout = (tmo_p == NULL) ? \-1 :
           (tmo_p\->tv_sec * 1000 + tmo_p\->tv_nsec / 1000000);
 pthread_sigmask(SIG_SETMASK, &sigmask, &origmask);
@@ -506,7 +506,7 @@ About to poll()
 Ready: 1
   fd=3; events: POLLIN POLLHUP
     read 6 bytes: ccccc
-
+\&
 About to poll()
 Ready: 1
   fd=3; events: POLLHUP
@@ -548,7 +548,7 @@ at which point the file descriptor was closed and the program terminated.
 .\" SRC BEGIN (poll_input.c)
 .EX
 /* poll_input.c
-
+\&
    Licensed under GNU General Public License v2 or later.
 */
 #include <fcntl.h>
@@ -556,10 +556,10 @@ at which point the file descriptor was closed and the program terminated.
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+\&
 #define errExit(msg)    do { perror(msg); exit(EXIT_FAILURE); \e
                         } while (0)
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -568,49 +568,49 @@ main(int argc, char *argv[])
     nfds_t         num_open_fds, nfds;
     ssize_t        s;
     struct pollfd  *pfds;
-
+\&
     if (argc < 2) {
        fprintf(stderr, "Usage: %s file...\en", argv[0]);
        exit(EXIT_FAILURE);
     }
-
+\&
     num_open_fds = nfds = argc \- 1;
     pfds = calloc(nfds, sizeof(struct pollfd));
     if (pfds == NULL)
         errExit("malloc");
-
+\&
     /* Open each file on command line, and add it to \[aq]pfds\[aq] array. */
-
+\&
     for (nfds_t j = 0; j < nfds; j++) {
         pfds[j].fd = open(argv[j + 1], O_RDONLY);
         if (pfds[j].fd == \-1)
             errExit("open");
-
+\&
         printf("Opened \e"%s\e" on fd %d\en", argv[j + 1], pfds[j].fd);
-
+\&
         pfds[j].events = POLLIN;
     }
-
+\&
     /* Keep calling poll() as long as at least one file descriptor is
        open. */
-
+\&
     while (num_open_fds > 0) {
         printf("About to poll()\en");
         ready = poll(pfds, nfds, \-1);
         if (ready == \-1)
             errExit("poll");
-
+\&
         printf("Ready: %d\en", ready);
-
+\&
         /* Deal with array returned by poll(). */
-
+\&
         for (nfds_t j = 0; j < nfds; j++) {
             if (pfds[j].revents != 0) {
                 printf("  fd=%d; events: %s%s%s\en", pfds[j].fd,
                        (pfds[j].revents & POLLIN)  ? "POLLIN "  : "",
                        (pfds[j].revents & POLLHUP) ? "POLLHUP " : "",
                        (pfds[j].revents & POLLERR) ? "POLLERR " : "");
-
+\&
                 if (pfds[j].revents & POLLIN) {
                     s = read(pfds[j].fd, buf, sizeof(buf));
                     if (s == \-1)
@@ -626,7 +626,7 @@ main(int argc, char *argv[])
             }
         }
     }
-
+\&
     printf("All file descriptors closed; bye\en");
     exit(EXIT_SUCCESS);
 }

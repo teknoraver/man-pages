@@ -164,7 +164,7 @@ struct sockaddr_in {
     in_port_t      sin_port;   /* port in network byte order */
     struct in_addr sin_addr;   /* internet address */
 };
-
+\&
 /* Internet address */
 struct in_addr {
     uint32_t       s_addr;     /* address in network byte order */
@@ -513,7 +513,7 @@ struct ip_msfilter {
     struct in_addr imsf_interface; /* IP address of local
                                       interface */
     uint32_t       imsf_fmode;     /* Filter\-mode */
-
+\&
     uint32_t       imsf_numsrc;    /* Number of sources in
                                       the following array */
     struct in_addr imsf_slist[1];  /* Array of source
@@ -842,7 +842,7 @@ structure:
 #define SO_EE_ORIGIN_LOCAL   1
 #define SO_EE_ORIGIN_ICMP    2
 #define SO_EE_ORIGIN_ICMP6   3
-
+\&
 struct sock_extended_err {
     uint32_t ee_errno;   /* error number */
     uint8_t  ee_origin;  /* where the error originated */
@@ -853,7 +853,7 @@ struct sock_extended_err {
     uint32_t ee_data;    /* other data */
     /* More data may follow */
 };
-
+\&
 struct sockaddr *SO_EE_OFFENDER(struct sock_extended_err *);
 .EE
 .in

@@ -242,7 +242,7 @@ This can be used to print in binary prior to C23.
 .\" SRC BEGIN (register_printf_specifier.c)
 .EX
 /* This code is in the public domain */
-
+\&
 #include <err.h>
 #include <limits.h>
 #include <stddef.h>
@@ -251,21 +251,21 @@ This can be used to print in binary prior to C23.
 #include <stdlib.h>
 #include <string.h>
 #include <sys/param.h>
-
+\&
 #include <printf.h>
-
+\&
 #define GROUP_SEP  \[aq]\e\[aq]\[aq]
-
+\&
 struct Printf_Pad {
     char    ch;
     size_t  len;
 };
-
+\&
 static int b_printf(FILE *stream, const struct printf_info *info,
                     const void *const args[]);
 static int b_arginf_sz(const struct printf_info *info,
                     size_t n, int argtypes[n], int size[n]);
-
+\&
 static uintmax_t b_value(const struct printf_info *info,
                     const void *arg);
 static size_t b_bin_repr(char bin[UINTMAX_WIDTH],
@@ -284,7 +284,7 @@ static ssize_t b_print_number(FILE *stream,
                     size_t min_len, size_t bin_len);
 static char pad_ch(const struct printf_info *info);
 static ssize_t pad_spaces(FILE *stream, size_t pad_len);
-
+\&
 int
 main(void)
 {
@@ -292,7 +292,7 @@ main(void)
         err(EXIT_FAILURE, "register_printf_specifier(\[aq]b\[aq], ...)");
     if (register_printf_specifier(\[aq]B\[aq], b_printf, b_arginf_sz) == \-1)
         err(EXIT_FAILURE, "register_printf_specifier(\[aq]B\[aq], ...)");
-
+\&
     printf("....----....----....----....----\en");
     printf("%llb;\en", 0x5Ellu);
     printf("%lB;\en", 0x5Elu);
@@ -342,10 +342,10 @@ main(void)
     printf("%019B;\en", 0xAB);
     printf("%#016b;\en", 0xAB);
     printf("....----....----....----....----\en");
-
+\&
     return 0;
 }
-
+\&
 static int
 b_printf(FILE *stream, const struct printf_info *info,
          const void *const args[])
@@ -354,16 +354,16 @@ b_printf(FILE *stream, const struct printf_info *info,
     size_t             min_len, bin_len;
     ssize_t            len, tmp;
     struct Printf_Pad  pad = {0};
-
+\&
     len = 0;
-
+\&
     min_len = b_bin_repr(bin, info, args[0]);
     bin_len = b_bin_len(info, min_len);
-
+\&
     pad.ch = pad_ch(info);
     if (pad.ch == \[aq] \[aq])
         pad.len = b_pad_len(info, bin_len);
-
+\&
     /* Padding with \[aq] \[aq] (right aligned) */
     if ((pad.ch == \[aq] \[aq]) && !info->left) {
         tmp = pad_spaces(stream, pad.len);
@@ -371,7 +371,7 @@ b_printf(FILE *stream, const struct printf_info *info,
             return EOF;
         len += tmp;
     }
-
+\&
     /* "0b"/"0B" prefix */
     if (info->alt) {
         tmp = b_print_prefix(stream, info);
@@ -379,7 +379,7 @@ b_printf(FILE *stream, const struct printf_info *info,
             return EOF;
         len += tmp;
     }
-
+\&
     /* Padding with \[aq]0\[aq] */
     if (pad.ch == \[aq]0\[aq]) {
         tmp = b_pad_zeros(stream, info, min_len);
@@ -387,13 +387,13 @@ b_printf(FILE *stream, const struct printf_info *info,
             return EOF;
         len += tmp;
     }
-
+\&
     /* Print number (including leading 0s to fill precision) */
     tmp = b_print_number(stream, info, bin, min_len, bin_len);
     if (tmp == EOF)
         return EOF;
     len += tmp;
-
+\&
     /* Padding with \[aq] \[aq] (left aligned) */
     if (info\->left) {
         tmp = pad_spaces(stream, pad.len);
@@ -401,27 +401,27 @@ b_printf(FILE *stream, const struct printf_info *info,
             return EOF;
         len += tmp;
     }
-
+\&
     return len;
 }
-
+\&
 static int
 b_arginf_sz(const struct printf_info *info, size_t n, int argtypes[n],
             [[maybe_unused]] int size[n])
 {
     if (n < 1)
         return \-1;
-
+\&
     if (info\->is_long_double)
         argtypes[0] = PA_INT | PA_FLAG_LONG_LONG;
     else if (info\->is_long)
         argtypes[0] = PA_INT | PA_FLAG_LONG;
     else
         argtypes[0] = PA_INT;
-
+\&
     return 1;
 }
-
+\&
 static uintmax_t
 b_value(const struct printf_info *info, const void *arg)
 {
@@ -429,54 +429,54 @@ b_value(const struct printf_info *info, const void *arg)
         return *(const unsigned long long *)arg;
     if (info\->is_long)
         return *(const unsigned long *)arg;
-
+\&
     /* short and char are both promoted to int */
     return *(const unsigned int *)arg;
 }
-
+\&
 static size_t
 b_bin_repr(char bin[UINTMAX_WIDTH],
            const struct printf_info *info, const void *arg)
 {
     size_t     min_len;
     uintmax_t  val;
-
+\&
     val = b_value(info, arg);
-
+\&
     bin[0] = \[aq]0\[aq];
     for (min_len = 0; val; min_len++) {
         bin[min_len] = \[aq]0\[aq] + (val % 2);
         val >>= 1;
     }
-
+\&
     return MAX(min_len, 1);
 }
-
+\&
 static size_t
 b_bin_len(const struct printf_info *info, ptrdiff_t min_len)
 {
     return MAX(info\->prec, min_len);
 }
-
+\&
 static size_t
 b_pad_len(const struct printf_info *info, ptrdiff_t bin_len)
 {
     ptrdiff_t  pad_len;
-
+\&
     pad_len = info\->width \- bin_len;
     if (info\->alt)
         pad_len \-= 2;
     if (info\->group)
         pad_len \-= (bin_len \- 1) / 4;
-
+\&
     return MAX(pad_len, 0);
 }
-
+\&
 static ssize_t
 b_print_prefix(FILE *stream, const struct printf_info *info)
 {
     ssize_t len;
-
+\&
     len = 0;
     if (fputc(\[aq]0\[aq], stream) == EOF)
         return EOF;
@@ -484,17 +484,17 @@ b_print_prefix(FILE *stream, const struct printf_info *info)
     if (fputc(info\->spec, stream) == EOF)
         return EOF;
     len++;
-
+\&
     return len;
 }
-
+\&
 static ssize_t
 b_pad_zeros(FILE *stream, const struct printf_info *info,
             ptrdiff_t min_len)
 {
     ssize_t    len;
     ptrdiff_t  tmp;
-
+\&
     len = 0;
     tmp = info\->width \- (info\->alt * 2);
     if (info\->group)
@@ -503,55 +503,55 @@ b_pad_zeros(FILE *stream, const struct printf_info *info,
         if (fputc(\[aq]0\[aq], stream) == EOF)
             return EOF;
         len++;
-
+\&
         if (!info\->group || (i % 4))
             continue;
         if (fputc(GROUP_SEP, stream) == EOF)
             return EOF;
         len++;
     }
-
+\&
     return len;
 }
-
+\&
 static ssize_t
 b_print_number(FILE *stream, const struct printf_info *info,
                const char bin[UINTMAX_WIDTH],
                size_t min_len, size_t bin_len)
 {
     ssize_t  len;
-
+\&
     len = 0;
-
+\&
     /* Print leading zeros to fill precision */
     for (size_t i = bin_len \- 1; i > min_len \- 1; i\-\-) {
         if (fputc(\[aq]0\[aq], stream) == EOF)
             return EOF;
         len++;
-
+\&
         if (!info\->group || (i % 4))
             continue;
         if (fputc(GROUP_SEP, stream) == EOF)
             return EOF;
         len++;
     }
-
+\&
     /* Print number */
     for (size_t i = min_len \- 1; i < min_len; i\-\-) {
         if (fputc(bin[i], stream) == EOF)
             return EOF;
         len++;
-
+\&
         if (!info\->group || (i % 4) || !i)
             continue;
         if (fputc(GROUP_SEP, stream) == EOF)
             return EOF;
         len++;
     }
-
+\&
     return len;
 }
-
+\&
 static char
 pad_ch(const struct printf_info *info)
 {
@@ -559,19 +559,19 @@ pad_ch(const struct printf_info *info)
         return \[aq] \[aq];
     return \[aq]0\[aq];
 }
-
+\&
 static ssize_t
 pad_spaces(FILE *stream, size_t pad_len)
 {
     ssize_t  len;
-
+\&
     len = 0;
     for (size_t i = pad_len - 1; i < pad_len; i\-\-) {
         if (fputc(\[aq] \[aq], stream) == EOF)
             return EOF;
         len++;
     }
-
+\&
     return len;
 }
 .EE

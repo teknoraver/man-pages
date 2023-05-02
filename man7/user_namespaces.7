@@ -1153,9 +1153,9 @@ CapEff:	0000001fffffffff
 \&
 .EX
 /* userns_child_exec.c
-
+\&
    Licensed under GNU General Public License v2 or later
-
+\&
    Create a child process that executes a shell command in new
    namespace(s); allow UID and GID mappings to be specified when
    creating a user namespace.
@@ -1173,14 +1173,14 @@ CapEff:	0000001fffffffff
 #include <string.h>
 #include <limits.h>
 #include <errno.h>
-
+\&
 struct child_args {
     char **argv;        /* Command to be executed by child, with args */
     int    pipe_fd[2];  /* Pipe used to synchronize parent and child */
 };
-
+\&
 static int verbose;
-
+\&
 static void
 usage(char *pname)
 {
@@ -1213,51 +1213,51 @@ usage(char *pname)
         " by commas;\en");
     fpe("the commas are replaced by newlines before writing"
         " to map files.\en");
-
+\&
     exit(EXIT_FAILURE);
 }
-
+\&
 /* Update the mapping file \[aq]map_file\[aq], with the value provided in
    \[aq]mapping\[aq], a string that defines a UID or GID mapping. A UID or
    GID mapping consists of one or more newline\-delimited records
    of the form:
-
+\&
        ID_inside\-ns    ID\-outside\-ns   length
-
+\&
    Requiring the user to supply a string that contains newlines is
    of course inconvenient for command\-line use. Thus, we permit the
    use of commas to delimit records in this string, and replace them
    with newlines before writing the string to the file. */
-
+\&
 static void
 update_map(char *mapping, char *map_file)
 {
     int fd;
     size_t map_len;     /* Length of \[aq]mapping\[aq] */
-
+\&
     /* Replace commas in mapping string with newlines. */
-
+\&
     map_len = strlen(mapping);
     for (size_t j = 0; j < map_len; j++)
         if (mapping[j] == \[aq],\[aq])
             mapping[j] = \[aq]\en\[aq];
-
+\&
     fd = open(map_file, O_RDWR);
     if (fd == \-1) {
         fprintf(stderr, "ERROR: open %s: %s\en", map_file,
                 strerror(errno));
         exit(EXIT_FAILURE);
     }
-
+\&
     if (write(fd, mapping, map_len) != map_len) {
         fprintf(stderr, "ERROR: write %s: %s\en", map_file,
                 strerror(errno));
         exit(EXIT_FAILURE);
     }
-
+\&
     close(fd);
 }
-
+\&
 /* Linux 3.19 made a change in the handling of setgroups(2) and
    the \[aq]gid_map\[aq] file to address a security issue.  The issue
    allowed *unprivileged* users to employ user namespaces in
@@ -1266,53 +1266,53 @@ update_map(char *mapping, char *map_file)
    system call in this user namespace must first be disabled by
    writing "deny" to one of the /proc/PID/setgroups files for
    this namespace.  That is the purpose of the following function.  */
-
+\&
 static void
 proc_setgroups_write(pid_t child_pid, char *str)
 {
     char setgroups_path[PATH_MAX];
     int fd;
-
+\&
     snprintf(setgroups_path, PATH_MAX, "/proc/%jd/setgroups",
             (intmax_t) child_pid);
-
+\&
     fd = open(setgroups_path, O_RDWR);
     if (fd == \-1) {
-
+\&
         /* We may be on a system that doesn\[aq]t support
            /proc/PID/setgroups. In that case, the file won\[aq]t exist,
            and the system won\[aq]t impose the restrictions that Linux 3.19
            added. That\[aq]s fine: we don\[aq]t need to do anything in order
            to permit \[aq]gid_map\[aq] to be updated.
-
+\&
            However, if the error from open() was something other than
            the ENOENT error that is expected for that case,  let the
            user know. */
-
+\&
         if (errno != ENOENT)
             fprintf(stderr, "ERROR: open %s: %s\en", setgroups_path,
                 strerror(errno));
         return;
     }
-
+\&
     if (write(fd, str, strlen(str)) == \-1)
         fprintf(stderr, "ERROR: write %s: %s\en", setgroups_path,
             strerror(errno));
-
+\&
     close(fd);
 }
-
+\&
 static int              /* Start function for cloned child */
 childFunc(void *arg)
 {
     struct child_args *args = arg;
     char ch;
-
+\&
     /* Wait until the parent has updated the UID and GID mappings.
        See the comment in main(). We wait for end of file on a
        pipe that will be closed by the parent process once it has
        updated the mappings. */
-
+\&
     close(args\->pipe_fd[1]);    /* Close our descriptor for the write
                                    end of the pipe so that we see EOF
                                    when parent closes its descriptor. */
@@ -1321,20 +1321,20 @@ childFunc(void *arg)
                 "Failure in child: read from pipe returned != 0\en");
         exit(EXIT_FAILURE);
     }
-
+\&
     close(args\->pipe_fd[0]);
-
+\&
     /* Execute a shell command. */
-
+\&
     printf("About to exec %s\en", args\->argv[0]);
     execvp(args\->argv[0], args\->argv);
     err(EXIT_FAILURE, "execvp");
 }
-
+\&
 #define STACK_SIZE (1024 * 1024)
-
+\&
 static char child_stack[STACK_SIZE];    /* Space for child\[aq]s stack */
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -1345,14 +1345,14 @@ main(int argc, char *argv[])
     const int MAP_BUF_SIZE = 100;
     char map_buf[MAP_BUF_SIZE];
     char map_path[PATH_MAX];
-
+\&
     /* Parse command\-line options. The initial \[aq]+\[aq] character in
        the final getopt() argument prevents GNU\-style permutation
        of command\-line options. That\[aq]s useful, since sometimes
        the \[aq]command\[aq] to be executed by this program itself
        has command\-line options. We don\[aq]t want getopt() to treat
        those as options to this program. */
-
+\&
     flags = 0;
     verbose = 0;
     gid_map = NULL;
@@ -1373,16 +1373,16 @@ main(int argc, char *argv[])
         default:  usage(argv[0]);
         }
     }
-
+\&
     /* \-M or \-G without \-U is nonsensical */
-
+\&
     if (((uid_map != NULL || gid_map != NULL || map_zero) &&
                 !(flags & CLONE_NEWUSER)) ||
             (map_zero && (uid_map != NULL || gid_map != NULL)))
         usage(argv[0]);
-
+\&
     args.argv = &argv[optind];
-
+\&
     /* We use a pipe to synchronize the parent and child, in order to
        ensure that the parent sets the UID and GID maps before the child
        calls execve(). This ensures that the child maintains its
@@ -1392,25 +1392,25 @@ main(int argc, char *argv[])
        its capabilities if it performed an execve() with nonzero
        user IDs (see the capabilities(7) man page for details of the
        transformation of a process\[aq]s capabilities during execve()). */
-
+\&
     if (pipe(args.pipe_fd) == \-1)
         err(EXIT_FAILURE, "pipe");
-
+\&
     /* Create the child in new namespace(s). */
-
+\&
     child_pid = clone(childFunc, child_stack + STACK_SIZE,
                       flags | SIGCHLD, &args);
     if (child_pid == \-1)
         err(EXIT_FAILURE, "clone");
-
+\&
     /* Parent falls through to here. */
-
+\&
     if (verbose)
         printf("%s: PID of child created by clone() is %jd\en",
                 argv[0], (intmax_t) child_pid);
-
+\&
     /* Update the UID and GID maps in the child. */
-
+\&
     if (uid_map != NULL || map_zero) {
         snprintf(map_path, PATH_MAX, "/proc/%jd/uid_map",
                 (intmax_t) child_pid);
@@ -1421,10 +1421,10 @@ main(int argc, char *argv[])
         }
         update_map(uid_map, map_path);
     }
-
+\&
     if (gid_map != NULL || map_zero) {
         proc_setgroups_write(child_pid, "deny");
-
+\&
         snprintf(map_path, PATH_MAX, "/proc/%jd/gid_map",
                 (intmax_t) child_pid);
         if (map_zero) {
@@ -1434,18 +1434,18 @@ main(int argc, char *argv[])
         }
         update_map(gid_map, map_path);
     }
-
+\&
     /* Close the write end of the pipe, to signal to the child that we
        have updated the UID and GID maps. */
-
+\&
     close(args.pipe_fd[1]);
-
+\&
     if (waitpid(child_pid, NULL, 0) == \-1)      /* Wait for child */
         err(EXIT_FAILURE, "waitpid");
-
+\&
     if (verbose)
         printf("%s: terminating\en", argv[0]);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

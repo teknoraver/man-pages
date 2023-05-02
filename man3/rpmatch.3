@@ -149,7 +149,7 @@ is applied to the string given in the program's command-line argument.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -157,7 +157,7 @@ main(int argc, char *argv[])
         fprintf(stderr, "%s response\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     setlocale(LC_ALL, "");
     printf("rpmatch() returns: %d\en", rpmatch(argv[1]));
     exit(EXIT_SUCCESS);

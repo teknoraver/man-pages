@@ -482,9 +482,9 @@ struct inet_diag_msg {
     __u8    idiag_state;
     __u8    idiag_timer;
     __u8    idiag_retrans;
-
+\&
     struct inet_diag_sockid id;
-
+\&
     __u32   idiag_expires;
     __u32   idiag_rqueue;
     __u32   idiag_wqueue;
@@ -633,7 +633,7 @@ and name of all UNIX domain sockets in the current namespace.
 #include <linux/rtnetlink.h>
 #include <linux/sock_diag.h>
 #include <linux/unix_diag.h>
-
+\&
 static int
 send_query(int fd)
 {
@@ -666,20 +666,20 @@ send_query(int fd)
         .msg_iov = &iov,
         .msg_iovlen = 1
     };
-
+\&
     for (;;) {
         if (sendmsg(fd, &msg, 0) < 0) {
             if (errno == EINTR)
                 continue;
-
+\&
             perror("sendmsg");
             return \-1;
         }
-
+\&
         return 0;
     }
 }
-
+\&
 static int
 print_diag(const struct unix_diag_msg *diag, unsigned int len)
 {
@@ -691,12 +691,12 @@ print_diag(const struct unix_diag_msg *diag, unsigned int len)
         fprintf(stderr, "unexpected family %u\en", diag\->udiag_family);
         return \-1;
     }
-
+\&
     unsigned int rta_len = len \- NLMSG_LENGTH(sizeof(*diag));
     unsigned int peer = 0;
     size_t path_len = 0;
     char path[sizeof(((struct sockaddr_un *) 0)\->sun_path) + 1];
-
+\&
     for (struct rtattr *attr = (struct rtattr *) (diag + 1);
              RTA_OK(attr, rta_len); attr = RTA_NEXT(attr, rta_len)) {
         switch (attr\->rta_type) {
@@ -709,27 +709,27 @@ print_diag(const struct unix_diag_msg *diag, unsigned int len)
                 path[path_len] = \[aq]\e0\[aq];
             }
             break;
-
+\&
         case UNIX_DIAG_PEER:
             if (RTA_PAYLOAD(attr) >= sizeof(peer))
                 peer = *(unsigned int *) RTA_DATA(attr);
             break;
         }
     }
-
+\&
     printf("inode=%u", diag\->udiag_ino);
-
+\&
     if (peer)
         printf(", peer=%u", peer);
-
+\&
     if (path_len)
         printf(", name=%s%s", *path ? "" : "@",
                 *path ? path : path + 1);
-
+\&
     putchar(\[aq]\en\[aq]);
     return 0;
 }
-
+\&
 static int
 receive_responses(int fd)
 {
@@ -740,7 +740,7 @@ receive_responses(int fd)
         .iov_len = sizeof(buf)
     };
     int flags = 0;
-
+\&
     for (;;) {
         struct msghdr msg = {
             .msg_name = &nladdr,
@@ -748,72 +748,72 @@ receive_responses(int fd)
             .msg_iov = &iov,
             .msg_iovlen = 1
         };
-
+\&
         ssize_t ret = recvmsg(fd, &msg, flags);
-
+\&
         if (ret < 0) {
             if (errno == EINTR)
                 continue;
-
+\&
             perror("recvmsg");
             return \-1;
         }
         if (ret == 0)
             return 0;
-
+\&
         if (nladdr.nl_family != AF_NETLINK) {
             fputs("!AF_NETLINK\en", stderr);
             return \-1;
         }
-
+\&
         const struct nlmsghdr *h = (struct nlmsghdr *) buf;
-
+\&
         if (!NLMSG_OK(h, ret)) {
             fputs("!NLMSG_OK\en", stderr);
             return \-1;
         }
-
+\&
         for (; NLMSG_OK(h, ret); h = NLMSG_NEXT(h, ret)) {
             if (h\->nlmsg_type == NLMSG_DONE)
                 return 0;
-
+\&
             if (h\->nlmsg_type == NLMSG_ERROR) {
                 const struct nlmsgerr *err = NLMSG_DATA(h);
-
+\&
                 if (h\->nlmsg_len < NLMSG_LENGTH(sizeof(*err))) {
                     fputs("NLMSG_ERROR\en", stderr);
                 } else {
                     errno = \-err\->error;
                     perror("NLMSG_ERROR");
                 }
-
+\&
                 return \-1;
             }
-
+\&
             if (h\->nlmsg_type != SOCK_DIAG_BY_FAMILY) {
                 fprintf(stderr, "unexpected nlmsg_type %u\en",
                         (unsigned) h\->nlmsg_type);
                 return \-1;
             }
-
+\&
             if (print_diag(NLMSG_DATA(h), h\->nlmsg_len))
                 return \-1;
         }
     }
 }
-
+\&
 int
 main(void)
 {
     int fd = socket(AF_NETLINK, SOCK_RAW, NETLINK_SOCK_DIAG);
-
+\&
     if (fd < 0) {
         perror("socket");
         return 1;
     }
-
+\&
     int ret = send_query(fd) || receive_responses(fd);
-
+\&
     close(fd);
     return ret;
 }

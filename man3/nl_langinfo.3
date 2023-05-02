@@ -332,16 +332,16 @@ the radix character.
 #include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 int
 main(void)
 {
     setlocale(LC_CTYPE, "");
     setlocale(LC_NUMERIC, "");
-
+\&
     printf("%s\en", nl_langinfo(CODESET));
     printf("%s\en", nl_langinfo(RADIXCHAR));
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

@@ -279,10 +279,10 @@ Te Paraire, te 07 o Poutū\-te\-rangi, 2014 00:38:44 CET
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
+\&
 #define errExit(msg)    do { perror(msg); exit(EXIT_FAILURE); \e
                         } while (0)
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -291,58 +291,58 @@ main(int argc, char *argv[])
     size_t s;
     struct tm *tm;
     locale_t loc, nloc;
-
+\&
     if (argc < 2) {
         fprintf(stderr, "Usage: %s locale1 [locale2]\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Create a new locale object, taking the LC_NUMERIC settings
        from the locale specified in argv[1]. */
-
+\&
     loc = newlocale(LC_NUMERIC_MASK, argv[1], (locale_t) 0);
     if (loc == (locale_t) 0)
         errExit("newlocale");
-
+\&
     /* If a second command\-line argument was specified, modify the
        locale object to take the LC_TIME settings from the locale
        specified in argv[2]. We assign the result of this newlocale()
        call to \[aq]nloc\[aq] rather than \[aq]loc\[aq], since in some cases, we might
        want to preserve \[aq]loc\[aq] if this call fails. */
-
+\&
     if (argc > 2) {
         nloc = newlocale(LC_TIME_MASK, argv[2], loc);
         if (nloc == (locale_t) 0)
             errExit("newlocale");
         loc = nloc;
     }
-
+\&
     /* Apply the newly created locale to this thread. */
-
+\&
     uselocale(loc);
-
+\&
     /* Test effect of LC_NUMERIC. */
-
+\&
     printf("%8.3f\en", 123456.789);
-
+\&
     /* Test effect of LC_TIME. */
-
+\&
     t = time(NULL);
     tm = localtime(&t);
     if (tm == NULL)
         errExit("time");
-
+\&
     s = strftime(buf, sizeof(buf), "%c", tm);
     if (s == 0)
         errExit("strftime");
-
+\&
     printf("%s\en", buf);
-
+\&
     /* Free the locale object. */
-
+\&
     uselocale(LC_GLOBAL_LOCALE);    /* So \[aq]loc\[aq] is no longer in use */
     freelocale(loc);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

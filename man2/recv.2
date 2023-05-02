@@ -155,7 +155,7 @@ structure:
 #define SO_EE_ORIGIN_LOCAL   1
 #define SO_EE_ORIGIN_ICMP    2
 #define SO_EE_ORIGIN_ICMP6   3
-
+\&
 struct sock_extended_err
 {
     uint32_t ee_errno;   /* Error number */
@@ -167,7 +167,7 @@ struct sock_extended_err
     uint32_t ee_data;    /* Other data */
     /* More data may follow */
 };
-
+\&
 struct sockaddr *SO_EE_OFFENDER(struct sock_extended_err *);
 .EE
 .in

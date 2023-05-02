@@ -32,25 +32,25 @@ POSIX.1-2001 and later.
 .EX
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     FILE *fp;
-
+\&
     if (argc != 2) {
         fprintf(stderr, "Usage: %s <file>\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     fp = fopen(argv[1], "r");
     if (fp == NULL) {
         perror(argv[1]);
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Other code omitted */
-
+\&
     fclose(fp);
     exit(EXIT_SUCCESS);
 }

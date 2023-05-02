@@ -90,20 +90,20 @@ Creating a rtnetlink message to set the MTU of a device:
 .in +4n
 .EX
 #include <linux/rtnetlink.h>
-
+\&
 \&...
-
+\&
 struct {
     struct nlmsghdr  nh;
     struct ifinfomsg if;
     char             attrbuf[512];
 } req;
-
+\&
 struct rtattr *rta;
 unsigned int mtu = 1000;
-
+\&
 int rtnetlink_sk = socket(AF_NETLINK, SOCK_DGRAM, NETLINK_ROUTE);
-
+\&
 memset(&req, 0, sizeof(req));
 req.nh.nlmsg_len = NLMSG_LENGTH(sizeof(req.if));
 req.nh.nlmsg_flags = NLM_F_REQUEST;

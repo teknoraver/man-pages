@@ -382,28 +382,28 @@ bizarro
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     int fd;
-
+\&
     if (argc < 3) {
         fprintf(stderr, "%s /proc/PID/ns/FILE cmd args...\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Get file descriptor for namespace; the file descriptor is opened
        with O_CLOEXEC so as to ensure that it is not inherited by the
        program that is later executed. */
-
+\&
     fd = open(argv[1], O_RDONLY | O_CLOEXEC);
     if (fd == \-1)
         err(EXIT_FAILURE, "open");
-
+\&
     if (setns(fd, 0) == \-1)       /* Join that namespace */
         err(EXIT_FAILURE, "setns");
-
+\&
     execvp(argv[2], &argv[2]);    /* Execute a command in namespace */
     err(EXIT_FAILURE, "execvp");
 }

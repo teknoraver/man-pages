@@ -308,12 +308,12 @@ for more examples.
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+\&
 int
 main(void)
 {
     pid_t pid;
-
+\&
     if (signal(SIGCHLD, SIG_IGN) == SIG_ERR) {
         perror("signal");
         exit(EXIT_FAILURE);

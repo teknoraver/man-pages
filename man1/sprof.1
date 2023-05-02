@@ -65,10 +65,10 @@ First, the code of the main program:
 .EX
 $ \fBcat prog.c\fP
 #include <stdlib.h>
-
+\&
 void x1(void);
 void x2(void);
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -90,27 +90,27 @@ construct the shared object:
 .EX
 $ \fBcat libdemo.c\fP
 #include <unistd.h>
-
+\&
 void
 consumeCpu1(int lim)
 {
     for (unsigned int j = 0; j < lim; j++)
 	getppid();
 }
-
+\&
 void
 x1(void) {
     for (unsigned int j = 0; j < 100; j++)
 	consumeCpu1(200000);
 }
-
+\&
 void
 consumeCpu2(int lim)
 {
     for (unsigned int j = 0; j < lim; j++)
 	getppid();
 }
-
+\&
 void
 x2(void)
 {
@@ -211,7 +211,7 @@ option to generate a flat profile with counts and ticks:
 .EX
 $ \fBsprof \-p libdemo.so.1 $LD_PROFILE_OUTPUT/libdemo.so.1.profile\fP
 Flat profile:
-
+\&
 Each sample counts as 0.01 seconds.
   %   cumulative   self              self     total
  time   seconds   seconds    calls  us/call  us/call  name
@@ -229,9 +229,9 @@ option generates a call graph:
 .in +4n
 .EX
 $ \fBsprof \-q libdemo.so.1 $LD_PROFILE_OUTPUT/libdemo.so.1.profile\fP
-
+\&
 index % time    self  children    called     name
-
+\&
                 0.00    0.00      100/100         x1 [1]
 [0]    100.0    0.00    0.00      100         consumeCpu1 [0]
 \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-

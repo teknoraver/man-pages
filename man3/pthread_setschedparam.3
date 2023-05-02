@@ -178,11 +178,11 @@ Password:
 # \fB./a.out \-mf10 \-ar20 \-i e\fP
 Scheduler settings of main thread
     policy=SCHED_FIFO, priority=10
-
+\&
 Scheduler settings in \[aq]attr\[aq]
     policy=SCHED_RR, priority=20
     inheritsched is EXPLICIT
-
+\&
 Scheduler attributes of new thread
     policy=SCHED_RR, priority=20
 .EE
@@ -203,11 +203,11 @@ and instead take their scheduling attributes from the creating thread.
 # \fB./a.out \-mf10 \-ar20 \-i i\fP
 Scheduler settings of main thread
     policy=SCHED_FIFO, priority=10
-
+\&
 Scheduler settings in \[aq]attr\[aq]
     policy=SCHED_RR, priority=20
     inheritsched is INHERIT
-
+\&
 Scheduler attributes of new thread
     policy=SCHED_FIFO, priority=10
 .EE
@@ -227,22 +227,22 @@ is the default for the inherit scheduler attribute.
 .\" SRC BEGIN (pthreads_sched_test.c)
 .EX
 /* pthreads_sched_test.c */
-
+\&
 #include <errno.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+\&
 #define handle_error_en(en, msg) \e
         do { errno = en; perror(msg); exit(EXIT_FAILURE); } while (0)
-
+\&
 static void
 usage(char *prog_name, char *msg)
 {
     if (msg != NULL)
         fputs(msg, stderr);
-
+\&
     fprintf(stderr, "Usage: %s [options]\en", prog_name);
     fprintf(stderr, "Options are:\en");
 #define fpe(msg) fprintf(stderr, "\et%s", msg)          /* Shorter */
@@ -259,7 +259,7 @@ usage(char *prog_name, char *msg)
     fpe("                 main thread before pthread_create() call\en");
     exit(EXIT_FAILURE);
 }
-
+\&
 static int
 get_policy(char p, int *policy)
 {
@@ -270,7 +270,7 @@ get_policy(char p, int *policy)
     default:  return 0;
     }
 }
-
+\&
 static void
 display_sched_attr(int policy, struct sched_param *param)
 {
@@ -281,29 +281,29 @@ display_sched_attr(int policy, struct sched_param *param)
            "???",
            param\->sched_priority);
 }
-
+\&
 static void
 display_thread_sched_attr(char *msg)
 {
     int policy, s;
     struct sched_param param;
-
+\&
     s = pthread_getschedparam(pthread_self(), &policy, &param);
     if (s != 0)
         handle_error_en(s, "pthread_getschedparam");
-
+\&
     printf("%s\en", msg);
     display_sched_attr(policy, &param);
 }
-
+\&
 static void *
 thread_start(void *arg)
 {
     display_thread_sched_attr("Scheduler attributes of new thread");
-
+\&
     return NULL;
 }
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -313,14 +313,14 @@ main(int argc, char *argv[])
     pthread_attr_t *attrp;
     char *attr_sched_str, *main_sched_str, *inheritsched_str;
     struct sched_param param;
-
+\&
     /* Process command\-line options. */
-
+\&
     use_null_attrib = 0;
     attr_sched_str = NULL;
     main_sched_str = NULL;
     inheritsched_str = NULL;
-
+\&
     while ((opt = getopt(argc, argv, "a:Ai:m:")) != \-1) {
         switch (opt) {
         case \[aq]a\[aq]: attr_sched_str = optarg;      break;
@@ -330,40 +330,40 @@ main(int argc, char *argv[])
         default:  usage(argv[0], "Unrecognized option\en");
         }
     }
-
+\&
     if (use_null_attrib
         && (inheritsched_str != NULL || attr_sched_str != NULL))
     {
         usage(argv[0], "Can\[aq]t specify \-A with \-i or \-a\en");
     }
-
+\&
     /* Optionally set scheduling attributes of main thread,
        and display the attributes. */
-
+\&
     if (main_sched_str != NULL) {
         if (!get_policy(main_sched_str[0], &policy))
             usage(argv[0], "Bad policy for main thread (\-m)\en");
         param.sched_priority = strtol(&main_sched_str[1], NULL, 0);
-
+\&
         s = pthread_setschedparam(pthread_self(), policy, &param);
         if (s != 0)
             handle_error_en(s, "pthread_setschedparam");
     }
-
+\&
     display_thread_sched_attr("Scheduler settings of main thread");
     printf("\en");
-
+\&
     /* Initialize thread attributes object according to options. */
-
+\&
     attrp = NULL;
-
+\&
     if (!use_null_attrib) {
         s = pthread_attr_init(&attr);
         if (s != 0)
             handle_error_en(s, "pthread_attr_init");
         attrp = &attr;
     }
-
+\&
     if (inheritsched_str != NULL) {
         if (inheritsched_str[0] == \[aq]e\[aq])
             inheritsched = PTHREAD_EXPLICIT_SCHED;
@@ -371,17 +371,17 @@ main(int argc, char *argv[])
             inheritsched = PTHREAD_INHERIT_SCHED;
         else
             usage(argv[0], "Value for \-i must be \[aq]e\[aq] or \[aq]i\[aq]\en");
-
+\&
         s = pthread_attr_setinheritsched(&attr, inheritsched);
         if (s != 0)
             handle_error_en(s, "pthread_attr_setinheritsched");
     }
-
+\&
     if (attr_sched_str != NULL) {
         if (!get_policy(attr_sched_str[0], &policy))
             usage(argv[0], "Bad policy for \[aq]attr\[aq] (\-a)\en");
         param.sched_priority = strtol(&attr_sched_str[1], NULL, 0);
-
+\&
         s = pthread_attr_setschedpolicy(&attr, policy);
         if (s != 0)
             handle_error_en(s, "pthread_attr_setschedpolicy");
@@ -389,10 +389,10 @@ main(int argc, char *argv[])
         if (s != 0)
             handle_error_en(s, "pthread_attr_setschedparam");
     }
-
+\&
     /* If we initialized a thread attributes object, display
        the scheduling attributes that were set in the object. */
-
+\&
     if (attrp != NULL) {
         s = pthread_attr_getschedparam(&attr, &param);
         if (s != 0)
@@ -400,10 +400,10 @@ main(int argc, char *argv[])
         s = pthread_attr_getschedpolicy(&attr, &policy);
         if (s != 0)
             handle_error_en(s, "pthread_attr_getschedpolicy");
-
+\&
         printf("Scheduler settings in \[aq]attr\[aq]\en");
         display_sched_attr(policy, &param);
-
+\&
         pthread_attr_getinheritsched(&attr, &inheritsched);
         printf("    inheritsched is %s\en",
                (inheritsched == PTHREAD_INHERIT_SCHED)  ? "INHERIT" :
@@ -411,25 +411,25 @@ main(int argc, char *argv[])
                "???");
         printf("\en");
     }
-
+\&
     /* Create a thread that will display its scheduling attributes. */
-
+\&
     s = pthread_create(&thread, attrp, &thread_start, NULL);
     if (s != 0)
         handle_error_en(s, "pthread_create");
-
+\&
     /* Destroy unneeded thread attributes object. */
-
+\&
     if (!use_null_attrib) {
       s = pthread_attr_destroy(&attr);
       if (s != 0)
           handle_error_en(s, "pthread_attr_destroy");
     }
-
+\&
     s = pthread_join(thread, NULL);
     if (s != 0)
         handle_error_en(s, "pthread_join");
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

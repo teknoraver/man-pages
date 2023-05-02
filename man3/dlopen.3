@@ -560,7 +560,7 @@ $ \fB./a.out\fP
 #include <dlfcn.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 #include <gnu/lib\-names.h>  /* Defines LIBM_SO (which will be a
                                string such as "libm.so.6") */
 int
@@ -569,27 +569,27 @@ main(void)
     void *handle;
     double (*cosine)(double);
     char *error;
-
+\&
     handle = dlopen(LIBM_SO, RTLD_LAZY);
     if (!handle) {
         fprintf(stderr, "%s\en", dlerror());
         exit(EXIT_FAILURE);
     }
-
+\&
     dlerror();    /* Clear any existing error */
-
+\&
     cosine = (double (*)(double)) dlsym(handle, "cos");
-
+\&
     /* According to the ISO C standard, casting between function
        pointers and \[aq]void *\[aq], as done above, produces undefined results.
        POSIX.1\-2001 and POSIX.1\-2008 accepted this state of affairs and
        proposed the following workaround:
-
+\&
            *(void **) (&cosine) = dlsym(handle, "cos");
-
+\&
        This (clumsy) cast conforms with the ISO C standard and will
        avoid any compiler warnings.
-
+\&
        The 2013 Technical Corrigendum 1 to POSIX.1\-2008 improved matters
        by requiring that conforming implementations support casting
        \[aq]void *\[aq] to a function pointer.  Nevertheless, some compilers
@@ -598,13 +598,13 @@ main(void)
 .\" http://pubs.opengroup.org/onlinepubs/009695399/functions/dlsym.html#tag_03_112_08
 .\" http://pubs.opengroup.org/onlinepubs/9699919799/functions/dlsym.html#tag_16_96_07
 .\" http://austingroupbugs.net/view.php?id=74
-
+\&
     error = dlerror();
     if (error != NULL) {
         fprintf(stderr, "%s\en", error);
         exit(EXIT_FAILURE);
     }
-
+\&
     printf("%f\en", (*cosine)(2.0));
     dlclose(handle);
     exit(EXIT_SUCCESS);

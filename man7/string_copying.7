@@ -747,62 +747,62 @@ Here are reference implementations for functions not provided by libc.
 .in +4n
 .EX
 /* This code is in the public domain. */
-
+\&
 .\" ----- EXAMPLES :: Implementations :: stpecpy(3) -------------------/
 char *
 .IR stpecpy "(char *dst, char end[0], const char *restrict src)"
 {
     char *p;
-
+\&
     if (dst == NULL)
         return NULL;
     if (dst == end)
         return end;
-
+\&
     p = memccpy(dst, src, \[aq]\e0\[aq], end \- dst);
     if (p != NULL)
         return p \- 1;
-
+\&
     /* truncation detected */
     end[\-1] = \[aq]\e0\[aq];
     return end;
 }
-
+\&
 .\" ----- EXAMPLES :: Implementations :: zustr2ustp(3) ----------------/
 char *
 .IR zustr2ustp "(char *restrict dst, const char *restrict src, size_t sz)"
 {
     return ustpcpy(dst, src, strnlen(src, sz));
 }
-
+\&
 .\" ----- EXAMPLES :: Implementations :: zustr2stp(3) -----------------/
 char *
 .IR zustr2stp "(char *restrict dst, const char *restrict src, size_t sz)"
 {
     char  *p;
-
+\&
     p = zustr2ustp(dst, src, sz);
     *p = \[aq]\e0\[aq];
-
+\&
     return p;
 }
-
+\&
 .\" ----- EXAMPLES :: Implementations :: ustpcpy(3) -------------------/
 char *
 .IR ustpcpy "(char *restrict dst, const char *restrict src, size_t len)"
 {
     return mempcpy(dst, src, len);
 }
-
+\&
 .\" ----- EXAMPLES :: Implementations :: ustr2stp(3) ------------------/
 char *
 .IR ustr2stp "(char *restrict dst, const char *restrict src, size_t len)"
 {
     char  *p;
-
+\&
     p = ustpcpy(dst, src, len);
     *p = \[aq]\e0\[aq];
-
+\&
     return p;
 }
 .EE

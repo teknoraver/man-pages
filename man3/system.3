@@ -167,7 +167,7 @@ For example:
 .EX
 while (something) {
     int ret = system("foo");
-
+\&
     if (WIFSIGNALED(ret) &&
         (WTERMSIG(ret) == SIGINT || WTERMSIG(ret) == SIGQUIT))
             break;

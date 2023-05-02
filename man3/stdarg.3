@@ -261,16 +261,16 @@ with each format character based on the type.
 .EX
 #include <stdio.h>
 #include <stdarg.h>
-
+\&
 void
 foo(char *fmt, ...)   /* \[aq]...\[aq] is C syntax for a variadic function */
-
+\&
 {
     va_list ap;
     int d;
     char c;
     char *s;
-
+\&
     va_start(ap, fmt);
     while (*fmt)
         switch (*fmt++) {

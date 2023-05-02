@@ -775,12 +775,12 @@ Check the condition of DTR on the serial port.
 #include <stdio.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
-
+\&
 int
 main(void)
 {
     int fd, serial;
-
+\&
     fd = open("/dev/ttyS0", O_RDONLY);
     ioctl(fd, TIOCMGET, &serial);
     if (serial & TIOCM_DTR)
@@ -797,14 +797,14 @@ Get or set arbitrary baudrate on the serial port.
 .\" SRC BEGIN (tcgets.c)
 .EX
 /* SPDX-License-Identifier: GPL-2.0-or-later */
-
+\&
 #include <asm/termbits.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -820,18 +820,18 @@ main(int argc, char *argv[])
     struct termios tio;
 # endif
     int fd, rc;
-
+\&
     if (argc != 2 && argc != 3 && argc != 4) {
         fprintf(stderr, "Usage: %s device [output [input] ]\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     fd = open(argv[1], O_RDWR | O_NONBLOCK | O_NOCTTY);
     if (fd < 0) {
         perror("open");
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Get the current serial port settings via supported ioctl */
 # if defined TCGETS2
     rc = ioctl(fd, TCGETS2, &tio);
@@ -843,20 +843,20 @@ main(int argc, char *argv[])
         close(fd);
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Change baud rate when more arguments were provided */
     if (argc == 3 || argc == 4) {
         /* Clear the current output baud rate and fill a new value */
         tio.c_cflag &= \[ti]CBAUD;
         tio.c_cflag |= BOTHER;
         tio.c_ospeed = atoi(argv[2]);
-
+\&
         /* Clear the current input baud rate and fill a new value */
         tio.c_cflag &= \[ti](CBAUD << IBSHIFT);
         tio.c_cflag |= BOTHER << IBSHIFT;
         /* When 4th argument is not provided reuse output baud rate */
         tio.c_ispeed = (argc == 4) ? atoi(argv[3]) : atoi(argv[2]);
-
+\&
         /* Set new serial port settings via supported ioctl */
 # if defined TCSETS2
         rc = ioctl(fd, TCSETS2, &tio);
@@ -868,7 +868,7 @@ main(int argc, char *argv[])
             close(fd);
             exit(EXIT_FAILURE);
         }
-
+\&
         /* And get new values which were really configured */
 # if defined TCGETS2
         rc = ioctl(fd, TCGETS2, &tio);
@@ -881,12 +881,12 @@ main(int argc, char *argv[])
             exit(EXIT_FAILURE);
         }
     }
-
+\&
     close(fd);
-
+\&
     printf("output baud rate: %u\en", tio.c_ospeed);
     printf("input baud rate: %u\en", tio.c_ispeed);
-
+\&
     exit(EXIT_SUCCESS);
 #endif
 }

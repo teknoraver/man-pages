@@ -238,32 +238,32 @@ was nonzero.
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
-
+\&
 #define handle_error_en(en, msg) \e
         do { errno = en; perror(msg); exit(EXIT_FAILURE); } while (0)
-
+\&
 static int done = 0;
 static int cleanup_pop_arg = 0;
 static int cnt = 0;
-
+\&
 static void
 cleanup_handler(void *arg)
 {
     printf("Called clean\-up handler\en");
     cnt = 0;
 }
-
+\&
 static void *
 thread_start(void *arg)
 {
     time_t curr;
-
+\&
     printf("New thread started\en");
-
+\&
     pthread_cleanup_push(cleanup_handler, NULL);
-
+\&
     curr = time(NULL);
-
+\&
     while (!done) {
         pthread_testcancel();           /* A cancelation point */
         if (curr < time(NULL)) {
@@ -272,40 +272,40 @@ thread_start(void *arg)
             cnt++;
         }
     }
-
+\&
     pthread_cleanup_pop(cleanup_pop_arg);
     return NULL;
 }
-
+\&
 int
 main(int argc, char *argv[])
 {
     pthread_t thr;
     int s;
     void *res;
-
+\&
     s = pthread_create(&thr, NULL, thread_start, NULL);
     if (s != 0)
         handle_error_en(s, "pthread_create");
-
+\&
     sleep(2);           /* Allow new thread to run a while */
-
+\&
     if (argc > 1) {
         if (argc > 2)
             cleanup_pop_arg = atoi(argv[2]);
         done = 1;
-
+\&
     } else {
         printf("Canceling thread\en");
         s = pthread_cancel(thr);
         if (s != 0)
             handle_error_en(s, "pthread_cancel");
     }
-
+\&
     s = pthread_join(thr, &res);
     if (s != 0)
         handle_error_en(s, "pthread_join");
-
+\&
     if (res == PTHREAD_CANCELED)
         printf("Thread was canceled; cnt = %d\en", cnt);
     else

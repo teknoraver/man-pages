@@ -50,22 +50,22 @@ To avoid this, ensure that both arguments have the same type.
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/param.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     int a, b, x;
-
+\&
     if (argc != 3) {
         fprintf(stderr, "Usage: %s <num> <num>\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     a = atoi(argv[1]);
     b = atoi(argv[2]);
     x = MAX(a, b);
     printf("MAX(%d, %d) is %d\en", a, b, x);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

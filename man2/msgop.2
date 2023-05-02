@@ -553,7 +553,7 @@ The following shell session shows a sample run of the program:
 .EX
 .RB "$" " ./a.out \-s"
 sent: a message at Wed Mar  4 16:25:45 2015
-
+.PP
 .RB "$" " ./a.out \-r"
 message received: a message at Wed Mar  4 16:25:45 2015
 .EE
@@ -569,18 +569,18 @@ message received: a message at Wed Mar  4 16:25:45 2015
 #include <sys/msg.h>
 #include <time.h>
 #include <unistd.h>
-
+\&
 struct msgbuf {
     long mtype;
     char mtext[80];
 };
-
+\&
 static void
 usage(char *prog_name, char *msg)
 {
     if (msg != NULL)
         fputs(msg, stderr);
-
+\&
     fprintf(stderr, "Usage: %s [options]\en", prog_name);
     fprintf(stderr, "Options are:\en");
     fprintf(stderr, "\-s        send message using msgsnd()\en");
@@ -589,19 +589,19 @@ usage(char *prog_name, char *msg)
     fprintf(stderr, "\-k        message queue key (default is 1234)\en");
     exit(EXIT_FAILURE);
 }
-
+\&
 static void
 send_msg(int qid, int msgtype)
 {
     time_t         t;
     struct msgbuf  msg;
-
+\&
     msg.mtype = msgtype;
-
+\&
     time(&t);
     snprintf(msg.mtext, sizeof(msg.mtext), "a message at %s",
              ctime(&t));
-
+\&
     if (msgsnd(qid, &msg, sizeof(msg.mtext),
                IPC_NOWAIT) == \-1)
     {
@@ -610,12 +610,12 @@ send_msg(int qid, int msgtype)
     }
     printf("sent: %s\en", msg.mtext);
 }
-
+\&
 static void
 get_msg(int qid, int msgtype)
 {
     struct msgbuf msg;
-
+\&
     if (msgrcv(qid, &msg, sizeof(msg.mtext), msgtype,
                MSG_NOERROR | IPC_NOWAIT) == \-1) {
         if (errno != ENOMSG) {
@@ -627,7 +627,7 @@ get_msg(int qid, int msgtype)
         printf("message received: %s\en", msg.mtext);
     }
 }
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -635,7 +635,7 @@ main(int argc, char *argv[])
     int  mode = 0;               /* 1 = send, 2 = receive */
     int  msgtype = 1;
     int  msgkey = 1234;
-
+\&
     while ((opt = getopt(argc, argv, "srt:k:")) != \-1) {
         switch (opt) {
         case \[aq]s\[aq]:
@@ -656,22 +656,22 @@ main(int argc, char *argv[])
             usage(argv[0], "Unrecognized option\en");
         }
     }
-
+\&
     if (mode == 0)
         usage(argv[0], "must use either \-s or \-r option\en");
-
+\&
     qid = msgget(msgkey, IPC_CREAT | 0666);
-
+\&
     if (qid == \-1) {
         perror("msgget");
         exit(EXIT_FAILURE);
     }
-
+\&
     if (mode == 2)
         get_msg(qid, msgtype);
     else
         send_msg(qid, msgtype);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

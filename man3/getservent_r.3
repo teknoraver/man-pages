@@ -176,9 +176,9 @@ Call failed/record not found
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+\&
 #define MAX_BUF 10000
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -187,25 +187,25 @@ main(int argc, char *argv[])
     struct servent *result;
     char buf[MAX_BUF];
     char *protop;
-
+\&
     if (argc < 3) {
         printf("Usage: %s port\-num proto\-name [buflen]\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     port = htons(atoi(argv[1]));
     protop = (strcmp(argv[2], "null") == 0 ||
               strcmp(argv[2], "NULL") == 0) ?  NULL : argv[2];
-
+\&
     buflen = 1024;
     if (argc > 3)
         buflen = atoi(argv[3]);
-
+\&
     if (buflen > MAX_BUF) {
         printf("Exceeded buffer limit (%d)\en", MAX_BUF);
         exit(EXIT_FAILURE);
     }
-
+\&
     erange_cnt = 0;
     do {
         s = getservbyport_r(port, protop, &result_buf,
@@ -214,35 +214,35 @@ main(int argc, char *argv[])
             if (erange_cnt == 0)
                 printf("ERANGE! Retrying with larger buffer\en");
             erange_cnt++;
-
+\&
             /* Increment a byte at a time so we can see exactly
                what size buffer was required. */
-
+\&
             buflen++;
-
+\&
             if (buflen > MAX_BUF) {
                 printf("Exceeded buffer limit (%d)\en", MAX_BUF);
                 exit(EXIT_FAILURE);
             }
         }
     } while (s == ERANGE);
-
+\&
     printf("getservbyport_r() returned: %s  (buflen=%d)\en",
            (s == 0) ? "0 (success)" : (s == ENOENT) ? "ENOENT" :
            strerror(s), buflen);
-
+\&
     if (s != 0 || result == NULL) {
         printf("Call failed/record not found\en");
         exit(EXIT_FAILURE);
     }
-
+\&
     printf("s_name=%s; s_proto=%s; s_port=%d; aliases=",
            result_buf.s_name, result_buf.s_proto,
            ntohs(result_buf.s_port));
     for (char **p = result_buf.s_aliases; *p != NULL; p++)
         printf("%s ", *p);
     printf("\en");
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

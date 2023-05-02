@@ -1030,7 +1030,7 @@ Press enter key to terminate.
 Listening for events.
 FAN_OPEN_PERM: File /home/user/temp/notes
 FAN_CLOSE_WRITE: File /home/user/temp/notes
-
+\&
 Listening for events stopped.
 .EE
 .in
@@ -1046,9 +1046,9 @@ Listening for events stopped.
 #include <stdlib.h>
 #include <sys/fanotify.h>
 #include <unistd.h>
-
+\&
 /* Read all available fanotify events from the file descriptor \[aq]fd\[aq]. */
-
+\&
 static void
 handle_events(int fd)
 {
@@ -1059,65 +1059,65 @@ handle_events(int fd)
     ssize_t path_len;
     char procfd_path[PATH_MAX];
     struct fanotify_response response;
-
+\&
     /* Loop while events can be read from fanotify file descriptor. */
-
+\&
     for (;;) {
-
+\&
         /* Read some events. */
-
+\&
         len = read(fd, buf, sizeof(buf));
         if (len == \-1 && errno != EAGAIN) {
             perror("read");
             exit(EXIT_FAILURE);
         }
-
+\&
         /* Check if end of available data reached. */
-
+\&
         if (len <= 0)
             break;
-
+\&
         /* Point to the first event in the buffer. */
-
+\&
         metadata = buf;
-
+\&
         /* Loop over all events in the buffer. */
-
+\&
         while (FAN_EVENT_OK(metadata, len)) {
-
+\&
             /* Check that run\-time and compile\-time structures match. */
-
+\&
             if (metadata\->vers != FANOTIFY_METADATA_VERSION) {
                 fprintf(stderr,
                         "Mismatch of fanotify metadata version.\en");
                 exit(EXIT_FAILURE);
             }
-
+\&
             /* metadata\->fd contains either FAN_NOFD, indicating a
                queue overflow, or a file descriptor (a nonnegative
                integer). Here, we simply ignore queue overflow. */
-
+\&
             if (metadata\->fd >= 0) {
-
+\&
                 /* Handle open permission event. */
-
+\&
                 if (metadata\->mask & FAN_OPEN_PERM) {
                     printf("FAN_OPEN_PERM: ");
-
+\&
                     /* Allow file to be opened. */
-
+\&
                     response.fd = metadata\->fd;
                     response.response = FAN_ALLOW;
                     write(fd, &response, sizeof(response));
                 }
-
+\&
                 /* Handle closing of writable file event. */
-
+\&
                 if (metadata\->mask & FAN_CLOSE_WRITE)
                     printf("FAN_CLOSE_WRITE: ");
-
+\&
                 /* Retrieve and print pathname of the accessed file. */
-
+\&
                 snprintf(procfd_path, sizeof(procfd_path),
                          "/proc/self/fd/%d", metadata\->fd);
                 path_len = readlink(procfd_path, path,
@@ -1126,22 +1126,22 @@ handle_events(int fd)
                     perror("readlink");
                     exit(EXIT_FAILURE);
                 }
-
+\&
                 path[path_len] = \[aq]\e0\[aq];
                 printf("File %s\en", path);
-
+\&
                 /* Close the file descriptor of the event. */
-
+\&
                 close(metadata\->fd);
             }
-
+\&
             /* Advance to next event. */
-
+\&
             metadata = FAN_EVENT_NEXT(metadata, len);
         }
     }
 }
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -1149,80 +1149,80 @@ main(int argc, char *argv[])
     int fd, poll_num;
     nfds_t nfds;
     struct pollfd fds[2];
-
+\&
     /* Check mount point is supplied. */
-
+\&
     if (argc != 2) {
         fprintf(stderr, "Usage: %s MOUNT\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     printf("Press enter key to terminate.\en");
-
+\&
     /* Create the file descriptor for accessing the fanotify API. */
-
+\&
     fd = fanotify_init(FAN_CLOEXEC | FAN_CLASS_CONTENT | FAN_NONBLOCK,
                        O_RDONLY | O_LARGEFILE);
     if (fd == \-1) {
         perror("fanotify_init");
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Mark the mount for:
        \- permission events before opening files
        \- notification events after closing a write\-enabled
          file descriptor. */
-
+\&
     if (fanotify_mark(fd, FAN_MARK_ADD | FAN_MARK_MOUNT,
                       FAN_OPEN_PERM | FAN_CLOSE_WRITE, AT_FDCWD,
                       argv[1]) == \-1) {
         perror("fanotify_mark");
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Prepare for polling. */
-
+\&
     nfds = 2;
-
+\&
     fds[0].fd = STDIN_FILENO;       /* Console input */
     fds[0].events = POLLIN;
-
+\&
     fds[1].fd = fd;                 /* Fanotify input */
     fds[1].events = POLLIN;
-
+\&
     /* This is the loop to wait for incoming events. */
-
+\&
     printf("Listening for events.\en");
-
+\&
     while (1) {
         poll_num = poll(fds, nfds, \-1);
         if (poll_num == \-1) {
             if (errno == EINTR)     /* Interrupted by a signal */
                 continue;           /* Restart poll() */
-
+\&
             perror("poll");         /* Unexpected error */
             exit(EXIT_FAILURE);
         }
-
+\&
         if (poll_num > 0) {
             if (fds[0].revents & POLLIN) {
-
+\&
                 /* Console input is available: empty stdin and quit. */
-
+\&
                 while (read(STDIN_FILENO, &buf, 1) > 0 && buf != \[aq]\en\[aq])
                     continue;
                 break;
             }
-
+\&
             if (fds[1].revents & POLLIN) {
-
+\&
                 /* Fanotify events are available. */
-
+\&
                 handle_events(fd);
             }
         }
     }
-
+\&
     printf("Listening for events stopped.\en");
     exit(EXIT_SUCCESS);
 }
@@ -1263,7 +1263,7 @@ FAN_CREATE (file created):
         Directory /home/user has been modified.
         Entry \[aq]testfile.txt\[aq] is not a subdirectory.
 All events processed successfully. Program exiting.
-
+\&
 $ \fBtouch /home/user/testfile.txt\fP              # In another terminal
 .EE
 .in
@@ -1286,7 +1286,7 @@ FAN_CREATE | FAN_ONDIR (subdirectory created):
         Directory /home/user has been modified.
         Entry \[aq]testdir\[aq] is a subdirectory.
 All events processed successfully. Program exiting.
-
+\&
 $ \fBmkdir \-p /home/user/testdir\fP          # In another terminal
 .EE
 .in
@@ -1303,9 +1303,9 @@ $ \fBmkdir \-p /home/user/testdir\fP          # In another terminal
 #include <sys/stat.h>
 #include <sys/fanotify.h>
 #include <unistd.h>
-
+\&
 #define BUF_SIZE 256
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -1319,31 +1319,30 @@ main(int argc, char *argv[])
     struct fanotify_event_info_fid *fid;
     const char *file_name;
     struct stat sb;
-
+\&
     if (argc != 2) {
         fprintf(stderr, "Invalid number of command line arguments.\en");
         exit(EXIT_FAILURE);
     }
-
+\&
     mount_fd = open(argv[1], O_DIRECTORY | O_RDONLY);
     if (mount_fd == \-1) {
         perror(argv[1]);
         exit(EXIT_FAILURE);
     }
-
-
+\&
     /* Create an fanotify file descriptor with FAN_REPORT_DFID_NAME as
        a flag so that program can receive fid events with directory
        entry name. */
-
+\&
     fd = fanotify_init(FAN_CLASS_NOTIF | FAN_REPORT_DFID_NAME, 0);
     if (fd == \-1) {
         perror("fanotify_init");
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Place a mark on the filesystem object supplied in argv[1]. */
-
+\&
     ret = fanotify_mark(fd, FAN_MARK_ADD | FAN_MARK_ONLYDIR,
                         FAN_CREATE | FAN_ONDIR,
                         AT_FDCWD, argv[1]);
@@ -1351,27 +1350,27 @@ main(int argc, char *argv[])
         perror("fanotify_mark");
         exit(EXIT_FAILURE);
     }
-
+\&
     printf("Listening for events.\en");
-
+\&
     /* Read events from the event queue into a buffer. */
-
+\&
     len = read(fd, events_buf, sizeof(events_buf));
     if (len == \-1 && errno != EAGAIN) {
         perror("read");
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Process all events within the buffer. */
-
+\&
     for (metadata = (struct fanotify_event_metadata *) events_buf;
             FAN_EVENT_OK(metadata, len);
             metadata = FAN_EVENT_NEXT(metadata, len)) {
         fid = (struct fanotify_event_info_fid *) (metadata + 1);
         file_handle = (struct file_handle *) fid\->handle;
-
+\&
         /* Ensure that the event info is of the correct type. */
-
+\&
         if (fid\->hdr.info_type == FAN_EVENT_INFO_TYPE_FID ||
             fid\->hdr.info_type == FAN_EVENT_INFO_TYPE_DFID) {
             file_name = NULL;
@@ -1382,13 +1381,13 @@ main(int argc, char *argv[])
             fprintf(stderr, "Received unexpected event info type.\en");
             exit(EXIT_FAILURE);
         }
-
+\&
         if (metadata\->mask == FAN_CREATE)
             printf("FAN_CREATE (file created):\en");
-
+\&
         if (metadata\->mask == (FAN_CREATE | FAN_ONDIR))
             printf("FAN_CREATE | FAN_ONDIR (subdirectory created):\en");
-
+\&
 	/* metadata\->fd is set to FAN_NOFD when the group identifies
 	   objects by file handles.  To obtain a file descriptor for
 	   the file object corresponding to an event you can use the
@@ -1397,7 +1396,7 @@ main(int argc, char *argv[])
 	   open_by_handle_at(2) system call.  A check for ESTALE is
 	   done to accommodate for the situation where the file handle
 	   for the object was deleted prior to this system call. */
-
+\&
         event_fd = open_by_handle_at(mount_fd, file_handle, O_RDONLY);
         if (event_fd == \-1) {
             if (errno == ESTALE) {
@@ -1409,21 +1408,21 @@ main(int argc, char *argv[])
                 exit(EXIT_FAILURE);
             }
         }
-
+\&
         snprintf(procfd_path, sizeof(procfd_path), "/proc/self/fd/%d",
                 event_fd);
-
+\&
         /* Retrieve and print the path of the modified dentry. */
-
+\&
         path_len = readlink(procfd_path, path, sizeof(path) \- 1);
         if (path_len == \-1) {
             perror("readlink");
             exit(EXIT_FAILURE);
         }
-
+\&
         path[path_len] = \[aq]\e0\[aq];
         printf("\etDirectory \[aq]%s\[aq] has been modified.\en", path);
-
+\&
         if (file_name) {
             ret = fstatat(event_fd, file_name, &sb, 0);
             if (ret == \-1) {
@@ -1439,12 +1438,12 @@ main(int argc, char *argv[])
                         file_name);
             }
         }
-
+\&
         /* Close associated file descriptor for this event. */
-
+\&
         close(event_fd);
     }
-
+\&
     printf("All events processed successfully. Program exiting.\en");
     exit(EXIT_SUCCESS);
 }

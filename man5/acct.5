@@ -30,9 +30,9 @@ as follows:
 .in +4n
 .EX
 #define ACCT_COMM 16
-
+\&
 typedef u_int16_t comp_t;
-
+\&
 struct acct {
     char ac_flag;           /* Accounting flags */
     u_int16_t ac_uid;       /* Accounting user ID */
@@ -56,7 +56,7 @@ struct acct {
                                executed command; null\-terminated) */
     char      ac_pad[\fIX\fP];    /* padding bytes */
 };
-
+\&
 enum {          /* Bits that may be set in ac_flag field */
     AFORK = 0x01,           /* Has executed fork, but no exec */
     ASU   = 0x02,           /* Used superuser privileges */

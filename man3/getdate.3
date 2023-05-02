@@ -278,21 +278,21 @@ Call 3 ("12:22:33") succeeded:
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     struct tm *tmp;
-
+\&
     for (size_t j = 1; j < argc; j++) {
         tmp = getdate(argv[j]);
-
+\&
         if (tmp == NULL) {
             printf("Call %zu failed; getdate_err = %d\en",
                    j, getdate_err);
             continue;
         }
-
+\&
         printf("Call %zu (\e"%s\e") succeeded:\en", j, argv[j]);
         printf("    tm_sec   = %d\en", tmp\->tm_sec);
         printf("    tm_min   = %d\en", tmp\->tm_min);
@@ -304,7 +304,7 @@ main(int argc, char *argv[])
         printf("    tm_yday  = %d\en", tmp\->tm_yday);
         printf("    tm_isdst = %d\en", tmp\->tm_isdst);
     }
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

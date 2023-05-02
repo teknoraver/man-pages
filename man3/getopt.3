@@ -444,13 +444,13 @@ which expects an associated value.
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     int flags, opt;
     int nsecs, tfnd;
-
+\&
     nsecs = 0;
     tfnd = 0;
     flags = 0;
@@ -469,19 +469,19 @@ main(int argc, char *argv[])
             exit(EXIT_FAILURE);
         }
     }
-
+\&
     printf("flags=%d; tfnd=%d; nsecs=%d; optind=%d\en",
            flags, tfnd, nsecs, optind);
-
+\&
     if (optind >= argc) {
         fprintf(stderr, "Expected argument after options\en");
         exit(EXIT_FAILURE);
     }
-
+\&
     printf("name argument = %s\en", argv[optind]);
-
+\&
     /* Other code omitted */
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE
@@ -496,13 +496,13 @@ with most of its features.
 #include <getopt.h>
 #include <stdio.h>     /* for printf */
 #include <stdlib.h>    /* for exit */
-
+\&
 int
 main(int argc, char *argv[])
 {
     int c;
     int digit_optind = 0;
-
+\&
     while (1) {
         int this_option_optind = optind ? optind : 1;
         int option_index = 0;
@@ -515,12 +515,12 @@ main(int argc, char *argv[])
             {"file",    required_argument, 0,  0 },
             {0,         0,                 0,  0 }
         };
-
+\&
         c = getopt_long(argc, argv, "abc:d:012",
                         long_options, &option_index);
         if (c == \-1)
             break;
-
+\&
         switch (c) {
         case 0:
             printf("option %s", long_options[option_index].name);
@@ -528,7 +528,7 @@ main(int argc, char *argv[])
                 printf(" with arg %s", optarg);
             printf("\en");
             break;
-
+\&
         case \[aq]0\[aq]:
         case \[aq]1\[aq]:
         case \[aq]2\[aq]:
@@ -537,38 +537,38 @@ main(int argc, char *argv[])
             digit_optind = this_option_optind;
             printf("option %c\en", c);
             break;
-
+\&
         case \[aq]a\[aq]:
             printf("option a\en");
             break;
-
+\&
         case \[aq]b\[aq]:
             printf("option b\en");
             break;
-
+\&
         case \[aq]c\[aq]:
             printf("option c with value \[aq]%s\[aq]\en", optarg);
             break;
-
+\&
         case \[aq]d\[aq]:
             printf("option d with value \[aq]%s\[aq]\en", optarg);
             break;
-
+\&
         case \[aq]?\[aq]:
             break;
-
+\&
         default:
             printf("?? getopt returned character code 0%o ??\en", c);
         }
     }
-
+\&
     if (optind < argc) {
         printf("non\-option ARGV\-elements: ");
         while (optind < argc)
             printf("%s ", argv[optind++]);
         printf("\en");
     }
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

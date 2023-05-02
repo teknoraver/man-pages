@@ -201,18 +201,18 @@ user.empty: <no value>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/xattr.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     char     *buf, *key, *val;
     ssize_t  buflen, keylen, vallen;
-
+\&
     if (argc != 2) {
         fprintf(stderr, "Usage: %s path\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     /*
      * Determine the length of the buffer needed.
      */
@@ -225,7 +225,7 @@ main(int argc, char *argv[])
         printf("%s has no attributes.\en", argv[1]);
         exit(EXIT_SUCCESS);
     }
-
+\&
     /*
      * Allocate the buffer.
      */
@@ -234,7 +234,7 @@ main(int argc, char *argv[])
         perror("malloc");
         exit(EXIT_FAILURE);
     }
-
+\&
     /*
      * Copy the list of attribute keys to the buffer.
      */
@@ -243,7 +243,7 @@ main(int argc, char *argv[])
         perror("listxattr");
         exit(EXIT_FAILURE);
     }
-
+\&
     /*
      * Loop over the list of zero terminated strings with the
      * attribute keys. Use the remaining buffer length to determine
@@ -251,21 +251,21 @@ main(int argc, char *argv[])
      */
     key = buf;
     while (buflen > 0) {
-
+\&
         /*
          * Output attribute key.
          */
         printf("%s: ", key);
-
+\&
         /*
          * Determine length of the value.
          */
         vallen = getxattr(argv[1], key, NULL, 0);
         if (vallen == \-1)
             perror("getxattr");
-
+\&
         if (vallen > 0) {
-
+\&
             /*
              * Allocate value buffer.
              * One extra byte is needed to append 0x00.
@@ -275,7 +275,7 @@ main(int argc, char *argv[])
                 perror("malloc");
                 exit(EXIT_FAILURE);
             }
-
+\&
             /*
              * Copy value to buffer.
              */
@@ -289,14 +289,14 @@ main(int argc, char *argv[])
                 val[vallen] = 0;
                 printf("%s", val);
             }
-
+\&
             free(val);
         } else if (vallen == 0) {
             printf("<no value>");
         }
-
+\&
         printf("\en");
-
+\&
         /*
          * Forward to next attribute key.
          */
@@ -304,7 +304,7 @@ main(int argc, char *argv[])
         buflen \-= keylen;
         key += keylen;
     }
-
+\&
     free(buf);
     exit(EXIT_SUCCESS);
 }

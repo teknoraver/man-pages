@@ -124,16 +124,16 @@ frexp(\-4, &e) = \-0.5: \-0.5 * 2\[ha]3 = \-4
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     double x, r;
     int exp;
-
+\&
     x = strtod(argv[1], NULL);
     r = frexp(x, &exp);
-
+\&
     printf("frexp(%g, &e) = %g: %g * %d\[ha]%d = %g\en",
            x, r, r, FLT_RADIX, exp, x);
     exit(EXIT_SUCCESS);

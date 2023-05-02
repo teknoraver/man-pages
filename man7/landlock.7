@@ -407,7 +407,7 @@ section for the description of filesystem actions.
 .EX
 struct landlock_ruleset_attr attr = {0};
 int ruleset_fd;
-
+\&
 attr.handled_access_fs =
         LANDLOCK_ACCESS_FS_EXECUTE |
         LANDLOCK_ACCESS_FS_WRITE_FILE |
@@ -442,7 +442,7 @@ __u64 landlock_fs_access_rights[] = {
     (LANDLOCK_ACCESS_FS_REFER    << 1) \- 1,  /* v2: add "refer"    */
     (LANDLOCK_ACCESS_FS_TRUNCATE << 1) \- 1,  /* v3: add "truncate" */
 };
-
+\&
 int abi = landlock_create_ruleset(NULL, 0,
                                   LANDLOCK_CREATE_RULESET_VERSION);
 if (abi == \-1) {
@@ -454,7 +454,7 @@ if (abi == \-1) {
     return;  /* Graceful fallback: Do nothing. */
 }
 abi = MIN(abi, 3);
-
+\&
 /* Only use the available rights in the ruleset. */
 attr.handled_access_fs &= landlock_fs_access_rights[abi \- 1];
 .EE
@@ -512,12 +512,12 @@ with this file descriptor.
 .EX
 struct landlock_path_beneath_attr path_beneath = {0};
 int err;
-
+\&
 path_beneath.allowed_access =
         LANDLOCK_ACCESS_FS_EXECUTE |
         LANDLOCK_ACCESS_FS_READ_FILE |
         LANDLOCK_ACCESS_FS_READ_DIR;
-
+\&
 path_beneath.parent_fd = open("/usr", O_PATH | O_CLOEXEC);
 if (path_beneath.parent_fd == \-1) {
     perror("Failed to open file");

@@ -197,7 +197,7 @@ as:
 .in +4n
 .EX
 typedef uint32_t in_addr_t;
-
+\&
 struct in_addr {
     in_addr_t s_addr;
 };
@@ -303,22 +303,22 @@ Here are some example runs:
 #include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     struct in_addr addr;
-
+\&
     if (argc != 2) {
         fprintf(stderr, "%s <dotted\-address>\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     if (inet_aton(argv[1], &addr) == 0) {
         fprintf(stderr, "Invalid address\en");
         exit(EXIT_FAILURE);
     }
-
+\&
     printf("%s\en", inet_ntoa(addr));
     exit(EXIT_SUCCESS);
 }

@@ -10,8 +10,6 @@ Standard C library
 .RI ( libc ", " \-lc )
 .SH SYNOPSIS
 .nf
-
-.PP
 .BR "#include <linux/fcntl.h>" " /* Definition of " AT_* " constants */"
 .BR "#include <linux/mount.h>" " /* Definition of " MOUNT_ATTR_* " constants */"
 .BR "#include <sys/syscall.h>" " /* Definition of " SYS_* " constants */"
@@ -175,19 +173,19 @@ are equivalent to the following steps:
 .in +4n
 .EX
 unsigned int current_mnt_flags = mnt\->mnt_flags;
-
+\&
 /*
  * Clear all flags set in .attr_clr,
  * clearing MOUNT_ATTR_NOEXEC and MOUNT_ATTR_NODEV.
  */
 current_mnt_flags &= \(tiattr\->attr_clr;
-
+\&
 /*
  * Now set all flags set in .attr_set,
  * applying MOUNT_ATTR_RDONLY and MOUNT_ATTR_NOSUID.
  */
 current_mnt_flags |= attr\->attr_set;
-
+\&
 mnt\->mnt_flags = current_mnt_flags;
 .EE
 .in
@@ -912,7 +910,7 @@ with a structure which has every byte nonzero
 #include <string.h>
 #include <sys/syscall.h>
 #include <unistd.h>
-
+\&
 static inline int
 mount_setattr(int dirfd, const char *pathname, unsigned int flags,
               struct mount_attr *attr, size_t size)
@@ -920,13 +918,13 @@ mount_setattr(int dirfd, const char *pathname, unsigned int flags,
     return syscall(SYS_mount_setattr, dirfd, pathname, flags,
                    attr, size);
 }
-
+\&
 static inline int
 open_tree(int dirfd, const char *filename, unsigned int flags)
 {
     return syscall(SYS_open_tree, dirfd, filename, flags);
 }
-
+\&
 static inline int
 move_mount(int from_dirfd, const char *from_pathname,
            int to_dirfd, const char *to_pathname, unsigned int flags)
@@ -934,7 +932,7 @@ move_mount(int from_dirfd, const char *from_pathname,
     return syscall(SYS_move_mount, from_dirfd, from_pathname,
                    to_dirfd, to_pathname, flags);
 }
-
+\&
 static const struct option longopts[] = {
     {"map\-mount",       required_argument,  NULL,  \[aq]a\[aq]},
     {"recursive",       no_argument,        NULL,  \[aq]b\[aq]},
@@ -945,7 +943,7 @@ static const struct option longopts[] = {
     {"no\-access\-time",  no_argument,        NULL,  \[aq]g\[aq]},
     { NULL,             0,                  NULL,   0 },
 };
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -957,7 +955,7 @@ main(int argc, char *argv[])
     const char         *source;
     const char         *target;
     struct mount_attr  *attr = &(struct mount_attr){};
-
+\&
     while ((ret = getopt_long_only(argc, argv, "",
                                    longopts, &index)) != \-1) {
         switch (ret) {
@@ -989,13 +987,13 @@ main(int argc, char *argv[])
             errx(EXIT_FAILURE, "Invalid argument specified");
         }
     }
-
+\&
     if ((argc \- optind) < 2)
         errx(EXIT_FAILURE, "Missing source or target mount point");
-
+\&
     source = argv[optind];
     target = argv[optind + 1];
-
+\&
     /* In the following, \-1 as the \[aq]dirfd\[aq] argument ensures that
        open_tree() fails if \[aq]source\[aq] is not an absolute pathname. */
 .\" Christian Brauner
@@ -1010,36 +1008,36 @@ main(int argc, char *argv[])
 .\"     resolve-flag space have made this **chef's kiss**.
 .\"     If I can't operate based on a well-known dirfd I use absolute paths
 .\"     with a -EBADF dirfd passed to *at() functions.
-
+\&
     fd_tree = open_tree(\-1, source,
                         OPEN_TREE_CLONE | OPEN_TREE_CLOEXEC |
                         AT_EMPTY_PATH | (recursive ? AT_RECURSIVE : 0));
     if (fd_tree == \-1)
         err(EXIT_FAILURE, "open(%s)", source);
-
+\&
     if (fd_userns >= 0) {
         attr\->attr_set  |= MOUNT_ATTR_IDMAP;
         attr\->userns_fd = fd_userns;
     }
-
+\&
     ret = mount_setattr(fd_tree, "",
                         AT_EMPTY_PATH | (recursive ? AT_RECURSIVE : 0),
                         attr, sizeof(struct mount_attr));
     if (ret == \-1)
         err(EXIT_FAILURE, "mount_setattr");
-
+\&
     close(fd_userns);
-
+\&
     /* In the following, \-1 as the \[aq]to_dirfd\[aq] argument ensures that
        open_tree() fails if \[aq]target\[aq] is not an absolute pathname. */
-
+\&
     ret = move_mount(fd_tree, "", \-1, target,
                      MOVE_MOUNT_F_EMPTY_PATH);
     if (ret == \-1)
         err(EXIT_FAILURE, "move_mount() to %s", target);
-
+\&
     close(fd_tree);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

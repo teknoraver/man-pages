@@ -25,15 +25,15 @@ Standard C library
 .BR "    off_t      st_size;" "     /* Total size, in bytes */"
 .BR "    blksize_t  st_blksize;" "  /* Block size for filesystem I/O */"
 .BR "    blkcnt_t   st_blocks;" "   /* Number of 512 B blocks allocated */"
-
+\&
     /* Since POSIX.1-2008, this structure supports nanosecond
        precision for the following timestamp fields.
        For the details before POSIX.1-2008, see VERSIONS. */
-
+\&
 .BR "    struct timespec  st_atim;" "  /* Time of last access */"
 .BR "    struct timespec  st_mtim;" "  /* Time of last modification */"
 .BR "    struct timespec  st_ctim;" "  /* Time of last status change */"
-
+\&
 .BR "#define st_atime  st_atim.tv_sec" "  /* Backward compatibility */"
 .B "#define st_mtime  st_mtim.tv_sec"
 .B "#define st_ctime  st_ctim.tv_sec"

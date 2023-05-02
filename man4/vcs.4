@@ -123,7 +123,7 @@ there:
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <linux/vt.h>
-
+\&
 int
 main(void)
 {
@@ -135,7 +135,7 @@ main(void)
     unsigned short mask;
     unsigned char attrib;
     int ch;
-
+\&
     fd = open(console, O_RDWR);
     if (fd < 0) {
         perror(console);

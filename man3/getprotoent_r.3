@@ -176,9 +176,9 @@ Call failed/record not found
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+\&
 #define MAX_BUF 10000
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -186,21 +186,21 @@ main(int argc, char *argv[])
     struct protoent result_buf;
     struct protoent *result;
     char buf[MAX_BUF];
-
+\&
     if (argc < 2) {
         printf("Usage: %s proto\-name [buflen]\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     buflen = 1024;
     if (argc > 2)
         buflen = atoi(argv[2]);
-
+\&
     if (buflen > MAX_BUF) {
         printf("Exceeded buffer limit (%d)\en", MAX_BUF);
         exit(EXIT_FAILURE);
     }
-
+\&
     erange_cnt = 0;
     do {
         s = getprotobyname_r(argv[1], &result_buf,
@@ -209,34 +209,34 @@ main(int argc, char *argv[])
             if (erange_cnt == 0)
                 printf("ERANGE! Retrying with larger buffer\en");
             erange_cnt++;
-
+\&
             /* Increment a byte at a time so we can see exactly
                what size buffer was required. */
-
+\&
             buflen++;
-
+\&
             if (buflen > MAX_BUF) {
                 printf("Exceeded buffer limit (%d)\en", MAX_BUF);
                 exit(EXIT_FAILURE);
             }
         }
     } while (s == ERANGE);
-
+\&
     printf("getprotobyname_r() returned: %s  (buflen=%d)\en",
            (s == 0) ? "0 (success)" : (s == ENOENT) ? "ENOENT" :
            strerror(s), buflen);
-
+\&
     if (s != 0 || result == NULL) {
         printf("Call failed/record not found\en");
         exit(EXIT_FAILURE);
     }
-
+\&
     printf("p_name=%s; p_proto=%d; aliases=",
            result_buf.p_name, result_buf.p_proto);
     for (char **p = result_buf.p_aliases; *p != NULL; p++)
         printf("%s ", *p);
     printf("\en");
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

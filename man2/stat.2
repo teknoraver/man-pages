@@ -467,28 +467,28 @@ structure.
 #include <sys/stat.h>
 #include <sys/sysmacros.h>
 #include <time.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     struct stat sb;
-
+\&
     if (argc != 2) {
         fprintf(stderr, "Usage: %s <pathname>\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     if (lstat(argv[1], &sb) == \-1) {
         perror("lstat");
         exit(EXIT_FAILURE);
     }
-
+\&
     printf("ID of containing device:  [%x,%x]\en",
            major(sb.st_dev),
            minor(sb.st_dev));
-
+\&
     printf("File type:                ");
-
+\&
     switch (sb.st_mode & S_IFMT) {
     case S_IFBLK:  printf("block device\en");            break;
     case S_IFCHR:  printf("character device\en");        break;
@@ -499,27 +499,27 @@ main(int argc, char *argv[])
     case S_IFSOCK: printf("socket\en");                  break;
     default:       printf("unknown?\en");                break;
     }
-
+\&
     printf("I\-node number:            %ju\en", (uintmax_t) sb.st_ino);
-
+\&
     printf("Mode:                     %jo (octal)\en",
            (uintmax_t) sb.st_mode);
-
+\&
     printf("Link count:               %ju\en", (uintmax_t) sb.st_nlink);
     printf("Ownership:                UID=%ju   GID=%ju\en",
            (uintmax_t) sb.st_uid, (uintmax_t) sb.st_gid);
-
+\&
     printf("Preferred I/O block size: %jd bytes\en",
            (intmax_t) sb.st_blksize);
     printf("File size:                %jd bytes\en",
            (intmax_t) sb.st_size);
     printf("Blocks allocated:         %jd\en",
            (intmax_t) sb.st_blocks);
-
+\&
     printf("Last status change:       %s", ctime(&sb.st_ctime));
     printf("Last file access:         %s", ctime(&sb.st_atime));
     printf("Last file modification:   %s", ctime(&sb.st_mtime));
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

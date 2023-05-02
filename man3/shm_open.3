@@ -300,15 +300,15 @@ on the memory object that is shared between the two programs.
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
+\&
 #define errExit(msg)    do { perror(msg); exit(EXIT_FAILURE); \e
                         } while (0)
-
+\&
 #define BUF_SIZE 1024   /* Maximum size for exchanged string */
-
+\&
 /* Define a structure that will be imposed on the shared
    memory object */
-
+\&
 struct shmbuf {
     sem_t  sem1;            /* POSIX unnamed semaphore */
     sem_t  sem2;            /* POSIX unnamed semaphore */
@@ -337,74 +337,74 @@ to tell the "send" program that it may now access the shared memory.
 .\" SRC BEGIN (pshm_ucase_bounce.c)
 .EX
 /* pshm_ucase_bounce.c
-
+\&
    Licensed under GNU General Public License v2 or later.
 */
 #include <ctype.h>
-
+\&
 #include "pshm_ucase.h"
-
+\&
 int
 main(int argc, char *argv[])
 {
     int            fd;
     char           *shmpath;
     struct shmbuf  *shmp;
-
+\&
     if (argc != 2) {
         fprintf(stderr, "Usage: %s /shm\-path\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     shmpath = argv[1];
-
+\&
     /* Create shared memory object and set its size to the size
        of our structure. */
-
+\&
     fd = shm_open(shmpath, O_CREAT | O_EXCL | O_RDWR, 0600);
     if (fd == \-1)
         errExit("shm_open");
-
+\&
     if (ftruncate(fd, sizeof(struct shmbuf)) == \-1)
         errExit("ftruncate");
-
+\&
     /* Map the object into the caller\[aq]s address space. */
-
+\&
     shmp = mmap(NULL, sizeof(*shmp), PROT_READ | PROT_WRITE,
                 MAP_SHARED, fd, 0);
     if (shmp == MAP_FAILED)
         errExit("mmap");
-
+\&
     /* Initialize semaphores as process\-shared, with value 0. */
-
+\&
     if (sem_init(&shmp\->sem1, 1, 0) == \-1)
         errExit("sem_init\-sem1");
     if (sem_init(&shmp\->sem2, 1, 0) == \-1)
         errExit("sem_init\-sem2");
-
+\&
     /* Wait for \[aq]sem1\[aq] to be posted by peer before touching
        shared memory. */
-
+\&
     if (sem_wait(&shmp\->sem1) == \-1)
         errExit("sem_wait");
-
+\&
     /* Convert data in shared memory into upper case. */
-
+\&
     for (size_t j = 0; j < shmp\->cnt; j++)
         shmp\->buf[j] = toupper((unsigned char) shmp\->buf[j]);
-
+\&
     /* Post \[aq]sem2\[aq] to tell the peer that it can now
        access the modified data in shared memory. */
-
+\&
     if (sem_post(&shmp\->sem2) == \-1)
         errExit("sem_post");
-
+\&
     /* Unlink the shared memory object. Even if the peer process
        is still using the object, this is okay. The object will
        be removed only after all open references are closed. */
-
+\&
     shm_unlink(shmpath);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE
@@ -430,13 +430,13 @@ on standard output.
 .\" SRC BEGIN (pshm_ucase_send.c)
 .EX
 /* pshm_ucase_send.c
-
+\&
    Licensed under GNU General Public License v2 or later.
 */
 #include <string.h>
-
+\&
 #include "pshm_ucase.h"
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -444,54 +444,54 @@ main(int argc, char *argv[])
     char           *shmpath, *string;
     size_t         len;
     struct shmbuf  *shmp;
-
+\&
     if (argc != 3) {
         fprintf(stderr, "Usage: %s /shm\-path string\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     shmpath = argv[1];
     string = argv[2];
     len = strlen(string);
-
+\&
     if (len > BUF_SIZE) {
         fprintf(stderr, "String is too long\en");
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Open the existing shared memory object and map it
        into the caller\[aq]s address space. */
-
+\&
     fd = shm_open(shmpath, O_RDWR, 0);
     if (fd == \-1)
         errExit("shm_open");
-
+\&
     shmp = mmap(NULL, sizeof(*shmp), PROT_READ | PROT_WRITE,
                 MAP_SHARED, fd, 0);
     if (shmp == MAP_FAILED)
         errExit("mmap");
-
+\&
     /* Copy data into the shared memory object. */
-
+\&
     shmp\->cnt = len;
     memcpy(&shmp\->buf, string, len);
-
+\&
     /* Tell peer that it can now access shared memory. */
-
+\&
     if (sem_post(&shmp\->sem1) == \-1)
         errExit("sem_post");
-
+\&
     /* Wait until peer says that it has finished accessing
        the shared memory. */
-
+\&
     if (sem_wait(&shmp\->sem2) == \-1)
         errExit("sem_wait");
-
+\&
     /* Write modified data in shared memory to standard output. */
-
+\&
     write(STDOUT_FILENO, &shmp\->buf, len);
     write(STDOUT_FILENO, "\en", 1);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

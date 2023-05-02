@@ -206,7 +206,7 @@ struct rtmsg {
     unsigned char rtm_protocol; /* Routing protocol; see below */
     unsigned char rtm_scope;    /* See below */
     unsigned char rtm_type;     /* See below */
-
+\&
     unsigned int  rtm_flags;
 };
 .EE
@@ -443,7 +443,7 @@ struct ndmsg {
     __u8          ndm_flags;    /* Flags */
     __u8          ndm_type;
 };
-
+\&
 struct nda_cacheinfo {
     __u32         ndm_confirmed;
     __u32         ndm_used;

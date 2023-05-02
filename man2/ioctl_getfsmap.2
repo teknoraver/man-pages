@@ -36,14 +36,14 @@ struct fsmap {
     __u64 fmr_length;      /* Length of segment */
     __u64 fmr_reserved[3]; /* Must be zero */
 };
-
+\&
 struct fsmap_head {
     __u32 fmh_iflags;       /* Control flags */
     __u32 fmh_oflags;       /* Output flags */
     __u32 fmh_count;        /* # of entries in array incl. input */
     __u32 fmh_entries;      /* # of entries filled in (output) */
     __u64 fmh_reserved[6];  /* Must be zero */
-
+\&
     struct fsmap fmh_keys[2];  /* Low and high keys for
                                   the mapping search */
     struct fsmap fmh_recs[];   /* Returned records */

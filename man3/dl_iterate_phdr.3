@@ -67,12 +67,12 @@ struct dl_phdr_info {
                                      ELF program headers
                                      for this object */
     ElfW(Half)        dlpi_phnum; /* # of items in \fIdlpi_phdr\fP */
-
+\&
     /* The following fields were added in glibc 2.4, after the first
        version of this structure was available.  Check the \fIsize\fP
        argument passed to the dl_iterate_phdr callback to determine
        whether or not each later member is available.  */
-
+\&
     unsigned long long dlpi_adds;
                     /* Incremented when a new object may
                        have been added */
@@ -290,16 +290,16 @@ Name: "/lib64/ld\-linux\-x86\-64.so.2" (7 segments)
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 static int
 callback(struct dl_phdr_info *info, size_t size, void *data)
 {
     char *type;
     int p_type;
-
+\&
     printf("Name: \e"%s\e" (%d segments)\en", info\->dlpi_name,
            info\->dlpi_phnum);
-
+\&
     for (size_t j = 0; j < info\->dlpi_phnum; j++) {
         p_type = info\->dlpi_phdr[j].p_type;
         type = (p_type == PT_LOAD) ? "PT_LOAD" :
@@ -312,7 +312,7 @@ callback(struct dl_phdr_info *info, size_t size, void *data)
                (p_type == PT_GNU_EH_FRAME) ? "PT_GNU_EH_FRAME" :
                (p_type == PT_GNU_STACK) ? "PT_GNU_STACK" :
                (p_type == PT_GNU_RELRO) ? "PT_GNU_RELRO" : NULL;
-
+\&
         printf("    %2zu: [%14p; memsz:%7jx] flags: %#jx; ", j,
                (void *) (info\->dlpi_addr + info\->dlpi_phdr[j].p_vaddr),
                (uintmax_t) info\->dlpi_phdr[j].p_memsz,
@@ -322,15 +322,15 @@ callback(struct dl_phdr_info *info, size_t size, void *data)
         else
             printf("[other (%#x)]\en", p_type);
     }
-
+\&
     return 0;
 }
-
+\&
 int
 main(void)
 {
     dl_iterate_phdr(callback, NULL);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

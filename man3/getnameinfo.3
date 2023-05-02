@@ -283,7 +283,7 @@ a particular address family.
 struct sockaddr *addr;     /* input */
 socklen_t addrlen;         /* input */
 char hbuf[NI_MAXHOST], sbuf[NI_MAXSERV];
-
+\&
 if (getnameinfo(addr, addrlen, hbuf, sizeof(hbuf), sbuf,
             sizeof(sbuf), NI_NUMERICHOST | NI_NUMERICSERV) == 0)
     printf("host=%s, serv=%s\en", hbuf, sbuf);
@@ -298,7 +298,7 @@ reverse address mapping.
 struct sockaddr *addr;     /* input */
 socklen_t addrlen;         /* input */
 char hbuf[NI_MAXHOST];
-
+\&
 if (getnameinfo(addr, addrlen, hbuf, sizeof(hbuf),
             NULL, 0, NI_NAMEREQD))
     printf("could not resolve hostname");

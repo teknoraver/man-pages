@@ -195,12 +195,12 @@ $ \fB./a.out\fP
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+\&
 #define handle_error_en(en, msg) \e
         do { errno = en; perror(msg); exit(EXIT_FAILURE); } while (0)
-
+\&
 static pthread_mutex_t mtx;
-
+\&
 static void *
 original_owner_thread(void *ptr)
 {
@@ -209,26 +209,26 @@ original_owner_thread(void *ptr)
     printf("[original owner] Locked. Now exiting without unlocking.\en");
     pthread_exit(NULL);
 }
-
+\&
 int
 main(void)
 {
     pthread_t thr;
     pthread_mutexattr_t attr;
     int s;
-
+\&
     pthread_mutexattr_init(&attr);
-
+\&
     pthread_mutexattr_setrobust(&attr, PTHREAD_MUTEX_ROBUST);
-
+\&
     pthread_mutex_init(&mtx, &attr);
-
+\&
     pthread_create(&thr, NULL, original_owner_thread, NULL);
-
+\&
     sleep(2);
-
+\&
     /* "original_owner_thread" should have exited by now. */
-
+\&
     printf("[main] Attempting to lock the robust mutex.\en");
     s = pthread_mutex_lock(&mtx);
     if (s == EOWNERDEAD) {
@@ -241,7 +241,7 @@ main(void)
         s = pthread_mutex_unlock(&mtx);
         if (s != 0)
             handle_error_en(s, "pthread_mutex_unlock");
-
+\&
         exit(EXIT_SUCCESS);
     } else if (s == 0) {
         printf("[main] pthread_mutex_lock() unexpectedly succeeded\en");

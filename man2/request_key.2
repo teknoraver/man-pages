@@ -502,32 +502,32 @@ For another example of the use of this program, see
 .\" SRC BEGIN (t_request_key.c)
 .EX
 /* t_request_key.c */
-
+\&
 #include <keyutils.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     key_serial_t key;
-
+\&
     if (argc != 4) {
         fprintf(stderr, "Usage: %s type description callout\-data\en",
                 argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     key = request_key(argv[1], argv[2], argv[3],
                       KEY_SPEC_SESSION_KEYRING);
     if (key == \-1) {
         perror("request_key");
         exit(EXIT_FAILURE);
     }
-
+\&
     printf("Key ID is %jx\en", (uintmax_t) key);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

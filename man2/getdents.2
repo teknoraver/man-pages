@@ -259,16 +259,16 @@ inode#    file type  d_reclen  d_off   d_name
 #include <stdlib.h>
 #include <sys/syscall.h>
 #include <unistd.h>
-
+\&
 struct linux_dirent {
     unsigned long  d_ino;
     off_t          d_off;
     unsigned short d_reclen;
     char           d_name[];
 };
-
+\&
 #define BUF_SIZE 1024
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -277,19 +277,19 @@ main(int argc, char *argv[])
     char                 buf[BUF_SIZE];
     long                 nread;
     struct linux_dirent  *d;
-
+\&
     fd = open(argc > 1 ? argv[1] : ".", O_RDONLY | O_DIRECTORY);
     if (fd == \-1)
         err(EXIT_FAILURE, "open");
-
+\&
     for (;;) {
         nread = syscall(SYS_getdents, fd, buf, BUF_SIZE);
         if (nread == \-1)
             err(EXIT_FAILURE, "getdents");
-
+\&
         if (nread == 0)
             break;
-
+\&
         printf("\-\-\-\-\-\-\-\-\-\-\-\-\-\-\- nread=%ld \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\en", nread);
         printf("inode#    file type  d_reclen  d_off   d_name\en");
         for (size_t bpos = 0; bpos < nread;) {
@@ -308,7 +308,7 @@ main(int argc, char *argv[])
             bpos += d\->d_reclen;
         }
     }
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

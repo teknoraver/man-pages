@@ -246,44 +246,44 @@ strtol: Numerical result out of range
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     int base;
     char *endptr, *str;
     long val;
-
+\&
     if (argc < 2) {
         fprintf(stderr, "Usage: %s str [base]\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     str = argv[1];
     base = (argc > 2) ? atoi(argv[2]) : 0;
-
+\&
     errno = 0;    /* To distinguish success/failure after call */
     val = strtol(str, &endptr, base);
-
+\&
     /* Check for various possible errors. */
-
+\&
     if (errno != 0) {
         perror("strtol");
         exit(EXIT_FAILURE);
     }
-
+\&
     if (endptr == str) {
         fprintf(stderr, "No digits were found\en");
         exit(EXIT_FAILURE);
     }
-
+\&
     /* If we got here, strtol() successfully parsed a number. */
-
+\&
     printf("strtol() returned %ld\en", val);
-
+\&
     if (*endptr != \[aq]\e0\[aq])        /* Not necessarily an error... */
         printf("Further characters after number: \e"%s\e"\en", endptr);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

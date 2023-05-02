@@ -278,21 +278,21 @@ in order.
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
+\&
 static void *root = NULL;
-
+\&
 static void *
 xmalloc(size_t n)
 {
     void *p;
-
+\&
     p = malloc(n);
     if (p)
         return p;
     fprintf(stderr, "insufficient memory\en");
     exit(EXIT_FAILURE);
 }
-
+\&
 static int
 compare(const void *pa, const void *pb)
 {
@@ -302,12 +302,12 @@ compare(const void *pa, const void *pb)
         return 1;
     return 0;
 }
-
+\&
 static void
 action(const void *nodep, VISIT which, int depth)
 {
     int *datap;
-
+\&
     switch (which) {
     case preorder:
         break;
@@ -323,13 +323,13 @@ action(const void *nodep, VISIT which, int depth)
         break;
     }
 }
-
+\&
 int
 main(void)
 {
     int  *ptr;
     int  **val;
-
+\&
     srand(time(NULL));
     for (unsigned int i = 0; i < 12; i++) {
         ptr = xmalloc(sizeof(*ptr));

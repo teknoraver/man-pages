@@ -141,7 +141,7 @@ ngroups = 3
 #include <pwd.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -149,38 +149,38 @@ main(int argc, char *argv[])
     struct passwd *pw;
     struct group *gr;
     gid_t *groups;
-
+\&
     if (argc != 3) {
         fprintf(stderr, "Usage: %s <user> <ngroups>\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     ngroups = atoi(argv[2]);
-
+\&
     groups = malloc(sizeof(*groups) * ngroups);
     if (groups == NULL) {
         perror("malloc");
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Fetch passwd structure (contains first group ID for user). */
-
+\&
     pw = getpwnam(argv[1]);
     if (pw == NULL) {
         perror("getpwnam");
         exit(EXIT_SUCCESS);
     }
-
+\&
     /* Retrieve group list. */
-
+\&
     if (getgrouplist(argv[1], pw\->pw_gid, groups, &ngroups) == \-1) {
         fprintf(stderr, "getgrouplist() returned \-1; ngroups = %d\en",
                 ngroups);
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Display list of retrieved groups, along with group names. */
-
+\&
     fprintf(stderr, "ngroups = %d\en", ngroups);
     for (size_t j = 0; j < ngroups; j++) {
         printf("%d", groups[j]);
@@ -189,7 +189,7 @@ main(int argc, char *argv[])
             printf(" (%s)", gr\->gr_name);
         printf("\en");
     }
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

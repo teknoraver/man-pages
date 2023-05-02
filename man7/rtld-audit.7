@@ -502,16 +502,16 @@ This is reportedly fixed in glibc 2.10.
 .EX
 #include <link.h>
 #include <stdio.h>
-
+\&
 unsigned int
 la_version(unsigned int version)
 {
     printf("la_version(): version = %u; LAV_CURRENT = %u\en",
             version, LAV_CURRENT);
-
+\&
     return LAV_CURRENT;
 }
-
+\&
 char *
 la_objsearch(const char *name, uintptr_t *cookie, unsigned int flag)
 {
@@ -524,10 +524,10 @@ la_objsearch(const char *name, uintptr_t *cookie, unsigned int flag)
             (flag == LA_SER_CONFIG) ?  "LA_SER_CONFIG" :
             (flag == LA_SER_SECURE) ?  "LA_SER_SECURE" :
             "???");
-
+\&
     return name;
 }
-
+\&
 void
 la_activity (uintptr_t *cookie, unsigned int flag)
 {
@@ -537,7 +537,7 @@ la_activity (uintptr_t *cookie, unsigned int flag)
             (flag == LA_ACT_DELETE) ?     "LA_ACT_DELETE" :
             "???");
 }
-
+\&
 unsigned int
 la_objopen(struct link_map *map, Lmid_t lmid, uintptr_t *cookie)
 {
@@ -547,24 +547,24 @@ la_objopen(struct link_map *map, Lmid_t lmid, uintptr_t *cookie)
             (lmid == LM_ID_NEWLM) ? "LM_ID_NEWLM" :
             "???",
             cookie);
-
+\&
     return LA_FLG_BINDTO | LA_FLG_BINDFROM;
 }
-
+\&
 unsigned int
 la_objclose (uintptr_t *cookie)
 {
     printf("la_objclose(): %p\en", cookie);
-
+\&
     return 0;
 }
-
+\&
 void
 la_preinit(uintptr_t *cookie)
 {
     printf("la_preinit(): %p\en", cookie);
 }
-
+\&
 uintptr_t
 la_symbind32(Elf32_Sym *sym, unsigned int ndx, uintptr_t *refcook,
         uintptr_t *defcook, unsigned int *flags, const char *symname)
@@ -573,10 +573,10 @@ la_symbind32(Elf32_Sym *sym, unsigned int ndx, uintptr_t *refcook,
             symname, sym\->st_value);
     printf("        ndx = %u; flags = %#x", ndx, *flags);
     printf("; refcook = %p; defcook = %p\en", refcook, defcook);
-
+\&
     return sym\->st_value;
 }
-
+\&
 uintptr_t
 la_symbind64(Elf64_Sym *sym, unsigned int ndx, uintptr_t *refcook,
         uintptr_t *defcook, unsigned int *flags, const char *symname)
@@ -585,17 +585,17 @@ la_symbind64(Elf64_Sym *sym, unsigned int ndx, uintptr_t *refcook,
             symname, sym\->st_value);
     printf("        ndx = %u; flags = %#x", ndx, *flags);
     printf("; refcook = %p; defcook = %p\en", refcook, defcook);
-
+\&
     return sym\->st_value;
 }
-
+\&
 Elf32_Addr
 la_i86_gnu_pltenter(Elf32_Sym *sym, unsigned int ndx,
         uintptr_t *refcook, uintptr_t *defcook, La_i86_regs *regs,
         unsigned int *flags, const char *symname, long *framesizep)
 {
     printf("la_i86_gnu_pltenter(): %s (%p)\en", symname, sym\->st_value);
-
+\&
     return sym\->st_value;
 }
 .EE

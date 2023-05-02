@@ -34,12 +34,12 @@ strncat(char *restrict dst, const char *restrict src, size_t sz)
 {
     int   len;
     char  *p;
-
+\&
     len = strnlen(src, sz);
     p = dst + strlen(dst);
     p = mempcpy(p, src, len);
     *p = \[aq]\e0\[aq];
-
+\&
     return dst;
 }
 .EE
@@ -93,34 +93,34 @@ Shlemiel the painter
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+\&
 #define nitems(arr)  (sizeof((arr)) / sizeof((arr)[0]))
-
+\&
 int
 main(void)
 {
     size_t  maxsize;
-
+\&
     // Null-padded fixed-width character sequences
     char    pre[4] = "pre.";
     char    new_post[50] = ".foo.bar";
-
+\&
     // Strings
     char    post[] = ".post";
     char    src[] = "some_long_body.post";
     char    *dest;
-
+\&
     maxsize = nitems(pre) + strlen(src) \- strlen(post) +
               nitems(new_post) + 1;
     dest = malloc(sizeof(*dest) * maxsize);
     if (dest == NULL)
         err(EXIT_FAILURE, "malloc()");
-
+\&
     dest[0] = \[aq]\e0\[aq];  // There's no 'cpy' function to this 'cat'.
     strncat(dest, pre, nitems(pre));
     strncat(dest, src, strlen(src) \- strlen(post));
     strncat(dest, new_post, nitems(new_post));
-
+\&
     puts(dest);  // "pre.some_long_body.foo.bar"
     free(dest);
     exit(EXIT_SUCCESS);

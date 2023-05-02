@@ -46,25 +46,25 @@ struct statx {
     __u64 stx_attributes_mask;
                            /* Mask to show what\[aq]s supported
                               in stx_attributes */
-
+\&
     /* The following fields are file timestamps */
     struct statx_timestamp stx_atime;  /* Last access */
     struct statx_timestamp stx_btime;  /* Creation */
     struct statx_timestamp stx_ctime;  /* Last status change */
     struct statx_timestamp stx_mtime;  /* Last modification */
-
+\&
     /* If this file represents a device, then the next two
        fields contain the ID of the device */
     __u32 stx_rdev_major;  /* Major ID */
     __u32 stx_rdev_minor;  /* Minor ID */
-
+\&
     /* The next two fields contain the ID of the device
        containing the filesystem where the file resides */
     __u32 stx_dev_major;   /* Major ID */
     __u32 stx_dev_minor;   /* Minor ID */
-
+\&
     __u64 stx_mnt_id;      /* Mount ID */
-
+\&
     /* Direct I/O alignment restrictions */
     __u32 stx_dio_mem_align;
     __u32 stx_dio_offset_align;

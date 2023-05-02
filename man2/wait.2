@@ -663,25 +663,25 @@ $
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     int    wstatus;
     pid_t  cpid, w;
-
+\&
     cpid = fork();
     if (cpid == \-1) {
         perror("fork");
         exit(EXIT_FAILURE);
     }
-
+\&
     if (cpid == 0) {            /* Code executed by child */
         printf("Child PID is %jd\en", (intmax_t) getpid());
         if (argc == 1)
             pause();                    /* Wait for signals */
         _exit(atoi(argv[1]));
-
+\&
     } else {                    /* Code executed by parent */
         do {
             w = waitpid(cpid, &wstatus, WUNTRACED | WCONTINUED);
@@ -689,7 +689,7 @@ main(int argc, char *argv[])
                 perror("waitpid");
                 exit(EXIT_FAILURE);
             }
-
+\&
             if (WIFEXITED(wstatus)) {
                 printf("exited, status=%d\en", WEXITSTATUS(wstatus));
             } else if (WIFSIGNALED(wstatus)) {

@@ -134,7 +134,7 @@ The NeXT system has similar routines:
 .in +4n
 .EX
 #include <aliasdb.h>
-
+\&
 void alias_setent(void);
 void alias_endent(void);
 alias_ent *alias_getent(void);
@@ -152,12 +152,12 @@ It will dump all names in the alias database.
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 int
 main(void)
 {
     struct aliasent *al;
-
+\&
     setaliasent();
     for (;;) {
         al = getaliasent();

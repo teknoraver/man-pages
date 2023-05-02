@@ -86,7 +86,7 @@ sizeof(struct s)=16
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 int
 main(void)
 {
@@ -96,14 +96,14 @@ main(void)
         double d;
         char a[];
     };
-
+\&
     /* Output is compiler dependent */
-
+\&
     printf("offsets: i=%zu; c=%zu; d=%zu a=%zu\en",
            offsetof(struct s, i), offsetof(struct s, c),
            offsetof(struct s, d), offsetof(struct s, a));
     printf("sizeof(struct s)=%zu\en", sizeof(struct s));
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

@@ -172,7 +172,7 @@ when running the program:
 .EX
 .RB "$" " ./a.out"
 About to free
-
+\&
 About to free a second time
 block freed twice
 Aborted (core dumped)
@@ -185,25 +185,25 @@ Aborted (core dumped)
 #include <mcheck.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 int
 main(void)
 {
     char *p;
-
+\&
     if (mcheck(NULL) != 0) {
         fprintf(stderr, "mcheck() failed\en");
-
+\&
         exit(EXIT_FAILURE);
     }
-
+\&
     p = malloc(1000);
-
+\&
     fprintf(stderr, "About to free\en");
     free(p);
     fprintf(stderr, "\enAbout to free a second time\en");
     free(p);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

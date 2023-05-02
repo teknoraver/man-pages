@@ -109,24 +109,24 @@ and then read the byte of data at the mark:
     char buf[BUF_LEN];
     char oobdata;
     int atmark, s;
-
+\&
     for (;;) {
         atmark = sockatmark(sockfd);
         if (atmark == \-1) {
             perror("sockatmark");
             break;
         }
-
+\&
         if (atmark)
             break;
-
+\&
         s = read(sockfd, buf, BUF_LEN);
         if (s == \-1)
             perror("read");
         if (s <= 0)
             break;
     }
-
+\&
     if (atmark == 1) {
         if (recv(sockfd, &oobdata, 1, MSG_OOB) == \-1) {
             perror("recv");

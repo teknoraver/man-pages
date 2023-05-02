@@ -148,7 +148,7 @@ as follows:
 .EX
 /* uint64_t is an unsigned 64\-bit integer;
    uint32_t is an unsigned 32\-bit integer */
-
+\&
 struct dqblk {      /* Definition since Linux 2.4.22 */
     uint64_t dqb_bhardlimit;  /* Absolute limit on disk
                                  quota blocks alloc */
@@ -168,10 +168,10 @@ struct dqblk {      /* Definition since Linux 2.4.22 */
     uint32_t dqb_valid;       /* Bit mask of QIF_*
                                  constants */
 };
-
+\&
 /* Flags in dqb_valid that indicate which fields in
    dqblk structure are valid. */
-
+\&
 #define QIF_BLIMITS   1
 #define QIF_SPACE     2
 #define QIF_ILIMITS   4
@@ -271,7 +271,7 @@ as follows:
 .EX
 /* uint64_t is an unsigned 64\-bit integer;
    uint32_t is an unsigned 32\-bit integer */
-
+\&
 struct dqinfo {         /* Defined since Linux 2.4.22 */
     uint64_t dqi_bgrace;  /* Time before block soft limit
                              becomes hard limit */
@@ -281,23 +281,23 @@ struct dqinfo {         /* Defined since Linux 2.4.22 */
                              (DQF_*) */
     uint32_t dqi_valid;
 };
-
+\&
 /* Bits for dqi_flags */
-
+\&
 /* Quota format QFMT_VFS_OLD */
-
+\&
 #define DQF_ROOT_SQUASH (1 << 0) /* Root squash enabled */
               /* Before Linux v4.0, this had been defined
                  privately as V1_DQF_RSQUASH */
-
+\&
 /* Quota format QFMT_VFS_V0 / QFMT_VFS_V1 */
-
+\&
 #define DQF_SYS_FILE    (1 << 16)   /* Quota stored in
                                        a system file */
-
+\&
 /* Flags in dqi_valid that indicate which fields in
    dqinfo structure are valid. */
-
+\&
 #define IIF_BGRACE  1
 #define IIF_IGRACE  2
 #define IIF_FLAGS   4
@@ -443,13 +443,13 @@ as follows:
 .EX
 /* All the blk units are in BBs (Basic Blocks) of
    512 bytes. */
-
+\&
 #define FS_DQUOT_VERSION  1  /* fs_disk_quota.d_version */
-
+\&
 #define XFS_USER_QUOTA    (1<<0)  /* User quota type */
 #define XFS_PROJ_QUOTA    (1<<1)  /* Project quota type */
 #define XFS_GROUP_QUOTA   (1<<2)  /* Group quota type */
-
+\&
 struct fs_disk_quota {
     int8_t   d_version;   /* Version of this structure */
     int8_t   d_flags;     /* XFS_{USER,PROJ,GROUP}_QUOTA */
@@ -541,14 +541,14 @@ structure itself is defined as follows:
 .in +4n
 .EX
 #define FS_QSTAT_VERSION 1  /* fs_quota_stat.qs_version */
-
+\&
 struct fs_qfilestat {
     uint64_t qfs_ino;       /* Inode number */
     uint64_t qfs_nblks;     /* Number of BBs
                                512\-byte\-blocks */
     uint32_t qfs_nextents;  /* Number of extents */
 };
-
+\&
 struct fs_quota_stat {
     int8_t   qs_version; /* Version number for
                             future changes */
@@ -590,7 +590,7 @@ structure itself is defined as follows:
 .in +4n
 .EX
 #define FS_QSTATV_VERSION1 1 /* fs_quota_statv.qs_version */
-
+\&
 struct fs_qfilestatv {
     uint64_t qfs_ino;       /* Inode number */
     uint64_t qfs_nblks;     /* Number of BBs
@@ -598,7 +598,7 @@ struct fs_qfilestatv {
     uint32_t qfs_nextents;  /* Number of extents */
     uint32_t qfs_pad;       /* Pad for 8\-byte alignment */
 };
-
+\&
 struct fs_quota_statv {
     int8_t   qs_version;    /* Version for future
                                changes */

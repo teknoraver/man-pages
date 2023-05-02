@@ -341,7 +341,7 @@ Here is the program source code
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -349,12 +349,12 @@ main(int argc, char *argv[])
     struct gaicb *reqs[argc \- 1];
     char host[NI_MAXHOST];
     struct addrinfo *res;
-
+\&
     if (argc < 2) {
         fprintf(stderr, "Usage: %s HOST...\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     for (size_t i = 0; i < argc \- 1; i++) {
         reqs[i] = malloc(sizeof(*reqs[0]));
         if (reqs[i] == NULL) {
@@ -364,20 +364,20 @@ main(int argc, char *argv[])
         memset(reqs[i], 0, sizeof(*reqs[0]));
         reqs[i]\->ar_name = argv[i + 1];
     }
-
+\&
     ret = getaddrinfo_a(GAI_WAIT, reqs, argc \- 1, NULL);
     if (ret != 0) {
         fprintf(stderr, "getaddrinfo_a() failed: %s\en",
                 gai_strerror(ret));
         exit(EXIT_FAILURE);
     }
-
+\&
     for (size_t i = 0; i < argc \- 1; i++) {
         printf("%s: ", reqs[i]\->ar_name);
         ret = gai_error(reqs[i]);
         if (ret == 0) {
             res = reqs[i]\->ar_result;
-
+\&
             ret = getnameinfo(res\->ai_addr, res\->ai_addrlen,
                               host, sizeof(host),
                               NULL, 0, NI_NUMERICHOST);
@@ -387,7 +387,7 @@ main(int argc, char *argv[])
                 exit(EXIT_FAILURE);
             }
             puts(host);
-
+\&
         } else {
             puts(gai_strerror(ret));
         }
@@ -432,25 +432,25 @@ The program source is as follows:
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+\&
 static struct gaicb **reqs = NULL;
 static size_t nreqs = 0;
-
+\&
 static char *
 getcmd(void)
 {
     static char buf[256];
-
+\&
     fputs("> ", stdout); fflush(stdout);
     if (fgets(buf, sizeof(buf), stdin) == NULL)
         return NULL;
-
+\&
     if (buf[strlen(buf) \- 1] == \[aq]\en\[aq])
         buf[strlen(buf) \- 1] = 0;
-
+\&
     return buf;
 }
-
+\&
 /* Add requests for specified hostnames. */
 static void
 add_requests(void)
@@ -458,17 +458,17 @@ add_requests(void)
     size_t nreqs_base = nreqs;
     char *host;
     int ret;
-
+\&
     while ((host = strtok(NULL, " "))) {
         nreqs++;
         reqs = realloc(reqs, sizeof(reqs[0]) * nreqs);
-
+\&
         reqs[nreqs \- 1] = calloc(1, sizeof(*reqs[0]));
         reqs[nreqs \- 1]\->ar_name = strdup(host);
     }
-
+\&
     /* Queue nreqs_base..nreqs requests. */
-
+\&
     ret = getaddrinfo_a(GAI_NOWAIT, &reqs[nreqs_base],
                         nreqs \- nreqs_base, NULL);
     if (ret) {
@@ -477,7 +477,7 @@ add_requests(void)
         exit(EXIT_FAILURE);
     }
 }
-
+\&
 /* Wait until at least one of specified requests completes. */
 static void
 wait_requests(void)
@@ -487,37 +487,37 @@ wait_requests(void)
     size_t n;
     struct gaicb const **wait_reqs = calloc(nreqs, sizeof(*wait_reqs));
                 /* NULL elements are ignored by gai_suspend(). */
-
+\&
     while ((id = strtok(NULL, " ")) != NULL) {
         n = atoi(id);
-
+\&
         if (n >= nreqs) {
             printf("Bad request number: %s\en", id);
             return;
         }
-
+\&
         wait_reqs[n] = reqs[n];
     }
-
+\&
     ret = gai_suspend(wait_reqs, nreqs, NULL);
     if (ret) {
         printf("gai_suspend(): %s\en", gai_strerror(ret));
         return;
     }
-
+\&
     for (size_t i = 0; i < nreqs; i++) {
         if (wait_reqs[i] == NULL)
             continue;
-
+\&
         ret = gai_error(reqs[i]);
         if (ret == EAI_INPROGRESS)
             continue;
-
+\&
         printf("[%02zu] %s: %s\en", i, reqs[i]\->ar_name,
                ret == 0 ? "Finished" : gai_strerror(ret));
     }
 }
-
+\&
 /* Cancel specified requests. */
 static void
 cancel_requests(void)
@@ -525,21 +525,21 @@ cancel_requests(void)
     char *id;
     int ret;
     size_t n;
-
+\&
     while ((id = strtok(NULL, " ")) != NULL) {
         n = atoi(id);
-
+\&
         if (n >= nreqs) {
             printf("Bad request number: %s\en", id);
             return;
         }
-
+\&
         ret = gai_cancel(reqs[n]);
         printf("[%s] %s: %s\en", id, reqs[atoi(id)]\->ar_name,
                gai_strerror(ret));
     }
 }
-
+\&
 /* List all requests. */
 static void
 list_requests(void)
@@ -547,14 +547,14 @@ list_requests(void)
     int ret;
     char host[NI_MAXHOST];
     struct addrinfo *res;
-
+\&
     for (size_t i = 0; i < nreqs; i++) {
         printf("[%02zu] %s: ", i, reqs[i]\->ar_name);
         ret = gai_error(reqs[i]);
-
+\&
         if (!ret) {
             res = reqs[i]\->ar_result;
-
+\&
             ret = getnameinfo(res\->ai_addr, res\->ai_addrlen,
                               host, sizeof(host),
                               NULL, 0, NI_NUMERICHOST);
@@ -569,16 +569,16 @@ list_requests(void)
         }
     }
 }
-
+\&
 int
 main(void)
 {
     char *cmdline;
     char *cmd;
-
+\&
     while ((cmdline = getcmd()) != NULL) {
         cmd = strtok(cmdline, " ");
-
+\&
         if (cmd == NULL) {
             list_requests();
         } else {

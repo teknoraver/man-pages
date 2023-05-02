@@ -207,12 +207,12 @@ For example, the following is invalid:
 .\" [[invalid]] SRC BEGIN (setbuf.c)
 .EX
 #include <stdio.h>
-
+\&
 int
 main(void)
 {
     char buf[BUFSIZ];
-
+\&
     setbuf(stdout, buf);
     printf("Hello, world!\en");
     return 0;

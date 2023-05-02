@@ -208,45 +208,45 @@ system call.
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
-
+\&
 int main(void)
 {
     int       context, fd, spu_status;
     uint32_t  instruction, npc;
-
+\&
     context = syscall(SYS_spu_create, "/spu/example\-context", 0, 0755);
     if (context == \-1)
         err(EXIT_FAILURE, "spu_create");
-
+\&
     /*
      * Write a \[aq]stop 0x1234\[aq] instruction to the SPU\[aq]s
      * local store memory.
      */
     instruction = 0x00001234;
-
+\&
     fd = open("/spu/example\-context/mem", O_RDWR);
     if (fd == \-1)
         err(EXIT_FAILURE, "open");
     write(fd, &instruction, sizeof(instruction));
-
+\&
     /*
      * set npc to the starting instruction address of the
      * SPU program. Since we wrote the instruction at the
      * start of the mem file, the entry point will be 0x0.
      */
     npc = 0;
-
+\&
     spu_status = syscall(SYS_spu_run, context, &npc, NULL);
     if (spu_status == \-1)
         err(EXIT_FAILURE, "open");
-
+\&
     /*
      * We should see a status code of 0x12340002:
      *   0x00000002 (spu was stopped due to stop\-and\-signal)
      * | 0x12340000 (the stop\-and\-signal code)
      */
     printf("SPU Status: %#08x\en", spu_status);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

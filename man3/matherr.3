@@ -367,13 +367,13 @@ x=12345.000000
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 static int matherr_ret = 0;     /* Value that matherr()
                                    should return */
 static int change_retval = 0;   /* Should matherr() change
                                    function\[aq]s return value? */
 static double new_retval;       /* New function return value */
-
+\&
 int
 matherr(struct exception *exc)
 {
@@ -388,38 +388,38 @@ matherr(struct exception *exc)
     fprintf(stderr, "        args:   %f, %f\en",
             exc\->arg1, exc\->arg2);
     fprintf(stderr, "        retval: %f\en", exc\->retval);
-
+\&
     if (change_retval)
         exc\->retval = new_retval;
-
+\&
     return matherr_ret;
 }
-
+\&
 int
 main(int argc, char *argv[])
 {
     double x;
-
+\&
     if (argc < 2) {
         fprintf(stderr, "Usage: %s <argval>"
                 " [<matherr\-ret> [<new\-func\-retval>]]\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     if (argc > 2) {
         _LIB_VERSION = _SVID_;
         matherr_ret = atoi(argv[2]);
     }
-
+\&
     if (argc > 3) {
         change_retval = 1;
         new_retval = atof(argv[3]);
     }
-
+\&
     x = log(atof(argv[1]));
     if (errno != 0)
         perror("errno");
-
+\&
     printf("x=%f\en", x);
     exit(EXIT_SUCCESS);
 }

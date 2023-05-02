@@ -149,16 +149,16 @@ GNU.
 #include <envz.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 int
 main(int argc, char *argv[], char *envp[])
 {
     char    *str;
     size_t  e_len = 0;
-
+\&
     for (size_t i = 0; envp[i] != NULL; i++)
         e_len += strlen(envp[i]) + 1;
-
+\&
     str = envz_entry(*envp, e_len, "HOME");
     printf("%s\en", str);
     str = envz_get(*envp, e_len, "HOME");

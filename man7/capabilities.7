@@ -1180,14 +1180,14 @@ the process using the following algorithm:
 .in +4n
 .EX
 P'(ambient)     = (file is privileged) ? 0 : P(ambient)
-
+\&
 P'(permitted)   = (P(inheritable) & F(inheritable)) |
                   (F(permitted) & P(bounding)) | P'(ambient)
-
+\&
 P'(effective)   = F(effective) ? P'(permitted) : P'(ambient)
-
+\&
 P'(inheritable) = P(inheritable)    [i.e., unchanged]
-
+\&
 P'(bounding)    = P(bounding)       [i.e., unchanged]
 .EE
 .in
@@ -1323,7 +1323,7 @@ permitted capabilities simplifies to:
 .in +4n
 .EX
 P'(permitted)   = P(inheritable) | P(bounding)
-
+\&
 P'(effective)   = P'(permitted)
 .EE
 .in

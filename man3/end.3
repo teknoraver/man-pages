@@ -73,10 +73,10 @@ First address past:
 .EX
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 extern char etext, edata, end; /* The symbols must have some type,
                                    or "gcc \-Wall" complains */
-
+\&
 int
 main(void)
 {
@@ -84,7 +84,7 @@ main(void)
     printf("    program text (etext)      %10p\en", &etext);
     printf("    initialized data (edata)  %10p\en", &edata);
     printf("    uninitialized data (end)  %10p\en", &end);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

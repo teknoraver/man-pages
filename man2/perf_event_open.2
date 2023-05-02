@@ -198,15 +198,15 @@ struct perf_event_attr {
     __u32 type;                 /* Type of event */
     __u32 size;                 /* Size of attribute structure */
     __u64 config;               /* Type\-specific configuration */
-
+\&
     union {
         __u64 sample_period;    /* Period of sampling */
         __u64 sample_freq;      /* Frequency of sampling */
     };
-
+\&
     __u64 sample_type;  /* Specifies values included in sample */
     __u64 read_format;  /* Specifies values returned in read */
-
+\&
     __u64 disabled       : 1,   /* off by default */
           inherit        : 1,   /* children inherit it */
           pinned         : 1,   /* must always be on PMU */
@@ -252,23 +252,23 @@ struct perf_event_attr {
                                    on exec */
           sigtrap        :  1,  /* send synchronous SIGTRAP
                                    on event */
-
+\&
           __reserved_1   : 26;
-
+\&
     union {
         __u32 wakeup_events;    /* wakeup every n events */
         __u32 wakeup_watermark; /* bytes before wakeup */
     };
-
+\&
     __u32     bp_type;          /* breakpoint type */
-
+\&
     union {
         __u64 bp_addr;          /* breakpoint address */
         __u64 kprobe_func;      /* for perf_kprobe */
         __u64 uprobe_path;      /* for perf_uprobe */
         __u64 config1;          /* extension of config */
     };
-
+\&
     union {
         __u64 bp_len;           /* breakpoint length */
         __u64 kprobe_addr;      /* with kprobe_func == NULL */
@@ -287,7 +287,7 @@ struct perf_event_attr {
     __u32 aux_sample_size;      /* max aux sample size */
     __u32 __reserved_3;         /* align to u64 */
     __u64 sig_data;             /* user data for sigtrap */
-
+\&
 };
 .EE
 .in
@@ -1725,7 +1725,7 @@ struct perf_event_mmap_page {
     __u64 aux_tail;
     __u64 aux_offset;
     __u64 aux_size;
-
+\&
 }
 .EE
 .in
@@ -1807,28 +1807,28 @@ the following code can be used to do a read:
 u32 seq, time_mult, time_shift, idx, width;
 u64 count, enabled, running;
 u64 cyc, time_offset;
-
+\&
 do {
     seq = pc\->lock;
     barrier();
     enabled = pc\->time_enabled;
     running = pc\->time_running;
-
+\&
     if (pc\->cap_usr_time && enabled != running) {
         cyc = rdtsc();
         time_offset = pc\->time_offset;
         time_mult   = pc\->time_mult;
         time_shift  = pc\->time_shift;
     }
-
+\&
     idx = pc\->index;
     count = pc\->offset;
-
+\&
     if (pc\->cap_usr_rdpmc && idx) {
         width = pc\->pmc_width;
         count += rdpmc(idx \- 1);
     }
-
+\&
     barrier();
 } while (pc\->lock != seq);
 .EE
@@ -1874,7 +1874,7 @@ delta since
 .EX
 u64 quot, rem;
 u64 delta;
-
+\&
 quot  = cyc >> time_shift;
 rem   = cyc & (((u64)1 << time_shift) \- 1);
 delta = time_offset + quot * time_mult +
@@ -3930,25 +3930,25 @@ instruction count of a call to
 #include <sys/ioctl.h>
 #include <sys/syscall.h>
 #include <unistd.h>
-
+\&
 static long
 perf_event_open(struct perf_event_attr *hw_event, pid_t pid,
                 int cpu, int group_fd, unsigned long flags)
 {
     int ret;
-
+\&
     ret = syscall(SYS_perf_event_open, hw_event, pid, cpu,
                   group_fd, flags);
     return ret;
 }
-
+\&
 int
 main(void)
 {
     int                     fd;
     long long               count;
     struct perf_event_attr  pe;
-
+\&
     memset(&pe, 0, sizeof(pe));
     pe.type = PERF_TYPE_HARDWARE;
     pe.size = sizeof(pe);
@@ -3956,23 +3956,23 @@ main(void)
     pe.disabled = 1;
     pe.exclude_kernel = 1;
     pe.exclude_hv = 1;
-
+\&
     fd = perf_event_open(&pe, 0, \-1, \-1, 0);
     if (fd == \-1) {
        fprintf(stderr, "Error opening leader %llx\en", pe.config);
        exit(EXIT_FAILURE);
     }
-
+\&
     ioctl(fd, PERF_EVENT_IOC_RESET, 0);
     ioctl(fd, PERF_EVENT_IOC_ENABLE, 0);
-
+\&
     printf("Measuring instruction count for this printf\en");
-
+\&
     ioctl(fd, PERF_EVENT_IOC_DISABLE, 0);
     read(fd, &count, sizeof(count));
-
+\&
     printf("Used %lld instructions\en", count);
-
+\&
     close(fd);
 }
 .EE

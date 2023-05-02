@@ -158,36 +158,36 @@ That was a circular list
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+\&
 struct element {
     struct element *forward;
     struct element *backward;
     char *name;
 };
-
+\&
 static struct element *
 new_element(void)
 {
     struct element *e;
-
+\&
     e = malloc(sizeof(*e));
     if (e == NULL) {
         fprintf(stderr, "malloc() failed\en");
         exit(EXIT_FAILURE);
     }
-
+\&
     return e;
 }
-
+\&
 int
 main(int argc, char *argv[])
 {
     struct element *first, *elem, *prev;
     int circular, opt, errfnd;
-
+\&
     /* The "\-c" command\-line option can be used to specify that the
        list is circular. */
-
+\&
     errfnd = 0;
     circular = 0;
     while ((opt = getopt(argc, argv, "c")) != \-1) {
@@ -200,19 +200,19 @@ main(int argc, char *argv[])
             break;
         }
     }
-
+\&
     if (errfnd || optind >= argc) {
         fprintf(stderr,  "Usage: %s [\-c] string...\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Create first element and place it in the linked list. */
-
+\&
     elem = new_element();
     first = elem;
-
+\&
     elem\->name = argv[optind];
-
+\&
     if (circular) {
         elem\->forward = elem;
         elem\->backward = elem;
@@ -220,29 +220,29 @@ main(int argc, char *argv[])
     } else {
         insque(elem, NULL);
     }
-
+\&
     /* Add remaining command\-line arguments as list elements. */
-
+\&
     while (++optind < argc) {
         prev = elem;
-
+\&
         elem = new_element();
         elem\->name = argv[optind];
         insque(elem, prev);
     }
-
+\&
     /* Traverse the list from the start, printing element names. */
-
+\&
     printf("Traversing completed list:\en");
     elem = first;
     do {
         printf("    %s\en", elem\->name);
         elem = elem\->forward;
     } while (elem != NULL && elem != first);
-
+\&
     if (elem == first)
         printf("That was a circular list\en");
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

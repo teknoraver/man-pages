@@ -232,7 +232,7 @@ The owning user namespace is outside your namespace scope
 .\" SRC BEGIN (ns_show.c)
 .EX
 /* ns_show.c
-
+\&
    Licensed under the GNU General Public License v2 or later.
 */
 #include <errno.h>
@@ -246,13 +246,13 @@ The owning user namespace is outside your namespace scope
 #include <sys/stat.h>
 #include <sys/sysmacros.h>
 #include <unistd.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
     int          fd, userns_fd, parent_fd;
     struct stat  sb;
-
+\&
     if (argc < 2) {
         fprintf(stderr, "Usage: %s /proc/[pid]/ns/[file] [p|u]\en",
                 argv[0]);
@@ -263,22 +263,22 @@ main(int argc, char *argv[])
                 "NS_GET_USERNS is the default.\en");
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Obtain a file descriptor for the \[aq]ns\[aq] file specified
        in argv[1]. */
-
+\&
     fd = open(argv[1], O_RDONLY);
     if (fd == \-1) {
         perror("open");
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Obtain a file descriptor for the owning user namespace and
        then obtain and display the inode number of that namespace. */
-
+\&
     if (argc < 3 || strchr(argv[2], \[aq]u\[aq])) {
         userns_fd = ioctl(fd, NS_GET_USERNS);
-
+\&
         if (userns_fd == \-1) {
             if (errno == EPERM)
                 printf("The owning user namespace is outside "
@@ -287,7 +287,7 @@ main(int argc, char *argv[])
                perror("ioctl\-NS_GET_USERNS");
             exit(EXIT_FAILURE);
          }
-
+\&
         if (fstat(userns_fd, &sb) == \-1) {
             perror("fstat\-userns");
             exit(EXIT_FAILURE);
@@ -297,16 +297,16 @@ main(int argc, char *argv[])
                major(sb.st_dev),
                minor(sb.st_dev),
                (uintmax_t) sb.st_ino);
-
+\&
         close(userns_fd);
     }
-
+\&
     /* Obtain a file descriptor for the parent namespace and
        then obtain and display the inode number of that namespace. */
-
+\&
     if (argc > 2 && strchr(argv[2], \[aq]p\[aq])) {
         parent_fd = ioctl(fd, NS_GET_PARENT);
-
+\&
         if (parent_fd == \-1) {
             if (errno == EINVAL)
                 printf("Can\[aq] get parent namespace of a "
@@ -318,7 +318,7 @@ main(int argc, char *argv[])
                 perror("ioctl\-NS_GET_PARENT");
             exit(EXIT_FAILURE);
         }
-
+\&
         if (fstat(parent_fd, &sb) == \-1) {
             perror("fstat\-parentns");
             exit(EXIT_FAILURE);
@@ -327,10 +327,10 @@ main(int argc, char *argv[])
                major(sb.st_dev),
                minor(sb.st_dev),
                (uintmax_t) sb.st_ino);
-
+\&
         close(parent_fd);
     }
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

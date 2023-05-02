@@ -2010,7 +2010,7 @@ we can see the command-line arguments supplied to our example program:
 .EX
 $ \fBcat /tmp/key_instantiate.log\fP
 Time: Mon Nov  7 13:06:47 2016
-
+\&
 Command line arguments:
   argv[0]:            /sbin/request\-key
   operation:          create
@@ -2020,7 +2020,7 @@ Command line arguments:
   thread_keyring:     0
   process_keyring:    0
   session_keyring:    256e6a6
-
+\&
 Key description:      user;1000;1000;3f010000;mykey
 Auth key payload:     somepayloaddata
 Destination keyring:  256e6a6
@@ -2075,7 +2075,7 @@ $ \fBcat /proc/keys | egrep \[aq]mykey|256e6a6\[aq]\fP
 .\" SRC BEGIN (key_instantiate.c)
 .EX
 /* key_instantiate.c */
-
+\&
 #include <errno.h>
 #include <keyutils.h>
 #include <stdint.h>
@@ -2084,11 +2084,11 @@ $ \fBcat /proc/keys | egrep \[aq]mykey|256e6a6\[aq]\fP
 #include <string.h>
 #include <sys/types.h>
 #include <time.h>
-
+\&
 #ifndef KEY_SPEC_REQUESTOR_KEYRING
 #define KEY_SPEC_REQUESTOR_KEYRING      (\-8)
 #endif
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -2103,22 +2103,22 @@ main(int argc, char *argv[])
     time_t        t;
     key_serial_t  key_to_instantiate, dest_keyring;
     key_serial_t  thread_keyring, process_keyring, session_keyring;
-
+\&
     if (argc != 8) {
         fprintf(stderr, "Usage: %s op key uid gid thread_keyring "
                         "process_keyring session_keyring\en", argv[0]);
         exit(EXIT_FAILURE);
     }
-
+\&
     fp = fopen("/tmp/key_instantiate.log", "w");
     if (fp == NULL)
         exit(EXIT_FAILURE);
-
+\&
     setbuf(fp, NULL);
-
+\&
     t = time(NULL);
     fprintf(fp, "Time: %s\en", ctime(&t));
-
+\&
     /*
      * The kernel passes a fixed set of arguments to the program
      * that it execs; fetch them.
@@ -2130,7 +2130,7 @@ main(int argc, char *argv[])
     thread_keyring = atoi(argv[5]);
     process_keyring = atoi(argv[6]);
     session_keyring = atoi(argv[7]);
-
+\&
     fprintf(fp, "Command line arguments:\en");
     fprintf(fp, "  argv[0]:            %s\en", argv[0]);
     fprintf(fp, "  operation:          %s\en", operation);
@@ -2145,7 +2145,7 @@ main(int argc, char *argv[])
     fprintf(fp, "  session_keyring:    %jx\en",
             (uintmax_t) session_keyring);
     fprintf(fp, "\en");
-
+\&
     /*
      * Assume the authority to instantiate the key named in argv[2].
      */
@@ -2154,7 +2154,7 @@ main(int argc, char *argv[])
                 strerror(errno));
         exit(EXIT_FAILURE);
     }
-
+\&
     /*
      * Fetch the description of the key that is to be instantiated.
      */
@@ -2163,9 +2163,9 @@ main(int argc, char *argv[])
         fprintf(fp, "KEYCTL_DESCRIBE failed: %s\en", strerror(errno));
         exit(EXIT_FAILURE);
     }
-
+\&
     fprintf(fp, "Key description:      %s\en", dbuf);
-
+\&
     /*
      * Fetch the payload of the authorization key, which is
      * actually the callout data given to request_key().
@@ -2176,10 +2176,10 @@ main(int argc, char *argv[])
         fprintf(fp, "KEYCTL_READ failed: %s\en", strerror(errno));
         exit(EXIT_FAILURE);
     }
-
+\&
     auth_key_payload[akp_size] = \[aq]\e0\[aq];
     fprintf(fp, "Auth key payload:     %s\en", auth_key_payload);
-
+\&
     /*
      * For interest, get the ID of the authorization key and
      * display it.
@@ -2191,9 +2191,9 @@ main(int argc, char *argv[])
                 strerror(errno));
         exit(EXIT_FAILURE);
     }
-
+\&
     fprintf(fp, "Auth key ID:          %jx\en", (uintmax_t) auth_key);
-
+\&
     /*
      * Fetch key ID for the request_key(2) destination keyring.
      */
@@ -2204,9 +2204,9 @@ main(int argc, char *argv[])
                 strerror(errno));
         exit(EXIT_FAILURE);
     }
-
+\&
     fprintf(fp, "Destination keyring:  %jx\en", (uintmax_t) dest_keyring);
-
+\&
     /*
      * Fetch the description of the authorization key. This
      * allows us to see the key type, UID, GID, permissions,
@@ -2220,9 +2220,9 @@ main(int argc, char *argv[])
         fprintf(fp, "KEYCTL_DESCRIBE failed: %s\en", strerror(errno));
         exit(EXIT_FAILURE);
     }
-
+\&
     fprintf(fp, "Auth key description: %s\en", dbuf);
-
+\&
     /*
      * Instantiate the key using the callout data that was supplied
      * in the payload of the authorization key.
@@ -2234,7 +2234,7 @@ main(int argc, char *argv[])
                 strerror(errno));
         exit(EXIT_FAILURE);
     }
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

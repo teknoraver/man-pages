@@ -175,7 +175,7 @@ union bpf_attr {
         __u32         max_entries; /* maximum number of entries
                                       in a map */
     };
-
+\&
     struct {    /* Used by BPF_MAP_*_ELEM and BPF_MAP_GET_NEXT_KEY
                    commands */
         __u32         map_fd;
@@ -186,7 +186,7 @@ union bpf_attr {
         };
         __u64         flags;
     };
-
+\&
     struct {    /* Used by BPF_PROG_LOAD */
         __u32         prog_type;
         __u32         insn_cnt;
@@ -247,7 +247,7 @@ bpf_create_map(enum bpf_map_type map_type,
         .value_size  = value_size,
         .max_entries = max_entries
     };
-
+\&
     return bpf(BPF_MAP_CREATE, &attr, sizeof(attr));
 }
 .EE
@@ -392,7 +392,7 @@ bpf_lookup_elem(int fd, const void *key, void *value)
         .key    = ptr_to_u64(key),
         .value  = ptr_to_u64(value),
     };
-
+\&
     return bpf(BPF_MAP_LOOKUP_ELEM, &attr, sizeof(attr));
 }
 .EE
@@ -431,7 +431,7 @@ bpf_update_elem(int fd, const void *key, const void *value,
         .value  = ptr_to_u64(value),
         .flags  = flags,
     };
-
+\&
     return bpf(BPF_MAP_UPDATE_ELEM, &attr, sizeof(attr));
 }
 .EE
@@ -500,7 +500,7 @@ bpf_delete_elem(int fd, const void *key)
         .map_fd = fd,
         .key    = ptr_to_u64(key),
     };
-
+\&
     return bpf(BPF_MAP_DELETE_ELEM, &attr, sizeof(attr));
 }
 .EE
@@ -533,7 +533,7 @@ bpf_get_next_key(int fd, const void *key, void *next_key)
         .key      = ptr_to_u64(key),
         .next_key = ptr_to_u64(next_key),
     };
-
+\&
     return bpf(BPF_MAP_GET_NEXT_KEY, &attr, sizeof(attr));
 }
 .EE
@@ -714,7 +714,7 @@ with this eBPF program.
 .in +4n
 .EX
 char bpf_log_buf[LOG_BUF_SIZE];
-
+\&
 int
 bpf_prog_load(enum bpf_prog_type type,
               const struct bpf_insn *insns, int insn_cnt,
@@ -729,7 +729,7 @@ bpf_prog_load(enum bpf_prog_type type,
         .log_size  = LOG_BUF_SIZE,
         .log_level = 1,
     };
-
+\&
     return bpf(BPF_PROG_LOAD, &attr, sizeof(attr));
 }
 .EE
@@ -1197,7 +1197,7 @@ main(int argc, char *argv[])
 {
     int sock, map_fd, prog_fd, key;
     long long value = 0, tcp_cnt, udp_cnt;
-
+\&
     map_fd = bpf_create_map(BPF_MAP_TYPE_ARRAY, sizeof(key),
                             sizeof(value), 256);
     if (map_fd < 0) {
@@ -1205,7 +1205,7 @@ main(int argc, char *argv[])
         /* likely not run as root */
         return 1;
     }
-
+\&
     struct bpf_insn prog[] = {
         BPF_MOV64_REG(BPF_REG_6, BPF_REG_1),        /* r6 = r1 */
         BPF_LD_ABS(BPF_B, ETH_HLEN + offsetof(struct iphdr, protocol)),
@@ -1226,15 +1226,15 @@ main(int argc, char *argv[])
         BPF_MOV64_IMM(BPF_REG_0, 0),                /* r0 = 0 */
         BPF_EXIT_INSN(),                            /* return r0 */
     };
-
+\&
     prog_fd = bpf_prog_load(BPF_PROG_TYPE_SOCKET_FILTER, prog,
                             sizeof(prog) / sizeof(prog[0]), "GPL");
-
+\&
     sock = open_raw_sock("lo");
-
+\&
     assert(setsockopt(sock, SOL_SOCKET, SO_ATTACH_BPF, &prog_fd,
                       sizeof(prog_fd)) == 0);
-
+\&
     for (;;) {
         key = IPPROTO_TCP;
         assert(bpf_lookup_elem(map_fd, &key, &tcp_cnt) == 0);
@@ -1243,7 +1243,7 @@ main(int argc, char *argv[])
         printf("TCP %lld UDP %lld packets\en", tcp_cnt, udp_cnt);
         sleep(1);
     }
-
+\&
     return 0;
 }
 .EE

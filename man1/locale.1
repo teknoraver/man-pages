@@ -139,24 +139,24 @@ LC_TELEPHONE="en_US.UTF\-8"
 LC_MEASUREMENT="en_US.UTF\-8"
 LC_IDENTIFICATION="en_US.UTF\-8"
 LC_ALL=
-
+.PP
 $ \fBlocale date_fmt\fP
 %a %b %e %H:%M:%S %Z %Y
-
+.PP
 $ \fBlocale \-k date_fmt\fP
 date_fmt="%a %b %e %H:%M:%S %Z %Y"
-
+.PP
 $ \fBlocale \-ck date_fmt\fP
 LC_TIME
 date_fmt="%a %b %e %H:%M:%S %Z %Y"
-
+.PP
 $ \fBlocale LC_TELEPHONE\fP
 +%c (%a) %l
 (%a) %l
 11
 1
 UTF\-8
-
+.PP
 $ \fBlocale \-k LC_TELEPHONE\fP
 tel_int_fmt="+%c (%a) %l"
 tel_dom_fmt="(%a) %l"

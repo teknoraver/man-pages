@@ -79,7 +79,7 @@ is equivalent to (but shorter and more efficient than):
 .in +4n
 .EX
 int oldtype;
-
+\&
 pthread_cleanup_push(routine, arg);
 pthread_setcanceltype(PTHREAD_CANCEL_DEFERRED, &oldtype);
 \&...

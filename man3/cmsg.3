@@ -206,9 +206,9 @@ option in a received ancillary buffer:
 struct msghdr msgh;
 struct cmsghdr *cmsg;
 int received_ttl;
-
+\&
 /* Receive auxiliary data in msgh */
-
+\&
 for (cmsg = CMSG_FIRSTHDR(&msgh); cmsg != NULL;
         cmsg = CMSG_NXTHDR(&msgh, cmsg)) {
     if (cmsg\->cmsg_level == IPPROTO_IP
@@ -217,7 +217,7 @@ for (cmsg = CMSG_FIRSTHDR(&msgh); cmsg != NULL;
         break;
     }
 }
-
+\&
 if (cmsg == NULL) {
     /* Error: IP_TTL not enabled or small buffer or I/O error */
 }
@@ -243,7 +243,7 @@ union {         /* Ancillary data buffer, wrapped in a union
     char buf[CMSG_SPACE(sizeof(myfds))];
     struct cmsghdr align;
 } u;
-
+\&
 msg.msg_iov = &io;
 msg.msg_iovlen = 1;
 msg.msg_control = u.buf;

@@ -63,20 +63,20 @@ char *
 stpcpy(char *restrict dst, const char *restrict src)
 {
     char  *p;
-
+\&
     p = mempcpy(dst, src, strlen(src));
     *p = \[aq]\e0\[aq];
-
+\&
     return p;
 }
-
+\&
 char *
 strcpy(char *restrict dst, const char *restrict src)
 {
     stpcpy(dst, src);
     return dst;
 }
-
+\&
 char *
 strcat(char *restrict dst, const char *restrict src)
 {
@@ -160,7 +160,7 @@ Shlemiel the painter
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+\&
 int
 main(void)
 {
@@ -168,7 +168,7 @@ main(void)
     char    *buf1;
     char    *buf2;
     size_t  len, maxsize;
-
+\&
     maxsize = strlen("Hello ") + strlen("world") + strlen("!") + 1;
     buf1 = malloc(sizeof(*buf1) * maxsize);
     if (buf1 == NULL)
@@ -176,26 +176,26 @@ main(void)
     buf2 = malloc(sizeof(*buf2) * maxsize);
     if (buf2 == NULL)
         err(EXIT_FAILURE, "malloc()");
-
+\&
     p = buf1;
     p = stpcpy(p, "Hello ");
     p = stpcpy(p, "world");
     p = stpcpy(p, "!");
     len = p \- buf1;
-
+\&
     printf("[len = %zu]: ", len);
     puts(buf1);  // "Hello world!"
     free(buf1);
-
+\&
     strcpy(buf2, "Hello ");
     strcat(buf2, "world");
     strcat(buf2, "!");
     len = strlen(buf2);
-
+\&
     printf("[len = %zu]: ", len);
     puts(buf2);  // "Hello world!"
     free(buf2);
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE

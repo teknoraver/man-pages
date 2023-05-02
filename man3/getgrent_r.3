@@ -179,7 +179,7 @@ in the stream with all other threads.
 #include <stdio.h>
 #include <stdlib.h>
 #define BUFLEN 4096
-
+\&
 int
 main(void)
 {
@@ -187,7 +187,7 @@ main(void)
     struct group *grpp;
     char buf[BUFLEN];
     int i;
-
+\&
     setgrent();
     while (1) {
         i = getgrent_r(&grp, buf, sizeof(buf), &grpp);

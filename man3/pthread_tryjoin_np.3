@@ -134,15 +134,15 @@ The following code waits to join for up to 5 seconds:
 .EX
 struct timespec ts;
 int s;
-
+\&
 \&...
-
+\&
 if (clock_gettime(CLOCK_REALTIME, &ts) == \-1) {
     /* Handle error */
 }
-
+\&
 ts.tv_sec += 5;
-
+\&
 s = pthread_timedjoin_np(thread, NULL, &ts);
 if (s != 0) {
     /* Handle error */

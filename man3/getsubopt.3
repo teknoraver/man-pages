@@ -164,9 +164,9 @@ The following program expects suboptions following a "\-o" option.
 #define _XOPEN_SOURCE 500
 #include <stdio.h>
 #include <stdlib.h>
-
+\&
 #include <assert.h>
-
+\&
 int
 main(int argc, char *argv[])
 {
@@ -184,27 +184,27 @@ main(int argc, char *argv[])
     char *subopts;
     char *value;
     int opt;
-
+\&
     int readonly = 0;
     int readwrite = 0;
     char *name = NULL;
     int errfnd = 0;
-
+\&
     while ((opt = getopt(argc, argv, "o:")) != \-1) {
         switch (opt) {
         case \[aq]o\[aq]:
             subopts = optarg;
             while (*subopts != \[aq]\e0\[aq] && !errfnd) {
-
+\&
                 switch (getsubopt(&subopts, token, &value)) {
                 case RO_OPT:
                     readonly = 1;
                     break;
-
+\&
                 case RW_OPT:
                     readwrite = 1;
                     break;
-
+\&
                 case NAME_OPT:
                     if (value == NULL) {
                         fprintf(stderr,
@@ -213,10 +213,10 @@ main(int argc, char *argv[])
                         errfnd = 1;
                         continue;
                     }
-
+\&
                     name = value;
                     break;
-
+\&
                 default:
                     fprintf(stderr,
                             "No match found for token: /%s/\en", value);
@@ -231,21 +231,21 @@ main(int argc, char *argv[])
                 errfnd = 1;
             }
             break;
-
+\&
         default:
             errfnd = 1;
         }
     }
-
+\&
     if (errfnd || argc == 1) {
         fprintf(stderr, "\enUsage: %s \-o <suboptstring>\en", argv[0]);
         fprintf(stderr,
                 "suboptions are \[aq]ro\[aq], \[aq]rw\[aq], and \[aq]name=<value>\[aq]\en");
         exit(EXIT_FAILURE);
     }
-
+\&
     /* Remainder of program... */
-
+\&
     exit(EXIT_SUCCESS);
 }
 .EE
