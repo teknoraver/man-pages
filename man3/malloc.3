@@ -22,11 +22,11 @@ Standard C library
 .nf
 .B #include <stdlib.h>
 .PP
-.BI "void *malloc(size_t " "size" );
-.BI "void free(void " "*ptr" );
-.BI "void *calloc(size_t " "nmemb" ", size_t " "size" );
-.BI "void *realloc(void " "*ptr" ", size_t "  "size" );
-.BI "void *reallocarray(void " "*ptr" ", size_t " nmemb ", size_t "  "size" );
+.BI "void *malloc(size_t " size );
+.BI "void free(void *" ptr );
+.BI "void *calloc(size_t " nmemb ", size_t " size );
+.BI "void *realloc(void *" ptr ", size_t "  size );
+.BI "void *reallocarray(void *" ptr ", size_t " nmemb ", size_t " size );
 .fi
 .PP
 .RS -4
