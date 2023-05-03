@@ -54,11 +54,6 @@ priority list at that time,
 it will continue to run after a call to
 .BR sched_yield ().
 .PP
-Strategic calls to
-.BR sched_yield ()
-can improve performance by giving other threads or processes
-a chance to run when (heavily) contended resources (e.g., mutexes)
-have been released by the caller.
 Avoid calling
 .BR sched_yield ()
 unnecessarily or inappropriately
