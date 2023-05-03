@@ -48,7 +48,18 @@ is available defined
 .B _POSIX_PRIORITY_SCHEDULING
 in
 .IR <unistd.h> .
-.SH NOTES
+.SH CAVEATS
+.BR sched_yield ()
+is intended for use with real-time scheduling policies (i.e.,
+.B SCHED_FIFO
+or
+.BR SCHED_RR ).
+Use of
+.BR sched_yield ()
+with nondeterministic scheduling policies such as
+.B SCHED_OTHER
+is unspecified and very likely means your application design is broken.
+.PP
 If the calling thread is the only thread in the highest
 priority list at that time,
 it will continue to run after a call to
@@ -61,16 +72,5 @@ unnecessarily or inappropriately
 schedulable threads are still held by the caller),
 since doing so will result in unnecessary context switches,
 which will degrade system performance.
-.PP
-.BR sched_yield ()
-is intended for use with real-time scheduling policies (i.e.,
-.B SCHED_FIFO
-or
-.BR SCHED_RR ).
-Use of
-.BR sched_yield ()
-with nondeterministic scheduling policies such as
-.B SCHED_OTHER
-is unspecified and very likely means your application design is broken.
 .SH SEE ALSO
 .BR sched (7)
