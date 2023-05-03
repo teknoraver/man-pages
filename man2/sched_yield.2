@@ -38,19 +38,21 @@ always succeeds.
 .SH STANDARDS
 POSIX.1-2008.
 .SH HISTORY
-POSIX.1-2001.
+POSIX.1-2001 (but optional).
+POSIX.1-2008.
+.PP
+Before POSIX.1-2008,
+systems on which
+.BR sched_yield ()
+is available defined
+.B _POSIX_PRIORITY_SCHEDULING
+in
+.IR <unistd.h> .
 .SH NOTES
 If the calling thread is the only thread in the highest
 priority list at that time,
 it will continue to run after a call to
 .BR sched_yield ().
-.PP
-POSIX systems on which
-.BR sched_yield ()
-is available define
-.B _POSIX_PRIORITY_SCHEDULING
-in
-.IR <unistd.h> .
 .PP
 Strategic calls to
 .BR sched_yield ()
