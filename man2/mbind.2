@@ -311,6 +311,11 @@ If
 is also specified, then the call fails with the error
 .B EIO
 if some pages could not be moved.
+If the
+.B MPOL_INTERLEAVE
+policy was specified,
+pages already residing on the specified nodes
+will not be moved such that they are interleaved.
 .PP
 If
 .B MPOL_MF_MOVE_ALL
@@ -326,6 +331,11 @@ If
 is also specified, then the call fails with the error
 .B EIO
 if some pages could not be moved.
+If the
+.B MPOL_INTERLEAVE
+policy was specified,
+pages already residing on the specified nodes
+will not be moved such that they are interleaved.
 .\" ---------------------------------------------------------------
 .SH RETURN VALUE
 On success,
