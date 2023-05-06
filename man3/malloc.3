@@ -226,6 +226,10 @@ or
 .B RLIMIT_DATA
 limit described in
 .BR getrlimit (2).
+Another reason could be that
+the number of mappings created by the caller process
+exceeded the limit specified by
+.IR /proc/sys/vm/max_map_count .
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
