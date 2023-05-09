@@ -18,7 +18,7 @@ EXTRA_EQNFLAGS   :=
 EQNFLAGS         := $(DEFAULT_EQNFLAGS) $(EXTRA_EQNFLAGS)
 EQN              := eqn
 
-DEFAULT_TROFFFLAGS   := -ww
+DEFAULT_TROFFFLAGS   := -wbreak
 EXTRA_TROFFFLAGS     :=
 TROFFFLAGS           := $(DEFAULT_TROFFFLAGS) $(EXTRA_TROFFFLAGS)
 TROFF                := troff
