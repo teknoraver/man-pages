@@ -91,9 +91,8 @@ The function
 is the same as
 .BR memalign (),
 except for the added restriction that
-.I size
-should be a multiple of
-.IR alignment .
+.I alignment
+must be a power of two.
 .PP
 The obsolete function
 .BR valloc ()
