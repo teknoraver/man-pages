@@ -46,8 +46,9 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .PP
-.BI "int prctl(int " option ", unsigned long " arg2 ", unsigned long " arg3 ,
-.BI "          unsigned long " arg4 ", unsigned long " arg5 );
+.BI "int prctl(int " option ", ..."
+.BI "          \fR/*\fP unsigned long " arg2 ", unsigned long " arg3 ,
+.BI "          unsigned long " arg4 ", unsigned long " arg5 " \fR*/\fP );"
 .fi
 .SH DESCRIPTION
 .BR prctl ()

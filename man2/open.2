@@ -38,18 +38,17 @@ Standard C library
 .nf
 .B #include <fcntl.h>
 .PP
-.BI "int open(const char *" pathname ", int " flags );
-.BI "int open(const char *" pathname ", int " flags ", mode_t " mode );
+.BI "int open(const char *" pathname ", int " flags ", ..."
+.BI "           \fR/*\fP mode_t " mode " \fR*/\fP );"
 .PP
 .BI "int creat(const char *" pathname ", mode_t " mode );
 .PP
-.BI "int openat(int " dirfd ", const char *" pathname ", int " flags );
-.BI "int openat(int " dirfd ", const char *" pathname ", int " flags \
-", mode_t " mode );
+.BI "int openat(int " dirfd ", const char *" pathname ", int " flags ", ..."
+.BI "           \fR/*\fP mode_t " mode " \fR*/\fP );"
 .PP
 /* Documented separately, in \fBopenat2\fP(2): */
 .BI "int openat2(int " dirfd ", const char *" pathname ,
-.BI "            const struct open_how *" how ", size_t " size ");"
+.BI "           const struct open_how *" how ", size_t " size );
 .fi
 .PP
 .RS -4
