@@ -71,7 +71,7 @@ If the character encoding of the input is stateful, the
 function can also convert a sequence of input bytes
 to an update to the conversion state without producing any output bytes;
 such input is called a \fIshift sequence\fP.
-The conversion can stop for four reasons:
+The conversion can stop for five reasons:
 .IP \[bu] 3
 An invalid multibyte sequence is encountered in the input.
 In this case,
@@ -79,6 +79,42 @@ it sets \fIerrno\fP to \fBEILSEQ\fP and returns
 .IR (size_t)\ \-1 .
 \fI*inbuf\fP
 is left pointing to the beginning of the invalid multibyte sequence.
+.IP \[bu]
+A multibyte sequence is encountered that is valid but that
+cannot be translated to the character encoding of the output.
+This condition depends on the implementation and on the conversion descriptor.
+In the GNU C library and GNU libiconv, if
+.I cd
+was created without the suffix
+.B //TRANSLIT
+or
+.BR //IGNORE ,
+the conversion is strict:
+lossy conversions produce this condition.
+If the suffix
+.B //TRANSLIT
+was specified,
+transliteration can avoid this condition in some cases.
+In the musl C library,
+this condition cannot occur because a conversion to
+.B \[aq]*\[aq]
+is used as a fallback.
+In the FreeBSD, NetBSD, and Solaris implementations of
+.BR iconv (),
+this condition cannot occur either,
+because a conversion to
+.B \[aq]?\[aq]
+is used as a fallback.
+When this condition is met,
+.BR iconv ()
+sets
+.I errno
+to
+.B EILSEQ
+and returns
+.IR (size_t)\ \-1 .
+.I *inbuf
+is left pointing to the beginning of the unconvertible multibyte sequence.
 .IP \[bu]
 The input byte sequence has been entirely converted,
 that is, \fI*inbytesleft\fP has gone down to 0.
