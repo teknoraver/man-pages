@@ -83,7 +83,7 @@ T}	Thread safety	MT-Unsafe const:env
 .SH STANDARDS
 POSIX.1-2008.
 .SH HISTORY
-POSIX.1-2001, SVr4, 4.3BSD.
+POSIX.1-2001, SVr2, 4.3BSD-Reno.
 .PP
 The
 .BR putenv ()
@@ -119,7 +119,8 @@ a copy of the string is used.
 On the one hand this causes a memory leak, and on the other hand
 it violates SUSv2.
 .PP
-The 4.4BSD version, like glibc 2.0, uses a copy.
+The 4.3BSD-Reno version, like glibc 2.0, uses a copy;
+this is fixed in all modern BSDs.
 .PP
 SUSv2 removes the \fIconst\fP from the prototype, and so does glibc 2.1.3.
 .PP
