@@ -521,6 +521,10 @@ without an explicit
 See
 .BR mmap (2)
 for more information.
+.TP
+.BR STATX_ATTR_MOUNT_ROOT " (since Linux 5.10)"
+.\" commit 80340fe3605c0e78cfe496c3b3878be828cfdbfe
+The file is the root of a mount.
 .SH RETURN VALUE
 On success, zero is returned.
 On error, \-1 is returned, and
