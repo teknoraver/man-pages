@@ -23,14 +23,15 @@ EX_USAGE=64;
 #	C
 
 #  sed_rm_ccomments()  removes C comments.
-# It can't handle multiple comments in a single line correctly,
-# nor mixed or embedded //... and /*...*/ comments.
+# It can't handle mixed //... and /*...*/ comments.
 # Use as a filter (see man_lsfunc() in this file).
 
 sed_rm_ccomments()
 {
-	sed 's%/\*.*\*/%%' \
-	|sed -E '\%/\*%,\%\*/%{\%(\*/|/\*)%!d; s%/\*.*%%; s%.*\*/%%;}' \
+	perl -p -e 's%/\*.*?\*/%%g' \
+	|sed -E '\%/\*%, \%\*/% {\%(\*/|/\*)%!d}' \
+	|sed -E '\%/\*% {s%/\*.*%%; n; s%.*\*/%%;}' \
+	|sed -E '\%/\*% {s%/\*.*%%; n; s%.*\*/%%;}' \
 	|sed 's%//.*%%';
 }
 
