@@ -497,9 +497,20 @@ unless the process is a zombie.
 .\" In Linux 2.3.26, this also used to be true if the process was swapped out.
 In the latter case, there is nothing in this file:
 that is, a read on this file will return 0 characters.
-The command-line arguments appear in this file as a set of
-strings separated by null bytes (\[aq]\e0\[aq]),
+.IP
+For processes which are still running,
+the command-line arguments appear in this file
+in the same layout as they do in process memory:
+If the process is well-behaved,
+it is a set of strings separated by null bytes (\[aq]\e0\[aq]),
 with a further null byte after the last string.
+.IP
+This is the common case,
+but processes have the freedom to
+override the memory region and
+break assumptions about the contents or format of the
+.IR /proc/ pid /cmdline
+file.
 .IP
 If, after an
 .BR execve (2),
