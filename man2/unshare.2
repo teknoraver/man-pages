@@ -532,12 +532,12 @@ main(int argc, char *argv[])
 \&
     while ((opt = getopt(argc, argv, "CimnptuU")) != \-1) {
         switch (opt) {
-        case \[aq]C\[aq]: flags |= CLONE_NEWCGROUP;      break;
+        case \[aq]C\[aq]: flags |= CLONE_NEWCGROUP;     break;
         case \[aq]i\[aq]: flags |= CLONE_NEWIPC;        break;
         case \[aq]m\[aq]: flags |= CLONE_NEWNS;         break;
         case \[aq]n\[aq]: flags |= CLONE_NEWNET;        break;
         case \[aq]p\[aq]: flags |= CLONE_NEWPID;        break;
-        case \[aq]t\[aq]: flags |= CLONE_NEWTIME;        break;
+        case \[aq]t\[aq]: flags |= CLONE_NEWTIME;       break;
         case \[aq]u\[aq]: flags |= CLONE_NEWUTS;        break;
         case \[aq]U\[aq]: flags |= CLONE_NEWUSER;       break;
         default:  usage(argv[0]);
