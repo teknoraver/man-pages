@@ -345,13 +345,15 @@ POSIX.1-2008.
 .TP
 .BR isascii_l ()
 glibc 2.3.
-.SH NOTES
+.SH CAVEATS
 The standards require that the argument
 .I c
 for these functions is either
 .B EOF
 or a value that is representable in the type
-.IR "unsigned char" .
+.IR "unsigned char" ;
+otherwise,
+the behavior is undefined.
 If the argument
 .I c
 is of type
