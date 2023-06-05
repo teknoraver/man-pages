@@ -175,6 +175,17 @@ On some architectures, an implementation of
 .BR gettimeofday ()
 is provided in the
 .BR vdso (7).
+.PP
+The kernel accepts NULL for both
+.I tv
+and
+.IR tz.
+The timezone argument is ignored by glibc and musl,
+and not passed to/from the kernel.
+Android's bionic passes the timezone argument to/from the kernel,
+but Android does not update the kernel timezone
+based on the device timezone in Settings,
+so the kernel's timezone is typically UTC.
 .SH STANDARDS
 .TP
 .BR gettimeofday ()
