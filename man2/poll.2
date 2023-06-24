@@ -123,6 +123,14 @@ the call is interrupted by a signal handler; or
 .IP \[bu]
 the timeout expires.
 .PP
+Being "ready" means that the requested operation will not block; thus,
+.BR poll ()ing
+regular files,
+block devices,
+and other files with no reasonable polling semantic
+.I always
+returns instantly as ready to read and write.
+.PP
 Note that the
 .I timeout
 interval will be rounded up to the system clock granularity,
