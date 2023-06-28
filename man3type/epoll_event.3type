@@ -52,4 +52,4 @@ struct epoll_event {
 Linux.
 .SH SEE ALSO
 .BR epoll_wait (2),
-.BR epoll_ctl (7)
+.BR epoll_ctl (2)
