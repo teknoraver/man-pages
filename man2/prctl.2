@@ -2027,6 +2027,17 @@ system call on Tru64).
 for information on versions and architectures.)
 Return unaligned access control bits, in the location pointed to by
 .IR "(unsigned int\~*) arg2" .
+.\" prctl PR_GET_AUXV
+.TP
+.BR PR_GET_AUXV " (since Linux 6.4)"
+Get the auxilliary vector (auxv) into the buffer pointed to by
+.IR "(void\~*) arg2" ,
+whose length is given by \fIarg3\fP.
+If the buffer is not long enough for the full auxilliary vector,
+the copy will be truncated.
+Return (as the function result)
+the full length of the auxilliary vector.
+\fIarg4\fP and \fIarg5\fP must be 0.
 .SH RETURN VALUE
 On success,
 .BR PR_CAP_AMBIENT + PR_CAP_AMBIENT_IS_SET ,
@@ -2045,6 +2056,7 @@ On success,
 .BR PR_GET_THP_DISABLE ,
 .BR PR_GET_TIMING ,
 .BR PR_GET_TIMERSLACK ,
+.BR PR_GET_AUXV ,
 and (if it returns)
 .B PR_GET_SECCOMP
 return the nonnegative values described above.
