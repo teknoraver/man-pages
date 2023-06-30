@@ -3155,6 +3155,9 @@ Often done via a boot manager such as
 .BR lilo (8)
 or
 .BR grub (8).
+Any arguments embedded in the kernel image or initramfs via
+.B CONFIG_BOOT_CONFIG
+will also be displayed.
 .TP
 .IR /proc/config.gz " (since Linux 2.6)"
 This file exposes the configuration options that were used
