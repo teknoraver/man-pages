@@ -838,7 +838,7 @@ that contains it is unmounted),
 any pending unread events for that watch descriptor remain available to read.
 As watch descriptors are subsequently allocated with
 .BR inotify_add_watch (2),
-the kernel cycles through the range of possible watch descriptors (0 to
+the kernel cycles through the range of possible watch descriptors (1 to
 .BR INT_MAX )
 incrementally.
 When allocating a free watch descriptor, no check is made to see whether that
