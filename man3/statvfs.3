@@ -227,6 +227,14 @@ fields returned by a call to
 .BR statvfs ()
 with the argument
 .IR path .
+.PP
+Under Linux,
+.I f_favail
+is always the same as
+.IR f_ffree ,
+and there's no way for a filesystem to report otherwise.
+This is not an issue,
+since no filesystems with an inode root reservation exist.
 .SH STANDARDS
 POSIX.1-2008.
 .SH HISTORY
