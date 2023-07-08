@@ -2,17 +2,18 @@ Name
        Linux man-pages - manual pages for GNU/Linux
 
 Synopsis
-       This package contains GNU/Linux manual pages for sections 1 through 8.
+       This package contains GNU/Linux manual pages for sections 1
+       through 8.
 
 Description
-       The manual pages in this project document primarily the Linux kernel
-       and the GNU C library, but also consider relevant differences in other
-       kernels or C libraries.
+       The manual pages in this project document primarily the Linux
+       kernel and the GNU C library, but also consider relevant
+       differences in other kernels or C libraries.
 
        These pages are most of the section 2, 3, 4, 5, 7 man pages for
-       GNU/Linux.  A few pages are provided in sections 1 and 8 for commands
-       that are not documented in other packages, and there are a few pages in
-       sections 5 and 8 for the timezone utilities.
+       GNU/Linux.  A few pages are provided in sections 1 and 8 for
+       commands that are not documented in other packages, and there are
+       a few pages in sections 5 and 8 for the timezone utilities.
 
 Files
    CONTRIBUTING
@@ -31,11 +32,12 @@ Files
        Instructions for releasing and distributing new versions.
 
    Changes, Changes.old
-       Change log.  Includes most relevant changes.  However, it's not as
-       complete as the git(1) log.
+       Change log.  Includes most relevant changes.  However, it's not
+       as complete as the git(1) log.
 
    Makefile, share/mk/*
-       Build system.  For help, consult the <INSTALL> file, and run 'make help'.
+       Build system.  For help, consult the <INSTALL> file, and run
+       'make help'.
 
    lsm
        Linux software map.  See also <https://lsm.qqx.org/>.
@@ -47,7 +49,8 @@ Files
        Licenses in use by the project.
 
    etc/*
-       Configuration files for (linter) programs called by the build system.
+       Configuration files for (linter) programs called by the build
+       system.
 
    man*/*
        Manual pages.
@@ -90,15 +93,15 @@ History
              1993 - 1995    (1.0  - 1.5)
 
 Caveats
-       Some projects provide their own manual pages, not related to the Linux
-       man-pages project.
+       Some projects provide their own manual pages, not related to the
+       Linux man-pages project.
 
 Bugs
        See the <CONTRIBUTING> file.
 
 Copyright
-       Several free/open source licenses.  See the <LICENSES/> directory, and
-       the comment at the top of each source file.
+       Several free/open source licenses.  See the <LICENSES/>
+       directory, and the comment at the top of each source file.
 
 See also
        man-pages(7)
