@@ -16,9 +16,10 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
+.B #define _FILE_OFFSET_BITS 64
 .B #include <fcntl.h>
 .PP
-.BI "int sync_file_range(int " fd ", off64_t " offset ", off64_t " nbytes ,
+.BI "int sync_file_range(int " fd ", off_t " offset ", off_t " nbytes ,
 .BI "                    unsigned int " flags );
 .fi
 .SH DESCRIPTION
@@ -176,7 +177,7 @@ system call that orders the arguments suitably:
 .in +4n
 .EX
 .BI "int sync_file_range2(int " fd ", unsigned int " flags ,
-.BI "                     off64_t " offset ", off64_t " nbytes );
+.BI "                     off_t " offset ", off_t " nbytes );
 .EE
 .in
 .PP
@@ -198,6 +199,13 @@ glibc transparently wraps
 under the name
 .BR sync_file_range ().
 .SH NOTES
+.B _FILE_OFFSET_BITS
+should be defined to be 64 in code that takes the address of
+.BR sync_file_range ,
+if the code is intended to be portable
+to traditional 32-bit x86 and ARM platforms where
+.BR off_t 's
+width defaults to 32 bits.
 .SH SEE ALSO
 .BR fdatasync (2),
 .BR fsync (2),

@@ -11,10 +11,11 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #define _GNU_SOURCE
+.B #define _FILE_OFFSET_BITS 64
 .B #include <unistd.h>
 .PP
-.BI "ssize_t copy_file_range(int " fd_in ", off64_t *_Nullable " off_in ,
-.BI "                        int " fd_out ", off64_t *_Nullable " off_out ,
+.BI "ssize_t copy_file_range(int " fd_in ", off_t *_Nullable " off_in ,
+.BI "                        int " fd_out ", off_t *_Nullable " off_out ,
 .BI "                        size_t " len ", unsigned int " flags );
 .fi
 .SH DESCRIPTION
@@ -224,6 +225,18 @@ gives filesystems an opportunity to implement "copy acceleration" techniques,
 such as the use of reflinks (i.e., two or more inodes that share
 pointers to the same copy-on-write disk blocks)
 or server-side-copy (in the case of NFS).
+.PP
+.B _FILE_OFFSET_BITS
+should be defined to be 64 in code that uses non-null
+.I off_in
+or
+.I off_out
+or that takes the address of
+.BR copy_file_range ,
+if the code is intended to be portable
+to traditional 32-bit x86 and ARM platforms where
+.BR off_t 's
+width defaults to 32 bits.
 .SH BUGS
 In Linux 5.3 to Linux 5.18,
 cross-filesystem copies were implemented by the kernel,
@@ -234,6 +247,7 @@ the call failed to copy, while still reporting success.
 .\" SRC BEGIN (copy_file_range.c)
 .EX
 #define _GNU_SOURCE
+#define _FILE_OFFSET_BITS 64
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -244,7 +258,7 @@ int
 main(int argc, char *argv[])
 {
     int          fd_in, fd_out;
-    off64_t      len, ret;
+    off_t        len, ret;
     struct stat  stat;
 \&
     if (argc != 3) {

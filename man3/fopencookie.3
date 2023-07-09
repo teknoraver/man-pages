@@ -13,6 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
+.B #define _FILE_OFFSET_BITS 64
 .B #include <stdio.h>
 .PP
 .BI "FILE *fopencookie(void *restrict " cookie ", const char *restrict " mode ,
@@ -169,7 +170,7 @@ When called, it receives three arguments:
 .IP
 .in +4n
 .EX
-int seek(void *cookie, off64_t *offset, int whence);
+int seek(void *cookie, off_t *offset, int whence);
 .EE
 .in
 .IP
@@ -351,9 +352,9 @@ memfile_read(void *c, char *buf, size_t size)
 }
 \&
 int
-memfile_seek(void *c, off64_t *offset, int whence)
+memfile_seek(void *c, off_t *offset, int whence)
 {
-    off64_t new_offset;
+    off_t new_offset;
     struct memfile_cookie *cookie = c;
 \&
     if (whence == SEEK_SET)
@@ -451,6 +452,16 @@ main(int argc, char *argv[])
 }
 .EE
 .\" SRC END
+.SH NOTES
+.B _FILE_OFFSET_BITS
+should be defined to be 64 in code that uses non-null
+.I seek
+or that takes the address of
+.BR fopencookie ,
+if the code is intended to be portable
+to traditional 32-bit x86 and ARM platforms where
+.BR off_t 's
+width defaults to 32 bits.
 .SH SEE ALSO
 .BR fclose (3),
 .BR fmemopen (3),

@@ -12,10 +12,11 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
+.B "#define _FILE_OFFSET_BITS 64
 .B #include <fcntl.h>
 .PP
-.BI "ssize_t splice(int " fd_in ", off64_t *_Nullable " off_in ,
-.BI "               int " fd_out ", off64_t *_Nullable " off_out ,
+.BI "ssize_t splice(int " fd_in ", off_t *_Nullable " off_in ,
+.BI "               int " fd_out ", off_t *_Nullable " off_out ,
 .BI "               size_t " len ", unsigned int " flags );
 .\" Return type was long before glibc 2.7
 .fi
@@ -242,6 +243,18 @@ only pointers are copied, not the pages of the buffer.
 .\" the data and choose to forward it to two or more different
 .\" users - for things like logging etc.).
 .\"
+.PP
+.B _FILE_OFFSET_BITS
+should be defined to be 64 in code that uses non-null
+.I off_in
+or
+.I off_out
+or that takes the address of
+.BR splice ,
+if the code is intended to be portable
+to traditional 32-bit x86 and ARM platforms where
+.BR off_t 's
+width defaults to 32 bits.
 .SH EXAMPLES
 See
 .BR tee (2).
