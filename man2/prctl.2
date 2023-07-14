@@ -2030,13 +2030,13 @@ Return unaligned access control bits, in the location pointed to by
 .\" prctl PR_GET_AUXV
 .TP
 .BR PR_GET_AUXV " (since Linux 6.4)"
-Get the auxilliary vector (auxv) into the buffer pointed to by
+Get the auxiliary vector (auxv) into the buffer pointed to by
 .IR "(void\~*) arg2" ,
 whose length is given by \fIarg3\fP.
-If the buffer is not long enough for the full auxilliary vector,
+If the buffer is not long enough for the full auxiliary vector,
 the copy will be truncated.
 Return (as the function result)
-the full length of the auxilliary vector.
+the full length of the auxiliary vector.
 \fIarg4\fP and \fIarg5\fP must be 0.
 .SH RETURN VALUE
 On success,
