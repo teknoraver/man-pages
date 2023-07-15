@@ -56,12 +56,19 @@ If a process attempts to write to a full pipe (see below), then
 .BR write (2)
 blocks until sufficient data has been read from the pipe
 to allow the write to complete.
+.PP
 Nonblocking I/O is possible by using the
 .BR fcntl (2)
 .B F_SETFL
 operation to enable the
 .B O_NONBLOCK
-open file status flag.
+open file status flag or by opening a
+.BR fifo (7)
+with
+.BR O_NONBLOCK .
+If any process has the pipe open for writing, reads fail with
+.BR EAGAIN ;
+otherwise\[em]with no potential writers\[em]reads succeed and return empty.
 .PP
 The communication channel provided by a pipe is a
 .IR "byte stream" :
