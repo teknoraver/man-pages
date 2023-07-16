@@ -132,26 +132,14 @@ help:
 .SECONDEXPANSION:
 
 
-include $(MAKEFILEDIR)/check/_.mk
-include $(MAKEFILEDIR)/check/catman.mk
-include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/build/catman.mk
-include $(MAKEFILEDIR)/build/html.mk
-include $(MAKEFILEDIR)/build/pdf.mk
-include $(MAKEFILEDIR)/build/pre.mk
-include $(MAKEFILEDIR)/build/ps.mk
-include $(MAKEFILEDIR)/build/src.mk
-include $(MAKEFILEDIR)/dist.mk
-include $(MAKEFILEDIR)/install/_.mk
-include $(MAKEFILEDIR)/install/html.mk
-include $(MAKEFILEDIR)/install/man.mk
-include $(MAKEFILEDIR)/lint/_.mk
-include $(MAKEFILEDIR)/lint/c.mk
-include $(MAKEFILEDIR)/lint/man/_.mk
-include $(MAKEFILEDIR)/lint/man/man.mk
-include $(MAKEFILEDIR)/lint/man/mdoc.mk
-include $(MAKEFILEDIR)/make.mk
-include $(MAKEFILEDIR)/verbose.mk
+MK := \
+	$(srcdir)/Makefile \
+	$(wildcard \
+		$(MAKEFILEDIR)/*.mk \
+		$(MAKEFILEDIR)/*/*.mk \
+		$(MAKEFILEDIR)/*/*/*.mk)
+include $(MK)
+$(MK):: ;
 
 
 .PHONY: help-variables
