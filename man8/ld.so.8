@@ -83,7 +83,7 @@ From the cache file
 which contains a compiled list of candidate shared objects previously found
 in the augmented library path.
 If, however, the binary was linked with the
-.B \-z nodeflib
+.B \-z nodefaultlib
 linker option, shared objects in the default paths are skipped.
 Shared objects installed in hardware capability directories (see below)
 are preferred to other shared objects.
@@ -97,7 +97,7 @@ and then
 and then
 .IR /usr/lib64 .)
 If the binary was linked with the
-.B \-z nodeflib
+.B \-z nodefaultlib
 linker option, this step is skipped.
 .\"
 .SS Dynamic string tokens
