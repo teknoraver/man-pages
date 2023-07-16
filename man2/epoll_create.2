@@ -83,14 +83,6 @@ Invalid value specified in
 .IR flags .
 .TP
 .B EMFILE
-The per-user limit on the number of epoll instances imposed by
-.I /proc/sys/fs/epoll/max_user_instances
-was encountered.
-See
-.BR epoll (7)
-for further details.
-.TP
-.B EMFILE
 The per-process limit on the number of open file descriptors has been reached.
 .TP
 .B ENFILE
@@ -134,6 +126,17 @@ must still be greater than zero,
 in order to ensure backward compatibility when new
 .B epoll
 applications are run on older kernels.
+.PP
+Prior to Linux 2.6.29,
+.\" commit 9df04e1f25effde823a600e755b51475d438f56b
+a
+.I /proc/sys/fs/epoll/max_user_instances
+kernel parameter limited live epolls for each real user ID,
+and caused
+.BR epoll_create ()
+to fail with
+.B EMFILE
+on overrun.
 .SH SEE ALSO
 .BR close (2),
 .BR epoll_ctl (2),
