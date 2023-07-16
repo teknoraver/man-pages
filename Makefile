@@ -145,6 +145,7 @@ include $(MAKEFILEDIR)/lint/c.mk
 include $(MAKEFILEDIR)/lint/man/_.mk
 include $(MAKEFILEDIR)/lint/man/man.mk
 include $(MAKEFILEDIR)/lint/man/mdoc.mk
+include $(MAKEFILEDIR)/make.mk
 include $(MAKEFILEDIR)/verbose.mk
 
 
