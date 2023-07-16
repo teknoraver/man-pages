@@ -20,6 +20,11 @@
 #
 ########################################################################
 
+
+ifndef MAKEFILE_INCLUDED
+MAKEFILE_INCLUDED := 1
+
+
 SHELL := /usr/bin/env bash -Eeuo pipefail
 
 
@@ -239,3 +244,6 @@ help-variables:
 
 
 .DELETE_ON_ERROR:
+
+
+endif  #include guard
