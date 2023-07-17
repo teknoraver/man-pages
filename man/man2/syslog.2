@@ -64,7 +64,9 @@ default value dependent on the architecture).
 .\" For Linux 2.6, precisely the option seems to have appeared in Linux 2.5.55.
 Since Linux 2.6.6, the size can be queried with command type 10 (see below).
 .SS Commands
-The \fItype\fP argument determines the action taken by this function.
+The
+.I type
+argument determines the action taken by this function.
 The list below specifies the values for
 .IR type .
 The symbolic names are defined in the kernel source,
@@ -83,7 +85,9 @@ Currently a NOP.
 Read from the log.
 The call
 waits until the kernel log buffer is nonempty, and then reads
-at most \fIlen\fP bytes into the buffer pointed to by
+at most
+.I len
+bytes into the buffer pointed to by
 .IR bufp .
 The call returns the number of bytes read.
 Bytes read from the log disappear from the log buffer:
@@ -95,7 +99,8 @@ This is the function executed by the kernel when a user program reads
 Read all messages remaining in the ring buffer,
 placing them in the buffer pointed to by
 .IR bufp .
-The call reads the last \fIlen\fP
+The call reads the last
+.I len
 bytes from the log buffer (nondestructively),
 but will not read more than was written into the buffer since the
 last "clear ring buffer" command (see command 5 below)).
@@ -307,21 +312,31 @@ routine will print a message on the
 console only if it has a log level less than the value of
 .IR console_loglevel .
 .SH RETURN VALUE
-For \fItype\fP equal to 2, 3, or 4, a successful call to
+For
+.I type
+equal to 2, 3, or 4, a successful call to
 .BR syslog ()
 returns the number
 of bytes read.
-For \fItype\fP 9,
+For
+.I type
+9,
 .BR syslog ()
 returns the number of bytes currently
 available to be read on the kernel log buffer.
-For \fItype\fP 10,
+For
+.I type
+10,
 .BR syslog ()
 returns the total size of the kernel log buffer.
-For other values of \fItype\fP, 0 is returned on success.
+For other values of
+.IR type ,
+0 is returned on success.
 .P
 In case of error, \-1 is returned,
-and \fIerrno\fP is set to indicate the error.
+and
+.I errno
+is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL

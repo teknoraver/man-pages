@@ -170,9 +170,9 @@ and that thread displays its scheduling policy and priority.
 .P
 .in +4n
 .EX
-$ \fBsu\fP      # Need privilege to set real\-time scheduling policies
+.RB $ " su" ";      # Need privilege to set real-time scheduling policies"
 Password:
-# \fB./a.out \-mf10 \-ar20 \-i e\fP
+.RB # " ./a.out \-mf10 \-ar20 \-i e" ;
 Scheduler settings of main thread
     policy=SCHED_FIFO, priority=10
 \&
@@ -197,7 +197,7 @@ and instead take their scheduling attributes from the creating thread.
 .P
 .in +4n
 .EX
-# \fB./a.out \-mf10 \-ar20 \-i i\fP
+.RB # " ./a.out \-mf10 \-ar20 \-i i" ;
 Scheduler settings of main thread
     policy=SCHED_FIFO, priority=10
 \&

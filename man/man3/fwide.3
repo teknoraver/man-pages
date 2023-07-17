@@ -32,17 +32,27 @@ Feature Test Macro Requirements for glibc (see
         || _POSIX_C_SOURCE >= 200112L
 .fi
 .SH DESCRIPTION
-When \fImode\fP is zero, the
+When
+.I mode
+is zero, the
 .BR fwide ()
 function determines the current
-orientation of \fIstream\fP.
-It returns a positive value if \fIstream\fP is
-wide-character oriented, that is, if wide-character I/O is permitted but char
-I/O is disallowed.
-It returns a negative value if \fIstream\fP is byte oriented\[em]that is,
+orientation of
+.IR stream .
+It returns a positive value if
+.I stream
+is wide-character oriented,
+that is,
+if wide-character I/O is permitted but char I/O is disallowed.
+It returns a negative value if
+.I stream
+is byte oriented\[em]that is,
 if char I/O is permitted but wide-character I/O is disallowed.
 It
-returns zero if \fIstream\fP has no orientation yet; in this case the next
+returns zero if
+.I stream
+has no orientation yet;
+in this case the next
 I/O operation might change the orientation (to byte oriented if it is a char
 I/O operation, or to wide-character oriented if it is a wide-character I/O
 operation).
@@ -50,12 +60,19 @@ operation).
 Once a stream has an orientation, it cannot be changed and persists until
 the stream is closed.
 .P
-When \fImode\fP is nonzero, the
+When
+.I mode
+is nonzero, the
 .BR fwide ()
 function first attempts to set
-\fIstream\fP's orientation (to wide-character oriented
-if \fImode\fP is greater than 0, or
-to byte oriented if \fImode\fP is less than 0).
+.IR stream 's
+orientation (to wide-character oriented
+if
+.I mode
+is greater than 0,
+or to byte oriented if
+.I mode
+is less than 0).
 It then returns a value denoting the
 current orientation, as above.
 .SH RETURN VALUE

@@ -81,7 +81,9 @@ the result is implementation-defined;
 see NOTES for the upper limit on Linux.
 .SH RETURN VALUE
 On success, the number of bytes written is returned.
-On error, \-1 is returned, and \fIerrno\fP is set
+On error, \-1 is returned, and
+.I errno
+is set
 to indicate the error.
 .P
 Note that a successful
@@ -102,7 +104,9 @@ call to transfer the remaining bytes.
 The subsequent call will either transfer further bytes or
 may result in an error (e.g., if the disk is now full).
 .P
-If \fIcount\fP is zero and
+If
+.I count
+is zero and
 .I fd
 refers to a regular file, then
 .BR write ()
@@ -110,7 +114,8 @@ may return a failure status if one of the errors below is detected.
 If no errors are detected, or error detection is not performed,
 0 is returned without causing any other effect.
 If
-\fIcount\fP is zero and
+.I count
+is zero and
 .I fd
 refers to a file other than a regular file,
 the results are not specified.

@@ -28,7 +28,9 @@ number 0.
 .SH DESCRIPTION
 The Motorola DSP56001 is a fully programmable 24-bit digital signal
 processor found in Atari Falcon030-compatible computers.
-The \fIdsp56k\fP special file is used to control the DSP56001, and
+The
+.I dsp56k
+special file is used to control the DSP56001, and
 to send and receive data using the bidirectional handshaked host
 port.
 .P
@@ -45,14 +47,20 @@ always be seen as 24-bit quantities in the DSP56001.
 The following
 .BR ioctl (2)
 calls are used to control the
-\fIdsp56k\fP device:
+.I dsp56k
+device:
 .TP
 .B DSP56K_UPLOAD
 resets the DSP56001 and uploads a program.
 The third
 .BR ioctl (2)
-argument must be a pointer to a \fIstruct dsp56k_upload\fP with members
-\fIbin\fP pointing to a DSP56001 binary program, and \fIlen\fP set to
+argument must be a pointer to a
+.I struct\~dsp56k_upload
+with members
+.I .bin
+pointing to a DSP56001 binary program, and
+.I .len
+set to
 the length of the program, counted in 24-bit words.
 .TP
 .B DSP56K_SET_TX_WSIZE
@@ -83,12 +91,18 @@ Bits 0 and 1 can be written by the host, and bits 2 and
 To access the host flags, the third
 .BR ioctl (2)
 argument must be a pointer
-to a \fIstruct dsp56k_host_flags\fP.
+to a
+.IR struct\~dsp56k_host_flags .
 If bit 0 or 1 is set in the
-\fIdir\fP member, the corresponding bit in \fIout\fP will be written
+.I .dir
+member, the corresponding bit in
+.I .out
+will be written
 to the host flags.
 The state of all host flags will be returned in
-the lower four bits of the \fIstatus\fP member.
+the lower four bits of the
+.I .status
+member.
 .TP
 .B DSP56K_HOST_CMD
 sends a host command.

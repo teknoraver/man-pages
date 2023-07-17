@@ -105,7 +105,7 @@ package):
 .P
 .in +4n
 .EX
-$ \fBerrno \-l\fP
+.RB $ " errno \-l" ;
 EPERM 1 Operation not permitted
 ENOENT 2 No such file or directory
 ESRCH 3 No such process
@@ -123,18 +123,18 @@ as in the following examples:
 .P
 .in +4n
 .EX
-$ \fBerrno 2\fP
+.RB $ " errno 2" ;
 ENOENT 2 No such file or directory
-$ \fBerrno ESRCH\fP
+.RB $ " errno ESRCH" ;
 ESRCH 3 No such process
-$ \fBerrno \-s permission\fP
+.RB $ " errno \-s permission" ;
 EACCES 13 Permission denied
 .EE
 .in
 .\".P
 .\" POSIX.1 (2001 edition) lists the following symbolic error names.  Of
-.\" these, \fBEDOM\fP and \fBERANGE\fP are in the ISO C standard.  ISO C
-.\" Amendment 1 defines the additional error number \fBEILSEQ\fP for
+.\" these, \f[B]EDOM\f[] and \f[B]ERANGE\f[] are in the ISO C standard.  ISO C
+.\" Amendment 1 defines the additional error number \f[B]EILSEQ\f[] for
 .\" coding errors in multibyte or wide characters.
 .\"
 .SS List of error names

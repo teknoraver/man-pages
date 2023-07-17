@@ -249,9 +249,9 @@ and then view the mounts in
 .P
 .in +4n
 .EX
-sh1# \fBmount \-\-make\-shared /mntS\fP
-sh1# \fBmount \-\-make\-private /mntP\fP
-sh1# \fBcat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB sh1# " mount \-\-make\-shared /mntS"
+.RB sh1# " mount \-\-make\-private /mntP"
+.RB sh1# " cat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]"
 77 61 8:17 / /mntS rw,relatime shared:1
 83 61 8:15 / /mntP rw,relatime
 .EE
@@ -276,7 +276,7 @@ which is mounted as private:
 .P
 .in +4n
 .EX
-sh1# \fBcat /proc/self/mountinfo | awk \[aq]$1 == 61\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB sh1# " cat /proc/self/mountinfo | awk \[aq]$1 == 61\[aq] | sed \[aq]s/ \- .*//\[aq]"
 61 0 8:2 / / rw,relatime
 .EE
 .in
@@ -287,8 +287,8 @@ and inspect the mounts:
 .P
 .in +4n
 .EX
-$ \fBPS1=\[aq]sh2# \[aq] sudo unshare \-m \-\-propagation unchanged sh\fP
-sh2# \fBcat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB $ " PS1=\[aq]sh2# \[aq] sudo unshare \-m \-\-propagation unchanged sh"
+.RB sh2# " cat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]"
 222 145 8:17 / /mntS rw,relatime shared:1
 225 145 8:15 / /mntP rw,relatime
 .EE
@@ -314,11 +314,11 @@ and inspect the set-up:
 .P
 .in +4n
 .EX
-sh2# \fBmkdir /mntS/a\fP
-sh2# \fBmount /dev/sdb6 /mntS/a\fP
-sh2# \fBmkdir /mntP/b\fP
-sh2# \fBmount /dev/sdb7 /mntP/b\fP
-sh2# \fBcat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB sh2# " mkdir /mntS/a"
+.RB sh2# " mount /dev/sdb6 /mntS/a"
+.RB sh2# " mkdir /mntP/b"
+.RB sh2# " mount /dev/sdb7 /mntP/b"
+.RB sh2# " cat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]"
 222 145 8:17 / /mntS rw,relatime shared:1
 225 145 8:15 / /mntP rw,relatime
 178 222 8:22 / /mntS/a rw,relatime shared:2
@@ -342,7 +342,7 @@ did not propagate:
 .P
 .in +4n
 .EX
-sh1# \fBcat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB sh1# " cat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]"
 77 61 8:17 / /mntS rw,relatime shared:1
 83 61 8:15 / /mntP rw,relatime
 179 77 8:22 / /mntS/a rw,relatime shared:2
@@ -371,9 +371,9 @@ two mounts as shared in the initial mount namespace:
 .P
 .in +4n
 .EX
-sh1# \fBmount \-\-make\-shared /mntX\fP
-sh1# \fBmount \-\-make\-shared /mntY\fP
-sh1# \fBcat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB sh1# " mount \-\-make\-shared /mntX"
+.RB sh1# " mount \-\-make\-shared /mntY"
+.RB sh1# " cat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]"
 132 83 8:23 / /mntX rw,relatime shared:1
 133 83 8:22 / /mntY rw,relatime shared:2
 .EE
@@ -384,8 +384,8 @@ we create a new mount namespace and inspect the mounts:
 .P
 .in +4n
 .EX
-sh2# \fBunshare \-m \-\-propagation unchanged sh\fP
-sh2# \fBcat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB sh2# " unshare \-m \-\-propagation unchanged sh"
+.RB sh2# " cat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]"
 168 167 8:23 / /mntX rw,relatime shared:1
 169 167 8:22 / /mntY rw,relatime shared:2
 .EE
@@ -395,8 +395,8 @@ In the new mount namespace, we then mark one of the mounts as a slave:
 .P
 .in +4n
 .EX
-sh2# \fBmount \-\-make\-slave /mntY\fP
-sh2# \fBcat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB sh2# " mount \-\-make\-slave /mntY"
+.RB sh2# " cat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]"
 168 167 8:23 / /mntX rw,relatime shared:1
 169 167 8:22 / /mntY rw,relatime master:2
 .EE
@@ -414,10 +414,10 @@ and
 .P
 .in +4n
 .EX
-sh2# \fBmkdir /mntX/a\fP
-sh2# \fBmount /dev/sda3 /mntX/a\fP
-sh2# \fBmkdir /mntY/b\fP
-sh2# \fBmount /dev/sda5 /mntY/b\fP
+.RB sh2# " mkdir /mntX/a"
+.RB sh2# " mount /dev/sda3 /mntX/a"
+.RB sh2# " mkdir /mntY/b"
+.RB sh2# " mount /dev/sda5 /mntY/b"
 .EE
 .in
 .P
@@ -431,7 +431,7 @@ was created as a private mount:
 .P
 .in +4n
 .EX
-sh2# \fBcat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB sh2# " cat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]"
 168 167 8:23 / /mntX rw,relatime shared:1
 169 167 8:22 / /mntY rw,relatime master:2
 173 168 8:3 / /mntX/a rw,relatime shared:3
@@ -450,7 +450,7 @@ was not propagated:
 .P
 .in +4n
 .EX
-sh1# \fBcat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB sh1# " cat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]"
 132 83 8:23 / /mntX rw,relatime shared:1
 133 83 8:22 / /mntY rw,relatime shared:2
 174 132 8:3 / /mntX/a rw,relatime shared:3
@@ -463,9 +463,9 @@ in the first shell:
 .P
 .in +4n
 .EX
-sh1# \fBmkdir /mntY/c\fP
-sh1# \fBmount /dev/sda1 /mntY/c\fP
-sh1# \fBcat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB sh1# " mkdir /mntY/c"
+.RB sh1# " mount /dev/sda1 /mntY/c"
+.RB sh1# " cat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]"
 132 83 8:23 / /mntX rw,relatime shared:1
 133 83 8:22 / /mntY rw,relatime shared:2
 174 132 8:3 / /mntX/a rw,relatime shared:3
@@ -480,7 +480,7 @@ and that the new mount is itself a slave mount (to peer group 4):
 .P
 .in +4n
 .EX
-sh2# \fBcat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB sh2# " cat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]"
 168 167 8:23 / /mntX rw,relatime shared:1
 169 167 8:22 / /mntY rw,relatime master:2
 173 168 8:3 / /mntX/a rw,relatime shared:3
@@ -499,7 +499,7 @@ Suppose we have a system with the following mounts:
 .P
 .in +4n
 .EX
-# \fBmount | awk \[aq]{print $1, $2, $3}\[aq]\fP
+.RB # " mount | awk \[aq]{print $1, $2, $3}\[aq]"
 /dev/sda1 on /
 /dev/sdb6 on /mntX
 /dev/sdb7 on /mntY
@@ -512,8 +512,8 @@ We do this for the first user, and inspect the mounts:
 .P
 .in +4n
 .EX
-# \fBmount \-\-rbind / /home/cecilia/\fP
-# \fBmount | awk \[aq]{print $1, $2, $3}\[aq]\fP
+.RB # " mount \-\-rbind / /home/cecilia/"
+.RB # " mount | awk \[aq]{print $1, $2, $3}\[aq]"
 /dev/sda1 on /
 /dev/sdb6 on /mntX
 /dev/sdb7 on /mntY
@@ -528,8 +528,8 @@ we start to see the explosion problem:
 .P
 .in +4n
 .EX
-# \fBmount \-\-rbind / /home/henry\fP
-# \fBmount | awk \[aq]{print $1, $2, $3}\[aq]\fP
+.RB # " mount \-\-rbind / /home/henry"
+.RB # " mount | awk \[aq]{print $1, $2, $3}\[aq]"
 /dev/sda1 on /
 /dev/sdb6 on /mntX
 /dev/sdb7 on /mntY
@@ -559,8 +559,8 @@ it becomes obvious that the explosion is exponential in nature:
 .P
 .in +4n
 .EX
-# \fBmount \-\-rbind / /home/otto\fP
-# \fBmount | awk \[aq]{print $1, $2, $3}\[aq]\fP
+.RB # " mount \-\-rbind / /home/otto"
+.RB # " mount | awk \[aq]{print $1, $2, $3}\[aq]"
 /dev/sda1 on /
 /dev/sdb6 on /mntX
 /dev/sdb7 on /mntY
@@ -596,7 +596,7 @@ We make such a mount for the first user:
 .P
 .in +4n
 .EX
-# \fBmount \-\-rbind \-\-make\-unbindable / /home/cecilia\fP
+.RB # " mount \-\-rbind \-\-make\-unbindable / /home/cecilia"
 .EE
 .in
 .P
@@ -604,8 +604,8 @@ Before going further, we show that unbindable mounts are indeed unbindable:
 .P
 .in +4n
 .EX
-# \fBmkdir /mntZ\fP
-# \fBmount \-\-bind /home/cecilia /mntZ\fP
+.RB # " mkdir /mntZ"
+.RB # " mount \-\-bind /home/cecilia /mntZ"
 mount: wrong fs type, bad option, bad superblock on /home/cecilia,
        missing codepage or helper program, or other error
 \&
@@ -618,8 +618,8 @@ Now we create unbindable recursive bind mounts for the other two users:
 .P
 .in +4n
 .EX
-# \fBmount \-\-rbind \-\-make\-unbindable / /home/henry\fP
-# \fBmount \-\-rbind \-\-make\-unbindable / /home/otto\fP
+.RB # " mount \-\-rbind \-\-make\-unbindable / /home/henry"
+.RB # " mount \-\-rbind \-\-make\-unbindable / /home/otto"
 .EE
 .in
 .P
@@ -630,7 +630,7 @@ under each user's directory:
 .P
 .in +4n
 .EX
-# \fBmount | awk \[aq]{print $1, $2, $3}\[aq]\fP
+.RB # " mount | awk \[aq]{print $1, $2, $3}\[aq]"
 /dev/sda1 on /
 /dev/sdb6 on /mntX
 /dev/sdb7 on /mntY
@@ -853,9 +853,9 @@ in the chroot-ed environment.
 .P
 .in +4n
 .EX
-# \fBmkdir \-p /mnt/proc\fP
-# \fBmount \-\-bind / /mnt\fP
-# \fBmount \-\-bind /proc /mnt/proc\fP
+.RB # " mkdir \-p /mnt/proc"
+.RB # " mount \-\-bind / /mnt"
+.RB # " mount \-\-bind /proc /mnt/proc"
 .EE
 .in
 .P
@@ -865,9 +865,9 @@ mount is a shared mount in a new peer group (with no peers):
 .P
 .in +4n
 .EX
-# \fBmount \-\-make\-private /mnt\fP  # Isolate from any previous peer group
-# \fBmount \-\-make\-shared /mnt\fP
-# \fBcat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB # " mount \-\-make\-private /mnt" "  # Isolate from any previous peer group"
+.RB # " mount \-\-make\-shared /mnt"
+.RB # " cat /proc/self/mountinfo | grep \[aq]/mnt\[aq] | sed \[aq]s/ \- .*//\[aq]"
 239 61 8:2 / /mnt ... shared:102
 248 239 0:4 / /mnt/proc ... shared:5
 .EE
@@ -880,9 +880,9 @@ onto
 .P
 .in +4n
 .EX
-# \fBmkdir \-p /tmp/etc\fP
-# \fBmount \-\-bind /mnt/etc /tmp/etc\fP
-# \fBcat /proc/self/mountinfo | egrep \[aq]/mnt|/tmp/\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB # " mkdir \-p /tmp/etc"
+.RB # " mount \-\-bind /mnt/etc /tmp/etc"
+.RB # " cat /proc/self/mountinfo | egrep \[aq]/mnt|/tmp/\[aq] | sed \[aq]s/ \- .*//\[aq]"
 239 61 8:2 / /mnt ... shared:102
 248 239 0:4 / /mnt/proc ... shared:5
 267 40 8:2 /etc /tmp/etc ... shared:102
@@ -901,9 +901,9 @@ so that it can propagate events to the next slave in the chain:
 .P
 .in +4n
 .EX
-# \fBmount \-\-make\-slave /tmp/etc\fP
-# \fBmount \-\-make\-shared /tmp/etc\fP
-# \fBcat /proc/self/mountinfo | egrep \[aq]/mnt|/tmp/\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB # " mount \-\-make\-slave /tmp/etc"
+.RB # " mount \-\-make\-shared /tmp/etc"
+.RB # " cat /proc/self/mountinfo | egrep \[aq]/mnt|/tmp/\[aq] | sed \[aq]s/ \- .*//\[aq]"
 239 61 8:2 / /mnt ... shared:102
 248 239 0:4 / /mnt/proc ... shared:5
 267 40 8:2 /etc /tmp/etc ... shared:105 master:102
@@ -922,10 +922,10 @@ a slave of
 .P
 .in +4n
 .EX
-# \fBmkdir \-p /mnt/tmp/etc\fP
-# \fBmount \-\-bind /tmp/etc /mnt/tmp/etc\fP
-# \fBmount \-\-make\-slave /mnt/tmp/etc\fP
-# \fBcat /proc/self/mountinfo | egrep \[aq]/mnt|/tmp/\[aq] | sed \[aq]s/ \- .*//\[aq]\fP
+.RB # " mkdir \-p /mnt/tmp/etc"
+.RB # " mount \-\-bind /tmp/etc /mnt/tmp/etc"
+.RB # " mount \-\-make\-slave /mnt/tmp/etc"
+.RB # " cat /proc/self/mountinfo | egrep \[aq]/mnt|/tmp/\[aq] | sed \[aq]s/ \- .*//\[aq]"
 239 61 8:2 / /mnt ... shared:102
 248 239 0:4 / /mnt/proc ... shared:5
 267 40 8:2 /etc /tmp/etc ... shared:105 master:102
@@ -949,7 +949,7 @@ from the (new) root directory:
 .P
 .in +4n
 .EX
-# \fBchroot /mnt\fP
+.RB # " chroot /mnt"
 .EE
 .in
 .P
@@ -958,7 +958,7 @@ we see the following:
 .P
 .in +4n
 .EX
-# \fBcat /proc/self/mountinfo | sed \[aq]s/ \- .*//\[aq]\fP
+.RB # " cat /proc/self/mountinfo | sed \[aq]s/ \- .*//\[aq]"
 239 61 8:2 / / ... shared:102
 248 239 0:4 / /proc ... shared:5
 273 239 8:2 /etc /tmp/etc ... master:105 propagate_from:102
@@ -1097,9 +1097,9 @@ Consider the following example:
 .IP
 .in +4n
 .EX
-$ \fBsudo sh\fP
-# \fBmount \-\-bind /dev/null /etc/shadow\fP
-# \fBcat /etc/shadow\fP       # Produces no output
+.RB $ " sudo sh"
+.RB # " mount \-\-bind /dev/null /etc/shadow"
+.RB # " cat /etc/shadow" "       # Produces no output"
 .EE
 .in
 .IP
@@ -1126,11 +1126,11 @@ in the following step:
 .IP
 .in +4n
 .EX
-# \fBunshare \-\-user \-\-map\-root\-user \-\-mount \[rs]\fP
-               \fBstrace \-o /tmp/log \[rs]\fP
-               \fBumount /etc/shadow\fP
+.RB # " unshare \-\-user \-\-map\-root\-user \-\-mount \[rs]"
+.B "               strace \-o /tmp/log \[rs]"
+.B "               umount /etc/shadow"
 umount: /etc/shadow: not mounted.
-# \fBgrep \[aq]\[ha]umount\[aq] /tmp/log\fP
+.RB # " grep \[aq]\[ha]umount\[aq] /tmp/log"
 umount2("/etc/shadow", 0)     = \-1 EINVAL (Invalid argument)
 .EE
 .in
@@ -1152,11 +1152,11 @@ less privileged mount namespace:
 .IP
 .in +4n
 .EX
-# \fBecho \[aq]aaaaa\[aq] > /tmp/a\fP    # File to mount onto /etc/shadow
-# \fBunshare \-\-user \-\-map\-root\-user \-\-mount \[rs]\fP
-    \fBsh \-c \[aq]mount \-\-bind /tmp/a /etc/shadow; cat /etc/shadow\[aq]\fP
+.RB # " echo \[aq]aaaaa\[aq] > /tmp/a" "    # File to mount onto /etc/shadow"
+.RB # " unshare \-\-user \-\-map\-root\-user \-\-mount \[rs]"
+.B "    sh \-c \[aq]mount \-\-bind /tmp/a /etc/shadow; cat /etc/shadow\[aq]"
 aaaaa
-# \fBumount /etc/shadow\fP
+.RB # " umount /etc/shadow"
 .EE
 .in
 .IP
@@ -1184,16 +1184,16 @@ and a small hierarchy of mounts underneath that mount.
 .IP
 .in +4n
 .EX
-$ \fBPS1=\[aq]ns1# \[aq] sudo unshare \-\-user \-\-map\-root\-user \[rs]\fP
-                       \fB\-\-mount \-\-propagation private bash\fP
-ns1# \fBecho $$\fP        # We need the PID of this shell later
+.RB $ " PS1=\[aq]ns1# \[aq] sudo unshare \-\-user \-\-map\-root\-user \[rs]"
+.B "                       \-\-mount \-\-propagation private bash"
+.RB ns1# " echo $$" "        # We need the PID of this shell later"
 778501
-ns1# \fBmount \-\-make\-shared \-\-bind /mnt /mnt\fP
-ns1# \fBmkdir /mnt/x\fP
-ns1# \fBmount \-\-make\-private \-t tmpfs none /mnt/x\fP
-ns1# \fBmkdir /mnt/x/y\fP
-ns1# \fBmount \-\-make\-private \-t tmpfs none /mnt/x/y\fP
-ns1# \fBgrep /mnt /proc/self/mountinfo | sed \[aq]s/ \- .*//\[aq]\fP
+.RB ns1# " mount \-\-make\-shared \-\-bind /mnt /mnt"
+.RB ns1# " mkdir /mnt/x"
+.RB ns1# " mount \-\-make\-private \-t tmpfs none /mnt/x"
+.RB ns1# " mkdir /mnt/x/y"
+.RB ns1# " mount \-\-make\-private \-t tmpfs none /mnt/x/y"
+.RB ns1# " grep /mnt /proc/self/mountinfo | sed \[aq]s/ \- .*//\[aq]"
 986 83 8:5 /mnt /mnt rw,relatime shared:344
 989 986 0:56 / /mnt/x rw,relatime
 990 989 0:57 / /mnt/x/y rw,relatime
@@ -1208,9 +1208,9 @@ check the state of the propagated mounts rooted at
 .IP
 .in +4n
 .EX
-ns1# \fBPS1=\[aq]ns2# \[aq] unshare \-\-user \-\-map\-root\-user \[rs]\fP
-                       \fB\-\-mount \-\-propagation unchanged bash\fP
-ns2# \fBgrep /mnt /proc/self/mountinfo | sed \[aq]s/ \- .*//\[aq]\fP
+.RB ns1# " PS1=\[aq]ns2# \[aq] unshare \-\-user \-\-map\-root\-user \[rs]"
+.B "                       \-\-mount \-\-propagation unchanged bash"
+.RB ns2# " grep /mnt /proc/self/mountinfo | sed \[aq]s/ \- .*//\[aq]"
 1239 1204 8:5 /mnt /mnt rw,relatime master:344
 1240 1239 0:56 / /mnt/x rw,relatime
 1241 1240 0:57 / /mnt/x/y rw,relatime
@@ -1234,9 +1234,9 @@ at the location
 .IP
 .in +4n
 .EX
-$ \fBPS1=\[aq]ns3# \[aq] sudo nsenter \-t 778501 \-\-user \-\-mount\fP
-ns3# \fBmount \-\-rbind \-\-make\-private /mnt/x /mnt/ppp\fP
-ns3# \fBgrep /mnt /proc/self/mountinfo | sed \[aq]s/ \- .*//\[aq]\fP
+.RB $ " PS1=\[aq]ns3# \[aq] sudo nsenter \-t 778501 \-\-user \-\-mount"
+.RB ns3# " mount \-\-rbind \-\-make\-private /mnt/x /mnt/ppp"
+.RB ns3# " grep /mnt /proc/self/mountinfo | sed \[aq]s/ \- .*//\[aq]"
 986 83 8:5 /mnt /mnt rw,relatime shared:344
 989 986 0:56 / /mnt/x rw,relatime
 990 989 0:57 / /mnt/x/y rw,relatime
@@ -1255,7 +1255,7 @@ as can be verified by executing the following command in that shell session:
 .IP
 .in +4n
 .EX
-ns2# \fBgrep /mnt /proc/self/mountinfo | sed \[aq]s/ \- .*//\[aq]\fP
+.RB ns2# " grep /mnt /proc/self/mountinfo | sed \[aq]s/ \- .*//\[aq]"
 1239 1204 8:5 /mnt /mnt rw,relatime master:344
 1240 1239 0:56 / /mnt/x rw,relatime
 1241 1240 0:57 / /mnt/x/y rw,relatime
@@ -1276,10 +1276,10 @@ as shown by the following commands:
 .IP
 .in +4n
 .EX
-ns2# \fBumount /mnt/ppp/y\fP
+.RB ns2# " umount /mnt/ppp/y"
 umount: /mnt/ppp/y: not mounted.
-ns2# \fBumount \-l /mnt/ppp | sed \[aq]s/ \- .*//\[aq]\fP      # Succeeds...
-ns2# \fBgrep /mnt /proc/self/mountinfo\fP
+.RB ns2# " umount \-l /mnt/ppp | sed \[aq]s/ \- .*//\[aq]" "      # Succeeds..."
+.RB ns2# " grep /mnt /proc/self/mountinfo"
 1239 1204 8:5 /mnt /mnt rw,relatime master:344
 1240 1239 0:56 / /mnt/x rw,relatime
 1241 1240 0:57 / /mnt/x/y rw,relatime
@@ -1316,10 +1316,10 @@ a less privileged mount namespace, and indeed the kernel prevents this:
 .IP
 .in +4n
 .EX
-$ \fBsudo mkdir /mnt/dir\fP
-$ \fBsudo mount \-\-bind \-o ro /some/path /mnt/dir\fP
-$ \fBsudo unshare \-\-user \-\-map\-root\-user \-\-mount \[rs]\fP
-               \fBmount \-o remount,rw /mnt/dir\fP
+.RB $ " sudo mkdir /mnt/dir"
+.RB $ " sudo mount \-\-bind \-o ro /some/path /mnt/dir"
+.RB $ " sudo unshare \-\-user \-\-map\-root\-user \-\-mount \[rs]"
+.B "               mount \-o remount,rw /mnt/dir"
 mount: /mnt/dir: permission denied.
 .EE
 .in

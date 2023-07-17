@@ -59,8 +59,8 @@ as follows:
 .EX
 struct old_linux_dirent {
     unsigned long d_ino;     /* inode number */
-    unsigned long d_offset;  /* offset to this \fIold_linux_dirent\fP */
-    unsigned short d_namlen; /* length of this \fId_name\fP */
+    unsigned long d_offset;  /* offset to this \f[I]old_linux_dirent\f[] */
+    unsigned short d_namlen; /* length of this \f[I]d_name\f[] */
     char  d_name[1];         /* filename (null\-terminated) */
 }
 .EE

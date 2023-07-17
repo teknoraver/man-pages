@@ -42,7 +42,8 @@ Feature Test Macro Requirements for glibc (see
 The
 .BR fgetpwent ()
 function returns a pointer to a structure containing
-the broken out fields of a line in the file \fIstream\fP.
+the broken out fields of a line in the file
+.IR stream .
 The first time it is called it returns the first entry;
 thereafter, it returns successive entries.
 The file referred to by
@@ -52,7 +53,11 @@ must have the same format as
 (see
 .BR passwd (5)).
 .P
-The \fIpasswd\fP structure is defined in \fI<pwd.h>\fP as follows:
+The
+.I passwd
+structure is defined in
+.I <pwd.h>
+as follows:
 .P
 .in +4n
 .EX

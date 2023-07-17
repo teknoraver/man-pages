@@ -256,7 +256,7 @@ infers the number of bits in the network number:
 .P
 .in +4n
 .EX
-$ \fB./a.out 193.168\fP
+.RB $ " ./a.out 193.168" ;
 inet_net_pton() returned: 24
 inet_net_ntop() yielded:  193.168.0/24
 Raw address:              c1a80000
@@ -269,7 +269,7 @@ does not zero out unused bytes in its result buffer:
 .P
 .in +4n
 .EX
-$ \fB./a.out 193.168 0xffffffff\fP
+.RB $ " ./a.out 193.168 0xffffffff" ;
 inet_net_pton() returned: 24
 inet_net_ntop() yielded:  193.168.0/24
 Raw address:              c1a800ff
@@ -284,7 +284,7 @@ string exceeds the inferred value:
 .P
 .in +4n
 .EX
-$ \fB./a.out 193.168.1.128\fP
+.RB $ " ./a.out 193.168.1.128" ;
 inet_net_pton() returned: 32
 inet_net_ntop() yielded:  193.168.1.128/32
 Raw address:              c1a80180
@@ -299,7 +299,7 @@ to populate the result buffer):
 .P
 .in +4n
 .EX
-$ \fB./a.out 193.168.1.128/24\fP
+.RB $ " ./a.out 193.168.1.128/24" ;
 inet_net_pton() returned: 24
 inet_net_ntop() yielded:  193.168.1/24
 Raw address:              c1a80180

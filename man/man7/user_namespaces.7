@@ -476,7 +476,7 @@ is the same) from a shell in the initial namespace shows:
 .P
 .in +4n
 .EX
-$ \fBcat /proc/$$/uid_map\fP
+.RB $ " cat /proc/$$/uid_map" ;
          0          0 4294967295
 .EE
 .in
@@ -758,7 +758,7 @@ capability in the parent user namespace.
 .\"
 .\" ============================================================
 .\"
-.SS The \fI/proc/\fPpid\fI/setgroups\fP file
+.SS The \f[I]/proc/\f[]pid\f[I]/setgroups\f[] file
 .\"
 .\" commit 9cc46516ddf497ea16e8d7cb986ae03a0f6b92f8
 .\" commit 66d2f338ee4c449396b6f99f5e75cd18eb6df272
@@ -1083,11 +1083,11 @@ First, we look at the run-time environment:
 .P
 .in +4n
 .EX
-$ \fBuname \-rs\fP     # Need Linux 3.8 or later
+.RB $ " uname \-rs" ";     # Need Linux 3.8 or later"
 Linux 3.8.0
-$ \fBid \-u\fP         # Running as unprivileged user
+.RB $ " id \-u" ";         # Running as unprivileged user"
 1000
-$ \fBid \-g\fP
+.RB $ " id \-g" ;
 1000
 .EE
 .in
@@ -1106,7 +1106,7 @@ and group ID
 .P
 .in +4n
 .EX
-$ \fB./userns_child_exec \-p \-m \-U \-M \[aq]0 1000 1\[aq] \-G \[aq]0 1000 1\[aq] bash\fP
+.RB $ " ./userns_child_exec \-p \-m \-U \-M \[aq]0 1000 1\[aq] \-G \[aq]0 1000 1\[aq] bash" ;
 .EE
 .in
 .P
@@ -1115,7 +1115,7 @@ PID namespace:
 .P
 .in +4n
 .EX
-bash$ \fBecho $$\fP
+.RB bash$ " echo $$" ;
 1
 .EE
 .in
@@ -1128,8 +1128,8 @@ any processes outside the PID namespace:
 .P
 .in +4n
 .EX
-bash$ \fBmount \-t proc proc /proc\fP
-bash$ \fBps ax\fP
+.RB bash$ " mount \-t proc proc /proc" ;
+.RB bash$ " ps ax" ;
   PID TTY      STAT   TIME COMMAND
     1 pts/3    S      0:00 bash
    22 pts/3    R+     0:00 ps ax
@@ -1141,10 +1141,10 @@ and a full set of permitted and effective capabilities:
 .P
 .in +4n
 .EX
-bash$ \fBcat /proc/$$/status | egrep \[aq]\[ha][UG]id\[aq]\fP
+.RB bash$ " cat /proc/$$/status | egrep \[aq]\[ha][UG]id\[aq]" ;
 Uid:	0	0	0	0
 Gid:	0	0	0	0
-bash$ \fBcat /proc/$$/status | egrep \[aq]\[ha]Cap(Prm|Inh|Eff)\[aq]\fP
+.RB bash$ " cat /proc/$$/status | egrep \[aq]\[ha]Cap(Prm|Inh|Eff)\[aq]" ;
 CapInh:	0000000000000000
 CapPrm:	0000001fffffffff
 CapEff:	0000001fffffffff

@@ -178,7 +178,10 @@ with slashes (\[aq]/\[aq]) replaced by exclamation marks (\[aq]!\[aq])
 Numeric real GID of dumped process.
 .TP
 %h
-Hostname (same as \fInodename\fP returned by \fBuname\fP(2)).
+Hostname (same as
+.I nodename
+returned by
+.BR uname (2)).
 .TP
 %i
 TID of thread that triggered core dump,
@@ -261,7 +264,8 @@ is set to 2 ("suidsafe"), the pattern must be either an absolute pathname
 Since Linux 2.6.19, Linux supports an alternate syntax for the
 .I /proc/sys/kernel/core_pattern
 file.
-If the first character of this file is a pipe symbol (\fB|\fP),
+If the first character of this file is a pipe symbol
+.RI ( | ),
 then the remainder of the line is interpreted as the command-line for
 a user-space program (or script) that is to be executed.
 .P
@@ -289,7 +293,8 @@ standard input to the program.
 Note the following points:
 .IP \[bu] 3
 The program must be specified using an absolute pathname (or a
-pathname relative to the root directory, \fI/\fP),
+pathname relative to the root directory,
+.IR / ),
 and must immediately follow the '|' character.
 .IP \[bu]
 The command-line arguments can include any of
@@ -480,7 +485,7 @@ program:
 .P
 .in +4n
 .EX
-$ \fBcat /proc/sys/kernel/core_pattern\fP
+.RB $ " cat /proc/sys/kernel/core_pattern" ;
 |/usr/lib/systemd/systemd\-coredump %P %u %g %s %t %c %e
 .EE
 .in
@@ -497,7 +502,7 @@ using
 .BR coredumpctl (1):
 .P
 .EX
-$ \fBcoredumpctl list | tail \-5\fP
+.RB $ " coredumpctl list | tail \-5" ;
 Wed 2017\-10\-11 22:25:30 CEST  2748 1000 1000 3 present  /usr/bin/sleep
 Thu 2017\-10\-12 06:29:10 CEST  2716 1000 1000 3 present  /usr/bin/sleep
 Thu 2017\-10\-12 06:30:50 CEST  2767 1000 1000 3 present  /usr/bin/sleep
@@ -520,7 +525,7 @@ in the current directory, one could use:
 .P
 .in +4n
 .EX
-$ \fBcoredumpctl dump 2955 \-o core\fP
+.RB $ " coredumpctl dump 2955 \-o core" ;
 .EE
 .in
 .P
@@ -537,9 +542,9 @@ mechanism, using something like:
 .P
 .in +4n
 .EX
-# \fBecho "kernel.core_pattern=core.%p" > \[rs]\fP
-\fB               /etc/sysctl.d/50\-coredump.conf\fP
-# \fB/lib/systemd/systemd\-sysctl\fP
+.RB # " echo \[dq]kernel.core_pattern=core.%p\[dq] > \[rs]" ;
+\f[B]               /etc/sysctl.d/50\-coredump.conf\f[]
+.RB # " /lib/systemd/systemd\-sysctl" ;
 .EE
 .in
 .P
@@ -551,7 +556,7 @@ as well as the number of the signal which triggered the core dump):
 .P
 .in +4n
 .EX
-# \fBsysctl \-w kernel.core_pattern="%e\-%s.core"\fP
+.RB # " sysctl \-w kernel.core_pattern=\[dq]%e\-%s.core\[dq]" ;
 .EE
 .in
 .\"

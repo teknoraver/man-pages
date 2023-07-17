@@ -29,9 +29,12 @@ Standard C library
 .SH DESCRIPTION
 The
 .BR readdir ()
-function returns a pointer to a \fIdirent\fP structure
+function returns a pointer to a
+.I dirent
+structure
 representing the next directory entry in the directory stream pointed
-to by \fIdirp\fP.
+to by
+.IR dirp .
 It returns NULL on reaching the end of the directory stream or if
 an error occurred.
 .P
@@ -171,7 +174,8 @@ if NULL is returned.
 .SH ERRORS
 .TP
 .B EBADF
-Invalid directory stream descriptor \fIdirp\fP.
+Invalid directory stream descriptor
+.IR dirp .
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).

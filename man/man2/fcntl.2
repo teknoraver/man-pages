@@ -89,7 +89,7 @@ value and then test whether the call failed with
 indicating that the kernel does not recognize this value.
 .SS Duplicating a file descriptor
 .TP
-.BR F_DUPFD " (\fIint\fP)"
+.BR F_DUPFD \~(\f[I]int\f[])
 Duplicate the file descriptor
 .I fd
 using the lowest-numbered available file descriptor greater than or equal to
@@ -104,7 +104,7 @@ See
 .BR dup (2)
 for further details.
 .TP
-.BR F_DUPFD_CLOEXEC " (\fIint\fP; since Linux 2.6.24)"
+.BR F_DUPFD_CLOEXEC "\~(\f[I]int\f[]; since Linux 2.6.24)"
 As for
 .BR F_DUPFD ,
 but additionally set the
@@ -139,12 +139,12 @@ If the
 bit is not set, the file descriptor will remain open across an
 .BR execve (2).
 .TP
-.BR F_GETFD " (\fIvoid\fP)"
+.BR F_GETFD \~(\f[I]void\f[])
 Return (as the function result) the file descriptor flags;
 .I arg
 is ignored.
 .TP
-.BR F_SETFD " (\fIint\fP)"
+.BR F_SETFD \~(\f[I]int\f[])
 Set the file descriptor flags to the value specified by
 .IR arg .
 .P
@@ -181,13 +181,13 @@ share the same file status flags.
 The file status flags and their semantics are described in
 .BR open (2).
 .TP
-.BR F_GETFL " (\fIvoid\fP)"
+.BR F_GETFL \~(\f[I]void\f[])
 Return (as the function result)
 the file access mode and the file status flags;
 .I arg
 is ignored.
 .TP
-.BR F_SETFL " (\fIint\fP)"
+.BR F_SETFL \~(\f[I]int\f[])
 Set the file status flags to the value specified by
 .IR arg .
 File access mode
@@ -318,7 +318,7 @@ then the existing lock is converted to the new lock type.
 an existing lock if the byte range specified by the new lock does not
 precisely coincide with the range of the existing lock.)
 .TP
-.BR F_SETLK " (\fIstruct flock *\fP)"
+.BR F_SETLK \~(\f[I]struct\~flock\~*\f[])
 Acquire a lock (when
 .I l_type
 is
@@ -343,7 +343,7 @@ or
 (The error returned in this case differs across implementations,
 so POSIX requires a portable application to check for both errors.)
 .TP
-.BR F_SETLKW " (\fIstruct flock *\fP)"
+.BR F_SETLKW \~(\f[I]struct\~flock\~*\f[])
 As for
 .BR F_SETLK ,
 but if a conflicting lock is held on the file, then wait for that
@@ -357,7 +357,7 @@ set to
 see
 .BR signal (7)).
 .TP
-.BR F_GETLK " (\fIstruct flock *\fP)"
+.BR F_GETLK \~(\f[I]struct\~flock\~*\f[])
 On input to this call,
 .I lock
 describes a lock we would like to place on the file.
@@ -534,7 +534,7 @@ when using the operations described below.
 The operations for working with open file description locks are analogous
 to those used with traditional locks:
 .TP
-.BR F_OFD_SETLK " (\fIstruct flock *\fP)"
+.BR F_OFD_SETLK \~(\f[I]struct\~flock\~*\f[])
 Acquire an open file description lock (when
 .I l_type
 is
@@ -555,7 +555,7 @@ this call returns \-1 and sets
 to
 .BR EAGAIN .
 .TP
-.BR F_OFD_SETLKW " (\fIstruct flock *\fP)"
+.BR F_OFD_SETLKW \~(\f[I]struct\~flock\~*\f[])
 As for
 .BR F_OFD_SETLK ,
 but if a conflicting lock is held on the file, then wait for that lock to be
@@ -569,7 +569,7 @@ set to
 see
 .BR signal (7)).
 .TP
-.BR F_OFD_GETLK " (\fIstruct flock *\fP)"
+.BR F_OFD_GETLK \~(\f[I]struct\~flock\~*\f[])
 On input to this call,
 .I lock
 describes an open file description lock we would like to place on the file.
@@ -687,7 +687,7 @@ and
 .B F_SETSIG
 are used to manage I/O availability signals:
 .TP
-.BR F_GETOWN " (\fIvoid\fP)"
+.BR F_GETOWN \~(\f[I]void\f[])
 Return (as the function result)
 the process ID or process group ID currently receiving
 .B SIGIO
@@ -700,7 +700,7 @@ process group IDs are returned as negative values (but see BUGS below).
 .I arg
 is ignored.
 .TP
-.BR F_SETOWN " (\fIint\fP)"
+.BR F_SETOWN \~(\f[I]int\f[])
 Set the process ID or process group ID that will receive
 .B SIGIO
 and
@@ -829,7 +829,7 @@ and
 .B SIGURG
 signals at a particular thread.
 .TP
-.BR F_GETOWN_EX " (\fIstruct f_owner_ex *\fP) (since Linux 2.6.32)"
+.BR F_GETOWN_EX "\~(\f[I]struct\~f_owner_ex\~*\f[]; since Linux 2.6.32)"
 Return the current file descriptor owner settings
 as defined by a previous
 .B F_SETOWN_EX
@@ -862,7 +862,7 @@ See
 .B F_SETOWN_EX
 for more details.
 .TP
-.BR F_SETOWN_EX " (\fIstruct f_owner_ex *\fP) (since Linux 2.6.32)"
+.BR F_SETOWN_EX "\~(\f[I]struct\~f_owner_ex\~*\f[]; since Linux 2.6.32)"
 This operation performs a similar task to
 .BR F_SETOWN .
 It allows the caller to direct I/O availability signals
@@ -902,7 +902,7 @@ is specified in
 a process group ID is specified as a positive value here.)
 .RE
 .TP
-.BR F_GETSIG " (\fIvoid\fP)"
+.BR F_GETSIG \~(\f[I]void\f[])
 Return (as the function result)
 the signal sent when input or output becomes possible.
 A value of zero means
@@ -917,7 +917,7 @@ the signal handler if installed with
 .I arg
 is ignored.
 .TP
-.BR F_SETSIG " (\fIint\fP)"
+.BR F_SETSIG \~(\f[I]int\f[])
 Set the signal sent when input or output becomes possible
 to the value given in
 .IR arg .
@@ -1049,7 +1049,7 @@ or
 .BR truncate (2)
 the file referred to by that file descriptor.
 .TP
-.BR F_SETLEASE " (\fIint\fP)"
+.BR F_SETLEASE \~(\f[I]int\f[])
 Set or remove a file lease according to which of the following
 values is specified in the integer
 .IR arg :
@@ -1095,7 +1095,7 @@ A process with the
 .B CAP_LEASE
 capability may take out leases on arbitrary files.
 .TP
-.BR F_GETLEASE " (\fIvoid\fP)"
+.BR F_GETLEASE \~(\f[I]void\f[])
 Indicates what type of lease is associated with the file descriptor
 .I fd
 by returning either
@@ -1197,7 +1197,7 @@ that has been accessed by another process.
 (This is useful if the caller holds leases against multiple files.)
 .SS File and directory change notification (dnotify)
 .TP
-.BR F_NOTIFY " (\fIint\fP)"
+.BR F_NOTIFY \~(\f[I]int\f[])
 (Linux 2.4 onward)
 Provide notification when the directory referred to by
 .I fd
@@ -1322,7 +1322,7 @@ See
 .BR inotify (7).
 .SS Changing the capacity of a pipe
 .TP
-.BR F_SETPIPE_SZ " (\fIint\fP; since Linux 2.6.35)"
+.BR F_SETPIPE_SZ "\~(\f[I]int\f[]; since Linux 2.6.35)"
 Change the capacity of the pipe referred to by
 .I fd
 to be at least
@@ -1361,7 +1361,7 @@ are employed when data is written to the pipe,
 the number of bytes that can be written may be less than the nominal size,
 depending on the size of the writes.
 .TP
-.BR F_GETPIPE_SZ " (\fIvoid\fP; since Linux 2.6.35)"
+.BR F_GETPIPE_SZ "\~(\f[I]void\f[]; since Linux 2.6.35)"
 Return (as the function result) the capacity of the pipe referred to by
 .IR fd .
 .\"
@@ -1394,7 +1394,7 @@ Thus, all open file descriptors referring to the same inode share
 the same set of seals.
 Furthermore, seals can never be removed, only added.
 .TP
-.BR F_ADD_SEALS " (\fIint\fP; since Linux 3.17)"
+.BR F_ADD_SEALS "\~(\f[I]int\f[]; since Linux 3.17)"
 Add the seals given in the bit-mask argument
 .I arg
 to the set of seals of the inode referred to by the file descriptor
@@ -1412,7 +1412,7 @@ In order to place a seal, the file descriptor
 .I fd
 must be writable.
 .TP
-.BR F_GET_SEALS " (\fIvoid\fP; since Linux 3.17)"
+.BR F_GET_SEALS "\~(\f[I]void\f[]; since Linux 3.17)"
 Return (as the function result) the current set of seals
 of the inode referred to by
 .IR fd .
@@ -1546,24 +1546,24 @@ in arbitrary ways, so long as the hints are used consistently.
 The following operations can be applied to the file descriptor,
 .IR fd :
 .TP
-.BR F_GET_RW_HINT " (\fIuint64_t *\fP; since Linux 4.13)"
+.BR F_GET_RW_HINT "\~(\f[I]uint64_t\~*\f[]; since Linux 4.13)"
 Returns the value of the read/write hint associated with the underlying inode
 referred to by
 .IR fd .
 .TP
-.BR F_SET_RW_HINT " (\fIuint64_t *\fP; since Linux 4.13)"
+.BR F_SET_RW_HINT "\~(\f[I]uint64_t\~*\f[]; since Linux 4.13)"
 Sets the read/write hint value associated with the
 underlying inode referred to by
 .IR fd .
 This hint persists until either it is explicitly modified or
 the underlying filesystem is unmounted.
 .TP
-.BR F_GET_FILE_RW_HINT " (\fIuint64_t *\fP; since Linux 4.13)"
+.BR F_GET_FILE_RW_HINT "\~(\f[I]uint64_t\~*\f[]; since Linux 4.13)"
 Returns the value of the read/write hint associated with
 the open file description referred to by
 .IR fd .
 .TP
-.BR F_SET_FILE_RW_HINT " (\fIuint64_t *\fP; since Linux 4.13)"
+.BR F_SET_FILE_RW_HINT "\~(\f[I]uint64_t\~*\f[]; since Linux 4.13)"
 Sets the read/write hint value associated with the open file description
 referred to by
 .IR fd .

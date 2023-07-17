@@ -41,11 +41,18 @@ See VERSIONS.
 The
 .BR io_getevents ()
 system call
-attempts to read at least \fImin_nr\fP events and
-up to \fInr\fP events from the completion queue of the AIO context
-specified by \fIctx_id\fP.
+attempts to read at least
+.I min_nr
+events and
+up to
+.I nr
+events from the completion queue of the AIO context
+specified by
+.IR ctx_id .
 .P
-The \fItimeout\fP argument specifies the amount of time to wait for events,
+The
+.I timeout
+argument specifies the amount of time to wait for events,
 and is specified as a relative timeout in a
 .BR timespec (3)
 structure.
@@ -75,16 +82,23 @@ For the failure return, see VERSIONS.
 .SH ERRORS
 .TP
 .B EFAULT
-Either \fIevents\fP or \fItimeout\fP is an invalid pointer.
+Either
+.I events
+or
+.I timeout
+is an invalid pointer.
 .TP
 .B EINTR
 Interrupted by a signal handler; see
 .BR signal (7).
 .TP
 .B EINVAL
-\fIctx_id\fP is invalid.
-\fImin_nr\fP is out of range or \fInr\fP is
-out of range.
+.I ctx_id
+is invalid.
+.I min_nr
+is out of range or
+.I nr
+is out of range.
 .TP
 .B ENOSYS
 .BR io_getevents ()

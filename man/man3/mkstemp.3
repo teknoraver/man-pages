@@ -146,15 +146,21 @@ is set to indicate the error.
 .TP
 .B EEXIST
 Could not create a unique temporary filename.
-Now the contents of \fItemplate\fP are undefined.
+Now the contents of
+.I template
+are undefined.
 .TP
 .B EINVAL
 For
 .BR mkstemp ()
 and
 .BR mkostemp ():
-The last six characters of \fItemplate\fP were not XXXXXX;
-now \fItemplate\fP is unchanged.
+The last six characters of
+.I template
+were not XXXXXX;
+now
+.I template
+is unchanged.
 .IP
 For
 .BR mkstemps ()

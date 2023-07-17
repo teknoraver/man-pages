@@ -48,8 +48,14 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 The
 .BR ecvt ()
-function converts \fInumber\fP to a null-terminated
-string of \fIndigits\fP digits (where \fIndigits\fP is reduced to a
+function converts
+.I number
+to a null-terminated
+string of
+.I ndigits
+digits (where
+.I ndigits
+is reduced to a
 system-specific limit determined by the precision of a
 .IR double ),
 and returns a pointer to the string.
@@ -59,29 +65,39 @@ is zero.
 The low order digit is rounded.
 The string itself does not contain a decimal point; however,
 the position of the decimal point relative to the start of the string
-is stored in \fI*decpt\fP.
-A negative value for \fI*decpt\fP means that
+is stored in
+.IR *decpt .
+A negative value for
+.I *decpt
+means that
 the decimal point is to the left of the start of the string.
 If the sign of
-\fInumber\fP is negative, \fI*sign\fP is set to a nonzero value,
+.I number
+is negative,
+.I *sign
+is set to a nonzero value,
 otherwise it is set to 0.
 If
 .I number
-is zero, it is unspecified whether \fI*decpt\fP is 0 or 1.
+is zero, it is unspecified whether
+.I *decpt
+is 0 or 1.
 .P
 The
 .BR fcvt ()
 function is identical to
 .BR ecvt (),
 except that
-\fIndigits\fP specifies the number of digits after the decimal point.
+.I ndigits
+specifies the number of digits after the decimal point.
 .SH RETURN VALUE
 Both the
 .BR ecvt ()
 and
 .BR fcvt ()
 functions return a pointer to a
-static string containing the ASCII representation of \fInumber\fP.
+static string containing the ASCII representation of
+.IR number .
 The static string is overwritten by each call to
 .BR ecvt ()
 or

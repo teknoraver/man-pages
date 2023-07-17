@@ -24,8 +24,13 @@ Standard C library
 The function
 .BR ttyname ()
 returns a pointer to the null-terminated pathname of the terminal device
-that is open on the file descriptor \fIfd\fP, or NULL on error
-(for example, if \fIfd\fP is not connected to a terminal).
+that is open on the file descriptor
+.IR fd ,
+or NULL on error
+(for example,
+if
+.I fd
+is not connected to a terminal).
 The return value may point to static data, possibly overwritten by the
 next call.
 The function

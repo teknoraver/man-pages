@@ -73,7 +73,11 @@ POSIX.1 permits
 and
 .BR pthread_cleanup_pop ()
 to be implemented as macros that expand to text
-containing \[aq]\fB{\fP\[aq] and \[aq]\fB}\fP\[aq], respectively.
+containing
+.RB \[aq] { \[aq]
+and
+.RB \[aq] } \[aq],
+respectively.
 For this reason, the caller must ensure that calls to these
 functions are paired within the same function,
 and at the same lexical nesting level.
@@ -126,7 +130,11 @@ and
 functions
 .I are
 implemented as macros that expand to text
-containing \[aq]\fB{\fP\[aq] and \[aq]\fB}\fP\[aq], respectively.
+containing
+.RB \[aq] { \[aq]
+and
+.RB \[aq] } \[aq],
+respectively.
 This means that variables declared within the scope of
 paired calls to these functions will be visible within only that scope.
 .P
@@ -170,7 +178,7 @@ the main thread sends a cancelation request to the other thread:
 .P
 .in +4n
 .EX
-$ \fB./a.out\fP
+.RB $ " ./a.out" ;
 New thread started
 cnt = 0
 cnt = 1
@@ -191,7 +199,7 @@ global variable that causes other thread to terminate normally:
 .P
 .in +4n
 .EX
-$ \fB./a.out x\fP
+.RB $ " ./a.out x" ;
 New thread started
 cnt = 0
 cnt = 1
@@ -212,7 +220,7 @@ and supplies a nonzero value for
 .P
 .in +4n
 .EX
-$ \fB./a.out x 1\fP
+.RB $ " ./a.out x 1" ;
 New thread started
 cnt = 0
 cnt = 1

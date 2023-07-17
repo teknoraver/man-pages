@@ -36,12 +36,18 @@ See VERSIONS.
 The
 .BR io_submit ()
 system call
-queues \fInr\fP I/O request blocks for processing in
-the AIO context \fIctx_id\fP.
+queues
+.I nr
+I/O request blocks for processing in
+the AIO context
+.IR ctx_id .
 The
 .I iocbpp
-argument should be an array of \fInr\fP AIO control blocks,
-which will be submitted to context \fIctx_id\fP.
+argument should be an array of
+.I nr
+AIO control blocks,
+which will be submitted to context
+.IR ctx_id .
 .P
 The
 .I iocb
@@ -238,27 +244,44 @@ The file descriptor to signal in the event of asynchronous I/O completion.
 .SH RETURN VALUE
 On success,
 .BR io_submit ()
-returns the number of \fIiocb\fPs submitted (which may be
-less than \fInr\fP, or 0 if \fInr\fP is zero).
+returns the number of
+.IR iocb s
+submitted
+(which may be
+less than
+.IR nr ,
+or 0 if
+.I nr
+is zero).
 For the failure return, see VERSIONS.
 .SH ERRORS
 .TP
 .B EAGAIN
-Insufficient resources are available to queue any \fIiocb\fPs.
+Insufficient resources are available to queue any
+.IR iocb s.
 .TP
 .B EBADF
-The file descriptor specified in the first \fIiocb\fP is invalid.
+The file descriptor specified in the first
+.I iocb
+is invalid.
 .TP
 .B EFAULT
 One of the data structures points to invalid data.
 .TP
 .B EINVAL
-The AIO context specified by \fIctx_id\fP is invalid.
-\fInr\fP is less than 0.
-The \fIiocb\fP at
+The AIO context specified by
+.I ctx_id
+is invalid.
+.I nr
+is less than 0.
+The
+.I iocb
+at
 .I *iocbpp[0]
 is not properly initialized, the operation specified is invalid for the file
-descriptor in the \fIiocb\fP, or the value in the
+descriptor in the
+.IR iocb ,
+or the value in the
 .I aio_reqprio
 field is invalid.
 .TP

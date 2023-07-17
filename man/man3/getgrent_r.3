@@ -55,7 +55,9 @@ The former reads the next group entry from the stream initialized by
 The latter reads the next group entry from
 .IR stream .
 .P
-The \fIgroup\fP structure is defined in
+The
+.I group
+structure is defined in
 .I <grp.h>
 as follows:
 .P
@@ -81,21 +83,27 @@ The reentrant functions described here return all of that in
 caller-provided buffers.
 First of all there is the buffer
 .I gbuf
-that can hold a \fIstruct group\fP.
+that can hold a
+.IR "struct\ group" .
 And next the buffer
 .I buf
 of size
 .I size
 that can hold additional strings.
-The result of these functions, the \fIstruct group\fP read from the stream,
+The result of these functions, the
+.I struct\ group
+read from the stream,
 is stored in the provided buffer
 .IR *gbuf ,
-and a pointer to this \fIstruct group\fP is returned in
+and a pointer to this
+.I struct\ group
+is returned in
 .IR *gbufp .
 .SH RETURN VALUE
 On success, these functions return 0 and
 .I *gbufp
-is a pointer to the \fIstruct group\fP.
+is a pointer to the
+.IR "struct\ group" .
 On error, these functions return an error value and
 .I *gbufp
 is NULL.

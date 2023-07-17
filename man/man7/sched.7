@@ -86,20 +86,27 @@ and
 .SS Scheduling policies
 The scheduler is the kernel component that decides which runnable thread
 will be executed by the CPU next.
-Each thread has an associated scheduling policy and a \fIstatic\fP
+Each thread has an associated scheduling policy and a
+.I static
 scheduling priority,
 .IR sched_priority .
 The scheduler makes its decisions based on knowledge of the scheduling
 policy and static priority of all threads on the system.
 .P
 For threads scheduled under one of the normal scheduling policies
-(\fBSCHED_OTHER\fP, \fBSCHED_IDLE\fP, \fBSCHED_BATCH\fP),
-\fIsched_priority\fP is not used in scheduling
-decisions (it must be specified as 0).
+.RB ( SCHED_OTHER ,
+.BR SCHED_IDLE ,
+.BR SCHED_BATCH ),
+.I sched_priority
+is not used in scheduling decisions
+(it must be specified as 0).
 .P
 Processes scheduled under one of the real-time policies
-(\fBSCHED_FIFO\fP, \fBSCHED_RR\fP) have a
-\fIsched_priority\fP value in the range 1 (low) to 99 (high).
+.RB ( SCHED_FIFO ,
+.BR SCHED_RR )
+have a
+.I sched_priority
+value in the range 1 (low) to 99 (high).
 (As the numbers imply, real-time threads always have higher priority
 than normal threads.)
 Note well: POSIX.1 requires an implementation to support only a
@@ -111,8 +118,10 @@ and
 .BR sched_get_priority_max (2)
 to find the range of priorities supported for a particular policy.
 .P
-Conceptually, the scheduler maintains a list of runnable
-threads for each possible \fIsched_priority\fP value.
+Conceptually,
+the scheduler maintains a list of runnable threads for each possible
+.I sched_priority
+value.
 In order to determine which thread runs next, the scheduler looks for
 the nonempty list with the highest static priority and selects the
 thread at the head of this list.
@@ -129,22 +138,35 @@ The scheduling policy determines the
 ordering only within the list of runnable threads with equal static
 priority.
 .SS SCHED_FIFO: First in-first out scheduling
-\fBSCHED_FIFO\fP can be used only with static priorities higher than
-0, which means that when a \fBSCHED_FIFO\fP thread becomes runnable,
+.B SCHED_FIFO
+can be used only with static priorities higher than 0,
+which means that when a
+.B SCHED_FIFO
+thread becomes runnable,
 it will always immediately preempt any currently running
-\fBSCHED_OTHER\fP, \fBSCHED_BATCH\fP, or \fBSCHED_IDLE\fP thread.
-\fBSCHED_FIFO\fP is a simple scheduling
+.BR SCHED_OTHER ,
+.BR SCHED_BATCH ,
+or
+.B SCHED_IDLE
+thread.
+.B SCHED_FIFO is a simple scheduling
 algorithm without time slicing.
 For threads scheduled under the
-\fBSCHED_FIFO\fP policy, the following rules apply:
+.B SCHED_FIFO
+policy,
+the following rules apply:
 .IP \[bu] 3
-A running \fBSCHED_FIFO\fP thread that has been preempted by another thread of
-higher priority will stay at the head of the list for its priority and
-will resume execution as soon as all threads of higher priority are
-blocked again.
+A running
+.B SCHED_FIFO
+thread that has been preempted by another thread of higher priority
+will stay at the head of the list for its priority and
+will resume execution
+as soon as all threads of higher priority are blocked again.
 .IP \[bu]
-When a blocked \fBSCHED_FIFO\fP thread becomes runnable, it
-will be inserted at the end of the list for its priority.
+When a blocked
+.B SCHED_FIFO
+thread becomes runnable,
+it will be inserted at the end of the list for its priority.
 .IP \[bu]
 If a call to
 .BR sched_setscheduler (2),
@@ -186,26 +208,38 @@ A thread calling
 will be put at the end of the list.
 .P
 No other events will move a thread
-scheduled under the \fBSCHED_FIFO\fP policy in the wait list of
+scheduled under the
+.B SCHED_FIFO
+policy in the wait list of
 runnable threads with equal static priority.
 .P
-A \fBSCHED_FIFO\fP
-thread runs until either it is blocked by an I/O request, it is
-preempted by a higher priority thread, or it calls
+A
+.B SCHED_FIFO
+thread runs until either
+it is blocked by an I/O request,
+it is preempted by a higher priority thread,
+or it calls
 .BR sched_yield (2).
 .SS SCHED_RR: Round-robin scheduling
-\fBSCHED_RR\fP is a simple enhancement of \fBSCHED_FIFO\fP.
-Everything
-described above for \fBSCHED_FIFO\fP also applies to \fBSCHED_RR\fP,
-except that each thread is allowed to run only for a maximum time
-quantum.
-If a \fBSCHED_RR\fP thread has been running for a time
-period equal to or longer than the time quantum, it will be put at the
-end of the list for its priority.
-A \fBSCHED_RR\fP thread that has
-been preempted by a higher priority thread and subsequently resumes
-execution as a running thread will complete the unexpired portion of
-its round-robin time quantum.
+.B SCHED_RR
+is a simple enhancement of
+.BR SCHED_FIFO .
+Everything described above for
+.B SCHED_FIFO
+also applies to
+.BR SCHED_RR ,
+except that each thread is allowed to run only for a maximum time quantum.
+If a
+.B SCHED_RR
+thread has been running for a time period
+equal to or longer than the time quantum,
+it will be put at the end of the list for its priority.
+A
+.B SCHED_RR
+thread that has
+been preempted by a higher priority thread
+and subsequently resumes execution as a running thread
+will complete the unexpired portion of its round-robin time quantum.
 The length of the time quantum can be
 retrieved using
 .BR sched_rr_get_interval (2).
@@ -376,21 +410,27 @@ will yield the current job and wait for a new period to begin.
 .\" Is that intended? (Why?)
 .\"
 .SS SCHED_OTHER: Default Linux time-sharing scheduling
-\fBSCHED_OTHER\fP can be used at only static priority 0
+.B SCHED_OTHER
+can be used at only static priority 0
 (i.e., threads under real-time policies always have priority over
 .B SCHED_OTHER
 processes).
-\fBSCHED_OTHER\fP is the standard Linux time-sharing scheduler that is
-intended for all threads that do not require the special
-real-time mechanisms.
+.B SCHED_OTHER
+is the standard Linux time-sharing scheduler that is
+intended for all threads that
+do not require the special real-time mechanisms.
 .P
-The thread to run is chosen from the static
-priority 0 list based on a \fIdynamic\fP priority that is determined only
+The thread to run is chosen from the static priority 0 list
+based on a
+.I dynamic
+priority that is determined only
 inside this list.
 The dynamic priority is based on the nice value (see below)
 and is increased for each time quantum the thread is ready to run,
 but denied to run by the scheduler.
-This ensures fair progress among all \fBSCHED_OTHER\fP threads.
+This ensures fair progress among all
+.B SCHED_OTHER
+threads.
 .P
 In the Linux kernel source code, the
 .B SCHED_OTHER
@@ -454,9 +494,11 @@ the autogroup feature and group scheduling, below.
 .\"
 .SS SCHED_BATCH: Scheduling batch processes
 (Since Linux 2.6.16.)
-\fBSCHED_BATCH\fP can be used only at static priority 0.
-This policy is similar to \fBSCHED_OTHER\fP in that it schedules
-the thread according to its dynamic priority
+.B SCHED_BATCH
+can be used only at static priority 0.
+This policy is similar to
+.B SCHED_OTHER
+in that it schedules the thread according to its dynamic priority
 (based on the nice value).
 The difference is that this policy
 will cause the scheduler to always assume
@@ -476,7 +518,8 @@ interactivity causing extra preemptions (between the workload's tasks).
 .\"
 .SS SCHED_IDLE: Scheduling very low priority jobs
 (Since Linux 2.6.23.)
-\fBSCHED_IDLE\fP can be used only at static priority 0;
+.B SCHED_IDLE
+can be used only at static priority 0;
 the process nice value has no influence for this policy.
 .P
 This policy is intended for running jobs at extremely low
@@ -770,7 +813,7 @@ A process's autogroup (task group) membership can be viewed via the file
 .P
 .in +4n
 .EX
-$ \fBcat /proc/1/autogroup\fP
+.RB $ " cat /proc/1/autogroup"
 /autogroup\-1 nice 0
 .EE
 .in
@@ -894,7 +937,7 @@ of the processes in a terminal session:
 .P
 .in +4n
 .EX
-$ \fBecho 10 > /proc/self/autogroup\fP
+.RB $ " echo 10 > /proc/self/autogroup"
 .EE
 .in
 .SS Real-time features in the mainline Linux kernel
@@ -912,7 +955,7 @@ These patches are named:
 .P
 .in +4n
 .EX
-patch\-\fIkernelversion\fP\-rt\fIpatchversion\fP
+.RI patch\- kernelversion \-rt patchversion
 .EE
 .in
 .P

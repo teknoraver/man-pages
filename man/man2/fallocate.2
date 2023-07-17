@@ -320,7 +320,9 @@ exceeds the maximum file size.
 .I mode
 is
 .BR FALLOC_FL_INSERT_RANGE ,
-and the current file size+\fIlen\fP exceeds the maximum file size.
+and the current file
+.RI size+ len
+exceeds the maximum file size.
 .TP
 .B EINTR
 A signal was caught during execution; see

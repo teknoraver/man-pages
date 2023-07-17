@@ -47,7 +47,9 @@ This function has three or four arguments, depending on
 .IR op .
 When there are four, the fourth has the type
 .IR "union semun" .
-The \fIcalling program\fP must define this union as follows:
+The
+.I calling program
+must define this union as follows:
 .P
 .in +4n
 .EX
@@ -63,7 +65,9 @@ union semun {
 .P
 The
 .I semid_ds
-data structure is defined in \fI<sys/sem.h>\fP as follows:
+data structure is defined in
+.I <sys/sem.h>
+as follows:
 .P
 .in +4n
 .EX
@@ -119,11 +123,11 @@ structure is defined as follows
 .EX
 struct ipc_perm {
     key_t          __key; /* Key supplied to semget(2) */
-    uid_t          \fBuid\fP;   /* Effective UID of owner */
-    gid_t          \fBgid\fP;   /* Effective GID of owner */
+    uid_t          \f[B]uid\f[];   /* Effective UID of owner */
+    gid_t          \f[B]gid\f[];   /* Effective GID of owner */
     uid_t          cuid;  /* Effective UID of creator */
     gid_t          cgid;  /* Effective GID of creator */
-    unsigned short \fBmode\fP;  /* Permissions */
+    unsigned short \f[B]mode\f[];  /* Permissions */
     unsigned short __seq; /* Sequence number */
 };
 .EE
@@ -564,7 +568,9 @@ POSIX.1-2008.
 POSIX.1-2001, SVr4.
 .\" SVr4 documents more error conditions EINVAL and EOVERFLOW.
 .P
-Various fields in a \fIstruct semid_ds\fP were typed as
+Various fields in a
+.I struct\ semid_ds
+were typed as
 .I short
 under Linux 2.2
 and have become
@@ -579,13 +585,18 @@ flag in
 .P
 In some earlier versions of glibc, the
 .I semun
-union was defined in \fI<sys/sem.h>\fP, but POSIX.1 requires
+union was defined in
+.IR <sys/sem.h> ,
+but POSIX.1 requires
 .\" POSIX.1-2001, POSIX.1-2008
 that the caller define this union.
-On versions of glibc where this union is \fInot\fP defined,
+On versions of glibc where this union is
+.I not
+defined,
 the macro
 .B _SEM_SEMUN_UNDEFINED
-is defined in \fI<sys/sem.h>\fP.
+is defined in
+.IR <sys/sem.h> .
 .SH NOTES
 The
 .BR IPC_INFO ,

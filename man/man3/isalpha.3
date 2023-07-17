@@ -129,18 +129,21 @@ instead of the current locale.
 .TP
 .BR isalnum ()
 checks for an alphanumeric character; it is equivalent to
-.BI "(isalpha(" c ") || isdigit(" c "))" \fR.
+.IR "(isalpha(c)\ ||\ isdigit(c))" .
 .TP
 .BR isalpha ()
-checks for an alphabetic character; in the standard \fB"C"\fP
+checks for an alphabetic character; in the standard
+.B \[dq]C\[dq]
 locale, it is equivalent to
-.BI "(isupper(" c ") || islower(" c "))" \fR.
+.IR "(isupper(c)\ ||\ islower(c))" .
 In some locales, there may be additional characters for which
 .BR isalpha ()
 is true\[em]letters which are neither uppercase nor lowercase.
 .TP
 .BR isascii ()
-checks whether \fIc\fP is a 7-bit
+checks whether
+.I c
+is a 7-bit
 .I unsigned char
 value that fits into
 the ASCII character set.

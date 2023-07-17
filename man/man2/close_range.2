@@ -134,7 +134,7 @@ This avoids subsequent
 .BR close (2)
 calls entirely;
 the whole operation is complete once the table is unshared.
-.SS Closing files on \fBexec\fP
+.SS Closing files on \f[I]exec\f[]
 .\" 582f1fb6b721facf04848d2ca57f34468da1813e
 This is particularly useful in cases where multiple
 .RB pre- exec
@@ -175,8 +175,8 @@ The following example demonstrates the use of the program:
 .P
 .in +4n
 .EX
-$ \fBtouch /tmp/a /tmp/b /tmp/c\fP
-$ \fB./a.out /tmp/a /tmp/b /tmp/c\fP
+.RB $ " touch /tmp/a /tmp/b /tmp/c" ;
+.RB $ " ./a.out /tmp/a /tmp/b /tmp/c" ;
 /tmp/a opened as FD 3
 /tmp/b opened as FD 4
 /tmp/c opened as FD 5

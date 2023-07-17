@@ -45,12 +45,18 @@ Feature Test Macro Requirements for glibc (see
 The
 .BR div ()
 function computes the value
-\fInumerator\fP/\fIdenominator\fP and
+.I numerator/denominator and
 returns the quotient and remainder in a structure
-named \fIdiv_t\fP that contains
-two integer members (in unspecified order) named \fIquot\fP and \fIrem\fP.
+named
+.I div_t
+that contains
+two integer members (in unspecified order) named
+.I quot
+and
+.IR rem .
 The quotient is rounded toward zero.
-The result satisfies \fIquot\fP*\fIdenominator\fP+\fIrem\fP = \fInumerator\fP.
+The result satisfies
+.IR "quot*denominator+rem\ =\ numerator" .
 .P
 The
 .BR ldiv (),
@@ -60,10 +66,15 @@ and
 functions do the same,
 dividing numbers of the indicated type and
 returning the result in a structure
-of the indicated name, in all cases with fields \fIquot\fP and \fIrem\fP
+of the indicated name, in all cases with fields
+.I quot
+and
+.I rem
 of the same type as the function arguments.
 .SH RETURN VALUE
-The \fIdiv_t\fP (etc.) structure.
+The
+.I div_t
+(etc.) structure.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -99,7 +110,11 @@ div_t q = div(\-5, 3);
 .EE
 .in
 .P
-the values \fIq.quot\fP and \fIq.rem\fP are \-1 and \-2, respectively.
+the values
+.I q.quot
+and
+.I q.rem
+are \-1 and \-2, respectively.
 .SH SEE ALSO
 .BR abs (3),
 .BR remainder (3)

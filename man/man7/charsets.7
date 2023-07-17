@@ -214,17 +214,35 @@ It uses codes either
 G0 always has size 94 and uses codes 041\[en]0176.
 .P
 Switching between character sets is done using the shift functions
-\fB\[ha]N\fP (SO or LS1), \fB\[ha]O\fP (SI or LS0), ESC n (LS2), ESC o (LS3),
+.B \[ha]N
+(SO or LS1),
+.B \[ha]O
+(SI or LS0), ESC n (LS2), ESC o (LS3),
 ESC N (SS2), ESC O (SS3), ESC \[ti] (LS1R), ESC } (LS2R), ESC | (LS3R).
-The function LS\fIn\fP makes character set G\fIn\fP the current one
+The function
+.RI LS n
+makes character set
+.RI G n
+the current one
 for codes with high bit zero.
-The function LS\fIn\fPR makes character set G\fIn\fP the current one
+The function
+.RI LS n R
+makes character set
+.RI G n
+the current one
 for codes with high bit one.
-The function SS\fIn\fP makes character set G\fIn\fP (\fIn\fP=2 or 3)
+The function
+.RI SS n
+makes character set
+.RI G n
+.RI ( n =2
+or 3)
 the current one for the next character only (regardless of the value
 of its high order bit).
 .P
-A 94-character set is designated as G\fIn\fP character set
+A 94-character set is designated as
+.RI G n
+character set
 by an escape sequence ESC ( xx (for G0), ESC ) xx (for G1),
 ESC * xx (for G2), ESC + xx (for G3), where xx is a symbol
 or a pair of symbols found in the ISO/IEC\~2375 International
@@ -236,12 +254,16 @@ instead of currency sign), ESC ( M selects a character set
 for African languages, ESC ( ! A selects the Cuban character
 set, and so on.
 .P
-A 96-character set is designated as G\fIn\fP character set
+A 96-character set is designated as
+.RI G n
+character set
 by an escape sequence ESC \- xx (for G1), ESC . xx (for G2)
 or ESC / xx (for G3).
 For example, ESC \- G selects the Hebrew alphabet as G1.
 .P
-A multibyte character set is designated as G\fIn\fP character set
+A multibyte character set is designated as
+.RI G n
+character set
 by an escape sequence ESC $ xx or ESC $ ( xx (for G0),
 ESC $ ) xx (for G1), ESC $ * xx (for G2), ESC $ + xx (for G3).
 For example, ESC $ ( C selects the Korean character set for G0.
@@ -251,7 +273,11 @@ recent version selected by ESC & @ ESC $ B.
 ISO/IEC\~4873 stipulates a narrower use of character sets, where G0
 is fixed (always ASCII), so that G1, G2, and G3
 can be invoked only for codes with the high order bit set.
-In particular, \fB\[ha]N\fP and \fB\[ha]O\fP are not used anymore, ESC ( xx
+In particular,
+.B \[ha]N
+and
+.B \[ha]O
+are not used anymore, ESC ( xx
 can be used only with xx=B, and ESC ) xx, ESC * xx, ESC + xx
 are equivalent to ESC \- xx, ESC . xx, ESC / xx, respectively.
 .SS TIS-620

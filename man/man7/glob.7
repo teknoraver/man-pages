@@ -33,13 +33,17 @@ including the empty string.
 .P
 .B "Character classes"
 .P
-An expression "\fI[...]\fP" where the first character after the
+An expression
+.RI \[dq] [...] \[dq]
+where the first character after the
 leading \[aq][\[aq] is not an \[aq]!\[aq] matches a single character,
 namely any of the characters enclosed by the brackets.
 The string enclosed by the brackets cannot be empty;
 therefore \[aq]]\[aq] can be allowed between the brackets, provided
 that it is the first character.
-(Thus, "\fI[][!]\fP" matches the
+(Thus,
+.RI \[dq] [][!] \[dq]
+matches the
 three characters \[aq][\[aq], \[aq]]\[aq], and \[aq]!\[aq].)
 .P
 .B Ranges
@@ -47,21 +51,30 @@ three characters \[aq][\[aq], \[aq]]\[aq], and \[aq]!\[aq].)
 There is one special convention:
 two characters separated by \[aq]\-\[aq] denote a range.
 (Thus,
-"\fI[A\-Fa\-f0\-9]\fP" is equivalent to "\fI[ABCDEFabcdef0123456789]\fP".)
+.RI \[dq] [A\-Fa\-f0\-9] \[dq]
+is equivalent to
+.RI \[dq] [ABCDEFabcdef0123456789] \[dq].)
 One may include \[aq]\-\[aq] in its literal meaning
 by making it the first or last character between the brackets.
 (Thus,
-"\fI[]\-]\fP" matches just the two characters \[aq]]\[aq] and \[aq]\-\[aq],
-and "\fI[\-\-0]\fP" matches the
+.RI \[dq] []\-] \[dq]
+matches just the two characters \[aq]]\[aq] and \[aq]\-\[aq],
+and
+.RI \[dq] [\-\-0] \[dq]
+matches the
 three characters \[aq]\-\[aq], \[aq].\[aq], and \[aq]0\[aq],
 since \[aq]/\[aq] cannot be matched.)
 .P
 .B Complementation
 .P
-An expression "\fI[!...]\fP" matches a single character, namely
+An expression
+.RI \[dq] [!...] \[dq]
+matches a single character, namely
 any character that is not matched by the expression obtained
 by removing the first \[aq]!\[aq] from it.
-(Thus, "\fI[!]a\-]\fP" matches any
+(Thus,
+.RI \[dq] [!]a\-] \[dq]
+matches any
 single character except \[aq]]\[aq], \[aq]a\[aq], and \[aq]\-\[aq].)
 .P
 One can remove the special meaning of \[aq]?\[aq], \[aq]*\[aq], and \[aq][\[aq]
@@ -70,20 +83,30 @@ or,
 in case this is part of a shell command line,
 enclosing them in quotes.
 Between brackets these characters stand for themselves.
-Thus, "\fI[[?*\[rs]]\fP" matches the
+Thus,
+.RI \[dq] [[?*\[rs]] \[dq]
+matches the
 four characters \[aq][\[aq], \[aq]?\[aq], \[aq]*\[aq], and \[aq]\[rs]\[aq].
 .SS Pathnames
 Globbing is applied on each of the components of a pathname
 separately.
 A \[aq]/\[aq] in a pathname cannot be matched by a \[aq]?\[aq] or \[aq]*\[aq]
-wildcard, or by a range like "\fI[.\-0]\fP".
+wildcard, or by a range like
+.RI \[dq] [.\-0] \[dq].
 A range containing an explicit \[aq]/\[aq] character is syntactically incorrect.
 (POSIX requires that syntactically incorrect patterns are left unchanged.)
 .P
 If a filename starts with a \[aq].\[aq],
 this character must be matched explicitly.
-(Thus, \fIrm\ *\fP will not remove .profile, and \fItar\ c\ *\fP will not
-archive all your files; \fItar\ c\ .\fP is better.)
+(Thus,
+.I rm\ *
+will not remove
+.IR .profile ,
+and
+.I tar\ c\ *
+will not archive all your files;
+.I tar\ c\ .
+is better.)
 .SS Empty lists
 The nice and simple rule given above: "expand a wildcard pattern
 into the list of matching pathnames" was the original UNIX
@@ -142,10 +165,18 @@ more copies of the preceding thing.
 .P
 Now that regular expressions have bracket expressions where
 the negation is indicated by a \[aq]\[ha]\[aq], POSIX has declared the
-effect of a wildcard pattern "\fI[\[ha]...]\fP" to be undefined.
+effect of a wildcard pattern
+.RI \[dq] [\[ha]...] \[dq]
+to be undefined.
 .SS Character classes and internationalization
 Of course ranges were originally meant to be ASCII ranges,
-so that "\fI[\ \-%]\fP" stands for "\fI[\ !"#$%]\fP" and "\fI[a\-z]\fP" stands
+so that
+.RI \[dq] "[\ \-%]" \[dq]
+stands for
+.RI \[dq] "[\ !\[dq]#$%]" \[dq]
+and
+.RI \[dq] [a\-z] \[dq]
+stands
 for "any lowercase letter".
 Some UNIX implementations generalized this so that a range X\-Y
 stands for the set of characters with code between the codes for
@@ -176,27 +207,44 @@ category in the current locale.
 [:punct:]  [:space:]  [:upper:]  [:xdigit:]
 .fi
 .P
-so that one can say "\fI[[:lower:]]\fP" instead of "\fI[a\-z]\fP", and have
-things work in Denmark, too, where there are three letters past \[aq]z\[aq]
+so that one can say
+.RI \[dq] [[:lower:]] \[dq]
+instead of
+.RI \[dq] [a\-z] \[dq],
+and have things work in Denmark, too,
+where there are three letters past \[aq]z\[aq]
 in the alphabet.
 These character classes are defined by the
 .B LC_CTYPE
 category
 in the current locale.
 .P
-(v) Collating symbols, like "\fI[.ch.]\fP" or "\fI[.a-acute.]\fP",
-where the string between "\fI[.\fP" and "\fI.]\fP" is a collating
-element defined for the current locale.
+(v) Collating symbols, like
+.RI \[dq] [.ch.] \[dq]
+or
+.RI \[dq] [.a-acute.] \[dq],
+where the string between
+.RI \[dq] [. \[dq]
+and
+.RI \[dq] .] \[dq]
+is a collating element defined for the current locale.
 Note that this may
 be a multicharacter element.
 .P
-(vi) Equivalence class expressions, like "\fI[=a=]\fP",
-where the string between "\fI[=\fP" and "\fI=]\fP" is any collating
-element from its equivalence class, as defined for the
-current locale.
-For example, "\fI[[=a=]]\fP" might be equivalent
-to "\fI[a\('a\(`a\(:a\(^a]\fP", that is,
-to "\fI[a[.a-acute.][.a-grave.][.a-umlaut.][.a-circumflex.]]\fP".
+(vi) Equivalence class expressions, like
+.RI \[dq] [=a=] \[dq],
+where the string between
+.RI \[dq] [= \[dq]
+and
+.RI \[dq] =] \[dq]
+is any collating element from its equivalence class,
+as defined for the current locale.
+For example,
+.RI \[dq] [[=a=]] \[dq]
+might be equivalent to
+.RI \[dq] [a\('a\(`a\(:a\(^a] \[dq],
+that is, to
+.RI \[dq] [a[.a-acute.][.a-grave.][.a-umlaut.][.a-circumflex.]] \[dq].
 .SH SEE ALSO
 .BR sh (1),
 .BR fnmatch (3),

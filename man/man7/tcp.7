@@ -363,7 +363,9 @@ but not loaded.
 This variable defines how many
 bytes of the TCP window are reserved for buffering overhead.
 .IP
-A maximum of (\fIwindow/2\[ha]tcp_app_win\fP, mss) bytes in the window
+A maximum of
+.RI ( window/2\[ha]tcp_app_win ,
+mss) bytes in the window
 are reserved for the application buffer.
 A value of 0 implies that no amount is reserved.
 .\"
@@ -822,7 +824,7 @@ The default value is calculated using the formula
 .IP
 .in +4n
 .EX
-max(87380, min(4\ MB, \fItcp_mem\fP[1]*PAGE_SIZE/128))
+.RI "max(87380, min(4\ MB, " tcp_mem [1]*PAGE_SIZE/128))
 .EE
 .in
 .IP
@@ -1037,7 +1039,7 @@ The default value is calculated using the formula
 .IP
 .in +4n
 .EX
-max(65536, min(4\ MB, \fItcp_mem\fP[1]*PAGE_SIZE/128))
+.RI "max(65536, min(4\ MB, " tcp_mem [1]*PAGE_SIZE/128))
 .EE
 .in
 .IP
@@ -1119,7 +1121,9 @@ This option should not be used in code intended to be portable.
 .TP
 .BR TCP_INFO " (since Linux 2.4)"
 Used to collect information about this socket.
-The kernel returns a \fIstruct tcp_info\fP as defined in the file
+The kernel returns a
+.I struct tcp_info
+as defined in the file
 .IR /usr/include/linux/tcp.h .
 This option should not be used in code intended to be portable.
 .TP

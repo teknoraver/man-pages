@@ -34,15 +34,23 @@ Feature Test Macro Requirements for glibc (see
 .fi
 .SH DESCRIPTION
 .BR getw ()
-reads a word (that is, an \fIint\fP) from \fIstream\fP.
+reads a word (that is, an
+.IR int )
+from
+.IR stream .
 It's provided for compatibility with SVr4.
 We recommend you use
 .BR fread (3)
 instead.
 .P
 .BR putw ()
-writes the word \fIw\fP (that is,
-an \fIint\fP) to \fIstream\fP.
+writes the word
+.I w
+(that is,
+an
+.IR int )
+to
+.IR stream .
 It is provided for compatibility with SVr4, but we recommend you use
 .BR fwrite (3)
 instead.
@@ -52,7 +60,8 @@ Normally,
 returns the word read, and
 .BR putw ()
 returns 0.
-On error, they return \fBEOF\fP.
+On error, they return
+.BR EOF .
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).

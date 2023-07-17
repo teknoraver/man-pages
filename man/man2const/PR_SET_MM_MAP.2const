@@ -29,7 +29,8 @@ Provides one-shot access to all the addresses modifyable with
 .BR PR_SET_MM (2const)
 by passing in a
 .I struct prctl_mm_map
-(as defined in \fI<linux/prctl.h>\fP).
+(as defined in
+.IR <linux/prctl.h> ).
 The
 .I size
 argument should provide the size of the struct.

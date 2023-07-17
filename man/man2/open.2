@@ -39,12 +39,12 @@ Standard C library
 .B #include <fcntl.h>
 .P
 .BI "int open(const char *" pathname ", int " flags ", ..."
-.BI "           \fR/*\fP mode_t " mode " \fR*/\fP );"
+.BI "           \f[R]/*\f[] mode_t " mode " \f[R]*/\f[] );"
 .P
 .BI "int creat(const char *" pathname ", mode_t " mode );
 .P
 .BI "int openat(int " dirfd ", const char *" pathname ", int " flags ", ..."
-.BI "           \fR/*\fP mode_t " mode " \fR*/\fP );"
+.BI "           \f[R]/*\f[] mode_t " mode " \f[R]*/\f[] );"
 .P
 /* Documented separately, in \c
 .BR openat2 (2):\c
@@ -391,7 +391,9 @@ is described in
 .BR raw (8).
 .TP
 .B O_DIRECTORY
-If \fIpathname\fP is not a directory, cause the open to fail.
+If
+.I pathname
+is not a directory, cause the open to fail.
 .\" But see the following and its replies:
 .\" http://marc.theaimsgroup.com/?t=112748702800001&r=1&w=2
 .\" [PATCH] open: O_DIRECTORY and O_CREAT together should fail
@@ -554,8 +556,8 @@ See also
 .B O_PATH
 below.
 .\" The headers from glibc 2.0.100 and later include a
-.\" definition of this flag; \fIkernels before Linux 2.1.126 will ignore it if
-.\" used\fP.
+.\" definition of this flag; \f[I]kernels before Linux 2.1.126 will ignore it if
+.\" used\f[].
 .TP
 .BR O_NONBLOCK " or " O_NDELAY
 When possible, the file is opened in nonblocking mode.
@@ -1204,7 +1206,9 @@ has no room for the new file.
 .B ENOTDIR
 A component used as a directory in
 .I pathname
-is not, in fact, a directory, or \fBO_DIRECTORY\fP was specified and
+is not, in fact, a directory, or
+.B O_DIRECTORY
+was specified and
 .I pathname
 was not a directory.
 .TP

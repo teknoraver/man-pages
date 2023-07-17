@@ -40,12 +40,17 @@ device.
 Sometimes, this kind of hardware also supports
 sending IR data.
 .P
-The \fBLIRC_GET_FEATURES\fR ioctl (see below) allows probing for whether
+The
+.B LIRC_GET_FEATURES
+ioctl (see below) allows probing for whether
 receiving and sending is supported, and in which modes, amongst other
 features.
 .\"
 .SS Reading input with the LIRC_MODE_MODE2 mode
-In the \fBLIRC_MODE_MODE2 mode\fR, the data returned by
+In the
+.B LIRC_MODE_MODE2
+mode,
+the data returned by
 .BR read (2)
 provides 32-bit values representing a space or a pulse duration.
 The time of the duration (microseconds) is encoded in the lower 24 bits.
@@ -80,13 +85,19 @@ The IR receiver encountered an overflow,
 and as a result data is missing
 (since Linux 5.18).
 .SS Reading input with the LIRC_MODE_SCANCODE mode
-In the \fBLIRC_MODE_SCANCODE\fR
+In the
+.B LIRC_MODE_SCANCODE
 mode, the data returned by
 .BR read (2)
-reflects decoded button presses, in the struct \fIlirc_scancode\fR.
-The scancode is stored in the \fIscancode\fR field, and the IR protocol
-is stored in \fIrc_proto\fR.
-This field has one the values of the \fIenum rc_proto\fR.
+reflects decoded button presses, in the struct
+.IR lirc_scancode .
+The scancode is stored in the
+.I scancode
+field, and the IR protocol
+is stored in
+.IR rc_proto .
+This field has one the values of the
+.IR enum\~rc_proto .
 .\"
 .SS Writing output with the LIRC_MODE_PULSE mode
 The data written to the character device using
@@ -105,8 +116,12 @@ call fails with the error
 .BR EINVAL .
 .SS Writing output with the LIRC_MODE_SCANCODE mode
 The data written to the character devices must be a single struct
-\fIlirc_scancode\fR.
-The \fIscancode\fR and \fIrc_proto\fR fields must
+.IR lirc_scancode .
+The
+.I scancode
+and
+.I rc_proto
+fields must be
 filled in, all other fields must be 0.
 The kernel IR encoders will
 convert the scancode to pulses and spaces.
@@ -128,9 +143,10 @@ character device to probe or change specific
 .B lirc
 hardware settings.
 .SS Always Supported Commands
-\fI/dev/lirc*\fR devices always support the following commands:
+.IR /dev/lirc *
+devices always support the following commands:
 .TP 4
-.BR LIRC_GET_FEATURES " (\fIvoid\fP)"
+.BR LIRC_GET_FEATURES " (\f[I]void\f[])"
 Returns a bit mask of combined features bits; see FEATURES.
 .P
 If a device returns an error code for
@@ -143,14 +159,19 @@ device.
 Some
 .B lirc
 devices support the commands listed below.
-Unless otherwise stated, these fail with the error \fBENOTTY\fR if the
-operation isn't supported, or with the error \fBEINVAL\fR if the operation
-failed, or invalid arguments were provided.
+Unless otherwise stated,
+these fail with the error
+.B ENOTTY
+if the operation isn't supported,
+or with the error
+.B EINVAL
+if the operation failed,
+or invalid arguments were provided.
 If a driver does not announce support of certain features, invoking
 the corresponding ioctls will fail with the error
 .BR ENOTTY .
 .TP
-.BR LIRC_GET_REC_MODE " (\fIvoid\fP)"
+.BR LIRC_GET_REC_MODE " (\f[I]void\f[])"
 If the
 .B lirc
 device has no receiver, this operation fails with the error
@@ -168,7 +189,7 @@ values, each of which represents
 a decoded button press.
 .RE
 .TP
-.BR LIRC_SET_REC_MODE " (\fIint\fP)"
+.BR LIRC_SET_REC_MODE " (\f[I]int\f[])"
 Set the receive mode.
 .I val
 is either
@@ -180,7 +201,7 @@ If the
 device has no receiver, this operation fails with the error
 .B ENOTTY.
 .TP
-.BR LIRC_GET_SEND_MODE " (\fIvoid\fP)"
+.BR LIRC_GET_SEND_MODE " (\f[I]void\f[])"
 Return the send mode.
 .B LIRC_MODE_PULSE
 or
@@ -191,7 +212,7 @@ If the
 device cannot send, this operation fails with the error
 .B ENOTTY.
 .TP
-.BR LIRC_SET_SEND_MODE " (\fIint\fP)"
+.BR LIRC_SET_SEND_MODE " (\f[I]int\f[])"
 Set the send mode.
 .I val
 is either
@@ -203,11 +224,11 @@ If the
 device cannot send, this operation fails with the error
 .BR ENOTTY .
 .TP
-.BR LIRC_SET_SEND_CARRIER " (\fIint\fP)"
+.BR LIRC_SET_SEND_CARRIER " (\f[I]int\f[])"
 Set the modulation frequency.
 The argument is the frequency (Hz).
 .TP
-.BR LIRC_SET_SEND_DUTY_CYCLE " (\fIint\fP)"
+.BR LIRC_SET_SEND_DUTY_CYCLE " (\f[I]int\f[])"
 Set the carrier duty cycle.
 .I val
 is a number in the range [0,100] which
@@ -235,7 +256,7 @@ and
 will fail with the error
 .BR ENOTTY .
 .TP
-.BR LIRC_SET_REC_TIMEOUT " (\fIint\fP)"
+.BR LIRC_SET_REC_TIMEOUT " (\f[I]int\f[])"
 Set the integer value for IR inactivity timeout (microseconds).
 To be accepted, the value must be within the limits defined by
 .B LIRC_GET_MIN_TIMEOUT
@@ -247,11 +268,11 @@ If the exact value cannot be set, then the next possible value
 .I greater
 than the given value should be set.
 .TP
-.BR LIRC_GET_REC_TIMEOUT " (\fIvoid\fP)"
+.BR LIRC_GET_REC_TIMEOUT " (\f[I]void\f[])"
 Return the current inactivity timeout (microseconds).
 Available since Linux 4.18.
 .TP
-.BR LIRC_SET_REC_TIMEOUT_REPORTS " (\fIint\fP)"
+.BR LIRC_SET_REC_TIMEOUT_REPORTS " (\f[I]int\f[])"
 Enable
 .RI ( val
 is 1) or disable
@@ -282,12 +303,12 @@ device has the effect of enabling timeouts for all file descriptors
 referring to that device (until timeouts are disabled again).
 .RE
 .TP
-.BR LIRC_SET_REC_CARRIER " (\fIint\fP)"
+.BR LIRC_SET_REC_CARRIER " (\f[I]int\f[])"
 Set the upper bound of the receive carrier frequency (Hz).
 See
 .BR LIRC_SET_REC_CARRIER_RANGE .
 .TP
-.BR LIRC_SET_REC_CARRIER_RANGE " (\fIint\fP)"
+.BR LIRC_SET_REC_CARRIER_RANGE " (\f[I]int\f[])"
 Sets the lower bound of the receive carrier frequency (Hz).
 For this to take affect, first set the lower bound using the
 .B LIRC_SET_REC_CARRIER_RANGE
@@ -295,7 +316,7 @@ ioctl, and then the upper bound using the
 .B LIRC_SET_REC_CARRIER
 ioctl.
 .TP
-.BR LIRC_SET_MEASURE_CARRIER_MODE " (\fIint\fP)"
+.BR LIRC_SET_MEASURE_CARRIER_MODE " (\f[I]int\f[])"
 Enable
 .RI ( val
 is 1) or disable
@@ -306,10 +327,10 @@ If enabled, from the next key press on, the driver will send
 packets.
 By default, this should be turned off.
 .TP
-.BR LIRC_GET_REC_RESOLUTION " (\fIvoid\fP)"
+.BR LIRC_GET_REC_RESOLUTION " (\f[I]void\f[])"
 Return the driver resolution (microseconds).
 .TP
-.BR LIRC_SET_TRANSMITTER_MASK " (\fIint\fP)"
+.BR LIRC_SET_TRANSMITTER_MASK " (\f[I]int\f[])"
 Enable the set of transmitters specified in
 .IR val ,
 which contains a bit mask where each enabled transmitter is a 1.
@@ -319,7 +340,7 @@ though the device does not have so many transmitters,
 this operation returns the
 number of available transmitters and does nothing otherwise.
 .TP
-.BR LIRC_SET_WIDEBAND_RECEIVER " (\fIint\fP)"
+.BR LIRC_SET_WIDEBAND_RECEIVER " (\f[I]int\f[])"
 Some devices are equipped with a special wide band receiver which is
 intended to be used to learn the output of an existing remote.
 This ioctl can be used to enable

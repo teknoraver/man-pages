@@ -23,11 +23,11 @@ You could do
 .P
 .in +4n
 .EX
-$ \fBdd if=/dev/zero of=file.img bs=1MiB count=10\fP
-$ \fBsudo losetup /dev/loop4 file.img\fP
-$ \fBsudo mkfs \-t ext4 /dev/loop4\fP
-$ \fBsudo mkdir /myloopdev\fP
-$ \fBsudo mount /dev/loop4 /myloopdev\fP
+.RB $ " dd if=/dev/zero of=file.img bs=1MiB count=10" ;
+.RB $ " sudo losetup /dev/loop4 file.img" ;
+.RB $ " sudo mkfs \-t ext4 /dev/loop4" ;
+.RB $ " sudo mkdir /myloopdev" ;
+.RB $ " sudo mount /dev/loop4 /myloopdev" ;
 .EE
 .in
 .P
@@ -298,11 +298,11 @@ The following shell session demonstrates the use of the program:
 .P
 .in +4n
 .EX
-$ \fBdd if=/dev/zero of=file.img bs=1MiB count=10\fP
+.RB $ " dd if=/dev/zero of=file.img bs=1MiB count=10" ;
 10+0 records in
 10+0 records out
 10485760 bytes (10 MB) copied, 0.00609385 s, 1.7 GB/s
-$ \fBsudo ./mnt_loop file.img\fP
+.RB $ " sudo ./mnt_loop file.img" ;
 loopname = /dev/loop5
 .EE
 .in

@@ -77,16 +77,20 @@ It is more eligible to be reclaimed for other purposes.
 .TP
 .IR Unevictable " %lu (since Linux 2.6.28)"
 (From Linux 2.6.28 to Linux 2.6.30,
-\fBCONFIG_UNEVICTABLE_LRU\fP was required.)
+.B CONFIG_UNEVICTABLE_LRU
+was required.)
 [To be documented.]
 .TP
 .IR Mlocked " %lu (since Linux 2.6.28)"
 (From Linux 2.6.28 to Linux 2.6.30,
-\fBCONFIG_UNEVICTABLE_LRU\fP was required.)
+.B CONFIG_UNEVICTABLE_LRU
+was required.)
 [To be documented.]
 .TP
 .IR HighTotal " %lu"
-(Starting with Linux 2.6.19, \fBCONFIG_HIGHMEM\fP is required.)
+(Starting with Linux 2.6.19,
+.B CONFIG_HIGHMEM
+is required.)
 Total amount of highmem.
 Highmem is all memory above \[ti]860 MB of physical memory.
 Highmem areas are for use by user-space programs,
@@ -95,11 +99,15 @@ The kernel must use tricks to access
 this memory, making it slower to access than lowmem.
 .TP
 .IR HighFree " %lu"
-(Starting with Linux 2.6.19, \fBCONFIG_HIGHMEM\fP is required.)
+(Starting with Linux 2.6.19,
+.B CONFIG_HIGHMEM
+is required.)
 Amount of free highmem.
 .TP
 .IR LowTotal " %lu"
-(Starting with Linux 2.6.19, \fBCONFIG_HIGHMEM\fP is required.)
+(Starting with Linux 2.6.19,
+.B CONFIG_HIGHMEM
+is required.)
 Total amount of lowmem.
 Lowmem is memory which can be used for everything that
 highmem can be used for, but it is also available for the
@@ -111,7 +119,9 @@ is allocated.
 Bad things happen when you're out of lowmem.
 .TP
 .IR LowFree " %lu"
-(Starting with Linux 2.6.19, \fBCONFIG_HIGHMEM\fP is required.)
+(Starting with Linux 2.6.19,
+.B CONFIG_HIGHMEM
+is required.)
 Amount of free lowmem.
 .TP
 .IR MmapCopy " %lu (since Linux 2.6.29)"
@@ -173,7 +183,8 @@ Amount of memory allocated to kernel stacks.
 Amount of memory dedicated to the lowest level of page tables.
 .TP
 .IR Quicklists " %lu (since Linux 2.6.27)"
-(\fBCONFIG_QUICKLIST\fP is required.)
+.RB ( CONFIG_QUICKLIST
+is required.)
 [To be documented.]
 .TP
 .IR NFS_Unstable " %lu (since Linux 2.6.18)"
@@ -237,7 +248,8 @@ See
 .IR /proc/vmallocinfo .
 .TP
 .IR HardwareCorrupted " %lu (since Linux 2.6.32)"
-(\fBCONFIG_MEMORY_FAILURE\fP is required.)
+.RB ( CONFIG_MEMORY_FAILURE
+is required.)
 [To be documented.]
 .TP
 .IR LazyFree " %lu (since Linux 4.12)"
@@ -246,37 +258,45 @@ Shows the amount of memory marked by
 .BR MADV_FREE .
 .TP
 .IR AnonHugePages " %lu (since Linux 2.6.38)"
-(\fBCONFIG_TRANSPARENT_HUGEPAGE\fP is required.)
+.RB ( CONFIG_TRANSPARENT_HUGEPAGE
+is required.)
 Non-file backed huge pages mapped into user-space page tables.
 .TP
 .IR ShmemHugePages " %lu (since Linux 4.8)"
-(\fBCONFIG_TRANSPARENT_HUGEPAGE\fP is required.)
+.RB ( CONFIG_TRANSPARENT_HUGEPAGE
+is required.)
 Memory used by shared memory (shmem) and
 .BR tmpfs (5)
 allocated with huge pages.
 .TP
 .IR ShmemPmdMapped " %lu (since Linux 4.8)"
-(\fBCONFIG_TRANSPARENT_HUGEPAGE\fP is required.)
+.RB ( CONFIG_TRANSPARENT_HUGEPAGE
+is required.)
 Shared memory mapped into user space with huge pages.
 .TP
 .IR CmaTotal " %lu (since Linux 3.1)"
 Total CMA (Contiguous Memory Allocator) pages.
-(\fBCONFIG_CMA\fP is required.)
+.RB ( CONFIG_CMA
+is required.)
 .TP
 .IR CmaFree " %lu (since Linux 3.1)"
 Free CMA (Contiguous Memory Allocator) pages.
-(\fBCONFIG_CMA\fP is required.)
+.RB ( CONFIG_CMA
+is required.)
 .TP
 .IR HugePages_Total " %lu"
-(\fBCONFIG_HUGETLB_PAGE\fP is required.)
+.RB ( CONFIG_HUGETLB_PAGE
+is required.)
 The size of the pool of huge pages.
 .TP
 .IR HugePages_Free " %lu"
-(\fBCONFIG_HUGETLB_PAGE\fP is required.)
+.RB ( CONFIG_HUGETLB_PAGE
+is required.)
 The number of huge pages in the pool that are not yet allocated.
 .TP
 .IR HugePages_Rsvd " %lu (since Linux 2.6.17)"
-(\fBCONFIG_HUGETLB_PAGE\fP is required.)
+.RB ( CONFIG_HUGETLB_PAGE
+is required.)
 This is the number of huge pages for
 which a commitment to allocate from the pool has been made,
 but no allocation has yet been made.
@@ -285,7 +305,8 @@ guarantee that an application will be able to allocate a
 huge page from the pool of huge pages at fault time.
 .TP
 .IR HugePages_Surp " %lu (since Linux 2.6.24)"
-(\fBCONFIG_HUGETLB_PAGE\fP is required.)
+.RB ( CONFIG_HUGETLB_PAGE
+is required.)
 This is the number of huge pages in
 the pool above the value in
 .IR /proc/sys/vm/nr_hugepages .
@@ -293,7 +314,8 @@ The maximum number of surplus huge pages is controlled by
 .IR /proc/sys/vm/nr_overcommit_hugepages .
 .TP
 .IR Hugepagesize " %lu"
-(\fBCONFIG_HUGETLB_PAGE\fP is required.)
+.RB ( CONFIG_HUGETLB_PAGE
+is required.)
 The size of huge pages.
 .TP
 .IR DirectMap4k " %lu (since Linux 2.6.27)"

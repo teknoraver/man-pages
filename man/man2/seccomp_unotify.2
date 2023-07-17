@@ -980,7 +980,8 @@ in order to continue a system call, the supervisor should be sure that
 another security mechanism or the kernel itself will sufficiently block
 the system call if its arguments are rewritten to something unsafe.
 .\"
-.SS Caveats regarding the use of \fI/proc/\fPtid\fI/mem\fP
+.SS Caveats regarding the use of
+.IR /proc/ tid /mem
 The discussion above noted the need to use the
 .B SECCOMP_IOCTL_NOTIF_ID_VALID
 .BR ioctl (2)
@@ -1250,7 +1251,7 @@ call.
 .P
 .in +4n
 .EX
-$ \fB./seccomp_unotify /tmp/x\fP
+.RB $ " ./seccomp_unotify /tmp/x" ;
 T: PID = 23168
 \&
 T: about to mkdir("/tmp/x")
@@ -1285,7 +1286,7 @@ call.
 .P
 .in +4n
 .EX
-$ \fB./seccomp_unotify ./sub\fP
+.RB $ " ./seccomp_unotify ./sub" ;
 T: PID = 23204
 \&
 T: about to mkdir("./sub")
@@ -1310,7 +1311,7 @@ call (which is not executed):
 .P
 .in +4n
 .EX
-$ \fB./seccomp_unotify /xxx\fP
+.RB $ " ./seccomp_unotify /xxx" ;
 T: PID = 23178
 \&
 T: about to mkdir("/xxx")
@@ -1340,7 +1341,7 @@ call.
 .P
 .in +4n
 .EX
-$ \fB./seccomp_unotify /tmp/nosuchdir/b\fP
+.RB $ " ./seccomp_unotify /tmp/nosuchdir/b" ;
 T: PID = 23199
 \&
 T: about to mkdir("/tmp/nosuchdir/b")
@@ -1373,7 +1374,7 @@ This is demonstrated by the following example:
 .P
 .in +4n
 .EX
-$ \fB./seccomp_unotify /bye /tmp/y\fP
+.RB $ " ./seccomp_unotify /bye /tmp/y" ;
 T: PID = 23185
 \&
 T: about to mkdir("/bye")

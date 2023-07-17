@@ -48,7 +48,9 @@ finds the resolution (precision) of the specified clock
 .IR clockid ,
 and, if
 .I res
-is non-NULL, stores it in the \fIstruct timespec\fP pointed to by
+is non-NULL, stores it in the
+.I struct\ timespec
+pointed to by
 .IR res .
 The resolution of clocks depends on the implementation and cannot be
 configured by a particular process.
@@ -376,7 +378,9 @@ Linux 2.6.
 .P
 On POSIX systems on which these functions are available, the symbol
 .B _POSIX_TIMERS
-is defined in \fI<unistd.h>\fP to a value greater than 0.
+is defined in
+.I <unistd.h>
+to a value greater than 0.
 POSIX.1-2008 makes these functions mandatory.
 .P
 The symbols
@@ -442,7 +446,7 @@ This is an example of what we might see when running the program:
 .P
 .in +4n
 .EX
-$ \fB./clock_times x\fP
+.RB $ " ./clock_times x" ;
 CLOCK_REALTIME : 1585985459.446 (18356 days +  7h 30m 59s)
      resolution:          0.000000001
 CLOCK_TAI      : 1585985496.447 (18356 days +  7h 31m 36s)

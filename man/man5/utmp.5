@@ -51,11 +51,11 @@ around; details depend on the version of libc):
                            \c
 .BR init (1))\ \c
 */
-#define BOOT_TIME     2 /* Time of system boot (in \fIut_tv\fP) */
+#define BOOT_TIME     2 /* Time of system boot (in \f[I]ut_tv\f[]) */
 #define NEW_TIME      3 /* Time after system clock change
-                           (in \fIut_tv\fP) */
+                           (in \f[I]ut_tv\f[]) */
 #define OLD_TIME      4 /* Time before system clock change
-                           (in \fIut_tv\fP) */
+                           (in \f[I]ut_tv\f[]) */
 #define INIT_PROCESS  5 /* Process spawned by \c
 .BR init (1)\ \c
 */
@@ -134,27 +134,68 @@ processing
 .BR inittab (5).
 Before an entry is processed, though,
 .BR init (1)
-cleans up utmp by setting \fIut_type\fP to \fBDEAD_PROCESS\fP, clearing
-\fIut_user\fP, \fIut_host\fP, and \fIut_time\fP with null bytes for each
-record which \fIut_type\fP is not \fBDEAD_PROCESS\fP or \fBRUN_LVL\fP
-and where no process with PID \fIut_pid\fP exists.
+cleans up utmp by setting
+.I ut_type
+to
+.BR DEAD_PROCESS ,
+clearing
+.IR ut_user ,
+.IR ut_host ,
+and
+.I ut_time
+with null bytes for each
+record which
+.I ut_type
+is not
+.B DEAD_PROCESS
+or
+.B RUN_LVL
+and where no process with PID
+.I ut_pid
+exists.
 If no empty record
-with the needed \fIut_id\fP can be found,
+with the needed
+.I ut_id
+can be found,
 .BR init (1)
 creates a new one.
-It sets \fIut_id\fP from the inittab, \fIut_pid\fP and \fIut_time\fP to the
-current values, and \fIut_type\fP to \fBINIT_PROCESS\fP.
+It sets
+.I ut_id
+from the inittab,
+.I ut_pid
+and
+.I ut_time
+to the current values,
+and
+.I ut_type
+to
+.BR INIT_PROCESS .
 .P
 .BR mingetty (8)
 (or
 .BR agetty (8))
-locates the entry by the PID, changes \fIut_type\fP to
-\fBLOGIN_PROCESS\fP, changes \fIut_time\fP, sets \fIut_line\fP, and waits
+locates the entry by the PID, changes
+.I ut_type
+to
+.BR LOGIN_PROCESS ,
+changes
+.IR ut_time ,
+sets
+.IR ut_line ,
+and waits
 for connection to be established.
 .BR login (1),
 after a user has been
-authenticated, changes \fIut_type\fP to \fBUSER_PROCESS\fP, changes
-\fIut_time\fP, and sets \fIut_host\fP and \fIut_addr\fP.
+authenticated, changes
+.I ut_type
+to
+.BR USER_PROCESS ,
+changes
+.IR ut_time ,
+and sets
+.I ut_host
+and
+.IR ut_addr .
 Depending on
 .BR mingetty (8)
 (or
@@ -162,7 +203,9 @@ Depending on
 and
 .BR login (1),
 records may be located by
-\fIut_line\fP instead of the preferable \fIut_pid\fP.
+.I ut_line
+instead of the preferable
+.IR ut_pid .
 .P
 When
 .BR init (1)
@@ -181,36 +224,61 @@ with null bytes.
 .P
 .BR xterm (1)
 and other terminal emulators directly create a
-\fBUSER_PROCESS\fP record and generate the \fIut_id\fP by using the
+.B USER_PROCESS
+record and generate the
+.I ut_id
+by using the
 string that suffix part of the terminal name (the characters
 following
 .IR /dev/ [pt] ty ).
-If they find a \fBDEAD_PROCESS\fP for this ID,
+If they find a
+.B DEAD_PROCESS
+for this ID,
 they recycle it, otherwise they create a new entry.
 If they can, they
-will mark it as \fBDEAD_PROCESS\fP on exiting and it is advised that
-they null \fIut_line\fP, \fIut_time\fP, \fIut_user\fP, and \fIut_host\fP
+will mark it as
+.B DEAD_PROCESS
+on exiting and it is advised that
+they null
+.IR ut_line ,
+.IR ut_time ,
+.IR ut_user ,
+and
+.I ut_host
 as well.
 .P
 .BR telnetd (8)
-sets up a \fBLOGIN_PROCESS\fP entry and leaves the rest to
+sets up a
+.B LOGIN_PROCESS
+entry and leaves the rest to
 .BR login (1)
 as usual.
 After the telnet session ends,
 .BR telnetd (8)
 cleans up utmp in the described way.
 .P
-The \fIwtmp\fP file records all logins and logouts.
-Its format is exactly like \fIutmp\fP except that a null username
+The
+.I wtmp
+file records all logins and logouts.
+Its format is exactly like
+.I utmp
+except that a null username
 indicates a logout
 on the associated terminal.
-Furthermore, the terminal name \fB\[ti]\fP
-with username \fBshutdown\fP or \fBreboot\fP indicates a system
-shutdown or reboot and the pair of terminal names \fB|\fP/\fB}\fP
+Furthermore, the terminal name
+.B \[ti]
+with username
+.B shutdown
+or
+.B reboot
+indicates a system shutdown or reboot
+and the pair of terminal names
+.BR | / }
 logs the old/new system time when
 .BR date (1)
 changes it.
-\fIwtmp\fP is maintained by
+.I wtmp
+is maintained by
 .BR login (1),
 .BR init (1),
 and some versions of
@@ -257,16 +325,23 @@ Linux utmp entries conform neither to v7/BSD nor to System V; they are a
 mix of the two.
 .P
 v7/BSD has fewer fields; most importantly it lacks
-\fIut_type\fP, which causes native v7/BSD-like programs to display (for
+.IR ut_type ,
+which causes native v7/BSD-like programs to display (for
 example) dead or login entries.
 Further, there is no configuration file
 which allocates slots to sessions.
-BSD does so because it lacks \fIut_id\fP fields.
+BSD does so because it lacks
+.I ut_id
+fields.
 .P
-In Linux (as in System V), the \fIut_id\fP field of a
+In Linux (as in System V), the
+.I ut_id
+field of a
 record will never change once it has been set, which reserves that slot
 without needing a configuration file.
-Clearing \fIut_id\fP may result
+Clearing
+.I ut_id
+may result
 in race conditions leading to corrupted utmp entries and potential
 security holes.
 Clearing the abovementioned fields by filling them
@@ -277,8 +352,12 @@ Linux uses the BSD conventions for line contents, as documented above.
 .P
 .\" mtk: What is the referrent of "them" in the following sentence?
 .\" System V only uses the type field to mark them and logs
-.\" informative messages such as \fB"new time"\fP in the line field.
-System V has no \fIut_host\fP or \fIut_addr_v6\fP fields.
+.\" informative messages such as \f[B]"new time"\f[] in the line field.
+System V has no
+.I ut_host
+or
+.I ut_addr_v6
+fields.
 .SH NOTES
 Unlike various other
 systems, where utmp logging can be disabled by removing the file, utmp
@@ -290,10 +369,17 @@ then do not make utmp world readable.
 The file format is machine-dependent, so it is recommended that it be
 processed only on the machine architecture where it was created.
 .P
-Note that on \fIbiarch\fP platforms, that is, systems which can run both
+Note that on
+.I biarch
+platforms, that is, systems which can run both
 32-bit and 64-bit applications (x86-64, ppc64, s390x, etc.),
-\fIut_tv\fP is the same size in 32-bit mode as in 64-bit mode.
-The same goes for \fIut_session\fP and \fIut_time\fP if they are present.
+.I ut_tv
+is the same size in 32-bit mode as in 64-bit mode.
+The same goes for
+.I ut_session
+and
+.I ut_time
+if they are present.
 This allows data files and shared memory to be shared between
 32-bit and 64-bit applications.
 This is achieved by changing the type of
@@ -308,7 +394,10 @@ fields
 .I tv_sec
 and
 .IR tv_usec .
-Since \fIut_tv\fP may not be the same as \fIstruct timeval\fP,
+Since
+.I ut_tv
+may not be the same as
+.IR struct\~timeval ,
 then instead of the call:
 .P
 .in +4n
@@ -330,7 +419,7 @@ ut.ut_tv.tv_usec = tv.tv_usec;
 .EE
 .in
 .\" .P
-.\" Note that the \fIutmp\fP struct from libc5 has changed in libc6.
+.\" Note that the \f[I]utmp\f[] struct from libc5 has changed in libc6.
 .\" Because of this,
 .\" binaries using the old libc5 struct will corrupt
 .\" .IR /var/run/utmp " and/or " /var/log/wtmp .

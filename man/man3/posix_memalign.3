@@ -116,7 +116,9 @@ For all of these functions, the memory is not zeroed.
 and
 .BR pvalloc ()
 return a pointer to the allocated memory on success.
-On error, NULL is returned, and \fIerrno\fP is set
+On error, NULL is returned, and
+.I errno
+is set
 to indicate the error.
 .P
 .BR posix_memalign ()
@@ -205,18 +207,25 @@ glibc 2.0.
 .SS Headers
 Everybody agrees that
 .BR posix_memalign ()
-is declared in \fI<stdlib.h>\fP.
+is declared in
+.IR <stdlib.h> .
 .P
 On some systems
 .BR memalign ()
-is declared in \fI<stdlib.h>\fP instead of \fI<malloc.h>\fP.
+is declared in
+.I <stdlib.h>
+instead of
+.IR <malloc.h> .
 .P
 According to SUSv2,
 .BR valloc ()
-is declared in \fI<stdlib.h>\fP.
+is declared in
+.IR <stdlib.h> .
 .\" Libc4,5 and
-glibc declares it in \fI<malloc.h>\fP, and also in
-\fI<stdlib.h>\fP
+glibc declares it in
+.IR <malloc.h> ,
+and also in
+.I <stdlib.h>
 if suitable feature test macros are defined (see above).
 .SH NOTES
 On many systems there are alignment restrictions, for example, on buffers

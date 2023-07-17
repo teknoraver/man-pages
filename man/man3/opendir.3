@@ -41,7 +41,9 @@ Feature Test Macro Requirements for glibc (see
 The
 .BR opendir ()
 function opens a directory stream corresponding to the
-directory \fIname\fP, and returns a pointer to the directory stream.
+directory
+.IR name ,
+and returns a pointer to the directory stream.
 The stream is positioned at the first entry in the directory.
 .P
 The
@@ -82,13 +84,16 @@ The per-process limit on the number of open file descriptors has been reached.
 The system-wide limit on the total number of open files has been reached.
 .TP
 .B ENOENT
-Directory does not exist, or \fIname\fP is an empty string.
+Directory does not exist, or
+.I name
+is an empty string.
 .TP
 .B ENOMEM
 Insufficient memory to complete the operation.
 .TP
 .B ENOTDIR
-\fIname\fP is not a directory.
+.I name
+is not a directory.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).

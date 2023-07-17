@@ -24,16 +24,28 @@ Standard C library
 .SH DESCRIPTION
 The
 .BR memcmp ()
-function compares the first \fIn\fP bytes (each interpreted as
-.IR "unsigned char" )
-of the memory areas \fIs1\fP and \fIs2\fP.
+function compares the first
+.I n
+bytes (each interpreted as
+.IR "unsigned\ char" )
+of the memory areas
+.I s1
+and
+.IR s2 .
 .SH RETURN VALUE
 The
 .BR memcmp ()
 function returns an integer less than, equal to, or
-greater than zero if the first \fIn\fP bytes of \fIs1\fP is found,
-respectively, to be less than, to match, or be greater than the first
-\fIn\fP bytes of \fIs2\fP.
+greater than zero if the first
+.I n
+bytes of
+.I s1
+is found,
+respectively,
+to be less than, to match, or be greater than the first
+.I n
+bytes of
+.IR s2 .
 .P
 For a nonzero return value, the sign is determined by the sign of
 the difference between the first pair of bytes (interpreted as

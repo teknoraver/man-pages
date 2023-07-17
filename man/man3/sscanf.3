@@ -131,7 +131,7 @@ Each
 in
 .I format
 begins with either the character \[aq]%\[aq] or the character sequence
-"\fB%\fP\fIn\fP\fB$\fP"
+.RB \[dq] % \f[I]n\f[] $ \[dq]
 (see below for the distinction) followed by:
 .TP
 \[bu]
@@ -209,11 +209,11 @@ that specifies the type of input conversion to be performed.
 The conversion specifications in
 .I format
 are of two forms, either beginning with \[aq]%\[aq] or beginning with
-"\fB%\fP\fIn\fP\fB$\fP".
+.RB \[dq] % \f[I]n\f[] $ \[dq].
 The two forms should not be mixed in the same
 .I format
 string, except that a string containing
-"\fB%\fP\fIn\fP\fB$\fP"
+.RB \[dq] % \f[I]n\f[] $ \[dq]
 specifications can include
 .B %%
 and
@@ -225,7 +225,7 @@ specifications, then these correspond in order with successive
 .I pointer
 arguments.
 In the
-"\fB%\fP\fIn\fP\fB$\fP"
+.RB \[dq] % \f[I]n\f[] $ \[dq]
 form (which is specified in POSIX.1-2001, but not C99),
 .I n
 is a decimal integer that specifies that the converted input should
@@ -241,7 +241,14 @@ can appear in a conversion specification:
 .TP
 .B h
 Indicates that the conversion will be one of
-\fBd\fP, \fBi\fP, \fBo\fP, \fBu\fP, \fBx\fP, \fBX\fP, or \fBn\fP
+.BR d ,
+.BR i ,
+.BR o ,
+.BR u ,
+.BR x ,
+.BR X ,
+or
+.BR n ,
 and the next pointer is a pointer to a
 .I short
 or
@@ -268,7 +275,14 @@ This modifier was introduced in C99.
 .TP
 .B l
 Indicates either that the conversion will be one of
-\fBd\fP, \fBi\fP, \fBo\fP, \fBu\fP, \fBx\fP, \fBX\fP, or \fBn\fP
+.BR d ,
+.BR i ,
+.BR o ,
+.BR u ,
+.BR x ,
+.BR X ,
+or
+.BR n ,
 and the next pointer is a pointer to a
 .I long
 or
@@ -276,7 +290,10 @@ or
 (rather than
 .IR int ),
 or that the conversion will be one of
-\fBe\fP, \fBf\fP, or \fBg\fP
+.BR e ,
+.BR f ,
+or
+.BR g ,
 and the next pointer is a pointer to
 .I double
 (rather than
@@ -300,7 +317,7 @@ Indicates that the conversion will be one of
 .BR x ,
 .BR X ,
 or
-.B n
+.BR n ,
 and the next pointer is a pointer to a
 .I long long
 or
@@ -310,13 +327,21 @@ or
 .TP
 .B L
 Indicates that the conversion will be either
-\fBe\fP, \fBf\fP, or \fBg\fP
+.BR e ,
+.BR f ,
+or
+.BR g ,
 and the next pointer is a pointer to
 .I "long double"
 or
 (as a GNU extension)
 the conversion will be
-\fBd\fP, \fBi\fP, \fBo\fP, \fBu\fP, or \fBx\fP
+.BR d ,
+.BR i ,
+.BR o ,
+.BR u ,
+or
+.BR x ,
 and the next pointer is a pointer to
 .IR "long long" .
 .\" MTK, Jul 05: The following is no longer true for modern
@@ -678,7 +703,13 @@ modifiers that are not defined by C99 at all, that is, use
 instead of
 .B L
 in combination with
-\fBd\fP, \fBi\fP, \fBo\fP, \fBu\fP, \fBx\fP, and \fBX\fP
+.BR d ,
+.BR i ,
+.BR o ,
+.BR u ,
+.BR x ,
+and
+.B X
 conversions or
 .BR ll .
 .P
@@ -693,7 +724,7 @@ To use the dynamic allocation conversion specifier, specify
 as a length modifier (thus
 .B %ms
 or
-\fB%m[\fP\fIrange\fP\fB]\fP).
+.BR %m[ \f[I]range\f[] ] ).
 The caller must
 .BR free (3)
 the returned string, as in the following example:

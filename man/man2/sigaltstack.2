@@ -58,10 +58,17 @@ When establishing a signal handler using
 .BR sigaction (2),
 inform the system that the signal handler should be executed
 on the alternate signal stack by
-specifying the \fBSA_ONSTACK\fP flag.
+specifying the
+.B SA_ONSTACK
+flag.
 .P
-The \fIss\fP argument is used to specify a new
-alternate signal stack, while the \fIold_ss\fP argument
+The
+.I ss
+argument is used to specify
+a new alternate signal stack,
+while the
+.I old_ss
+argument
 is used to retrieve information about the currently
 established signal stack.
 If we are interested in performing just one
@@ -110,30 +117,47 @@ when this flag is supplied.
 .I ss.ss_sp
 This field specifies the starting address of the stack.
 When a signal handler is invoked on the alternate stack,
-the kernel automatically aligns the address given in \fIss.ss_sp\fP
+the kernel automatically aligns the address given in
+.I ss.ss_sp
 to a suitable address boundary for the underlying hardware architecture.
 .TP
 .I ss.ss_size
 This field specifies the size of the stack.
-The constant \fBSIGSTKSZ\fP is defined to be large enough
+The constant
+.B SIGSTKSZ
+is defined to be large enough
 to cover the usual size requirements for an alternate signal stack,
-and the constant \fBMINSIGSTKSZ\fP defines the minimum
+and the constant
+.B MINSIGSTKSZ
+defines the minimum
 size required to execute a signal handler.
 .P
-To disable an existing stack, specify \fIss.ss_flags\fP
-as \fBSS_DISABLE\fP.
+To disable an existing stack, specify
+.I ss.ss_flags
+as
+.BR SS_DISABLE .
 In this case, the kernel ignores any other flags in
 .I ss.ss_flags
 and the remaining fields
-in \fIss\fP.
+in
+.IR ss .
 .P
-If \fIold_ss\fP is not NULL, then it is used to return information about
+If
+.I old_ss
+is not NULL, then it is used to return information about
 the alternate signal stack which was in effect prior to the
 call to
 .BR sigaltstack ().
-The \fIold_ss.ss_sp\fP and \fIold_ss.ss_size\fP fields return the starting
-address and size of that stack.
-The \fIold_ss.ss_flags\fP may return either of the following values:
+The
+.I old_ss.ss_sp
+and
+.I old_ss.ss_size
+fields return
+the starting address
+and size of that stack.
+The
+.I old_ss.ss_flags
+may return either of the following values:
 .TP
 .B SS_ONSTACK
 The thread is currently executing on the alternate signal stack.
@@ -172,15 +196,23 @@ the alternate signal stack without changing them.
 .SH RETURN VALUE
 .BR sigaltstack ()
 returns 0 on success, or \-1 on failure with
-\fIerrno\fP set to indicate the error.
+.I errno
+set to indicate the error.
 .SH ERRORS
 .TP
 .B EFAULT
-Either \fIss\fP or \fIold_ss\fP is not NULL and points to an area
+Either
+.I ss
+or
+.I old_ss
+is not NULL and points to an area
 outside of the process's address space.
 .TP
 .B EINVAL
-\fIss\fP is not NULL and the \fIss_flags\fP field contains
+.I ss
+is not NULL and the
+.I ss_flags
+field contains
 an invalid flag.
 .TP
 .B ENOMEM
@@ -227,9 +259,12 @@ Establishing an alternate signal stack is useful if a thread
 expects that it may exhaust its standard stack.
 This may occur, for example, because the stack grows so large
 that it encounters the upwardly growing heap, or it reaches a
-limit established by a call to \fB\%setrlimit(RLIMIT_STACK, &rlim)\fP.
+limit established by a call to
+.IR "\%setrlimit(RLIMIT_STACK,\ &rlim)" .
 If the standard stack is exhausted, the kernel sends
-the thread a \fBSIGSEGV\fP signal.
+the thread a
+.B SIGSEGV
+signal.
 In these circumstances the only way to catch this signal is
 on an alternate signal stack.
 .P

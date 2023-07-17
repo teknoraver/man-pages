@@ -32,22 +32,28 @@ function is the wide-character equivalent
 of the
 .BR fgets (3)
 function.
-It reads a string of at most \fIn\-1\fP wide characters into the
-wide-character array pointed to by \fIws\fP,
+It reads a string of at most
+.I n\-1
+wide characters into the
+wide-character array pointed to by
+.IR ws ,
 and adds a terminating null wide character (L\[aq]\[rs]0\[aq]).
 It stops reading wide characters after it has encountered and
 stored a newline wide character.
 It also stops when end of stream is reached.
 .P
-The programmer must ensure that there is room for at least \fIn\fP wide
-characters at \fIws\fP.
+The programmer must ensure that there is room for at least
+.I n
+wide characters at
+.IR ws .
 .P
 For a nonlocking counterpart, see
 .BR unlocked_stdio (3).
 .SH RETURN VALUE
 The
 .BR fgetws ()
-function, if successful, returns \fIws\fP.
+function, if successful, returns
+.IR ws .
 If end of stream
 was already reached or if an error occurred, it returns NULL.
 .SH ATTRIBUTES

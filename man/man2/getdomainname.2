@@ -59,9 +59,13 @@ returns the null-terminated domain name in the character array
 which has a size of
 .I size
 bytes.
-If the null-terminated domain name requires more than \fIlen\fP bytes,
+If the null-terminated domain name requires more than
+.I len
+bytes,
 .BR getdomainname ()
-returns the first \fIlen\fP bytes (glibc) or gives an error (libc).
+returns the first
+.I len
+bytes (glibc) or gives an error (libc).
 .SH RETURN VALUE
 On success, zero is returned.
 On error, \-1 is returned, and

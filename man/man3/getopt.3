@@ -73,7 +73,9 @@ and
 are the argument count and array as passed to the
 .IR main ()
 function on program invocation.
-An element of \fIargv\fP that starts with \[aq]\-\[aq]
+An element of
+.I argv
+that starts with \[aq]\-\[aq]
 (and is not exactly "\-" or "\-\-")
 is an option element.
 The characters of this element
@@ -95,18 +97,26 @@ or when scanning a new argument vector.
 If
 .BR getopt ()
 finds another option character, it returns that
-character, updating the external variable \fIoptind\fP and a static
-variable \fInextchar\fP so that the next call to
+character, updating the external variable
+.I optind
+and a static variable
+.I nextchar
+so that the next call to
 .BR getopt ()
 can
 resume the scan with the following option character or
-\fIargv\fP-element.
+.IR argv -element.
 .P
 If there are no more option characters,
 .BR getopt ()
 returns \-1.
-Then \fIoptind\fP is the index in \fIargv\fP of the first
-\fIargv\fP-element that is not an option.
+Then
+.I optind
+is the index in
+.I argv
+of the first
+.IR argv -element
+that is not an option.
 .P
 .I optstring
 is a string containing the legitimate option characters.
@@ -119,12 +129,20 @@ If such a
 character is followed by a colon, the option requires an argument, so
 .BR getopt ()
 places a pointer to the following text in the same
-\fIargv\fP-element, or the text of the following \fIargv\fP-element, in
+.IR argv -element,
+or the text of the following
+.IR argv -element,
+in
 .IR optarg .
 Two colons mean an option takes
-an optional arg; if there is text in the current \fIargv\fP-element
+an optional arg; if there is text in the current
+.IR argv -element
 (i.e., in the same word as the option name itself, for example, "\-oarg"),
-then it is returned in \fIoptarg\fP, otherwise \fIoptarg\fP is set to zero.
+then it is returned in
+.IR optarg ,
+otherwise
+.I optarg
+is set to zero.
 This is a GNU extension.
 If
 .I optstring
@@ -142,11 +160,14 @@ glibc 2.
 .P
 By default,
 .BR getopt ()
-permutes the contents of \fIargv\fP as it
-scans, so that eventually all the nonoptions are at the end.
+permutes the contents of
+.I argv
+as it scans,
+so that eventually all the nonoptions are at the end.
 Two other scanning modes are also implemented.
 If the first character of
-\fIoptstring\fP is \[aq]+\[aq] or the environment variable
+.I optstring
+is \[aq]+\[aq] or the environment variable
 .B POSIXLY_CORRECT
 is set, then option processing stops as soon as a nonoption argument is
 encountered.
@@ -158,11 +179,17 @@ If
 behaviour is required in this case
 .I optstring
 will contain two \[aq]+\[aq] symbols.
-If the first character of \fIoptstring\fP is \[aq]\-\[aq], then
-each nonoption \fIargv\fP-element is handled as if it were the argument of
+If the first character of
+.I optstring
+is \[aq]\-\[aq],
+then each nonoption
+.IR argv -element
+is handled as if it were the argument of
 an option with character code 1.
 (This is used by programs that were
-written to expect options and other \fIargv\fP-elements in any order
+written to expect options and other
+.IR argv -elements
+in any order
 and that care about the ordering of the two.)
 The special argument "\-\-" forces an end of option-scanning regardless
 of the scanning mode.
@@ -196,7 +223,8 @@ has a nonzero value.)
 .IP \[bu]
 If the first character
 (following any optional \[aq]+\[aq] or \[aq]\-\[aq] described above)
-of \fIoptstring\fP
+of
+.I optstring
 is a colon (\[aq]:\[aq]), then
 .BR getopt ()
 likewise does not print an error message.
@@ -246,31 +274,44 @@ is the name of the long option.
 .TP
 .I has_arg
 is:
-\fBno_argument\fP (or 0) if the option does not take an argument;
-\fBrequired_argument\fP (or 1) if the option requires an argument; or
-\fBoptional_argument\fP (or 2) if the option takes an optional argument.
+.B no_argument
+(or 0) if the option does not take an argument;
+.B required_argument
+(or 1) if the option requires an argument; or
+.B optional_argument
+(or 2) if the option takes an optional argument.
 .TP
 .I flag
 specifies how results are returned for a long option.
-If \fIflag\fP
+If
+.I flag
 is NULL, then
 .BR getopt_long ()
-returns \fIval\fP.
-(For example, the calling program may set \fIval\fP to the equivalent short
+returns
+.IR val .
+(For example, the calling program may set
+.I val
+to the equivalent short
 option character.)
 Otherwise,
 .BR getopt_long ()
 returns 0, and
-\fIflag\fP points to a variable which is set to \fIval\fP if the
-option is found, but left unchanged if the option is not found.
+.I flag
+points to a variable which is set to
+.I val
+if the option is found,
+but left unchanged if the option is not found.
 .TP
-\fIval\fP
+.I val
 is the value to return, or to load into the variable pointed
-to by \fIflag\fP.
+to by
+.IR flag .
 .P
 The last element of the array has to be filled with zeros.
 .P
-If \fIlongindex\fP is not NULL, it
+If
+.I longindex
+is not NULL, it
 points to a variable which is set to the index of the long option relative to
 .IR longopts .
 .P
@@ -308,7 +349,11 @@ and
 also return the option
 character when a short option is recognized.
 For a long option, they
-return \fIval\fP if \fIflag\fP is NULL, and 0 otherwise.
+return
+.I val
+if
+.I flag
+is NULL, and 0 otherwise.
 Error and \-1 returns are the same as for
 .BR getopt (),
 plus \[aq]?\[aq] for an

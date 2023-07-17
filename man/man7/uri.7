@@ -29,7 +29,7 @@
 .SH NAME
 uri, url, urn \- uniform resource identifier (URI), including a URL or URN
 .SH SYNOPSIS
-.SY "\fIURI\fP \fR=\fP"
+.SY \f[I]URI\f[]\~\f[R]=\f[]
 .RI [\~ absoluteURI
 |
 .IR relativeURI \~]
@@ -37,7 +37,7 @@ uri, url, urn \- uniform resource identifier (URI), including a URL or URN
 .IR fragment \~]
 .YS
 .P
-.SY "\fIabsoluteURI\fP \fR=\fP"
+.SY \f[I]absoluteURI\f[]\~\f[R]=\f[]
 .I scheme\~\c
 .RB \[dq] : \[dq]
 .RI (\~ hierarchical_part
@@ -45,7 +45,7 @@ uri, url, urn \- uniform resource identifier (URI), including a URL or URN
 .IR opaque_part \~)
 .YS
 .P
-.SY "\fIrelativeURI\fP \fR=\fP"
+.SY \f[I]relativeURI\f[]\~\f[R]=\f[]
 .RI (\~ net_path
 |
 .I absolute_path
@@ -55,7 +55,7 @@ uri, url, urn \- uniform resource identifier (URI), including a URL or URN
 .IR query \~]
 .YS
 .P
-.SY "\fIscheme\fP \fR=\fP"
+.SY \f[I]scheme\f[]\~\f[R]=\f[]
 .RB \[dq] http \[dq]
 |
 .RB \[dq] ftp \[dq]
@@ -84,7 +84,7 @@ uri, url, urn \- uniform resource identifier (URI), including a URL or URN
 | \&...
 .YS
 .P
-.SY "\fIhierarchical_part\fP \fR=\fP"
+.SY \f[I]hierarchical_part\f[]\~\f[R]=\f[]
 .RI (\~ net_path
 |
 .IR absolute_path \~)
@@ -92,18 +92,18 @@ uri, url, urn \- uniform resource identifier (URI), including a URL or URN
 .IR query \~]
 .YS
 .P
-.SY "\fInet_path\fP \fR=\fP"
+.SY \f[I]net_path\f[]\~\f[R]=\f[]
 .RB \[dq] // \[dq]\~\c
 .I authority
 .RI [\~ absolute_path \~]
 .YS
 .P
-.SY "\fIabsolute_path\fP \fR=\fP"
+.SY \f[I]absolute_path\f[]\~\f[R]=\f[]
 .RB \[dq] / \[dq]\~\c
 .I path_segments
 .YS
 .P
-.SY "\fIrelative_path\fP \fR=\fP"
+.SY \f[I]relative_path\f[]\~\f[R]=\f[]
 .I relative_segment
 .RI [\~ absolute_path \~]
 .YS
@@ -649,10 +649,12 @@ Technically the fragment isn't part of the URI.
 .P
 For information on how to embed URIs (including URLs) in a data format,
 see documentation on that format.
-HTML uses the format <A HREF="\fIuri\fP">
+HTML uses the format
+.RI "<A\ HREF=\[dq]" uri \[dq]>
 .I text
 </A>.
-Texinfo files use the format @uref{\fIuri\fP}.
+Texinfo files use the format
+.RI @uref{ uri }.
 Man and mdoc have the recently added UR macro, or just include the
 URI in the text (viewers should be able to detect :// as part of a URI).
 .P

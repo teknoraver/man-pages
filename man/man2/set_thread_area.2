@@ -150,10 +150,12 @@ returns the thread area pointer value
 .SH ERRORS
 .TP
 .B EFAULT
-\fIu_info\fP is an invalid pointer.
+.I u_info
+is an invalid pointer.
 .TP
 .B EINVAL
-\fIu_info\->entry_number\fP is out of bounds.
+.I u_info\->entry_number
+is out of bounds.
 .TP
 .B ENOSYS
 .BR get_thread_area ()

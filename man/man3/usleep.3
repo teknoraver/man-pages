@@ -43,7 +43,9 @@ Feature Test Macro Requirements for glibc (see
 The
 .BR usleep ()
 function suspends execution of the calling thread for
-(at least) \fIusec\fP microseconds.
+(at least)
+.I usec
+microseconds.
 The sleep may be lengthened slightly
 by any system activity or by the time spent processing the call or by the
 granularity of system timers.
@@ -61,7 +63,9 @@ Interrupted by a signal; see
 .BR signal (7).
 .TP
 .B EINVAL
-\fIusec\fP is greater than or equal to 1000000.
+.I usec
+is greater than or equal to
+.BR 1000000 .
 (On systems where that is considered an error.)
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see

@@ -49,23 +49,54 @@ The
 system call
 can be used to send any signal to any process group or process.
 .P
-If \fIpid\fP is positive, then signal \fIsig\fP is sent to the
-process with the ID specified by \fIpid\fP.
+If
+.I pid
+is positive,
+then signal
+.I sig
+is sent to
+the process with the ID specified by
+.IR pid .
 .P
-If \fIpid\fP equals 0, then \fIsig\fP is sent to every process in the
-process group of the calling process.
+If
+.I pid
+equals 0,
+then
+.I sig
+is sent to
+every process in
+the process group of the calling process.
 .P
-If \fIpid\fP equals \-1, then \fIsig\fP is sent to every process
-for which the calling process has permission to send signals,
-except for process 1 (\fIinit\fP), but see below.
+If
+.I pid
+equals \-1,
+then
+.I sig
+is sent to
+every process for which
+the calling process has permission to send signals,
+except for process 1
+.RI ( init ),
+but see below.
 .P
-If \fIpid\fP is less than \-1, then \fIsig\fP is sent to every process
-in the process group whose ID is \fI\-pid\fP.
+If
+.I pid
+is less than \-1,
+then
+.I sig
+is sent to
+every process in
+the process group whose ID is
+.IR \-pid .
 .P
-If \fIsig\fP is 0, then no signal is sent,
+If
+.I sig
+is 0,
+then no signal is sent,
 but existence and permission checks are still performed;
-this can be used to check for the existence of a process ID or
-process group ID that the caller is permitted to signal.
+this can be used to
+check for the existence of
+a process ID or process group ID that the caller is permitted to signal.
 .P
 For a process to have permission to send a signal,
 it must either be privileged (under Linux: have the
@@ -128,11 +159,16 @@ has explicitly installed signal handlers.
 This is done to assure the
 system is not brought down accidentally.
 .P
-POSIX.1 requires that \fIkill(\-1,sig)\fP send \fIsig\fP
+POSIX.1 requires that
+.I kill(\-1,sig)
+send
+.I sig
 to all processes that the calling process may send signals to,
 except possibly for some implementation-defined system processes.
-Linux allows a process to signal itself, but on Linux the call
-\fIkill(\-1,sig)\fP does not signal the calling process.
+Linux allows a process to signal itself,
+but on Linux the call
+.I kill(\-1,sig)
+does not signal the calling process.
 .P
 POSIX.1 requires that if a process sends a signal to itself,
 and the sending thread does not have the signal blocked,
@@ -149,8 +185,11 @@ there was a bug that meant that when sending signals to a process group,
 .BR kill ()
 failed with the error
 .B EPERM
-if the caller did not have permission to send the signal to \fIany\fP (rather
-than \fIall\fP) of the members of the process group.
+if the caller did not have permission to send the signal to
+.I any
+(rather than
+.IR all )
+of the members of the process group.
 Notwithstanding this error return, the signal was still delivered
 to all of the processes for which the caller had permission to signal.
 .SH SEE ALSO

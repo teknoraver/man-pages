@@ -45,17 +45,29 @@ struct timeb {
 .EE
 .in
 .P
-Here \fItime\fP is the number of seconds since the Epoch,
-and \fImillitm\fP is the number of milliseconds since \fItime\fP
+Here
+.I time
+is the number of seconds since the Epoch,
+and
+.I millitm
+is the number of milliseconds since
+.I time
 seconds since the Epoch.
-The \fItimezone\fP field is the local timezone measured in minutes
+The
+.I timezone
+field is the local timezone measured in minutes
 of time west of Greenwich (with a negative value indicating minutes
 east of Greenwich).
-The \fIdstflag\fP field
+The
+.I dstflag
+field
 is a flag that, if nonzero, indicates that Daylight Saving time
 applies locally during the appropriate part of the year.
 .P
-POSIX.1-2001 says that the contents of the \fItimezone\fP and \fIdstflag\fP
+POSIX.1-2001 says that the contents of the
+.I timezone
+and
+.I dstflag
 fields are unspecified; avoid relying on them.
 .SH RETURN VALUE
 This function always returns 0.

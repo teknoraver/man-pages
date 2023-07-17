@@ -118,10 +118,13 @@ or
 .BR fsetpos (3)
 operation between write and read operations on such a stream.
 This operation may be an apparent no-op
-(as in \fIfseek(..., 0L, SEEK_CUR)\fP
+(as in
+.I "fseek(...,\ 0L,\ SEEK_CUR)"
 called for its synchronizing side effect).
 .P
-Opening a file in append mode (\fBa\fP as the first character of
+Opening a file in append mode
+.RB ( a
+as the first character of
 .IR mode )
 causes all subsequent write operations to this stream to occur
 at end-of-file, as if preceded by the call:
@@ -139,14 +142,14 @@ with the following flags:
 .TS
 allbox;
 lb lb
-c l.
+ci l.
 fopen() mode	open() flags
-\fIr\fP	O_RDONLY
-\fIw\fP	O_WRONLY | O_CREAT | O_TRUNC
-\fIa\fP	O_WRONLY | O_CREAT | O_APPEND
-\fIr+\fP	O_RDWR
-\fIw+\fP	O_RDWR | O_CREAT | O_TRUNC
-\fIa+\fP	O_RDWR | O_CREAT | O_APPEND
+r	O_RDONLY
+w	O_WRONLY | O_CREAT | O_TRUNC
+a	O_WRONLY | O_CREAT | O_APPEND
+r+	O_RDWR
+w+	O_RDWR | O_CREAT | O_TRUNC
+a+	O_RDWR | O_CREAT | O_APPEND
 .TE
 .RE
 .\"

@@ -149,7 +149,8 @@ The bits that may be set/returned in
 .I events
 and
 .I revents
-are defined in \fI<poll.h>\fP:
+are defined in
+.IR <poll.h> :
 .TP
 .B POLLIN
 There is data to read.
@@ -487,8 +488,8 @@ Suppose we run the program in one terminal, asking it to open a FIFO:
 .P
 .in +4n
 .EX
-$ \fBmkfifo myfifo\fP
-$ \fB./poll_input myfifo\fP
+.RB $ " mkfifo myfifo" ;
+.RB $ " ./poll_input myfifo" ;
 .EE
 .in
 .P
@@ -497,7 +498,7 @@ write some data to it, and close the FIFO:
 .P
 .in +4n
 .EX
-$ \fBecho aaaaabbbbbccccc > myfifo\fP
+.RB $ " echo aaaaabbbbbccccc > myfifo" ;
 .EE
 .in
 .P

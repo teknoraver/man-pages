@@ -70,21 +70,27 @@ is automatically seeded with a value of 1.
 .P
 The
 .BR initstate ()
-function allows a state array \fIstate\fP to
+function allows a state array
+.I state
+to
 be initialized for use by
 .BR random ().
 The size of the state array
-\fIn\fP is used by
+.I n
+is used by
 .BR initstate ()
 to decide how sophisticated a
 random number generator it should use\[em]the larger the state array,
 the better the random numbers will be.
-Current "optimal" values for the size of the state array \fIn\fP are
+Current "optimal" values for the size of the state array
+.I n
+are
 8, 32, 64, 128, and 256 bytes; other amounts will be rounded down to
 the nearest known amount.
 Using less than 8 bytes results in an error.
-\fIseed\fP is the seed for the
-initialization, which specifies a starting point for the random number
+.I seed
+is the seed for the initialization,
+which specifies a starting point for the random number
 sequence, and provides for restarting at the same point.
 .P
 The
@@ -92,12 +98,15 @@ The
 function changes the state array used by the
 .BR random ()
 function.
-The state array \fIstate\fP is used for
+The state array
+.I state
+is used for
 random number generation until the next call to
 .BR initstate ()
 or
 .BR setstate ().
-\fIstate\fP must first have been initialized
+.I state
+must first have been initialized
 using
 .BR initstate ()
 or be the result of a previous call of

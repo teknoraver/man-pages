@@ -194,19 +194,19 @@ is a structure of the following form:
 struct clone_args {
     u64 flags;        /* Flags bit mask */
     u64 pidfd;        /* Where to store PID file descriptor
-                         (\fIint *\fP) */
+                         (\f[I]int *\f[]) */
     u64 child_tid;    /* Where to store child TID,
-                         in child\[aq]s memory (\fIpid_t *\fP) */
+                         in child\[aq]s memory (\f[I]pid_t *\f[]) */
     u64 parent_tid;   /* Where to store child TID,
-                         in parent\[aq]s memory (\fIpid_t *\fP) */
+                         in parent\[aq]s memory (\f[I]pid_t *\f[]) */
     u64 exit_signal;  /* Signal to deliver to parent on
                          child termination */
     u64 stack;        /* Pointer to lowest byte of stack */
     u64 stack_size;   /* Size of stack */
     u64 tls;          /* Location of new TLS */
-    u64 set_tid;      /* Pointer to a \fIpid_t\fP array
+    u64 set_tid;      /* Pointer to a \f[I]pid_t\f[] array
                          (since Linux 5.5) */
-    u64 set_tid_size; /* Number of elements in \fIset_tid\fP
+    u64 set_tid_size; /* Number of elements in \f[I]set_tid\f[]
                          (since Linux 5.5) */
     u64 cgroup;       /* File descriptor for target cgroup
                          of child (since Linux 5.7) */
@@ -267,7 +267,7 @@ lb lb lb
 l l l
 li li l.
 clone()	clone3()	Notes
-	\fIcl_args\fP field
+	\f[I]cl_args\f[] field
 flags & \[ti]0xff	flags	T{
 For most flags; details below
 T}
@@ -276,11 +276,11 @@ child_tid	child_tid	See CLONE_CHILD_SETTID
 parent_tid	parent_tid	See CLONE_PARENT_SETTID
 flags & 0xff	exit_signal
 stack	stack
-\fP---\fP	stack_size
+\f[R]---\f[]	stack_size
 tls	tls	See CLONE_SETTLS
-\fP---\fP	set_tid	See below for details
-\fP---\fP	set_tid_size
-\fP---\fP	cgroup	See CLONE_INTO_CGROUP
+\f[R]---\f[]	set_tid	See below for details
+\f[R]---\f[]	set_tid_size
+\f[R]---\f[]	cgroup	See CLONE_INTO_CGROUP
 .TE
 .RE
 .\"
@@ -1512,7 +1512,8 @@ state.
 .BR CLONE_NEWPID ,
 or
 .B CLONE_NEWUTS
-was specified by an unprivileged process (process without \fBCAP_SYS_ADMIN\fP).
+was specified by an unprivileged process (process without
+.BR CAP_SYS_ADMIN ).
 .TP
 .B EPERM
 .B CLONE_PID
@@ -1665,7 +1666,7 @@ an additional argument is supplied:
 .in +4n
 .EX
 .BI "long clone(unsigned long " flags ", void *" stack ,
-.BI "           int " stack_size , "\fR         /* Size of stack */"
+.BI "           int " stack_size , "\f[R]         /* Size of stack */\f[]"
 .BI "           int *" parent_tid ", int *" child_tid ,
 .BI "           unsigned long " tls );
 .EE
@@ -1686,8 +1687,8 @@ On ia64, a different interface is used:
 .BI "int __clone2(typeof(int (void *)) *" fn ,
 .BI "             void *" stack_base ", size_t " stack_size ,
 .BI "             int " flags ", void *" "arg" ", ..."
-.BI "          \fR/*\fP pid_t *" parent_tid ", struct user_desc *" tls ,
-.BI "             pid_t *" child_tid " \fR*/\fP );"
+.BI "          \f[R]/*\f[] pid_t *" parent_tid ", struct user_desc *" tls ,
+.BI "             pid_t *" child_tid " \f[R]*/\f[] );"
 .EE
 .in
 .P
@@ -1700,7 +1701,7 @@ prototype on microblaze):
 .in +4n
 .EX
 .BI "long clone2(unsigned long " flags ", void *" stack_base ,
-.BI "            int " stack_size , "\fR         /* Size of stack */"
+.BI "            int " stack_size , "\f[R]         /* Size of stack */\f[]"
 .BI "            int *" parent_tid ", int *" child_tid ,
 .BI "            unsigned long " tls );
 .EE

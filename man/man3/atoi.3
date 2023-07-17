@@ -40,7 +40,9 @@ Feature Test Macro Requirements for glibc (see
 The
 .BR atoi ()
 function converts the initial portion of the string
-pointed to by \fInptr\fP to
+pointed to by
+.I nptr
+to
 .IR int .
 The behavior is the same as
 .P
@@ -61,7 +63,10 @@ and
 functions behave the same as
 .BR atoi (),
 except that they convert the initial portion of the
-string to their return type of \fIlong\fP or \fIlong long\fP.
+string to their return type of
+.I long
+or
+.IR long\~long .
 .SH RETURN VALUE
 The converted value or 0 on error.
 .SH ATTRIBUTES

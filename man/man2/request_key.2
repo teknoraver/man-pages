@@ -451,10 +451,10 @@ we first create a suitable entry in the file
 .P
 .in +4n
 .EX
-$ sudo sh
-# \fBecho \[aq]create user mtk:* *   /bin/keyctl instantiate %k %c %S\[aq] \[rs]\fP
-          \fB> /etc/request\-key.conf\fP
-# \fBexit\fP
+.RB $ " sudo sh" ;
+.RB # " echo \[aq]create user mtk:* *   /bin/keyctl instantiate %k %c %S\[aq] \[rs]"
+.BR "          > /etc/request\-key.conf" ;
+.RB # " exit" ;
 .EE
 .in
 .P
@@ -489,8 +489,8 @@ to verify that the requested key has been instantiated:
 .P
 .in +4n
 .EX
-$ \fB./t_request_key user mtk:key1 "Payload data"\fP
-$ \fBgrep \[aq]2dddaf50\[aq] /proc/keys\fP
+.RB $ " ./t_request_key user mtk:key1 \[dq]Payload data\[dq]" ;
+.RB $ " grep \[aq]2dddaf50\[aq] /proc/keys" ;
 2dddaf50 I\-\-Q\-\-\-  1 perm 3f010000  1000  1000 user  mtk:key1: 12
 .EE
 .in

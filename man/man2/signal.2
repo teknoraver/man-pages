@@ -33,10 +33,13 @@ the behavior of
 .BR signal ()
 varies across UNIX versions,
 and has also varied historically across different versions of Linux.
-\fBAvoid its use\fP: use
+.BR "Avoid its use" :
+use
 .BR sigaction (2)
 instead.
-See \fIPortability\fP below.
+See
+.I Portability
+below.
 .P
 .BR signal ()
 sets the disposition of the signal
@@ -68,7 +71,9 @@ occurs.
 If the disposition is set to a function,
 then first either the disposition is reset to
 .BR SIG_DFL ,
-or the signal is blocked (see \fIPortability\fP below), and then
+or the signal is blocked (see
+.I Portability
+below), and then
 .I handler
 is called with argument
 .IR signum .

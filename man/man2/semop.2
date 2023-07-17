@@ -410,7 +410,13 @@ list; see
 .BR clone (2)
 for details.
 .P
-The \fIsemval\fP, \fIsempid\fP, \fIsemzcnt\fP, and \fIsemnct\fP values
+The
+.IR semval ,
+.IR sempid ,
+.IR semzcnt ,
+and
+.I semnct
+values
 for a semaphore can all be retrieved using appropriate
 .BR semctl (2)
 calls.
@@ -491,7 +497,7 @@ and then increment the semaphore value by one.
 struct sembuf sops[2];
 int semid;
 \&
-/* Code to set \fIsemid\fP omitted */
+/* Code to set \f[I]semid\f[] omitted */
 \&
 sops[0].sem_num = 0;        /* Operate on semaphore 0 */
 sops[0].sem_op = 0;         /* Wait for value to equal 0 */

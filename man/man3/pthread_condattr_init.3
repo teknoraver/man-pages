@@ -23,8 +23,9 @@ condition creation attributes
 .SH DESCRIPTION
 Condition attributes can be specified at condition creation time,
 by passing a condition attribute object
-as second argument to \fBpthread_cond_init\fP(3).
-Passing \fBNULL\fP is equivalent to
+as second argument to
+.BR pthread_cond_init (3).
+Passing NULL is equivalent to
 passing a condition attribute object
 with all attributes set to their default values.
 .P
@@ -32,17 +33,22 @@ The LinuxThreads implementation supports no attributes for conditions.
 The functions on condition attributes are
 included only for compliance with the POSIX standard.
 .P
-\fBpthread_condattr_init\fP
-initializes the condition attribute object \fIattr\fP
+.BR pthread_condattr_init ()
+initializes the condition attribute object
+.I attr
 and fills it with default values for the attributes.
-\fBpthread_condattr_destroy\fP destroys a condition attribute object,
+.BR pthread_condattr_destroy ()
+destroys a condition attribute object,
 which must not be reused until it is reinitialized.
 Both functions do nothing in the LinuxThreads implementation.
 .
 .
 .SH "RETURN VALUE"
-\fBpthread_condattr_init\fP and \fBpthread_condattr_destroy\fP always return 0.
+.BR pthread_condattr_init ()
+and
+.BR pthread_condattr_destroy ()
+always return 0.
 .
 .
 .SH "SEE ALSO"
-\fBpthread_cond_init\fP(3).
+.BR pthread_cond_init (3).

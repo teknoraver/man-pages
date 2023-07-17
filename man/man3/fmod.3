@@ -79,7 +79,8 @@ but the second
 usually costs way more than the one branch.
 .SH RETURN VALUE
 On success, these
-functions return the value \fIx\fP\ \-\ \fIn\fP*\fIy\fP,
+functions return the value
+.IR "x\ \-\ n*y" ,
 for some integer
 .IR n ,
 such that the returned value has the same sign as
@@ -118,7 +119,7 @@ when calling these functions.
 .P
 The following errors can occur:
 .TP
-Domain error: \fIx\fP is an infinity
+Domain error: \f[I]x\f[] is an infinity
 .I errno
 is set to
 .B EDOM
@@ -127,7 +128,7 @@ An invalid floating-point exception
 .RB ( FE_INVALID )
 is raised.
 .TP
-Domain error: \fIy\fP is zero
+Domain error: \f[I]y\f[] is zero
 .I errno
 is set to
 .BR EDOM .

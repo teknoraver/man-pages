@@ -318,12 +318,12 @@ create two semaphore sets using those files, and then list the sets using
 .P
 .in +4n
 .EX
-$ \fBtouch mykey mykey2\fP
-$ \fB./t_semget \-c mykey p 1\fP
+.RB $ " touch mykey mykey2" ;
+.RB $ " ./t_semget \-c mykey p 1" ;
 ID = 9
-$ \fB./t_semget \-c mykey2 p 2\fP
+.RB $ " ./t_semget \-c mykey2 p 2" ;
 ID = 10
-$ \fBipcs \-s\fP
+.RB $ " ipcs \-s" ;
 \&
 \-\-\-\-\-\- Semaphore Arrays \-\-\-\-\-\-\-\-
 key        semid      owner      perms      nsems
@@ -342,7 +342,7 @@ it returns the ID of the already existing semaphore set:
 .P
 .in +4n
 .EX
-$ \fB./t_semget \-c mykey p 1\fP
+.RB $ " ./t_semget \-c mykey p 1" ;
 ID = 9
 .EE
 .in
@@ -355,11 +355,11 @@ arguments that have the same inode number:
 .P
 .in +4n
 .EX
-$ \fBln mykey link\fP
-$ \fBls \-i1 link mykey\fP
+.RB $ " ln mykey link" ;
+.RB $ " ls \-i1 link mykey" ;
 2233197 link
 2233197 mykey
-$ \fB./t_semget link p 1\fP       # Generates same key as \[aq]mykey\[aq]
+.RB $ " ./t_semget link p 1" ";       # Generates same key as \[aq]mykey\[aq]"
 ID = 9
 .EE
 .in

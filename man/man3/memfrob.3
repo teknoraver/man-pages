@@ -25,8 +25,11 @@ Standard C library
 .SH DESCRIPTION
 The
 .BR memfrob ()
-function obfuscates the first \fIn\fP bytes of the
-memory area \fIs\fP by exclusive-ORing each character with the number
+function obfuscates the first
+.I n
+bytes of the memory area
+.I s
+by exclusive-ORing each character with the number
 42.
 The effect can be reversed by using
 .BR memfrob ()

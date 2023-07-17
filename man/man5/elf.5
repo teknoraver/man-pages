@@ -1313,7 +1313,9 @@ Different files with the same build ID should contain the same executable
 content.
 See the
 .B \-\-build\-id
-option to the GNU linker (\fBld\fR (1)) for more details.
+option to the GNU linker
+.RB ( ld (1))
+for more details.
 This section is of type
 .BR SHT_NOTE .
 The only attribute used is
@@ -1877,8 +1879,10 @@ Note sections contain a series of notes (see the
 .I struct
 definitions below).
 Each note is followed by the name field (whose length is defined in
-\fIn_namesz\fR) and then by the descriptor field (whose length is defined in
-\fIn_descsz\fR) and whose starting address has a 4 byte alignment.
+.IR n_namesz )
+and then by the descriptor field (whose length is defined in
+.IR n_descsz )
+and whose starting address has a 4 byte alignment.
 Neither field is defined in the note struct due to their arbitrary lengths.
 .P
 An example for parsing out two consecutive notes should clarify their layout
@@ -2098,7 +2102,9 @@ The desc field will be 4 words:
 .RS
 .IP [0] 5
 OS descriptor
-(\fBELF_NOTE_OS_LINUX\fR, \fBELF_NOTE_OS_GNU\fR, and so on)`
+.RB ( ELF_NOTE_OS_LINUX ,
+.BR ELF_NOTE_OS_GNU ,
+and so on)
 .IP [1]
 major version of the ABI
 .IP [2]

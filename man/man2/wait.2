@@ -160,7 +160,9 @@ is not NULL,
 .BR wait ()
 and
 .BR waitpid ()
-store status information in the \fIint\fP to which it points.
+store status information in the
+.I int
+to which it points.
 This integer can be inspected with the following macros (which
 take the integer itself as an argument, not a pointer to it,
 as is done in
@@ -240,11 +242,11 @@ and
 .I id
 arguments select the child(ren) to wait for, as follows:
 .TP
-.IR idtype " == " \fBP_PID\fP
+.IR idtype " == " \f[B]P_PID\f[]
 Wait for the child whose process ID matches
 .IR id .
 .TP
-.IR idtype " == " \fBP_PIDFD\fP " (since Linux 5.4)"
+.IR idtype " == " \f[B]P_PIDFD\f[] " (since Linux 5.4)"
 .\" commit 3695eae5fee0605f316fbaad0b9e3de791d7dfaf
 Wait for the child referred to by the PID file descriptor specified in
 .IR id .
@@ -252,7 +254,7 @@ Wait for the child referred to by the PID file descriptor specified in
 .BR pidfd_open (2)
 for further information on PID file descriptors.)
 .TP
-.IR idtype " == " \fBP_PGID\fP
+.IR idtype " == " \f[B]P_PGID\f[]
 Wait for any child whose process group ID matches
 .IR id .
 Since Linux 5.4,
@@ -262,7 +264,7 @@ if
 is zero, then wait for any child that is in the same process group
 as the caller's process group at the time of the call.
 .TP
-.IR idtype " == " \fBP_ALL\fP
+.IR idtype " == " \f[B]P_ALL\f[]
 Wait for any child;
 .I id
 is ignored.
@@ -300,18 +302,18 @@ fills in the following fields of the
 structure pointed to by
 .IR infop :
 .TP
-\fIsi_pid\fP
+.I si_pid
 The process ID of the child.
 .TP
-\fIsi_uid\fP
+.I si_uid
 The real user ID of the child.
 (This field is not set on most other implementations.)
 .TP
-\fIsi_signo\fP
+.I si_signo
 Always set to
 .BR SIGCHLD .
 .TP
-\fIsi_status\fP
+.I si_status
 Either the exit status of the child, as given to
 .BR _exit (2)
 (or
@@ -321,7 +323,7 @@ The
 .I si_code
 field can be used to determine how to interpret this field.
 .TP
-\fIsi_code\fP
+.I si_code
 Set to one of:
 .B CLD_EXITED
 (child called
@@ -438,7 +440,9 @@ does not exist or is not a child of the calling process.
 .B SIGCHLD
 is set to
 .BR SIG_IGN .
-See also the \fILinux Notes\fP section about threads.)
+See also the
+.I Linux\~Notes
+section about threads.)
 .TP
 .B EINTR
 .B WNOHANG

@@ -41,9 +41,9 @@ typedef struct {
     void       *dli_fbase;  /* Base address at which shared
                                object is loaded */
     const char *dli_sname;  /* Name of symbol whose definition
-                               overlaps \fIaddr\fP */
+                               overlaps \f[I]addr\f[] */
     void       *dli_saddr;  /* Exact address of symbol named
-                               in \fIdli_sname\fP */
+                               in \f[I]dli_sname\f[] */
 } Dl_info;
 .EE
 .in

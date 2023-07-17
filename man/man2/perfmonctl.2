@@ -32,7 +32,8 @@ applies the operation
 .I cmd
 to the input arguments specified by
 .IR arg .
-The number of arguments is defined by \fInarg\fR.
+The number of arguments is defined by
+.IR narg .
 The
 .I fd
 argument specifies the perfmon context to operate on.
@@ -52,7 +53,8 @@ The
 parameter is ignored.
 A new perfmon context is created as specified in
 .I ctxt
-and its file descriptor is returned in \fIctxt\->ctx_fd\fR.
+and its file descriptor is returned in
+.IR ctxt\->ctx_fd .
 .IP
 The file descriptor can be used in subsequent calls to
 .BR perfmonctl ()

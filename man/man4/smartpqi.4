@@ -22,7 +22,7 @@ smartpqi \- Microchip Smart Storage SCSI driver
 .SH DESCRIPTION
 .B smartpqi
 is a SCSI driver for Microchip Smart Storage controllers.
-.SS Supported \f[BI]ioctl\fP\/() operations
+.SS Supported \f[BI]ioctl\f[]() operations
 For compatibility with applications written for the
 .BR cciss (4)
 and
@@ -92,11 +92,11 @@ The default action is
 .TS
 l l
 ---
-l l.
+lB l.
 parameter	action
-\fBnone\fP	take controller offline only
-\fBreboot\fP	reboot the system
-\fBpanic\fP	panic the system
+none	take controller offline only
+reboot	reboot the system
+panic	panic the system
 .TE
 .TP
 .BR expose_ld_first= { 0 | 1 }
@@ -134,7 +134,7 @@ with device nodes named
 and
 .IR /dev/sg *,
 respectively.
-.SS SmartPQI-specific host attribute files in \f[BI]/sys\fP
+.SS SmartPQI-specific host attribute files in \f[BI]/sys\f[]
 .TP
 .IR /sys/class/scsi_host/host * /rescan
 The host
@@ -304,7 +304,7 @@ $ \c
 .B echo 1 > /sys/class/scsi_host/host1/enable_r6_writes
 .EE
 .in
-.SS SmartPQI-specific disk attribute files in \f[BI]/sys\fP
+.SS SmartPQI-specific disk attribute files in \f[BI]/sys\f[]
 In the file specifications below,
 .I c
 stands for the number of the appropriate SCSI controller,

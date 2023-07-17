@@ -92,7 +92,8 @@ an arbitrary point in the past.
 The return value may overflow the possible range of type
 .IR clock_t .
 On error,
-\fI(clock_t)\ \-1\fP is returned,
+.I (clock_t)\ \-1
+is returned,
 and
 .I errno
 is set to indicate the error.
@@ -121,7 +122,9 @@ POSIX.1-2001,
 SVr4,
 4.3BSD.
 .P
-In POSIX.1-1996 the symbol \fBCLK_TCK\fP (defined in
+In POSIX.1-1996 the symbol
+.B CLK_TCK
+(defined in
 .IR <time.h> )
 is mentioned as obsolescent.
 It is obsolete now.
@@ -154,7 +157,8 @@ is measured has varied across kernel versions.
 On Linux 2.4 and earlier,
 this point is the moment the system was booted.
 Since Linux 2.6,
-this point is \fI(2\[ha]32/HZ) \- 300\fP
+this point is
+.I (2\[ha]32/HZ)\ \-\ 300
 seconds before system boot time.
 This variability across kernel versions (and across UNIX implementations),
 combined with the fact that the returned value may overflow the range of

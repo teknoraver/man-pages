@@ -53,16 +53,22 @@ POSIX.2 leaves some aspects of RE syntax and semantics open;
 "\*(dg" marks decisions on these aspects that
 may not be fully portable to other POSIX.2 implementations.
 .P
-A (modern) RE is one\*(dg or more nonempty\*(dg \fIbranches\fR,
+A (modern) RE is one\*(dg or more nonempty\*(dg
+.IR branches ,
 separated by \[aq]|\[aq].
 It matches anything that matches one of the branches.
 .P
-A branch is one\*(dg or more \fIpieces\fR, concatenated.
+A branch is one\*(dg or more
+.IR pieces ,
+concatenated.
 It matches a match for the first, followed by a match for the second,
 and so on.
 .P
-A piece is an \fIatom\fR possibly followed
-by a single\*(dg \[aq]*\[aq], \[aq]+\[aq], \[aq]?\[aq], or \fIbound\fR.
+A piece is an
+.I atom
+possibly followed
+by a single\*(dg \[aq]*\[aq], \[aq]+\[aq], \[aq]?\[aq], or
+.IR bound .
 An atom followed by \[aq]*\[aq]
 matches a sequence of 0 or more matches of the atom.
 An atom followed by \[aq]+\[aq]
@@ -70,7 +76,9 @@ matches a sequence of 1 or more matches of the atom.
 An atom followed by \[aq]?\[aq]
 matches a sequence of 0 or 1 matches of the atom.
 .P
-A \fIbound\fR is \[aq]{\[aq] followed by an unsigned decimal integer,
+A
+.I bound
+is \[aq]{\[aq] followed by an unsigned decimal integer,
 possibly followed by \[aq],\[aq]
 possibly followed by another unsigned decimal integer,
 always followed by \[aq]}\[aq].
@@ -78,24 +86,45 @@ The integers must lie between 0 and
 .B RE_DUP_MAX
 (255\*(dg) inclusive,
 and if there are two of them, the first may not exceed the second.
-An atom followed by a bound containing one integer \fIi\fR
+An atom followed by a bound containing one integer
+.I i
 and no comma matches
-a sequence of exactly \fIi\fR matches of the atom.
+a sequence of exactly
+.I i
+matches of the atom.
 An atom followed by a bound
-containing one integer \fIi\fR and a comma matches
-a sequence of \fIi\fR or more matches of the atom.
+containing one integer
+.I i
+and a comma matches
+a sequence of
+.I i
+or more matches of the atom.
 An atom followed by a bound
-containing two integers \fIi\fR and \fIj\fR matches
-a sequence of \fIi\fR through \fIj\fR (inclusive) matches of the atom.
+containing two integers
+.I i
+and
+.I j
+matches
+a sequence of
+.I i
+through
+.I j
+(inclusive) matches of the atom.
 .P
-An atom is a regular expression enclosed in "\fI()\fP"
+An atom is a regular expression enclosed in
+.RI \[dq] () \[dq]
 (matching a match for the regular expression),
-an empty set of "\fI()\fP" (matching the null string)\*(dg,
-a \fIbracket expression\fR (see below),
+an empty set of
+.RI \[dq] () \[dq]
+(matching the null string)\*(dg,
+a
+.I bracket expression
+(see below),
 \[aq].\[aq] (matching any single character),
 \[aq]\[ha]\[aq] (matching the null string at the beginning of a line),
 \[aq]$\[aq] (matching the null string at the end of a line),
-a \[aq]\[rs]\[aq] followed by one of the characters "\fI\[ha].[$()|*+?{\[rs]\fP"
+a \[aq]\[rs]\[aq] followed by one of the characters
+.RI \[dq] \[ha].[$()|*+?{\[rs] \[dq]
 (matching that character taken as an ordinary character),
 a \[aq]\[rs]\[aq] followed by any other character\*(dg
 (matching that character taken as an ordinary character,
@@ -106,17 +135,27 @@ is an ordinary character,
 not the beginning of a bound\*(dg.
 It is illegal to end an RE with \[aq]\[rs]\[aq].
 .P
-A \fIbracket expression\fR is a list of characters enclosed in "\fI[]\fP".
+A
+.I bracket expression
+is a list of characters enclosed in
+.RI \[dq] [] \[dq].
 It normally matches any single character from the list (but see below).
 If the list begins with \[aq]\[ha]\[aq],
 it matches any single character
-(but see below) \fInot\fR from the rest of the list.
+(but see below)
+.I not
+from the rest of the list.
 If two characters in the list are separated by \[aq]\-\[aq], this is shorthand
-for the full \fIrange\fR of characters between those two (inclusive) in the
+for the full
+.I range
+of characters between those two (inclusive) in the
 collating sequence,
-for example, "\fI[0\-9]\fP" in ASCII matches any decimal digit.
+for example,
+.RI \[dq] [0\-9] \[dq]
+in ASCII matches any decimal digit.
 It is illegal\*(dg for two ranges to share an
-endpoint, for example, "\fIa\-c\-e\fP".
+endpoint, for example,
+.RI \[dq] a\-c\-e \[dq].
 Ranges are very collating-sequence-dependent,
 and portable programs should avoid relying on them.
 .P
@@ -125,7 +164,10 @@ To include a literal \[aq]]\[aq] in the list, make it the first character
 To include a literal \[aq]\-\[aq], make it the first or last character,
 or the second endpoint of a range.
 To use a literal \[aq]\-\[aq] as the first endpoint of a range,
-enclose it in "\fI[.\fP" and "\fI.]\fP"
+enclose it in
+.RI \[dq] [. \[dq]
+and
+.RI \[dq] .] \[dq]
 to make it a collating element (see below).
 With the exception of these and some combinations using \[aq][\[aq] (see next
 paragraphs), all other special characters, including \[aq]\[rs]\[aq], lose their
@@ -134,31 +176,50 @@ special significance within a bracket expression.
 Within a bracket expression, a collating element (a character,
 a multicharacter sequence that collates as if it were a single character,
 or a collating-sequence name for either)
-enclosed in "\fI[.\fP" and "\fI.]\fP" stands for the
+enclosed in
+.RI \[dq] [. \[dq]
+and
+.RI \[dq] .] \[dq]
+stands for the
 sequence of characters of that collating element.
 The sequence is a single element of the bracket expression's list.
 A bracket expression containing a multicharacter collating element
 can thus match more than one character,
 for example, if the collating sequence includes a "ch" collating element,
-then the RE "\fI[[.ch.]]*c\fP" matches the first five characters
-of "chchcc".
+then the RE
+.RI \[dq] [[.ch.]]*c \[dq]
+matches the first five characters of "chchcc".
 .P
-Within a bracket expression, a collating element enclosed in "\fI[=\fP" and
-"\fI=]\fP" is an equivalence class, standing for the sequences of characters
+Within a bracket expression, a collating element enclosed in
+.RI \[dq] [= \[dq]
+and
+.RI \[dq] =] \[dq]
+is an equivalence class, standing for the sequences of characters
 of all collating elements equivalent to that one, including itself.
 (If there are no other equivalent collating elements,
 the treatment is as if the enclosing delimiters
-were "\fI[.\fP" and "\fI.]\fP".)
+were
+.RI \[dq] [. \[dq]
+and
+.RI \[dq] .] \[dq].)
 For example, if o and \(^o are the members of an equivalence class,
-then "\fI[[=o=]]\fP", "\fI[[=\(^o=]]\fP",
-and "\fI[o\(^o]\fP" are all synonymous.
+then
+.RI \[dq] [[=o=]] \[dq],
+.RI \[dq] [[=\(^o=]] \[dq],
+and
+.RI \[dq] [o\(^o] \[dq]
+are all synonymous.
 An equivalence class may not\*(dg be an endpoint
 of a range.
 .P
-Within a bracket expression, the name of a \fIcharacter class\fR enclosed
-in "\fI[:\fP" and "\fI:]\fP" stands for the list
-of all characters belonging to that
-class.
+Within a bracket expression,
+the name of a
+.I character class
+enclosed in
+.RI \[dq] [: \[dq]
+and
+.RI \[dq] :] \[dq]
+stands for the list of all characters belonging to that class.
 Standard character class names are:
 .P
 .RS
@@ -179,8 +240,11 @@ A character class may not be used as an endpoint of a range.
 .\" The following does not seem to apply in the glibc implementation
 .\" .P
 .\" There are two special cases\*(dg of bracket expressions:
-.\" the bracket expressions "\fI[[:<:]]\fP" and "\fI[[:>:]]\fP" match
-.\" the null string at the beginning and end of a word respectively.
+.\" the bracket expressions
+.\" .RI \[dq] [[:<:]] \[dq]
+.\" and
+.\" .RI \[dq] [[:>:]] \[dq]
+.\" match the null string at the beginning and end of a word respectively.
 .\" A word is defined as a sequence of
 .\" word characters
 .\" which is neither preceded nor followed by
@@ -210,12 +274,17 @@ their lower-level component subexpressions.
 Match lengths are measured in characters, not collating elements.
 A null string is considered longer than no match at all.
 For example,
-"\fIbb*\fP" matches the three middle characters of "abbbc",
-"\fI(wee|week)(knights|nights)\fP"
+.RI \[dq] bb* \[dq]
+matches the three middle characters of "abbbc",
+.RI \[dq] (wee|week)(knights|nights) \[dq]
 matches all ten characters of "weeknights",
-when "\fI(.*).*\fP" is matched against "abc" the parenthesized subexpression
+when
+.RI \[dq] (.*).* \[dq]
+is matched against "abc" the parenthesized subexpression
 matches all three characters, and
-when "\fI(a*)*\fP" is matched against "bc"
+when
+.RI \[dq] (a*)* \[dq]
+is matched against "bc"
 both the whole RE and the parenthesized
 subexpression match the null string.
 .P
@@ -225,10 +294,17 @@ alphabet.
 When an alphabetic that exists in multiple cases appears as an
 ordinary character outside a bracket expression, it is effectively
 transformed into a bracket expression containing both cases,
-for example, \[aq]x\[aq] becomes "\fI[xX]\fP".
+for example, \[aq]x\[aq] becomes
+.RI \[dq] [xX] \[dq].
 When it appears inside a bracket expression, all case counterparts
-of it are added to the bracket expression, so that, for example, "\fI[x]\fP"
-becomes "\fI[xX]\fP" and "\fI[\[ha]x]\fP" becomes "\fI[\[ha]xX]\fP".
+of it are added to the bracket expression, so that, for example,
+.RI \[dq] [x] \[dq]
+becomes
+.RI \[dq] [xX] \[dq]
+and
+.RI \[dq] [\[ha]x] \[dq]
+becomes
+.RI \[dq] [\[ha]xX] \[dq].
 .P
 No particular limit is imposed on the length of REs\*(dg.
 Programs intended to be portable should not employ REs longer
@@ -240,9 +316,15 @@ Obsolete ("basic") regular expressions differ in several respects.
 \[aq]|\[aq], \[aq]+\[aq], and \[aq]?\[aq] are
 ordinary characters and there is no equivalent
 for their functionality.
-The delimiters for bounds are "\fI\[rs]{\fP" and "\fI\[rs]}\fP",
+The delimiters for bounds are
+.RI \[dq] \[rs]{ \[dq]
+and
+.RI \[dq] \[rs]} \[dq],
 with \[aq]{\[aq] and \[aq]}\[aq] by themselves ordinary characters.
-The parentheses for nested subexpressions are "\fI\[rs](\fP" and "\fI\[rs])\fP",
+The parentheses for nested subexpressions are
+.RI \[dq] \[rs]( \[dq]
+and
+.RI \[dq] \[rs]) \[dq],
 with \[aq](\[aq] and \[aq])\[aq] by themselves ordinary characters.
 \[aq]\[ha]\[aq] is an ordinary character except at the beginning of the
 RE or\*(dg the beginning of a parenthesized subexpression,
@@ -252,20 +334,19 @@ and \[aq]*\[aq] is an ordinary character if it appears at the beginning of the
 RE or the beginning of a parenthesized subexpression
 (after a possible leading \[aq]\[ha]\[aq]).
 .P
-Finally, there is one new type of atom, a \fIback reference\fR:
-\[aq]\[rs]\[aq] followed by a nonzero decimal digit \fId\fR
+Finally, there is one new type of atom, a
+.IR "back reference" :
+\[aq]\[rs]\[aq] followed by a nonzero decimal digit
+.I d
 matches the same sequence of characters
-matched by the \fId\fRth parenthesized subexpression
+matched by the
+.IR d th
+parenthesized subexpression
 (numbering subexpressions by the positions of their opening parentheses,
 left to right),
 so that, for example,
-.I \[dq]\[rs]([bc]\[rs])\[rs]1\[dq]
-matches
-.I \[dq]bb\[dq]
-or
-.I \[dq]cc\[dq]
-but not
-.IR \[dq]bc\[dq] .
+.RI \[dq] \[rs]([bc]\[rs])\[rs]1 \[dq]
+matches "bb" or "cc" but not "bc".
 .SH BUGS
 Having two kinds of REs is a botch.
 .P
@@ -279,7 +360,8 @@ Back references are a dreadful botch,
 posing major problems for efficient implementations.
 They are also somewhat vaguely defined
 (does
-"\fIa\[rs](\[rs](b\[rs])*\[rs]2\[rs])*d\fP" match "abbbd"?).
+.RI \[dq] a\[rs](\[rs](b\[rs])*\[rs]2\[rs])*d \[dq]
+match "abbbd"?).
 Avoid using them.
 .P
 POSIX.2's specification of case-independent matching is vague.

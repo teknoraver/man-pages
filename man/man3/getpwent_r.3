@@ -57,7 +57,9 @@ The former reads the next passwd entry from the stream initialized by
 The latter reads the next passwd entry from
 .IR stream .
 .P
-The \fIpasswd\fP structure is defined in
+The
+.I passwd
+structure is defined in
 .I <pwd.h>
 as follows:
 .P
@@ -85,21 +87,27 @@ The reentrant functions described here return all of that in
 caller-provided buffers.
 First of all there is the buffer
 .I pwbuf
-that can hold a \fIstruct passwd\fP.
+that can hold a
+.IR "struct\ passwd" .
 And next the buffer
 .I buf
 of size
 .I size
 that can hold additional strings.
-The result of these functions, the \fIstruct passwd\fP read from the stream,
+The result of these functions, the
+.I struct\ passwd
+read from the stream,
 is stored in the provided buffer
 .IR *pwbuf ,
-and a pointer to this \fIstruct passwd\fP is returned in
+and a pointer to this
+.I struct\ passwd
+is returned in
 .IR *pwbufp .
 .SH RETURN VALUE
 On success, these functions return 0 and
 .I *pwbufp
-is a pointer to the \fIstruct passwd\fP.
+is a pointer to the
+.IR "struct\ passwd" .
 On error, these functions return an error value and
 .I *pwbufp
 is NULL.

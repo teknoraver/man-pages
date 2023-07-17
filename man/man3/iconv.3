@@ -51,33 +51,61 @@ the first byte available in the output buffer;
 .I outbytesleft
 indicates the number of bytes available in the output buffer.
 .P
-The main case is when \fIinbuf\fP is not NULL and \fI*inbuf\fP is not NULL.
+The main case is when
+.I inbuf
+is not NULL and
+.I *inbuf
+is not NULL.
 In this case, the
 .BR iconv ()
 function converts the multibyte sequence
-starting at \fI*inbuf\fP to a multibyte sequence starting at \fI*outbuf\fP.
-At most \fI*inbytesleft\fP bytes, starting at \fI*inbuf\fP, will be read.
-At most \fI*outbytesleft\fP bytes, starting at \fI*outbuf\fP, will be written.
+starting at
+.I *inbuf
+to a multibyte sequence starting at
+.IR *outbuf .
+At most
+.I *inbytesleft
+bytes, starting at
+.IR *inbuf ,
+will be read.
+At most
+.I *outbytesleft
+bytes, starting at
+.IR *outbuf ,
+will be written.
 .P
 The
 .BR iconv ()
-function converts one multibyte character at a time, and for
-each character conversion it increments \fI*inbuf\fP and decrements
-\fI*inbytesleft\fP by the number of converted input bytes, it increments
-\fI*outbuf\fP and decrements \fI*outbytesleft\fP by the number of converted
-output bytes, and it updates the conversion state contained in \fIcd\fP.
+function converts one multibyte character at a time,
+and for each character conversion it increments
+.I *inbuf
+and decrements
+.I *inbytesleft
+by the number of converted input bytes,
+it increments
+.I *outbuf
+and decrements
+.I *outbytesleft
+by the number of converted output bytes,
+and it updates the conversion state contained in
+.IR cd .
 If the character encoding of the input is stateful, the
 .BR iconv ()
 function can also convert a sequence of input bytes
 to an update to the conversion state without producing any output bytes;
-such input is called a \fIshift sequence\fP.
+such input is called a
+.IR shift\~sequence .
 The conversion can stop for five reasons:
 .IP \[bu] 3
 An invalid multibyte sequence is encountered in the input.
 In this case,
-it sets \fIerrno\fP to \fBEILSEQ\fP and returns
-.IR (size_t)\ \-1 .
-\fI*inbuf\fP
+it sets
+.I errno
+to
+.B EILSEQ
+and returns
+.IR "(size_t)\ \-1" .
+.I *inbuf
 is left pointing to the beginning of the invalid multibyte sequence.
 .IP \[bu]
 A multibyte sequence is encountered that is valid but that
@@ -112,12 +140,14 @@ sets
 to
 .B EILSEQ
 and returns
-.IR (size_t)\ \-1 .
+.IR "(size_t)\ \-1" .
 .I *inbuf
 is left pointing to the beginning of the unconvertible multibyte sequence.
 .IP \[bu]
 The input byte sequence has been entirely converted,
-that is, \fI*inbytesleft\fP has gone down to 0.
+that is,
+.I *inbytesleft
+has gone down to 0.
 In this case,
 .BR iconv ()
 returns the number of
@@ -125,35 +155,72 @@ nonreversible conversions performed during this call.
 .IP \[bu]
 An incomplete multibyte sequence is encountered in the input, and the
 input byte sequence terminates after it.
-In this case, it sets \fIerrno\fP to
-\fBEINVAL\fP and returns
-.IR (size_t)\ \-1 .
-\fI*inbuf\fP is left pointing to the
+In this case, it sets
+.I errno
+to
+.B EINVAL
+and returns
+.IR "(size_t)\ \-1" .
+.I *inbuf
+is left pointing to the
 beginning of the incomplete multibyte sequence.
 .IP \[bu]
 The output buffer has no more room for the next converted character.
-In this case, it sets \fIerrno\fP to \fBE2BIG\fP and returns
-.IR (size_t)\ \-1 .
+In this case, it sets
+.I errno
+to
+.B E2BIG
+and returns
+.IR "(size_t)\ \-1" .
 .P
-A different case is when \fIinbuf\fP is NULL or \fI*inbuf\fP is NULL, but
-\fIoutbuf\fP is not NULL and \fI*outbuf\fP is not NULL.
+A different case is when
+.I inbuf
+is NULL or
+.I *inbuf
+is NULL, but
+.I outbuf
+is not NULL and
+.I *outbuf
+is not NULL.
 In this case, the
 .BR iconv ()
-function attempts to set \fIcd\fP's conversion state to the
-initial state and store a corresponding shift sequence at \fI*outbuf\fP.
-At most \fI*outbytesleft\fP bytes, starting at \fI*outbuf\fP, will be written.
+function attempts to set
+.IR cd 's
+conversion state to the
+initial state and store a corresponding shift sequence at
+.IR *outbuf .
+At most
+.I *outbytesleft
+bytes, starting at
+.IR *outbuf ,
+will be written.
 If the output buffer has no more room for this reset sequence, it sets
-\fIerrno\fP to \fBE2BIG\fP and returns
-.IR (size_t)\ \-1 .
+.I errno
+to
+.B E2BIG
+and returns
+.IR "(size_t)\ \-1" .
 Otherwise, it increments
-\fI*outbuf\fP and decrements \fI*outbytesleft\fP by the number of bytes
+.I *outbuf
+and decrements
+.I *outbytesleft
+by the number of bytes
 written.
 .P
-A third case is when \fIinbuf\fP is NULL or \fI*inbuf\fP is NULL, and
-\fIoutbuf\fP is NULL or \fI*outbuf\fP is NULL.
+A third case is when
+.I inbuf
+is NULL or
+.I *inbuf
+is NULL, and
+.I outbuf
+is NULL or
+.I *outbuf
+is NULL.
 In this case, the
 .BR iconv ()
-function sets \fIcd\fP's conversion state to the initial state.
+function sets
+.IR cd 's
+conversion state to the initial state.
 .SH RETURN VALUE
 The
 .BR iconv ()
@@ -170,7 +237,8 @@ to indicate the error.
 The following errors can occur, among others:
 .TP
 .B E2BIG
-There is not sufficient room at \fI*outbuf\fP.
+There is not sufficient room at
+.IR *outbuf .
 .TP
 .B EILSEQ
 An invalid multibyte sequence has been encountered in the input.
@@ -206,7 +274,11 @@ POSIX.1-2001.
 .SH NOTES
 In each series of calls to
 .BR iconv (),
-the last should be one with \fIinbuf\fP or \fI*inbuf\fP equal to NULL,
+the last should be one with
+.I inbuf
+or
+.I *inbuf
+equal to NULL,
 in order to flush out any partially converted input.
 .P
 Although

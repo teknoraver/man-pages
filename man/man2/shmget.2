@@ -87,7 +87,9 @@ is composed of:
 Create a new segment.
 If this flag is not used, then
 .BR shmget ()
-will find the segment associated with \fIkey\fP and check to see if
+will find the segment associated with
+.I key
+and check to see if
 the user has permission to access the segment.
 .TP
 .B IPC_EXCL
@@ -228,7 +230,9 @@ or greater than
 .B EINVAL
 A segment for the given
 .I key
-exists, but \fIsize\fP is greater than the size
+exists, but
+.I size
+is greater than the size
 of that segment.
 .TP
 .B ENFILE
@@ -236,7 +240,9 @@ of that segment.
 The system-wide limit on the total number of open files has been reached.
 .TP
 .B ENOENT
-No segment exists for the given \fIkey\fP, and
+No segment exists for the given
+.IR key ,
+and
 .B IPC_CREAT
 was not specified.
 .TP

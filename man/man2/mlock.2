@@ -192,11 +192,15 @@ was less than
 .TP
 .B EINVAL
 .RB ( mlock2 ())
-Unknown \fIflags\fP were specified.
+Unknown
+.I flags
+were specified.
 .TP
 .B EINVAL
 .RB ( mlockall ())
-Unknown \fIflags\fP were specified or
+Unknown
+.I flags
+were specified or
 .B MCL_ONFAULT
 was specified without either
 .B MCL_FUTURE
@@ -309,10 +313,14 @@ and
 .BR munlock ()
 are available,
 .B _POSIX_MEMLOCK_RANGE
-is defined in \fI<unistd.h>\fP and the number of bytes in a page
+is defined in
+.I <unistd.h>
+and the number of bytes in a page
 can be determined from the constant
 .B PAGESIZE
-(if defined) in \fI<limits.h>\fP or by calling
+(if defined) in
+.I <limits.h>
+or by calling
 .IR sysconf(_SC_PAGESIZE) .
 .P
 On POSIX systems on which
@@ -321,7 +329,9 @@ and
 .BR munlockall ()
 are available,
 .B _POSIX_MEMLOCK
-is defined in \fI<unistd.h>\fP to a value greater than 0.
+is defined in
+.I <unistd.h>
+to a value greater than 0.
 (See also
 .BR sysconf (3).)
 .\" POSIX.1-2001: It shall be defined to -1 or 0 or 200112L.

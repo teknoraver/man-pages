@@ -375,7 +375,7 @@ file and set some seals on it:
 .P
 .in +4n
 .EX
-$ \fB./t_memfd_create my_memfd_file 4096 sw &\fP
+.RB $ " ./t_memfd_create my_memfd_file 4096 sw &"
 [1] 11775
 PID: 11775; fd: 3; /proc/11775/fd/3
 .EE
@@ -399,9 +399,9 @@ program to view the seals that have been placed on the file:
 .P
 .in +4n
 .EX
-$ \fBreadlink /proc/11775/fd/3\fP
+.RB $ " readlink /proc/11775/fd/3" ;
 /memfd:my_memfd_file (deleted)
-$ \fB./t_get_seals /proc/11775/fd/3\fP
+.RB $ " ./t_get_seals /proc/11775/fd/3" ;
 Existing seals: WRITE SHRINK
 .EE
 .in

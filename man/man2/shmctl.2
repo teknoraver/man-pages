@@ -45,8 +45,12 @@ on the System\ V shared memory segment whose identifier is given in
 .P
 The
 .I buf
-argument is a pointer to a \fIshmid_ds\fP structure,
-defined in \fI<sys/shm.h>\fP as follows:
+argument is a pointer to a
+.I shmid_ds
+structure,
+defined in
+.I <sys/shm.h>
+as follows:
 .P
 .in +4n
 .EX
@@ -117,11 +121,11 @@ structure is defined as follows
 .EX
 struct ipc_perm {
     key_t          __key;    /* Key supplied to shmget(2) */
-    uid_t          \fBuid\fP;      /* Effective UID of owner */
-    gid_t          \fBgid\fP;      /* Effective GID of owner */
+    uid_t          \f[B]uid\f[];      /* Effective UID of owner */
+    gid_t          \f[B]gid\f[];      /* Effective GID of owner */
     uid_t          cuid;     /* Effective UID of creator */
     gid_t          cgid;     /* Effective GID of creator */
-    unsigned short \fBmode\fP;     /* \fBPermissions\fP + SHM_DEST and
+    unsigned short \f[B]mode\f[];     /* \f[B]Permissions\f[] + SHM_DEST and
                                 SHM_LOCKED flags */
     unsigned short __seq;    /* Sequence number */
 };
@@ -161,7 +165,8 @@ Copy information from the kernel data structure associated with
 .I shmid
 into the
 .I shmid_ds
-structure pointed to by \fIbuf\fP.
+structure pointed to by
+.IR buf .
 The caller must have read permission on the
 shared memory segment.
 .TP
@@ -176,8 +181,10 @@ updating also its
 member.
 .IP
 The following fields are updated:
-\fIshm_perm.uid\fP, \fIshm_perm.gid\fP,
-and (the least significant 9 bits of) \fIshm_perm.mode\fP.
+.IR shm_perm.uid ,
+.IR shm_perm.gid ,
+and (the least significant 9 bits of)
+.IR shm_perm.mode .
 .IP
 The effective UID of the calling process must match the owner
 .RI ( shm_perm.uid )
@@ -206,7 +213,9 @@ field in the associated data structure retrieved by
 .B IPC_STAT
 will be set.
 .IP
-The caller \fImust\fP ensure that a segment is eventually destroyed;
+The caller
+.I must
+ensure that a segment is eventually destroyed;
 otherwise its pages that were faulted in will remain in memory or swap.
 .IP
 See also the description of
@@ -372,8 +381,12 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EACCES
-\fBIPC_STAT\fP or \fBSHM_STAT\fP is requested and
-\fIshm_perm.mode\fP does not allow read access for
+.B IPC_STAT
+or
+.B SHM_STAT
+is requested and
+.I shm_perm.mode
+does not allow read access for
 .IR shmid ,
 and the calling process does not have the
 .B CAP_IPC_OWNER
@@ -391,7 +404,8 @@ but the address pointed to by
 isn't accessible.
 .TP
 .B EIDRM
-\fIshmid\fP points to a removed identifier.
+.I shmid
+points to a removed identifier.
 .TP
 .B EINVAL
 .I shmid
@@ -418,12 +432,16 @@ soft resource limit (see
 .BR setrlimit (2)).
 .TP
 .B EOVERFLOW
-\fBIPC_STAT\fP is attempted, and the GID or UID value
+.B IPC_STAT
+is attempted, and the GID or UID value
 is too large to be stored in the structure pointed to by
 .IR buf .
 .TP
 .B EPERM
-\fBIPC_SET\fP or \fBIPC_RMID\fP is attempted, and the
+.B IPC_SET
+or
+.B IPC_RMID
+is attempted, and the
 effective user ID of the calling process is not that of the creator
 (found in
 .IR shm_perm.cuid ),
@@ -461,7 +479,9 @@ POSIX.1-2001, SVr4.
 .\" ENOENT, ENOSPC, ENOMEM, EEXIST.  Neither SVr4 nor SVID documents
 .\" an EIDRM error condition.
 .P
-Various fields in a \fIstruct shmid_ds\fP were typed as
+Various fields in a
+.I struct\ shmid_ds
+were typed as
 .I short
 under Linux 2.2
 and have become

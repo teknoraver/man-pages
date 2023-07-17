@@ -397,8 +397,9 @@ It is important to realize that the following rules apply equally to
 symbolic links encountered during the file tree traversal and symbolic
 links listed as command-line arguments.
 .P
-The \fIfirst rule\fP applies to symbolic links that reference files other
-than directories.
+The
+.I first rule
+applies to symbolic links that reference files other than directories.
 Operations that apply to symbolic links are performed on the links
 themselves, but otherwise the links are ignored.
 .P
@@ -414,7 +415,9 @@ In no case will
 affect the file referred to by
 .IR slink .
 .P
-The \fIsecond rule\fP applies to symbolic links that refer to directories.
+The
+.I second rule
+applies to symbolic links that refer to directories.
 Symbolic links that refer to directories are never followed by default.
 This is often referred to as a "physical" walk, as opposed to a "logical"
 walk (where symbolic links that refer to directories are followed).

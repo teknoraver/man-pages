@@ -37,14 +37,28 @@ to announce an intention to access
 file data in a specific pattern in the future, thus allowing the kernel
 to perform appropriate optimizations.
 .P
-The \fIadvice\fP applies to a (not necessarily existent) region starting
-at \fIoffset\fP and extending for \fIsize\fP bytes (or until the end of
-the file if \fIsize\fP is 0) within the file referred to by \fIfd\fP.
-The \fIadvice\fP is not binding;
+The
+.I advice
+applies to a (not necessarily existent) region
+starting at
+.I offset
+and extending for
+.I size
+bytes
+(or until the end of the file if
+.I size
+is 0)
+within the file referred to by
+.IR fd .
+The
+.I advice
+is not binding;
 it merely constitutes an expectation on behalf of
 the application.
 .P
-Permissible values for \fIadvice\fP include:
+Permissible values for
+.I advice
+include:
 .TP
 .B POSIX_FADV_NORMAL
 Indicates that the application has no advice to give about its access
@@ -62,8 +76,11 @@ The specified data will be accessed in random order.
 .B POSIX_FADV_NOREUSE
 The specified data will be accessed only once.
 .IP
-Before Linux 2.6.18, \fBPOSIX_FADV_NOREUSE\fP had the
-same semantics as \fBPOSIX_FADV_WILLNEED\fP.
+Before Linux 2.6.18,
+.B POSIX_FADV_NOREUSE
+had the
+same semantics as
+.BR POSIX_FADV_WILLNEED .
 This was probably a bug;
 from Linux 2.6.18 until Linux 6.2 this flag was a no-op.
 Since Linux 6.3,
@@ -75,7 +92,8 @@ This is useful, for example, while streaming large files.
 .B POSIX_FADV_WILLNEED
 The specified data will be accessed in the near future.
 .IP
-\fBPOSIX_FADV_WILLNEED\fP initiates a
+.B POSIX_FADV_WILLNEED
+initiates a
 nonblocking read of the specified region into the page cache.
 The amount of data read may be decreased by the kernel depending
 on virtual memory load.
@@ -85,7 +103,8 @@ and more is rarely useful.)
 .B POSIX_FADV_DONTNEED
 The specified data will not be accessed in the near future.
 .IP
-\fBPOSIX_FADV_DONTNEED\fP attempts to free cached pages associated with
+.B POSIX_FADV_DONTNEED
+attempts to free cached pages associated with
 the specified region.
 This is useful, for example, while streaming large
 files.
@@ -118,10 +137,13 @@ On error, an error number is returned.
 .SH ERRORS
 .TP
 .B EBADF
-The \fIfd\fP argument was not a valid file descriptor.
+The
+.I fd
+argument was not a valid file descriptor.
 .TP
 .B EINVAL
-An invalid value was specified for \fIadvice\fP.
+An invalid value was specified for
+.IR advice .
 .TP
 .B ESPIPE
 The specified file descriptor refers to a pipe or FIFO.
@@ -133,9 +155,15 @@ Linux returned
 .B EINVAL
 in this case.)
 .SH VERSIONS
-Under Linux, \fBPOSIX_FADV_NORMAL\fP sets the readahead window to the
-default size for the backing device; \fBPOSIX_FADV_SEQUENTIAL\fP doubles
-this size, and \fBPOSIX_FADV_RANDOM\fP disables file readahead entirely.
+Under Linux,
+.B POSIX_FADV_NORMAL
+sets the readahead window to the
+default size for the backing device;
+.B POSIX_FADV_SEQUENTIAL
+doubles this size,
+and
+.B POSIX_FADV_RANDOM
+disables file readahead entirely.
 .B POSIX_FADV_NOREUSE
 does not modify the readahead window size.
 These changes affect the entire file, not just the specified region
@@ -148,8 +176,13 @@ The underlying system call is called
 (or, on some architectures,
 .BR fadvise64_64 ());
 the difference between the two is that the former system call
-assumes that the type of the \fIsize\fP argument is \fIsize_t\fP,
-while the latter expects \fIloff_t\fP there.
+assumes that the type of the
+.I size
+argument is
+.IR size_t ,
+while the latter expects
+.I loff_t
+there.
 .SS Architecture-specific variants
 Some architectures require
 64-bit arguments to be aligned in a suitable pair of registers (see

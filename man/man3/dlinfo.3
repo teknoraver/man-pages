@@ -43,12 +43,12 @@ The following values are supported for
 .I info
 shown in parentheses):
 .TP
-.BR RTLD_DI_LMID " (\fILmid_t *\fP)"
+.BR RTLD_DI_LMID " (\f[I]Lmid_t *\f[])"
 Obtain the ID of the link-map list (namespace) in which
 .I handle
 is loaded.
 .TP
-.BR RTLD_DI_LINKMAP " (\fIstruct link_map **\fP)"
+.BR RTLD_DI_LINKMAP " (\f[I]struct link_map **\f[])"
 Obtain a pointer to the
 .I link_map
 structure corresponding to
@@ -80,13 +80,13 @@ struct link_map {
 .EE
 .in
 .TP
-.BR RTLD_DI_ORIGIN " (\fIchar *\fP)"
+.BR RTLD_DI_ORIGIN " (\f[I]char *\f[])"
 Copy the pathname of the origin of the shared object corresponding to
 .I handle
 to the location pointed to by
 .IR info .
 .TP
-.BR RTLD_DI_SERINFO " (\fIDl_serinfo *\fP)"
+.BR RTLD_DI_SERINFO " (\f[I]Dl_serinfo *\f[])"
 Obtain the library search paths for the shared object referred to by
 .IR handle .
 The
@@ -168,7 +168,7 @@ The
 .I dls_flags
 field is currently unused, and always contains zero.
 .TP
-.BR RTLD_DI_SERINFOSIZE " (\fIDl_serinfo *\fP)"
+.BR RTLD_DI_SERINFOSIZE " (\f[I]Dl_serinfo *\f[])"
 Populate the
 .I dls_size
 and
@@ -181,13 +181,13 @@ with values suitable for allocating a buffer for use in a subsequent
 .B RTLD_DI_SERINFO
 request.
 .TP
-.BR RTLD_DI_TLS_MODID " (\fIsize_t *\fP, since glibc 2.4)"
+.BR RTLD_DI_TLS_MODID " (\f[I]size_t *\f[], since glibc 2.4)"
 Obtain the module ID of this shared object's TLS (thread-local storage)
 segment, as used in TLS relocations.
 If this object does not define a TLS segment, zero is placed in
 .IR *info .
 .TP
-.BR RTLD_DI_TLS_DATA " (\fIvoid **\fP, since glibc 2.4)"
+.BR RTLD_DI_TLS_DATA " (\f[I]void **\f[], since glibc 2.4)"
 Obtain a pointer to the calling
 thread's TLS block corresponding to this shared object's TLS segment.
 If this object does not define a PT_TLS segment,
@@ -195,7 +195,7 @@ or if the calling thread has not allocated a block for it,
 NULL is placed in
 .IR *info .
 .TP
-.BR RTLD_DI_PHDR " (\fIconst ElfW(Phdr *)\fP, since glibc 2.34.1)"
+.BR RTLD_DI_PHDR " (\f[I]const ElfW(Phdr *)\f[], since glibc 2.34.1)"
 .\" glibc commit d056c212130280c0a54d9a4f72170ec621b70ce5 (2.36)
 .\" glibc commit 28ea43f8d64f0dd1f2de75525157730e1532e600 (2.35.1)
 .\" glibc commit 91c2e6c3db44297bf4cb3a2e3c40236c5b6a0b23 (2.34.1)
@@ -247,7 +247,7 @@ Here is an example of what we might see when running the program:
 .P
 .in +4n
 .EX
-$ \fB./a.out /lib64/libm.so.6\fP
+.RB $ " ./a.out /lib64/libm.so.6" ;
 dls_serpath[0].dls_name = /lib64
 dls_serpath[1].dls_name = /usr/lib64
 .EE

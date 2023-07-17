@@ -32,12 +32,19 @@ function is the wide-character equivalent
 of the
 .BR fgetc (3)
 function.
-It reads a wide character from \fIstream\fP and returns it.
-If the end of stream is reached, or if \fIferror(stream)\fP becomes true,
+It reads a wide character from
+.I stream
+and returns it.
+If the end of stream is reached, or if
+.I ferror(stream)
+becomes true,
 it returns
 .BR WEOF .
 If a wide-character conversion error occurs, it sets
-\fIerrno\fP to \fBEILSEQ\fP and returns
+.I errno
+to
+.B EILSEQ
+and returns
 .BR WEOF .
 .P
 The

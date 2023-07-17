@@ -17,7 +17,8 @@ man-pages \- conventions for writing Linux man pages
 .I title
 .SH DESCRIPTION
 This page describes the conventions that should be employed
-when writing man pages for the Linux \fIman-pages\fP project,
+when writing man pages for the
+.IR "Linux man-pages project" ,
 which documents the user-space API provided by the Linux kernel
 and the GNU C library.
 The project thus provides most of the pages in Section 2,
@@ -129,11 +130,11 @@ are placed in the order shown in the list.
 .RS
 .TS
 l l.
-\fBNAME\fP
+\f[B]NAME\f[]
 LIBRARY	[Normally only in Sections 2, 3]
-\fBSYNOPSIS\fP
+\f[B]SYNOPSIS\f[]
 CONFIGURATION	[Normally only in Section 4]
-\fBDESCRIPTION\fP
+\f[B]DESCRIPTION\f[]
 OPTIONS	[Normally only in Sections 1, 8]
 EXIT STATUS	[Normally only in Sections 1, 8]
 RETURN VALUE	[Normally only in Sections 2, 3]
@@ -159,7 +160,7 @@ EXAMPLES
 AUTHORS	[Discouraged]
 REPORTING BUGS	[Not used in man-pages]
 COPYRIGHT	[Not used in man-pages]
-\fBSEE ALSO\fP
+\f[B]SEE ALSO\f[]
 .TE
 .RE
 .P
@@ -169,8 +170,9 @@ If you must, you can create your own
 headings if they make things easier to understand (this can
 be especially useful for pages in Sections 4 and 5).
 However, before doing this, consider whether you could use the
-traditional headings, with some subsections (\fI.SS\fP) within
-those sections.
+traditional headings, with some subsections
+.RI ( .SS )
+within those sections.
 .P
 The following list elaborates on the contents of each of
 the above sections.
@@ -181,7 +183,8 @@ The name of this manual page.
 See
 .BR man (7)
 for important details of the line(s) that should follow the
-\fB.SH NAME\fP command.
+.B .SH\~NAME
+command.
 All words in this line (including the word immediately
 following the "\[rs]\-") should be in lowercase,
 except where English or technical terminological convention
@@ -395,7 +398,12 @@ SUS, SUSv2, and XPG, or the SVr4 and 4.xBSD implementation standards.
 Miscellaneous notes.
 .IP
 For Section 2 and 3 man pages you may find it useful to include
-subsections (\fBSS\fP) named \fILinux Notes\fP and \fIglibc Notes\fP.
+subsections
+.RB ( SS )
+named
+.I Linux\~Notes
+and
+.IR glibc\~Notes .
 .IP
 In Section 2, use the heading
 .I "C library/kernel differences"
@@ -416,12 +424,14 @@ One or more examples demonstrating how this function, file, or
 command is used.
 .IP
 For details on writing example programs,
-see \fIExample programs\fP below.
+see
+.I Example\~programs
+below.
 .TP
 .B AUTHORS
 A list of authors of the documentation or program.
 .IP
-\fBUse of an AUTHORS section is strongly discouraged\fP.
+.B "Use of an AUTHORS section is strongly discouraged" .
 Generally, it is better not to clutter every page with a list
 of (over time potentially numerous) authors;
 if you write or significantly amend a page,
@@ -740,7 +750,7 @@ for example
 .P
 .in +4n
 .EX
-$ \fBdate\fP
+.RB $ " date" ;
 Thu Jul  7 13:01:27 CEST 2016
 .EE
 .in
@@ -1144,7 +1154,8 @@ Example programs should do error checking after system calls and
 library function calls.
 .IP \[bu]
 Example programs should be complete, and compile without
-warnings when compiled with \fIcc\ \-Wall\fP.
+warnings when compiled with
+.IR "cc\ \-Wall" .
 .IP \[bu]
 Where possible and appropriate, example programs should allow
 experimentation, by varying their behavior based on inputs

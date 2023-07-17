@@ -52,26 +52,22 @@ be "appropriate" (often that at least implies writable).
 .P
 Attempts to find an appropriate directory go through the following
 steps:
-.TP 3
-a)
+.IP (1) 5
 In case the environment variable
 .B TMPDIR
 exists and
 contains the name of an appropriate directory, that is used.
-.TP
-b)
+.IP (2)
 Otherwise, if the
 .I dir
 argument is non-NULL and appropriate, it is used.
-.TP
-c)
+.IP (3)
 Otherwise,
 .I P_tmpdir
 (as defined in
 .IR <stdio.h> )
 is used when appropriate.
-.TP
-d)
+.IP (4)
 Finally an implementation-defined directory may be used.
 .P
 The string returned by
@@ -134,7 +130,9 @@ SUSv2 does not mention the use of
 .BR TMPDIR ;
 glibc will use it only
 when the program is not set-user-ID.
-On SVr4, the directory used under \fBd)\fP is
+On SVr4, the directory used under
+.B (4)
+is
 .I /tmp
 (and this is what glibc does).
 .P

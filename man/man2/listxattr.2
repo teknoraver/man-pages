@@ -184,11 +184,11 @@ and then listing the attributes with the example program.
 .SS Example output
 .in +4n
 .EX
-$ \fBtouch /tmp/foo\fP
-$ \fBsetfattr \-n user.fred \-v chocolate /tmp/foo\fP
-$ \fBsetfattr \-n user.frieda \-v bar /tmp/foo\fP
-$ \fBsetfattr \-n user.empty /tmp/foo\fP
-$ \fB./listxattr /tmp/foo\fP
+.RB $ " touch /tmp/foo" ;
+.RB $ " setfattr \-n user.fred \-v chocolate /tmp/foo" ;
+.RB $ " setfattr \-n user.frieda \-v bar /tmp/foo" ;
+.RB $ " setfattr \-n user.empty /tmp/foo" ;
+.RB $ " ./listxattr /tmp/foo" ;
 user.fred: chocolate
 user.frieda: bar
 user.empty: <no value>

@@ -468,9 +468,11 @@ POSIX.1-2001, SVr4.
 .P
 The
 .I msgp
-argument is declared as \fIstruct msgbuf\ *\fP in
-glibc 2.0 and 2.1.
-It is declared as \fIvoid\ *\fP
+argument is declared as
+.I struct\ msgbuf\ *
+in glibc 2.0 and 2.1.
+It is declared as
+.I void\ *
 in glibc 2.2 and later, as required by SUSv2 and SUSv3.
 .SH NOTES
 The following limits on message queue resources affect the
@@ -545,9 +547,12 @@ The program below demonstrates the use of
 and
 .BR msgrcv ().
 .P
-The example program is first run with the \fB\-s\fP option to send a
-message and then run again with the \fB\-r\fP option to receive a
-message.
+The example program is first run with the
+.B \-s
+option to send a message
+and then run again with the
+.B \-r
+option to receive a message.
 .P
 The following shell session shows a sample run of the program:
 .P

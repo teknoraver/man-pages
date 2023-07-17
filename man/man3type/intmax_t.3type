@@ -24,8 +24,8 @@ Standard C library
 .BR "#define INTMAX_MIN    " "/*  - 2**(INTMAX_WIDTH - 1)    */"
 .BR "#define UINTMAX_MAX   " "/*  2**UINTMAX_WIDTH - 1       */"
 .P
-.BI "#define INTMAX_C(" c ) "   c " ## " \fR/* ... */\fP"
-.BI "#define UINTMAX_C(" c ) "  c " ## " \fR/* ... */\fP"
+.BI "#define INTMAX_C(" c ) "   c " ## " \f[R]/* ... */\f[]"
+.BI "#define UINTMAX_C(" c ) "  c " ## " \f[R]/* ... */\f[]"
 .fi
 .SH DESCRIPTION
 .I intmax_t

@@ -53,13 +53,19 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 The
 .BR tzset ()
-function initializes the \fItzname\fP variable from the
+function initializes the
+.I tzname
+variable from the
 .B TZ
 environment variable.
 This function is automatically called by the
 other time conversion functions that depend on the timezone.
-In a System-V-like environment, it will also set the variables \fItimezone\fP
-(seconds West of UTC) and \fIdaylight\fP (to 0 if this timezone does not
+In a System-V-like environment, it will also set the variables
+.I timezone
+(seconds West of UTC)
+and
+.I daylight
+(to 0 if this timezone does not
 have any daylight saving time rules, or to nonzero if there is a time,
 past, present, or future when daylight saving time applies).
 .P
@@ -76,7 +82,9 @@ The system timezone is configured by copying, or linking, a file in the
 format to
 .IR /etc/localtime .
 A timezone database of these files may be located in the system
-timezone directory (see the \fBFILES\fP section below).
+timezone directory (see the
+.B FILES
+section below).
 .P
 If the
 .B TZ
@@ -98,17 +106,27 @@ timezone to be used:
 .in
 .P
 There are no spaces in the specification.
-The \fIstd\fP string specifies an abbreviation for the timezone and must be
+The
+.I std
+string specifies an abbreviation for the timezone
+and must be
 three or more alphabetic characters.
 When enclosed between the less-than (<) and greater-than (>) signs, the
 character set is expanded to include the plus (+) sign, the minus (\-)
 sign, and digits.
-The \fIoffset\fP string immediately
-follows \fIstd\fP and specifies the time value to be added to the local
-time to get Coordinated Universal Time (UTC).
-The \fIoffset\fP is positive
-if the local timezone is west of the Prime Meridian and negative if it is
-east.
+The
+.I offset
+string
+immediately follows
+.I std
+and specifies the time value to be added to the local time
+to get Coordinated Universal Time (UTC).
+The
+.I offset
+is positive
+if the local timezone is west of the Prime Meridian
+and negative
+if it is east.
 The hour must be between 0 and 24, and the minutes and seconds 00 and 59:
 .P
 .in +4n
@@ -117,35 +135,61 @@ The hour must be between 0 and 24, and the minutes and seconds 00 and 59:
 .EE
 .in
 .P
-The \fIdst\fP string and \fIoffset\fP specify the name and offset for the
+The
+.I dst
+string and
+.I offset
+specify the name and offset for the
 corresponding daylight saving timezone.
 If the offset is omitted,
 it defaults to one hour ahead of standard time.
 .P
-The \fIstart\fP field specifies when daylight saving time goes into
-effect and the \fIend\fP field specifies when the change is made back to
+The
+.I start
+field specifies when daylight saving time goes into effect
+and the
+.I end
+field specifies when the change is made back to
 standard time.
 These fields may have the following formats:
 .TP
-J\fIn\fP
-This specifies the Julian day with \fIn\fP between 1 and 365.
+.RI J n
+This specifies the Julian day with
+.I n
+between 1 and 365.
 Leap days are not counted.
 In this format, February 29 can't be represented;
 February 28 is day 59, and March 1 is always day 60.
 .TP
 .I n
-This specifies the zero-based Julian day with \fIn\fP between 0 and 365.
+This specifies the zero-based Julian day with
+.I n
+between 0 and 365.
 February 29 is counted in leap years.
 .TP
-M\fIm\fP.\fIw\fP.\fId\fP
-This specifies day \fId\fP (0 <= \fId\fP <= 6) of week \fIw\fP
-(1 <= \fIw\fP <= 5) of month \fIm\fP (1 <= \fIm\fP <= 12).
+.RI M m . w . d
+This specifies day
+.I d
+.RI (0\~<=\~ d \~<=\~6)
+of week
+.I w
+.RI (1\~<=\~ w \~<=\~5)
+of month
+.I m
+.RI (1\~<=\~ m \~<=\~12).
 Week 1 is
-the first week in which day \fId\fP occurs and week 5 is the last week
-in which day \fId\fP occurs.
+the first week in which day
+.I d
+occurs and week 5 is the last week
+in which day
+.I d
+occurs.
 Day 0 is a Sunday.
 .P
-The \fItime\fP fields specify when, in the local time currently in effect,
+The
+.I time
+fields specify when,
+in the local time currently in effect,
 the change to the other time occurs.
 They use the same format as
 .I offset
@@ -183,7 +227,11 @@ The
 specifies a
 .BR tzfile (5)-format
 file to read the timezone information from.
-If \fIfilespec\fP does not begin with a \[aq]/\[aq], the file specification is
+If
+.I filespec
+does not begin with a
+.RB \[aq] / \[aq],
+the file specification is
 relative to the system timezone directory.
 If the specified file cannot be read or interpreted,
 Coordinated Universal Time (UTC) is used;

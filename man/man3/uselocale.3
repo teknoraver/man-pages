@@ -42,10 +42,14 @@ The
 .I newloc
 argument can have one of the following values:
 .TP
-A handle returned by a call to \fBnewlocale\fP(3) or \fBduplocale\fP(3)
+A handle returned by a call to
+.BR newlocale (3)
+or
+.BR duplocale (3)
 The calling thread's current locale is set to the specified locale.
 .TP
-The special locale object handle \fBLC_GLOBAL_LOCALE\fP
+The special locale object handle
+.B LC_GLOBAL_LOCALE
 The calling thread's current locale is set to the global locale determined by
 .BR setlocale (3).
 .TP

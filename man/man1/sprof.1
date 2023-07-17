@@ -74,7 +74,7 @@ First, the code of the main program:
 .P
 .in +4n
 .EX
-$ \fBcat prog.c\fP
+.RB $ " cat prog.c" ;
 #include <stdlib.h>
 \&
 void x1(void);
@@ -99,7 +99,7 @@ construct the shared object:
 .P
 .in +4n
 .EX
-$ \fBcat libdemo.c\fP
+.RB $ " cat libdemo.c" ;
 #include <unistd.h>
 \&
 void
@@ -138,8 +138,8 @@ and the soname
 .P
 .in +4n
 .EX
-$ \fBcc \-g \-fPIC \-shared \-Wl,\-soname,libdemo.so.1 \[rs]\fP
-        \fB\-o libdemo.so.1.0.1 libdemo.c\fP
+.RB $ " cc \-g \-fPIC \-shared \-Wl,\-soname,libdemo.so.1 \[rs]"
+.BR "        \-o libdemo.so.1.0.1 libdemo.c" ;
 .EE
 .in
 .P
@@ -148,8 +148,8 @@ the library linker name:
 .P
 .in +4n
 .EX
-$ \fBln \-sf libdemo.so.1.0.1 libdemo.so.1\fP
-$ \fBln \-sf libdemo.so.1 libdemo.so\fP
+.RB $ " ln \-sf libdemo.so.1.0.1 libdemo.so.1" ;
+.RB $ " ln \-sf libdemo.so.1 libdemo.so" ;
 .EE
 .in
 .P
@@ -158,8 +158,8 @@ and then list the dynamic dependencies of the program:
 .P
 .in +4n
 .EX
-$ \fBcc \-g \-o prog prog.c \-L. \-ldemo\fP
-$ \fBldd prog\fP
+.RB $ " cc \-g \-o prog prog.c \-L. \-ldemo" ;
+.RB $ " ldd prog" ;
 	linux\-vdso.so.1 =>  (0x00007fff86d66000)
 	libdemo.so.1 => not found
 	libc.so.6 => /lib64/libc.so.6 (0x00007fd4dc138000)
@@ -174,7 +174,7 @@ with the soname of the library:
 .P
 .in +4n
 .EX
-$ \fBexport LD_PROFILE=libdemo.so.1\fP
+.RB $ " export LD_PROFILE=libdemo.so.1" ;
 .EE
 .in
 .P
@@ -185,8 +185,8 @@ and create that directory if it does not exist already:
 .P
 .in +4n
 .EX
-$ \fBexport LD_PROFILE_OUTPUT=$(pwd)/prof_data\fP
-$ \fBmkdir \-p $LD_PROFILE_OUTPUT\fP
+.RB $ " export LD_PROFILE_OUTPUT=$(pwd)/prof_data" ;
+.RB $ " mkdir \-p $LD_PROFILE_OUTPUT" ;
 .EE
 .in
 .P
@@ -198,7 +198,7 @@ so we ensure that there is no preexisting profiling data:
 .P
 .in +4n
 .EX
-$ \fBrm \-f $LD_PROFILE_OUTPUT/$LD_PROFILE.profile\fP
+.RB $ " rm \-f $LD_PROFILE_OUTPUT/$LD_PROFILE.profile" ;
 .EE
 .in
 .P
@@ -208,8 +208,8 @@ which is written to a file in the directory specified in
 .P
 .in +4n
 .EX
-$ \fBLD_LIBRARY_PATH=. ./prog\fP
-$ \fBls prof_data\fP
+.RB $ " LD_LIBRARY_PATH=. ./prog" ;
+.RB $ " ls prof_data" ;
 libdemo.so.1.profile
 .EE
 .in
@@ -220,7 +220,7 @@ option to generate a flat profile with counts and ticks:
 .P
 .in +4n
 .EX
-$ \fBsprof \-p libdemo.so.1 $LD_PROFILE_OUTPUT/libdemo.so.1.profile\fP
+.RB $ " sprof \-p libdemo.so.1 $LD_PROFILE_OUTPUT/libdemo.so.1.profile" ;
 Flat profile:
 \&
 Each sample counts as 0.01 seconds.
@@ -239,7 +239,7 @@ option generates a call graph:
 .P
 .in +4n
 .EX
-$ \fBsprof \-q libdemo.so.1 $LD_PROFILE_OUTPUT/libdemo.so.1.profile\fP
+.RB $ " sprof \-q libdemo.so.1 $LD_PROFILE_OUTPUT/libdemo.so.1.profile" ;
 \&
 index % time    self  children    called     name
 \&
@@ -270,7 +270,7 @@ option generates a list of call pairs and the number of their occurrences:
 .P
 .in +4n
 .EX
-$ \fBsprof \-c libdemo.so.1 $LD_PROFILE_OUTPUT/libdemo.so.1.profile\fP
+.RB $ " sprof \-c libdemo.so.1 $LD_PROFILE_OUTPUT/libdemo.so.1.profile" ;
 <UNKNOWN>                  x1                                 1
 x1                         consumeCpu1                      100
 <UNKNOWN>                  x2                                 1

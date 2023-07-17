@@ -24,11 +24,14 @@ Standard C library
 .SH DESCRIPTION
 The
 .BR btowc ()
-function converts \fIc\fP,
+function converts
+.IR c ,
 interpreted as a multibyte sequence
 of length 1, starting in the initial shift state, to a wide character and
 returns it.
-If \fIc\fP is
+If
+.I c
+is
 .B EOF
 or not a valid multibyte sequence of length 1,
 the
@@ -39,8 +42,11 @@ function returns
 The
 .BR btowc ()
 function returns the wide character
-converted from the single byte \fIc\fP.
-If \fIc\fP is
+converted from the single byte
+.IR c .
+If
+.I c
+is
 .B EOF
 or not a valid multibyte sequence of length 1,
 it returns

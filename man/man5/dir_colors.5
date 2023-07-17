@@ -56,7 +56,7 @@ terminal-specific one.
 .P
 The following statements are recognized; case is insignificant:
 .TP
-.B TERM \fIterminal-type\fR
+.BI TERM\~ terminal-type
 Starts a terminal-specific section and specifies which terminal it
 applies to.
 Multiple
@@ -67,10 +67,18 @@ terminal types.
 .B COLOR yes|all|no|none|tty
 (Slackware only; ignored by GNU
 .BR dircolors (1).)
-Specifies that colorization should always be enabled (\fIyes\fR or
-\fIall\fR), never enabled (\fIno\fR or \fInone\fR), or enabled only if
-the output is a terminal (\fItty\fR).
-The default is \fIno\fR.
+Specifies that colorization should always be enabled
+.RI ( yes
+or
+.IR all ),
+never enabled
+.IR ( no
+or
+.IR none ),
+or enabled only if the output is a terminal
+.RI ( tty ).
+The default is
+.IR no .
 .TP
 .B EIGHTBIT yes|no
 (Slackware only; ignored by GNU
@@ -78,10 +86,13 @@ The default is \fIno\fR.
 Specifies that eight-bit ISO/IEC\~8859 characters should be enabled by
 default.
 For compatibility reasons, this can also be specified as 1 for
-\fIyes\fR or 0 for \fIno\fR.
-The default is \fIno\fR.
+.I yes
+or 0 for
+.IR no .
+The default is
+.IR no .
 .TP
-.B OPTIONS \fIoptions\fR
+.BI OPTIONS\~ options
 (Slackware only; ignored by GNU
 .BR dircolors (1).)
 Adds command-line options to the default
@@ -94,26 +105,26 @@ Note that
 .B dircolors
 does not verify the validity of these options.
 .TP
-.B NORMAL \fIcolor-sequence\fR
+.BI NORMAL\~ color-sequence
 Specifies the color used for normal (nonfilename) text.
 .IP
 Synonym:
 .BR NORM .
 .TP
-.B FILE \fIcolor-sequence\fR
+.BI FILE\~ color-sequence
 Specifies the color used for a regular file.
 .TP
-.B DIR \fIcolor-sequence\fR
+.BI DIR\~ color-sequence
 Specifies the color used for directories.
 .TP
-.B LINK \fIcolor-sequence\fR
+.BI LINK\~ color-sequence
 Specifies the color used for a symbolic link.
 .IP
 Synonyms:
 .BR LNK ,
 .BR SYMLINK .
 .TP
-.B ORPHAN \fIcolor-sequence\fR
+.BI ORPHAN\~ color-sequence
 Specifies the color used for an orphaned symbolic link (one which
 points to a nonexistent file).
 If this is unspecified,
@@ -122,7 +133,7 @@ will use the
 .B LINK
 color instead.
 .TP
-.B MISSING \fIcolor-sequence\fR
+.BI MISSING\~ color-sequence
 Specifies the color used for a missing file (a nonexistent file which
 nevertheless has a symbolic link pointing to it).
 If this is unspecified,
@@ -131,64 +142,64 @@ will use the
 .B FILE
 color instead.
 .TP
-.B FIFO \fIcolor-sequence\fR
+.BI FIFO\~ color-sequence
 Specifies the color used for a FIFO (named pipe).
 .IP
 Synonym:
 .BR PIPE .
 .TP
-.B SOCK \fIcolor-sequence\fR
+.BI SOCK\~ color-sequence
 Specifies the color used for a socket.
 .TP
-.B DOOR \fIcolor-sequence\fR
+.BI DOOR\~ color-sequence
 (Supported since fileutils 4.1)
 Specifies the color used for a door (Solaris 2.5 and later).
 .TP
-.B BLK \fIcolor-sequence\fR
+.BI BLK\~ color-sequence
 Specifies the color used for a block device special file.
 .IP
 Synonym:
 .BR BLOCK .
 .TP
-.B CHR \fIcolor-sequence\fR
+.BI CHR\~ color-sequence
 Specifies the color used for a character device special file.
 .IP
 Synonym:
 .BR CHAR .
 .TP
-.B EXEC \fIcolor-sequence\fR
+.BI EXEC\~ color-sequence
 Specifies the color used for a file with the executable attribute set.
 .TP
-.B SUID \fIcolor-sequence\fR
+.BI SUID\~ color-sequence
 Specifies the color used for a file with the set-user-ID attribute set.
 .IP
 Synonym:
 .BR SETUID .
 .TP
-.B SGID \fIcolor-sequence\fR
+.BI SGID\~ color-sequence
 Specifies the color used for a file with the set-group-ID attribute set.
 .IP
 Synonym:
 .BR SETGID .
 .TP
-.B STICKY \fIcolor-sequence\fR
+.BI STICKY\~ color-sequence
 Specifies the color used for a directory with the sticky attribute set.
 .TP
-.B STICKY_OTHER_WRITABLE \fIcolor-sequence\fR
+.BI STICKY_OTHER_WRITABLE\~ color-sequence
 Specifies the color used for
 an other-writable directory with the executable attribute set.
 .IP
 Synonym:
 .BR OWT .
 .TP
-.B OTHER_WRITABLE \fIcolor-sequence\fR
+.BI OTHER_WRITABLE\~ color-sequence
 Specifies the color used for
 an other-writable directory without the executable attribute set.
 .IP
 Synonym:
 .BR OWR .
 .TP
-.B LEFTCODE \fIcolor-sequence\fR
+.BI LEFTCODE\~ color-sequence
 Specifies the
 .I "left code"
 for non-ISO/IEC\~6429 terminals (see below).
@@ -196,7 +207,7 @@ for non-ISO/IEC\~6429 terminals (see below).
 Synonym:
 .BR LEFT .
 .TP
-.B RIGHTCODE \fIcolor-sequence\fR
+.BI RIGHTCODE\~ color-sequence
 Specifies the
 .I "right code"
 for non-ISO/IEC\~6429 terminals (see below).
@@ -204,7 +215,7 @@ for non-ISO/IEC\~6429 terminals (see below).
 Synonym:
 .BR RIGHT .
 .TP
-.B ENDCODE \fIcolor-sequence\fR
+.BI ENDCODE\~ color-sequence
 Specifies the
 .I "end code"
 for non-ISO/IEC\~6429 terminals (see below).
@@ -212,13 +223,16 @@ for non-ISO/IEC\~6429 terminals (see below).
 Synonym:
 .BR END .
 .TP
-.BI * "extension color-sequence"
-Specifies the color used for any file that ends in \fIextension\fR.
+.BI * extension\~color-sequence
+Specifies the color used for any file that ends in
+.IR extension .
 .TP
-.BI . "extension color-sequence"
-Same as \fB*\fR.\fIextension\fR.
+.BI . extension\~color-sequence
+Same as
+.RI \f[B]*\f[]. extension .
 Specifies the color used for any file that
-ends in .\fIextension\fR.
+ends in
+.RI . extension .
 Note that the period is included in the
 extension, which makes it impossible to specify an extension not
 starting with a period, such as
@@ -359,8 +373,8 @@ lb l.
 \[rs]t	Tab (ASCII 9)
 \[rs]v	Vertical Tab (ASCII 11)
 \[rs]?	Delete (ASCII 127)
-\[rs]\fInnn	Any character (octal notation)
-\[rs]x\fInnn	Any character (hexadecimal notation)
+\[rs]\f[I]nnn\f[]	Any character (octal notation)
+\[rs]x\f[I]nnn\f[]	Any character (hexadecimal notation)
 \[rs]_	Space
 \[rs]\[rs]	Backslash (\[rs])
 \[rs]\[ha]	Caret (\[ha])

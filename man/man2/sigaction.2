@@ -317,7 +317,8 @@ as described below.
 .I ucontext
 This is a pointer to a
 .I ucontext_t
-structure, cast to \fIvoid\ *\fP.
+structure, cast to
+.IR "void\ *" .
 The structure pointed to by this field contains
 signal context information that was saved
 on the user-space stack by the kernel; for details, see
@@ -360,7 +361,7 @@ siginfo_t {
     int      si_timerid;   /* Timer ID; POSIX.1b timers */
 .\" In the kernel: si_tid
     void    *si_addr;      /* Memory location which caused fault */
-    long     si_band;      /* Band event (was \fIint\fP in
+    long     si_band;      /* Band event (was \f[I]int\f[] in
                               glibc 2.3.2 and earlier) */
     int      si_fd;        /* File descriptor */
     short    si_addr_lsb;  /* Least significant bit of address

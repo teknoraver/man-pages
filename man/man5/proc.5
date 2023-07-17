@@ -33,7 +33,7 @@ The
 .B proc
 filesystem supports the following mount options:
 .TP
-.BR hidepid= "\fIn\fP (since Linux 3.3)"
+.BR hidepid= "\f[I]n\f[] (since Linux 3.3)"
 .\" commit 0499680a42141d86417a8fbaa8c8db806bea1201
 This option controls who can access the information in
 .IR /proc/ pid
@@ -91,7 +91,7 @@ some daemon is running with elevated privileges,
 whether another user is running some sensitive program,
 whether other users are running any program at all, and so on).
 .TP
-.BR gid= "\fIgid\fP (since Linux 3.3)"
+.BR gid= "\f[I]gid\f[] (since Linux 3.3)"
 .\" commit 0499680a42141d86417a8fbaa8c8db806bea1201
 Specifies the ID of a group whose members are authorized to
 learn process information otherwise prohibited by
@@ -220,7 +220,7 @@ if you use a command of the following form to display them:
 .P
 .in +4n
 .EX
-.RB "$" " cat \fIfile\fP | tr \[aq]\[rs]000\[aq] \[aq]\[rs]n\[aq]"
+.RB $ " cat \f[I]file\f[] | tr \[aq]\[rs]000\[aq] \[aq]\[rs]n\[aq]"
 .EE
 .in
 .\" .SH ACKNOWLEDGEMENTS

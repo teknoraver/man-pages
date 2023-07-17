@@ -23,8 +23,11 @@ The
 .BR sched_setscheduler ()
 system call
 sets both the scheduling policy and parameters for the
-thread whose ID is specified in \fIpid\fP.
-If \fIpid\fP equals zero, the
+thread whose ID is specified in
+.IR pid .
+If
+.I pid
+equals zero, the
 scheduling policy and parameters of the calling thread will be set.
 .P
 The scheduling parameters are specified in the
@@ -109,8 +112,11 @@ for details.
 .P
 .BR sched_getscheduler ()
 returns the current scheduling policy of the thread
-identified by \fIpid\fP.
-If \fIpid\fP equals zero, the policy of the
+identified by
+.IR pid .
+If
+.I pid
+equals zero, the policy of the
 calling thread will be retrieved.
 .SH RETURN VALUE
 On success,
@@ -146,7 +152,9 @@ does not make sense for the specified
 The calling thread does not have appropriate privileges.
 .TP
 .B ESRCH
-The thread whose ID is \fIpid\fP could not be found.
+The thread whose ID is
+.I pid
+could not be found.
 .SH VERSIONS
 POSIX.1 does not detail the permissions that an unprivileged
 thread requires in order to call
@@ -201,7 +209,8 @@ and
 .BR sched_getscheduler ()
 are available define
 .B _POSIX_PRIORITY_SCHEDULING
-in \fI<unistd.h>\fP.
+in
+.IR <unistd.h> .
 .SH BUGS
 POSIX.1 says that on success,
 .BR sched_setscheduler ()

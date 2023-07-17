@@ -69,7 +69,7 @@ structure is declared as follows:
 struct linux_dirent {
     unsigned long  d_ino;     /* Inode number */
     unsigned long  d_off;     /* Not an offset; see below */
-    unsigned short d_reclen;  /* Length of this \fIlinux_dirent\fP */
+    unsigned short d_reclen;  /* Length of this \f[I]linux_dirent\f[] */
     char           d_name[];  /* Filename (null\-terminated) */
                       /* length is actually (d_reclen \- 2 \-
                          offsetof(struct linux_dirent, d_name)) */

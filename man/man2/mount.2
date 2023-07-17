@@ -855,7 +855,8 @@ on the same mount point.
 .P
 The
 .I mountflags
-argument may have the magic number 0xC0ED (\fBMS_MGC_VAL\fP)
+argument may have the magic number 0xC0ED
+.RB ( MS_MGC_VAL )
 in the top 16 bits.
 (All of the other flags discussed in DESCRIPTION
 occupy the low order 16 bits of
@@ -872,7 +873,8 @@ flag was renamed
 in 1.1.69
 when a different
 .B MS_SYNC
-was added to \fI<mman.h>\fP.
+was added to
+.IR <mman.h> .
 .P
 Before Linux 2.4 an attempt to execute a set-user-ID or set-group-ID program
 on a filesystem mounted with
@@ -941,7 +943,7 @@ The parental relationship between mounts can be discovered via the
 .IR /proc/ pid /mountinfo
 file (see below).
 .\"
-.SS \fI/proc/\fPpid\fI/mounts\fP and \fI/proc/\fPpid\fI/mountinfo\fP
+.SS \f[I]/proc/\f[]pid\f[I]/mounts\f[] and \f[I]/proc/\f[]pid\f[I]/mountinfo\f[]
 The Linux-specific
 .IR /proc/ pid /mounts
 file exposes the list of mounts in the mount

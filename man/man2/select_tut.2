@@ -49,7 +49,10 @@ A signal will cause the
 .BR select ()
 (or
 .BR pselect ())
-call to return with \fIerrno\fP set to \fBEINTR\fP.
+call to return with
+.I errno
+set to
+.BR EINTR .
 This behavior is essential so that signals can be processed
 in the main loop of the program, otherwise
 .BR select ()
@@ -74,7 +77,9 @@ call.
 For instance, let us say that the event in question
 was the exit of a child process.
 Before the start of the main loop, we
-would block \fBSIGCHLD\fP using
+would block
+.B SIGCHLD
+using
 .BR sigprocmask (2).
 Our
 .BR pselect ()
@@ -183,8 +188,10 @@ Code that
 depends on timeouts is not usually portable and is difficult to debug.
 .TP
 2.
-The value \fInfds\fP must be properly calculated for efficiency as
-explained above.
+The value
+.I nfds
+must be properly calculated for efficiency
+as explained above.
 .TP
 3.
 No file descriptor must be added to any set if you do not intend
@@ -206,7 +213,9 @@ The functions
 .BR write (2),
 and
 .BR send (2)
-do \fInot\fP necessarily read/write the full amount of data
+do
+.I not
+necessarily read/write the full amount of data
 that you have requested.
 If they do read/write the full amount, it's
 because you have a low traffic load and a fast stream.
@@ -231,7 +240,7 @@ Calls to
 and
 .BR select ()
 can fail with the error
-\fBEINTR\fP,
+.BR EINTR ,
 and calls to
 .BR read (2),
 .BR recv (2),
@@ -240,12 +249,16 @@ and
 .BR send (2)
 can fail with
 .I errno
-set to \fBEAGAIN\fP (\fBEWOULDBLOCK\fP).
+set to
+.B EAGAIN
+.RB ( EWOULDBLOCK ).
 These results must be properly managed (not done properly above).
 If your program is not going to receive any signals, then
-it is unlikely you will get \fBEINTR\fP.
+it is unlikely you will get
+.BR EINTR .
 If your program does not set nonblocking I/O,
-you will not get \fBEAGAIN\fP.
+you will not get
+.BR EAGAIN .
 .\" Nonetheless, you should still cope with these errors for completeness.
 .TP
 8.
@@ -264,9 +277,12 @@ If the functions
 .BR write (2),
 and
 .BR send (2)
-fail with errors other than those listed in \fB7.\fP,
+fail with errors other than those listed in
+.BR 7. ,
 or one of the input functions returns 0, indicating end of file,
-then you should \fInot\fP pass that file descriptor to
+then you should
+.I not
+pass that file descriptor to
 .BR select ()
 again.
 In the example below,
@@ -607,7 +623,9 @@ main(int argc, char *argv[])
 .\" SRC END
 .P
 The above program properly forwards most kinds of TCP connections
-including OOB signal data transmitted by \fBtelnet\fP servers.
+including OOB signal data transmitted by
+.B telnet
+servers.
 It handles the tricky problem of having data flow in both directions
 simultaneously.
 You might think it more efficient to use a

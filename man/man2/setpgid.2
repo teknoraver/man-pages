@@ -31,10 +31,10 @@ Standard C library
 .BI "pid_t getpgid(pid_t " pid );
 .P
 .BR "pid_t getpgrp(void);" "                            /* POSIX.1 version */"
-.BI "[[deprecated]] pid_t getpgrp(pid_t " pid ");\fR        /* BSD version */"
+.BI "[[deprecated]] pid_t getpgrp(pid_t " pid ");\f[R]        /* BSD version */\f[]"
 .P
 .BR "int setpgrp(void);" "                              /* System V version */"
-.BI "[[deprecated]] int setpgrp(pid_t " pid ", pid_t " pgid ");\fR  /* BSD version */"
+.BI "[[deprecated]] int setpgrp(pid_t " pid ", pid_t " pgid ");\f[R]  /* BSD version */\f[]"
 .fi
 .P
 .RS -4
@@ -97,7 +97,9 @@ both process groups must be part of the same session (see
 and
 .BR credentials (7)).
 In this case,
-the \fIpgid\fP specifies an existing process group to be joined and the
+the
+.I pgid
+specifies an existing process group to be joined and the
 session ID of that group must match the session ID of the joining process.
 .P
 The POSIX.1 version of

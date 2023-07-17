@@ -171,13 +171,16 @@ the requested attach type, and does not have the
 capability in the user namespace that governs its IPC namespace.
 .TP
 .B EIDRM
-\fIshmid\fP points to a removed identifier.
+.I shmid
+points to a removed identifier.
 .TP
 .B EINVAL
 Invalid
 .I shmid
-value, unaligned (i.e., not page-aligned and \fBSHM_RND\fP was not
-specified) or invalid
+value, unaligned (i.e., not page-aligned and
+.B SHM_RND
+was not specified)
+or invalid
 .I shmaddr
 value, or can't attach segment at
 .IR shmaddr ,
@@ -207,14 +210,16 @@ POSIX.1-2001, SVr4.
 .\" SVr4 documents an additional error condition EMFILE.
 .P
 In SVID 3 (or perhaps earlier),
-the type of the \fIshmaddr\fP argument was changed from
-.I "char\ *"
+the type of the
+.I shmaddr
+argument was changed from
+.I char\ *
 into
 .IR "const void\ *" ,
 and the returned type of
 .BR shmat ()
 from
-.I "char\ *"
+.I char\ *
 into
 .IR "void\ *" .
 .SH NOTES
@@ -280,7 +285,7 @@ and then waits for the semaphore to change value.
 .P
 .in +4n
 .EX
-$ \fB./svshm_string_read\fP
+.RB $ " ./svshm_string_read" ;
 shmid = 1114194; semid = 15
 .EE
 .in
@@ -294,7 +299,7 @@ copies the string to the shared memory, and modifies the semaphore value.
 .P
 .in +4n
 .EX
-$ \fB./svshm_string_write 1114194 15 \[aq]Hello, world\[aq]\fP
+.RB $ " ./svshm_string_write 1114194 15 \[aq]Hello, world\[aq]" ;
 .EE
 .in
 .P

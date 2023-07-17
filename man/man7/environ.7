@@ -35,9 +35,11 @@ of its parent's environment.
 .P
 By convention, the strings in
 .I environ
-have the form "\fIname\fP\fB=\fP\fIvalue\fP".
+have the form
+. RI \[dq] name\f[B]=\f[]value \[dq].
 The name is case-sensitive and may not contain
-the character "\fB=\fP".
+the character
+.RB \[dq] = \[dq].
 The value can be anything that can be represented as a string.
 The name and the value may not contain an embedded null byte (\[aq]\[rs]0\[aq]),
 since this is assumed to terminate the string.
@@ -131,7 +133,8 @@ The sequence of directory prefixes that
 and many other
 programs employ when searching for an executable file that is specified
 as a simple filename (i.a., a pathname that contains no slashes).
-The prefixes are separated by colons (\fB:\fP).
+The prefixes are separated by colons
+.RB ( : ).
 The list of prefixes is searched from beginning to end,
 by checking the pathname formed by concatenating
 a prefix, a slash, and the filename,

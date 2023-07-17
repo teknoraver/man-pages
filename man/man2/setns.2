@@ -35,7 +35,7 @@ The
 .I nstype
 argument is interpreted differently in each case.
 .\"
-.SS fd refers to a \fI/proc/\fPpid\fI/ns/\fP link
+.SS fd refers to a \f[I]/proc/\f[]pid\f[I]/ns/\f[] link
 If
 .I fd
 refers to a
@@ -358,14 +358,14 @@ so that we can see that they are different.
 .P
 .in +4n
 .EX
-$ \fBsu\fP                   # Need privilege for namespace operations
+.RB $ " su" ";                   # Need privilege for namespace operations"
 Password:
-# \fB./newuts bizarro &\fP
+.RB # " ./newuts bizarro &"
 [1] 3549
 clone() returned 3550
 uts.nodename in child:  bizarro
 uts.nodename in parent: antero
-# \fBuname \-n\fP             # Verify hostname in the shell
+.RB # " uname \-n" ";             # Verify hostname in the shell"
 antero
 .EE
 .in
@@ -377,8 +377,8 @@ set by the child created by the first program:
 .P
 .in +4n
 .EX
-# \fB./ns_exec /proc/3550/ns/uts /bin/bash\fP
-# \fBuname \-n\fP             # Executed in shell started by ns_exec
+.RB # " ./ns_exec /proc/3550/ns/uts /bin/bash" ;
+.RB # " uname \-n" ";             # Executed in shell started by ns_exec"
 bizarro
 .EE
 .in

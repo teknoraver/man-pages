@@ -33,7 +33,9 @@ Standard C library
 .BR mprotect ()
 changes the access protections for the calling process's memory pages
 containing any part of the address range in the
-interval [\fIaddr\fP,\ \fIaddr\fP+\fIsize\fP\-1].
+interval
+.RI [ addr ,
+.IR addr + size \-1].
 .I addr
 must be aligned to a page boundary.
 .P
@@ -142,12 +144,14 @@ to mark it
 .BR PROT_WRITE .
 .TP
 .B EINVAL
-\fIaddr\fP is not a valid pointer,
+.I addr
+is not a valid pointer,
 or not a multiple of the system page size.
 .TP
 .B EINVAL
 .RB ( pkey_mprotect ())
-\fIpkey\fP has not been allocated with
+.I pkey
+has not been allocated with
 .BR pkey_alloc (2)
 .TP
 .B EINVAL

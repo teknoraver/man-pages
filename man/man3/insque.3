@@ -56,8 +56,10 @@ or circular.
 .P
 The
 .BR insque ()
-function inserts the element pointed to by \fIelem\fP
-immediately after the element pointed to by \fIprev\fP.
+function inserts the element pointed to by
+.I elem
+immediately after the element pointed to by
+.IR prev .
 .P
 If the list is linear, then the call
 .I "insque(elem, NULL)"
@@ -77,8 +79,9 @@ call should also point to the element.
 .P
 The
 .BR remque ()
-function removes the element pointed to by \fIelem\fP from the
-doubly linked list.
+function removes the element pointed to by
+.I elem
+from the doubly linked list.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -97,7 +100,8 @@ T}	Thread safety	MT-Safe
 .SH VERSIONS
 On ancient systems,
 .\" e.g., SunOS, Linux libc4 and libc5
-the arguments of these functions were of type \fIstruct qelem *\fP,
+the arguments of these functions were of type
+.IR "struct\ qelem\ *" ,
 defined as:
 .P
 .in +4n
@@ -113,14 +117,16 @@ struct qelem {
 This is still what you will get if
 .B _GNU_SOURCE
 is defined before
-including \fI<search.h>\fP.
+including
+.IR <search.h> .
 .P
 The location of the prototypes for these functions differs among several
 versions of UNIX.
 The above is the POSIX version.
-Some systems place them in \fI<string.h>\fP.
-.\" Linux libc4 and libc 5 placed them
-.\" in \fI<stdlib.h>\fP.
+Some systems place them in
+.IR <string.h> .
+.\" Linux libc4 and libc 5 placed them in
+.\" .IR <stdlib.h> .
 .SH STANDARDS
 POSIX.1-2008.
 .SH HISTORY

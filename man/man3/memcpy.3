@@ -26,8 +26,12 @@ Standard C library
 .SH DESCRIPTION
 The
 .BR memcpy ()
-function copies \fIn\fP bytes from memory area
-\fIsrc\fP to memory area \fIdest\fP.
+function copies
+.I n
+bytes from memory area
+.I src
+to memory area
+.IR dest .
 The memory areas must not overlap.
 Use
 .BR memmove (3)
@@ -35,7 +39,8 @@ if the memory areas do overlap.
 .SH RETURN VALUE
 The
 .BR memcpy ()
-function returns a pointer to \fIdest\fP.
+function returns a pointer to
+.IR dest .
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).

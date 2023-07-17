@@ -25,7 +25,7 @@ is the following:
 .P
 .in +4n
 .EX
-$ \fBldd /bin/ls\fP
+.RB $ " ldd /bin/ls" ;
     linux\-vdso.so.1 (0x00007ffcc3563000)
     libselinux.so.1 => /lib64/libselinux.so.1 (0x00007f87e5459000)
     libcap.so.2 => /lib64/libcap.so.2 (0x00007f87e5254000)
@@ -101,7 +101,7 @@ A safer alternative when dealing with untrusted executables is:
 .P
 .in +4n
 .EX
-$ \fBobjdump \-p /path/to/program | grep NEEDED\fP
+.RB $ " objdump \-p /path/to/program | grep NEEDED" ;
 .EE
 .in
 .P

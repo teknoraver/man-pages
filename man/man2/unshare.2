@@ -480,10 +480,10 @@ new shell are in separate mount namespaces:
 .P
 .in +4n
 .EX
-$ \fBreadlink /proc/$$/ns/mnt\fP
+.RB $ " readlink /proc/$$/ns/mnt" ;
 mnt:[4026531840]
-$ \fBsudo ./unshare \-m /bin/bash\fP
-# \fBreadlink /proc/$$/ns/mnt\fP
+.RB $ " sudo ./unshare \-m /bin/bash" ;
+.RB # " readlink /proc/$$/ns/mnt" ;
 mnt:[4026532325]
 .EE
 .in

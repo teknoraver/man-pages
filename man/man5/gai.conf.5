@@ -27,37 +27,45 @@ Lines starting with \[aq]#\[aq] are comments and are ignored.
 .P
 The keywords currently recognized are:
 .TP
-\fBlabel\fR \fInetmask\fR \fIprecedence\fR
+.BI label\~ netmask\~precedence
 The value is added to the label table used in the RFC\ 3484 sorting.
-If any \fBlabel\fR definition is present in the configuration file,
+If any
+.B label
+definition is present in the configuration file,
 the default table is not used.
 All the label definitions
 of the default table which are to be maintained have to be duplicated.
 Following the keyword,
 the line has to contain a network mask and a precedence value.
 .TP
-\fBprecedence\fR \fInetmask\fR \fIprecedence\fR
-This keyword is similar to \fBlabel\fR, but instead the value is added
+.BI precedence\~ netmask\~precedence
+This keyword is similar to
+.BR label ,
+but instead the value is added
 to the precedence table as specified in RFC\ 3484.
 Once again, the
-presence of a single \fBprecedence\fR line in the configuration file
+presence of a single
+.B precedence
+line in the configuration file
 causes the default table to not be used.
 .TP
-\fBreload\fR <\fByes\fR|\fBno\fR>
+.BR reload\~ < yes | no >
 This keyword controls whether a process checks whether the configuration
 file has been changed since the last time it was read.
 If the value is
-"\fByes\fR", the file is reread.
+.RB \[dq] yes \[dq],
+the file is reread.
 This might cause problems in multithreaded
 applications and is generally a bad idea.
-The default is "\fBno\fR".
+The default is
+.RB \[dq] no \[dq].
 .TP
-\fBscopev4\fR \fImask\fR \fIvalue\fR
+.BI scopev4\~ mask\~value
 Add another rule to the RFC\ 3484 scope table for IPv4 address.
 By default, the scope IDs described in section 3.2 in RFC\ 3438 are used.
 Changing these defaults should hardly ever be necessary.
 .SH FILES
-\fI/etc/gai.conf\fR
+.I /etc/gai.conf
 .SH VERSIONS
 The
 .I gai.conf

@@ -44,13 +44,16 @@ Feature Test Macro Requirements for glibc (see
 The
 .BR abs ()
 function computes the absolute value of the integer
-argument \fIj\fP.
+argument
+.IR j .
 The
 .BR labs (),
 .BR llabs (),
 and
 .BR imaxabs ()
-functions compute the absolute value of the argument \fIj\fP of the
+functions compute the absolute value of the argument
+.I j
+of the
 appropriate integer type for the function.
 .SH RETURN VALUE
 Returns the absolute value of the integer argument, of the appropriate
@@ -104,8 +107,11 @@ function is included since glibc 2.1.1.
 For
 .BR llabs ()
 to be declared, it may be necessary to define
-\fB_ISOC99_SOURCE\fP or \fB_ISOC9X_SOURCE\fP (depending on the
-version of glibc) before including any standard headers.
+.B _ISOC99_SOURCE
+or
+.B _ISOC9X_SOURCE
+(depending on the version of glibc)
+before including any standard headers.
 .P
 By default,
 GCC handles

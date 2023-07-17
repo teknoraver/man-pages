@@ -46,9 +46,11 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 These functions return a value equivalent to
 .P
-.nf
-    log (1 + \fIx\fP)
-.fi
+.in +4n
+.EX
+log(1 + \f[I]x\f[])
+.EE
+.in
 .P
 The result is computed in a way
 that is accurate even if the value of
@@ -92,7 +94,7 @@ when calling these functions.
 .P
 The following errors can occur:
 .TP
-Domain error: \fIx\fP is less than \-1.
+Domain error: \f[I]x\f[] is less than \-1.
 .I errno
 is set to
 .B EDOM
@@ -101,7 +103,7 @@ An invalid floating-point exception
 .RB ( FE_INVALID )
 is raised.
 .TP
-Pole error: \fIx\fP is \-1.
+Pole error: \f[I]x\f[] is \-1.
 .I errno
 is set to
 .B ERANGE

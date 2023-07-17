@@ -54,7 +54,7 @@ struct acct {
     char      ac_comm[ACCT_COMM+1];
                             /* Command name (basename of last
                                executed command; null\-terminated) */
-    char      ac_pad[\fIX\fP];    /* padding bytes */
+    char      ac_pad[\f[I]X\f[]];    /* padding bytes */
 };
 \&
 enum {          /* Bits that may be set in ac_flag field */

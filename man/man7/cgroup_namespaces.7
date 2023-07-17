@@ -56,10 +56,10 @@ use as part of the demonstration below:
 .P
 .in +4n
 .EX
-# \fBmkdir \-p /sys/fs/cgroup/freezer/sub2\fP
-# \fBsleep 10000 &\fP     # Create a process that lives for a while
+.RB # " mkdir \-p /sys/fs/cgroup/freezer/sub2" ;
+.RB # " sleep 10000 &"     # Create a process that lives for a while
 [1] 20124
-# \fBecho 20124 > /sys/fs/cgroup/freezer/sub2/cgroup.procs\fP
+.RB # " echo 20124 > /sys/fs/cgroup/freezer/sub2/cgroup.procs" ;
 .EE
 .in
 .P
@@ -69,11 +69,11 @@ hierarchy and put the shell into that cgroup:
 .P
 .in +4n
 .EX
-# \fBmkdir \-p /sys/fs/cgroup/freezer/sub\fP
-# \fBecho $$\fP                      # Show PID of this shell
+.RB # " mkdir \-p /sys/fs/cgroup/freezer/sub" ;
+.RB # " echo $$" ";                      # Show PID of this shell"
 30655
-# \fBecho 30655 > /sys/fs/cgroup/freezer/sub/cgroup.procs\fP
-# \fBcat /proc/self/cgroup | grep freezer\fP
+.RB # " echo 30655 > /sys/fs/cgroup/freezer/sub/cgroup.procs" ;
+.RB # " cat /proc/self/cgroup | grep freezer" ;
 7:freezer:/sub
 .EE
 .in
@@ -84,7 +84,7 @@ to create a process running a new shell in new cgroup and mount namespaces:
 .P
 .in +4n
 .EX
-# \fBPS1="sh2# " unshare \-Cm bash\fP
+.RB # " PS1='sh2# ' unshare \-Cm bash" ;
 .EE
 .in
 .P
@@ -100,11 +100,11 @@ with PID 1), and the process in the sibling cgroup
 .P
 .in +4n
 .EX
-sh2# \fBcat /proc/self/cgroup | grep freezer\fP
+.RB sh2# " cat /proc/self/cgroup | grep freezer" ;
 7:freezer:/
-sh2# \fBcat /proc/1/cgroup | grep freezer\fP
+.RB sh2# " cat /proc/1/cgroup | grep freezer" ;
 7:freezer:/..
-sh2# \fBcat /proc/20124/cgroup | grep freezer\fP
+.RB sh2# " cat /proc/20124/cgroup | grep freezer" ;
 7:freezer:/../sub2
 .EE
 .in
@@ -129,7 +129,7 @@ we see the following anomaly:
 .P
 .in +4n
 .EX
-sh2# \fBcat /proc/self/mountinfo | grep freezer\fP
+.RB sh2# " cat /proc/self/mountinfo | grep freezer" ;
 155 145 0:32 /.. /sys/fs/cgroup/freezer ...
 .EE
 .in
@@ -151,11 +151,11 @@ new cgroup namespace), after which we see the expected results:
 .P
 .in +4n
 .EX
-sh2# \fBmount \-\-make\-rslave /\fP     # Don\[aq]t propagate mount events
+.RB sh2# " mount \-\-make\-rslave /" ";     # Don\[aq]t propagate mount events"
                                # to other namespaces
-sh2# \fBumount /sys/fs/cgroup/freezer\fP
-sh2# \fBmount \-t cgroup \-o freezer freezer /sys/fs/cgroup/freezer\fP
-sh2# \fBcat /proc/self/mountinfo | grep freezer\fP
+.RB sh2# " umount /sys/fs/cgroup/freezer" ;
+.RB sh2# " mount \-t cgroup \-o freezer freezer /sys/fs/cgroup/freezer" ;
+.RB sh2# " cat /proc/self/mountinfo | grep freezer" ;
 155 145 0:32 / /sys/fs/cgroup/freezer rw,relatime ...
 .EE
 .in

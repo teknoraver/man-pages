@@ -38,7 +38,7 @@ are treated as comments.
 .P
 The variables currently recognized are:
 .TP
-\fBNETID_AUTHORITATIVE =\fR \fITRUE\fR|\fIFALSE\fR
+.RI \f[B]NETID_AUTHORITATIVE\f[]\~=\~ TRUE | FALSE
 If set to TRUE, the NIS backend for the
 .BR initgroups (3)
 function will accept the information
@@ -50,10 +50,11 @@ This can speed up the function significantly if the
 map is large.
 The content of the
 .I netid.byname
-map is used \fBas is\fR.
+map is used
+.BR "as is" .
 The system administrator has to make sure it is correctly generated.
 .TP
-\fBSERVICES_AUTHORITATIVE =\fR \fITRUE\fR|\fIFALSE\fR
+.RI \f[B]SERVICES_AUTHORITATIVE\f[]\~=\~ TRUE | FALSE
 If set to TRUE, the NIS backend for the
 .BR getservbyname (3)
 and
@@ -65,7 +66,7 @@ that it contains both keys with /proto and without /proto for both
 primary service names and service aliases.
 The system administrator has to make sure it is correctly generated.
 .TP
-\fBSETENT_BATCH_READ =\fR \fITRUE\fR|\fIFALSE\fR
+.RI \f[B]SETENT_BATCH_READ\f[]\~=\~ TRUE | FALSE
 If set to TRUE, the NIS backend for the
 .BR setpwent (3)
 and
@@ -83,7 +84,7 @@ or
 call might result in a network communication with the server to get
 the next entry.
 .SH FILES
-\fI/etc/default/nss\fR
+.I /etc/default/nss
 .SH EXAMPLES
 The default configuration corresponds to the following configuration file:
 .P
@@ -98,4 +99,4 @@ SETENT_BATCH_READ=FALSE
 .\" Ulrich Drepper <drepper@redhat.com>
 .\"
 .SH SEE ALSO
-\fInsswitch.conf\fR
+.BR nsswitch.conf (5)

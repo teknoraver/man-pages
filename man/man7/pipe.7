@@ -260,7 +260,7 @@ whether there are multiple writers to the pipe, and on
 .IR n ,
 the number of bytes to be written:
 .TP
-\fBO_NONBLOCK\fP disabled, \fIn\fP <= \fBPIPE_BUF\fP
+.BR O_NONBLOCK " disabled, \f[I]n\f[] <= " PIPE_BUF
 All
 .I n
 bytes are written atomically;
@@ -269,7 +269,7 @@ may block if there is not room for
 .I n
 bytes to be written immediately
 .TP
-\fBO_NONBLOCK\fP enabled, \fIn\fP <= \fBPIPE_BUF\fP
+.BR O_NONBLOCK " enabled, \f[I]n\f[] <= " PIPE_BUF
 If there is room to write
 .I n
 bytes to the pipe, then
@@ -283,7 +283,7 @@ fails, with
 set to
 .BR EAGAIN .
 .TP
-\fBO_NONBLOCK\fP disabled, \fIn\fP > \fBPIPE_BUF\fP
+.BR O_NONBLOCK " disabled, \f[I]n\f[] > " PIPE_BUF
 The write is nonatomic: the data given to
 .BR write (2)
 may be interleaved with
@@ -295,7 +295,7 @@ blocks until
 .I n
 bytes have been written.
 .TP
-\fBO_NONBLOCK\fP enabled, \fIn\fP > \fBPIPE_BUF\fP
+.BR O_NONBLOCK " enabled, \f[I]n\f[] > " PIPE_BUF
 If the pipe is full, then
 .BR write (2)
 fails, with

@@ -453,7 +453,9 @@ the least significant 16-bits (defined by the constant
 .BR SECCOMP_RET_DATA )
 are "data" to be associated with this return value.
 .P
-If multiple filters exist, they are \fIall\fP executed,
+If multiple filters exist, they are
+.I all
+executed,
 in reverse order of their addition to the filter tree\[em]that is,
 the most recently installed filter is executed first.
 (Note that all filters will be called
@@ -1035,12 +1037,12 @@ numbers on this architecture:
 .P
 .in +4n
 .EX
-$ \fBuname \-m\fP
+.RB $ " uname \-m" ;
 x86_64
-$ \fBsyscall_nr() {
+$ \f[B]syscall_nr() {
     cat /usr/src/linux/arch/x86/syscalls/syscall_64.tbl | \[rs]
-    awk \[aq]$2 != "x32" && $3 == "\[aq]$1\[aq]" { print $1 }\[aq]
-}\fP
+    awk \[aq]$2 != \[dq]x32\[dq] && $3 == \[dq]\[aq]$1\[aq]\[dq] { print $1 }\[aq]
+}\f[];
 .EE
 .in
 .P
@@ -1051,7 +1053,7 @@ In the experiments shown here, we'll use error number 99:
 .P
 .in +4n
 .EX
-$ \fBerrno 99\fP
+.RB $ " errno 99" ;
 EADDRNOTAVAIL 99 Cannot assign requested address
 .EE
 .in
@@ -1064,13 +1066,13 @@ system call, so that the command is not even executed:
 .P
 .in +4n
 .EX
-$ \fBsyscall_nr execve\fP
+.RB $ " syscall_nr execve" ;
 59
-$ \fB./a.out\fP
+.RB $ " ./a.out" ;
 Usage: ./a.out <syscall_nr> <arch> <errno> <prog> [<args>]
 Hint for <arch>: AUDIT_ARCH_I386: 0x40000003
                  AUDIT_ARCH_X86_64: 0xC000003E
-$ \fB./a.out 59 0xC000003E 99 /bin/whoami\fP
+.RB $ " ./a.out 59 0xC000003E 99 /bin/whoami" ;
 execv: Cannot assign requested address
 .EE
 .in
@@ -1083,9 +1085,9 @@ command is not able to write output:
 .P
 .in +4n
 .EX
-$ \fBsyscall_nr write\fP
+.RB $ " syscall_nr write" ;
 1
-$ \fB./a.out 1 0xC000003E 99 /bin/whoami\fP
+.RB $ " ./a.out 1 0xC000003E 99 /bin/whoami" ;
 .EE
 .in
 .P
@@ -1096,9 +1098,9 @@ command, so it is able to successfully execute and produce output:
 .P
 .in +4n
 .EX
-$ \fBsyscall_nr preadv\fP
+.RB $ " syscall_nr preadv" ;
 295
-$ \fB./a.out 295 0xC000003E 99 /bin/whoami\fP
+.RB $ " ./a.out 295 0xC000003E 99 /bin/whoami" ;
 cecilia
 .EE
 .in

@@ -32,8 +32,10 @@ Feature Test Macro Requirements for glibc (see
 The
 .BR mkdtemp ()
 function generates a uniquely named temporary
-directory from \fItemplate\fP.
-The last six characters of \fItemplate\fP
+directory from
+.IR template .
+The last six characters of
+.I template
 must be XXXXXX and these are replaced with a string that makes the
 directory name unique.
 The directory is then created with
@@ -51,12 +53,17 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-The last six characters of \fItemplate\fP were not XXXXXX.
-Now \fItemplate\fP is unchanged.
+The last six characters of
+.I template
+were not XXXXXX.
+Now
+.I template
+is unchanged.
 .P
 Also see
 .BR mkdir (2)
-for other possible values for \fIerrno\fP.
+for other possible values for
+.IR errno .
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).

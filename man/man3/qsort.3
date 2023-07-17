@@ -48,13 +48,19 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 The
 .BR qsort ()
-function sorts an array with \fIn\fP elements of
-size \fIsize\fP.
-The \fIbase\fP argument points to the start of the
+function sorts an array with
+.I n
+elements of size
+.IR size .
+The
+.I base
+argument points to the start of the
 array.
 .P
 The contents of the array are sorted in ascending order according to a
-comparison function pointed to by \fIcompar\fP, which is called with two
+comparison function pointed to by
+.IR compar ,
+which is called with two
 arguments that point to the objects being compared.
 .P
 The comparison function must return an integer less than, equal to, or

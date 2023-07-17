@@ -56,7 +56,7 @@ this symbolic link in a call to
 .BR setns (2)
 in order to move into the namespace.)
 .\"
-.SS \fI/proc/\fPpid\fI/timens_offsets\fP
+.SS \f[I]/proc/\f[]pid\f[I]/timens_offsets\f[]
 Associated with each time namespace are offsets,
 expressed with respect to the initial time namespace,
 that define the values of the monotonic and
@@ -100,7 +100,7 @@ file are as follows:
 .P
 .in +4n
 .EX
-$ \fBcat /proc/self/timens_offsets\fP
+.RB $ " cat /proc/self/timens_offsets"
 monotonic           0         0
 boottime            0         0
 .EE
@@ -196,7 +196,7 @@ of a shell in the initial time namespace:
 .P
 .in +4n
 .EX
-$ \fBreadlink /proc/$$/ns/time\fP
+.RB $ " readlink /proc/$$/ns/time"
 time:[4026531834]
 .EE
 .in
@@ -211,9 +211,9 @@ to display the values of various clocks:
 .P
 .in +4n
 .EX
-$ \fBuptime \-\-pretty\fP
+.RB $ " uptime \-\-pretty"
 up 21 hours, 17 minutes
-$ \fB./clock_times\fP
+.RB $ " ./clock_times"
 CLOCK_REALTIME : 1585989401.971 (18356 days +  8h 36m 41s)
 CLOCK_TAI      : 1585989438.972 (18356 days +  8h 37m 18s)
 CLOCK_MONOTONIC:      56338.247 (15h 38m 58s)
@@ -239,9 +239,9 @@ clock forward 7 days:
 .P
 .in +4n
 .EX
-$ \fBPS1="ns2# " sudo unshare \-T \-\- bash \-\-norc\fP
-ns2# \fBecho "monotonic $((2*24*60*60)) 0" > /proc/$$/timens_offsets\fP
-ns2# \fBecho "boottime  $((7*24*60*60)) 0" > /proc/$$/timens_offsets\fP
+.RB $ " PS1="ns2# " sudo unshare \-T \-\- bash \-\-norc"
+.RB ns2# " echo "monotonic $((2*24*60*60)) 0" > /proc/$$/timens_offsets"
+.RB ns2# " echo "boottime  $((7*24*60*60)) 0" > /proc/$$/timens_offsets"
 .EE
 .in
 .P
@@ -269,10 +269,10 @@ file produce an error.
 .P
 .in +4n
 .EX
-ns2# \fBcat /proc/$$/timens_offsets\fP
+.RB ns2# " cat /proc/$$/timens_offsets"
 monotonic      172800         0
 boottime       604800         0
-ns2# \fBecho "boottime $((9*24*60*60)) 0" > /proc/$$/timens_offsets\fP
+.RB ns2# " echo \[dq]boottime $((9*24*60*60)) 0\[dq] > /proc/$$/timens_offsets"
 bash: echo: write error: Permission denied
 .EE
 .in
@@ -285,9 +285,9 @@ example program:
 .P
 .in +4n
 .EX
-ns2# \fBuptime \-\-pretty\fP
+.RB ns2# " uptime \-\-pretty"
 up 1 week, 21 hours, 18 minutes
-ns2# \fB./clock_times\fP
+.RB ns2# " ./clock_times"
 CLOCK_REALTIME : 1585989457.056 (18356 days +  8h 37m 37s)
 CLOCK_TAI      : 1585989494.057 (18356 days +  8h 38m 14s)
 CLOCK_MONOTONIC:     229193.332 (2 days + 15h 39m 53s)
@@ -307,11 +307,11 @@ namespace, but its children are created in the new namespace.
 .P
 .in +4n
 .EX
-ns2# \fBreadlink /proc/$$/ns/time\fP
+.RB ns2# " readlink /proc/$$/ns/time"
 time:[4026531834]
-ns2# \fBreadlink /proc/$$/ns/time_for_children\fP
+.RB ns2# " readlink /proc/$$/ns/time_for_children"
 time:[4026532900]
-ns2# \fBreadlink /proc/self/ns/time\fP   # Creates a child process
+.RB ns2# " readlink /proc/self/ns/time" "  # Creates a child process"
 time:[4026532900]
 .EE
 .in
@@ -324,9 +324,9 @@ changes that were made in the other time namespace:
 .P
 .in +4n
 .EX
-$ \fBuptime \-\-pretty\fP
+.RB $ " uptime \-\-pretty"
 up 21 hours, 19 minutes
-$ \fB./clock_times\fP
+.RB $ " ./clock_times"
 CLOCK_REALTIME : 1585989401.971 (18356 days +  8h 38m 51s)
 CLOCK_TAI      : 1585989438.972 (18356 days +  8h 39m 28s)
 CLOCK_MONOTONIC:      56338.247 (15h 41m  8s)

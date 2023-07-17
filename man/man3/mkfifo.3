@@ -39,11 +39,16 @@ Feature Test Macro Requirements for glibc (see
 .fi
 .SH DESCRIPTION
 .BR mkfifo ()
-makes a FIFO special file with name \fIpathname\fP.
-\fImode\fP specifies the FIFO's permissions.
+makes a FIFO special file with name
+.IR pathname .
+.I mode
+specifies the FIFO's permissions.
 It is modified by the
-process's \fBumask\fP in the usual way: the permissions of the created
-file are \fB(\fP\fImode\fP\fB & \[ti]umask)\fP.
+process's
+.B umask
+in the usual way:
+the permissions of the created file are
+.IR "(mode\ &\ \[ti]umask)" .
 .P
 A FIFO special file is similar to a pipe, except that it is created
 in a different way.
@@ -112,8 +117,9 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EACCES
-One of the directories in \fIpathname\fP did not allow search
-(execute) permission.
+One of the directories in
+.I pathname
+did not allow search (execute) permission.
 .TP
 .B EBADF
 .RB ( mkfifoat ())
@@ -129,29 +135,38 @@ The user's quota of disk blocks or inodes on the filesystem has been
 exhausted.
 .TP
 .B EEXIST
-\fIpathname\fP already exists.
+.I pathname
+already exists.
 This includes the case where
 .I pathname
 is a symbolic link, dangling or not.
 .TP
 .B ENAMETOOLONG
-Either the total length of \fIpathname\fP is greater than
-\fBPATH_MAX\fP, or an individual filename component has a length
-greater than \fBNAME_MAX\fP.
+Either the total length of
+.I pathname
+is greater than
+.BR PATH_MAX ,
+or an individual filename component has a length
+greater than
+.BR NAME_MAX .
 In the GNU system, there is no imposed
 limit on overall filename length, but some filesystems may place
 limits on the length of a component.
 .TP
 .B ENOENT
-A directory component in \fIpathname\fP does not exist or is a
+A directory component in
+.I pathname
+does not exist or is a
 dangling symbolic link.
 .TP
 .B ENOSPC
 The directory or filesystem has no room for the new file.
 .TP
 .B ENOTDIR
-A component used as a directory in \fIpathname\fP is not, in fact, a
-directory.
+A component used as a directory in
+.I pathname
+is not, in fact,
+a directory.
 .TP
 .B ENOTDIR
 .RB ( mkfifoat ())
@@ -161,7 +176,8 @@ is a relative pathname and
 is a file descriptor referring to a file other than a directory.
 .TP
 .B EROFS
-\fIpathname\fP refers to a read-only filesystem.
+.I pathname
+refers to a read-only filesystem.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).

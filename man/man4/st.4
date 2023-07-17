@@ -688,7 +688,7 @@ struct mtget {
 .EE
 .in
 .TP
-\fImt_type\fP
+.I mt_type
 The header file defines many values for
 .IR mt_type ,
 but the current driver reports only the generic types
@@ -698,10 +698,10 @@ and
 .B MT_ISSCSI2
 (Generic SCSI-2 tape).
 .TP
-\fImt_resid\fP
+.I mt_resid
 contains the current tape partition number.
 .TP
-\fImt_dsreg\fP
+.I mt_dsreg
 reports the drive's current settings for block size (in the low 24
 bits) and density (in the high 8 bits).
 These fields are defined by
@@ -711,57 +711,57 @@ These fields are defined by
 and
 .BR MT_ST_DENSITY_MASK .
 .TP
-\fImt_gstat\fP
+.I mt_gstat
 reports generic (device independent) status information.
 The header file defines macros for testing these status bits:
 .RS
 .TP
-\fBGMT_EOF\fP(\fIx\fP)
+.BR GMT_EOF (\f[I]x\f[])
 The tape is positioned just after a filemark
 (always false after an
 .B MTSEEK
 operation).
 .TP
-\fBGMT_BOT\fP(\fIx\fP)
+.BR GMT_BOT (\f[I]x\f[])
 The tape is positioned at the beginning of the first file (always false
 after an
 .B MTSEEK
 operation).
 .TP
-\fBGMT_EOT\fP(\fIx\fP)
+.BR GMT_EOT (\f[I]x\f[])
 A tape operation has reached the physical End Of Tape.
 .TP
-\fBGMT_SM\fP(\fIx\fP)
+.BR GMT_SM (\f[I]x\f[])
 The tape is currently positioned at a setmark
 (always false after an
 .B MTSEEK
 operation).
 .TP
-\fBGMT_EOD\fP(\fIx\fP)
+.BR GMT_EOD (\f[I]x\f[])
 The tape is positioned at the end of recorded data.
 .TP
-\fBGMT_WR_PROT\fP(\fIx\fP)
+.BR GMT_WR_PROT (\f[I]x\f[])
 The drive is write-protected.
 For some drives this can also mean that the drive does not support
 writing on the current medium type.
 .TP
-\fBGMT_ONLINE\fP(\fIx\fP)
+.BR GMT_ONLINE (\f[I]x\f[])
 The last
 .BR open (2)
 found the drive with a tape in place and ready for operation.
 .TP
-\fBGMT_D_6250\fP(\fIx\fP)
+.BR GMT_D_6250 (\f[I]x\f[])
 .TQ
-\fBGMT_D_1600\fP(\fIx\fP)
+.BR GMT_D_1600 (\f[I]x\f[])
 .TQ
-\fBGMT_D_800\fP(\fIx\fP)
+.BR GMT_D_800 (\f[I]x\f[])
 This \[lq]generic\[rq] status information reports the current
 density setting for 9-track \(12" tape drives only.
 .TP
-\fBGMT_DR_OPEN\fP(\fIx\fP)
+.BR GMT_DR_OPEN (\f[I]x\f[])
 The drive does not have a tape in place.
 .TP
-\fBGMT_IM_REP_EN\fP(\fIx\fP)
+.BR GMT_IM_REP_EN (\f[I]x\f[])
 Immediate report mode.
 This bit is set if there are no guarantees that
 the data has been physically written to the tape when the write call
@@ -769,12 +769,12 @@ returns.
 It is set zero only when the driver does not buffer data and
 the drive is set not to buffer data.
 .TP
-\fBGMT_CLN\fP(\fIx\fP)
+.BR GMT_CLN (\f[I]x\f[])
 The drive has requested cleaning.
 Implemented since Linux 2.4.19 and Linux 2.5.43.
 .RE
 .TP
-\fImt_erreg\fP
+.I mt_erreg
 The only field defined in
 .I mt_erreg
 is the recovered error count in the low 16 bits (as defined by
@@ -785,14 +785,14 @@ Due to inconsistencies in the way drives report recovered errors, this
 count is often not maintained (most drives do not by default report
 soft errors but this can be changed with a SCSI MODE SELECT command).
 .TP
-\fImt_fileno\fP
+.I mt_fileno
 reports the current file number (zero-based).
 This value is set to \-1 when the file number is unknown (e.g., after
 .B MTBSS
 or
 .BR MTSEEK ).
 .TP
-\fImt_blkno\fP
+.I mt_blkno
 reports the block number (zero-based) within the current file.
 This value is set to \-1 when the block number is unknown (e.g., after
 .BR MTBSF ,

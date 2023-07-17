@@ -367,27 +367,27 @@ l c c l
 ____
 lB c c l.
 Signal	Standard	Action	Comment
-SIGABRT	P1990	Core	Abort signal from \fBabort\fP(3)
-SIGALRM	P1990	Term	Timer signal from \fBalarm\fP(2)
+SIGABRT	P1990	Core	Abort signal from \f[B]abort\f[](3)
+SIGALRM	P1990	Term	Timer signal from \f[B]alarm\f[](2)
 SIGBUS	P2001	Core	Bus error (bad memory access)
 SIGCHLD	P2001	Ign	Child stopped, terminated, or continued
-SIGCLD	\-	Ign	A synonym for \fBSIGCHLD\fP
+SIGCLD	\-	Ign	A synonym for \f[B]SIGCHLD\f[]
 SIGCONT	P1990	Cont	Continue if stopped
 SIGEMT	\-	Term	Emulator trap
 SIGFPE	P1990	Core	Erroneous arithmetic operation
 SIGHUP	P1990	Term	Hangup detected on controlling terminal
 			or death of controlling process
 SIGILL	P1990	Core	Illegal Instruction
-SIGINFO	\-		A synonym for \fBSIGPWR\fP
+SIGINFO	\-		A synonym for \f[B]SIGPWR\f[]
 SIGINT	P1990	Term	Interrupt from keyboard
 SIGIO	\-	Term	I/O now possible (4.2BSD)
-SIGIOT	\-	Core	IOT trap. A synonym for \fBSIGABRT\fP
+SIGIOT	\-	Core	IOT trap. A synonym for \f[B]SIGABRT\f[]
 SIGKILL	P1990	Term	Kill signal
 SIGLOST	\-	Term	File lock lost (unused)
 SIGPIPE	P1990	Term	Broken pipe: write to pipe with no
-			readers; see \fBpipe\fP(7)
+			readers; see \f[B]pipe\f[](7)
 SIGPOLL	P2001	Term	Pollable event (Sys V);
-			synonym for \fBSIGIO\fP
+			synonym for \f[B]SIGIO\f[]
 SIGPROF	P2001	Term	Profiling timer expired
 SIGPWR	\-	Term	Power failure (System V)
 SIGQUIT	P1990	Core	Quit from keyboard
@@ -396,20 +396,20 @@ SIGSTKFLT	\-	Term	Stack fault on coprocessor (unused)
 SIGSTOP	P1990	Stop	Stop process
 SIGTSTP	P1990	Stop	Stop typed at terminal
 SIGSYS	P2001	Core	Bad system call (SVr4);
-			see also \fBseccomp\fP(2)
+			see also \f[B]seccomp\f[](2)
 SIGTERM	P1990	Term	Termination signal
 SIGTRAP	P2001	Core	Trace/breakpoint trap
 SIGTTIN	P1990	Stop	Terminal input for background process
 SIGTTOU	P1990	Stop	Terminal output for background process
-SIGUNUSED	\-	Core	Synonymous with \fBSIGSYS\fP
+SIGUNUSED	\-	Core	Synonymous with \f[B]SIGSYS\f[]
 SIGURG	P2001	Ign	Urgent condition on socket (4.2BSD)
 SIGUSR1	P1990	Term	User-defined signal 1
 SIGUSR2	P1990	Term	User-defined signal 2
 SIGVTALRM	P2001	Term	Virtual alarm clock (4.2BSD)
 SIGXCPU	P2001	Core	CPU time limit exceeded (4.2BSD);
-			see \fBsetrlimit\fP(2)
+			see \f[B]setrlimit\f[](2)
 SIGXFSZ	P2001	Core	File size limit exceeded (4.2BSD);
-			see \fBsetrlimit\fP(2)
+			see \f[B]setrlimit\f[](2)
 SIGWINCH	\-	Ign	Window resize signal (4.3BSD, Sun)
 .TE
 .P
@@ -649,12 +649,12 @@ The old and new system calls are as follows:
 lb lb
 l l.
 Linux 2.0 and earlier	Linux 2.2 and later
-\fBsigaction\fP(2)	\fBrt_sigaction\fP(2)
-\fBsigpending\fP(2)	\fBrt_sigpending\fP(2)
-\fBsigprocmask\fP(2)	\fBrt_sigprocmask\fP(2)
-\fBsigreturn\fP(2)	\fBrt_sigreturn\fP(2)
-\fBsigsuspend\fP(2)	\fBrt_sigsuspend\fP(2)
-\fBsigtimedwait\fP(2)	\fBrt_sigtimedwait\fP(2)
+\f[B]sigaction\f[](2)	\f[B]rt_sigaction\f[](2)
+\f[B]sigpending\f[](2)	\f[B]rt_sigpending\f[](2)
+\f[B]sigprocmask\f[](2)	\f[B]rt_sigprocmask\f[](2)
+\f[B]sigreturn\f[](2)	\f[B]rt_sigreturn\f[](2)
+\f[B]sigsuspend\f[](2)	\f[B]rt_sigsuspend\f[](2)
+\f[B]sigtimedwait\f[](2)	\f[B]rt_sigtimedwait\f[](2)
 .TE
 .\"
 .SS Interruption of system calls and library functions by signal handlers

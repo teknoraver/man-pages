@@ -66,10 +66,10 @@ struct dl_phdr_info {
     const ElfW(Phdr) *dlpi_phdr;  /* Pointer to array of
                                      ELF program headers
                                      for this object */
-    ElfW(Half)        dlpi_phnum; /* # of items in \fIdlpi_phdr\fP */
+    ElfW(Half)        dlpi_phnum; /* # of items in \f[I]dlpi_phdr\f[] */
 \&
     /* The following fields were added in glibc 2.4, after the first
-       version of this structure was available.  Check the \fIsize\fP
+       version of this structure was available.  Check the \f[I]size\f[]
        argument passed to the dl_iterate_phdr callback to determine
        whether or not each later member is available.  */
 \&
@@ -241,7 +241,7 @@ is the main program.
 .P
 .in +4n
 .EX
-$ \fB./a.out\fP
+.RB $ " ./a.out" ;
 Name: "" (9 segments)
      0: [      0x400040; memsz:    1f8] flags: 0x5; PT_PHDR
      1: [      0x400238; memsz:     1c] flags: 0x4; PT_INTERP

@@ -125,15 +125,15 @@ First, some examples using
 .P
 .in +4n
 .EX
-$ \fB./string_comp ABC ABC\fP
+.RB $ " ./string_comp ABC ABC" ;
 <str1> and <str2> are equal
-$ \fB./string_comp ABC AB\fP      # \[aq]C\[aq] is ASCII 67; \[aq]C\[aq] \- \[aq]\[rs]0\[aq] = 67
+.RB $ " ./string_comp ABC AB" ";      # \[aq]C\[aq] is ASCII 67; \[aq]C\[aq] \- \[aq]\[rs]0\[aq] = 67"
 <str1> is greater than <str2> (67)
-$ \fB./string_comp ABA ABZ\fP     # \[aq]A\[aq] is ASCII 65; \[aq]Z\[aq] is ASCII 90
+.RB $ " ./string_comp ABA ABZ" ";     # \[aq]A\[aq] is ASCII 65; \[aq]Z\[aq] is ASCII 90"
 <str1> is less than <str2> (\-25)
-$ \fB./string_comp ABJ ABC\fP
+.RB $ " ./string_comp ABJ ABC" ;
 <str1> is greater than <str2> (7)
-$ .\fB/string_comp $\[aq]\[rs]201\[aq] A\fP   # 0201 \- 0101 = 0100 (or 64 decimal)
+.RB $ " ./string_comp $\[aq]\[rs]201\[aq] A" ";   # 0201 \- 0101 = 0100 (or 64 decimal)"
 <str1> is greater than <str2> (64)
 .EE
 .in
@@ -149,9 +149,9 @@ And then some examples using
 .P
 .in +4n
 .EX
-$ \fB./string_comp ABC AB 3\fP
+.RB $ " ./string_comp ABC AB 3" ;
 <str1> is greater than <str2> (67)
-$ \fB./string_comp ABC AB 2\fP
+.RB $ " ./string_comp ABC AB 2" ;
 <str1> and <str2> are equal in the first 2 bytes
 .EE
 .in

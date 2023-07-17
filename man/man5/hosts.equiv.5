@@ -10,7 +10,9 @@ command access to your system
 The file
 .I /etc/hosts.equiv
 allows or denies hosts and users to use
-the \fBr\fP-commands (e.g.,
+the
+.BR r -commands
+(e.g.,
 .BR rlogin ,
 .BR rsh ,
 or
@@ -20,7 +22,7 @@ supplying a password.
 .P
 The file uses the following format:
 .TP
-\fI+|[\-]hostname|+@netgroup|\-@netgroup\fP \fI[+|[\-]username|+@netgroup|\-@netgroup]\fP
+.I +|[\-]hostname|+@netgroup|\-@netgroup [+|[\-]username|+@netgroup|\-@netgroup]
 .P
 The
 .I hostname

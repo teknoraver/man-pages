@@ -34,8 +34,8 @@ Standard C library
 .P
 .BI "long syscall(SYS_futex, uint32_t *" uaddr ", int " futex_op \
 ", uint32_t " val ,
-.BI "             const struct timespec *" timeout , \
-" \fR  /* or: \fBuint32_t \fIval2\fP */"
+.BI "             const struct timespec *" timeout \
+",   \f[R]/* or:\f[] uint32_t " val2 " \f[R]*/\f[]"
 .BI "             uint32_t *" uaddr2 ", uint32_t " val3 );
 .fi
 .P
@@ -593,9 +593,9 @@ any of the two supplied futex words:
 .in +4n
 .EX
 uint32_t oldval = *(uint32_t *) uaddr2;
-*(uint32_t *) uaddr2 = oldval \fIop\fP \fIoparg\fP;
+*(uint32_t *) uaddr2 = oldval \f[I]op\f[] \f[I]oparg\f[];
 futex(uaddr, FUTEX_WAKE, val, 0, 0, 0);
-if (oldval \fIcmp\fP \fIcmparg\fP)
+if (oldval \f[I]cmp\f[] \f[I]cmparg\f[])
     futex(uaddr2, FUTEX_WAKE, val2, 0, 0, 0);
 .EE
 .in
@@ -1763,7 +1763,7 @@ Upon running this program we see output such as the following:
 .P
 .in +4n
 .EX
-$ \fB./futex_demo\fP
+.RB $ " ./futex_demo" ;
 Parent (18534) 0
 Child  (18535) 0
 Parent (18534) 1
@@ -1945,30 +1945,32 @@ The following kernel source files:
 .I Documentation/robust\-futex\-ABI.txt
 .P
 Franke, H., Russell, R., and Kirwood, M., 2002.
-\fIFuss, Futexes and Furwocks: Fast Userlevel Locking in Linux\fP
-(from proceedings of the Ottawa Linux Symposium 2002),
 .br
-.UR http://kernel.org\:/doc\:/ols\:/2002\:/ols2002\-pages\-479\-495.pdf
+.UR http://kernel.org/\:doc/\:ols/\:2002/\:ols2002\-pages\-479\-495.pdf
+.I Fuss, Futexes and Furwocks: Fast Userlevel Locking in Linux
 .UE
+(from proceedings of the Ottawa Linux Symposium 2002).
 .P
-Hart, D., 2009. \fIA futex overview and update\fP,
-.UR http://lwn.net/Articles/360699/
-.UE
+Hart, D., 2009.
+.UR http://lwn.net/\:Articles/\:360699/
+.I A futex overview and update
+.UE .
 .P
 Hart, D.\& and Guniguntala, D., 2009.
-\fIRequeue-PI: Making glibc Condvars PI-Aware\fP
-(from proceedings of the 2009 Real-Time Linux Workshop),
-.UR http://lwn.net/images/conf/rtlws11/papers/proc/p10.pdf
+.UR http://lwn.net/\:images/\:conf/\:rtlws11/\:papers/\:proc/\:p10.pdf
+.I Requeue-PI: Making glibc Condvars PI-Aware
 .UE
+(from proceedings of the 2009 Real-Time Linux Workshop).
 .P
-Drepper, U., 2011. \fIFutexes Are Tricky\fP,
-.UR http://www.akkadia.org/drepper/futex.pdf
-.UE
+Drepper, U., 2011.
+.UR http://www.akkadia.org/\:drepper/\:futex.pdf
+.I Futexes Are Tricky
+.UE .
 .P
-Futex example library, futex\-*.tar.bz2 at
-.br
-.UR https://mirrors.kernel.org\:/pub\:/linux\:/kernel\:/people\:/rusty/
-.UE
+Futex example library,
+.UR https://mirrors.kernel.org/\:pub/\:linux/\:kernel/\:people/\:rusty/
+futex\-*.tar.bz2
+.UE .
 .\"
 .\" FIXME(Torvald) We should probably refer to the glibc code here, in
 .\" particular the glibc-internal futex wrapper functions that are

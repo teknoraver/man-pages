@@ -242,7 +242,7 @@ Additionally, the availability of the cgroups feature is governed by the
 .B CONFIG_CGROUPS
 kernel configuration option.
 .TP
-.IR cpu " (since Linux 2.6.24; " \fBCONFIG_CGROUP_SCHED\fP )
+.IR cpu " (since Linux 2.6.24; " \f[B]CONFIG_CGROUP_SCHED\f[] )
 Cgroups can be guaranteed a minimum number of "CPU shares"
 when a system is busy.
 This does not limit a cgroup's CPU usage if the CPUs are not busy.
@@ -266,7 +266,7 @@ Further information can be found in the kernel source file
 .I Documentation/scheduler/sched\-bwc.txt
 in Linux 5.2 and earlier).
 .TP
-.IR cpuacct " (since Linux 2.6.24; " \fBCONFIG_CGROUP_CPUACCT\fP )
+.IR cpuacct " (since Linux 2.6.24; " \f[B]CONFIG_CGROUP_CPUACCT\f[] )
 This provides accounting for CPU usage by groups of processes.
 .IP
 Further information can be found in the kernel source file
@@ -275,7 +275,7 @@ Further information can be found in the kernel source file
 .I Documentation/cgroup\-v1/cpuacct.txt
 in Linux 5.2 and earlier).
 .TP
-.IR cpuset " (since Linux 2.6.24; " \fBCONFIG_CPUSETS\fP )
+.IR cpuset " (since Linux 2.6.24; " \f[B]CONFIG_CPUSETS\f[] )
 This cgroup can be used to bind the processes in a cgroup to
 a specified set of CPUs and NUMA nodes.
 .IP
@@ -286,7 +286,7 @@ Further information can be found in the kernel source file
 in Linux 5.2 and earlier).
 .
 .TP
-.IR memory " (since Linux 2.6.25; " \fBCONFIG_MEMCG\fP )
+.IR memory " (since Linux 2.6.25; " \f[B]CONFIG_MEMCG\f[] )
 The memory controller supports reporting and limiting of process memory, kernel
 memory, and swap used by cgroups.
 .IP
@@ -296,7 +296,7 @@ Further information can be found in the kernel source file
 .I Documentation/cgroup\-v1/memory.txt
 in Linux 5.2 and earlier).
 .TP
-.IR devices " (since Linux 2.6.26; " \fBCONFIG_CGROUP_DEVICE\fP )
+.IR devices " (since Linux 2.6.26; " \f[B]CONFIG_CGROUP_DEVICE\f[] )
 This supports controlling which processes may create (mknod) devices as
 well as open them for reading or writing.
 The policies may be specified as allow-lists and deny-lists.
@@ -309,7 +309,7 @@ Further information can be found in the kernel source file
 .I Documentation/cgroup\-v1/devices.txt
 in Linux 5.2 and earlier).
 .TP
-.IR freezer " (since Linux 2.6.28; " \fBCONFIG_CGROUP_FREEZER\fP )
+.IR freezer " (since Linux 2.6.28; " \f[B]CONFIG_CGROUP_FREEZER\f[] )
 The
 .I freezer
 cgroup can suspend and restore (resume) all processes in a cgroup.
@@ -325,7 +325,7 @@ Further information can be found in the kernel source file
 .I Documentation/cgroup\-v1/freezer\-subsystem.txt
 in Linux 5.2 and earlier).
 .TP
-.IR net_cls " (since Linux 2.6.29; " \fBCONFIG_CGROUP_NET_CLASSID\fP )
+.IR net_cls " (since Linux 2.6.29; " \f[B]CONFIG_CGROUP_NET_CLASSID\f[] )
 This places a classid, specified for the cgroup, on network packets
 created by a cgroup.
 These classids can then be used in firewall rules,
@@ -340,7 +340,7 @@ Further information can be found in the kernel source file
 .I Documentation/cgroup\-v1/net_cls.txt
 in Linux 5.2 and earlier).
 .TP
-.IR blkio " (since Linux 2.6.33; " \fBCONFIG_BLK_CGROUP\fP )
+.IR blkio " (since Linux 2.6.33; " \f[B]CONFIG_BLK_CGROUP\f[] )
 The
 .I blkio
 cgroup controls and limits access to specified block devices by
@@ -360,14 +360,14 @@ Further information can be found in the kernel source file
 .I Documentation/cgroup\-v1/blkio\-controller.txt
 in Linux 5.2 and earlier).
 .TP
-.IR perf_event " (since Linux 2.6.39; " \fBCONFIG_CGROUP_PERF\fP )
+.IR perf_event " (since Linux 2.6.39; " \f[B]CONFIG_CGROUP_PERF\f[] )
 This controller allows
 .I perf
 monitoring of the set of processes grouped in a cgroup.
 .IP
 Further information can be found in the kernel source files
 .TP
-.IR net_prio " (since Linux 3.3; " \fBCONFIG_CGROUP_NET_PRIO\fP )
+.IR net_prio " (since Linux 3.3; " \f[B]CONFIG_CGROUP_NET_PRIO\f[] )
 This allows priorities to be specified, per network interface, for cgroups.
 .IP
 Further information can be found in the kernel source file
@@ -376,7 +376,7 @@ Further information can be found in the kernel source file
 .I Documentation/cgroup\-v1/net_prio.txt
 in Linux 5.2 and earlier).
 .TP
-.IR hugetlb " (since Linux 3.5; " \fBCONFIG_CGROUP_HUGETLB\fP )
+.IR hugetlb " (since Linux 3.5; " \f[B]CONFIG_CGROUP_HUGETLB\f[] )
 This supports limiting the use of huge pages by cgroups.
 .IP
 Further information can be found in the kernel source file
@@ -385,7 +385,7 @@ Further information can be found in the kernel source file
 .I Documentation/cgroup\-v1/hugetlb.txt
 in Linux 5.2 and earlier).
 .TP
-.IR pids " (since Linux 4.3; " \fBCONFIG_CGROUP_PIDS\fP )
+.IR pids " (since Linux 4.3; " \f[B]CONFIG_CGROUP_PIDS\f[] )
 This controller permits limiting the number of process that may be created
 in a cgroup (and its descendants).
 .IP
@@ -395,7 +395,7 @@ Further information can be found in the kernel source file
 .I Documentation/cgroup\-v1/pids.txt
 in Linux 5.2 and earlier).
 .TP
-.IR rdma " (since Linux 4.11; " \fBCONFIG_CGROUP_RDMA\fP )
+.IR rdma " (since Linux 4.11; " \f[B]CONFIG_CGROUP_RDMA\f[] )
 The RDMA controller permits limiting the use of
 RDMA/IB-specific resources per cgroup.
 .IP
@@ -862,7 +862,7 @@ providing state information about the cgroup:
 .P
 .in +4n
 .EX
-$ \fBcat mygrp/cgroup.events\fP
+.RB $ " cat mygrp/cgroup.events"
 populated 1
 frozen 0
 .EE
@@ -1852,7 +1852,7 @@ As at Linux 4.15, one sees the following when inspecting this file:
 .IP
 .in +4n
 .EX
-$ \fBcat /sys/kernel/cgroup/delegate\fP
+.RB $ " cat /sys/kernel/cgroup/delegate"
 cgroup.procs
 cgroup.subtree_control
 cgroup.threads
@@ -1870,7 +1870,7 @@ Features are listed one per line:
 .IP
 .in +4n
 .EX
-$ \fBcat /sys/kernel/cgroup/features\fP
+.RB $ " cat /sys/kernel/cgroup/features"
 nsdelegate
 memory_localevents
 .EE

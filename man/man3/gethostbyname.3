@@ -135,7 +135,9 @@ instead.
 .P
 The
 .BR sethostent ()
-function specifies, if \fIstayopen\fP is true (1),
+function specifies, if
+.I stayopen
+is true (1),
 that a connected TCP socket should be used for the name server queries and
 that the connection should remain open during successive queries.
 Otherwise, name server queries will use UDP datagrams.
@@ -181,14 +183,20 @@ will first be searched for
 (see
 .BR hostname (7)
 for the file format).
-The current domain and its parents are searched unless \fIname\fP
+The current domain and its parents are searched unless
+.I name
 ends in a dot.
 .P
 The
 .BR gethostbyaddr ()
-function returns a structure of type \fIhostent\fP
-for the given host address \fIaddr\fP of size \fIlen\fP and address type
-\fItype\fP.
+function returns a structure of type
+.I hostent
+for the given host address
+.I addr
+of size
+.I len
+and address type
+.IR type .
 Valid address types are
 .B AF_INET
 and
@@ -196,7 +204,9 @@ and
 (defined in
 .IR <sys/socket.h> ).
 The host address argument is a pointer to a struct of a type depending
-on the address type, for example a \fIstruct in_addr *\fP (probably
+on the address type, for example a
+.I struct\ in_addr\ *
+(probably
 obtained via a call to
 .BR inet_addr (3))
 for address type
@@ -205,12 +215,17 @@ for address type
 The (obsolete)
 .BR herror ()
 function prints the error message associated
-with the current value of \fIh_errno\fP on \fIstderr\fP.
+with the current value of
+.I h_errno
+on
+.IR stderr .
 .P
 The (obsolete)
 .BR hstrerror ()
 function takes an error number
-(typically \fIh_errno\fP) and returns the corresponding message string.
+(typically
+.IR h_errno )
+and returns the corresponding message string.
 .P
 The domain name queries carried out by
 .BR gethostbyname ()
@@ -236,7 +251,11 @@ keyword was used to control the order of host lookups as defined in
 .I /etc/host.conf
 .RB ( host.conf (5)).
 .P
-The \fIhostent\fP structure is defined in \fI<netdb.h>\fP as follows:
+The
+.I hostent
+structure is defined in
+.I <netdb.h>
+as follows:
 .P
 .in +4n
 .EX
@@ -251,7 +270,9 @@ struct hostent {
 .EE
 .in
 .P
-The members of the \fIhostent\fP structure are:
+The members of the
+.I hostent
+structure are:
 .TP
 .I h_name
 The official name of the host.
@@ -274,7 +295,9 @@ An array of pointers to network addresses for the host (in network byte
 order), terminated by a null pointer.
 .TP
 .I h_addr
-The first address in \fIh_addr_list\fP for backward compatibility.
+The first address in
+.I h_addr_list
+for backward compatibility.
 .SH RETURN VALUE
 The
 .BR gethostbyname ()
@@ -288,7 +311,9 @@ On error, the
 variable holds an error number.
 When non-NULL, the return value may point at static data, see the notes below.
 .SH ERRORS
-The variable \fIh_errno\fP can have the following values:
+The variable
+.I h_errno
+can have the following values:
 .TP
 .B HOST_NOT_FOUND
 The specified host is unknown.

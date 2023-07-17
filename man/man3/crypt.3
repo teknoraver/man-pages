@@ -62,7 +62,7 @@ is a user's typed password.
 .P
 .I salt
 is a two-character string chosen from the set
-[\fBa\-zA\-Z0\-9./\fP].
+.RB [ a\-zA\-Z0\-9./ ].
 This string is used to
 perturb the algorithm in one of 4096 different ways.
 .P
@@ -228,12 +228,13 @@ hashing algorithms.
 .P
 If
 .I salt
-is a character string starting with the characters "$\fIid\fP$"
+is a character string starting with the characters
+.RI \[dq]$ id $\[dq]
 followed by a string optionally terminated by "$",
 then the result has the form:
 .RS
 .P
-$\fIid\fP$\fIsalt\fP$\fIhashed\fP
+.RI $ id $ salt $ hashed
 .RE
 .P
 .I id
@@ -264,13 +265,20 @@ T}
 .TE
 .RE
 .P
-Thus, $5$\fIsalt\fP$\fIhashed\fP and $6$\fIsalt\fP$\fIhashed\fP
+Thus,
+.RI $5$ salt $ hashed
+and
+.RI $6$ salt $ hashed
 contain the password hashed with, respectively, functions
 based on SHA-256 and SHA-512.
 .P
-"\fIsalt\fP" stands for the up to 16 characters
-following "$\fIid\fP$" in the salt.
-The "\fIhashed\fP"
+.RI \[dq] salt \[dq]
+stands for the up to 16 characters
+following
+.RI \[dq]$ id $\[dq]
+in the salt.
+The
+.RI \[dq] hashed \[dq]
 part of the password string is the actual computed password.
 The size of this string is fixed:
 .RS
@@ -282,8 +290,12 @@ SHA-512	86 characters
 .TE
 .RE
 .P
-The characters in "\fIsalt\fP" and "\fIhashed\fP" are drawn from the set
-[\fBa\-zA\-Z0\-9./\fP].
+The characters in
+.RI \[dq] salt \[dq]
+and
+.RI \[dq] hashed \[dq]
+are drawn from the set
+.RB [ a\-zA\-Z0\-9./ ].
 In the MD5 and SHA implementations the entire
 .I key
 is significant (instead of only the first
@@ -293,15 +305,22 @@ Since glibc 2.7,
 .\" glibc commit 9425cb9eea6a62fc21d99aafe8a60f752b934b05
 the SHA-256 and SHA-512 implementations support a user-supplied number of
 hashing rounds, defaulting to 5000.
-If the "$\fIid\fP$" characters in the salt are
-followed by "rounds=\fIxxx\fP$", where \fIxxx\fP is an integer, then the
+If the
+.RI \[dq]$ id $\[dq] characters in the salt are
+followed by
+.RI \[dq]rounds= xxx $\[dq],
+where
+.I xxx
+is an integer, then the
 result has the form
 .RS
 .P
-$\fIid\fP$\fIrounds=yyy\fP$\fIsalt\fP$\fIhashed\fP
+.RI $ id $ rounds=yyy $ salt $ hashed
 .RE
 .P
-where \fIyyy\fP is the number of hashing rounds actually used.
+where
+.I yyy
+is the number of hashing rounds actually used.
 The number of rounds actually used is 1000 if
 .I xxx
 is less than

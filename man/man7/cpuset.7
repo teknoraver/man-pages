@@ -172,14 +172,17 @@ If set (1), that cpuset will receive special handling
 after it is released, that is, after all processes cease using
 it (i.e., terminate or are moved to a different cpuset)
 and all child cpuset directories have been removed.
-See the \fBNotify On Release\fR section, below.
+See the
+.B Notify On Release  \" Sx
+section, below.
 .\" ====================== cpus ======================
 .TP
 .I cpuset.cpus
 List of the physical numbers of the CPUs on which processes
 in that cpuset are allowed to execute.
-See \fBList Format\fR below for a description of the
-format of
+See
+.B List Format  \" Sx
+below for a description of the format of
 .IR cpus .
 .IP
 The CPUs allowed to a cpuset may be changed by
@@ -220,8 +223,9 @@ of its parent cpuset.
 .I cpuset.mems
 List of memory nodes on which processes in this cpuset are
 allowed to allocate memory.
-See \fBList Format\fR below for a description of the
-format of
+See
+.B List Format  \" Sx
+below for a description of the format of
 .IR mems .
 .\" ==================== mem_exclusive ====================
 .TP
@@ -229,7 +233,9 @@ format of
 Flag (0 or 1).
 If set (1), the cpuset has exclusive use of
 its memory nodes (no sibling or cousin may overlap).
-Also if set (1), the cpuset is a \fBHardwall\fR cpuset (see below).
+Also if set (1), the cpuset is a
+.B Hardwall  \" Sx
+cpuset (see below).
 By default, this is off (0).
 Newly created cpusets also initially default this to off (0).
 .IP
@@ -243,11 +249,14 @@ of that cpuset's parent cpuset.
 .TP
 .IR cpuset.mem_hardwall " (since Linux 2.6.26)"
 Flag (0 or 1).
-If set (1), the cpuset is a \fBHardwall\fR cpuset (see below).
-Unlike \fBmem_exclusive\fR,
-there is no constraint on whether cpusets
-marked \fBmem_hardwall\fR may have overlapping
-memory nodes with sibling or cousin cpusets.
+If set (1), the cpuset is a
+.B Hardwall
+cpuset (see below).
+Unlike
+.BR mem_exclusive ,
+there is no constraint on whether cpusets marked
+.B mem_hardwall
+may have overlapping memory nodes with sibling or cousin cpusets.
 By default, this is off (0).
 Newly created cpusets also initially default this to off (0).
 .\" ==================== memory_migrate ====================
@@ -256,13 +265,17 @@ Newly created cpusets also initially default this to off (0).
 Flag (0 or 1).
 If set (1), then memory migration is enabled.
 By default, this is off (0).
-See the \fBMemory Migration\fR section, below.
+See the
+.B Memory Migration  \" Sx
+section, below.
 .\" ==================== memory_pressure ====================
 .TP
 .IR cpuset.memory_pressure " (since Linux 2.6.16)"
 A measure of how much memory pressure the processes in this
 cpuset are causing.
-See the \fBMemory Pressure\fR section, below.
+See the
+.B Memory Pressure  \" Sx
+section, below.
 Unless
 .I memory_pressure_enabled
 is enabled, always has value zero (0).
@@ -281,7 +294,8 @@ If set (1), the
 calculations are enabled for all cpusets in the system.
 By default, this is off (0).
 See the
-\fBMemory Pressure\fR section, below.
+.B Memory Pressure  \" Sx
+section, below.
 .\" ================== memory_spread_page ==================
 .TP
 .IR cpuset.memory_spread_page " (since Linux 2.6.17)"
@@ -291,7 +305,9 @@ If set (1), pages in the kernel page cache
 By default, this is off (0) in the top cpuset,
 and inherited from the parent cpuset in
 newly created cpusets.
-See the \fBMemory Spread\fR section, below.
+See the
+.B Memory Spread  \" Sx
+section, below.
 .\" ================== memory_spread_slab ==================
 .TP
 .IR cpuset.memory_spread_slab " (since Linux 2.6.17)"
@@ -302,7 +318,9 @@ uniformly spread across the cpuset.
 By default, is off (0) in the top cpuset,
 and inherited from the parent cpuset in
 newly created cpusets.
-See the \fBMemory Spread\fR section, below.
+See the
+.B Memory Spread  \" Sx
+section, below.
 .\" ================== sched_load_balance ==================
 .TP
 .IR cpuset.sched_load_balance " (since Linux 2.6.24)"
@@ -316,7 +334,9 @@ kernel will avoid load balancing processes in this cpuset,
 some other cpuset with overlapping CPUs has its
 .I sched_load_balance
 flag set.
-See \fBScheduler Load Balancing\fR, below, for further details.
+See
+.BR "Scheduler Load Balancing" ,  \" Sx
+below, for further details.
 .\" ================== sched_relax_domain_level ==================
 .TP
 .IR cpuset.sched_relax_domain_level " (since Linux 2.6.26)"
@@ -336,7 +356,9 @@ is enabled, then the higher the value of the
 .IR sched_relax_domain_level ,
 the wider
 the range of CPUs over which immediate load balancing is attempted.
-See \fBScheduler Relax Domain Level\fR, below, for further details.
+See
+.BR "Scheduler Relax Domain Level" ,  \" Sx
+below, for further details.
 .\" ================== proc cpuset ==================
 .P
 In addition to the above pseudo-files in each directory below
@@ -355,7 +377,11 @@ displaying the process's
 (on which CPUs it may be scheduled) and
 .I Mems_allowed
 (on which memory nodes it may obtain memory),
-in the two formats \fBMask Format\fR and \fBList Format\fR (see below)
+in the two formats
+.B Mask Format  \" Sx
+and
+.B List Format  \" Sx
+(see below)
 as shown in the following example:
 .P
 .in +4n
@@ -516,7 +542,9 @@ Unless memory pressure calculation is enabled by setting the pseudo-file
 it is not computed for any cpuset, and reads from any
 .I memory_pressure
 always return zero, as represented by the ASCII string "0\[rs]n".
-See the \fBWARNINGS\fR section, below.
+See the
+.B WARNINGS  \" Sx
+section, below.
 .P
 A per-cpuset, running average is employed for the following reasons:
 .IP \[bu] 3
@@ -701,7 +729,9 @@ worthwhile performance benefits.
 .P
 By default, load balancing is done across all CPUs, except those
 marked isolated using the kernel boot time "isolcpus=" argument.
-(See \fBScheduler Relax Domain Level\fR, below, to change this default.)
+(See
+.BR "Scheduler Relax Domain Level" ,  \" Sx
+below, to change this default.)
 .P
 This default load balancing across all CPUs is not well suited to
 the following two situations:
@@ -728,7 +758,8 @@ When the per-cpuset flag
 .I sched_load_balance
 is disabled, then the
 scheduler will avoid load balancing across the CPUs in that cpuset,
-\fIexcept\fR in so far as is necessary because some overlapping cpuset
+.I except
+in so far as is necessary because some overlapping cpuset
 has
 .I sched_load_balance
 enabled.
@@ -856,8 +887,8 @@ The following formats are used to represent sets of
 CPUs and memory nodes.
 .\" ================== Mask Format ==================
 .SS Mask format
-The \fBMask Format\fR is used to represent CPU and memory-node bit masks
-in the
+The Mask Format is used to
+represent CPU and memory-node bit masks in the
 .IR /proc/ pid /status
 file.
 .P
@@ -872,7 +903,8 @@ The hex digits within a word are also in big-endian order.
 The number of 32-bit words displayed is the minimum number needed to
 display all bits of the bit mask, based on the size of the bit mask.
 .P
-Examples of the \fBMask Format\fR:
+Examples of the
+.BR Mask\~Format :
 .P
 .in +4n
 .EX
@@ -897,14 +929,15 @@ second for bit 32, the third for bit 16, the fourth for bit 8, the
 fifth for bit 4, and the "7" is for bits 2, 1, and 0.
 .\" ================== List Format ==================
 .SS List format
-The \fBList Format\fR for
+The List Format for
 .I cpus
 and
 .I mems
 is a comma-separated list of CPU or memory-node
 numbers and ranges of numbers, in ASCII decimal.
 .P
-Examples of the \fBList Format\fR:
+Examples of the
+.BR List\~Format :
 .P
 .in +4n
 .EX

@@ -52,7 +52,8 @@ The
 .BR rand ()
 function returns a pseudo-random integer in the range 0 to
 .B RAND_MAX
-inclusive (i.e., the mathematical range [0,\ \fBRAND_MAX\fR]).
+inclusive (i.e., the mathematical range
+.RB [ 0 ,\~ RAND_MAX ]).
 .P
 The
 .BR srand ()
@@ -81,7 +82,8 @@ this can be done using the reentrant function
 Like
 .BR rand (),
 .BR rand_r ()
-returns a pseudo-random integer in the range [0,\ \fBRAND_MAX\fR].
+returns a pseudo-random integer in the range
+.RB [ 0 ,\~ RAND_MAX ].
 The
 .I seedp
 argument is a pointer to an

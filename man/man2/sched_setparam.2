@@ -21,21 +21,26 @@ Standard C library
 .BI "int sched_setparam(pid_t " pid ", const struct sched_param *" param );
 .BI "int sched_getparam(pid_t " pid ", struct sched_param *" param );
 .P
-\fBstruct sched_param {
+\f[B]struct sched_param {
     ...
-    int \fIsched_priority\fB;
+    int \f[I]sched_priority\f[];
     ...
-};
+};\f[]
 .fi
 .SH DESCRIPTION
 .BR sched_setparam ()
 sets the scheduling parameters associated with the scheduling policy
-for the thread whose thread ID is specified in \fIpid\fP.
-If \fIpid\fP is zero, then
+for the thread whose thread ID is specified in
+.IR pid .
+If
+.I pid
+is zero, then
 the parameters of the calling thread are set.
 The interpretation of
-the argument \fIparam\fP depends on the scheduling
-policy of the thread identified by
+the argument
+.I param
+depends on the scheduling policy
+of the thread identified by
 .IR pid .
 See
 .BR sched (7)
@@ -43,14 +48,20 @@ for a description of the scheduling policies supported under Linux.
 .P
 .BR sched_getparam ()
 retrieves the scheduling parameters for the
-thread identified by \fIpid\fP.
-If \fIpid\fP is zero, then the parameters
+thread identified by
+.IR pid .
+If
+.I pid
+is zero, then the parameters
 of the calling thread are retrieved.
 .P
 .BR sched_setparam ()
-checks the validity of \fIparam\fP for the scheduling policy of the
-thread.
-The value \fIparam\->sched_priority\fP must lie within the
+checks the validity of
+.I param
+for the scheduling policy of the thread.
+The value
+.I param\->sched_priority
+must lie within the
 range given by
 .BR sched_get_priority_min (2)
 and
@@ -66,7 +77,8 @@ and
 .BR sched_getparam ()
 are available define
 .B _POSIX_PRIORITY_SCHEDULING
-in \fI<unistd.h>\fP.
+in
+.IR <unistd.h> .
 .SH RETURN VALUE
 On success,
 .BR sched_setparam ()
@@ -87,7 +99,9 @@ is negative
 .TP
 .B EINVAL
 .RB ( sched_setparam ())
-The argument \fIparam\fP does not make sense for the current
+The argument
+.I param
+does not make sense for the current
 scheduling policy.
 .TP
 .B EPERM
@@ -98,7 +112,9 @@ The caller does not have appropriate privileges
 capability).
 .TP
 .B ESRCH
-The thread whose ID is \fIpid\fP could not be found.
+The thread whose ID is
+.I pid
+could not be found.
 .SH STANDARDS
 POSIX.1-2008.
 .SH HISTORY

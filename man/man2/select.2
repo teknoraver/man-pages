@@ -105,7 +105,9 @@ Upon return, each of the file descriptor sets is modified in place
 to indicate which file descriptors are currently "ready".
 Thus, if using
 .BR select ()
-within a loop, the sets \fImust be reinitialized\fP before each call.
+within a loop, the sets
+.I must be reinitialized
+before each call.
 .P
 The contents of a file descriptor set can be manipulated
 using the following macros:
@@ -161,7 +163,9 @@ block; in particular, a file descriptor is also ready on end-of-file.
 .IP
 After
 .BR select ()
-has returned, \fIreadfds\fP will be
+has returned,
+.I readfds
+will be
 cleared of all file descriptors except for those that are ready for reading.
 .TP
 .I writefds
@@ -173,7 +177,9 @@ a large write may still block.
 .IP
 After
 .BR select ()
-has returned, \fIwritefds\fP will be
+has returned,
+.I writefds
+will be
 cleared of all file descriptors except for those that are ready for writing.
 .TP
 .I exceptfds
@@ -186,7 +192,8 @@ in
 After
 .BR select ()
 has returned,
-\fIexceptfds\fP will be cleared of all file descriptors except for those
+.I exceptfds
+will be cleared of all file descriptors except for those
 for which an exceptional condition has occurred.
 .TP
 .I nfds
@@ -362,7 +369,9 @@ do not do this.
 This causes problems both when Linux code which reads
 .I timeout
 is ported to other operating systems, and when code is ported to Linux
-that reuses a \fIstruct timeval\fP for multiple
+that reuses a
+.I struct\ timeval
+for multiple
 .BR select ()s
 in a loop without reinitializing it.
 Consider

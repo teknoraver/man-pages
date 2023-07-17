@@ -54,13 +54,17 @@ For the failure return, see VERSIONS.
 .SH ERRORS
 .TP
 .B EAGAIN
-The \fIiocb\fP specified was not canceled.
+The
+.I iocb
+specified was not canceled.
 .TP
 .B EFAULT
 One of the data structures points to invalid data.
 .TP
 .B EINVAL
-The AIO context specified by \fIctx_id\fP is invalid.
+The AIO context specified by
+.I ctx_id
+is invalid.
 .TP
 .B ENOSYS
 .BR io_cancel ()

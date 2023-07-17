@@ -258,7 +258,9 @@ may be seen during a trace.
 .SH VERSIONS
 On Linux, the new socket returned by
 .BR accept ()
-does \fInot\fP inherit file status flags such as
+does
+.I not
+inherit file status flags such as
 .B O_NONBLOCK
 and
 .B O_ASYNC
@@ -331,9 +333,11 @@ In the original BSD sockets implementation (and on other older systems)
 .\" such as Linux libc4 and libc5, SunOS 4, SGI
 the third argument of
 .BR accept ()
-was declared as an \fIint\ *\fP.
+was declared as an
+.IR "int\ *" .
 A POSIX.1g draft
-standard wanted to change it into a \fIsize_t\ *\fPC;
+standard wanted to change it into a
+.IR "size_t\ *" ;
 .\" SunOS 5 has 'size_t *'
 later POSIX standards and glibc 2.x have
 .IR "socklen_t\ * ".

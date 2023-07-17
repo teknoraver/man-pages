@@ -25,31 +25,36 @@ deprecated mutex creation attributes
 .
 .SH DESCRIPTION
 These functions are deprecated,
-use \fBpthread_mutexattr_settype\fP(3)
-and \fBpthread_mutexattr_gettype\fP(3)
+use
+.BR pthread_mutexattr_settype (3)
+and
+.BR pthread_mutexattr_gettype (3)
 instead.
 .
 .
 .SH "RETURN VALUE"
-\fBpthread_mutexattr_getkind_np\fP always returns 0.
+.BR pthread_mutexattr_getkind_np ()
+always returns 0.
 .P
-\fBpthread_mutexattr_setkind_np\fP
+.BR pthread_mutexattr_setkind_np ()
 returns 0 on success and a non-zero error code on error.
 .
 .
 .SH ERRORS
 On error,
-\fBpthread_mutexattr_setkind_np\fP returns the following error code:
+.BR pthread_mutexattr_setkind_np ()
+returns the following error code:
 .TP
-\fBEINVAL\fP
-\fIkind\fP is neither
-\fBPTHREAD_MUTEX_FAST_NP\fP
+.B EINVAL
+.I kind
+is neither
+.B PTHREAD_MUTEX_FAST_NP
 nor
-\fBPTHREAD_MUTEX_RECURSIVE_NP\fP
+.B PTHREAD_MUTEX_RECURSIVE_NP
 nor
-\fBPTHREAD_MUTEX_ERRORCHECK_NP\fP.
+.BR PTHREAD_MUTEX_ERRORCHECK_NP .
 .
 .
 .SH "SEE ALSO"
-\fBpthread_mutexattr_settype\fP(3),
-\fBpthread_mutexattr_gettype\fP(3).
+.BR pthread_mutexattr_settype (3),
+.BR pthread_mutexattr_gettype (3).

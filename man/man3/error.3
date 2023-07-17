@@ -54,8 +54,12 @@ and then outputs to
 .I stderr
 the program name, a colon and a space, the message specified by the
 .BR printf (3)-style
-format string \fIformat\fP, and, if \fIerrnum\fP is
-nonzero, a second colon and a space followed by the string given by
+format string
+.IR format ,
+and, if
+.I errnum
+is nonzero,
+a second colon and a space followed by the string given by
 .IR strerror(errnum) .
 Any arguments required for
 .I format
@@ -75,7 +79,9 @@ initially has the same value as
 The value of this variable can be modified to change the output of
 .BR error ().
 .P
-If \fIstatus\fP has a nonzero value, then
+If
+.I status
+has a nonzero value, then
 .BR error ()
 calls
 .BR exit (3)
@@ -96,26 +102,38 @@ except that after the program name are written: a colon, the value of
 .IR filename ,
 a colon, and the value of
 .IR linenum .
-The preprocessor values \fB__LINE__\fP and
-\fB__FILE__\fP may be useful when calling
+The preprocessor values
+.B __LINE__
+and
+.B __FILE__
+may be useful when calling
 .BR error_at_line (),
 but other values can also be used.
 For example, these arguments could refer to a location in an input file.
 .P
-If the global variable \fIerror_one_per_line\fP is set nonzero,
+If the global variable
+.I error_one_per_line
+is set nonzero,
 a sequence of
 .BR error_at_line ()
 calls with the
-same value of \fIfilename\fP and \fIlinenum\fP will result in only
+same value of
+.I filename
+and
+.I linenum
+will result in only
 one message (the first) being output.
 .P
-The global variable \fIerror_message_count\fP counts the number of
+The global variable
+.I error_message_count
+counts the number of
 messages that have been output by
 .BR error ()
 and
 .BR error_at_line ().
 .P
-If the global variable \fIerror_print_progname\fP
+If the global variable
+.I error_print_progname
 is assigned the address of a function
 (i.e., is not NULL), then that function is called
 instead of prefixing the message with the program name and colon.

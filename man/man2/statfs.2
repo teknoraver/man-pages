@@ -370,8 +370,11 @@ Using
 .I "unsigned\ int"
 for such variables suffices on most systems.
 .P
-Some systems have only \fI<sys/vfs.h>\fP, other systems also have
-\fI<sys/statfs.h>\fP, where the former includes the latter.
+Some systems have only
+.IR <sys/vfs.h> ,
+other systems also have
+.IR <sys/statfs.h> ,
+where the former includes the latter.
 So it seems
 including the former is the best choice.
 .SH BUGS

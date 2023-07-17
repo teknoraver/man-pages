@@ -108,11 +108,16 @@ delimiter bytes at the start or end of the string are ignored.
 Put another way: the tokens returned by
 .BR strtok ()
 are always nonempty strings.
-Thus, for example, given the string "\fIaaa;;bbb,\fP",
+Thus, for example, given the string
+.RI \[dq] aaa;;bbb, \[dq],
 successive calls to
 .BR strtok ()
-that specify the delimiter string "\fI;,\fP"
-would return the strings "\fIaaa\fP" and "\fIbbb\fP",
+that specify the delimiter string
+.RI \[dq] ;, \[dq]
+would return the strings
+.RI \[dq] aaa \[dq]
+and
+.RI \[dq] bbb \[dq],
 and then a null pointer.
 .P
 The

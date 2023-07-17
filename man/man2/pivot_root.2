@@ -28,7 +28,11 @@ necessitating the use of
 .BR pivot_root ()
 changes the root mount in the mount namespace of the calling process.
 More precisely, it moves the root mount to the
-directory \fIput_old\fP and makes \fInew_root\fP the new root mount.
+directory
+.I put_old
+and makes
+.I new_root
+the new root mount.
 The calling process must have the
 .B CAP_SYS_ADMIN
 capability in the user namespace that owns the caller's mount namespace.
@@ -44,7 +48,8 @@ On the other hand,
 does not change the caller's current working directory
 (unless it is on the old root directory),
 and thus it should be followed by a
-\fBchdir("/")\fP call.
+.I chdir("/")
+call.
 .P
 The following restrictions apply:
 .IP \[bu] 3
@@ -58,11 +63,16 @@ and
 .I put_old
 must not be on the same mount as the current root.
 .IP \[bu]
-\fIput_old\fP must be at or underneath \fInew_root\fP;
-that is, adding some nonnegative
-number of "\fI/..\fP" suffixes to the pathname pointed to by
 .I put_old
-must yield the same directory as \fInew_root\fP.
+must be at or underneath
+.IR new_root ;
+that is, adding some nonnegative
+number of
+.RI \[dq] /.. \[dq]
+suffixes to the pathname pointed to by
+.I put_old
+must yield the same directory as
+.IR new_root .
 .IP \[bu]
 .I new_root
 must be a path to a mount point, but can't be
@@ -86,7 +96,8 @@ The current root directory must be a mount point.
 .SH RETURN VALUE
 On success, zero is returned.
 On error, \-1 is returned, and
-\fIerrno\fP is set to indicate the error.
+.I errno
+is set to indicate the error.
 .SH ERRORS
 .BR pivot_root ()
 may fail with any of the same errors as
@@ -122,7 +133,9 @@ is
 is not a mount point.
 .TP
 .B EINVAL
-\fIput_old\fP is not at or underneath \fInew_root\fP.
+.I put_old
+is not at or underneath
+.IR new_root .
 .TP
 .B EINVAL
 The current root directory is not a mount point
@@ -145,7 +158,10 @@ is a mount point and has the propagation type
 .BR MS_SHARED .
 .TP
 .B ENOTDIR
-\fInew_root\fP or \fIput_old\fP is not a directory.
+.I new_root
+or
+.I put_old
+is not a directory.
 .TP
 .B EPERM
 The calling process does not have the
@@ -247,7 +263,9 @@ The caller of
 must ensure that processes with root or current working directory
 at the old root operate correctly in either case.
 An easy way to ensure this is to change their
-root and current working directory to \fInew_root\fP before invoking
+root and current working directory to
+.I new_root
+before invoking
 .BR pivot_root ().
 .RE
 .P
@@ -277,20 +295,20 @@ executable in that directory.
 .P
 .in +4n
 .EX
-$ \fBmkdir /tmp/rootfs\fP
-$ \fBls \-id /tmp/rootfs\fP    # Show inode number of new root directory
+.RB $ " mkdir /tmp/rootfs" ;
+.RB $ " ls \-id /tmp/rootfs" ";    # Show inode number of new root directory"
 319459 /tmp/rootfs
-$ \fBcp $(which busybox) /tmp/rootfs\fP
-$ \fBPS1=\[aq]bbsh$ \[aq] sudo ./pivot_root_demo /tmp/rootfs /busybox sh\fP
-bbsh$ \fBPATH=/\fP
-bbsh$ \fBbusybox ln busybox ln\fP
-bbsh$ \fBln busybox echo\fP
-bbsh$ \fBln busybox ls\fP
-bbsh$ \fBls\fP
+.RB $ " cp $(which busybox) /tmp/rootfs" ;
+.RB $ " PS1=\[aq]bbsh$ \[aq] sudo ./pivot_root_demo /tmp/rootfs /busybox sh" ;
+.RB bbsh$ " PATH=/" ;
+.RB bbsh$ " busybox ln busybox ln" ;
+.RB bbsh$ " ln busybox echo" ;
+.RB bbsh$ " ln busybox ls" ;
+.RB bbsh$ " ls" ;
 busybox  echo     ln       ls
-bbsh$ \fBls \-id /\fP          # Compare with inode number above
+.RB bbsh$ " ls \-id /" ";          # Compare with inode number above"
 319459 /
-bbsh$ \fBecho \[aq]hello world\[aq]\fP
+.RB bbsh$ " echo \[aq]hello world\[aq]" ;
 hello world
 .EE
 .in

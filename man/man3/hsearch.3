@@ -65,7 +65,9 @@ the fields in this structure).
 .P
 First a hash table must be created using
 .BR hcreate ().
-The argument \fInel\fP specifies the maximum number of entries
+The argument
+.I nel
+specifies the maximum number of entries
 in the table.
 (This maximum cannot be changed later, so choose it wisely.)
 The implementation may adjust this value upward to improve the
@@ -101,12 +103,19 @@ which was previously created using
 The
 .BR hsearch ()
 function searches the hash table for an
-item with the same key as \fIitem\fP (where "the same" is determined using
+item with the same key as
+.I item
+(where "the same" is determined using
 .BR strcmp (3)),
 and if successful returns a pointer to it.
 .P
-The argument \fIitem\fP is of type \fIENTRY\fP, which is defined in
-\fI<search.h>\fP as follows:
+The argument
+.I item
+is of type
+.IR ENTRY ,
+which is defined in
+.I <search.h>
+as follows:
 .P
 .in +4n
 .EX
@@ -117,11 +126,17 @@ typedef struct entry {
 .EE
 .in
 .P
-The field \fIkey\fP points to a null-terminated string which is the
+The field
+.I key
+points to a null-terminated string which is the
 search key.
-The field \fIdata\fP points to data that is associated with that key.
+The field
+.I data
+points to data that is associated with that key.
 .P
-The argument \fIaction\fP determines what
+The argument
+.I action
+determines what
 .BR hsearch ()
 does after an unsuccessful search.
 This argument must either have the value
@@ -167,8 +182,17 @@ On success,
 returns a pointer to an entry in the hash table.
 .BR hsearch ()
 returns NULL on error, that is,
-if \fIaction\fP is \fBENTER\fP and
-the hash table is full, or \fIaction\fP is \fBFIND\fP and \fIitem\fP
+if
+.I action
+is
+.B ENTER
+and the hash table is full,
+or
+.I action
+is
+.B FIND
+and
+.I item
 cannot be found in the hash table.
 .BR hsearch_r ()
 returns nonzero on success, and 0 on error.
@@ -289,12 +313,18 @@ matches that of the program),
 then the program must maintain bookkeeping data structures that
 allow it to free them.
 .SH BUGS
-SVr4 and POSIX.1-2001 specify that \fIaction\fP
-is significant only for unsuccessful searches, so that an \fBENTER\fP
+SVr4 and POSIX.1-2001 specify that
+.I action
+is significant only for unsuccessful searches, so that an
+.B ENTER
 should not do anything for a successful search.
 In libc and glibc (before glibc 2.3), the
 implementation violates the specification,
-updating the \fIdata\fP for the given \fIkey\fP in this case.
+updating the
+.I data
+for the given
+.I key
+in this case.
 .P
 Individual hash table entries can be added, but not deleted.
 .SH EXAMPLES

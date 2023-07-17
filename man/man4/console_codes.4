@@ -36,7 +36,9 @@ If the console is in UTF-8 mode, then the incoming bytes are
 first assembled into 16-bit Unicode codes.
 Otherwise, each byte is transformed according to the current mapping table
 (which translates it to a Unicode value).
-See the \fBCharacter Sets\fP section below for discussion.
+See the
+.B Character Sets
+section below for discussion.
 .P
 In the normal case, the Unicode value is converted to a font index,
 and this is stored in video memory, so that the corresponding glyph
@@ -49,7 +51,9 @@ currently processing an escape sequence, the value will treated
 specially.
 Instead of being turned into a font index and rendered as
 a glyph, it may trigger cursor movement or other control functions.
-See the \fBLinux Console Controls\fP section below for discussion.
+See the
+.B Linux Console Controls
+section below for discussion.
 .P
 It is generally not good practice to hard-wire terminal controls into
 programs.
@@ -89,40 +93,40 @@ The recognized control characters are BEL, BS, HT, LF, VT, FF,
 CR, SO, SI, CAN, SUB, ESC, DEL, CSI.
 They do what one would expect:
 .TP
-BEL (0x07, \fB\[ha]G\fP)
+.RB BEL\~(0x07, \~\[ha]G )
 beeps;
 .TP
-BS (0x08, \fB\[ha]H\fP)
+.RB BS\~(0x08, \~\[ha]H )
 backspaces one column
 (but not past the beginning of the line);
 .TP
-HT (0x09, \fB\[ha]I\fP)
+.RB HT\~(0x09, \~\[ha]I )
 goes to the next tab stop or to the end of the line
 if there is no earlier tab stop;
 .TP
-LF (0x0A, \fB\[ha]J\fP)
+.RB LF\~(0x0A, \~\[ha]J )
 .TQ
-VT (0x0B, \fB\[ha]K\fP)
+.RB VT\~(0x0B, \~\[ha]K )
 .TQ
-FF (0x0C, \fB\[ha]L\fP)
+.RB FF\~(0x0C, \~\[ha]L )
 all give a linefeed,
 and if LF/NL (new-line mode) is set also a carriage return;
 .TP
-CR (0x0D, \fB\[ha]M\fP)
+.RB CR\~(0x0D, \~\[ha]M )
 gives a carriage return;
 .TP
-SO (0x0E, \fB\[ha]N\fP)
+.RB SO\~(0x0E, \~\[ha]N )
 activates the G1 character set;
 .TP
-SI (0x0F, \fB\[ha]O\fP)
+.RB SI\~(0x0F, \~\[ha]O )
 activates the G0 character set;
 .TP
-CAN (0x18, \fB\[ha]X\fP)
+.RB CAN\~(0x18, \~\[ha]X )
 .TQ
-SUB (0x1A, \fB\[ha]Z\fP)
+.RB SUB\~(0x1A, \~\[ha]Z )
 abort escape sequences;
 .TP
-ESC (0x1B, \fB\[ha][\fP)
+.RB ESC\~(0x1B, \~\[ha][ )
 starts an escape sequence;
 .TP
 DEL (0x7F)
@@ -186,8 +190,15 @@ Operating System Command prefix.
 T}
 ESC ] R		Reset palette.
 ESC ] P		T{
-Set palette, with parameter given in 7 hexadecimal digits \fInrrggbb\fP after
-the final P. Here \fIn\fP is the color (0\[en]15), and \fIrrggbb\fP indicates
+Set palette, with parameter given in 7 hexadecimal digits
+.I nrrggbb
+after the final P.
+Here
+.I n
+is the color (0\[en]15),
+and
+.I rrggbb
+indicates
 the red/green/blue values (0\[en]255).
 T}
 .TE
@@ -314,7 +325,9 @@ T}
 .P
 .B ECMA-48 Select Graphic Rendition
 .P
-The ECMA-48 SGR sequence ESC [ \fIparameters\fP m sets display
+The ECMA-48 SGR sequence ESC [
+.I parameters
+m sets display
 attributes.
 Several attributes can be set in the same sequence, separated by
 semicolons.
@@ -431,8 +444,14 @@ ESC [ 5 n
 Device status report (DSR): Answer is ESC [ 0 n (Terminal OK).
 .TP
 ESC [ 6 n
-Cursor position report (CPR): Answer is ESC [ \fIy\fP ; \fIx\fP R,
-where \fIx,y\fP is the cursor location.
+Cursor position report (CPR): Answer is ESC [
+.I y
+;
+.I x
+R,
+where
+.I x,y
+is the cursor location.
 .\"
 .P
 .B DEC Private Mode (DECSET/DECRST) sequences
@@ -492,38 +511,40 @@ Colors are in SGR parameters:
 cyan, 7 = white; 8\[en]15 = bright versions of 0\[en]7.
 .TS
 l lx.
-ESC [ 1 ; \fIn\fP ]	T{
-Set color \fIn\fP as the underline color.
+ESC [ 1 ; \f[I]n\f[] ]	T{
+Set color \f[I]n\f[] as the underline color.
 T}
-ESC [ 2 ; \fIn\fP ]	T{
-Set color \fIn\fP as the dim color.
+ESC [ 2 ; \f[I]n\f[] ]	T{
+Set color \f[I]n\f[] as the dim color.
 T}
 ESC [ 8 ]       	T{
 Make the current color pair the default attributes.
 T}
-ESC [ 9 ; \fIn\fP ]	T{
-Set screen blank timeout to \fIn\fP minutes.
+ESC [ 9 ; \f[I]n\f[] ]	T{
+Set screen blank timeout to
+.I n
+minutes.
 T}
-ESC [ 10 ; \fIn\fP ]	T{
+ESC [ 10 ; \f[I]n\f[] ]	T{
 Set bell frequency in Hz.
 T}
-ESC [ 11 ; \fIn\fP ]	T{
+ESC [ 11 ; \f[I]n\f[] ]	T{
 Set bell duration in msec.
 T}
-ESC [ 12 ; \fIn\fP ]	T{
+ESC [ 12 ; \f[I]n\f[] ]	T{
 Bring specified console to the front.
 T}
 ESC [ 13 ]      	T{
 Unblank the screen.
 T}
-ESC [ 14 ; \fIn\fP ]   	T{
+ESC [ 14 ; \f[I]n\f[] ]   	T{
 Set the VESA powerdown interval in minutes.
 T}
 ESC [ 15 ]	T{
 Bring the previous console to the front
 (since Linux 2.6.0).
 T}
-ESC [ 16 ; \fIn\fP ]	T{
+ESC [ 16 ; \f[I]n\f[] ]	T{
 Set the cursor blink interval in milliseconds
 (since Linux 4.2).
 T}
@@ -538,8 +559,11 @@ b) VT100 graphics \-> PC, c) PC \-> PC, d) user-defined.
 There are two character sets, called G0 and G1, and one of them
 is the current character set.
 (Initially G0.)
-Typing \fB\[ha]N\fP causes G1 to become current,
-\fB\[ha]O\fP causes G0 to become current.
+Typing
+.B \[ha]N
+causes G1 to become current,
+.B \[ha]O
+causes G0 to become current.
 .P
 These variables G0 and G1 point at a translation table, and can be
 changed by the user.
@@ -580,18 +604,29 @@ user-mode application such as the
 daemon.
 .P
 The mouse tracking escape sequences generated by
-\fBxterm\fP(1) encode numeric parameters in a single character as
-\fIvalue\fP+040.
+.BR xterm (1)
+encode numeric parameters in a single character as
+.IR value +040.
 For example, \[aq]!\[aq] is 1.
 The screen coordinate system is 1-based.
 .P
 The X10 compatibility mode sends an escape sequence on button press
 encoding the location and the mouse button pressed.
 It is enabled by sending ESC [ ? 9 h and disabled with ESC [ ? 9 l.
-On button press, \fBxterm\fP(1) sends
-ESC [ M \fIbxy\fP (6 characters).
-Here \fIb\fP is button\-1,
-and \fIx\fP and \fIy\fP are the x and y coordinates of the mouse
+On button press,
+.BR xterm (1)
+sends
+ESC [ M
+.I bxy
+(6 characters).
+Here
+.I b
+is button\-1,
+and
+.I x
+and
+.I y
+are the x and y coordinates of the mouse
 when the button was pressed.
 This is the same code the kernel also produces.
 .P
@@ -600,14 +635,21 @@ sequence on both button press and release.
 Modifier information is also sent.
 It is enabled by sending ESC [ ? 1000 h and disabled with
 ESC [ ? 1000 l.
-On button press or release, \fBxterm\fP(1) sends ESC [ M
-\fIbxy\fP.
-The low two bits of \fIb\fP encode button information:
+On button press or release,
+.BR xterm (1)
+sends ESC [ M
+.IR bxy .
+The low two bits of
+.I b
+encode button information:
 0=MB1 pressed, 1=MB2 pressed, 2=MB3 pressed, 3=release.
 The upper bits encode what modifiers were down when the button was
 pressed and are added together: 4=Shift, 8=Meta, 16=Control.
-Again \fIx\fP and
-\fIy\fP are the x and y coordinates of the mouse event.
+Again
+.I x
+and
+.I y
+are the x and y coordinates of the mouse event.
 The upper left corner is (1,1).
 .SS Comparisons with other terminals
 Many different terminal types are described, like the Linux console,
@@ -627,10 +669,10 @@ was ignored;
 ENQ (0x05)
 triggered an answerback message;
 .TP
-DC1 (0x11, \fB\[ha]Q\fP, XON)
+.RB DC1\~(0x11, \~\[ha]Q ,\~XON)
 resumed transmission;
 .TP
-DC3 (0x13, \fB\[ha]S\fP, XOFF)
+.RB DC3\~(0x13, \~\[ha]S ,\~XOFF)
 caused VT100 to ignore (and stop transmitting)
 all codes except XOFF and XON.
 .P
@@ -674,27 +716,34 @@ It accepts ESC (, ESC ), ESC *,  ESC + followed by 0, A, B for
 the DEC special character and line drawing set, UK, and US-ASCII,
 respectively.
 .P
-The user can configure \fBxterm\fP(1) to respond to VT220-specific
+The user can configure
+.BR xterm (1)
+to respond to VT220-specific
 control sequences, and it will identify itself as a VT52, VT100, and
 up depending on the way it is configured and initialized.
 .P
 It accepts ESC ] (OSC) for the setting of certain resources.
 In addition to the ECMA-48 string terminator (ST),
-\fBxterm\fP(1) accepts a BEL to terminate an OSC string.
-These are a few of the OSC control sequences recognized by \fBxterm\fP(1):
+.BR xterm (1)
+accepts a BEL to terminate an OSC string.
+These are a few of the OSC control sequences recognized by
+.BR xterm (1):
 .TS
 l l.
-ESC ] 0 ; \fItxt\fP ST	T{
-Set icon name and window title to \fItxt\fP.
+ESC ] 0 ; \f[I]txt\f[] ST	T{
+Set icon name and window title to
+.IR txt .
 T}
-ESC ] 1 ; \fItxt\fP ST	Set icon name to \fItxt\fP.
-ESC ] 2 ; \fItxt\fP ST	Set window title to \fItxt\fP.
-ESC ] 4 ; \fInum\fP; \fItxt\fP ST	Set ANSI color \fInum\fP to \fItxt\fP.
-ESC ] 10 ; \fItxt\fP ST	Set dynamic text color to \fItxt\fP.
-ESC ] 4 6 ; \fIname\fP ST	T{
-Change log file to \fIname\fP (normally disabled by a compile-time option).
+ESC ] 1 ; \f[I]txt\f[] ST	Set icon name to \f[I]txt\f[].
+ESC ] 2 ; \f[I]txt\f[] ST	Set window title to \f[I]txt\f[].
+ESC ] 4 ; \f[I]num\f[]; \f[I]txt\f[] ST	Set ANSI color \f[I]num\f[] to \f[I]txt\f[].
+ESC ] 10 ; \f[I]txt\f[] ST	Set dynamic text color to \f[I]txt\f[].
+ESC ] 4 6 ; \f[I]name\f[] ST	T{
+Change log file to
+.I name
+(normally disabled by a compile-time option).
 T}
-ESC ] 5 0 ; \fIfn\fP ST	Set font to \fIfn\fP.
+ESC ] 5 0 ; \f[I]fn\f[] ST	Set font to \f[I]fn\f[].
 .TE
 .P
 It recognizes the following with slightly modified meaning
@@ -712,7 +761,8 @@ ESC F		T{
 Cursor to lower left corner of screen (if enabled
 by
 .BR xterm (1)'s
-\fBhpLowerleftBugCompat\fP resource).
+.B hpLowerleftBugCompat
+resource).
 T}
 ESC l		Memory lock (per HP terminals).
 		Locks memory above the cursor.
@@ -730,7 +780,9 @@ implementation than Linux console.
 .P
 .B CSI Sequences
 .P
-Old versions of \fBxterm\fP(1), for example, from X11R5,
+Old versions of
+.BR xterm (1),
+for example, from X11R5,
 interpret the blink SGR as a bold SGR.
 Later versions which implemented ANSI colors, for example,
 XFree86 3.1.2A in 1995, improved this by allowing
@@ -741,15 +793,19 @@ Stock X11R6 versions did not recognize the color-setting SGRs until
 the X11R6.8 release, which incorporated XFree86 xterm.
 All ECMA-48 CSI sequences recognized by Linux are also recognized by
 .IR xterm ,
-however \fBxterm\fP(1) implements several ECMA-48 and DEC control sequences
+however
+.BR xterm (1)
+implements several ECMA-48 and DEC control sequences
 not recognized by Linux.
 .P
-The \fBxterm\fP(1)
+The
+.BR xterm (1)
 program recognizes all of the DEC Private Mode sequences listed
 above, but none of the Linux private-mode sequences.
-For discussion of \fBxterm\fP(1)'s
+For discussion of
+.BR xterm (1)'s
 own private-mode sequences, refer to the
-\fIXterm Control Sequences\fP
+.I Xterm Control Sequences
 document by
 Edward Moy,
 Stephen Gildea,
@@ -765,7 +821,9 @@ For a chronological overview,
 .P
 details changes to xterm.
 .P
-The \fIvttest\fP program
+The
+.I vttest
+program
 .P
 .RS
 .UR http://invisible\-island.net\:/vttest/
@@ -773,7 +831,9 @@ The \fIvttest\fP program
 .RE
 .P
 demonstrates many of these control sequences.
-The \fBxterm\fP(1) source distribution also contains sample
+The
+.BR xterm (1)
+source distribution also contains sample
 scripts which exercise other features.
 .SH NOTES
 ESC 8 (DECRC) is not able to restore the character set changed with
@@ -796,15 +856,24 @@ for private mode control sequences.
 In particular, those ending with ] do not use a standard terminating
 character.
 The OSC (set palette) sequence is a greater problem,
-since \fBxterm\fP(1) may interpret this as a control sequence
+since
+.BR xterm (1)
+may interpret this as a control sequence
 which requires a string terminator (ST).
-Unlike the \fBsetterm\fP(1) sequences which will be ignored (since
+Unlike the
+.BR setterm (1)
+sequences which will be ignored (since
 they are invalid control sequences), the palette sequence will make
-\fBxterm\fP(1) appear to hang (though pressing the return-key
+.B xterm (1)
+appear to hang (though pressing the return-key
 will fix that).
 To accommodate applications which have been hardcoded to use Linux
 control sequences,
-set the \fBxterm\fP(1) resource \fBbrokenLinuxOSC\fP to true.
+set the
+.BR xterm (1)
+resource
+.B brokenLinuxOSC
+to true.
 .P
 An older version of this document implied that Linux recognizes the
 ECMA-48 control sequence for invisible text.

@@ -528,13 +528,13 @@ The following shell session demonstrates the use of these two programs:
 .P
 .in +4n
 .EX
-$ \fBecho \[aq]Can you please think about it?\[aq] > cecilia.txt\fP
-$ \fB./t_name_to_handle_at cecilia.txt > fh\fP
-$ \fB./t_open_by_handle_at < fh\fP
+.RB $ " echo \[aq]Can you please think about it?\[aq] > cecilia.txt" ;
+.RB $ " ./t_name_to_handle_at cecilia.txt > fh" ;
+.RB $ " ./t_open_by_handle_at < fh" ;
 open_by_handle_at: Operation not permitted
-$ \fBsudo ./t_open_by_handle_at < fh\fP      # Need CAP_SYS_ADMIN
+.RB $ " sudo ./t_open_by_handle_at < fh" ";      # Need CAP_SYS_ADMIN"
 Read 31 bytes
-$ \fBrm cecilia.txt\fP
+.RB $ " rm cecilia.txt" ;
 .EE
 .in
 .P
@@ -549,13 +549,13 @@ no longer exists.
 .P
 .in +4n
 .EX
-$ \fBstat \-\-printf="%i\[rs]n" cecilia.txt\fP     # Display inode number
+.RB $ " stat \-\-printf=\[dq]%i\[rs]n\[dq] cecilia.txt" ";     # Display inode number"
 4072121
-$ \fBrm cecilia.txt\fP
-$ \fBecho \[aq]Can you please think about it?\[aq] > cecilia.txt\fP
-$ \fBstat \-\-printf="%i\[rs]n" cecilia.txt\fP     # Check inode number
+.RB $ " rm cecilia.txt" ;
+.RB $ " echo \[aq]Can you please think about it?\[aq] > cecilia.txt" ;
+.RB $ " stat \-\-printf=\[dq]%i\[rs]n\[dq] cecilia.txt" ";     # Check inode number"
 4072121
-$ \fBsudo ./t_open_by_handle_at < fh\fP
+.RB $ " sudo ./t_open_by_handle_at < fh" ;
 open_by_handle_at: Stale NFS file handle
 .EE
 .in

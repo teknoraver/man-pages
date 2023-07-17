@@ -26,7 +26,9 @@ switch certain features on or off.
 .I /proc/scsi/scsi
 This is a listing of all SCSI devices known to the kernel.
 The listing is similar to the one seen during bootup.
-scsi currently supports only the \fIadd\-single\-device\fP command which
+scsi currently supports only the
+.I add\-single\-device
+command which
 allows root to add a hotplugged device to the list of known devices.
 .IP
 The command
@@ -44,7 +46,8 @@ is already a device known on this address or the address is invalid, an
 error will be returned.
 .TP
 .IR /proc/scsi/ drivername /
-\fIdrivername\fP can currently be NCR53c7xx, aha152x, aha1542, aha1740,
+.I drivername
+can currently be NCR53c7xx, aha152x, aha1542, aha1740,
 aic7xxx, buslogic, eata_dma, eata_pio, fdomain, in2000, pas16, qlogic,
 scsi_debug, seagate, t128, u15\-24f, ultrastore, or wd7000.
 These directories show up for all drivers that registered at least one
@@ -57,10 +60,18 @@ Reading these files will usually show driver and host configuration,
 statistics, and so on.
 .IP
 Writing to these files allows different things on different hosts.
-For example, with the \fIlatency\fP and \fInolatency\fP commands,
+For example, with the
+.I latency
+and
+.I nolatency
+commands,
 root can switch on and off command latency measurement code in the
 eata_dma driver.
-With the \fIlockup\fP and \fIunlock\fP commands,
+With the
+.I lockup
+and
+.I unlock
+commands,
 root can control bus lockups simulated by the scsi_debug driver.
 .SH SEE ALSO
 .BR proc (5)

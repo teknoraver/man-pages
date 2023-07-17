@@ -63,18 +63,24 @@ of size
 .BR cuserid ()
 returns a pointer to a string containing a username
 associated with the effective user ID of the process.
-If \fIstring\fP
+If
+.I string
 is not a null pointer, it should be an array that can hold at least
-\fBL_cuserid\fP characters; the string is returned in this array.
+.B L_cuserid
+characters; the string is returned in this array.
 Otherwise, a pointer to a string in a static area is returned.
 This
 string is statically allocated and might be overwritten on subsequent
 calls to this function or to
 .BR getlogin ().
 .P
-The macro \fBL_cuserid\fP is an integer constant that indicates how
+The macro
+.B L_cuserid
+is an integer constant that indicates how
 long an array you might need to store a username.
-\fBL_cuserid\fP is declared in \fI<stdio.h>\fP.
+.B L_cuserid
+is declared in
+.IR <stdio.h> .
 .P
 These functions let your program identify positively the user who is
 running
@@ -84,9 +90,12 @@ or the user who logged in this session
 (These can differ when set-user-ID programs are involved.)
 .P
 For most purposes, it is more useful to use the environment variable
-\fBLOGNAME\fP to find out who the user is.
+.B LOGNAME
+to find out who the user is.
 This is more flexible
-precisely because the user can set \fBLOGNAME\fP arbitrarily.
+precisely because the user can set
+.B LOGNAME
+arbitrarily.
 .SH RETURN VALUE
 .BR getlogin ()
 returns a pointer to the username when successful,
@@ -128,12 +137,14 @@ Standard input didn't refer to a terminal.
 (See BUGS.)
 .SH FILES
 .TP
-\fI/etc/passwd\fP
+.I /etc/passwd
 password database file
 .TP
-\fI/var/run/utmp\fP
-(traditionally \fI/etc/utmp\fP;
-some libc versions used \fI/var/adm/utmp\fP)
+.I /var/run/utmp
+(traditionally
+.IR /etc/utmp ;
+some libc versions used
+.IR /var/adm/utmp )
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).

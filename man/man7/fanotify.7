@@ -1037,7 +1037,7 @@ Execution of the program ends when the user presses the ENTER key.
 .P
 .in +4n
 .EX
-# \fB./fanotify_example /home\fP
+.RB # " ./fanotify_example /home" ;
 Press enter key to terminate.
 Listening for events.
 FAN_OPEN_PERM: File /home/user/temp/notes
@@ -1269,14 +1269,14 @@ been processed.
 .P
 .in +4n
 .EX
-# \fB./fanotify_fid /home/user\fP
+.RB # " ./fanotify_fid /home/user" ;
 Listening for events.
 FAN_CREATE (file created):
         Directory /home/user has been modified.
         Entry \[aq]testfile.txt\[aq] is not a subdirectory.
 All events processed successfully. Program exiting.
 \&
-$ \fBtouch /home/user/testfile.txt\fP              # In another terminal
+.RB $ " touch /home/user/testfile.txt" ";              # In another terminal"
 .EE
 .in
 .P
@@ -1292,14 +1292,14 @@ flag set and with the created directory name.
 .P
 .in +4n
 .EX
-# \fB./fanotify_fid /home/user\fP
+.RB # " ./fanotify_fid /home/user" ;
 Listening for events.
 FAN_CREATE | FAN_ONDIR (subdirectory created):
         Directory /home/user has been modified.
         Entry \[aq]testdir\[aq] is a subdirectory.
 All events processed successfully. Program exiting.
 \&
-$ \fBmkdir \-p /home/user/testdir\fP          # In another terminal
+.RB $ " mkdir \-p /home/user/testdir" ";          # In another terminal"
 .EE
 .in
 .SS Program source: fanotify_fid.c

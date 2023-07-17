@@ -133,7 +133,9 @@ capability in the user namespace of the thread
 .IR pid .
 .TP
 .B ESRCH
-The thread whose ID is \fIpid\fP could not be found.
+The thread whose ID is
+.I pid
+could not be found.
 .SH STANDARDS
 Linux.
 .SH HISTORY
@@ -312,7 +314,7 @@ system has two cores, each with two CPUs:
 .P
 .in +4n
 .EX
-$ \fBlscpu | egrep \-i \[aq]core.*:|socket\[aq]\fP
+.RB $ " lscpu | egrep \-i \[aq]core.*:|socket\[aq]" ;
 Thread(s) per core:    2
 Core(s) per socket:    2
 Socket(s):             1
@@ -326,15 +328,15 @@ and both processes running on different CPUs on different cores.
 .P
 .in +4n
 .EX
-$ \fBtime \-p ./a.out 0 0 100000000\fP
+.RB $ " time \-p ./a.out 0 0 100000000" ;
 real 14.75
 user 3.02
 sys 11.73
-$ \fBtime \-p ./a.out 0 1 100000000\fP
+.RB $ " time \-p ./a.out 0 1 100000000" ;
 real 11.52
 user 3.98
 sys 19.06
-$ \fBtime \-p ./a.out 0 3 100000000\fP
+.RB $ " time \-p ./a.out 0 3 100000000" ;
 real 7.89
 user 3.29
 sys 12.07

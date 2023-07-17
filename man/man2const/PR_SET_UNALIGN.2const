@@ -20,7 +20,8 @@ Standard C library
 .BI "int prctl(PR_SET_UNALIGN, unsigned long " flag );
 .fi
 .SH DESCRIPTION
-Set unaligned access control bits to \fIarg2\fP.
+Set unaligned access control bits to
+.IR arg2 .
 .P
 Pass
 .B PR_UNALIGN_NOPRINT

@@ -162,10 +162,17 @@ The
 and
 .BR res_query ()
 functions query the name server for the
-fully qualified domain name \fIname\fP of specified \fItype\fP and
-\fIclass\fP.
-The reply is left in the buffer \fIanswer\fP of length
-\fIanslen\fP supplied by the caller.
+fully qualified domain name
+.I name
+of specified
+.I type
+and
+.IR class .
+The reply is left in the buffer
+.I answer
+of length
+.I anslen
+supplied by the caller.
 .P
 The
 .BR res_nsearch ()
@@ -181,7 +188,8 @@ rules controlled by
 and
 .B RES_DNSRCH
 (see description of
-\fI_res\fP options below).
+.I _res
+options below).
 .P
 The
 .BR res_nquerydomain ()
@@ -189,7 +197,10 @@ and
 .BR res_querydomain ()
 functions make a query using
 .BR res_nquery ()/ res_query ()
-on the concatenation of \fIname\fP and \fIdomain\fP.
+on the concatenation of
+.I name
+and
+.IR domain .
 .P
 The following functions are lower-level routines used by
 .BR res_nquery ()/ res_query ().
@@ -198,10 +209,15 @@ The
 .BR res_nmkquery ()
 and
 .BR res_mkquery ()
-functions construct a query message in \fIbuf\fP
-of length \fIbuflen\fP for the domain name \fIdname\fP.
+functions construct a query message in
+.I buf
+of length
+.I buflen
+for the domain name
+.IR dname .
 The query type
-\fIop\fP is one of the following (typically
+.I op
+is one of the following (typically
 .BR QUERY ):
 .TP
 .B QUERY
@@ -216,40 +232,63 @@ since it has not been supported by DNS servers for a very long time.
 .B NS_NOTIFY_OP
 Notify secondary of SOA (Start of Authority) change.
 .P
-\fInewrr\fP is currently unused.
+.I newrr
+is currently unused.
 .P
 The
 .BR res_nsend ()
 and
 .BR res_send ()
 function send a preformatted query given in
-\fImsg\fP of length \fImsglen\fP and returns the answer in \fIanswer\fP
-which is of length \fIanslen\fP.
+.I msg
+of length
+.I msglen
+and returns the answer in
+.I answer
+which is of length
+.IR anslen .
 They will call
 .BR res_ninit ()/ res_init ()
 if it has not already been called.
 .P
 The
 .BR dn_comp ()
-function compresses the domain name \fIexp_dn\fP
-and stores it in the buffer \fIcomp_dn\fP of length \fIlength\fP.
-The compression uses an array of pointers \fIdnptrs\fP to previously
-compressed names in the current message.
+function compresses the domain name
+.I exp_dn
+and stores it in the buffer
+.I comp_dn
+of length
+.IR length .
+The compression uses an array of pointers
+.I dnptrs
+to previously compressed names in the current message.
 The first pointer points
 to the beginning of the message and the list ends with NULL.
-The limit of the array is specified by \fIlastdnptr\fP.
-If \fIdnptr\fP is NULL, domain names are not compressed.
-If \fIlastdnptr\fP is NULL, the list
-of labels is not updated.
+The limit of the array is specified by
+.IR lastdnptr .
+If
+.I dnptr
+is NULL,
+domain names are not compressed.
+If
+.I lastdnptr
+is NULL,
+the list of labels is not updated.
 .P
 The
 .BR dn_expand ()
 function expands the compressed domain name
-\fIcomp_dn\fP to a full domain name, which is placed in the buffer
-\fIexp_dn\fP of size \fIlength\fP.
+.I comp_dn
+to a full domain name,
+which is placed in the buffer
+.I exp_dn
+of size
+.IR length .
 The compressed name is contained
-in a query or reply message, and \fImsg\fP points to the beginning of
-the message.
+in a query or reply message,
+and
+.I msg
+points to the beginning of the message.
 .P
 The resolver routines use configuration and state information
 contained in a

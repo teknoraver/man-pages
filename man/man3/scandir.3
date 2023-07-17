@@ -75,18 +75,27 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 The
 .BR scandir ()
-function scans the directory \fIdirp\fP, calling
-\fIfilter\fP() on each directory entry.
+function scans the directory
+.IR dirp ,
+calling
+.IR filter ()
+on each directory entry.
 Entries for which
-\fIfilter\fP() returns nonzero are stored in strings allocated via
+.IR filter ()
+returns nonzero are stored in strings allocated via
 .BR malloc (3),
 sorted using
 .BR qsort (3)
 with the comparison
-function \fIcompar\fP(), and collected in array \fInamelist\fP
+function
+.IR compar (),
+and collected in array
+.I namelist
 which is allocated via
 .BR malloc (3).
-If \fIfilter\fP is NULL, all entries are selected.
+If
+.I filter
+is NULL, all entries are selected.
 .P
 The
 .BR alphasort ()
@@ -98,7 +107,10 @@ The former sorts directory entries using
 .BR strcoll (3),
 the latter using
 .BR strverscmp (3)
-on the strings \fI(*a)\->d_name\fP and \fI(*b)\->d_name\fP.
+on the strings
+.I (*a)\->d_name
+and
+.IR (*b)\->d_name .
 .SS scandirat()
 The
 .BR scandirat ()
@@ -166,13 +178,17 @@ is neither
 nor a valid file descriptor.
 .TP
 .B ENOENT
-The path in \fIdirp\fR does not exist.
+The path in
+.I dirp
+does not exist.
 .TP
 .B ENOMEM
 Insufficient memory to complete the operation.
 .TP
 .B ENOTDIR
-The path in \fIdirp\fR is not a directory.
+The path in
+.I dirp
+is not a directory.
 .TP
 .B ENOTDIR
 .RB ( scandirat ())

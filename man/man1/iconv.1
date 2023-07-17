@@ -183,7 +183,7 @@ Convert text from the ISO/IEC\~8859-15 character encoding to UTF-8:
 .P
 .in +4n
 .EX
-$ \fBiconv \-f ISO\-8859\-15 \-t UTF\-8 < input.txt > output.txt\fP
+.RB $ " iconv \-f ISO\-8859\-15 \-t UTF\-8 < input.txt > output.txt" ;
 .EE
 .in
 .P
@@ -192,7 +192,7 @@ possible:
 .P
 .in +4n
 .EX
-$ \fBecho abc ß α € àḃç | iconv \-f UTF\-8 \-t ASCII//TRANSLIT\fP
+.RB $ " echo abc ß α € àḃç | iconv \-f UTF\-8 \-t ASCII//TRANSLIT" ;
 abc ss ? EUR abc
 .EE
 .in

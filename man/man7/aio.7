@@ -200,20 +200,20 @@ and these are satisfied by two lines of input containing
 .P
 .in +4n
 .EX
-$ \fB./a.out /dev/stdin /dev/stdin\fP
+.RB $ " ./a.out /dev/stdin /dev/stdin" ;
 opened /dev/stdin on descriptor 3
 opened /dev/stdin on descriptor 4
 aio_error():
     for request 0 (descriptor 3): In progress
     for request 1 (descriptor 4): In progress
-\fBabc\fP
+.B abc
 I/O completion signal received
 aio_error():
     for request 0 (descriptor 3): I/O succeeded
     for request 1 (descriptor 4): In progress
 aio_error():
     for request 1 (descriptor 4): In progress
-\fBx\fP
+.B x
 I/O completion signal received
 aio_error():
     for request 1 (descriptor 4): I/O succeeded

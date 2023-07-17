@@ -55,7 +55,9 @@ pointer has the sign of
 .I x\~/\~y
 and agrees with the quotient in at least the low order 3 bits.
 .P
-For example, \fIremquo(29.0,\ 3.0)\fP returns \-1.0 and might store 2.
+For example,
+.I remquo(29.0,\ 3.0)
+returns \-1.0 and might store 2.
 Note that the actual quotient might not fit in an integer.
 .\" A possible application of this function might be the computation
 .\" of sin(x). Compute remquo(x, pi/2, &quo) or so.
@@ -98,7 +100,7 @@ when calling these functions.
 .P
 The following errors can occur:
 .TP
-Domain error: \fIx\fP is an infinity or \fIy\fP is 0, \
+Domain error: \f[I]x\f[] is an infinity or \f[I]y\f[] is 0, \
 and the other argument is not a NaN.
 .\" .I errno
 .\" is set to

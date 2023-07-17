@@ -68,16 +68,24 @@ The number,
 in the name of each function indicates the size of
 integer handled by the function, either 16, 32, or 64 bits.
 .P
-The functions with names of the form "htobe\fInn\fP" convert
+The functions with names of the form
+.RI \[dq]htobe nn \[dq]
+convert
 from host byte order to big-endian order.
 .P
-The functions with names of the form "htole\fInn\fP" convert
+The functions with names of the form
+.RI \[dq]htole nn \[dq]
+convert
 from host byte order to little-endian order.
 .P
-The functions with names of the form "be\fInn\fPtoh" convert
+The functions with names of the form
+.RI \[dq]be nn toh\[dq]
+convert
 from big-endian order to host byte order.
 .P
-The functions with names of the form "le\fInn\fPtoh" convert
+The functions with names of the form
+.RI \[dq]le nn toh\[dq]
+convert
 from little-endian order to host byte order.
 .SH VERSIONS
 Similar functions are present on the BSDs,
@@ -123,7 +131,7 @@ we see the following:
 .P
 .in +4n
 .EX
-$ \fB./a.out\fP
+.RB $ " ./a.out" ;
 x.u32 = 0x44332211
 htole32(x.u32) = 0x44332211
 htobe32(x.u32) = 0x11223344

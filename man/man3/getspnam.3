@@ -189,7 +189,9 @@ Some non-glibc systems also have functions with these names,
 often with different prototypes.
 .\" SUN doesn't have sgetspent_r()
 .SS Structure
-The shadow password structure is defined in \fI<shadow.h>\fP as follows:
+The shadow password structure is defined in
+.I <shadow.h>
+as follows:
 .P
 .in +4n
 .EX
@@ -215,7 +217,9 @@ struct spwd {
 .SH RETURN VALUE
 The functions that return a pointer return NULL if no more entries
 are available or if an error occurs during processing.
-The functions which have \fIint\fP as the return value return 0 for
+The functions which have
+.I int
+as the return value return 0 for
 success and \-1 for failure, with
 .I errno
 set to indicate the error.

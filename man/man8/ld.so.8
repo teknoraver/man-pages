@@ -38,7 +38,10 @@ The program
 handles a.out binaries, a binary format used long ago.
 The program
 .B ld\-linux.so*
-(\fI/lib/ld\-linux.so.1\fP for libc5, \fI/lib/ld\-linux.so.2\fP for glibc2)
+.RI ( /lib/ld\-linux.so.1
+for libc5,
+.I /lib/ld\-linux.so.2
+for glibc2)
 handles binaries that are in the more modern ELF format.
 Both programs have the same behavior, and use the same
 support files and programs
@@ -192,7 +195,7 @@ set from a shell,
 to prevent their expansion as shell or environment variables.
 .SH OPTIONS
 .TP
-.BR \-\-argv0 " \fIstring\fP (since glibc 2.33)"
+.BR \-\-argv0 " \f[I]string\f[] (since glibc 2.33)"
 Set
 .I argv[0]
 to the value
@@ -259,7 +262,7 @@ the command might print additional information
 Print the names and values of all tunables,
 along with the minimum and maximum allowed values.
 .TP
-.BR \-\-preload " \fIlist\fP (since glibc 2.30)"
+.BR \-\-preload " \f[I]list\f[] (since glibc 2.30)"
 Preload the objects specified in
 .IR list .
 The objects in
@@ -361,7 +364,7 @@ the shared objects required by
 .IP
 .in +4n
 .EX
-$ \fBLD_ASSUME_KERNEL=2.2.5 ./myprog\fP
+.RB $ " LD_ASSUME_KERNEL=2.2.5 ./myprog"
 .EE
 .in
 .IP
@@ -416,7 +419,7 @@ subdirectory below the directory containing the program to be executed:
 .IP
 .in +4n
 .EX
-$ \fBLD_LIBRARY_PATH=\[aq]$ORIGIN/$LIB\[aq] prog\fP
+.RB $ " LD_LIBRARY_PATH=\[aq]$ORIGIN/$LIB\[aq] prog"
 .EE
 .in
 .IP
