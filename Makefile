@@ -134,10 +134,7 @@ help:
 
 MK := \
 	$(srcdir)/Makefile \
-	$(wildcard \
-		$(MAKEFILEDIR)/*.mk \
-		$(MAKEFILEDIR)/*/*.mk \
-		$(MAKEFILEDIR)/*/*/*.mk)
+	$(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk */*/*.mk))
 include $(MK)
 $(MK):: ;
 
