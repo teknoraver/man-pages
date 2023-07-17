@@ -19,19 +19,21 @@ CHECKPATCHFLAGS         := $(DEFAULT_CHECKPATCHFLAGS) $(EXTRA_CHECKPATCHFLAGS)
 CHECKPATCH              := checkpatch
 
 clang-tidy_config       := $(SYSCONFDIR)/clang-tidy/config.yaml
-DEFAULT_CLANG-TIDYFLAGS := --config-file=$(clang-tidy_config)
-DEFAULT_CLANG-TIDYFLAGS += --quiet
-DEFAULT_CLANG-TIDYFLAGS += --use-color
+DEFAULT_CLANG-TIDYFLAGS := \
+	--config-file=$(clang-tidy_config) \
+	--quiet \
+	--use-color
 EXTRA_CLANG-TIDYFLAGS   :=
 CLANG-TIDYFLAGS         := $(DEFAULT_CLANG-TIDYFLAGS) $(EXTRA_CLANG-TIDYFLAGS)
 CLANG-TIDY              := clang-tidy
 
 CPPCHECK_SUPPRESS     := $(SYSCONFDIR)/cppcheck/cppcheck.suppress
-DEFAULT_CPPCHECKFLAGS := --enable=all
-DEFAULT_CPPCHECKFLAGS += --error-exitcode=2
-DEFAULT_CPPCHECKFLAgS += --inconclusive
-DEFAULT_CPPCHECKFLAGS += --quiet
-DEFAULT_CPPCHECKFLAGS += --suppressions-list=$(CPPCHECK_SUPPRESS)
+DEFAULT_CPPCHECKFLAGS := \
+	--enable=all \
+	--error-exitcode=2 \
+	--inconclusive \
+	--quiet \
+	--suppressions-list=$(CPPCHECK_SUPPRESS)
 EXTRA_CPPCHECKFLAGS   :=
 CPPCHECKFLAGS         := $(DEFAULT_CPPCHECKFLAGS) $(EXTRA_CPPCHECKFLAGS)
 CPPCHECK              := cppcheck
@@ -41,8 +43,9 @@ EXTRA_CPPLINTFLAGS   :=
 CPPLINTFLAGS         := $(DEFAULT_CPPLINTFLAGS) $(EXTRA_CPPLINTFLAGS)
 CPPLINT              := cpplint
 
-DEFAULT_IWYUFLAGS := -Xiwyu --no_fwd_decls
-DEFAULT_IWYUFLAGS += -Xiwyu --error
+DEFAULT_IWYUFLAGS := \
+	-Xiwyu --no_fwd_decls \
+	-Xiwyu --error
 EXTRA_IWYUFLAGS   :=
 IWYUFLAGS         := $(DEFAULT_IWYUFLAGS) $(EXTRA_IWYUFLAGS)
 IWYU              := iwyu

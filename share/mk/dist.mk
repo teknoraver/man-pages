@@ -19,10 +19,11 @@ include $(MAKEFILEDIR)/verbose.mk
 _DISTDIR := $(builddir)/dist
 
 
-DEFAULT_TARFLAGS := --sort=name
-DEFAULT_TARFLAGS += --owner=root:0
-DEFAULT_TARFLAGS += --group=root:0
-DEFAULT_TARFLAGS += --mtime='$(DISTDATE)'
+DEFAULT_TARFLAGS := \
+	--sort=name \
+	--owner=root:0 \
+	--group=root:0 \
+	--mtime='$(DISTDATE)'
 EXTRA_TARFLAGS   :=
 TARFLAGS         := $(DEFAULT_TARFLAGS) $(EXTRA_TARFLAGS)
 

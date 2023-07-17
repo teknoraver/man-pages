@@ -21,31 +21,34 @@ DEFAULT_CPPFLAGS := $(shell $(PKGCONF) --cflags $(PKGCONF_LIBS) $(HIDE_ERR))
 EXTRA_CPPFLAGS   :=
 CPPFLAGS         := $(DEFAULT_CPPFLAGS) $(EXTRA_CPPFLAGS)
 
-DEFAULT_CFLAGS := -std=gnu17
-DEFAULT_CFLAGS += -Wall
-DEFAULT_CFLAGS += -Wextra
-DEFAULT_CFLAGS += -Wstrict-prototypes
-DEFAULT_CFLAGS += -Wdeclaration-after-statement
-DEFAULT_CFLAGS += -Werror
-DEFAULT_CFLAGS += -Wno-error=unused-parameter
-DEFAULT_CFLAGS += -Wno-error=sign-compare
-DEFAULT_CFLAGS += -Wno-error=format
-DEFAULT_CFLAGS += -Wno-error=uninitialized
-#DEFAULT_CFLAGS += -Wno-error=declaration-after-statement
+DEFAULT_CFLAGS := \
+	-std=gnu17 \
+	-Wall \
+	-Wextra \
+	-Wstrict-prototypes \
+	-Wdeclaration-after-statement \
+	-Werror \
+	-Wno-error=unused-parameter \
+	-Wno-error=sign-compare \
+	-Wno-error=format \
+	-Wno-error=uninitialized
+	#-Wno-error=declaration-after-statement
 EXTRA_CFLAGS   :=
 CFLAGS         := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
 
-DEFAULT_LDFLAGS := -Wl,--as-needed
-DEFAULT_LDFLAGS += -Wl,--no-allow-shlib-undefined
-DEFAULT_LDFLAGS += -Wl,--no-copy-dt-needed-entries
-DEFAULT_LDFLAGS += -Wl,--no-undefined
-DEFAULT_LDFLAGS += $(shell $(PKGCONF) --libs-only-L $(PKGCONF_LIBS) $(HIDE_ERR))
-DEFAULT_LDFLAGS += $(shell $(PKGCONF) --libs-only-other $(PKGCONF_LIBS) $(HIDE_ERR))
+DEFAULT_LDFLAGS := \
+	-Wl,--as-needed \
+	-Wl,--no-allow-shlib-undefined \
+	-Wl,--no-copy-dt-needed-entries \
+	-Wl,--no-undefined \
+	$(shell $(PKGCONF) --libs-only-L $(PKGCONF_LIBS) $(HIDE_ERR)) \
+	$(shell $(PKGCONF) --libs-only-other $(PKGCONF_LIBS) $(HIDE_ERR))
 EXTRA_LDFLAGS   :=
 LDFLAGS         := $(DEFAULT_LDFLAGS) $(EXTRA_LDFLAGS)
 
-DEFAULT_LDLIBS := -lc
-DEFAULT_LDLIBS += $(shell $(PKGCONF) --libs-only-l $(PKGCONF_LIBS) $(HIDE_ERR))
+DEFAULT_LDLIBS := \
+	-lc \
+	$(shell $(PKGCONF) --libs-only-l $(PKGCONF_LIBS) $(HIDE_ERR))
 EXTRA_LDLIBS   :=
 LDLIBS         := $(DEFAULT_LDLIBS) $(EXTRA_LDLIBS)
 

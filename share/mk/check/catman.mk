@@ -15,9 +15,10 @@ include $(MAKEFILEDIR)/check/_.mk
 include $(MAKEFILEDIR)/src.mk
 
 
-DEFAULT_COLFLAGS := -b
-DEFAULT_COLFLAGS += -p
-DEFAULT_COLFLAGS += -x
+DEFAULT_COLFLAGS := \
+	-b \
+	-p \
+	-x
 EXTRA_COLFLAGS   :=
 COLFLAGS         := $(DEFAULT_COLFLAGS) $(EXTRA_COLFLAGS)
 COL              := col
