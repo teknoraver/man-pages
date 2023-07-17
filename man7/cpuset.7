@@ -845,8 +845,12 @@ In the case of multiple overlapping cpusets which have conflicting
 values, then the highest such value
 applies to all CPUs in any of the overlapping cpusets.
 In such cases,
-the value \fBminus one (\-1)\fR is the lowest value, overridden by any
-other value, and the value \fBzero (0)\fR is the next lowest value.
+.B \-1
+is the lowest value,
+overridden by any other value,
+and
+.B 0
+is the next lowest value.
 .SH FORMATS
 The following formats are used to represent sets of
 CPUs and memory nodes.
