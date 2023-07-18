@@ -412,6 +412,15 @@ is returned to indicate that expedited or out-of-band data was received.
 .B MSG_ERRQUEUE
 indicates that no data was received but an extended error from the socket
 error queue.
+.TP
+.BR MSG_CMSG_CLOEXEC " (since Linux 2.6.23)"
+.\" commit 4a19542e5f694cd408a32c3d9dc593ba9366e2d7
+indicates that
+.B MSG_CMSG_CLOEXEC
+was specified in the
+.I flags
+argument of
+.BR recvmsg ().
 .SH RETURN VALUE
 These calls return the number of bytes received, or \-1
 if an error occurred.
