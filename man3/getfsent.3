@@ -94,29 +94,33 @@ Upon failure or end-of-file, these functions return NULL and 0, respectively.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR endfsent (),
 .BR setfsent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:fsent
 T}
 T{
+.na
+.nh
 .BR getfsent (),
 .BR getfsspec (),
 .BR getfsfile ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:fsent locale
 T}
 .TE
-.hy
-.ad
 .sp 1
 .SH VERSIONS
 Several operating systems have these functions, for example,

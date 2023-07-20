@@ -195,30 +195,36 @@ local group database file
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR getgrnam ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:grnam locale
 T}
 T{
+.na
+.nh
 .BR getgrgid ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:grgid locale
 T}
 T{
+.na
+.nh
 .BR getgrnam_r (),
 .BR getgrgid_r ()
 T}	Thread safety	MT-Safe locale
 .TE
-.hy
-.ad
 .sp 1
 .SH VERSIONS
 The formulation given above under "RETURN VALUE" is from POSIX.1.

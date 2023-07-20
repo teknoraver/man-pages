@@ -112,25 +112,27 @@ These functions return NULL for an invalid signal number.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR strsignal ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:strsignal locale
 T}
 T{
+.na
+.nh
 .BR sigdescr_np (),
 .BR sigabbrev_np ()
 T}	Thread safety	MT-Safe
 .TE
-.hy
-.ad
 .sp 1
 .SH STANDARDS
 .TP

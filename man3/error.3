@@ -124,24 +124,26 @@ The function should print a suitable string to
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR error ()
 T}	Thread safety	MT-Safe locale
 T{
+.na
+.nh
 .BR error_at_line ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe\ race: error_at_line/\:error_one_per_line locale
 T}
 .TE
-.hy
-.ad
 .sp 1
 .PP
 The internal

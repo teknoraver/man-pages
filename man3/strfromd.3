@@ -155,14 +155,14 @@ and the
 .B POSIX Safety Concepts
 section in GNU C Library manual.
 .PP
-.ad l
-.nh
 .TS
 allbox;
 lbx lb lb
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR strfromd (),
 .BR strfromf (),
 .BR strfroml ()
@@ -170,8 +170,6 @@ T}	Thread safety	MT-Safe locale
 \^	Async-signal safety	AS-Unsafe heap
 \^	Async-cancel safety	AC-Unsafe mem
 .TE
-.hy
-.ad
 .sp 1
 Note: these attributes are preliminary.
 .SH STANDARDS

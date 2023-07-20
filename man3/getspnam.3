@@ -244,58 +244,82 @@ to the pathname of the shadow password file.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR getspnam ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:getspnam locale
 T}
 T{
+.na
+.nh
 .BR getspent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:getspent
 race:spentbuf locale
 T}
 T{
+.na
+.nh
 .BR setspent (),
 .BR endspent (),
 .BR getspent_r ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:getspent locale
 T}
 T{
+.na
+.nh
 .BR fgetspent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:fgetspent
 T}
 T{
+.na
+.nh
 .BR sgetspent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:sgetspent
 T}
 T{
+.na
+.nh
 .BR putspent (),
 .BR getspnam_r (),
 .BR sgetspent_r ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Safe locale
 T}
 T{
+.na
+.nh
 .BR lckpwdf (),
 .BR ulckpwdf (),
 .BR fgetspent_r ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Safe
 T}
 .TE
-.hy
-.ad
 .sp 1
 In the above table,
 .I getspent

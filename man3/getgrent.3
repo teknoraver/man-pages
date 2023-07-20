@@ -154,28 +154,32 @@ local group database file
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR getgrent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:grent
 race:grentbuf locale
 T}
 T{
+.na
+.nh
 .BR setgrent (),
 .BR endgrent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:grent locale
 T}
 .TE
-.hy
-.ad
 .sp 1
 .PP
 In the above table,

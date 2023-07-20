@@ -139,41 +139,53 @@ services database file
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR getservent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:servent
 race:serventbuf locale
 T}
 T{
+.na
+.nh
 .BR getservbyname ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:servbyname
 locale
 T}
 T{
+.na
+.nh
 .BR getservbyport ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:servbyport
 locale
 T}
 T{
+.na
+.nh
 .BR setservent (),
 .BR endservent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:servent
 locale
 T}
 .TE
-.hy
-.ad
 .sp 1
 In the above table,
 .I servent

@@ -110,14 +110,14 @@ See
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR getc_unlocked (),
 .BR putc_unlocked (),
 .BR clearerr_unlocked (),
@@ -135,28 +135,38 @@ T{
 .BR fgetws_unlocked (),
 .BR fputws_unlocked ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Safe race:stream
 T}
 T{
+.na
+.nh
 .BR getchar_unlocked (),
 .BR getwchar_unlocked ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:stdin
 T}
 T{
+.na
+.nh
 .BR putchar_unlocked (),
 .BR putwchar_unlocked ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:stdout
 T}
 T{
+.na
+.nh
 .BR feof_unlocked (),
 .BR ferror_unlocked (),
 .BR fileno_unlocked ()
 T}	Thread safety	MT-Safe
 .TE
-.hy
-.ad
 .sp 1
 .SH STANDARDS
 .TP

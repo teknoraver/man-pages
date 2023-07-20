@@ -195,30 +195,34 @@ was NULL on entry.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lbx lb lb
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR tsearch (),
 .BR tfind (),
 .BR tdelete ()
 T}	Thread safety	MT-Safe race:rootp
 T{
+.na
+.nh
 .BR twalk ()
 T}	Thread safety	MT-Safe race:root
 T{
+.na
+.nh
 .BR twalk_r ()
 T}	Thread safety	MT-Safe race:root
 T{
+.na
+.nh
 .BR tdestroy ()
 T}	Thread safety	MT-Safe
 .TE
-.hy
-.ad
 .sp 1
 .SH STANDARDS
 .TP

@@ -202,34 +202,42 @@ mounted filesystem description file
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR setmntent (),
 .BR endmntent (),
 .BR hasmntopt ()
 T}	Thread safety	MT-Safe
 T{
+.na
+.nh
 .BR getmntent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:mntentbuf locale
 T}
 T{
+.na
+.nh
 .BR addmntent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Safe race:stream locale
 T}
 T{
+.na
+.nh
 .BR getmntent_r ()
 T}	Thread safety	MT-Safe locale
 .TE
-.hy
-.ad
 .sp 1
 .SH STANDARDS
 None.

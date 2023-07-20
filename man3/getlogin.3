@@ -134,33 +134,41 @@ some libc versions used \fI/var/adm/utmp\fP)
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR getlogin ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:getlogin race:utent
 sig:ALRM timer locale
 T}
 T{
+.na
+.nh
 .BR getlogin_r ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:utent sig:ALRM timer
 locale
 T}
 T{
+.na
+.nh
 .BR cuserid ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:cuserid/!string locale
 T}
 .TE
-.hy
-.ad
 .sp 1
 In the above table,
 .I utent

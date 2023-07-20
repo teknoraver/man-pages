@@ -316,57 +316,77 @@ name service switch configuration
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR gethostbyname ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:hostbyname env
 locale
 T}
 T{
+.na
+.nh
 .BR gethostbyaddr ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:hostbyaddr env
 locale
 T}
 T{
+.na
+.nh
 .BR sethostent (),
 .BR endhostent (),
 .BR gethostent_r ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:hostent env
 locale
 T}
 T{
+.na
+.nh
 .BR herror (),
 .BR hstrerror ()
 T}	Thread safety	MT-Safe
 T{
+.na
+.nh
 .BR gethostent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:hostent
 race:hostentbuf env locale
 T}
 T{
+.na
+.nh
 .BR gethostbyname2 ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:hostbyname2
 env locale
 T}
 T{
+.na
+.nh
 .BR gethostbyaddr_r (),
 .BR gethostbyname_r (),
 .BR gethostbyname2_r ()
 T}	Thread safety	MT-Safe env locale
 .TE
-.hy
-.ad
 .sp 1
 In the above table,
 .I hostent

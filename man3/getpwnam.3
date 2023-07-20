@@ -201,32 +201,40 @@ local password database file
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR getpwnam ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:pwnam locale
 T}
 T{
+.na
+.nh
 .BR getpwuid ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:pwuid locale
 T}
 T{
+.na
+.nh
 .BR getpwnam_r (),
 .BR getpwuid_r ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Safe locale
 T}
 .TE
-.hy
-.ad
 .sp 1
 .SH VERSIONS
 The

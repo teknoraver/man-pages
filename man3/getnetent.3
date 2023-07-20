@@ -127,41 +127,53 @@ networks database file
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR getnetent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:netent
 race:netentbuf env locale
 T}
 T{
+.na
+.nh
 .BR getnetbyname ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:netbyname
 env locale
 T}
 T{
+.na
+.nh
 .BR getnetbyaddr ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:netbyaddr
 locale
 T}
 T{
+.na
+.nh
 .BR setnetent (),
 .BR endnetent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:netent env
 locale
 T}
 .TE
-.hy
-.ad
 .sp 1
 In the above table,
 .I netent

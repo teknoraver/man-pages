@@ -108,20 +108,22 @@ function discards the contents of the stream's buffer.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lbx lb lb
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR __fbufsize (),
 .BR __fpending (),
 .BR __fpurge (),
 .BR __fsetlocking ()
 T}	Thread safety	MT-Safe race:stream
 T{
+.na
+.nh
 .BR __flbf (),
 .BR __freadable (),
 .BR __freading (),
@@ -130,8 +132,6 @@ T{
 .BR _flushlbf ()
 T}	Thread safety	MT-Safe
 .TE
-.hy
-.ad
 .sp 1
 .SH SEE ALSO
 .BR flockfile (3),

@@ -259,46 +259,62 @@ The result cannot be represented.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR asctime ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:asctime locale
 T}
 T{
+.na
+.nh
 .BR asctime_r ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Safe locale
 T}
 T{
+.na
+.nh
 .BR ctime ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:tmbuf
 race:asctime env locale
 T}
 T{
+.na
+.nh
 .BR ctime_r (),
 .BR gmtime_r (),
 .BR localtime_r (),
 .BR mktime ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Safe env locale
 T}
 T{
+.na
+.nh
 .BR gmtime (),
 .BR localtime ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:tmbuf env locale
 T}
 .TE
-.hy
-.ad
 .sp 1
 .SH VERSIONS
 POSIX doesn't specify the parameters of

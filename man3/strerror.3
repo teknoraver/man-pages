@@ -219,29 +219,33 @@ Insufficient storage was supplied to contain the error description string.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR strerror ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:strerror
 T}
 T{
+.na
+.nh
 .BR strerrorname_np (),
 .BR strerrordesc_np ()
 T}	Thread safety	MT-Safe
 T{
+.na
+.nh
 .BR strerror_r (),
 .BR strerror_l ()
 T}	Thread safety	MT-Safe
 .TE
-.hy
-.ad
 .sp 1
 .SH STANDARDS
 .TP

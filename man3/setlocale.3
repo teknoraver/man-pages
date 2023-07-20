@@ -34,8 +34,6 @@ the program's current locale is modified according to the arguments.
 The argument
 .I category
 determines which parts of the program's current locale should be modified.
-.ad l
-.nh
 .TS
 lB lB
 lB lx.
@@ -76,8 +74,6 @@ LC_TIME	T{
 Formatting of date and time values
 T}
 .TE
-.hy
-.ad
 .PP
 The categories marked with an asterisk in the above table
 are GNU extensions.
@@ -184,19 +180,17 @@ The return value is NULL if the request cannot be honored.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lbx lb lb
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR setlocale ()
 T}	Thread safety	MT-Unsafe const:locale env
 .TE
-.hy
-.ad
 .sp 1
 .SH STANDARDS
 C11, POSIX.1-2008.

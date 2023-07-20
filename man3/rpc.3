@@ -1109,14 +1109,14 @@ Service implementors usually do not need this routine.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lbx lb lb
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR auth_destroy (),
 .BR authnone_create (),
 .BR authunix_create (),
@@ -1181,8 +1181,6 @@ T{
 .BR xprt_unregister ()
 T}	Thread safety	MT-Safe
 .TE
-.hy
-.ad
 .sp 1
 .SH SEE ALSO
 .\" We don't have an rpc_secure.3 page in the set at the moment -- MTK, 19 Sep 05

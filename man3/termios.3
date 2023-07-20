@@ -1090,14 +1090,14 @@ to check that all changes have been performed successfully.
 For an explanation of the terms used in this section, see
 .BR attributes (7).
 .nh
-.ad l
-.nh
 .TS
 allbox;
 lbx lb lb
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR tcgetattr (),
 .BR tcsetattr (),
 .BR tcdrain (),
@@ -1112,8 +1112,6 @@ T{
 .BR cfsetspeed ()
 T}	Thread safety	MT-Safe
 .TE
-.hy
-.ad
 .sp 1
 .\" FIXME: The markings are different from that in the glibc manual.
 .\" markings in glibc manual are more detailed:

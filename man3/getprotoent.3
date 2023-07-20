@@ -122,41 +122,53 @@ protocol database file
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
-.ad l
-.nh
 .TS
 allbox;
 lb lb lbx
 l l l.
 Interface	Attribute	Value
 T{
+.na
+.nh
 .BR getprotoent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:protoent
 race:protoentbuf locale
 T}
 T{
+.na
+.nh
 .BR getprotobyname ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:protobyname
 locale
 T}
 T{
+.na
+.nh
 .BR getprotobynumber ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:protobynumber
 locale
 T}
 T{
+.na
+.nh
 .BR setprotoent (),
 .BR endprotoent ()
 T}	Thread safety	T{
+.na
+.nh
 MT-Unsafe race:protoent
 locale
 T}
 .TE
-.hy
-.ad
 .sp 1
 In the above table,
 .I protoent
