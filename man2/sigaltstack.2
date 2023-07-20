@@ -230,7 +230,7 @@ Establishing an alternate signal stack is useful if a thread
 expects that it may exhaust its standard stack.
 This may occur, for example, because the stack grows so large
 that it encounters the upwardly growing heap, or it reaches a
-limit established by a call to \fBsetrlimit(RLIMIT_STACK, &rlim)\fP.
+limit established by a call to \fB\%setrlimit(RLIMIT_STACK, &rlim)\fP.
 If the standard stack is exhausted, the kernel sends
 the thread a \fBSIGSEGV\fP signal.
 In these circumstances the only way to catch this signal is

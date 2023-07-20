@@ -577,12 +577,12 @@ they are present on the BSDs and Linux, but on few other implementations.
 .B RLIMIT_RSS
 derives from BSD and is not specified in POSIX.1;
 it is nevertheless present on most implementations.
-.BR RLIMIT_MSGQUEUE ,
+.BR \%RLIMIT_MSGQUEUE ,
 .BR RLIMIT_NICE ,
 .BR RLIMIT_RTPRIO ,
 .BR RLIMIT_RTTIME ,
 and
-.B RLIMIT_SIGPENDING
+.B \%RLIMIT_SIGPENDING
 are Linux-specific.
 .SH HISTORY
 .TP
@@ -747,7 +747,7 @@ However, a 32-bit data type is not wide enough.
 .\" https://bugzilla.kernel.org/show_bug.cgi?id=5042
 .\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=12201
 The most pertinent limit here is
-.BR RLIMIT_FSIZE ,
+.BR \%RLIMIT_FSIZE ,
 which specifies the maximum size to which a file can grow:
 to be useful, this limit must be represented using a type
 that is as wide as the type used to
@@ -769,13 +769,13 @@ In other words, the requested resource limit setting was silently ignored.
 Since glibc 2.13,
 .\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=12201
 glibc works around the limitations of the
-.BR getrlimit ()
+.BR \%getrlimit ()
 and
 .BR setrlimit ()
 system calls by implementing
 .BR setrlimit ()
 and
-.BR getrlimit ()
+.BR \%getrlimit ()
 as wrapper functions that call
 .BR prlimit ().
 .SH EXAMPLES
