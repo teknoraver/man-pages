@@ -991,6 +991,16 @@ and examine
 .I log_buf
 for the specific reason provided by the verifier.
 .TP
+.B EAGAIN
+For
+.BR BPF_PROG_LOAD ,
+indicates that needed resources are blocked.
+This happens when the verifier detects pending signals
+while it is checking the validity of the bpf program.
+In this case, just call
+.BR bpf ()
+again with the same parameters.
+.TP
 .B EBADF
 .I fd
 is not an open file descriptor.
