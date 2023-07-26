@@ -47,6 +47,12 @@ function will still terminate the process.
 It does this by restoring the default disposition for
 .B SIGABRT
 and then raising the signal for a second time.
+.PP
+As with other cases of abnormal termination the functions registered with
+.BR atexit (3)
+and
+.BR on_exit (3)
+are not called.
 .SH RETURN VALUE
 The
 .BR abort ()
