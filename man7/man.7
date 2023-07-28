@@ -60,7 +60,7 @@ The first command in a man page (after comment lines,
 that is, lines that start with \fB.\e"\fP) should be
 .PP
 .RS
-.B \&.TH
+.B .TH
 .I "title section date source manual"
 .RE
 .PP
@@ -76,12 +76,12 @@ command, not the
 command.
 .SS Sections
 Sections are started with
-.B \&.SH
+.B .SH
 followed by the heading name.
 .\" The following doesn't seem to be required (see Debian bug 411303),
 .\" If the name contains spaces and appears
 .\" on the same line as
-.\" .BR \&.SH ,
+.\" .BR .SH ,
 .\" then place the heading in double quotes.
 .PP
 The only mandatory heading is NAME, which should be the first section and
@@ -111,37 +111,37 @@ For a list of other sections that might appear in a manual page, see
 .SS Fonts
 The commands to select the type face are:
 .TP 4
-.B \&.B
+.B .B
 Bold
 .TP
-.B \&.BI
+.B .BI
 Bold alternating with italics
 (especially useful for function specifications)
 .TP
-.B \&.BR
+.B .BR
 Bold alternating with Roman
 (especially useful for referring to other
 manual pages)
 .TP
-.B \&.I
+.B .I
 Italics
 .TP
-.B \&.IB
+.B .IB
 Italics alternating with bold
 .TP
-.B \&.IR
+.B .IR
 Italics alternating with Roman
 .TP
-.B \&.RB
+.B .RB
 Roman alternating with bold
 .TP
-.B \&.RI
+.B .RI
 Roman alternating with italics
 .TP
-.B \&.SB
+.B .SB
 Small alternating with bold
 .TP
-.B \&.SM
+.B .SM
 Small (useful for acronyms)
 .PP
 Traditionally, each command can have up to six arguments, but the GNU
@@ -152,7 +152,7 @@ Double quotes can be used to specify an argument which contains spaces.
 For the macros that produce alternating type faces,
 the arguments will be printed next to each other without
 intervening spaces, so that the
-.B \&.BR
+.B .BR
 command can be used to specify a word in bold followed by a mark of
 punctuation in Roman.
 If no arguments are given, the command is applied to the following line
@@ -178,21 +178,21 @@ indents, since these will automatically adjust to font size changes.
 The other key macro definitions are:
 .SS Normal paragraphs
 .TP 9m
-.B \&.LP
+.B .LP
 Same as
-.B \&.PP
+.B .PP
 (begin a new paragraph).
 .TP
-.B \&.P
+.B .P
 Same as
-.B \&.PP
+.B .PP
 (begin a new paragraph).
 .TP
-.B \&.PP
+.B .PP
 Begin a new paragraph and reset prevailing indent.
 .SS Relative margin indent
 .TP 9m
-.BI \&.RS " i"
+.BI .RS " i"
 Start relative margin indent: moves the left margin
 .I i
 to the right (if
@@ -201,19 +201,19 @@ is omitted, the prevailing indent value is used).
 A new prevailing indent is set to 0.5 inches.
 As a result, all following paragraph(s) will be
 indented until the corresponding
-.BR \&.RE .
+.BR .RE .
 .TP
-.B \&.RE
+.B .RE
 End relative margin indent and
 restores the previous value of the prevailing indent.
 .SS Indented paragraph macros
 .TP 9m
-.BI \&.HP " i"
+.BI .HP " i"
 Begin paragraph with a hanging indent
 (the first line of the paragraph is at the left margin of
 normal paragraphs, and the rest of the paragraph's lines are indented).
 .TP
-.BI \&.IP " x i"
+.BI .IP " x i"
 Indented paragraph with optional hanging tag.
 If the tag
 .I x
@@ -224,7 +224,7 @@ If the tag
 is provided, it is hung at the left margin
 before the following indented paragraph
 (this is just like
-.B \&.TP
+.B .TP
 except the tag is included with the command instead of being on the
 following line).
 If the tag is too long, the text after the tag will be moved down to the
@@ -234,25 +234,25 @@ as the tag, and for numbered lists, use the number or letter followed by
 a period as the tag;
 this simplifies translation to other formats.
 .TP
-.BI \&.TP " i"
+.BI .TP " i"
 Begin paragraph with hanging tag.
 The tag is given on the next line, but
 its results are like those of the
-.B \&.IP
+.B .IP
 command.
 .SS Hypertext link macros
 .TP
-.BI \&.UR " url"
+.BI .UR " url"
 Insert a hypertext link to the URI (URL)
 .IR url ,
 with all text up to the following
-.B \&.UE
+.B .UE
 macro as the link text.
 .TP
-.B \&.UE \c
+.B .UE \c
 .RI [ trailer ]
 Terminate the link text of the preceding
-.B \&.UR
+.B .UR
 macro, with the optional
 .I trailer
 (if present, usually a closing parenthesis and/or end-of-sentence
@@ -270,20 +270,20 @@ These macros have been supported since GNU Troff 1.20 (2009-01-05) and
 Heirloom Doctools Troff since 160217 (2016-02-17).
 .SS Miscellaneous macros
 .TP 9m
-.B \&.DT
+.B .DT
 Reset tabs to default tab values (every 0.5 inches);
 does not cause a break.
 .TP
-.BI \&.PD " d"
+.BI .PD " d"
 Set inter-paragraph vertical distance to d
 (if omitted, d=0.4v);
 does not cause a break.
 .TP
-.BI \&.SS " t"
+.BI .SS " t"
 Subheading
 .I t
 (like
-.BR \&.SH ,
+.BR .SH ,
 but used for a subsection inside a section).
 .SS Predefined strings
 The
