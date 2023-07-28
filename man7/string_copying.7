@@ -223,8 +223,7 @@ It only requires to check for truncation once after all chained calls.
 .BR strlcpy (3bsd)
 and
 .BR strlcat (3bsd)
-are designed to crash if the input string is invalid
-(doesn't contain a terminating null byte).
+are similar, but less efficient when chained.
 .IP \[bu]
 .BR stpncpy (3)
 and
@@ -410,9 +409,6 @@ isn't large enough to hold the copy,
 the resulting string is truncated
 (but it is guaranteed to be null-terminated).
 They return the length of the total string they tried to create.
-These functions force a SIGSEGV if the
-.I src
-pointer is not a string.
 .IP
 .BR stpecpy (3)
 is a simpler alternative to these functions.
