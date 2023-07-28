@@ -149,13 +149,12 @@ and cannot rely on any specific behavior with respect to shared memory.
 Some consider the semantics of
 .BR vfork ()
 to be an architectural blemish, and the 4.2BSD man page stated:
-"This system call will be eliminated when proper system sharing mechanisms
-are implemented.
+\[lq]This system call will be eliminated
+when proper system sharing mechanisms are implemented.
 Users should not depend on the memory sharing semantics of
-.BR vfork ()
+.I vfork
 as it will, in that case, be made synonymous to
-.BR fork (2).\c
-"
+.IR fork .\[rq]
 However, even though modern memory management hardware
 has decreased the performance difference between
 .BR fork (2)
