@@ -49,7 +49,7 @@ const char *restrict " src ,
 .PP
 // Zero a fixed-width buffer, and
 // copy a string into a character sequence with truncation.
-.BI "char *strncpy(char " dest "[restrict ." sz "], \
+.BI "char *strncpy(char " dst "[restrict ." sz "], \
 const char *restrict " src ,
 .BI "               size_t " sz );
 .PP
@@ -279,7 +279,7 @@ instead of
 In programs that make considerable use of strings or character sequences,
 and need the best performance,
 using overlapping character sequences can make a big difference.
-It allows holding subsequences of a larger character sequence.
+It allows holding subsequences of a larger character sequence,
 while not duplicating memory
 nor using time to do a copy.
 .PP
@@ -396,7 +396,7 @@ It returns a pointer suitable for chaining.
 Truncation needs to be detected only once after the last chained call.
 .IP
 This function is not provided by any library;
-See EXAMPLES for a reference implementation.
+see EXAMPLES for a reference implementation.
 .\" ----- DESCRIPTION :: Functions :: strlcpy(3bsd), strlcat(3bsd) ----/
 .TP
 .BR strlcpy (3bsd)
@@ -440,8 +440,8 @@ is a more useful alternative to this function.
 .\" ----- DESCRIPTION :: Functions :: zustr2ustp(3) --------------------/
 .TP
 .BR zustr2ustp (3)
-This function copies the input character sequence
-contained in a null-padded wixed-width buffer,
+This function copies the input character sequence,
+contained in a null-padded fixed-width buffer,
 into a destination character sequence.
 The programmer is responsible for allocating a buffer large enough.
 It returns a pointer suitable for chaining.
@@ -451,12 +451,12 @@ since the size of the original character sequence is always known,
 so it wouldn't be very useful.
 .IP
 This function is not provided by any library;
-See EXAMPLES for a reference implementation.
+see EXAMPLES for a reference implementation.
 .\" ----- DESCRIPTION :: Functions :: zustr2stp(3) --------------------/
 .TP
 .BR zustr2stp (3)
-This function copies the input character sequence
-contained in a null-padded wixed-width buffer,
+This function copies the input character sequence,
+contained in a null-padded fixed-width buffer,
 into a destination string.
 The programmer is responsible for allocating a buffer large enough.
 It returns a pointer suitable for chaining.
@@ -466,7 +466,7 @@ since the size of the original character sequence is always known,
 so it wouldn't be very useful.
 .IP
 This function is not provided by any library;
-See EXAMPLES for a reference implementation.
+see EXAMPLES for a reference implementation.
 .\" ----- DESCRIPTION :: Functions :: strncat(3) ----------------------/
 .TP
 .BR strncat (3)
@@ -474,8 +474,8 @@ Do not confuse this function with
 .BR strncpy (3);
 they are not related at all.
 .IP
-This function catenates the input character sequence
-contained in a null-padded wixed-width buffer,
+This function catenates the input character sequence,
+contained in a null-padded fixed-width buffer,
 into a destination string.
 The programmer is responsible for allocating a buffer large enough.
 The return value is useless.
