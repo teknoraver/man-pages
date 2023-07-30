@@ -58,47 +58,45 @@ Standard C library
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
-.nh
 .RE
 .ad l
 .PP
-.BR getc_unlocked (),
-.BR getchar_unlocked (),
-.BR putc_unlocked (),
-.BR putchar_unlocked ():
+.BR \%getc_unlocked (),
+.BR \%getchar_unlocked (),
+.BR \%putc_unlocked (),
+.BR \%putchar_unlocked ():
 .nf
     /* glibc >= 2.24: */ _POSIX_C_SOURCE >= 199309L
         || /* glibc <= 2.23: */ _POSIX_C_SOURCE
         || /* glibc <= 2.19: */ _SVID_SOURCE || _BSD_SOURCE
 .fi
 .PP
-.BR clearerr_unlocked (),
-.BR feof_unlocked (),
-.BR ferror_unlocked (),
-.BR fileno_unlocked (),
-.BR fflush_unlocked (),
-.BR fgetc_unlocked (),
-.BR fputc_unlocked (),
-.BR fread_unlocked (),
-.BR fwrite_unlocked ():
+.BR \%clearerr_unlocked (),
+.BR \%feof_unlocked (),
+.BR \%ferror_unlocked (),
+.BR \%fileno_unlocked (),
+.BR \%fflush_unlocked (),
+.BR \%fgetc_unlocked (),
+.BR \%fputc_unlocked (),
+.BR \%fread_unlocked (),
+.BR \%fwrite_unlocked ():
 .nf
     /* glibc >= 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _SVID_SOURCE || _BSD_SOURCE
 .fi
 .PP
-.BR fgets_unlocked (),
-.BR fputs_unlocked (),
-.BR getwc_unlocked (),
-.BR getwchar_unlocked (),
-.BR fgetwc_unlocked (),
-.BR fputwc_unlocked (),
-.BR putwchar_unlocked (),
-.BR fgetws_unlocked (),
-.BR fputws_unlocked ():
+.BR \%fgets_unlocked (),
+.BR \%fputs_unlocked (),
+.BR \%getwc_unlocked (),
+.BR \%getwchar_unlocked (),
+.BR \%fgetwc_unlocked (),
+.BR \%fputwc_unlocked (),
+.BR \%putwchar_unlocked (),
+.BR \%fgetws_unlocked (),
+.BR \%fputws_unlocked ():
 .nf
     _GNU_SOURCE
 .fi
-.hy
 .ad
 .SH DESCRIPTION
 Each of these functions has the same behavior as its counterpart
