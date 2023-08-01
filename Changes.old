@@ -55916,3 +55916,217 @@ Changes to individual pages
 The manual pages (and other files in the repository) have been improved
 beyond what this changelog covers.  To learn more about changes applied
 to individual pages, use git(1).
+
+
+==================== Changes in man-pages-6.05 ====================
+
+Released: 2023-08-01, Aldaya
+
+
+Contributors
+------------
+
+The following people contributed patches/fixes, reports, notes,
+ideas, and discussions that have been incorporated in changes in
+this release:
+
+"David S. Miller" <davem@davemloft.net>
+"G. Branden Robinson" <g.branden.robinson@gmail.com>
+A. Wilcox <AWilcox@wilcox-tech.com>
+Adam Dobes <adobes@redhat.com>
+Ahelenia Ziemiańska <nabijaczleweli@nabijaczleweli.xyz>
+Alan Cox <alan@llwyncelyn.cymru>
+Alejandro Colomar <alx@kernel.org>
+Alexei Starovoitov <ast@kernel.org>
+Andreas Schwab <schwab@suse.de>
+Andrew Clayton <andrew@digital-domain.net>
+Andrew Morton <akpm@linux-foundation.org>
+Avinesh Kumar <akumar@suse.de>
+Bastien Roucariès <rouca@debian.org>
+Bjarni Ingi Gislason <bjarniig@simnet.is>
+Brian Inglis <Brian.Inglis@Shaw.ca>
+Bruno Haible <bruno@clisp.org>
+Carsten Grohmann <carstengrohmann@gmx.de>
+Colin Watson <cjwatson@debian.org>
+Cyril Hrubis <chrubis@suse.cz>
+DJ Delorie <dj@redhat.com>
+Daniel Verkamp <daniel@drv.nu>
+David Howells <dhowells@redhat.com>
+Dirk Gouders <dirk@gouders.net>
+Dmitry Goncharov <dgoncharov@users.sf.net>
+Eli Zaretskii <eliz@gnu.org>
+Elliott Hughes <enh@google.com>
+Eric Biggers <ebiggers@google.com>
+Eric Blake <eblake@redhat.com>
+Eric Wong <e@80x24.org>
+Fangrui Song <maskray@google.com>
+Florian Weimer <fweimer@redhat.com>
+Gavin Smith <gavinsmith0123@gmail.com>
+Guillem Jover <guillem@hadrons.org>
+Günther Noack <gnoack@google.com>
+Helge Kreutzmann <debian@helgefjell.de>
+Igor Sysoev <igor@sysoev.ru>
+Ingo Schwarze <schwarze@openbsd.org>
+Jakub Jelinek <jakub@redhat.com>
+Jakub Sitnicki <jakub@cloudflare.com>
+Jakub Wilk <jwilk@jwilk.net>
+Johannes Weiner <hannes@cmpxchg.org>
+John Gilmore <gnu@toad.com>
+John Hubbard <jhubbard@nvidia.com>
+John Scott <jscott@posteo.net>
+Jonathan Corbet <corbet@lwn.net>
+Jonathan Wakely <jwakely@redhat.com>
+Joseph Myers <joseph@codesourcery.com>
+Josh Triplett <josh@joshtriplett.org>
+Kirill A. Shutemov <kirill.shutemov@linux.intel.com>
+Larry McVoy <lm@mcvoy.com>
+Lennart Jablonka <humm@ljabl.com>
+Linus Heckemann <git@sphalerite.org>
+Lukas Javorsky <ljavorsk@redhat.com>
+Marcos Fouces <marcos@debian.org>
+Mario Blaettermann <mario.blaettermann@gmail.com>
+Martin (Joey) Schulze <joey@infodrom.org>
+Masami Hiramatsu <mhiramat@kernel.org>
+Masatake YAMATO <yamato@redhat.com>
+Matthew House <mattlloydhouse@gmail.com>
+Matthew Wilcox (Oracle) <willy@infradead.org>
+Michael Kerrisk <mtk.manpages@gmail.com>
+Michael Weiß <michael.weiss@aisec.fraunhofer.de>
+Mickaël Salaün <mic@digikod.net>
+Mike Frysinger <vapier@gentoo.org>
+Mike Kravetz <mike.kravetz@oracle.com>
+Mingye Wang <arthur200126@gmail.com>
+Nadav Amit <namit@vmware.com>
+Nick Desaulniers <ndesaulniers@google.com>
+Oskari Pirhonen <xxc3ncoredxx@gmail.com>
+Paul E. McKenney <paulmck@kernel.org>
+Paul Eggert <eggert@cs.ucla.edu>
+Paul Floyd <pjfloyd@wanadoo.fr>
+Paul Smith <psmith@gnu.org>
+Philip Guenther <guenther@gmail.com>
+Ralph Corderoy <ralph@inputplus.co.uk>
+Reuben Thomas <rrt@sc3d.org>
+Rich Felker <dalias@libc.org>
+Richard Biener <richard.guenther@gmail.com>
+Sam James <sam@gentoo.org>
+Serge Hallyn <serge@hallyn.com>
+Seth David Schoen <schoen@loyalty.org>
+Siddhesh Poyarekar <siddhesh@gotplt.org>
+Simon Horman <simon.horman@corigine.com>
+Stefan Puiu <stefan.puiu@gmail.com>
+Steffen Nurpmeso <steffen@sdaoden.eu>
+Szabolcs Nagy <nsz@port70.net>
+Thomas Weißschuh <thomas@t-8ch.de>
+Tom Schwindl <schwindl@posteo.de>
+Tomáš Golembiovský <tgolembi@redhat.com>
+Torbjorn SVENSSON <torbjorn.svensson@foss.st.com>
+Ulrich Drepper <drepper@redhat.com>
+Vahid Noormofidi <vnoormof@nvidia.com>
+Vlastimil Babka <vbabka@suse.cz>
+Wilco Dijkstra <Wilco.Dijkstra@arm.com>
+Xi Ruoyao <xry111@xry111.site>
+Yang Xu <xuyang2018.jy@fujitsu.com>
+Yedidyah Bar David <didi@redhat.com>
+Zack Weinberg <zack@owlfolio.org>
+Zijun Zhao <zijunzhao@google.com>
+
+Apologies if I missed anyone!
+
+
+New and rewritten pages
+-----------------------
+
+man2/
+	ioctl_pipe.2
+
+man3/
+	regex.3
+
+man5/
+	erofs.5
+
+
+Newly documented interfaces in existing pages
+---------------------------------------------
+
+bpf.2
+	EAGAIN
+
+ioctl_userfaultfd.2
+	UFFD_FEATURE_EXACT_ADDRESS
+
+prctl.2
+	PR_GET_AUXV
+
+recv.2
+	MSG_CMSG_CLOEXEC
+
+statx.2
+	STAT_ATTR_MOUNT_ROOT
+
+syscall.2
+	ENOSYS
+
+resolv.conf.5
+	no-aaaa
+	RES_NOAAAA
+
+tmpfs.5
+	CONFIG_TRANSPARENT_HUGEPAGE
+
+ip.7
+	IP_LOCAL_PORT_RANGE
+
+rtnetlink.7
+	IFLA_PERM_ADDRESS
+
+
+New and changed links
+---------------------
+
+man3type/
+	regex_t.3type				(regex(3))
+	regmatch_t.3type			(regex(3))
+	regoff_t.3type				(regex(3))
+
+
+Global changes
+--------------
+
+-  Types:
+   -  Document functions using off64_t as if they used off_t (except
+      for lseek64()).
+
+-  Build system:
+   -  Keep file modes in the release tarball.
+   -  Fix symlink installation (`make install LINK_PAGES=symlink`).
+   -  Add support for using bzip2(1), lzip(1), and xz(1) when installing
+      pages and creating release tarballs.
+   -  Create reproducible release tarballs.
+   -  Move makefiles from lib/ to share/mk/.
+   -  Support mdoc(7) pages.
+   -  Relicense Makefiles as GPL-3.0-or-later.
+   -  Build PostScript and PDF manual pages.
+   -  Add support for running our build system on arbitrary source
+      trees; this makes it possible to easily run our linters on another
+      project's manual pages as easily as `make lint MANDIR=~/src/groff`
+
+-  Licenses:
+   -  Relicense ddp.7 from VERBATIM_ONE_PARA to Linux-man-pages-copyleft.
+   -  Relicense dir_colors.5 from LDPv1 to GPL-2.0-or-later.
+   -  Use new SPDX license identifiers:
+      -  Linux-man-pages-1-para                 (was VERBATIM_ONE_PARA)
+      -  Linux-man-pages-copyleft-2-para        (was VERBATIM_TWO_PARA)
+      -  Linux-man-pages-copyleft-var           (was VERBATIM_PROF)
+
+-  ffix:
+   -  use `\%`
+   -  un-bracket tbl(1) tables
+
+
+Changes to individual pages
+---------------------------
+
+The manual pages (and other files in the repository) have been improved
+beyond what this changelog covers.  To learn more about changes applied
+to individual pages, use git(1).
