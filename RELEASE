@@ -108,6 +108,10 @@ Description
                    $ cd .tmp/
                    $ gpg --detach-sign --armor man-pages-${new}.tar
 
+            -  Verify the signature:
+
+                   $ gpg --verify man-pages-$new.tar.{asc,}
+
             -  Upload the tarball:
 
                    $ kup put man-pages-${new}.tar.xz man-pages-${new}.tar.asc \
