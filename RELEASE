@@ -47,8 +47,8 @@ Description
        (2)  Changes
 
             Fill the <Changes> file.  For that you can check older
-            commits, like d4e80a7748 "Changes: Ready for 6.01".  It
-            needs manual intervention, but in that commit log you can
+            commits: `git log -p --grep 'Changes: Ready for 6'`.  It
+            needs manual intervention, but in those commit logs you can
             check a few commands that will help.
 
             -  Remember to change the version number, the date, and the
@@ -58,8 +58,7 @@ Description
                (usually happens with "New and changed links").
 
             -  The structure is a bit freestyle, but keep it organized.
-               man-pages-6.00 was a huge release, so it might help to
-               check it: 51228378bec7 "Changes: Ready for 6.00".
+               Check how previous releases did it.
 
             -  Commit:
 
@@ -72,7 +71,8 @@ Description
             important changes in the version being released, since it
             will be read by users and packagers.  It should include any
             information that is especially relevant for them.  Check old
-            tags such as 'man-pages-6.00' or 'man-pages-6.01'.
+            tags:
+            `git tag | grep 'man-pages-6' | tac | xargs git show --stat`
 
             -  Tag:
 
@@ -116,8 +116,8 @@ Description
 
        (5)  LSM
 
-            Update the <lsm> file.  Check old commits, like
-            c11cb1ca844d "Ready for 6.01".
+            Update the <lsm> file.  Check old commits:
+            `git log -p -- lsm`.
 
             -  Update the project version number.
 
