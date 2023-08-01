@@ -55872,6 +55872,42 @@ Global changes
       (e.g., man3typedir='/usr/share/man/man3').
    -  Support installing compressed pages (Z='.gz').
    -  Support installing link pages as symlinks (LINK_PAGES='symlink').
+   -  Add make(1) 'check' target.  This has been split from 'lint'.
+      'lint' will check the source code, and 'check' will check the
+      rendered pages (as a user will read them).  There are currently
+      several pages that fail this `make check`, and distributors that
+      depend on this can workaround it by touching a few files:
+
+      $ make check -k -j >/dev/null 2>/dev/null;
+      $ make check -k 2>/dev/null;
+      GREP	.tmp/man/man1/memusage.1.check-catman.touch
+      TROFF	.tmp/man/man2/fanotify_init.2.cat.set
+      TROFF	.tmp/man/man2/gettimeofday.2.cat.set
+      TROFF	.tmp/man/man2/s390_sthyi.2.cat.set
+      GREP	.tmp/man/man3/mallopt.3.check-catman.touch
+      TROFF	.tmp/man/man3/unlocked_stdio.3.cat.set
+      TROFF	.tmp/man/man4/console_codes.4.cat.set
+      TROFF	.tmp/man/man4/lirc.4.cat.set
+      GREP	.tmp/man/man4/smartpqi.4.check-catman.touch
+      GREP	.tmp/man/man4/veth.4.check-catman.touch
+      TROFF	.tmp/man/man5/proc.5.cat.set
+      GREP	.tmp/man/man5/slabinfo.5.check-catman.touch
+      TROFF	.tmp/man/man5/tzfile.5.cat.set
+      TROFF	.tmp/man/man7/address_families.7.cat.set
+      TROFF	.tmp/man/man7/ascii.7.cat.set
+      TROFF	.tmp/man/man7/bpf-helpers.7.cat.set
+      GREP	.tmp/man/man7/keyrings.7.check-catman.touch
+      GREP	.tmp/man/man7/uri.7.check-catman.touch
+      TROFF	.tmp/man/man8/tzselect.8.cat.set
+      TROFF	.tmp/man/man8/zdump.8.cat.set
+      TROFF	.tmp/man/man8/zic.8.cat.set
+
+      After touching the previous files, `make check` will succeed:
+
+      $ make check -k 2>/dev/null | awk '{print $2}' | xargs touch;
+      $ make check -j >/dev/null;
+      $ echo $?
+      0
 
 
 Changes to individual pages
