@@ -63,7 +63,7 @@ Description
             -  Commit:
 
                    $ git add Changes
-                   $ git commit -sm "Changes: Ready for ${new}"
+                   $ git commit -sm "Changes: Ready for $new"
 
        (3)  Tag
 
@@ -76,7 +76,7 @@ Description
 
             -  Tag:
 
-                   $ git tag -s man-pages-${new}
+                   $ git tag -s man-pages-$new
 
        (4)  Tarball
 
@@ -106,15 +106,15 @@ Description
             -  Sign the tarball:
 
                    $ cd .tmp/
-                   $ gpg --detach-sign --armor man-pages-${new}.tar
+                   $ gpg --detach-sign --armor man-pages-$new.tar
 
             -  Verify the signature:
 
-                   $ gpg --verify man-pages-$new.tar.{asc,}
+                   $ gpg --verify man-pages-$new.tar{.asc,}
 
             -  Upload the tarball:
 
-                   $ kup put man-pages-${new}.tar.xz man-pages-${new}.tar.asc \
+                   $ kup put man-pages-$new.tar.{xz,asc} \
                              /pub/linux/docs/man-pages/
                    $ cd ..
 
@@ -132,7 +132,7 @@ Description
             -  Commit:
 
                    $ git add lsm
-                   $ git commit -sm "lsm: Released ${new}"
+                   $ git commit -sm "lsm: Released $new"
 
             -  Send (email) the lsm file to <lsm@qqx.org> with the
                subject "add".
@@ -150,7 +150,7 @@ Description
             <https://lore.kernel.org/linux-man/4ba6c215-6d28-1769-52d3-04941b962ff3@kernel.org/T/#u>.
 
             The subject of the email should be
-            "man-pages-${new} released".
+            "man-pages-$new released".
 
        (7)  Changes.old
 
@@ -164,7 +164,7 @@ Description
 
             -  Empty <Changes>:
 
-                   $ git checkout man-pages-${new}^^ -- Changes
+                   $ git checkout man-pages-$new^^ -- Changes
 
             -  Commit:
 
@@ -180,7 +180,7 @@ Description
             -  Push:
 
                    $ git push
-                   $ git push korg man-pages-${new}
+                   $ git push korg man-pages-$new
 
                korg is just my name for the remote.
 
