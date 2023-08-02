@@ -15,7 +15,7 @@ MANDIR := $(srcdir)
 MANEXT := \.[0-9]\w*\(\.man\)\?\(\.in\)\?$
 
 
-MANPAGES := $(shell $(FIND) $(MANDIR)/ -type f \
+MANPAGES := $(shell $(FIND) $(MANDIR)/* -type f \
 		| $(GREP) '$(MANEXT)' \
 		| $(SORT) \
 		| $(SED) 's,:,\\:,g')
