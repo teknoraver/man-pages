@@ -64,13 +64,13 @@ lint_c    := $(foreach x,$(linters_c),lint-c-$(x))
 
 $(_LINT_c_checkpatch): %.lint-c.checkpatch.touch: %.c
 	$(info LINT (checkpatch)	$@)
-	$(CHECKPATCH) $(CHECKPATCHFLAGS) -f $<
+	$(CHECKPATCH) $(CHECKPATCHFLAGS) -f $< >&2
 	touch $@
 
 $(_LINT_c_clang-tidy): %.lint-c.clang-tidy.touch: %.c
 	$(info LINT (clang-tidy)	$@)
 	$(CLANG-TIDY) $(CLANG-TIDYFLAGS) $< -- $(CPPFLAGS) $(CFLAGS) 2>&1 \
-	| $(SED) '/generated\.$$/d'
+	| $(SED) '/generated\.$$/d' >&2
 	touch $@
 
 $(_LINT_c_cppcheck): %.lint-c.cppcheck.touch: %.c
@@ -88,7 +88,7 @@ $(_LINT_c_iwyu): %.lint-c.iwyu.touch: %.c
 	$(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CFLAGS) $< 2>&1 \
 	| $(TAC) \
 	| $(SED) '/correct/{N;d}' \
-	| $(TAC)
+	| $(TAC) >&2
 	touch $@
 
 
