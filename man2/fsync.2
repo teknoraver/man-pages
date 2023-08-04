@@ -155,16 +155,10 @@ to a value greater than 0.
 .\" POSIX.1-2001: It shall be defined to -1 or 0 or 200112L.
 .\" -1: unavailable, 0: ask using sysconf().
 .\" glibc defines them to 1.
-.PP
-On some UNIX systems (but not Linux),
-.I fd
-must be a
-.I writable
-file descriptor.
 .SH STANDARDS
 POSIX.1-2008.
 .SH HISTORY
-POSIX.1-2001, 4.3BSD.
+POSIX.1-2001, 4.2BSD.
 .PP
 In Linux 2.2 and earlier,
 .BR fdatasync ()
@@ -181,6 +175,13 @@ In these cases disk caches need to be disabled using
 or
 .BR sdparm (8)
 to guarantee safe operation.
+.PP
+Under AT&T UNIX System V Release 4
+.I fd
+needs to be opened for writing.
+This is by itself incompatible with the original BSD interface
+and forbidden by POSIX,
+but nevertheless survives in HP-UX and AIX.
 .SH SEE ALSO
 .BR sync (1),
 .BR bdflush (2),
