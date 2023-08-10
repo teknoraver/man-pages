@@ -736,9 +736,7 @@ Only a privileged process
 can employ
 .BR CLONE_NEWPID .
 This flag can't be specified in conjunction with
-.B CLONE_THREAD
-or
-.BR CLONE_PARENT .
+.BR CLONE_THREAD .
 .TP
 .B CLONE_NEWUSER
 (This flag first became meaningful for
@@ -1317,14 +1315,19 @@ were specified in the
 mask.
 .TP
 .B EINVAL
-One (or both) of
 .B CLONE_NEWPID
-or
-.B CLONE_NEWUSER
 and one (or both) of
 .B CLONE_THREAD
 or
 .B CLONE_PARENT
+were specified in the
+.I flags
+mask.
+.TP
+.B EINVAL
+.B CLONE_NEWUSER
+and
+.B CLONE_THREAD
 were specified in the
 .I flags
 mask.
