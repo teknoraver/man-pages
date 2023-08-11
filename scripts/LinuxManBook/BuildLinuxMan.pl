@@ -56,8 +56,8 @@ my $cmdstring="-Tpdf -k -pet -M. -F. -mandoc -manmark -dpaper=a4 -P-pa4 -rC1 -rC
 
 system("groff -Tpdf -ms LMBfront.t -Z > LMBfront.Z");
 system("groff -z -dPDF.EXPORT=1 -dLABEL.REFS=1 T $cmdstring 2>&1 | LC_ALL=C grep '^\\. *ds' | groff -Tpdf $cmdstring - T -Z > LinuxManBook.Z");
-system("./gropdf -F. LMBfront.Z LinuxManBook.Z > LinuxManBook.pdf");
-unlink "LinuxManBook.Z","LMBfront.Z";  # If you want to clean up
+system("gropdf -F. LMBfront.Z LinuxManBook.Z -pa4 > LinuxManBook.pdf");
+#unlink "LinuxManBook.Z","LMBfront.Z";  # If you want to clean up
 
 # Aliases are the man pages which .so another man page, so build a hash of them so
 # that when we are processing referenced man page we can add the target for the
@@ -103,6 +103,8 @@ sub BuildBook
 {
     open(BK,">T");
 
+    print BK ".pdfpagenumbering D . 1\n";
+
     foreach my $fn (sort sortman glob("$dir/man*/*"))
     {
 	my ($nm,$sec,$srt)=GetNmSec($fn);
@@ -119,7 +121,7 @@ sub BuildBook
 	    next;
 	}
 
-	print BK ".\\\" >>>>>> $1($2) <<<<<<\n";
+	print BK ".\\\" >>>>>> $1($2) <<<<<<\n.lf 0 $bkmark\n";
 
 	if (open(F,'<',$fn))
         {
