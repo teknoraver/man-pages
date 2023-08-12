@@ -51,6 +51,8 @@ filesystem supports the following mount options:
 .BR size "=\fIbytes\fP"
 Specify an upper limit on the size of the filesystem.
 The size is given in bytes, and rounded up to entire pages.
+The limit is removed if the size is
+.BR 0 .
 .IP
 The size may have a
 .BR k ,
@@ -89,6 +91,8 @@ but not a % suffix.
 The maximum number of inodes for this instance.
 The default is half of the number of your physical RAM pages, or (on a
 machine with highmem) the number of lowmem RAM pages, whichever is smaller.
+The limit is removed if the number is
+.BR 0 .
 .IP
 Inodes may be specified with
 .BR k ,
