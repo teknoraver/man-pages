@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Copyright 2023, Alejandro Colomar <alx@kernel.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+export LC_COLLATE=en_US.UTF-8;
+
+sed   -E '/\/intro./ s/.*\.([1-8])$/\10\t&/' \
+| sed -E '/\/intro./!s/.*\.([1-8])$/\11\t&/' \
+| sed -E '/\/intro./!s/.*\.([1-8].+)/\1\t&/' \
+| sort \
+| cut -f2;
