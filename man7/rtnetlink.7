@@ -242,7 +242,7 @@ RTPROT_KERNEL:by the kernel
 RTPROT_BOOT:during boot
 RTPROT_STATIC:by the administrator
 .TE
-.sp 1
+.IP
 Values larger than
 .B RTPROT_STATIC
 are not interpreted by the kernel, they are just for user information.
@@ -265,7 +265,7 @@ RT_SCOPE_LINK:route on this link
 RT_SCOPE_HOST:route on the local host
 RT_SCOPE_NOWHERE:destination doesn't exist
 .TE
-.sp 1
+.IP
 The values between
 .B RT_SCOPE_UNIVERSE
 and
@@ -284,7 +284,7 @@ T}
 RTM_F_CLONED:route is cloned from another route
 RTM_F_EQUALIZE:a multipath equalizer (not yet implemented)
 .TE
-.sp 1
+.IP
 .I rtm_table
 specifies the routing table
 .TS
@@ -295,7 +295,7 @@ RT_TABLE_DEFAULT:the default table
 RT_TABLE_MAIN:the main table
 RT_TABLE_LOCAL:the local table
 .TE
-.sp 1
+.IP
 The user may assign arbitrary values between
 .B RT_TABLE_UNSPEC
 and
@@ -461,7 +461,7 @@ NUD_FAILED:an invalid cache entry
 NUD_NOARP:a device with no destination cache
 NUD_PERMANENT:a static entry
 .TE
-.sp 1
+.IP
 Valid
 .I ndm_flags
 are:
@@ -471,7 +471,7 @@ lb l.
 NTF_PROXY:a proxy arp entry
 NTF_ROUTER:an IPv6 router
 .TE
-.sp 1
+.IP
 .\" FIXME .
 .\" document the members of the struct better
 The
@@ -487,7 +487,7 @@ NDA_DST:a neighbor cache n/w layer destination address
 NDA_LLADDR:a neighbor cache link layer address
 NDA_CACHEINFO:cache statistics
 .TE
-.sp 1
+.IP
 If the
 .I rta_type
 field is
@@ -531,7 +531,7 @@ TCA_STATS:struct tc_stats:Qdisc statistics
 TCA_XSTATS:qdisc-specific:Module-specific statistics
 TCA_RATE:struct tc_estimator:Rate limit
 .TE
-.sp 1
+.IP
 In addition, various other qdisc-module-specific attributes are allowed.
 For more information see the appropriate include files.
 .TP
