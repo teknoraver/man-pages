@@ -102,6 +102,7 @@ help:
 	$(info	)
 	$(info	[un]install		Alias for "[un]install-man")
 	$(info	[un]install-man		Wrapper for [un]install-man* targets)
+	$(info	[un]install-manintro	[Un]install intro(*) man pages)
 	$(info	[un]install-man1	[Un]install man pages in section 1)
 	$(info	[un]install-man2	[Un]install man pages in section 2)
 	$(info	[un]install-man2type	[Un]install man pages in section 2type)

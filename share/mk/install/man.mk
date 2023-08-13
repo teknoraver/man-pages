@@ -64,6 +64,7 @@ _man6dir      := $(DESTDIR)$(man6dir)
 _man7dir      := $(DESTDIR)$(man7dir)
 _man8dir      := $(DESTDIR)$(man8dir)
 
+_manintropages  := $(patsubst $(MANDIR)/%,$(_mandir)/%$(Z),$(MANINTROPAGES))
 _man1pages      := $(patsubst $(MANDIR)/man1/%,$(_man1dir)/%$(Z),$(MAN1PAGES))
 _man2pages      := $(patsubst $(MANDIR)/man2/%,$(_man2dir)/%$(Z),$(MAN2PAGES))
 _man2typepages  := $(patsubst $(MANDIR)/man2type/%,$(_man2typedir)/%$(Z),$(MAN2TYPEPAGES))
@@ -76,7 +77,8 @@ _man5pages      := $(patsubst $(MANDIR)/man5/%,$(_man5dir)/%$(Z),$(MAN5PAGES))
 _man6pages      := $(patsubst $(MANDIR)/man6/%,$(_man6dir)/%$(Z),$(MAN6PAGES))
 _man7pages      := $(patsubst $(MANDIR)/man7/%,$(_man7dir)/%$(Z),$(MAN7PAGES))
 _man8pages      := $(patsubst $(MANDIR)/man8/%,$(_man8dir)/%$(Z),$(MAN8PAGES))
-_manpages       := $(_man1pages) \
+_manpages       := $(_manintropages) \
+                   $(_man1pages) \
                    $(_man2pages) $(_man2typepages) \
                    $(_man3pages) $(_man3constpages) $(_man3headpages) $(_man3typepages) \
                    $(_man4pages) \
@@ -85,6 +87,7 @@ _manpages       := $(_man1pages) \
                    $(_man7pages) \
                    $(_man8pages)
 
+_manintropages_rm := $(addsuffix -rm,$(wildcard $(_manintropages)))
 _man1pages_rm     := $(addsuffix -rm,$(wildcard $(_man1pages)))
 _man2pages_rm     := $(addsuffix -rm,$(wildcard $(_man2pages)))
 _man2typepages_rm := $(addsuffix -rm,$(wildcard $(_man2typepages)))
@@ -103,6 +106,7 @@ install_manX     := $(foreach x,$(MAN_SECTIONS),install-man$(x))
 uninstall_manX   := $(foreach x,$(MAN_SECTIONS),uninstall-man$(x))
 
 
+$(_manintropages):  $(_mandir)/%$(Z):       $(MANDIR)/%           | $$(@D)/
 $(_man1pages):      $(_man1dir)/%$(Z):      $(MANDIR)/man1/%      | $$(@D)/
 $(_man2pages):      $(_man2dir)/%$(Z):      $(MANDIR)/man2/%      | $$(@D)/
 $(_man2typepages):  $(_man2typedir)/%$(Z):  $(MANDIR)/man2type/%  | $$(@D)/
@@ -164,6 +168,8 @@ else ifeq ($(Z),.xz)
 endif
 
 
+.PHONY: install-manintro
+install-manintro:  $(_manintropages);
 .PHONY: install-man1
 install-man1:      $(_man1pages);
 .PHONY: install-man2
@@ -190,13 +196,15 @@ install-man7:      $(_man7pages);
 install-man8:      $(_man8pages);
 
 .PHONY: install-man
-install-man: $(install_manX);
+install-man: install-manintro $(install_manX);
 
+.PHONY: uninstall-manintro
+uninstall-manintro: $(_manintropages_rm);
 .PHONY: $(uninstall_manX)
 $(uninstall_manX): uninstall-man%: $$(_man%pages_rm);
 
 .PHONY: uninstall-man
-uninstall-man: $(uninstall_manX);
+uninstall-man: uninstall-manintro $(uninstall_manX);
 
 
 endif  # include guard
