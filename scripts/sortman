@@ -5,8 +5,8 @@
 
 export LC_COLLATE=en_US.UTF-8;
 
-sed   -E '/\/intro./ s/.*\.([1-8])/\10\t&/' \
-| sed -E '/\/intro./!s/.*\.([1-8])\>/\11\t&/' \
-| sed -E '/\/intro./!s/.*\.([1-8][[:alnum:]]+)/\1\t&/' \
+sed   -E '/\/intro./ s/.*\.([[:digit:]])/\10\t&/' \
+| sed -E '/\/intro./!s/.*\.([[:digit:]])\>/\11\t&/' \
+| sed -E '/\/intro./!s/.*\.([[:digit:]][[:alnum:]]+)/\1\t&/' \
 | sort \
 | cut -f2;
