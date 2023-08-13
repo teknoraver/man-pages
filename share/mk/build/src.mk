@@ -65,7 +65,7 @@ _UNITS_src_src := $(patsubst $(MANDIR)/%,$(_MANDIR)/%,$(shell \
 		| $(XARGS) $(GREP) -H '^\.\\" SRC BEGIN ' \
 		| $(SED) 's,:\.\\" SRC BEGIN (,.d/,' \
 		| $(SED) 's/)//' \
-		| $(SORT) \
+		| $(SORTMAN) \
 		| $(SED) 's,:,\\:,g'))
 _UNITS_src_h   := $(filter %.h,$(_UNITS_src_src))
 _UNITS_src_c   := $(filter %.c,$(_UNITS_src_src))

@@ -202,7 +202,7 @@ help-variables:
 	$(info	LZIP		{EXTRA_,}LZIPFLAGS)
 	$(info	PKGCONF)
 	$(info	SED)
-	$(info	SORT)
+	$(info	SORTMAN)
 	$(info	SPONGE)
 	$(info	TAC)
 	$(info	TAIL)

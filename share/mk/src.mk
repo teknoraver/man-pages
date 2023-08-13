@@ -17,7 +17,7 @@ MANEXT := \.[0-9]\w*\(\.man\)\?\(\.in\)\?$
 
 MANPAGES := $(shell $(FIND) $(MANDIR)/* -type f \
 		| $(GREP) '$(MANEXT)' \
-		| $(SORT) \
+		| $(SORTMAN) \
 		| $(SED) 's,:,\\:,g')
 
 MAN1PAGES      := $(filter $(MANDIR)/man1/%,$(filter %.1,$(MANPAGES)))

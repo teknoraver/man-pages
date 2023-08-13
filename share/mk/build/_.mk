@@ -26,12 +26,12 @@ RM    := rm
 NONSO_MAN := $(shell $(FIND) $(MANDIR)/* -type f \
 		| $(GREP) '$(MANEXT)' \
 		| $(XARGS) $(GREP) -l '^\.TH ' \
-		| $(SORT) \
+		| $(SORTMAN) \
 		| $(SED) 's,:,\\:,g')
 NONSO_MDOC := $(shell $(FIND) $(MANDIR)/* -type f \
 		| $(GREP) '$(MANEXT)' \
 		| $(XARGS) $(GREP) -l '^\.Dt ' \
-		| $(SORT) \
+		| $(SORTMAN) \
 		| $(SED) 's,:,\\:,g')
 
 
