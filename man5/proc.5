@@ -267,30 +267,6 @@ Therefore, it may be desirable to reset the "dumpable" attribute
 .I after
 making any desired changes to the process's effective UID or GID.
 .TP
-.IR /proc/ pid /cwd
-This is a symbolic link to the current working directory of the process.
-To find out the current working directory of process 20,
-for instance, you can do this:
-.IP
-.in +4n
-.EX
-.RB "$" " cd /proc/20/cwd; pwd \-P"
-.EE
-.in
-.IP
-.\" The following was still true as at kernel 2.6.13
-In a multithreaded process, the contents of this symbolic link
-are not available if the main thread has already terminated
-(typically by calling
-.BR pthread_exit (3)).
-.IP
-Permission to dereference or read
-.RB ( readlink (2))
-this symbolic link is governed by a ptrace access mode
-.B PTRACE_MODE_READ_FSCREDS
-check; see
-.BR ptrace (2).
-.TP
 .IR /proc/ pid /environ
 This file contains the initial environment that was set
 when the currently executing program was started via
