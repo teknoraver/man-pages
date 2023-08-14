@@ -267,18 +267,6 @@ Therefore, it may be desirable to reset the "dumpable" attribute
 .I after
 making any desired changes to the process's effective UID or GID.
 .TP
-.IR /proc/ pid /mem
-This file can be used to access the pages of a process's memory through
-.BR open (2),
-.BR read (2),
-and
-.BR lseek (2).
-.IP
-Permission to access this file is governed by a ptrace access mode
-.B PTRACE_MODE_ATTACH_FSCREDS
-check; see
-.BR ptrace (2).
-.TP
 .IR /proc/ pid /mountinfo " (since Linux 2.6.26)"
 .\" This info adapted from Documentation/filesystems/proc.txt
 .\" commit 2d4d4864ac08caff5c204a752bd004eed4f08760
