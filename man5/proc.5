@@ -267,10 +267,6 @@ Therefore, it may be desirable to reset the "dumpable" attribute
 .I after
 making any desired changes to the process's effective UID or GID.
 .TP
-.IR /proc/ pid /gid_map " (since Linux 3.5)"
-See
-.BR user_namespaces (7).
-.TP
 .IR /proc/ pid /io " (since Linux 2.6.20)"
 .\" commit 7c3ab7381e79dfc7db14a67c6f4f3285664e1ec2
 This file contains I/O statistics for the process, for example:
@@ -2183,10 +2179,6 @@ Therefore, since Linux 4.9,
 only the (weaker)
 .B CAP_SYS_NICE
 capability is required to access this file.
-.TP
-.IR /proc/ pid /uid_map " (since Linux 3.5)"
-See
-.BR user_namespaces (7).
 .TP
 .IR /proc/ pid /wchan " (since Linux 2.6.0)"
 The symbolic name corresponding to the location
