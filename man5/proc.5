@@ -227,14 +227,6 @@ hierarchy.
 .\"       Added in Linux 2.6.9
 .\"       CONFIG_SCHEDSTATS
 .TP
-.IR /proc/kallsyms " (since Linux 2.5.71)"
-This holds the kernel exported symbol definitions used by the
-.BR modules (X)
-tools to dynamically link and bind loadable modules.
-In Linux 2.5.47 and earlier, a similar file with slightly different syntax
-was named
-.IR ksyms .
-.TP
 .I /proc/kcore
 This file represents the physical memory of the system and is stored
 in the ELF core file format.
@@ -357,10 +349,6 @@ The
 file is present only if the
 .B CONFIG_PROC_PAGE_MONITOR
 kernel configuration option is enabled.
-.TP
-.IR /proc/ksyms " (Linux 1.1.23\[en]2.5.47)"
-See
-.IR /proc/kallsyms .
 .TP
 .I /proc/loadavg
 The first three fields in this file are load average figures
