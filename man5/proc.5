@@ -1,29 +1,9 @@
 '\" t
 .\" Copyright (C) 1994, 1995, Daniel Quinlan <quinlan@yggdrasil.com>
 .\" Copyright (C) 2002-2008, 2017, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright (C) 2023, Alejandro Colomar <alx@kernel.org>
 .\"
-.\" SPDX-License-Identifier: GPL-2.0-or-later
-.\"
-.\" Modified 1995-05-17 by faith@cs.unc.edu
-.\" Minor changes by aeb and Marty Leisner (leisner@sdsp.mc.xerox.com).
-.\" Modified 1996-04-13, 1996-07-22 by aeb@cwi.nl
-.\" Modified 2001-12-16 by rwhron@earthlink.net
-.\" Modified 2002-07-13 by jbelton@shaw.ca
-.\" Modified 2002-07-22, 2003-05-27, 2004-04-06, 2004-05-25
-.\"    by Michael Kerrisk <mtk.manpages@gmail.com>
-.\" 2004-11-17, mtk -- updated notes on /proc/loadavg
-.\" 2004-12-01, mtk, rtsig-max and rtsig-nr went away in Linux 2.6.8
-.\" 2004-12-14, mtk, updated 'statm', and fixed error in order of list
-.\" 2005-05-12, mtk, updated 'stat'
-.\" 2005-07-13, mtk, added /proc/sys/fs/mqueue/*
-.\" 2005-09-16, mtk, Added /proc/sys/fs/suid_dumpable
-.\" 2005-09-19, mtk, added /proc/zoneinfo
-.\" 2005-03-01, mtk, moved /proc/sys/fs/mqueue/* material to mq_overview.7.
-.\" 2008-06-05, mtk, Added /proc/[pid]/oom_score, /proc/[pid]/oom_adj,
-.\"     /proc/[pid]/limits, /proc/[pid]/mountinfo, /proc/[pid]/mountstats,
-.\"     and /proc/[pid]/fdinfo/*.
-.\" 2008-06-19, mtk, Documented /proc/[pid]/status.
-.\" 2008-07-15, mtk, added /proc/config.gz
+.\" SPDX-License-Identifier: GPL-3.0-or-later
 .\"
 .TH proc 5 (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -199,11 +179,7 @@ expose system-wide information.
 .PP
 All of the above are described in more detail below.
 .\"
-.SS Files and directories
-The following list provides details of many of the files and directories
-under the
-.I /proc
-hierarchy.
+.\" .SH FILES
 .\" FIXME Describe /proc/[pid]/sessionid
 .\"	  commit 1e0bd7550ea9cf474b1ad4c6ff5729a507f75fdc
 .\"       CONFIG_AUDITSYSCALL
@@ -241,9 +217,6 @@ if you use a command of the following form to display them:
 .RB "$" " cat \fIfile\fP | tr \[aq]\e000\[aq] \[aq]\en\[aq]"
 .EE
 .in
-.PP
-This manual page is incomplete, possibly inaccurate, and is the kind
-of thing that needs to be updated very often.
 .\" .SH ACKNOWLEDGEMENTS
 .\" The material on /proc/sys/fs and /proc/sys/kernel is closely based on
 .\" kernel source documentation files written by Rik van Riel.
