@@ -231,29 +231,6 @@ hierarchy.
 .\"       Added in Linux 2.6.9
 .\"       CONFIG_SCHEDSTATS
 .TP
-.I /proc/bus
-Contains subdirectories for installed buses.
-.TP
-.I /proc/bus/pccard
-Subdirectory for PCMCIA devices when
-.B CONFIG_PCMCIA
-is set at kernel compilation time.
-.TP
-.I /proc/bus/pccard/drivers
-.TP
-.I /proc/bus/pci
-Contains various bus subdirectories and pseudo-files containing
-information about PCI buses, installed devices, and device
-drivers.
-Some of these files are not ASCII.
-.TP
-.I /proc/bus/pci/devices
-Information about PCI devices.
-They may be accessed through
-.BR lspci (8)
-and
-.BR setpci (8).
-.TP
 .IR /proc/cgroups " (since Linux 2.6.24)"
 See
 .BR cgroups (7).
