@@ -227,18 +227,6 @@ hierarchy.
 .\"       Added in Linux 2.6.9
 .\"       CONFIG_SCHEDSTATS
 .TP
-.I /proc/kcore
-This file represents the physical memory of the system and is stored
-in the ELF core file format.
-With this pseudo-file, and an unstripped
-kernel
-.RI ( /usr/src/linux/vmlinux )
-binary, GDB can be used to
-examine the current state of any kernel data structures.
-.IP
-The total length of the file is the size of physical memory (RAM) plus
-4\ KiB.
-.TP
 .IR /proc/keys " (since Linux 2.6.10)"
 See
 .BR keyrings (7).
