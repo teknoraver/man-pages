@@ -227,22 +227,6 @@ hierarchy.
 .\"       Added in Linux 2.6.9
 .\"       CONFIG_SCHEDSTATS
 .TP
-.I /proc/kmsg
-This file can be used instead of the
-.BR syslog (2)
-system call to read kernel messages.
-A process must have superuser
-privileges to read this file, and only one process should read this
-file.
-This file should not be read if a syslog process is running
-which uses the
-.BR syslog (2)
-system call facility to log kernel messages.
-.IP
-Information in this file is retrieved with the
-.BR dmesg (1)
-program.
-.TP
 .IR /proc/kpagecgroup " (since Linux 4.3)"
 .\" commit 80ae2fdceba8313b0433f899bdd9c6c463291a17
 This file contains a 64-bit inode number of
