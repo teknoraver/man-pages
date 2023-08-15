@@ -231,18 +231,6 @@ hierarchy.
 .\"       Added in Linux 2.6.9
 .\"       CONFIG_SCHEDSTATS
 .TP
-.I /proc/cpuinfo
-This is a collection of CPU and system architecture dependent items,
-for each supported architecture a different list.
-Two common entries are \fIprocessor\fP which gives CPU number and
-\fIbogomips\fP; a system constant that is calculated
-during kernel initialization.
-SMP machines have information for
-each CPU.
-The
-.BR lscpu (1)
-command gathers its information from this file.
-.TP
 .I /proc/devices
 Text listing of major numbers and device groups.
 This can be used by MAKEDEV scripts for consistency with the kernel.
