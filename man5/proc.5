@@ -226,22 +226,6 @@ hierarchy.
 .\"       /proc/[pid]/task/[tid]/schedstats
 .\"       Added in Linux 2.6.9
 .\"       CONFIG_SCHEDSTATS
-.TP
-.I /proc/pci
-This is a listing of all PCI devices found during kernel initialization
-and their configuration.
-.IP
-This file has been deprecated in favor of a new
-.I /proc
-interface for PCI
-.RI ( /proc/bus/pci ).
-It became optional in Linux 2.2 (available with
-.B CONFIG_PCI_OLD_PROC
-set at kernel compilation).
-It became once more nonoptionally enabled in Linux 2.4.
-Next, it was deprecated in Linux 2.6 (still available with
-.B CONFIG_PCI_LEGACY_PROC
-set), and finally removed altogether since Linux 2.6.17.
 .\" FIXME Document /proc/sched_debug (since Linux 2.6.23)
 .\" See also /proc/[pid]/sched
 .TP
