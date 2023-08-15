@@ -353,15 +353,6 @@ it is governed by the
 .B CONFIG_PROC_CHILDREN
 option.
 .TP
-.IR /proc/ pid /wchan " (since Linux 2.6.0)"
-The symbolic name corresponding to the location
-in the kernel where the process is sleeping.
-.IP
-Permission to access this file is governed by a ptrace access mode
-.B PTRACE_MODE_READ_FSCREDS
-check; see
-.BR ptrace (2).
-.TP
 .IR /proc/ tid
 There  is a numerical subdirectory for each running thread
 that is not a thread group leader
