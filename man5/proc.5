@@ -227,18 +227,6 @@ hierarchy.
 .\"       Added in Linux 2.6.9
 .\"       CONFIG_SCHEDSTATS
 .TP
-.IR /proc/kpagecount " (since Linux 2.6.25)"
-This file contains a 64-bit count of the number of
-times each physical page frame is mapped,
-indexed by page frame number (see the discussion of
-.IR /proc/ pid /pagemap ).
-.IP
-The
-.I /proc/kpagecount
-file is present only if the
-.B CONFIG_PROC_PAGE_MONITOR
-kernel configuration option is enabled.
-.TP
 .IR /proc/kpageflags " (since Linux 2.6.25)"
 This file contains 64-bit masks corresponding to each physical page frame;
 it is indexed by page frame number (see the discussion of
