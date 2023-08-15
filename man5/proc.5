@@ -227,19 +227,6 @@ hierarchy.
 .\"       Added in Linux 2.6.9
 .\"       CONFIG_SCHEDSTATS
 .TP
-.IR /proc/kpagecgroup " (since Linux 4.3)"
-.\" commit 80ae2fdceba8313b0433f899bdd9c6c463291a17
-This file contains a 64-bit inode number of
-the memory cgroup each page is charged to,
-indexed by page frame number (see the discussion of
-.IR /proc/ pid /pagemap ).
-.IP
-The
-.I /proc/kpagecgroup
-file is present only if the
-.B CONFIG_MEMCG
-kernel configuration option is enabled.
-.TP
 .IR /proc/kpagecount " (since Linux 2.6.25)"
 This file contains a 64-bit count of the number of
 times each physical page frame is mapped,
