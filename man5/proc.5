@@ -29,10 +29,6 @@
 .\" 2008-06-19, mtk, Documented /proc/[pid]/status.
 .\" 2008-07-15, mtk, added /proc/config.gz
 .\"
-.\" FIXME cross check against Documentation/filesystems/proc.txt
-.\" to see what information could be imported from that file
-.\" into this file.
-.\"
 .TH proc 5 (date) "Linux man-pages (unreleased)"
 .SH NAME
 proc \- process information, system information, and sysctl pseudo-filesystem
@@ -230,23 +226,6 @@ hierarchy.
 .\"       /proc/[pid]/task/[tid]/schedstats
 .\"       Added in Linux 2.6.9
 .\"       CONFIG_SCHEDSTATS
-.TP
-.I /proc/filesystems
-A text listing of the filesystems which are supported by the kernel,
-namely filesystems which were compiled into the kernel or whose kernel
-modules are currently loaded.
-(See also
-.BR filesystems (5).)
-If a filesystem is marked with "nodev",
-this means that it does not require a block device to be mounted
-(e.g., virtual filesystem, network filesystem).
-.IP
-Incidentally, this file may be used by
-.BR mount (8)
-when no filesystem is specified and it didn't manage to determine the
-filesystem type.
-Then filesystems contained in this file are tried
-(excepted those that are marked with "nodev").
 .TP
 .I /proc/fs
 .\" FIXME Much more needs to be said about /proc/fs
