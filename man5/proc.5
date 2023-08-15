@@ -1,8 +1,6 @@
 '\" t
 .\" Copyright (C) 1994, 1995, Daniel Quinlan <quinlan@yggdrasil.com>
 .\" Copyright (C) 2002-2008, 2017, Michael Kerrisk <mtk.manpages@gmail.com>
-.\" and System V IPC (as well as various other) additions from
-.\" Michael Kerrisk <mtk.manpages@gmail.com>
 .\"
 .\" SPDX-License-Identifier: GPL-2.0-or-later
 .\"
@@ -226,19 +224,6 @@ hierarchy.
 .\"       CONFIG_SCHEDSTATS
 .\" FIXME Document /proc/sched_debug (since Linux 2.6.23)
 .\" See also /proc/[pid]/sched
-.TP
-.I /proc/sysvipc
-Subdirectory containing the pseudo-files
-.IR msg ", " sem " and " shm "."
-These files list the System V Interprocess Communication (IPC) objects
-(respectively: message queues, semaphores, and shared memory)
-that currently exist on the system,
-providing similar information to that available via
-.BR ipcs (1).
-These files have headers and are formatted (one IPC object per line)
-for easy understanding.
-.BR sysvipc (7)
-provides further background on the information shown by these files.
 .TP
 .IR /proc/timer_list " (since Linux 2.6.21)"
 .\" commit 289f480af87e45f7a6de6ba9b4c061c2e259fe98
