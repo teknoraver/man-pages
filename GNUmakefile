@@ -134,7 +134,7 @@ help:
 
 
 MK := \
-	$(srcdir)/Makefile \
+	$(srcdir)/GNUmakefile \
 	$(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk */*/*.mk))
 include $(MK)
 $(MK):: ;
