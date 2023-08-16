@@ -23,10 +23,9 @@ Describes the initial expiration of a timer,
 and its interval,
 in seconds and nanoseconds.
 .SH STANDARDS
-Linux.
-.SH NOTES
-The following header also provides this type:
-.IR <sys/timerfd.h> .
+POSIX.1-2008.
+.SH HISTORY
+POSIX.1-2001.
 .SH SEE ALSO
 .BR timerfd_create (2),
 .BR timer_settime (2),
