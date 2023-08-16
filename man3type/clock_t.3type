@@ -31,7 +31,7 @@ C89, POSIX.1-2001.
 The following headers also provide this type:
 .I <sys/types.h>
 and
-.IR <sys/time.h> .
+.IR <sys/times.h> .
 .SH SEE ALSO
 .BR times (2),
 .BR clock (3)
