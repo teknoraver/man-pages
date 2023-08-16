@@ -131,7 +131,7 @@ Description
        targets that can be used.
 
 Files
-   Makefile, share/mk/install-man.mk, share/mk/install.mk
+   GNUmakefile, share/mk/install-man.mk, share/mk/install.mk
        Main makefiles for installing (however, others may also be used
        by inclusion).
 

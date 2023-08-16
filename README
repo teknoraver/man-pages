@@ -35,7 +35,7 @@ Files
        Change log.  Includes most relevant changes.  However, it's not
        as complete as the git(1) log.
 
-   Makefile, share/mk/*
+   GNUmakefile, share/mk/*
        Build system.  For help, consult the <INSTALL> file, and run
        'make help'.
 

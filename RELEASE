@@ -188,7 +188,7 @@ Files
    Changes, Changes.old
        Change log.  Includes most relevant changes.
 
-   Makefile, share/mk/dist.mk, share/mk/version.mk
+   GNUmakefile, share/mk/dist.mk, share/mk/version.mk
        Main makefiles used for releasing (however, others may also be
        used by inclusion).
 
