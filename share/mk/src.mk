@@ -12,7 +12,7 @@ include $(MAKEFILEDIR)/cmd.mk
 
 
 MANDIR := $(srcdir)
-MANEXT := \.[0-9]\w*\(\.man\)\?\(\.in\)\?$
+MANEXT := \.[[:digit:]]\([[:alpha:]][[:alnum:]]*\)\?\>\(\.man\)\?\(\.in\)\?$
 
 
 MANPAGES := $(shell $(FIND) $(MANDIR)/* -type f \
