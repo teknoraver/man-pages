@@ -32,8 +32,14 @@ may be reused.
 Any record locks (see
 .BR fcntl (2))
 held on the file it was associated with,
-and owned by the process, are removed (regardless of the file
-descriptor that was used to obtain the lock).
+and owned by the process,
+are removed regardless of the file descriptor that was used to obtain the lock.
+This has some unfortunate consequences
+and one should be extra careful when using advisory record locking.
+See
+.BR fcntl (2)
+for discussion of the risks and consequences
+as well as for the (probably preferred) open file description locks.
 .PP
 If
 .I fd
