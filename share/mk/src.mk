@@ -28,7 +28,7 @@ MANINTROPAGES := $(shell $(FIND) $(MANDIR)/* -type f \
 		| $(SED) 's,:,\\:,g')
 
 
-MANSECTIONS := 1 2 2type 3 3const 3head 3type 4 5 6 7 8
+MANSECTIONS := $(patsubst $(MANDIR)/man%/, %, $(wildcard $(MANDIR)/man*/))
 
 
 $(foreach s, $(MANSECTIONS),                                                  \
