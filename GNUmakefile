@@ -128,6 +128,8 @@ help:
 	$(info	help			Print this help)
 	$(info	help-variables		Print all variables available, and their default values)
 	$(info	)
+	$(info	nothing			Make nothing.  It's useful for debug purposes)
+	$(info	)
 
 
 .SECONDEXPANSION:
@@ -227,6 +229,10 @@ help-variables:
 	$(info	CPPLINT		{EXTRA_,}CPPLINTFLAGS)
 	$(info	IWYU		{EXTRA_,}IWYUFLAGS)
 	$(info	)
+
+
+.PHONY: nothing
+nothing:;
 
 
 .DELETE_ON_ERROR:
