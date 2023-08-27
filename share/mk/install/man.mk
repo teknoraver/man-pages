@@ -55,8 +55,8 @@ $(foreach s, $(MANSECTIONS),                                                  \
 
 $(_manpages):
 	$(info INSTALL	$@)
-	$(INSTALL_DATA) -T $< $@
-	$(SED) -i \
+	<$< \
+	$(SED) \
 		-e '/^\.so /s, man1/\(.*\)\.1$$, $(notdir $(man1dir))/\1$(man1ext),' \
 		-e '/^\.so /s, man2/\(.*\)\.2$$, $(notdir $(man2dir))/\1$(man2ext),' \
 		-e '/^\.so /s, man2type/\(.*\)\.2type$$, $(notdir $(man2typedir))/\1$(man2typeext),' \
@@ -69,7 +69,7 @@ $(_manpages):
 		-e '/^\.so /s, man6/\(.*\)\.6$$, $(notdir $(man6dir))/\1$(man6ext),' \
 		-e '/^\.so /s, man7/\(.*\)\.7$$, $(notdir $(man7dir))/\1$(man7ext),' \
 		-e '/^\.so /s, man8/\(.*\)\.8$$, $(notdir $(man8dir))/\1$(man8ext),' \
-		$@
+	| $(INSTALL_DATA) -T /dev/stdin $@
 ifeq ($(LINK_PAGES),symlink)
 	if $(GREP) '^\.so ' <$@ >/dev/null; then \
 		$(GREP) '^\.so ' <$@ \
