@@ -150,6 +150,7 @@ help-variables:
 	$(info	docdir		$$(datarootdir)/doc)
 	$(info	)
 	$(info	man{1,...}dir	$$(mandir)/man{1,...})
+	$(info	man{1,...}ext	.{1,...})
 	$(info	)
 	$(info	htmldir		$$(docdir))
 	$(info	htmlext		.html)
