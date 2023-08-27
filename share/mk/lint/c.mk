@@ -51,15 +51,13 @@ IWYUFLAGS         := $(DEFAULT_IWYUFLAGS) $(EXTRA_IWYUFLAGS)
 IWYU              := iwyu
 
 
-_LINT_c_checkpatch := $(patsubst %.c,%.lint-c.checkpatch.touch,$(_UNITS_src_c))
-_LINT_c_clang-tidy := $(patsubst %.c,%.lint-c.clang-tidy.touch,$(_UNITS_src_c))
-_LINT_c_cppcheck   := $(patsubst %.c,%.lint-c.cppcheck.touch,$(_UNITS_src_c))
-_LINT_c_cpplint    := $(patsubst %.c,%.lint-c.cpplint.touch,$(_UNITS_src_c))
-_LINT_c_iwyu       := $(patsubst %.c,%.lint-c.iwyu.touch,$(_UNITS_src_c))
-
-
 linters_c := checkpatch clang-tidy cppcheck cpplint iwyu
-lint_c    := $(foreach x,$(linters_c),lint-c-$(x))
+
+
+$(foreach l, $(linters_c),                                                    \
+	$(eval _LINT_c_$(l) :=                                                \
+		$(patsubst %.c, %.lint-c.$(l).touch,                          \
+			$(_UNITS_src_c))))
 
 
 $(_LINT_c_checkpatch): %.lint-c.checkpatch.touch: %.c
@@ -92,11 +90,12 @@ $(_LINT_c_iwyu): %.lint-c.iwyu.touch: %.c
 	touch $@
 
 
-.PHONY: $(lint_c)
-$(lint_c): lint-c-%: $$(_LINT_c_%);
-
+$(foreach l, $(linters_c),                                                    \
+	$(eval .PHONY: lint-c-$(l)))
+$(foreach l, $(linters_c),                                                    \
+	$(eval lint-c-$(l): $(_LINT_c_$(l));))
 .PHONY: lint-c
-lint-c: $(lint_c);
+lint-c: $(foreach l, $(linters_c), lint-c-$(l));
 
 
 endif  # include guard

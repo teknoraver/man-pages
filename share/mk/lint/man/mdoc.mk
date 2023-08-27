@@ -17,11 +17,14 @@ include $(MAKEFILEDIR)/src.mk
 
 mandoc_mdoc_ignore_grep := $(DATAROOTDIR)/lint/mandoc/mdoc.ignore.grep
 
-_LINT_mdoc_mandoc:=$(patsubst $(MANDIR)/%,$(_MANDIR)/%.lint-mdoc.mandoc.touch,$(NONSO_MDOC))
-
 
 linters_mdoc := mandoc
-lint_mdoc    := $(foreach x,$(linters_mdoc),lint-mdoc-$(x))
+
+
+$(foreach l, $(linters_mdoc),                                                 \
+	$(eval _LINT_mdoc_$(l) :=                                             \
+		$(patsubst $(MANDIR)/%, $(_MANDIR)/%.lint-mdoc.$(l).touch,    \
+			$(NONSO_MDOC))))
 
 
 $(_LINT_mdoc_mandoc): $(_MANDIR)/%.lint-mdoc.mandoc.touch: $(MANDIR)/% $(mandoc_mdoc_ignore_grep) | $$(@D)/
@@ -34,11 +37,12 @@ $(_LINT_mdoc_mandoc): $(_MANDIR)/%.lint-mdoc.mandoc.touch: $(MANDIR)/% $(mandoc_
 	touch $@
 
 
-.PHONY: $(lint_mdoc)
-$(lint_mdoc): lint-mdoc-%: $$(_LINT_mdoc_%);
-
+$(foreach l, $(linters_mdoc),                                                 \
+	$(eval .PHONY: lint-mdoc-$(l)))
+$(foreach l, $(linters_mdoc),                                                 \
+	$(eval lint-mdoc-$(l): $(_LINT_mdoc_$(l));))
 .PHONY: lint-mdoc
-lint-mdoc: $(lint_mdoc);
+lint-mdoc: $(foreach l, $(linters_mdoc), lint-mdoc-$(l));
 
 
 endif  # include guard

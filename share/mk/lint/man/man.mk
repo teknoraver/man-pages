@@ -17,12 +17,14 @@ include $(MAKEFILEDIR)/src.mk
 
 mandoc_man_ignore_grep := $(DATAROOTDIR)/lint/mandoc/man.ignore.grep
 
-_LINT_man_mandoc :=$(patsubst $(MANDIR)/%,$(_MANDIR)/%.lint-man.mandoc.touch,$(NONSO_MAN))
-_LINT_man_tbl    :=$(patsubst $(MANDIR)/%,$(_MANDIR)/%.lint-man.tbl.touch,$(NONSO_MAN))
-
 
 linters_man := mandoc tbl
-lint_man    := $(foreach x,$(linters_man),lint-man-$(x))
+
+
+$(foreach l, $(linters_man),                                                  \
+	$(eval _LINT_man_$(l) :=                                              \
+		$(patsubst $(MANDIR)/%, $(_MANDIR)/%.lint-man.$(l).touch,     \
+			$(NONSO_MAN))))
 
 
 $(_LINT_man_mandoc): $(_MANDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% $(mandoc_man_ignore_grep) | $$(@D)/
@@ -57,13 +59,12 @@ $(_LINT_man_tbl): $(_MANDIR)/%.lint-man.tbl.touch: $(MANDIR)/% | $$(@D)/
 	touch $@
 
 
-.PHONY: lint-man-mandoc
-lint-man-mandoc: $(_LINT_man_mandoc);
-.PHONY: lint-man-tbl
-lint-man-tbl:    $(_LINT_man_tbl);
-
+$(foreach l, $(linters_man),                                                  \
+	$(eval .PHONY: lint-man-$(l)))
+$(foreach l, $(linters_man),                                                  \
+	$(eval lint-man-$(l): $(_LINT_man_$(l));))
 .PHONY: lint-man
-lint-man: $(lint_man);
+lint-man: $(foreach l, $(linters_man), lint-man-$(l));
 
 
 endif  # include guard

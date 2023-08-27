@@ -1,5 +1,5 @@
 ########################################################################
-# Copyright 2021-2022, Alejandro Colomar <alx@kernel.org>
+# Copyright 2021-2023, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: GPL-3.0-or-later
 ########################################################################
 
@@ -37,7 +37,6 @@ _DISTOTHERS := $(filter-out $(_DISTDIR)/man%,$(_DISTFILES))
 
 DISTFILE    := $(builddir)/$(DISTNAME).tar
 compression := bz2 gz lz xz
-dist        := $(foreach x,$(compression),dist-$(x))
 
 
 $(builddir)/dist/%/:
@@ -86,11 +85,13 @@ $(DISTFILE).xz: %.xz: % | $$(@D)/
 .PHONY: dist-tar
 dist-tar: $(DISTFILE);
 
-.PHONY: $(dist)
-$(dist): dist-%: $(DISTFILE).%;
 
+$(foreach z, $(compression),                                                  \
+	$(eval .PHONY: dist-$(z)))
+$(foreach z, $(compression),                                                  \
+	$(eval dist-$(z): $(DISTFILE).$(z);))
 .PHONY: dist
-dist: $(dist);
+dist: $(foreach z, $(compression), dist-$(z));
 
 
 endif  # include guard
