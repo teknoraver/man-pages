@@ -28,13 +28,13 @@ MANINTROPAGES := $(shell $(FIND) $(MANDIR)/* -type f \
 		| $(SED) 's,:,\\:,g')
 
 
-MAN_SECTIONS := 1 2 2type 3 3const 3head 3type 4 5 6 7 8
+MANSECTIONS := 1 2 2type 3 3const 3head 3type 4 5 6 7 8
 
 
-$(foreach s, $(MAN_SECTIONS),                                                 \
+$(foreach s, $(MANSECTIONS),                                                  \
 	$(eval MAN$(s)DIR := $(MANDIR)/man$(s)))
 
-$(foreach s, $(MAN_SECTIONS),                                                 \
+$(foreach s, $(MANSECTIONS),                                                  \
 	$(eval MAN$(s)PAGES :=                                                \
 		$(filter-out $(MANINTROPAGES),                                \
 			$(filter $(MANDIR)/man$(s)/%,                         \

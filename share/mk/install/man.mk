@@ -24,32 +24,32 @@ endif
 
 
 mandir := $(datarootdir)/man
-$(foreach s, $(MAN_SECTIONS),                                                 \
+$(foreach s, $(MANSECTIONS),                                                  \
 	$(eval man$(s)dir := $(mandir)/man$(s)))
-$(foreach s, $(MAN_SECTIONS),                                                 \
+$(foreach s, $(MANSECTIONS),                                                  \
 	$(eval man$(s)ext := .$(s)$(Z)))
 
 
 _mandir := $(DESTDIR)$(mandir)
-$(foreach s, $(MAN_SECTIONS),                                                 \
+$(foreach s, $(MANSECTIONS),                                                  \
 	$(eval _man$(s)dir := $(DESTDIR)$(man$(s)dir)))
 
 _manintropages := $(patsubst $(MANDIR)/%, $(_mandir)/%$(Z), $(MANINTROPAGES))
-$(foreach s, $(MAN_SECTIONS),                                                 \
+$(foreach s, $(MANSECTIONS),                                                  \
 	$(eval _man$(s)pages :=                                               \
 		$(patsubst $(MANDIR)/man$(s)/%, $(_man$(s)dir)/%$(Z),         \
 			$(MAN$(s)PAGES))))
-_manpages := $(_manintropages) $(foreach s, $(MAN_SECTIONS), $(_man$(s)pages))
+_manpages := $(_manintropages) $(foreach s, $(MANSECTIONS), $(_man$(s)pages))
 
 _manintropages_rm := $(addsuffix -rm, $(wildcard $(_manintropages)))
-$(foreach s, $(MAN_SECTIONS),                                                 \
+$(foreach s, $(MANSECTIONS),                                                  \
 	$(eval _man$(s)pages_rm :=                                            \
 		$(addsuffix -rm,                                              \
 			$(wildcard $(_man$(s)pages)))))
 
 
 $(_manintropages): $(_mandir)/%$(Z): $(MANDIR)/% | $$(@D)/
-$(foreach s, $(MAN_SECTIONS),                                                 \
+$(foreach s, $(MANSECTIONS),                                                  \
 	$(eval $(_man$(s)pages): $(_man$(s)dir)/%$(Z): $(MAN$(s)DIR)/% | $$$$(@D)/))
 
 
@@ -102,21 +102,21 @@ endif
 
 .PHONY: install-manintro
 install-manintro:  $(_manintropages);
-$(foreach s, $(MAN_SECTIONS),                                                 \
+$(foreach s, $(MANSECTIONS),                                                  \
 	$(eval .PHONY: install-man$(s)))
-$(foreach s, $(MAN_SECTIONS),                                                 \
+$(foreach s, $(MANSECTIONS),                                                  \
 	$(eval install-man$(s): $(_man$(s)pages);))
 .PHONY: install-man
-install-man: install-manintro $(foreach s, $(MAN_SECTIONS), install-man$(s));
+install-man: install-manintro $(foreach s, $(MANSECTIONS), install-man$(s));
 
 .PHONY: uninstall-manintro
 uninstall-manintro: $(_manintropages_rm);
-$(foreach s, $(MAN_SECTIONS),                                                 \
+$(foreach s, $(MANSECTIONS),                                                  \
 	$(eval .PHONY: uninstall-man$(s)))
-$(foreach s, $(MAN_SECTIONS),                                                 \
+$(foreach s, $(MANSECTIONS),                                                  \
 	$(eval uninstall-man$(s): $(_man$(s)pages_rm);))
 .PHONY: uninstall-man
-uninstall-man: uninstall-manintro $(foreach s, $(MAN_SECTIONS), uninstall-man$(s));
+uninstall-man: uninstall-manintro $(foreach s, $(MANSECTIONS), uninstall-man$(s));
 
 
 endif  # include guard
