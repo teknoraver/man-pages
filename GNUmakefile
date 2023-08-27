@@ -142,13 +142,13 @@ $(MK):: ;
 
 .PHONY: help-variables
 help-variables:
-	$(info	V		Define to non-empty string for verbose output)
-	$(info	)
 	$(info	LINK_PAGES	How to install link pages.  [".so", "symlink"])
 	$(info	Z		Install pages compressed.  ["", ".bz2", ".gz", ".lz", ".xz"])
 	$(info	)
 	$(info	DISTNAME	$$(git describe))
 	$(info	DISTVERSION	/$$DISTNAME/s/man-pages-//)
+	$(info	)
+	$(info	HIDE_ERR	Define to empty string to debug some errors)
 	$(info	)
 	$(info	# Directory variables:)
 	$(info	)

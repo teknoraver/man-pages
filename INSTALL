@@ -2,7 +2,7 @@ Name
        Install - instructions for installing the pages into the system
 
 Synopsis
-       sudo make [-j] install [V=1] [prefix=ARG] [DESTDIR=ARG] [...]
+       sudo make [-j] install [prefix=ARG] [DESTDIR=ARG] [...]
 
 Description
    (a)  Use a package manager
@@ -52,10 +52,6 @@ Description
 
            -  DESTDIR
            -  prefix
-
-           Use V=1 for a more verbose output from the makefiles:
-
-               $ sudo make install V=1
 
        Uninstall
            You can uninstall the pages with the following command (but
