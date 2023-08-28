@@ -84,17 +84,17 @@ ifeq ($(Z),.bz2)
 	fi
 else ifeq ($(Z),.gz)
 	if ! $(TEST) -L $@; then \
-		$(GZIP) $(GZIPFLAGS) - <$@ \
+		$(GZIP) $(GZIPFLAGS) <$@ \
 		| $(SPONGE) $@; \
 	fi
 else ifeq ($(Z),.lz)
 	if ! $(TEST) -L $@; then \
-		$(LZIP) $(LZIPFLAGS) - <$@ \
+		$(LZIP) $(LZIPFLAGS) <$@ \
 		| $(SPONGE) $@; \
 	fi
 else ifeq ($(Z),.xz)
 	if ! $(TEST) -L $@; then \
-		$(XZ) $(XZFLAGS) - <$@ \
+		$(XZ) $(XZFLAGS) <$@ \
 		| $(SPONGE) $@; \
 	fi
 endif
