@@ -56,19 +56,8 @@ $(foreach s, $(MANSECTIONS),                                                  \
 $(_manpages):
 	$(info INSTALL	$@)
 	<$< \
-	$(SED) \
-		-e '/^\.so /s, man1/\(.*\)\.1$$, $(notdir $(man1dir))/\1$(man1ext),' \
-		-e '/^\.so /s, man2/\(.*\)\.2$$, $(notdir $(man2dir))/\1$(man2ext),' \
-		-e '/^\.so /s, man2type/\(.*\)\.2type$$, $(notdir $(man2typedir))/\1$(man2typeext),' \
-		-e '/^\.so /s, man3/\(.*\)\.3$$, $(notdir $(man3dir))/\1$(man3ext),' \
-		-e '/^\.so /s, man3const/\(.*\)\.3const$$, $(notdir $(man3constdir))/\1$(man3constext),' \
-		-e '/^\.so /s, man3head/\(.*\)\.3head$$, $(notdir $(man3headdir))/\1$(man3headext),' \
-		-e '/^\.so /s, man3type/\(.*\)\.3type$$, $(notdir $(man3typedir))/\1$(man3typeext),' \
-		-e '/^\.so /s, man4/\(.*\)\.4$$, $(notdir $(man4dir))/\1$(man4ext),' \
-		-e '/^\.so /s, man5/\(.*\)\.5$$, $(notdir $(man5dir))/\1$(man5ext),' \
-		-e '/^\.so /s, man6/\(.*\)\.6$$, $(notdir $(man6dir))/\1$(man6ext),' \
-		-e '/^\.so /s, man7/\(.*\)\.7$$, $(notdir $(man7dir))/\1$(man7ext),' \
-		-e '/^\.so /s, man8/\(.*\)\.8$$, $(notdir $(man8dir))/\1$(man8ext),' \
+	$(SED) $(foreach s, $(MANSECTIONS), \
+		-e '/^\.so /s, man$(s)/\(.*\)\.$(s)$$, $(notdir $(man$(s)dir))/\1$(man$(s)ext),') \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 ifeq ($(LINK_PAGES),symlink)
 	if $(GREP) '^\.so ' <$@ >/dev/null; then \
