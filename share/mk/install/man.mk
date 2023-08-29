@@ -37,7 +37,7 @@ $(foreach s, $(MANSECTIONS),                                                  \
 _manintropages := $(patsubst $(MANDIR)/%, $(_mandir)/%$(Z), $(MANINTROPAGES))
 $(foreach s, $(MANSECTIONS),                                                  \
 	$(eval _man$(s)pages :=                                               \
-		$(patsubst $(MANDIR)/man$(s)/%, $(_man$(s)dir)/%$(Z),         \
+		$(patsubst $(MAN$(s)DIR)/%, $(_man$(s)dir)/%$(Z),             \
 			$(MAN$(s)PAGES))))
 _manpages := $(_manintropages) $(foreach s, $(MANSECTIONS), $(_man$(s)pages))
 
