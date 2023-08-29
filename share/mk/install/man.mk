@@ -36,9 +36,13 @@ $(foreach s, $(MANSECTIONS),                                                  \
 
 $(foreach s, $(MANSECTIONS),                                                  \
 	$(eval _man$(s)pages :=                                               \
-		$(patsubst $(MAN$(s)DIR)/%, $(_man$(s)dir)/%$(Z),             \
+		$(patsubst $(MAN$(s)DIR)/%.$(s), $(_man$(s)dir)/%$(man$(s)ext)$(Z), \
 			$(MAN$(s)PAGES))))
-_manintropages := $(patsubst $(MANDIR)/%, $(_mandir)/%$(Z), $(MANINTROPAGES))
+$(foreach s, $(MANSECTIONS),                                                  \
+	$(eval _man$(s)intropage :=                                           \
+		$(patsubst $(MAN$(s)DIR)/%.$(s), $(_man$(s)dir)/%$(man$(s)ext)$(Z), \
+			$(MAN$(s)INTROPAGE))))
+_manintropages := $(foreach s, $(MANSECTIONS), $(_man$(s)intropage))
 _manpages := $(_manintropages) $(foreach s, $(MANSECTIONS), $(_man$(s)pages))
 
 _manintropages_rm := $(addsuffix -rm, $(wildcard $(_manintropages)))
@@ -48,11 +52,10 @@ $(foreach s, $(MANSECTIONS),                                                  \
 			$(wildcard $(_man$(s)pages)))))
 
 
-$(_manintropages): $(_mandir)/%$(Z): $(MANDIR)/% | $$(@D)/
 $(foreach s, $(MANSECTIONS),                                                  \
-	$(eval $(_man$(s)pages):                                              \
-		$(_man$(s)dir)/%$(Z):                                         \
-			$(MAN$(s)DIR)/% | $$$$(@D)/))
+	$(eval $(_man$(s)pages) $(_man$(s)intropage):                         \
+		$(_man$(s)dir)/%$(man$(s)ext)$(Z):                            \
+			$(MAN$(s)DIR)/%.$(s) | $$$$(@D)/))
 
 
 $(_manpages):

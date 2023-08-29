@@ -40,6 +40,11 @@ $(foreach s, $(MANSECTIONS),                                                  \
 			$(filter $(MANDIR)/man$(s)/%,                         \
 				$(filter %.$(s),                              \
 					$(MANPAGES))))))
+$(foreach s, $(MANSECTIONS),                                                  \
+	$(eval MAN$(s)INTROPAGE :=                                            \
+		$(filter $(MANDIR)/man$(s)/%,                                 \
+			$(filter %.$(s),                                      \
+				$(MANINTROPAGES)))))
 
 
 endif  # include guard
