@@ -34,11 +34,11 @@ _mandir := $(DESTDIR)$(mandir)
 $(foreach s, $(MANSECTIONS),                                                  \
 	$(eval _man$(s)dir := $(DESTDIR)$(man$(s)dir)))
 
-_manintropages := $(patsubst $(MANDIR)/%, $(_mandir)/%$(Z), $(MANINTROPAGES))
 $(foreach s, $(MANSECTIONS),                                                  \
 	$(eval _man$(s)pages :=                                               \
 		$(patsubst $(MAN$(s)DIR)/%, $(_man$(s)dir)/%$(Z),             \
 			$(MAN$(s)PAGES))))
+_manintropages := $(patsubst $(MANDIR)/%, $(_mandir)/%$(Z), $(MANINTROPAGES))
 _manpages := $(_manintropages) $(foreach s, $(MANSECTIONS), $(_man$(s)pages))
 
 _manintropages_rm := $(addsuffix -rm, $(wildcard $(_manintropages)))
@@ -50,7 +50,9 @@ $(foreach s, $(MANSECTIONS),                                                  \
 
 $(_manintropages): $(_mandir)/%$(Z): $(MANDIR)/% | $$(@D)/
 $(foreach s, $(MANSECTIONS),                                                  \
-	$(eval $(_man$(s)pages): $(_man$(s)dir)/%$(Z): $(MAN$(s)DIR)/% | $$$$(@D)/))
+	$(eval $(_man$(s)pages):                                              \
+		$(_man$(s)dir)/%$(Z):                                         \
+			$(MAN$(s)DIR)/% | $$$$(@D)/))
 
 
 $(_manpages):
