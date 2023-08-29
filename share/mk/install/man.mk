@@ -27,7 +27,7 @@ mandir := $(datarootdir)/man
 $(foreach s, $(MANSECTIONS),                                                  \
 	$(eval man$(s)dir := $(mandir)/man$(s)))
 $(foreach s, $(MANSECTIONS),                                                  \
-	$(eval man$(s)ext := .$(s)$(Z)))
+	$(eval man$(s)ext := .$(s)))
 
 
 _mandir := $(DESTDIR)$(mandir)
@@ -57,7 +57,7 @@ $(_manpages):
 	$(info INSTALL	$@)
 	<$< \
 	$(SED) $(foreach s, $(MANSECTIONS), \
-		-e '/^\.so /s, man$(s)/\(.*\)\.$(s)$$, $(notdir $(man$(s)dir))/\1$(man$(s)ext),') \
+		-e '/^\.so /s, man$(s)/\(.*\)\.$(s)$$, $(notdir $(man$(s)dir))/\1$(man$(s)ext)$(Z),') \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 ifeq ($(LINK_PAGES),symlink)
 	if $(GREP) '^\.so ' <$@ >/dev/null; then \
