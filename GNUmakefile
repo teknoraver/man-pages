@@ -21,10 +21,6 @@
 ########################################################################
 
 
-ifndef MAKEFILE_INCLUDED
-MAKEFILE_INCLUDED := 1
-
-
 SHELL := /usr/bin/env bash -Eeuo pipefail
 
 
@@ -124,11 +120,9 @@ help:
 .SECONDEXPANSION:
 
 
-MK := \
-	$(srcdir)/GNUmakefile \
-	$(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk */*/*.mk))
+MK := $(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk */*/*.mk))
 include $(MK)
-$(MK):: ;
+$(srcdir)/GNUMakefile $(MK):: ;
 
 
 .PHONY: help-variables
@@ -215,6 +209,3 @@ nothing:;
 
 
 .DELETE_ON_ERROR:
-
-
-endif  #include guard
