@@ -334,6 +334,7 @@ Here is the program source code
 .\" SRC BEGIN (sync.c)
 .EX
 #define _GNU_SOURCE
+#include <err.h>
 #include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -354,10 +355,9 @@ main(int argc, char *argv[])
 \&
     for (size_t i = 0; i < argc \- 1; i++) {
         reqs[i] = malloc(sizeof(*reqs[0]));
-        if (reqs[i] == NULL) {
-            perror("malloc");
-            exit(EXIT_FAILURE);
-        }
+        if (reqs[i] == NULL)
+            err(EXIT_FAILURE, "malloc");
+\&
         memset(reqs[i], 0, sizeof(*reqs[0]));
         reqs[i]\->ar_name = argv[i + 1];
     }
@@ -425,6 +425,7 @@ The program source is as follows:
 .\" SRC BEGIN (async.c)
 .EX
 #define _GNU_SOURCE
+#include <err.h>
 #include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -458,9 +459,14 @@ add_requests(void)
 \&
     while ((host = strtok(NULL, " "))) {
         nreqs++;
-        reqs = realloc(reqs, sizeof(reqs[0]) * nreqs);
+        reqs = reallocf(reqs, sizeof(reqs[0]) * nreqs);
+        if (reqs == NULL)
+            err(EXIT_FAILURE, "reallocf");
 \&
         reqs[nreqs \- 1] = calloc(1, sizeof(*reqs[0]));
+        if (reqs[nreqs \- 1] == NULL)
+            err(EXIT_FAILURE, "calloc");
+\&
         reqs[nreqs \- 1]\->ar_name = strdup(host);
     }
 \&
@@ -482,7 +488,12 @@ wait_requests(void)
     char *id;
     int ret;
     size_t n;
-    struct gaicb const **wait_reqs = calloc(nreqs, sizeof(*wait_reqs));
+    struct gaicb const **wait_reqs;
+\&
+    wait_reqs = calloc(nreqs, sizeof(*wait_reqs));
+    if (wait_reqs == NULL)
+        err(EXIT_FAILURE, "calloc");
+\&
                 /* NULL elements are ignored by gai_suspend(). */
 \&
     while ((id = strtok(NULL, " ")) != NULL) {
