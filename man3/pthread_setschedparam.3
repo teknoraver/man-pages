@@ -269,7 +269,7 @@ get_policy(char p, int *policy)
 }
 \&
 static void
-display_sched_attr(int policy, struct sched_param *param)
+display_sched_attr(int policy, const struct sched_param *param)
 {
     printf("    policy=%s, priority=%d\en",
            (policy == SCHED_FIFO)  ? "SCHED_FIFO" :
