@@ -121,12 +121,12 @@ display_pthread_attr(pthread_attr_t *attr)
     s = pthread_attr_getstacksize(attr, &stacksize);
     if (s != 0)
         errc(EXIT_FAILURE, s, "pthread_attr_getstacksize");
-    printf("Stack size:          %zd\en", stacksize);
+    printf("Stack size:          %zu\en", stacksize);
 \&
     s = pthread_attr_getguardsize(attr, &guardsize);
     if (s != 0)
         errc(EXIT_FAILURE, s, "pthread_attr_getguardsize");
-    printf("Guard size:          %zd\en", guardsize);
+    printf("Guard size:          %zu\en", guardsize);
 \&
     s = pthread_attr_getschedpolicy(attr, &policy);
     if (s != 0)
