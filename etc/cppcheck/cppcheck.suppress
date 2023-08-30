@@ -1,6 +1,7 @@
 ConfigurationNotChecked
 constParameter
 constParameterCallback
+knownConditionTrueFalse
 missingIncludeSystem
 redundantContinue
 unassignedVariable
