@@ -83,10 +83,14 @@ $(_LINT_c_cpplint): %.lint-c.cpplint.touch: %.c
 
 $(_LINT_c_iwyu): %.lint-c.iwyu.touch: %.c
 	$(info LINT (iwyu)	$@)
-	$(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CFLAGS) $< 2>&1 \
-	| $(TAC) \
-	| $(SED) '/correct/{N;d}' \
-	| $(TAC) >&2
+	! ($(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CFLAGS) $< 2>&1 \
+	   | $(SED) -n '/should add these lines:/,$$p' \
+	   | $(TAC) \
+	   | $(SED) '/correct/{N;d}' \
+	   | $(TAC) \
+	   ||:; \
+	) \
+	| $(GREP) ^ >&2
 	touch $@
 
 
