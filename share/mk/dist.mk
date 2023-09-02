@@ -64,23 +64,17 @@ $(DISTFILE): $(_DISTFILES) | $$(@D)/
 	| $(XARGS) $(TAR) $(TARFLAGS) -rf $@ -C $(srcdir) \
 		--transform 's,^$(_DISTDIR),$(DISTNAME),'
 
-$(DISTFILE).bz2: %.bz2: % | $$(@D)/
-	$(info BZIP2	$@)
-	$(BZIP2) $(BZIP2FLAGS) -kf $<
-	touch $@
+define DISTFILE_z_rule
+$(DISTFILE).$(2): %.$(2): % | $$$$(@D)/
+	$$(info	$(1)	$$@)
+	$($(1)) $($(1)FLAGS) -kf $$<
+	touch $$@
+endef
 
-$(DISTFILE).gz: %.gz: % | $$(@D)/
-	$(info GZIP	$@)
-	$(GZIP) $(GZIPFLAGS) -kf $<
-
-$(DISTFILE).lz: %.lz: % | $$(@D)/
-	$(info LZIP	$@)
-	$(LZIP) $(LZIPFLAGS) -kf $<
-	touch $@
-
-$(DISTFILE).xz: %.xz: % | $$(@D)/
-	$(info XZ	$@)
-	$(XZ) $(XZFLAGS) -kf $<
+$(eval $(call DISTFILE_z_rule,BZIP2,bz2))
+$(eval $(call DISTFILE_z_rule,GZIP,gz))
+$(eval $(call DISTFILE_z_rule,LZIP,lz))
+$(eval $(call DISTFILE_z_rule,XZ,xz))
 
 
 .PHONY: dist-tar
