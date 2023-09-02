@@ -71,7 +71,7 @@ $(DISTFILE).bz2: %.bz2: % | $$(@D)/
 
 $(DISTFILE).gz: %.gz: % | $$(@D)/
 	$(info GZIP	$@)
-	$(GZIP) $(GZIPFLAGS) -knf $<
+	$(GZIP) $(GZIPFLAGS) -kf $<
 
 $(DISTFILE).lz: %.lz: % | $$(@D)/
 	$(info LZIP	$@)
