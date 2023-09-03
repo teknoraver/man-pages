@@ -21,7 +21,8 @@
 ########################################################################
 
 
-SHELL := /usr/bin/env bash -Eeuo pipefail
+SHELL := /usr/bin/env
+.SHELLFLAGS := -S bash -Eeuo pipefail -c
 
 
 MAKEFLAGS += --no-builtin-rules
