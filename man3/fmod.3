@@ -58,6 +58,23 @@ is the quotient of
 /
 .IR y ,
 rounded toward zero to an integer.
+.PP
+To obtain the modulus, more specifically, the Least Positive Residue,
+you will need to adjust the result from fmod like so:
+.PP
+.in +4n
+.nf
+z = fmod(x, y);
+if (z < 0)
+	z += y;
+.fi
+.in
+.PP
+An alternate way to express this is with
+.IR "fmod(fmod(x, y) + y, y)" ,
+but the second
+.BR fmod ()
+usually costs way more than the one branch.
 .SH RETURN VALUE
 On success, these
 functions return the value \fIx\fP\ \-\ \fIn\fP*\fIy\fP,
