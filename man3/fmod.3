@@ -167,5 +167,17 @@ to
 .B EDOM
 when a domain error occurred for an infinite
 .IR x .
+.SH EXAMPLES
+The call
+.I fmod(372, 360)
+returns 348.
+.PP
+The call
+.I fmod(-372, 360)
+returns -12.
+.PP
+The call
+.I fmod(-372, -360)
+also returns -12.
 .SH SEE ALSO
 .BR remainder (3)
