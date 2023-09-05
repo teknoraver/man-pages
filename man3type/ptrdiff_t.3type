@@ -21,7 +21,7 @@ Used for a count of elements, or an array index.
 It is the result of subtracting two pointers.
 It is a signed integer type
 capable of storing values in the range
-.RB [ PTRDIFF_MAX ,
+.RB [ PTRDIFF_MIN ,
 .BR PTRDIFF_MAX ].
 .PP
 The length modifier for
