@@ -27,7 +27,7 @@ $(foreach l, $(linters_man),                                                  \
 			$(NONSO_MAN))))
 
 
-$(_LINT_man_mandoc): $(_MANDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% $(mandoc_man_ignore_grep) | $$(@D)/
+$(_LINT_man_mandoc): $(_MANDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% $(mandoc_man_ignore_grep) $(MK) | $$(@D)/
 	$(info LINT (mandoc)	$@)
 	! ($(MANDOC) -man $(MANDOCFLAGS) $< 2>&1 \
 	   | $(GREP) -v -f '$(mandoc_man_ignore_grep)' \
@@ -36,7 +36,7 @@ $(_LINT_man_mandoc): $(_MANDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% $(mandoc_ma
 	| $(GREP) ^ >&2
 	touch $@
 
-$(_LINT_man_tbl): $(_MANDIR)/%.lint-man.tbl.touch: $(MANDIR)/% | $$(@D)/
+$(_LINT_man_tbl): $(_MANDIR)/%.lint-man.tbl.touch: $(MANDIR)/% $(MK) | $$(@D)/
 	$(info LINT (tbl comment)	$@)
 	if $(GREP) -q '^\.TS$$' $< && ! $(HEAD) -n1 $< | $(GREP) -q '\\" t$$'; \
 	then \

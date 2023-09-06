@@ -21,7 +21,7 @@ _htmlpages      := $(patsubst $(_HTMLDIR)/%,$(_htmldir)/%,$(_HTMLPAGES))
 _htmlpages_rm   := $(addsuffix -rm,$(wildcard $(_htmlpages)))
 
 
-$(_htmlpages): $(_htmldir)/%: $(_HTMLDIR)/% | $$(@D)/
+$(_htmlpages): $(_htmldir)/%: $(_HTMLDIR)/% $(MK) | $$(@D)/
 	$(info INSTALL	$@)
 	$(INSTALL_DATA) -T $< $@
 

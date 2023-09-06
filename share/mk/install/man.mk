@@ -55,7 +55,7 @@ $(foreach s, $(MANSECTIONS),                                                  \
 $(foreach s, $(MANSECTIONS),                                                  \
 	$(eval $(_man$(s)pages) $(_man$(s)intropage):                         \
 		$(_man$(s)dir)/%$(man$(s)ext)$(Z):                            \
-			$(MAN$(s)DIR)/%.$(s) | $$$$(@D)/))
+			$(MAN$(s)DIR)/%.$(s) $(MK) | $$$$(@D)/))
 
 
 $(_manpages):

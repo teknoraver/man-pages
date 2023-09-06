@@ -80,7 +80,7 @@ $(_SRCPAGEDIRS): $(_MANDIR)/%.d/: $(MANDIR)/%
 	+$(MKDIR) $@
 	+touch $@
 
-$(_UNITS_src_src): $$(patsubst $(_MANDIR)/%.d,$(MANDIR)/%,$$(@D)) | $$(@D)/
+$(_UNITS_src_src): $$(patsubst $(_MANDIR)/%.d,$(MANDIR)/%,$$(@D)) $(MK) | $$(@D)/
 $(_UNITS_src_c):   $$(filter $$(@D)/%.h,$(_UNITS_src_h))
 $(_UNITS_src_src):
 	$(info SED	$@)
@@ -94,11 +94,11 @@ $(_UNITS_src_src):
 	| $(SED) 's/^       //' \
 	>$@
 
-$(_UNITS_src_o): %.o: %.c
+$(_UNITS_src_o): %.o: %.c $(MK)
 	$(info CC	$@)
 	$(CC) -c $(CPPFLAGS) $(CFLAGS) -o $@ $<
 
-$(_UNITS_src_bin): %: %.o
+$(_UNITS_src_bin): %: %.o $(MK)
 	$(info LD	$@)
 	$(LD) $(LDFLAGS) -o $@ $< $(LDLIBS)
 

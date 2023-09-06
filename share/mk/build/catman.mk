@@ -44,12 +44,12 @@ _CATMAN_MDOC_set:= $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.set,$(NONSO_MDOC))
 _CATMAN         := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat,$(NONSO_MAN) $(NONSO_MDOC))
 
 
-$(_CATMAN_troff): %.cat.troff: %.eqn | $$(@D)/
+$(_CATMAN_troff): %.cat.troff: %.eqn $(MK) | $$(@D)/
 	$(info	EQN	$@)
 	! ($(EQN) -T$(NROFF_OUT_DEVICE) $(EQNFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
-$(_CATMAN_MAN_set): %.cat.set: %.cat.troff $(groff_man_ignore_grep) | $$(@D)/
+$(_CATMAN_MAN_set): %.cat.set: %.cat.troff $(groff_man_ignore_grep) $(MK) | $$(@D)/
 	$(info	TROFF	$@)
 	! ($(TROFF) $(TROFFFLAGS_MAN) $(NROFFFLAGS) <$< 2>&1 >$@ \
 	   | $(GREP) -v -f '$(groff_man_ignore_grep)' \
@@ -57,12 +57,12 @@ $(_CATMAN_MAN_set): %.cat.set: %.cat.troff $(groff_man_ignore_grep) | $$(@D)/
 	) \
 	| $(GREP) ^ >&2
 
-$(_CATMAN_MDOC_set): %.cat.set: %.cat.troff | $$(@D)/
+$(_CATMAN_MDOC_set): %.cat.set: %.cat.troff $(MK) | $$(@D)/
 	$(info	TROFF	$@)
 	! ($(TROFF) $(TROFFFLAGS_MDOC) $(NROFFFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
-$(_CATMAN): %.cat: %.cat.set | $$(@D)/
+$(_CATMAN): %.cat: %.cat.set $(MK) | $$(@D)/
 	$(info	GROTTY	$@)
 	$(GROTTY) $(GROTTYFLAGS) <$< >$@
 

@@ -121,9 +121,10 @@ help:
 .SECONDEXPANSION:
 
 
-MK := $(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk */*/*.mk))
-include $(MK)
-$(srcdir)/GNUMakefile $(MK):: ;
+MK_ := $(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk */*/*.mk))
+MK  := $(srcdir)/GNUMakefile $(MK_)
+include $(MK_)
+$(MK):: ;
 
 
 .PHONY: help-variables

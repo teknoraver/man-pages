@@ -26,22 +26,22 @@ _PSMAN_MDOC_set:= $(patsubst $(MANDIR)/%,$(_MANDIR)/%.ps.set,$(NONSO_MDOC))
 _PSMAN         := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.ps,$(NONSO_MAN) $(NONSO_MDOC))
 
 
-$(_PSMAN_troff): %.ps.troff: %.eqn | $$(@D)/
+$(_PSMAN_troff): %.ps.troff: %.eqn $(MK) | $$(@D)/
 	$(info	EQN	$@)
 	! ($(EQN) -Tps $(EQNFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
-$(_PSMAN_MAN_set): %.ps.set: %.ps.troff | $$(@D)/
+$(_PSMAN_MAN_set): %.ps.set: %.ps.troff $(MK) | $$(@D)/
 	$(info	TROFF	$@)
 	! ($(TROFF) -Tps $(TROFFFLAGS_MAN) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
-$(_PSMAN_MDOC_set): %.ps.set: %.ps.troff | $$(@D)/
+$(_PSMAN_MDOC_set): %.ps.set: %.ps.troff $(MK) | $$(@D)/
 	$(info	TROFF	$@)
 	! ($(TROFF) -Tps $(TROFFFLAGS_MDOC) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
-$(_PSMAN): %.ps: %.ps.set | $$(@D)/
+$(_PSMAN): %.ps: %.ps.set $(MK) | $$(@D)/
 	$(info	GROPS	$@)
 	$(GROPS) $(GROPSFLAGS) <$< >$@
 

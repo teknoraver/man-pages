@@ -25,11 +25,11 @@ _MAN_tbl := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.tbl,$(NONSO_MAN) $(NONSO_MDOC))
 _MAN_eqn := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.eqn,$(NONSO_MAN) $(NONSO_MDOC))
 
 
-$(_MAN_tbl): $(_MANDIR)/%.tbl: $(MANDIR)/% | $$(@D)/
+$(_MAN_tbl): $(_MANDIR)/%.tbl: $(MANDIR)/% $(MK) | $$(@D)/
 	$(info	PRECONV	$@)
 	$(PRECONV) $(PRECONVFLAGS) $< >$@
 
-$(_MAN_eqn): %.eqn: %.tbl | $$(@D)/
+$(_MAN_eqn): %.eqn: %.tbl $(MK) | $$(@D)/
 	$(info	TBL	$@)
 	$(TBL) <$< >$@
 

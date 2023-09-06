@@ -44,19 +44,19 @@ $(builddir)/dist/%/:
 	+$(INSTALL_DIR) $@
 
 
-$(_DISTPAGES): $(_DISTDIR)/man%: $(srcdir)/man% | $$(@D)/
+$(_DISTPAGES): $(_DISTDIR)/man%: $(srcdir)/man% $(MK) | $$(@D)/
 	$(info INSTALL	$@)
 	<$< \
 	$(SED) "/^.TH/s/(date)/$$(git log --format=%cs -1 -- $< $(HIDE_ERR))/" \
 	| $(SED) '/^.TH/s/(unreleased)/$(DISTVERSION)/' \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 
-$(_DISTOTHERS): $(_DISTDIR)/%: $(srcdir)/% | $$(@D)/
+$(_DISTOTHERS): $(_DISTDIR)/%: $(srcdir)/% $(MK) | $$(@D)/
 	$(info CP	$@)
 	$(CP) -T $< $@
 
 
-$(DISTFILE): $(_DISTFILES) | $$(@D)/
+$(DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
 	$(info TAR	$@)
 	$(TAR) $(TARFLAGS) -cf $@ -T /dev/null
 	$(GIT) ls-files \
@@ -65,7 +65,7 @@ $(DISTFILE): $(_DISTFILES) | $$(@D)/
 		--transform 's,^$(_DISTDIR),$(DISTNAME),'
 
 define DISTFILE_z_rule
-$(DISTFILE).$(2): %.$(2): % | $$$$(@D)/
+$(DISTFILE).$(2): %.$(2): % $(MK) | $$$$(@D)/
 	$$(info	$(1)	$$@)
 	$($(1)) $($(1)FLAGS) -kf $$<
 	touch $$@

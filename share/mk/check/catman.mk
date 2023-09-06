@@ -28,11 +28,11 @@ _CHECK_catman_grep := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.grep,$(NONSO_MAN) 
 _CHECK_catman := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.check-catman.touch,$(NONSO_MAN) $(NONSO_MDOC))
 
 
-$(_CHECK_catman_grep): %.grep: % | $$(@D)/
+$(_CHECK_catman_grep): %.grep: % $(MK) | $$(@D)/
 	$(info	COL	$@)
 	$(COL) $(COLFLAGS) <$< >$@
 
-$(_CHECK_catman): %.check-catman.touch: %.cat.grep | $$(@D)/
+$(_CHECK_catman): %.check-catman.touch: %.cat.grep $(MK) | $$(@D)/
 	$(info	GREP	$@)
 	! $(GREP) -n '.\{$(MANWIDTH)\}.' $< /dev/null >&2
 	touch $@

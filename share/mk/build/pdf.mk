@@ -26,22 +26,22 @@ _PDFMAN_MDOC_set:= $(patsubst $(MANDIR)/%,$(_MANDIR)/%.pdf.set,$(NONSO_MDOC))
 _PDFMAN         := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.pdf,$(NONSO_MAN) $(NONSO_MDOC))
 
 
-$(_PDFMAN_troff): %.pdf.troff: %.eqn | $$(@D)/
+$(_PDFMAN_troff): %.pdf.troff: %.eqn $(MK) | $$(@D)/
 	$(info	EQN	$@)
 	! ($(EQN) -Tpdf $(EQNFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
-$(_PDFMAN_MAN_set): %.pdf.set: %.pdf.troff | $$(@D)/
+$(_PDFMAN_MAN_set): %.pdf.set: %.pdf.troff $(MK) | $$(@D)/
 	$(info	TROFF	$@)
 	! ($(TROFF) -Tpdf $(TROFFFLAGS_MAN) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
-$(_PDFMAN_MDOC_set): %.pdf.set: %.pdf.troff | $$(@D)/
+$(_PDFMAN_MDOC_set): %.pdf.set: %.pdf.troff $(MK) | $$(@D)/
 	$(info	TROFF	$@)
 	! ($(TROFF) -Tpdf $(TROFFFLAGS_MDOC) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
-$(_PDFMAN): %.pdf: %.pdf.set | $$(@D)/
+$(_PDFMAN): %.pdf: %.pdf.set $(MK) | $$(@D)/
 	$(info	GROPDF	$@)
 	$(GROPDF) $(GROPDFFLAGS) <$< >$@
 

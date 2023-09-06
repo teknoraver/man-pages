@@ -60,28 +60,28 @@ $(foreach l, $(linters_c),                                                    \
 			$(_UNITS_src_c))))
 
 
-$(_LINT_c_checkpatch): %.lint-c.checkpatch.touch: %.c
+$(_LINT_c_checkpatch): %.lint-c.checkpatch.touch: %.c $(MK)
 	$(info LINT (checkpatch)	$@)
 	$(CHECKPATCH) $(CHECKPATCHFLAGS) -f $< >&2
 	touch $@
 
-$(_LINT_c_clang-tidy): %.lint-c.clang-tidy.touch: %.c
+$(_LINT_c_clang-tidy): %.lint-c.clang-tidy.touch: %.c $(MK)
 	$(info LINT (clang-tidy)	$@)
 	$(CLANG-TIDY) $(CLANG-TIDYFLAGS) $< -- $(CPPFLAGS) $(CFLAGS) 2>&1 \
 	| $(SED) '/generated\.$$/d' >&2
 	touch $@
 
-$(_LINT_c_cppcheck): %.lint-c.cppcheck.touch: %.c
+$(_LINT_c_cppcheck): %.lint-c.cppcheck.touch: %.c $(MK)
 	$(info LINT (cppcheck)	$@)
 	$(CPPCHECK) $(CPPCHECKFLAGS) $<
 	touch $@
 
-$(_LINT_c_cpplint): %.lint-c.cpplint.touch: %.c
+$(_LINT_c_cpplint): %.lint-c.cpplint.touch: %.c $(MK)
 	$(info LINT (cpplint)	$@)
 	$(CPPLINT) $(CPPLINTFLAGS) $< >/dev/null
 	touch $@
 
-$(_LINT_c_iwyu): %.lint-c.iwyu.touch: %.c
+$(_LINT_c_iwyu): %.lint-c.iwyu.touch: %.c $(MK)
 	$(info LINT (iwyu)	$@)
 	! ($(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CFLAGS) $< 2>&1 \
 	   | $(SED) -n '/should add these lines:/,$$p' \
