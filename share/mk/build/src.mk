@@ -17,9 +17,7 @@ include $(MAKEFILEDIR)/verbose.mk
 PKGCONF_LIBS := libbsd-overlay
 
 
-DEFAULT_CPPFLAGS := \
-	$(shell $(PKGCONF) --cflags $(PKGCONF_LIBS) $(HIDE_ERR)) \
-	-D_GNU_SOURCE
+DEFAULT_CPPFLAGS := $(shell $(PKGCONF) --cflags $(PKGCONF_LIBS) $(HIDE_ERR))
 EXTRA_CPPFLAGS   :=
 CPPFLAGS         := $(DEFAULT_CPPFLAGS) $(EXTRA_CPPFLAGS)
 
