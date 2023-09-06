@@ -234,6 +234,7 @@ is the default for the inherit scheduler attribute.
 #define handle_error_en(en, msg) \e
         do { errno = en; perror(msg); exit(EXIT_FAILURE); } while (0)
 \&
+[[noreturn]]
 static void
 usage(char *prog_name, char *msg)
 {
