@@ -327,7 +327,7 @@ main(void)
     strcpy(entry.ut_line, ttyname(STDIN_FILENO) + strlen("/dev/"));
     /* only correct for ptys named /dev/tty[pqr][0\-9a\-z] */
     strcpy(entry.ut_id, ttyname(STDIN_FILENO) + strlen("/dev/tty"));
-    time(&entry.ut_time);
+    entry.ut_time = time(NULL);
     strcpy(entry.ut_user, getpwuid(getuid())\->pw_name);
     memset(entry.ut_host, 0, UT_HOSTSIZE);
     entry.ut_addr = 0;
