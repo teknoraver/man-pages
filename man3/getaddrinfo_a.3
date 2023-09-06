@@ -340,6 +340,8 @@ Here is the program source code
 #include <stdlib.h>
 #include <string.h>
 \&
+#define MALLOC(n, type)  ((type *) reallocarray(NULL, n, sizeof(type)))
+\&
 int
 main(int argc, char *argv[])
 {
@@ -354,7 +356,7 @@ main(int argc, char *argv[])
     }
 \&
     for (size_t i = 0; i < argc \- 1; i++) {
-        reqs[i] = malloc(sizeof(*reqs[0]));
+        reqs[i] = MALLOC(1, struct gaicb);
         if (reqs[i] == NULL)
             err(EXIT_FAILURE, "malloc");
 \&
@@ -425,14 +427,35 @@ The program source is as follows:
 .\" SRC BEGIN (async.c)
 .EX
 #define _GNU_SOURCE
+#include <assert.h>
 #include <err.h>
 #include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 \&
+#define CALLOC(n, type)  ((type *) calloc(n, sizeof(type)))
+\&
+#define REALLOCF(ptr, n, type)                                          \e
+({                                                                      \e
+    static_assert(__builtin_types_compatible_p(typeof(ptr), type *));   \e
+                                                                        \e
+    (type *) reallocarrayf(ptr, n, sizeof(type));                       \e
+})
+\&
 static struct gaicb **reqs = NULL;
 static size_t nreqs = 0;
+\&
+static inline void *
+reallocarrayf(void *p, size_t nmemb, size_t size)
+{
+    void  *q;
+\&
+    q = reallocarray(p, nmemb, size);
+    if (q == NULL && nmemb != 0 && size != 0)
+        free(p);
+    return q;
+}
 \&
 static char *
 getcmd(void)
@@ -459,11 +482,11 @@ add_requests(void)
 \&
     while ((host = strtok(NULL, " "))) {
         nreqs++;
-        reqs = reallocf(reqs, sizeof(reqs[0]) * nreqs);
+        reqs = REALLOCF(reqs, nreqs, struct gaicb *);
         if (reqs == NULL)
             err(EXIT_FAILURE, "reallocf");
 \&
-        reqs[nreqs \- 1] = calloc(1, sizeof(*reqs[0]));
+        reqs[nreqs \- 1] = CALLOC(1, struct gaicb);
         if (reqs[nreqs \- 1] == NULL)
             err(EXIT_FAILURE, "calloc");
 \&
@@ -490,7 +513,7 @@ wait_requests(void)
     size_t n;
     struct gaicb const **wait_reqs;
 \&
-    wait_reqs = calloc(nreqs, sizeof(*wait_reqs));
+    wait_reqs = CALLOC(nreqs, const struct gaicb *);
     if (wait_reqs == NULL)
         err(EXIT_FAILURE, "calloc");
 \&
