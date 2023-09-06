@@ -122,7 +122,7 @@ help:
 
 
 MK_ := $(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk */*/*.mk))
-MK  := $(srcdir)/GNUMakefile $(MK_)
+MK  := $(srcdir)/GNUmakefile $(MK_)
 include $(MK_)
 $(MK):: ;
 
