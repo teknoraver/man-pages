@@ -128,37 +128,6 @@ POSIX.1-2001 and later.
 .BR signal (7)
 .RE
 .\"------------------------------------- sigval -----------------------/
-.TP
-.I sigval
-.RS
-.IR Include :
-.IR <signal.h> .
-.PP
-.EX
-union sigval {
-    int     sival_int; /* Integer value */
-    void   *sival_ptr; /* Pointer value */
-};
-.EE
-.PP
-Data passed with a signal.
-.PP
-.IR "Conforming to" :
-POSIX.1-2001 and later.
-.PP
-.IR "See also" :
-.BR pthread_sigqueue (3),
-.BR sigqueue (3),
-.BR sigevent (7)
-.PP
-See also the
-.I sigevent
-structure
-and the
-.I siginfo_t
-type
-in this page.
-.RE
 .\"------------------------------------- size_t -----------------------/
 .\"------------------------------------- sockaddr ---------------------/
 .\"------------------------------------- socklen_t --------------------/
