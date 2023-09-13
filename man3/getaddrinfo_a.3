@@ -118,7 +118,7 @@ structure pointed to by the
 .I sevp
 argument.
 For the definition and general details of this structure, see
-.BR sigevent (7).
+.BR sigevent (3type).
 The
 .I sevp\->sigev_notify
 field can have the following values:
@@ -131,7 +131,7 @@ When a look-up completes, generate the signal
 .I sigev_signo
 for the process.
 See
-.BR sigevent (7)
+.BR sigevent (3type)
 for general details.
 The
 .I si_code
@@ -147,7 +147,7 @@ When a look-up completes, invoke
 .I sigev_notify_function
 as if it were the start function of a new thread.
 See
-.BR sigevent (7)
+.BR sigevent (3type)
 for details.
 .PP
 For
@@ -642,4 +642,4 @@ main(void)
 .BR lio_listio (3),
 .BR hostname (7),
 .BR ip (7),
-.BR sigevent (7)
+.BR sigevent (3type)

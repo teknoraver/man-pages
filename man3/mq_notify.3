@@ -29,7 +29,7 @@ argument is a pointer to a
 .I sigevent
 structure.
 For the definition and general details of this structure, see
-.BR sigevent (7).
+.BR sigevent (3type).
 .PP
 If
 .I sevp
@@ -54,7 +54,7 @@ for notification, but when a message arrives, no notification is sent.
 Notify the process by sending the signal specified in
 .IR sigev_signo .
 See
-.BR sigevent (7)
+.BR sigevent (3type)
 for general details.
 The
 .I si_code
@@ -75,7 +75,7 @@ Upon message delivery, invoke
 .I sigev_notify_function
 as if it were the start function of a new thread.
 See
-.BR sigevent (7)
+.BR sigevent (3type)
 for details.
 .PP
 Only one process can be registered to receive notification
@@ -270,4 +270,4 @@ main(int argc, char *argv[])
 .BR mq_send (3),
 .BR mq_unlink (3),
 .BR mq_overview (7),
-.BR sigevent (7)
+.BR sigevent (3type)
