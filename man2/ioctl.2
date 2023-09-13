@@ -20,9 +20,8 @@ Standard C library
 .nf
 .B #include <sys/ioctl.h>
 .PP
-.BI "int ioctl(int " fd ", unsigned long " request ", ...);"
-.\" POSIX says 'request' is int, but glibc has the above
-.\" See https://bugzilla.kernel.org/show_bug.cgi?id=42705
+.BI "int ioctl(int " fd ", unsigned long " request ", ...);" "\f[R]  /* glibc, BSD */\f[]"
+.BI "int ioctl(int " fd ", int " request ", ...);" "\f[R]            /* musl, other UNIX */\f[]"
 .fi
 .SH DESCRIPTION
 The
@@ -103,7 +102,52 @@ model).
 .SH STANDARDS
 None.
 .SH HISTORY
-Version\~7 AT&T UNIX.
+Version\~7 AT&T UNIX has
+.PD 0
+.in +4n
+.nf
+.BI "ioctl(int " fildes ", int " request ", struct sgttyb *" argp );
+.fi
+.in
+.PP
+.PD
+(where
+.B struct sgttyb
+has historically been used by
+.BR stty (2)
+and
+.BR gtty (2),
+and is polymorphic by request type (like a
+.B void *
+would be, if it had been available)).
+.PP
+SysIII documents
+.I arg
+without a type at all.
+.PP
+4.3BSD has
+.PD 0
+.in +4n
+.nf
+.BI "ioctl(int " d ", unsigned long " request ", char *" argp );
+.fi
+.in
+.PP
+.PD
+(with
+.B char *
+similarly in for
+.BR "void *" ).
+.PP
+SysVr4 has
+.PD 0
+.in +4n
+.nf
+.BI "int ioctl(int " fildes ", int " request ", ... /* " arg " */);"
+.fi
+.in
+.PP
+.PD
 .SH NOTES
 In order to use this call, one needs an open file descriptor.
 Often the
