@@ -200,8 +200,9 @@ the application must enable it using the
 .B UFFDIO_API
 .BR ioctl (2)
 operation.
-This operation allows a handshake between the kernel and user space
-to determine the API version and supported features.
+This operation allows a two-step handshake between the kernel and user space
+to determine what API version and features the kernel supports,
+and then to enable those features user space wants.
 This operation must be performed before any of the other
 .BR ioctl (2)
 operations described below (or those operations fail with the
