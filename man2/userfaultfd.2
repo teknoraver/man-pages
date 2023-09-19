@@ -881,6 +881,13 @@ main(int argc, char *argv[])
     if (uffd == \-1)
         err(EXIT_FAILURE, "userfaultfd");
 \&
+    /* NOTE: Two-step feature handshake is not needed here, since this
+       example doesn't require any specific features.
+
+       Programs that *do* should call UFFDIO_API twice: once with
+       `features = 0` to detect features supported by this kernel, and
+       again with the subset of features the program actually wants to
+       enable. */
     uffdio_api.api = UFFD_API;
     uffdio_api.features = 0;
     if (ioctl(uffd, UFFDIO_API, &uffdio_api) == \-1)
