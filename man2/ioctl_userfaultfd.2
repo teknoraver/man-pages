@@ -31,6 +31,7 @@ using calls of the form:
 ioctl(fd, cmd, argp);
 .EE
 .in
+.PP
 In the above,
 .I fd
 is a file descriptor referring to a userfaultfd object,
@@ -351,6 +352,7 @@ operation is supported.
 .B 1 << _UFFDIO_WRITEPROTECT
 The
 .B UFFDIO_WRITEPROTECT
+operation is supported.
 .TP
 .B 1 << _UFFDIO_ZEROPAGE
 The
@@ -693,7 +695,8 @@ field of the
 structure was not a multiple of the system page size; or
 .I len
 was zero; or the specified range was otherwise invalid.
-.SS UFFDIO_WRITEPROTECT (Since Linux 5.7)
+.SS UFFDIO_WRITEPROTECT
+(Since Linux 5.7.)
 Write-protect or write-unprotect a userfaultfd-registered memory range
 registered with mode
 .BR UFFDIO_REGISTER_MODE_WP .
