@@ -77,7 +77,7 @@ typedef struct {
     int      si_code;   /* Signal code */
     pid_t    si_pid;    /* Sending process ID */
     uid_t    si_uid;    /* Real user ID of sending process */
-    void    *si_addr;   /* Address of faulting instruction */
+    void    *si_addr;   /* Memory location which caused fault */
     int      si_status; /* Exit value or signal */
     union sigval si_value;  /* Signal value */
 } siginfo_t;
