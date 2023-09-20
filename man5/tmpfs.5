@@ -103,6 +103,12 @@ suffixes like
 .BR size ,
 but not a % suffix.
 .TP
+.BR noswap "(since Linux 6.4)"
+.\" commit 2c6efe9cf2d7841b75fe38ed1adbd41a90f51ba0
+Disables swap.
+Remounts must respect the original settings.
+By default swap is enabled.
+.TP
 .BR mode "=\fImode\fP"
 Set initial permissions of the root directory.
 .TP
