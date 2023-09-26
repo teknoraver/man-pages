@@ -1,13 +1,13 @@
 '\" t
-.\" Copyright (C) 2019, Microchip Technology Inc. and its subsidiaries
+.\" Copyright (C) 2019-2023, Microchip Technology Inc. and its subsidiaries
 .\" Copyright (C) 2016-2018, Microsemi Corporation
 .\" Copyright (C) 2016, PMC-Sierra, Inc.
-.\" Written by Kevin Barnett <kevin.barnett@microsemi.com>
+.\" Written by Kevin Barnett <kevin.barnett@microchip.com>
 .\"
 .\" SPDX-License-Identifier: GPL-2.0-only
 .TH smartpqi 4 (date) "Linux man-pages (unreleased)"
 .SH NAME
-smartpqi \- Microsemi Smart Family SCSI driver
+smartpqi \- Microchip Smart Storage SCSI driver
 .SH SYNOPSIS
 .SY "modprobe smartpqi"
 .RB [ disable_device_id_wildcards= { 0 | 1 }]
@@ -19,7 +19,7 @@ smartpqi \- Microsemi Smart Family SCSI driver
 .YS
 .SH DESCRIPTION
 .B smartpqi
-is a SCSI driver for Microsemi Smart Family controllers.
+is a SCSI driver for Microchip Smart Storage controllers.
 .SS Supported \f[BI]ioctl\fP\/() operations
 For compatibility with applications written for the
 .BR cciss (4)
@@ -311,10 +311,10 @@ The
 driver was added in Linux 4.9.
 .SH NOTES
 .SS Configuration
-To configure a Microsemi Smart Family controller,
+To configure a Microchip Smart Storage controller,
 refer to the User Guide for the controller,
 which can be found by searching for the specific controller at
-.UR https://storage.microsemi.com/
+.UR https://www.microchip.com/design-centers/storage
 .UE .
 .SH SEE ALSO
 .BR cciss (4),
