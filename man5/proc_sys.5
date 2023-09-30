@@ -28,26 +28,6 @@ by any of the following whitespace characters:
 Using other separators leads to the error
 .BR EINVAL .
 .TP
-.I /proc/sys/net
-This directory contains networking stuff.
-Explanations for some of the files under this directory can be found in
-.BR tcp (7)
-and
-.BR ip (7).
-.TP
-.I /proc/sys/net/core/bpf_jit_enable
-See
-.BR bpf (2).
-.TP
-.I /proc/sys/net/core/somaxconn
-This file defines a ceiling value for the
-.I backlog
-argument of
-.BR listen (2);
-see the
-.BR listen (2)
-manual page for details.
-.TP
 .I /proc/sys/proc
 This directory may be empty.
 .TP
