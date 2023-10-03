@@ -1,4 +1,9 @@
-.TH PTHREAD_MUTEXATTR_SETKIND_NP 3 LinuxThreads
+.\" Copyright, Xavier Leroy <Xavier.Leroy@inria.fr>
+.\" Copyright 2023, Alejandro Colomar <alx@kernel.org>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH pthread_mutexattr_setkind_np 3 (date) "Linux man-pages (unreleased)"
 
 
 .SH NAME
@@ -29,9 +34,6 @@ On error, \fBpthread_mutexattr_setkind_np\fP returns the following error code:
 \fBEINVAL\fP
 \fIkind\fP is neither \fBPTHREAD_MUTEX_FAST_NP\fP nor \fBPTHREAD_MUTEX_RECURSIVE_NP\fP
 nor \fBPTHREAD_MUTEX_ERRORCHECK_NP\fP
-
-.SH AUTHOR
-Xavier Leroy <Xavier.Leroy@inria.fr>
 
 .SH "SEE ALSO"
 \fBpthread_mutexattr_settype\fP(3),

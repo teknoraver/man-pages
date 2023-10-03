@@ -1,4 +1,9 @@
-.TH PTHREAD_COND 3 LinuxThreads
+.\" Copyright, Xavier Leroy <Xavier.Leroy@inria.fr>
+.\" Copyright 2023, Alejandro Colomar <alx@kernel.org>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH pthread_cond_init 3 (date) "Linux man-pages (unreleased)"
 
 
 .SH NAME
@@ -130,9 +135,6 @@ on error:
 \fBEBUSY\fP
 some threads are currently waiting on \fIcond\fP.
 .RE
-
-.SH AUTHOR
-Xavier Leroy <Xavier.Leroy@inria.fr>
 
 .SH "SEE ALSO"
 \fBpthread_condattr_init\fP(3),
