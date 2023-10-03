@@ -83,7 +83,6 @@ struct uffdio_api {
 The
 .I api
 field denotes the API version requested by the application.
-.PP
 The kernel verifies that it can support the requested API version,
 and sets the
 .I features
@@ -92,6 +91,25 @@ and
 fields to bit masks representing all the available features and the generic
 .BR ioctl (2)
 operations available.
+.PP
+Since Linux 4.11,
+applications should use the
+.I features
+field to perform a two-step handshake.
+First,
+.BR UFFDIO_API
+is called with the
+.I features
+field set to zero.
+The kernel responds by setting all supported feature bits.
+.PP
+Applications which do not require any specific features
+can begin using the userfaultfd immediately.
+Applications which do need specific features
+should call
+.BR UFFDIO_API
+again with a subset of the reported feature bits set
+to enable those features.
 .PP
 Before Linux 4.11, the
 .I features
@@ -102,24 +120,11 @@ and zero (i.e., no feature bits) is placed in the
 field by the kernel upon return from
 .BR ioctl (2).
 .PP
-Starting from Linux 4.11, the
-.I features
-field can be used to ask whether particular features are supported
-and explicitly enable userfaultfd features that are disabled by default.
-The kernel always reports all the available features in the
-.I features
-field.
-.PP
-To enable userfaultfd features the application should set
-a bit corresponding to each feature it wants to enable in the
-.I features
-field.
-If the kernel supports all the requested features it will enable them.
-Otherwise it will zero out the returned
+If the application sets unsupported feature bits,
+the kernel will zero out the returned
 .I uffdio_api
 structure and return
 .BR EINVAL .
-.\" FIXME add more details about feature negotiation and enablement
 .PP
 The following feature bits may be set:
 .TP
