@@ -280,17 +280,31 @@ refers to an address that is outside the calling process's
 accessible address space.
 .TP
 .B EINVAL
-The userfaultfd has already been enabled by a previous
-.B UFFDIO_API
-operation.
-.TP
-.B EINVAL
 The API version requested in the
 .I api
 field is not supported by this kernel, or the
 .I features
 field passed to the kernel includes feature bits that are not supported
 by the current kernel version.
+.TP
+.B EINVAL
+A previous
+.B UFFDIO_API
+call already enabled one or more features for this userfaultfd.
+Calling
+.B UFFDIO_API
+twice,
+the first time with no features set,
+is explicitly allowed
+as per the two-step feature detection handshake.
+.TP
+.B EPERM
+The
+.B UFFD_FEATURE_EVENT_FORK
+feature was enabled,
+but the calling process doesn't have the
+.B CAP_SYS_PTRACE
+capability.
 .\" FIXME In the above error case, the returned 'uffdio_api' structure is
 .\" zeroed out. Why is this done? This should be explained in the manual page.
 .\"
