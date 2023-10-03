@@ -17,6 +17,7 @@ smartpqi \- Microchip Smart Storage SCSI driver
 .RB [ expose_ld_first= { 0 | 1 }]
 .RB [ hide_vsep= { 0 | 1 }]
 .RB [ disable_managed_interrupts= { 0 | 1 }]
+.RB [ ctrl_ready_timeout= { 0 |[ 30 , 1800 ]}]
 .YS
 .SH DESCRIPTION
 .B smartpqi
@@ -107,6 +108,14 @@ Disables driver utilization of Linux kernel managed interrupts for controllers.
 The managed interrupts feature automatically distributes interrupts
 to all available CPUs and assigns SMP affinity.
 The default value is 0 (managed interrupts enabled).
+.TP
+.BR ctrl_ready_timeout= { 0 |[ 30 , 1800 ]}
+This option specifies the timeout in seconds for the driver to wait
+for the controller to be ready.
+The valid range is 0 or
+.RB [ 30 ", " 1800 ].
+The default value is 0,
+which causes the driver to use a timeout of 180 seconds.
 .SH FILES
 .SS Device nodes
 Logical drives are accessed via the SCSI disk driver
