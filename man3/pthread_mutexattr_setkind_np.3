@@ -7,7 +7,10 @@
 .
 .
 .SH NAME
-pthread_mutexattr_setkind_np, pthread_mutexattr_getkind_np \- deprecated mutex creation attributes
+pthread_mutexattr_setkind_np,
+pthread_mutexattr_getkind_np
+\-
+deprecated mutex creation attributes
 .
 .
 .SH SYNOPSIS
@@ -18,23 +21,30 @@ pthread_mutexattr_setkind_np, pthread_mutexattr_getkind_np \- deprecated mutex c
 .
 .
 .SH DESCRIPTION
-These functions are deprecated, use \fBpthread_mutexattr_settype\fP(3)
-and \fBpthread_mutexattr_gettype\fP(3) instead.
+These functions are deprecated,
+use \fBpthread_mutexattr_settype\fP(3)
+and \fBpthread_mutexattr_gettype\fP(3)
+instead.
 .
 .
 .SH "RETURN VALUE"
 \fBpthread_mutexattr_getkind_np\fP always returns 0.
 .PP
-\fBpthread_mutexattr_setkind_np\fP returns 0 on success and a non-zero
-error code on error.
+\fBpthread_mutexattr_setkind_np\fP
+returns 0 on success and a non-zero error code on error.
 .
 .
 .SH ERRORS
-On error, \fBpthread_mutexattr_setkind_np\fP returns the following error code:
+On error,
+\fBpthread_mutexattr_setkind_np\fP returns the following error code:
 .TP
 \fBEINVAL\fP
-\fIkind\fP is neither \fBPTHREAD_MUTEX_FAST_NP\fP nor \fBPTHREAD_MUTEX_RECURSIVE_NP\fP
-nor \fBPTHREAD_MUTEX_ERRORCHECK_NP\fP
+\fIkind\fP is neither
+\fBPTHREAD_MUTEX_FAST_NP\fP
+nor
+\fBPTHREAD_MUTEX_RECURSIVE_NP\fP
+nor
+\fBPTHREAD_MUTEX_ERRORCHECK_NP\fP.
 .
 .
 .SH "SEE ALSO"

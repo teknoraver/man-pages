@@ -7,7 +7,9 @@
 .
 .
 .SH NAME
-pthread_once \- once-only initialization
+pthread_once
+\-
+once-only initialization
 .
 .
 .SH SYNOPSIS
@@ -19,16 +21,19 @@ pthread_once \- once-only initialization
 .
 .
 .SH DESCRIPTION
-The purpose of \fBpthread_once\fP is to ensure that a piece of
-initialization code is executed at most once. The \fIonce_control\fP
-argument points to a static or extern variable statically initialized
-to \fBPTHREAD_ONCE_INIT\fP.
+The purpose of \fBpthread_once\fP is
+to ensure that a piece of initialization code is executed at most once.
+The \fIonce_control\fP argument points to a static or extern variable
+statically initialized to \fBPTHREAD_ONCE_INIT\fP.
 .PP
-The first time \fBpthread_once\fP is called with a given \fIonce_control\fP
-argument, it calls \fIinit_routine\fP with no argument and changes the
-value of the \fIonce_control\fP variable to record that initialization has
-been performed. Subsequent calls to \fBpthread_once\fP with the same
-\fBonce_control\fP argument do nothing.
+The first time \fBpthread_once\fP is called
+with a given \fIonce_control\fP argument,
+it calls \fIinit_routine\fP with no argument
+and changes the value of the \fIonce_control\fP variable
+to record that initialization has been performed.
+Subsequent calls to \fBpthread_once\fP
+with the same \fBonce_control\fP argument
+do nothing.
 .
 .
 .SH "RETURN VALUE"

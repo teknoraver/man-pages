@@ -7,7 +7,10 @@
 .
 .
 .SH NAME
-pthread_condattr_init, pthread_condattr_destroy \- condition creation attributes
+pthread_condattr_init,
+pthread_condattr_destroy
+\-
+condition creation attributes
 .
 .
 .SH SYNOPSIS
@@ -18,20 +21,23 @@ pthread_condattr_init, pthread_condattr_destroy \- condition creation attributes
 .
 .
 .SH DESCRIPTION
-Condition attributes can be specified at condition creation time, by passing a
-condition attribute object as second argument to \fBpthread_cond_init\fP(3).
-Passing \fBNULL\fP is equivalent to passing a condition attribute object with
-all attributes set to their default values.
+Condition attributes can be specified at condition creation time,
+by passing a condition attribute object
+as second argument to \fBpthread_cond_init\fP(3).
+Passing \fBNULL\fP is equivalent to
+passing a condition attribute object
+with all attributes set to their default values.
 .PP
-The LinuxThreads implementation supports no attributes for
-conditions. The functions on condition attributes are included only
-for compliance with the POSIX standard.
+The LinuxThreads implementation supports no attributes for conditions.
+The functions on condition attributes are
+included only for compliance with the POSIX standard.
 .PP
-\fBpthread_condattr_init\fP initializes the condition attribute object
-\fIattr\fP and fills it with default values for the attributes.
+\fBpthread_condattr_init\fP
+initializes the condition attribute object \fIattr\fP
+and fills it with default values for the attributes.
 \fBpthread_condattr_destroy\fP destroys a condition attribute object,
-which must not be reused until it is reinitialized. Both functions do
-nothing in the LinuxThreads implementation.
+which must not be reused until it is reinitialized.
+Both functions do nothing in the LinuxThreads implementation.
 .
 .
 .SH "RETURN VALUE"
