@@ -76,7 +76,7 @@ if after all the destructors have been called
 for all non-\fBNULL\fP values,
 there are still some non-\fBNULL\fP values with associated destructors,
 then the process is repeated.
-The LinuxThreads implementation stops the process
+The glibc implementation stops the process
 after \fBPTHREAD_DESTRUCTOR_ITERATIONS\fP iterations,
 even if some non-\fBNULL\fP values with associated descriptors remain.
 Other implementations may loop indefinitely.
