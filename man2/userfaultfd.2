@@ -222,12 +222,11 @@ operation,
 a page fault occurring in the requested memory range, and satisfying
 the mode defined at the registration time, will be forwarded by the kernel to
 the user-space application.
-The application can then use various (e.g.
-.B UFFDIO_COPY ,
-.B UFFDIO_ZEROPAGE ,
+The application can then use various (e.g.,
+.BR UFFDIO_COPY ,
+.BR UFFDIO_ZEROPAGE ,
 or
-.B UFFDIO_CONTINUE
-)
+.BR UFFDIO_CONTINUE )
 .BR ioctl (2)
 operations to resolve the page fault.
 .PP
