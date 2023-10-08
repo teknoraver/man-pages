@@ -491,7 +491,10 @@ Atomically copy a continuous memory chunk into the userfault registered
 range and optionally wake up the blocked thread.
 The source and destination addresses and the number of bytes to copy are
 specified by the
-.IR src ", " dst ", and " len
+.IR src ,
+.IR dst ,
+and
+.I len
 fields of the
 .I uffdio_copy
 structure pointed to by
