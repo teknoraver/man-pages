@@ -316,7 +316,7 @@ capability.
 .SS UFFDIO_REGISTER
 (Since Linux 4.3.)
 Register a memory address range with the userfaultfd object.
-The pages in the range must be "compatible".
+The pages in the range must be \[lq]compatible\[rq].
 Please refer to the list of register modes below
 for the compatible memory backends for each mode.
 .PP
@@ -451,8 +451,9 @@ There as an incompatible mapping in the specified address range.
 .SS UFFDIO_UNREGISTER
 (Since Linux 4.3.)
 Unregister a memory address range from userfaultfd.
-The pages in the range must be "compatible" (see the description of
-.BR  UFFDIO_REGISTER .)
+The pages in the range must be \[lq]compatible\[rq]
+(see the description of
+.BR UFFDIO_REGISTER .)
 .PP
 The address range to unregister is specified in the
 .I uffdio_range
