@@ -102,12 +102,19 @@ which contain padding null bytes after the character sequence,
 to fill the rest of the buffer
 without affecting the character sequence;
 however, those padding null bytes are not part of the character sequence.
+.I zustr
+stands for Zero-padded Unterminated STRing.
+Don't confuse zero-padded with null-terminated:
+zero-padded means 0 or more padding zeros (null characters),
+while null-terminated means exactly 1 terminating null character.
 .\" ----- DESCRIPTION :: Terms (and abbreviations) :: measured character sequence
 .TP
 .IR "measured character sequence " ( ustr )
 Character sequence delimited by its length.
 It may be a slice of a larger character sequence,
 or even of a string.
+.I ustr
+stands for Unterminated STRing.
 .RE
 .\" ----- DESCRIPTION :: Terms (and abbreviations) :: length (len) ----/
 .TP
