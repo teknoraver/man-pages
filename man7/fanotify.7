@@ -207,7 +207,7 @@ structure within the read buffer:
 struct fanotify_event_info_fid {
     struct fanotify_event_info_header hdr;
     __kernel_fsid_t fsid;
-    unsigned char file_handle[0];
+    unsigned char handle[];
 };
 .EE
 .in
@@ -576,8 +576,9 @@ and contains the same value as
 when calling
 .BR statfs (2).
 .TP
-.I file_handle
-This is a variable length structure of type struct file_handle.
+.I handle
+This field contains a variable-length structure of type
+.IR "struct file_handle" .
 It is an opaque handle that corresponds to a specified object on a
 filesystem as returned by
 .BR name_to_handle_at (2).
@@ -601,14 +602,14 @@ if the value of
 field is
 .BR FAN_EVENT_INFO_TYPE_FID ,
 the
-.I file_handle
+.I handle
 identifies the object correlated to the event.
 If the value of
 .I info_type
 field is
 .BR FAN_EVENT_INFO_TYPE_DFID ,
 the
-.I file_handle
+.I handle
 identifies the directory object correlated to the event or the parent directory
 of a non-directory object correlated to the event.
 If the value of
@@ -616,7 +617,7 @@ If the value of
 field is
 .BR FAN_EVENT_INFO_TYPE_DFID_NAME ,
 the
-.I file_handle
+.I handle
 identifies the same directory object that would be reported with
 .B FAN_EVENT_INFO_TYPE_DFID
 and the file handle is followed by a null terminated string that identifies the
@@ -796,9 +797,9 @@ but not all kinds of error types are reported by all filesystems.
 .PP
 Errors not directly related to a file (i.e. super block corruption)
 are reported with an invalid
-.IR file_handle .
+.IR handle .
 For these errors, the
-.I file_handle
+.I handle
 will have the field
 .I handle_type
 set to
