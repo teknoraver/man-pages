@@ -26,7 +26,7 @@ Standard C library
 .B "int syscall(SYS_get_thread_area);"
 .BI "int syscall(SYS_set_thread_area, unsigned long " tp );
 .PP
-.B #elif defined __mips__
+.B #elif defined __mips__ || defined __csky__
 .PP
 .BI "int syscall(SYS_set_thread_area, unsigned long " addr );
 .PP
@@ -42,17 +42,17 @@ These calls provide architecture-specific support for a thread-local storage
 implementation.
 At the moment,
 .BR set_thread_area ()
-is available on m68k, MIPS, and x86 (both 32-bit and 64-bit variants);
+is available on m68k, MIPS, C-SKY, and x86 (both 32-bit and 64-bit variants);
 .BR get_thread_area ()
 is available on m68k and x86.
 .PP
-On m68k and MIPS,
+On m68k, MIPS and C-SKY,
 .BR set_thread_area ()
 allows storing an arbitrary pointer (provided in the
 .B tp
 argument on m68k and in the
 .B addr
-argument on MIPS)
+argument on MIPS and C-SKY)
 in the kernel data structure associated with the calling thread;
 this pointer can later be retrieved using
 .BR get_thread_area ()
@@ -139,7 +139,7 @@ return 0 on success, and \-1 on failure, with
 .I errno
 set to indicate the error.
 .PP
-On MIPS and m68k,
+On C-SKY, MIPS and m68k,
 .BR set_thread_area ()
 always returns 0.
 On m68k,
