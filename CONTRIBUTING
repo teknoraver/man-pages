@@ -41,8 +41,10 @@ Description
              <https://marc.info/?l=linux-man>
 
        Subscription:
-             Send a message to <majordomo@vger.kernel.org> containing
-             the following body:
+             It is not necessary to subscribe to the list to send an
+             email.  If you want to subscribe to the list, send an email
+             to <majordomo@vger.kernel.org> containing the following
+             body:
 
                  subscribe linux-man
 
