@@ -97,7 +97,7 @@ applications should use the
 .I features
 field to perform a two-step handshake.
 First,
-.BR UFFDIO_API
+.B UFFDIO_API
 is called with the
 .I features
 field set to zero.
@@ -107,7 +107,7 @@ Applications which do not require any specific features
 can begin using the userfaultfd immediately.
 Applications which do need specific features
 should call
-.BR UFFDIO_API
+.B UFFDIO_API
 again with a subset of the reported feature bits set
 to enable those features.
 .PP
