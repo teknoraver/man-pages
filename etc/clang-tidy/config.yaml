@@ -37,6 +37,7 @@ Checks: >
     -hicpp-uppercase-literal-suffix,
     -llvmlibc-restrict-system-libc-headers,
     -misc-no-recursion,
+    -modernize-macro-to-enum,
     -readability-braces-around-statements,
     -readability-function-cognitive-complexity,
     -readability-identifier-length,
