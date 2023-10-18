@@ -503,7 +503,7 @@ c) the wrong
 value is returned in case of an error.
 .\" Below, the long description of the errors from the previous bullet
 .\" point (abridged because it's too much detail for a man page).
-.\" .IP *
+.\" .IP \[bu]
 .\" If one of the
 .\" .I tv_nsec
 .\" fields is
@@ -515,7 +515,7 @@ value is returned in case of an error.
 .\" should occur if the process's effective user ID does not match
 .\" the file owner and the process is not privileged.
 .\" Instead, the call successfully changes one of the timestamps.
-.\" .IP *
+.\" .IP \[bu]
 .\" If file is not writable by the effective user ID of the process and
 .\" the process's effective user ID does not match the file owner and
 .\" the process is not privileged,
@@ -531,7 +531,7 @@ value is returned in case of an error.
 .\" fields are
 .\" .BR UTIME_NOW .
 .\" Instead the call succeeds.
-.\" .IP *
+.\" .IP \[bu]
 .\" If a file is marked as append-only (see
 .\" .BR chattr (1)),
 .\" then Linux traditionally
@@ -553,7 +553,7 @@ value is returned in case of an error.
 .\" .BR UTIME_NOW .
 .\" Instead, the call fails with the error
 .\" .BR EPERM .
-.\" .IP *
+.\" .IP \[bu]
 .\" If a file is marked as immutable (see
 .\" .BR chattr (1)),
 .\" then Linux traditionally

@@ -571,11 +571,11 @@ fields of the
 structure.
 The supervisor should set the fields of this structure as follows:
 .RS
-.IP + 3
+.IP \[bu] 3
 .I flags
 does not contain
 .BR SECCOMP_USER_NOTIF_FLAG_CONTINUE .
-.IP +
+.IP \[bu]
 .I error
 is set either to 0 for a spoofed "success" return or to a negative
 error number for a spoofed "failure" return.
@@ -589,7 +589,7 @@ to return \-1, and
 is assigned the negated
 .I error
 value.
-.IP +
+.IP \[bu]
 .I val
 is set to a value that will be used as the return value for a spoofed
 "success" return for the target's system call.
