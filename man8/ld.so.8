@@ -310,7 +310,7 @@ A nonzero value may have been set by a Linux Security Module.
 .SS Environment variables
 Among the more important environment variables are the following:
 .TP
-.BR LD_ASSUME_KERNEL " (since glibc 2.2.3)"
+.BR LD_ASSUME_KERNEL " (from glibc 2.2.3 to glibc 2.36)"
 Each shared object can inform the dynamic linker of the minimum kernel ABI
 version that it requires.
 (This requirement is encoded in an ELF note section that is viewable via
@@ -627,8 +627,11 @@ Since glibc 2.3.4,
 .B LD_DYNAMIC_WEAK
 is ignored in secure-execution mode.
 .TP
-.BR LD_HWCAP_MASK " (since glibc 2.1)"
+.BR LD_HWCAP_MASK " (from glibc 2.1 to glibc 2.38)"
 Mask for hardware capabilities.
+Since glibc 2.26,
+the option might be ignored
+if glibc does not support tunables.
 .TP
 .BR LD_ORIGIN_PATH " (since glibc 2.1)"
 Path where the binary is found.
@@ -691,7 +694,7 @@ Since glibc 2.3.4,
 .B LD_SHOW_AUXV
 is ignored in secure-execution mode.
 .TP
-.BR LD_TRACE_PRELINKING " (since glibc 2.4)"
+.BR LD_TRACE_PRELINKING " (from glibc 2.4 to glibc 2.35)"
 If this environment variable is defined,
 trace prelinking of the object whose name is assigned to
 this environment variable.
@@ -702,7 +705,7 @@ If the object name is not recognized,
 .\" (This is what seems to happen, from experimenting)
 then all prelinking activity is traced.
 .TP
-.BR LD_USE_LOAD_BIAS " (since glibc 2.3.3)"
+.BR LD_USE_LOAD_BIAS " (from glibc 2.3.3 to glibc 2.35)"
 .\" http://sources.redhat.com/ml/libc-hacker/2003-11/msg00127.html
 .\" Subject: [PATCH] Support LD_USE_LOAD_BIAS
 .\" Jakub Jelinek
