@@ -244,6 +244,11 @@ If this feature bit is set,
 the kernel supports resolving faults with the
 .B UFFDIO_POISON
 ioctl.
+.TP
+.BR UFFD_FEATURE_WP_ASYNC " (since Linux 6.7)"
+If this feature bit is set,
+the write protection faults would be asynchronously resolved
+by the kernel.
 .PP
 The returned
 .I ioctls
