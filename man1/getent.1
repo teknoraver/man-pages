@@ -29,8 +29,7 @@ support enumeration).
 The
 .I database
 may be any of those supported by the GNU C Library, listed below:
-.RS 3
-.TP 10
+.TP
 .B ahosts
 When no
 .I key
@@ -324,7 +323,6 @@ arguments are provided, pass each
 in succession to
 .BR getspnam (3)
 and display the result.
-.RE
 .SH OPTIONS
 .TP
 .BR \-s\ \fIservice\fP ", " \-\-service\ \fIservice\fP
@@ -358,7 +356,6 @@ Print the version number, license, and disclaimer of warranty for
 .SH EXIT STATUS
 One of the following exit values can be returned by
 .BR getent :
-.RS 3
 .TP
 .B 0
 Command completed successfully.
@@ -377,6 +374,5 @@ could not be found in the
 .B 3
 Enumeration not supported on this
 .IR database .
-.RE
 .SH SEE ALSO
 .BR nsswitch.conf (5)
