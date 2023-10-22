@@ -698,7 +698,13 @@ and
 for more details.
 .RE
 .TP
-.IR kprobe_func ", " uprobe_path ", " kprobe_addr ", and " probe_offset
+.I kprobe_func
+.TQ
+.I uprobe_path
+.TQ
+.I kprobe_addr
+.TQ
+.I probe_offset
 These fields describe the kprobe/uprobe for dynamic PMUs
 .B kprobe
 and
@@ -721,7 +727,9 @@ use
 and
 .IR probe_offset .
 .TP
-.IR sample_period ", " sample_freq
+.I sample_period
+.TQ
+.I sample_freq
 A "sampling" event is one that generates an overflow notification
 every N events, where N is given by
 .IR sample_period .
@@ -1354,7 +1362,9 @@ This enables synchronous signal delivery of
 .B SIGTRAP
 on event overflow.
 .TP
-.IR wakeup_events ", " wakeup_watermark
+.I wakeup_events
+.TQ
+.I wakeup_watermark
 This union sets how many samples
 .RI ( wakeup_events )
 or bytes
@@ -1644,7 +1654,9 @@ Available only if
 .B PERF_FORMAT_GROUP
 was specified.
 .TP
-.IR time_enabled ", " time_running
+.I time_enabled
+.TQ
+.I time_running
 Total time the event was enabled and running.
 Normally these values are the same.
 Multiplexing happens if the number of events is more than the
@@ -1861,7 +1873,11 @@ count += pmc;
 .EE
 .in
 .TP
-.IR time_shift ", " time_mult ", " time_offset
+.I time_shift
+.TQ
+.I time_mult
+.TQ
+.I time_offset
 .IP
 If
 .IR cap_usr_time ,
@@ -1966,7 +1982,13 @@ where perf sample data begins.
 Contains the size of the perf sample region within
 the mmap buffer.
 .TP
-.IR aux_head ", " aux_tail ", " aux_offset ", " aux_size " (since Linux 4.1)"
+.I aux_head
+.TQ
+.I aux_tail
+.TQ
+.I aux_offset
+.TQ
+.I aux_size " (since Linux 4.1)"
 .\" commit 45bfb2e50471abbbfd83d40d28c986078b0d24ff
 The AUX region allows
 .BR mmap (2)-ing
@@ -2260,7 +2282,9 @@ struct {
 .EE
 .in
 .TP
-.BR PERF_RECORD_THROTTLE ", " PERF_RECORD_UNTHROTTLE
+.B PERF_RECORD_THROTTLE
+.TQ
+.B PERF_RECORD_UNTHROTTLE
 This record indicates a throttle/unthrottle event.
 .IP
 .in +4n
@@ -2373,7 +2397,9 @@ If
 is enabled, then a 64-bit instruction
 pointer value is included.
 .TP
-.IR pid ", " tid
+.I pid
+.TQ
+.I tid
 If
 .B PERF_SAMPLE_TID
 is enabled, then a 32-bit process ID
@@ -2412,7 +2438,9 @@ the actual ID is returned, not the group leader.
 This ID is the same as the one returned by
 .BR PERF_FORMAT_ID .
 .TP
-.IR cpu ", " res
+.I cpu
+.TQ
+.I res
 If
 .B PERF_SAMPLE_CPU
 is enabled, this is a 32-bit value indicating
@@ -2436,7 +2464,9 @@ value used at
 .BR perf_event_open ()
 time.
 .TP
-.IR nr ", " ips[nr]
+.I nr
+.TQ
+.I ips[nr]
 If
 .B PERF_SAMPLE_CALLCHAIN
 is enabled, then a 64-bit number is included
@@ -2444,7 +2474,9 @@ which indicates how many following 64-bit instruction pointers will
 follow.
 This is the current callchain.
 .TP
-.IR size ", " data[size]
+.I size
+.TQ
+.I data[size]
 If
 .B PERF_SAMPLE_RAW
 is enabled, then a 32-bit value indicating size
@@ -2456,7 +2488,9 @@ The ABI doesn't make any promises with respect to the stability
 of its content, it may vary depending
 on event, hardware, and kernel version.
 .TP
-.IR bnr ", " lbr[bnr]
+.I bnr
+.TQ
+.I lbr[bnr]
 If
 .B PERF_SAMPLE_BRANCH_STACK
 is enabled, then a 64-bit value indicating
@@ -2507,7 +2541,9 @@ The type of branches recorded is specified by the
 field.
 .RE
 .TP
-.IR abi ", " regs[weight(mask)]
+.I abi
+.TQ
+.I regs[weight(mask)]
 If
 .B PERF_SAMPLE_REGS_USER
 is enabled, then the user CPU registers are recorded.
@@ -2530,7 +2566,11 @@ The number of values is the number of bits set in the
 .I sample_regs_user
 bit mask.
 .TP
-.IR size ", " data[size] ", " dyn_size
+.I size
+.TQ
+.I data[size]
+.TQ
+.I dyn_size
 If
 .B PERF_SAMPLE_STACK_USER
 is enabled, then the user stack is recorded.
@@ -2754,7 +2794,9 @@ the high 32 bits of the field by shifting right by
 and masking with the value
 .BR PERF_TXN_ABORT_MASK .
 .TP
-.IR abi ", " regs[weight(mask)]
+.I abi
+.TQ
+.I regs[weight(mask)]
 If
 .B PERF_SAMPLE_REGS_INTR
 is enabled, then the user CPU registers are recorded.

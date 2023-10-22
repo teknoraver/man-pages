@@ -53,7 +53,11 @@ or libnetlink, see
 Rtnetlink consists of these message types
 (in addition to standard netlink messages):
 .TP
-.BR RTM_NEWLINK ", " RTM_DELLINK ", " RTM_GETLINK
+.B RTM_NEWLINK
+.TQ
+.B RTM_DELLINK
+.TQ
+.B RTM_GETLINK
 Create, remove, or get information about a specific network interface.
 These messages contain an
 .I ifinfomsg
@@ -112,7 +116,11 @@ is
 .RI ( "struct net_device_stats"
 in Linux 2.4 and earlier).
 .TP
-.BR RTM_NEWADDR ", " RTM_DELADDR ", " RTM_GETADDR
+.B RTM_NEWADDR
+.TQ
+.B RTM_DELADDR
+.TQ
+.B RTM_GETADDR
 Add, remove, or receive information about an IP address associated with
 an interface.
 In Linux 2.2, an interface can carry multiple IP addresses,
@@ -170,7 +178,11 @@ IFA_CACHEINFO:struct ifa_cacheinfo:Address information
 .TE
 .\" FIXME Document struct ifa_cacheinfo
 .TP
-.BR RTM_NEWROUTE ", " RTM_DELROUTE ", " RTM_GETROUTE
+.B RTM_NEWROUTE
+.TQ
+.B RTM_DELROUTE
+.TQ
+.B RTM_GETROUTE
 Create, remove, or receive information about a network route.
 These messages contain an
 .I rtmsg
@@ -423,7 +435,11 @@ defined in
 .IP
 .B Fill these values in!
 .TP
-.BR RTM_NEWNEIGH ", " RTM_DELNEIGH  ", " RTM_GETNEIGH
+.B RTM_NEWNEIGH
+.TQ
+.B RTM_DELNEIGH
+.TQ
+.B RTM_GETNEIGH
 Add, remove, or receive information about a neighbor table
 entry (e.g., an ARP entry).
 The message contains an
@@ -496,12 +512,20 @@ then a
 .I struct nda_cacheinfo
 header follows.
 .TP
-.BR RTM_NEWRULE ", " RTM_DELRULE ", " RTM_GETRULE
+.B RTM_NEWRULE
+.TQ
+.B RTM_DELRULE
+.TQ
+.B RTM_GETRULE
 Add, delete, or retrieve a routing rule.
 Carries a
 .I struct rtmsg
 .TP
-.BR RTM_NEWQDISC ", " RTM_DELQDISC ", " RTM_GETQDISC
+.B RTM_NEWQDISC
+.TQ
+.B RTM_DELQDISC
+.TQ
+.B RTM_GETQDISC
 Add, remove, or get a queueing discipline.
 The message contains a
 .I struct tcmsg
@@ -535,13 +559,21 @@ TCA_RATE:struct tc_estimator:Rate limit
 In addition, various other qdisc-module-specific attributes are allowed.
 For more information see the appropriate include files.
 .TP
-.BR RTM_NEWTCLASS ", " RTM_DELTCLASS ", " RTM_GETTCLASS
+.B RTM_NEWTCLASS
+.TQ
+.B RTM_DELTCLASS
+.TQ
+.B RTM_GETTCLASS
 Add, remove, or get a traffic class.
 These messages contain a
 .I struct tcmsg
 as described above.
 .TP
-.BR RTM_NEWTFILTER ", " RTM_DELTFILTER ", " RTM_GETTFILTER
+.B RTM_NEWTFILTER
+.TQ
+.B RTM_DELTFILTER
+.TQ
+.B RTM_GETTFILTER
 Add, remove, or receive information about a traffic filter.
 These messages contain a
 .I struct tcmsg

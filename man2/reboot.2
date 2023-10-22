@@ -170,7 +170,9 @@ when calling
 .BR reboot ()
 in this case are as follows:
 .TP
-.BR LINUX_REBOOT_CMD_RESTART ", " LINUX_REBOOT_CMD_RESTART2
+.B LINUX_REBOOT_CMD_RESTART
+.TQ
+.B LINUX_REBOOT_CMD_RESTART2
 The "init" process is terminated,
 and
 .BR wait (2)
@@ -178,7 +180,9 @@ in the parent process reports that the child was killed with a
 .B SIGHUP
 signal.
 .TP
-.BR LINUX_REBOOT_CMD_POWER_OFF ", " LINUX_REBOOT_CMD_HALT
+.B LINUX_REBOOT_CMD_POWER_OFF
+.TQ
+.B LINUX_REBOOT_CMD_HALT
 The "init" process is terminated,
 and
 .BR wait (2)

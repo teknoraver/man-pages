@@ -119,7 +119,15 @@ The possible operations on an open
 file are:
 .RS
 .TP
-.BR read "(2), " pread "(2), " write "(2), " pwrite "(2), " lseek (2)
+.BR read (2)
+.TQ
+.BR pread (2)
+.TQ
+.BR write (2)
+.TQ
+.BR pwrite (2)
+.TQ
+.BR lseek (2)
 These operate as usual, with the exception that
 .BR lseek (2),
 .BR write (2),
@@ -289,7 +297,11 @@ file returns
 whenever space is available for writing.
 .RE
 .TP
-.IR /mbox_stat ", " /ibox_stat ", " /wbox_stat
+.I /mbox_stat
+.TQ
+.I /ibox_stat
+.TQ
+.I /wbox_stat
 These are read-only files that contain the length of the current
 queue of each mailbox\[em]that is, how many words can be read from
 .IR mbox " or " ibox
@@ -324,8 +336,21 @@ the respective mailbox without blocking or returning an
 error.
 .RE
 .TP
-.IR /npc ", " /decr ", " /decr_status ", " /spu_tag_mask ", " \
-/event_mask ", " /event_status ", " /srr0 ", " /lslr
+.I /npc
+.TQ
+.I /decr
+.TQ
+.I /decr_status
+.TQ
+.I /spu_tag_mask
+.TQ
+.I /event_mask
+.TQ
+.I /event_status
+.TQ
+.I /srr0
+.TQ
+.I /lslr
 Internal registers of the SPU.
 These files contain an ASCII string
 representing the hex value of the specified register.
@@ -433,7 +458,9 @@ updating the value of the
 register.
 .RE
 .TP
-.IR /signal1 ", " /signal2
+.I /signal1
+.TQ
+.I /signal2
 The files provide access to the two signal notification channels
 of an SPU.
 These are read-write files that operate on four-byte words.
@@ -484,7 +511,9 @@ or
 files respectively.
 .RE
 .TP
-.IR /signal1_type ", " /signal2_type
+.I /signal1_type
+.TQ
+.I /signal2_type
 These two files change the behavior of the
 .I signal1
 and
@@ -524,7 +553,15 @@ Subsequent writes to the same file descriptor overwrite the
 previous setting.
 .RE
 .TP
-.IR /mbox_info ", " /ibox_info ", " /wbox_info ", " /dma_into ", " /proxydma_info
+.I /mbox_info
+.TQ
+.I /ibox_info
+.TQ
+.I /wbox_info
+.TQ
+.I /dma_into
+.TQ
+.I /proxydma_info
 Read-only files that contain the saved state of the SPU mailboxes and
 DMA queues.
 This allows the SPU status to be inspected, mainly for debugging.

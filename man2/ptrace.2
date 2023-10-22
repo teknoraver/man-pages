@@ -203,7 +203,9 @@ and
 .BR PTRACE_KILL ,
 the tracee must be stopped.
 .TP
-.BR PTRACE_PEEKTEXT ", " PTRACE_PEEKDATA
+.B PTRACE_PEEKTEXT
+.TQ
+.B PTRACE_PEEKDATA
 Read a word at the address
 .I addr
 in the tracee's memory, returning the word as the result of the
@@ -232,7 +234,9 @@ See NOTES.
 .RI ( data
 is ignored; but see NOTES.)
 .TP
-.BR PTRACE_POKETEXT ", " PTRACE_POKEDATA
+.B PTRACE_POKETEXT
+.TQ
+.B PTRACE_POKEDATA
 Copy the word
 .I data
 to the address
@@ -260,7 +264,9 @@ some modifications to the USER area are disallowed.
 .\" FIXME In the preceding sentence, which modifications are disallowed,
 .\" and when they are disallowed, how does user space discover that fact?
 .TP
-.BR PTRACE_GETREGS ", " PTRACE_GETFPREGS
+.B PTRACE_GETREGS
+.TQ
+.B PTRACE_GETFPREGS
 Copy the tracee's general-purpose or floating-point registers,
 respectively, to the address
 .I data
@@ -304,7 +310,9 @@ On return, the kernel modifies
 .B iov.len
 to indicate the actual number of bytes returned.
 .TP
-.BR PTRACE_SETREGS ", " PTRACE_SETFPREGS
+.B PTRACE_SETREGS
+.TQ
+.B PTRACE_SETFPREGS
 Modify the tracee's general-purpose or floating-point registers,
 respectively, from the address
 .I data
@@ -696,7 +704,9 @@ whether a signal sent to the tracee is delivered or not.
 .RI ( addr
 is ignored.)
 .TP
-.BR PTRACE_SYSCALL ", " PTRACE_SINGLESTEP
+.B PTRACE_SYSCALL
+.TQ
+.B PTRACE_SINGLESTEP
 Restart the stopped tracee as for
 .BR PTRACE_CONT ,
 but arrange for the tracee to be stopped at
@@ -740,7 +750,9 @@ system call number in).
 .\" see change_syscall in tools/testing/selftests/seccomp/seccomp_bpf.c
 .\" and also strace's linux/*/set_scno.c files.
 .TP
-.BR PTRACE_SYSEMU ", " PTRACE_SYSEMU_SINGLESTEP " (since Linux 2.6.14)"
+.B PTRACE_SYSEMU
+.TQ
+.BR PTRACE_SYSEMU_SINGLESTEP " (since Linux 2.6.14)"
 For
 .BR PTRACE_SYSEMU ,
 continue and stop on entry to the next system call,

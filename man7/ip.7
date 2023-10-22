@@ -1287,7 +1287,9 @@ Time in seconds to keep an IPv6 fragment in memory.
 Regeneration interval (in seconds) of the hash secret (or lifetime
 for the hash secret) for IPv6 fragments.
 .TP
-.IR ipfrag_high_thresh " (integer), " ipfrag_low_thresh " (integer)"
+.IR ipfrag_high_thresh " (integer)"
+.TQ
+.IR ipfrag_low_thresh " (integer)"
 If the amount of queued IP fragments reaches
 .IR ipfrag_high_thresh ,
 the queue is pruned down to
@@ -1365,7 +1367,9 @@ was called on an already connected socket.
 .B EMSGSIZE
 Datagram is bigger than an MTU on the path and it cannot be fragmented.
 .TP
-.BR ENOBUFS ", " ENOMEM
+.B ENOBUFS
+.TQ
+.B ENOMEM
 Not enough free memory.
 This often means that the memory allocation is limited by the socket
 buffer limits, not by the system memory, but this is not 100% consistent.

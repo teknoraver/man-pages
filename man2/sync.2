@@ -81,7 +81,9 @@ metadata related to the filesystem itself.
 .B ENOSPC
 Disk space was exhausted while synchronizing.
 .TP
-.BR ENOSPC ", " EDQUOT
+.B ENOSPC
+.TQ
+.B EDQUOT
 Data was written to a file on NFS or another filesystem which does not
 allocate space at the time of a
 .BR write (2)

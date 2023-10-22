@@ -727,7 +727,9 @@ occur only if the program header table is part of the memory image of the
 program.
 If it is present, it must precede any loadable segment entry.
 .TP
-.BR PT_LOPROC ", " PT_HIPROC
+.B PT_LOPROC
+.TQ
+.B PT_HIPROC
 Values in the inclusive range
 .RB [ PT_LOPROC ,
 .BR PT_HIPROC ]
@@ -848,7 +850,9 @@ or otherwise meaningless section reference.
 .B SHN_LORESERVE
 This value specifies the lower bound of the range of reserved indices.
 .TP
-.BR SHN_LOPROC ", " SHN_HIPROC
+.B SHN_LOPROC
+.TQ
+.B SHN_HIPROC
 Values greater in the inclusive range
 .RB [ SHN_LOPROC ,
 .BR SHN_HIPROC ]
@@ -1002,7 +1006,9 @@ object file can also contain a
 .B SHT_SYMTAB
 section.
 .TP
-.BR SHT_LOPROC ", " SHT_HIPROC
+.B SHT_LOPROC
+.TQ
+.B SHT_HIPROC
 Values in the inclusive range
 .RB [ SHT_LOPROC ,
 .BR SHT_HIPROC ]
@@ -1520,7 +1526,9 @@ and it precedes the other
 .B STB_LOCAL
 symbols of the file, if it is present.
 .TP
-.BR STT_LOPROC ", " STT_HIPROC
+.B STT_LOPROC
+.TQ
+.B STT_HIPROC
 Values in the inclusive range
 .RB [ STT_LOPROC ,
 .BR STT_HIPROC ]
@@ -1542,7 +1550,9 @@ reference to the same symbol.
 Weak symbols resemble global symbols, but their definitions have lower
 precedence.
 .TP
-.BR STB_LOPROC ", " STB_HIPROC
+.B STB_LOPROC
+.TQ
+.B STB_HIPROC
 Values in the inclusive range
 .RB [ STB_LOPROC ,
 .BR STB_HIPROC ]
@@ -1552,18 +1562,23 @@ are reserved for processor-specific semantics.
 There are macros for packing and unpacking the binding and type fields:
 .RS
 .TP
-.BR ELF32_ST_BIND( \fIinfo\fP ) ", " ELF64_ST_BIND( \fIinfo\fP )
+.BI ELF32_ST_BIND( info )
+.TQ
+.BI ELF64_ST_BIND( info )
 Extract a binding from an
 .I st_info
 value.
 .TP
-.BR ELF32_ST_TYPE( \fIinfo ) ", " ELF64_ST_TYPE( \fIinfo\fP )
+.BI ELF32_ST_TYPE( info )
+.TQ
+.BI ELF64_ST_TYPE( info )
 Extract a type from an
 .I st_info
 value.
 .TP
-.BR ELF32_ST_INFO( \fIbind\fP ", " \fItype\fP ) ", " \
-ELF64_ST_INFO( \fIbind\fP ", " \fItype\fP )
+.BI ELF32_ST_INFO( bind ", " type )
+.TQ
+.BI ELF64_ST_INFO( bind ", " type )
 Convert a binding and a type into an
 .I st_info
 value.
@@ -1806,7 +1821,9 @@ transferring control to the executable
 .B DT_RUNPATH
 String table offset to library search path
 .TP
-.BR DT_LOPROC ", " DT_HIPROC
+.B DT_LOPROC
+.TQ
+.B DT_HIPROC
 Values in the inclusive range
 .RB [ DT_LOPROC ,
 .BR DT_HIPROC ]

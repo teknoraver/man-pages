@@ -462,7 +462,9 @@ The resulting string is encoded using the current locale's encoding.
 .\"If no component of the returned name starts with xn\-\- the IDN
 .\"step can be skipped, therefore avoiding unnecessary slowdowns.
 .TP
-.BR AI_IDN_ALLOW_UNASSIGNED ", " AI_IDN_USE_STD3_ASCII_RULES
+.B AI_IDN_ALLOW_UNASSIGNED
+.TQ
+.B AI_IDN_USE_STD3_ASCII_RULES
 Setting these flags will enable the
 IDNA_ALLOW_UNASSIGNED (allow unassigned Unicode code points) and
 IDNA_USE_STD3_ASCII_RULES (check output to make sure it is a STD3

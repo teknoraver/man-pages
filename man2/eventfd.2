@@ -142,7 +142,11 @@ fails with the error
 if the size of the supplied buffer is less than 8 bytes,
 or if an attempt is made to write the value 0xffffffffffffffff.
 .TP
-.BR poll "(2), " select "(2) (and similar)"
+.BR poll (2)
+.TQ
+.BR select (2)
+.TQ
+(and similar)
 The returned file descriptor supports
 .BR poll (2)
 (and analogously

@@ -303,7 +303,9 @@ The value 0 indicates that this is not a listening socket,
 the value 1 indicates that this is a listening socket.
 This socket option is read-only.
 .TP
-.BR SO_ATTACH_FILTER " (since Linux 2.2), " SO_ATTACH_BPF " (since Linux 3.19)"
+.BR SO_ATTACH_FILTER " (since Linux 2.2)"
+.TQ
+.BR SO_ATTACH_BPF " (since Linux 3.19)"
 Attach a classic BPF
 .RB ( SO_ATTACH_FILTER )
 or an extended BPF
@@ -348,7 +350,9 @@ never has more than one filter defined.
 Both classic and extended BPF are explained in the kernel source file
 .I Documentation/networking/filter.txt
 .TP
-.BR SO_ATTACH_REUSEPORT_CBPF ", " SO_ATTACH_REUSEPORT_EBPF
+.B SO_ATTACH_REUSEPORT_CBPF
+.TQ
+.B SO_ATTACH_REUSEPORT_EBPF
 For use with the
 .B SO_REUSEPORT
 option, these options allow the user to set a classic BPF
@@ -451,7 +455,9 @@ Allowed only for processes with the
 .B CAP_NET_ADMIN
 capability or an effective user ID of 0.
 .TP
-.BR SO_DETACH_FILTER " (since Linux 2.2), " SO_DETACH_BPF " (since Linux 3.19)"
+.BR SO_DETACH_FILTER " (since Linux 2.2)"
+.TQ
+.BR SO_DETACH_BPF " (since Linux 3.19)"
 These two options, which are synonyms,
 may be used to remove the classic or extended BPF
 program attached to a socket with either

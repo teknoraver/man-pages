@@ -121,7 +121,9 @@ PID of parent process.
 .I TracerPid
 PID of process tracing this process (0 if not being traced).
 .TP
-.IR Uid ", " Gid
+.I Uid
+.TQ
+.I Gid
 Real, effective, saved set, and filesystem UIDs (GIDs).
 .TP
 .I FDSize
@@ -224,7 +226,11 @@ and shared anonymous mappings).
 .\" commit bf9683d6990589390b5178dafe8fd06808869293
 (since Linux 4.5).
 .TP
-.IR VmData ", " VmStk ", " VmExe
+.I VmData
+.TQ
+.I VmStk
+.TQ
+.I VmExe
 Size of data, stack, and text segments.
 This value is inaccurate; see
 .IR /proc/ pid /statm
@@ -276,19 +282,29 @@ resource limit on the number of queued signals for this process
 in
 .BR getrlimit (2)).
 .TP
-.IR SigPnd ", " ShdPnd
+.I SigPnd
+.TQ
+.I ShdPnd
 Mask (expressed in hexadecimal)
 of signals pending for thread and for process as a whole (see
 .BR pthreads (7)
 and
 .BR signal (7)).
 .TP
-.IR SigBlk ", " SigIgn ", " SigCgt
+.I SigBlk
+.TQ
+.I SigIgn
+.TQ
+.I SigCgt
 Masks (expressed in hexadecimal)
 indicating signals being blocked, ignored, and caught (see
 .BR signal (7)).
 .TP
-.IR CapInh ", " CapPrm ", " CapEff
+.I CapInh
+.TQ
+.I CapPrm
+.TQ
+.I CapEff
 Masks (expressed in hexadecimal)
 of capabilities enabled in inheritable, permitted, and effective sets
 (see
@@ -359,7 +375,9 @@ Same as previous, but in "list format"
 (since Linux 2.6.26, see
 .BR cpuset (7)).
 .TP
-.IR voluntary_ctxt_switches ", " nonvoluntary_ctxt_switches
+.I voluntary_ctxt_switches
+.TQ
+.I nonvoluntary_ctxt_switches
 Number of voluntary and involuntary context switches (since Linux 2.6.23).
 .RE
 .SH SEE ALSO

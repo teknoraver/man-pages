@@ -130,12 +130,16 @@ all file descriptors that were open on the file when the error was recorded.
 .B ENOSPC
 Disk space was exhausted while synchronizing.
 .TP
-.BR EROFS ", " EINVAL
+.B EROFS
+.TQ
+.B EINVAL
 .I fd
 is bound to a special file (e.g., a pipe, FIFO, or socket)
 which does not support synchronization.
 .TP
-.BR ENOSPC ", " EDQUOT
+.B ENOSPC
+.TQ
+.B EDQUOT
 .I fd
 is bound to a file on NFS or another filesystem which does not allocate
 space at the time of a

@@ -96,7 +96,9 @@ This is the only ioctl which returns its result in
 Retrieve the interface index of the interface into
 .IR ifr_ifindex .
 .TP
-.BR SIOCGIFFLAGS ", " SIOCSIFFLAGS
+.B SIOCGIFFLAGS
+.TQ
+.B SIOCSIFFLAGS
 Get or set the active flag word of the device.
 .I ifr_flags
 contains a bit mask of the following values:
@@ -136,7 +138,9 @@ IFF_ECHO:Echo sent packets (since Linux 2.6.25)
 Setting the active flag word is a privileged operation, but any
 process may read it.
 .TP
-.BR SIOCGIFPFLAGS ", " SIOCSIFPFLAGS
+.B SIOCGIFPFLAGS
+.TQ
+.B SIOCSIFPFLAGS
 Get or set extended (private) flags for the device.
 .I ifr_flags
 contains a bit mask of the following values:
@@ -157,7 +161,11 @@ IFF_ISATAP:Interface is RFC4214 ISATAP interface.
 .PP
 Setting the extended (private) interface flags is a privileged operation.
 .TP
-.BR SIOCGIFADDR ", " SIOCSIFADDR ", " SIOCDIFADDR
+.B SIOCGIFADDR
+.TQ
+.B SIOCSIFADDR
+.TQ
+.B SIOCDIFADDR
 Get, set, or delete the address of the device using
 .IR ifr_addr ,
 or
@@ -185,7 +193,9 @@ A
 address can be deleted by setting it to zero via
 .BR SIOCSIFADDR .
 .TP
-.BR SIOCGIFDSTADDR ", " SIOCSIFDSTADDR
+.B SIOCGIFDSTADDR
+.TQ
+.B SIOCSIFDSTADDR
 Get or set the destination address of a point-to-point device using
 .IR ifr_dstaddr .
 For compatibility, only
@@ -193,7 +203,9 @@ For compatibility, only
 addresses are accepted or returned.
 Setting the destination address is a privileged operation.
 .TP
-.BR SIOCGIFBRDADDR ", " SIOCSIFBRDADDR
+.B SIOCGIFBRDADDR
+.TQ
+.B SIOCSIFBRDADDR
 Get or set the broadcast address for a device using
 .IR ifr_brdaddr .
 For compatibility, only
@@ -201,7 +213,9 @@ For compatibility, only
 addresses are accepted or returned.
 Setting the broadcast address is a privileged operation.
 .TP
-.BR SIOCGIFNETMASK ", " SIOCSIFNETMASK
+.B SIOCGIFNETMASK
+.TQ
+.B SIOCSIFNETMASK
 Get or set the network mask for a device using
 .IR ifr_netmask .
 For compatibility, only
@@ -209,7 +223,9 @@ For compatibility, only
 addresses are accepted or returned.
 Setting the network mask is a privileged operation.
 .TP
-.BR SIOCGIFMETRIC ", " SIOCSIFMETRIC
+.B SIOCGIFMETRIC
+.TQ
+.B SIOCSIFMETRIC
 Get or set the metric of the device using
 .IR ifr_metric .
 This is currently not implemented; it sets
@@ -218,14 +234,18 @@ to 0 if you attempt to read it and returns
 .B EOPNOTSUPP
 if you attempt to set it.
 .TP
-.BR SIOCGIFMTU ", " SIOCSIFMTU
+.B SIOCGIFMTU
+.TQ
+.B SIOCSIFMTU
 Get or set the MTU (Maximum Transfer Unit) of a device using
 .IR ifr_mtu .
 Setting the MTU is a privileged operation.
 Setting the MTU to
 too small values may cause kernel crashes.
 .TP
-.BR SIOCGIFHWADDR ", " SIOCSIFHWADDR
+.B SIOCGIFHWADDR
+.TQ
+.B SIOCSIFHWADDR
 Get or set the hardware address of a device using
 .IR ifr_hwaddr .
 The hardware address is specified in a struct
@@ -241,7 +261,9 @@ Set the hardware broadcast address of a device from
 .IR ifr_hwaddr .
 This is a privileged operation.
 .TP
-.BR SIOCGIFMAP ", " SIOCSIFMAP
+.B SIOCGIFMAP
+.TQ
+.B SIOCSIFMAP
 Get or set the interface's hardware parameters using
 .IR ifr_map .
 Setting the parameters is a privileged operation.
@@ -262,7 +284,9 @@ struct ifmap {
 The interpretation of the ifmap structure depends on the device driver
 and the architecture.
 .TP
-.BR SIOCADDMULTI ", " SIOCDELMULTI
+.B SIOCADDMULTI
+.TQ
+.B SIOCDELMULTI
 Add an address to or delete an address from the device's link layer
 multicast filters using
 .IR ifr_hwaddr .
@@ -271,7 +295,9 @@ See also
 .BR packet (7)
 for an alternative.
 .TP
-.BR SIOCGIFTXQLEN ", " SIOCSIFTXQLEN
+.B SIOCGIFTXQLEN
+.TQ
+.B SIOCSIFTXQLEN
 Get or set the transmit queue length of a device using
 .IR ifr_qlen .
 Setting the transmit queue length is a privileged operation.
@@ -357,7 +383,9 @@ will be returned.
 .\" Slaving isn't supported in Linux 2.2
 .\" .
 .\" .TP
-.\" .BR SIOCGIFSLAVE ", " SIOCSIFSLAVE
+.\" .B SIOCGIFSLAVE
+.\" .TQ
+.\" .B SIOCSIFSLAVE
 .\" Get or set the slave device using
 .\" .IR ifr_slave .
 .\" Setting the slave device is a privileged operation.

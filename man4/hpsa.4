@@ -185,7 +185,11 @@ The data structures used by these ioctls are described in
 the Linux kernel source file
 .IR include/linux/cciss_ioctl.h .
 .TP
-.BR CCISS_DEREGDISK ", " CCISS_REGNEWDISK ", " CCISS_REGNEWD
+.B CCISS_DEREGDISK
+.TQ
+.B CCISS_REGNEWDISK
+.TQ
+.B CCISS_REGNEWD
 These three ioctls all do exactly the same thing,
 which is to cause the driver to rescan for new devices.
 This does exactly the same thing as writing to the
@@ -204,7 +208,9 @@ Returns driver version in three bytes encoded as:
 .EE
 .in
 .TP
-.BR CCISS_PASSTHRU ", " CCISS_BIG_PASSTHRU
+.B CCISS_PASSTHRU
+.TQ
+.B CCISS_BIG_PASSTHRU
 Allows "BMIC" and "CISS" commands to be passed through to the Smart Array.
 These are used extensively by the HP Array Configuration Utility,
 SNMP storage agents, and so on.

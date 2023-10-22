@@ -74,7 +74,9 @@ call was interrupted by a signal; see
 .B EIO
 An I/O error occurred.
 .TP
-.BR ENOSPC ", " EDQUOT
+.B ENOSPC
+.TQ
+.B EDQUOT
 On NFS, these errors are not normally reported against the first write
 which exceeds the available storage space, but instead against a
 subsequent
