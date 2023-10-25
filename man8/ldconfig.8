@@ -89,9 +89,9 @@ Failure to follow this pattern may result in compatibility issues
 after an upgrade.
 .SH OPTIONS
 .TP
-.BI \-c\~ fmt
-.TQ
 .BI \-\-format= fmt
+.TQ
+.BI \-c\~ fmt
 (Since glibc 2.2)
 .\" commit 45eca4d141c047950db48c69c8941163d0a61fcd
 Use cache format
@@ -121,9 +121,9 @@ Use
 instead of
 .IR /etc/ld.so.conf .
 .TP
-.B \-i
-.TQ
 .B \-\-ignore\-aux\-cache
+.TQ
+.B \-i
 (Since glibc 2.7)
 .\" commit 27d9ffda17df4d2388687afd12897774fde39bcc
 Ignore auxiliary cache file.
@@ -148,9 +148,9 @@ Unless
 is also specified,
 links are still updated.
 .TP
-.B \-p
-.TQ
 .B \-\-print\-cache
+.TQ
+.B \-p
 Print the lists of directories and candidate libraries stored in
 the current cache.
 .TP
@@ -159,18 +159,18 @@ Change to and use
 .I root
 as the root directory.
 .TP
-.B \-v
-.TQ
 .B \-\-verbose
+.TQ
+.B \-v
 Verbose mode.
 Print current version number,
 the name of each directory as it is scanned,
 and any links that are created.
 Overrides quiet mode.
 .TP
-.B \-V
-.TQ
 .B \-\-version
+.TQ
+.B \-V
 Print program version.
 .TP
 .B \-X
