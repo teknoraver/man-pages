@@ -46,7 +46,7 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " option ", ..."
+.BI "int prctl(int " operation ", ..."
 .BI "          \fR/*\fP unsigned long " arg2 ", unsigned long " arg3 ,
 .BI "          unsigned long " arg4 ", unsigned long " arg5 " \fR*/\fP );"
 .fi
@@ -414,7 +414,7 @@ so FPU emulation is not required and the FPU always operates in
 .B FR=1
 mode.
 .IP
-This option is mainly intended for use by the dynamic linker
+This operation is mainly intended for use by the dynamic linker
 .RB ( ld.so (8)).
 .IP
 The arguments
@@ -2096,7 +2096,7 @@ and (if it returns)
 .B PR_GET_SECCOMP
 return the nonnegative values described above.
 All other
-.I option
+.I operation
 values return 0 on success.
 On error, \-1 is returned, and
 .I errno
@@ -2104,7 +2104,7 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EACCES
-.I option
+.I operation
 is
 .B PR_SET_SECCOMP
 and
@@ -2120,7 +2120,7 @@ attribute (see the discussion of
 above).
 .TP
 .B EACCES
-.I option
+.I operation
 is
 .BR PR_SET_MM ,
 and
@@ -2130,7 +2130,7 @@ is
 the file is not executable.
 .TP
 .B EBADF
-.I option
+.I operation
 is
 .BR PR_SET_MM ,
 .I arg3
@@ -2141,7 +2141,7 @@ and the file descriptor passed in
 is not valid.
 .TP
 .B EBUSY
-.I option
+.I operation
 is
 .BR PR_SET_MM ,
 .I arg3
@@ -2156,7 +2156,7 @@ symbolic link, which is prohibited.
 is an invalid address.
 .TP
 .B EFAULT
-.I option
+.I operation
 is
 .BR PR_SET_SECCOMP ,
 .I arg2
@@ -2169,7 +2169,7 @@ and
 is an invalid address.
 .TP
 .B EFAULT
-.I option
+.I operation
 is
 .B PR_SET_SYSCALL_USER_DISPATCH
 and
@@ -2178,12 +2178,12 @@ has an invalid address.
 .TP
 .B EINVAL
 The value of
-.I option
+.I operation
 is not recognized,
 or not supported on this system.
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_MCE_KILL
 or
@@ -2197,10 +2197,10 @@ arguments were not specified as zero.
 .B EINVAL
 .I arg2
 is not valid value for this
-.IR option .
+.IR operation .
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_SET_SECCOMP
 or
@@ -2209,7 +2209,7 @@ and the kernel was not configured with
 .BR CONFIG_SECCOMP .
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .BR PR_SET_SECCOMP ,
 .I arg2
@@ -2219,7 +2219,7 @@ and the kernel was not configured with
 .BR CONFIG_SECCOMP_FILTER .
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .BR PR_SET_MM ,
 and one of the following is true
@@ -2259,7 +2259,7 @@ resource limit to be exceeded.
 .RE
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_SET_PTRACER
 and
@@ -2269,7 +2269,7 @@ is not 0,
 or the PID of an existing process.
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_SET_PDEATHSIG
 and
@@ -2277,7 +2277,7 @@ and
 is not a valid signal number.
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_SET_DUMPABLE
 and
@@ -2288,7 +2288,7 @@ nor
 .BR SUID_DUMP_USER .
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_SET_TIMING
 and
@@ -2297,7 +2297,7 @@ is not
 .BR PR_TIMING_STATISTICAL .
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_SET_NO_NEW_PRIVS
 and
@@ -2311,7 +2311,7 @@ or
 is nonzero.
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_GET_NO_NEW_PRIVS
 and
@@ -2323,7 +2323,7 @@ or
 is nonzero.
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_SET_THP_DISABLE
 and
@@ -2334,7 +2334,7 @@ or
 is nonzero.
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_GET_THP_DISABLE
 and
@@ -2346,7 +2346,7 @@ or
 is nonzero.
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_CAP_AMBIENT
 and an unused argument
@@ -2371,7 +2371,7 @@ and
 does not specify a valid capability.
 .TP
 .B EINVAL
-.I option
+.I operation
 was
 .B PR_GET_SPECULATION_CTRL
 or
@@ -2380,7 +2380,7 @@ and unused arguments to
 .BR prctl ()
 are not 0.
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_PAC_RESET_KEYS
 and the arguments are invalid or unsupported.
@@ -2389,7 +2389,7 @@ See the description of
 above for details.
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_SVE_SET_VL
 and the arguments are invalid or unsupported,
@@ -2399,13 +2399,13 @@ See the description of
 above for details.
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_SVE_GET_VL
 and SVE is not available on this platform.
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_SET_SYSCALL_USER_DISPATCH
 and one of the following is true:
@@ -2427,7 +2427,7 @@ is invalid.
 .RE
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_SET_TAGGED_ADDR_CTRL
 and the arguments are invalid or unsupported.
@@ -2436,7 +2436,7 @@ See the description of
 above for details.
 .TP
 .B EINVAL
-.I option
+.I operation
 is
 .B PR_GET_TAGGED_ADDR_CTRL
 and the arguments are invalid or unsupported.
@@ -2445,13 +2445,13 @@ See the description of
 above for details.
 .TP
 .B ENODEV
-.I option
+.I operation
 was
 .B PR_SET_SPECULATION_CTRL
 the kernel or CPU does not support the requested speculation misfeature.
 .TP
 .B ENXIO
-.I option
+.I operation
 was
 .B PR_MPX_ENABLE_MANAGEMENT
 or
@@ -2460,7 +2460,7 @@ and the kernel or the CPU does not support MPX management.
 Check that the kernel and processor have MPX support.
 .TP
 .B ENXIO
-.I option
+.I operation
 was
 .B PR_SET_SPECULATION_CTRL
 implies that the control of the selected speculation misfeature is not possible.
@@ -2469,7 +2469,7 @@ See
 for the bit fields to determine which option is available.
 .TP
 .B EOPNOTSUPP
-.I option
+.I operation
 is
 .B PR_SET_FP_MODE
 and
@@ -2477,7 +2477,7 @@ and
 has an invalid or unsupported value.
 .TP
 .B EPERM
-.I option
+.I operation
 is
 .BR PR_SET_SECUREBITS ,
 and the caller does not have the
@@ -2489,7 +2489,7 @@ or tried to set a flag whose corresponding locked flag was set
 .BR capabilities (7)).
 .TP
 .B EPERM
-.I option
+.I operation
 is
 .B PR_SET_SPECULATION_CTRL
 wherein the speculation was disabled with
@@ -2497,7 +2497,7 @@ wherein the speculation was disabled with
 and caller tried to enable it again.
 .TP
 .B EPERM
-.I option
+.I operation
 is
 .BR PR_SET_KEEPCAPS ,
 and the caller's
@@ -2507,7 +2507,7 @@ flag is set
 .BR capabilities (7)).
 .TP
 .B EPERM
-.I option
+.I operation
 is
 .BR PR_CAPBSET_DROP ,
 and the caller does not have the
@@ -2515,7 +2515,7 @@ and the caller does not have the
 capability.
 .TP
 .B EPERM
-.I option
+.I operation
 is
 .BR PR_SET_MM ,
 and the caller does not have the
@@ -2523,7 +2523,7 @@ and the caller does not have the
 capability.
 .TP
 .B EPERM
-.I option
+.I operation
 is
 .B PR_CAP_AMBIENT
 and
@@ -2538,7 +2538,7 @@ or the
 securebit has been set.
 .TP
 .B ERANGE
-.I option
+.I operation
 was
 .B PR_SET_SPECULATION_CTRL
 and
@@ -2558,11 +2558,11 @@ with prototype
 .P
 .in +4n
 .EX
-.BI "ptrdiff_t prctl(int " option ", int " arg2 ", int " arg3 );
+.BI "ptrdiff_t prctl(int " operation ", int " arg2 ", int " arg3 );
 .EE
 .in
 .P
-and options to get the maximum number of processes per user,
+and operations to get the maximum number of processes per user,
 get the maximum number of processors the calling process can use,
 find out whether a specified process is currently blocked,
 get or set the maximum stack size, and so on.
