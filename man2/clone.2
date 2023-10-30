@@ -456,6 +456,8 @@ By default, signal dispositions in the child thread are the same as
 in the parent.
 If this flag is specified,
 then all signals that are handled in the parent
+(and not set to
+.BR SIG_IGN )
 are reset to their default dispositions
 .RB ( SIG_DFL )
 in the child.
