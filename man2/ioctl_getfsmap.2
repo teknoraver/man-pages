@@ -124,7 +124,7 @@ By convention, the field
 .I fsmap_head.fmh_keys[0]
 must contain the low key and
 .I fsmap_head.fmh_keys[1]
-must contain the high key for the request.
+must contain the high key for the operation.
 .P
 For convenience, if
 .I fmr_length
@@ -328,10 +328,10 @@ physical storage address space than the high key, or a nonzero value
 was passed in one of the fields that must be zero.
 .TP
 .B ENOMEM
-Insufficient memory to process the request.
+Insufficient memory to process the operation.
 .TP
 .B EOPNOTSUPP
-The filesystem does not support this command.
+The filesystem does not support this operation.
 .TP
 .B EUCLEAN
 The filesystem metadata is corrupt and needs repair.

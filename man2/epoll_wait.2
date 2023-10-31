@@ -173,8 +173,8 @@ can block indefinitely.
 .SH RETURN VALUE
 On success,
 .BR epoll_wait ()
-returns the number of file descriptors ready for the requested I/O, or zero
-if no file descriptor became ready during the requested
+returns the number of file descriptors ready for the requested I/O operation,
+or zero if no file descriptor became ready during the requested
 .I timeout
 milliseconds.
 On failure,

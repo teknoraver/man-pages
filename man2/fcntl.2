@@ -54,21 +54,21 @@ Standard C library
 .nf
 .B #include <fcntl.h>
 .P
-.BI "int fcntl(int " fd ", int " cmd ", ... /* " arg " */ );"
+.BI "int fcntl(int " fd ", int " op ", ... /* " arg " */ );"
 .fi
 .SH DESCRIPTION
 .BR fcntl ()
 performs one of the operations described below on the open file descriptor
 .IR fd .
 The operation is determined by
-.IR cmd .
+.IR op .
 .P
 .BR fcntl ()
 can take an optional third argument.
 Whether or not this argument is required is determined by
-.IR cmd .
+.IR op .
 The required argument type is indicated in parentheses after each
-.I cmd
+.I op
 name (in most cases, the required type is
 .IR int ,
 and we identify the argument using the name
@@ -83,7 +83,7 @@ The preferred method of checking whether the host kernel supports
 a particular operation is to invoke
 .BR fcntl ()
 with the desired
-.I cmd
+.I op
 value and then test whether the call failed with
 .BR EINVAL ,
 indicating that the kernel does not recognize this value.
@@ -121,7 +121,7 @@ see the description of
 in
 .BR open (2).
 .SS File descriptor flags
-The following commands manipulate the flags associated with
+The following operations manipulate the flags associated with
 a file descriptor.
 Currently, only one such flag is defined:
 .BR FD_CLOEXEC ,
@@ -198,7 +198,7 @@ and file creation flags
 in
 .I arg
 are ignored.
-On Linux, this command can change only the
+On Linux, this operation can change only the
 .BR O_APPEND ,
 .BR O_ASYNC ,
 .BR O_DIRECT ,
@@ -529,9 +529,9 @@ structure.
 By contrast with traditional record locks, the
 .I l_pid
 field of that structure must be set to zero
-when using the commands described below.
+when using the operations described below.
 .P
-The commands for working with open file description locks are analogous
+The operations for working with open file description locks are analogous
 to those used with traditional locks:
 .TP
 .BR F_OFD_SETLK " (\fIstruct flock *\fP)"
@@ -722,7 +722,7 @@ one must also enable generation of signals on the file descriptor.
 This is done by using the
 .BR fcntl ()
 .B F_SETFL
-command to set the
+operation to set the
 .B O_ASYNC
 file status flag on the file descriptor.
 Subsequently, a
@@ -732,7 +732,7 @@ on the file descriptor.
 The
 .BR fcntl ()
 .B F_SETSIG
-command can be used to obtain delivery of a signal other than
+operation can be used to obtain delivery of a signal other than
 .BR SIGIO .
 .IP
 Sending a signal to the owner process (group) specified by
@@ -1120,7 +1120,7 @@ accessed by another process (e.g., flushing cached buffers) and
 then either remove or downgrade its lease.
 A lease is removed by performing an
 .B F_SETLEASE
-command specifying
+operation specifying
 .I arg
 as
 .BR F_UNLCK .
@@ -1130,7 +1130,7 @@ then it is sufficient for the lease holder to downgrade
 the lease to a read lease.
 This is done by performing an
 .B F_SETLEASE
-command specifying
+operation specifying
 .I arg
 as
 .BR F_RDLCK .
@@ -1179,11 +1179,11 @@ The default signal used to notify the lease holder is
 .BR SIGIO ,
 but this can be changed using the
 .B F_SETSIG
-command to
+operation to
 .BR fcntl ().
 If a
 .B F_SETSIG
-command is performed (even one specifying
+operation is performed (even one specifying
 .BR SIGIO ),
 and the signal
 handler is established using
@@ -1289,7 +1289,7 @@ The default signal is
 .BR SIGIO ,
 but this can be changed using the
 .B F_SETSIG
-command to
+operation to
 .BR fcntl ().
 (Note that
 .B SIGIO
@@ -1639,7 +1639,7 @@ A bit mask identifying the seals that have been set
 for the inode referred to by
 .IR fd .
 .TP
-All other commands
+All other operations
 Zero.
 .P
 On error, \-1 is returned, and
@@ -1659,7 +1659,7 @@ another process.
 is not an open file descriptor
 .TP
 .B EBADF
-.I cmd
+.I op
 is
 .B F_SETLK
 or
@@ -1668,7 +1668,7 @@ and the file descriptor open mode doesn't match with the
 type of lock requested.
 .TP
 .B EBUSY
-.I cmd
+.I op
 is
 .B F_SETPIPE_SZ
 and the new pipe capacity specified in
@@ -1677,7 +1677,7 @@ is smaller than the amount of buffer space currently
 used to store data in the pipe.
 .TP
 .B EBUSY
-.I cmd
+.I op
 is
 .BR F_ADD_SEALS ,
 .I arg
@@ -1689,14 +1689,14 @@ and there exists a writable, shared mapping on the file referred to by
 .B EDEADLK
 It was detected that the specified
 .B F_SETLKW
-command would cause a deadlock.
+operation would cause a deadlock.
 .TP
 .B EFAULT
 .I lock
 is outside your accessible address space.
 .TP
 .B EINTR
-.I cmd
+.I op
 is
 .B F_SETLKW
 or
@@ -1705,7 +1705,7 @@ and the operation was interrupted by a signal; see
 .BR signal (7).
 .TP
 .B EINTR
-.I cmd
+.I op
 is
 .BR F_GETLK ,
 .BR F_SETLK ,
@@ -1719,11 +1719,11 @@ NFS), but can sometimes happen locally.
 .TP
 .B EINVAL
 The value specified in
-.I cmd
+.I op
 is not recognized by this kernel.
 .TP
 .B EINVAL
-.I cmd
+.I op
 is
 .B F_ADD_SEALS
 and
@@ -1731,7 +1731,7 @@ and
 includes an unrecognized sealing bit.
 .TP
 .B EINVAL
-.I cmd
+.I op
 is
 .B F_ADD_SEALS
 or
@@ -1741,7 +1741,7 @@ and the filesystem containing the inode referred to by
 does not support sealing.
 .TP
 .B EINVAL
-.I cmd
+.I op
 is
 .B F_DUPFD
 and
@@ -1753,7 +1753,7 @@ in
 .BR getrlimit (2)).
 .TP
 .B EINVAL
-.I cmd
+.I op
 is
 .B F_SETSIG
 and
@@ -1761,7 +1761,7 @@ and
 is not an allowable signal number.
 .TP
 .B EINVAL
-.I cmd
+.I op
 is
 .BR F_OFD_SETLK ,
 .BR F_OFD_SETLKW ,
@@ -1772,7 +1772,7 @@ and
 was not specified as zero.
 .TP
 .B EMFILE
-.I cmd
+.I op
 is
 .B F_DUPFD
 and the per-process limit on the number of open file descriptors
@@ -1785,13 +1785,13 @@ protocol failed (e.g., locking over NFS).
 .B ENOTDIR
 .B F_NOTIFY
 was specified in
-.IR cmd ,
+.IR op ,
 but
 .I fd
 does not refer to a directory.
 .TP
 .B EPERM
-.I cmd
+.I op
 is
 .B F_SETPIPE_SZ
 and the soft or hard user pipe limit has been reached; see
@@ -1803,7 +1803,7 @@ Attempted to clear the
 flag on a file that has the append-only attribute set.
 .TP
 .B EPERM
-.I cmd
+.I op
 was
 .BR F_ADD_SEALS ,
 but
@@ -1897,7 +1897,7 @@ Consequently, an
 system call was added in Linux 2.4.
 The newer system call employs a different structure for file locking,
 .IR flock64 ,
-and corresponding commands,
+and corresponding operations,
 .BR F_GETLK64 ,
 .BR F_SETLK64 ,
 and
@@ -1940,7 +1940,7 @@ Consequently, an
 system call was added in Linux 2.4.
 The newer system call employs a different structure for file locking,
 .IR flock64 ,
-and corresponding commands,
+and corresponding operations,
 .BR F_GETLK64 ,
 .BR F_SETLK64 ,
 and

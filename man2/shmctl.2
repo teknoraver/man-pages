@@ -34,12 +34,12 @@ Standard C library
 .nf
 .B #include <sys/shm.h>
 .P
-.BI "int shmctl(int " shmid ", int " cmd ", struct shmid_ds *" buf );
+.BI "int shmctl(int " shmid ", int " op ", struct shmid_ds *" buf );
 .fi
 .SH DESCRIPTION
 .BR shmctl ()
 performs the control operation specified by
-.I cmd
+.I op
 on the System\ V shared memory segment whose identifier is given in
 .IR shmid .
 .P
@@ -153,7 +153,7 @@ call with the
 flag.)
 .P
 Valid values for
-.I cmd
+.I op
 are:
 .TP
 .B IPC_STAT
@@ -309,7 +309,9 @@ meaning that any user can employ this operation (just as any user may read
 to obtain the same information).
 .P
 The caller can prevent or allow swapping of a shared
-memory segment with the following \fIcmd\fP values:
+memory segment with the following
+.I op
+values:
 .TP
 .BR SHM_LOCK " (Linux-specific)"
 Prevent swapping of the shared memory segment.
@@ -379,7 +381,7 @@ capability in the user namespace that governs its IPC namespace.
 .TP
 .B EFAULT
 The argument
-.I cmd
+.I op
 has value
 .B IPC_SET
 or
@@ -392,8 +394,10 @@ isn't accessible.
 \fIshmid\fP points to a removed identifier.
 .TP
 .B EINVAL
-\fIshmid\fP is not a valid identifier, or \fIcmd\fP
-is not a valid command.
+.I shmid
+is not a valid identifier, or
+.I op
+is not a valid operation.
 Or: for a
 .B SHM_STAT
 or
@@ -468,7 +472,7 @@ a recompilation under glibc-2.1.91 or later should suffice.
 (The kernel distinguishes old and new calls by an
 .B IPC_64
 flag in
-.IR cmd .)
+.IR op .)
 .SH NOTES
 The
 .BR IPC_INFO ,

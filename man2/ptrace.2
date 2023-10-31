@@ -93,7 +93,7 @@ Standard C library
 .nf
 .B #include <sys/ptrace.h>
 .P
-.BI "long ptrace(enum __ptrace_request " request ", pid_t " pid ,
+.BI "long ptrace(enum __ptrace_request " op ", pid_t " pid ,
 .BI "            void *" addr ", void *" data );
 .fi
 .SH DESCRIPTION
@@ -155,7 +155,7 @@ The tracer will be notified at its next call to
 value containing information that indicates
 the cause of the stop in the tracee.
 While the tracee is stopped,
-the tracer can use various ptrace requests to inspect and modify the tracee.
+the tracer can use various ptrace operations to inspect and modify the tracee.
 The tracer then causes the tracee to continue,
 optionally ignoring the delivered signal
 (or even delivering a different signal instead).
@@ -175,12 +175,12 @@ executing in a normal, untraced mode via
 .BR PTRACE_DETACH .
 .P
 The value of
-.I request
-determines the action to be performed:
+.I op
+determines the operation to be performed:
 .TP
 .B PTRACE_TRACEME
 Indicate that this process is to be traced by its parent.
-A process probably shouldn't make this request if its parent
+A process probably shouldn't make this operation if its parent
 isn't expecting to trace it.
 .RI ( pid ,
 .IR addr ,
@@ -190,12 +190,12 @@ are ignored.)
 .IP
 The
 .B PTRACE_TRACEME
-request is used only by the tracee;
-the remaining requests are used only by the tracer.
-In the following requests,
+operation is used only by the tracee;
+the remaining operations are used only by the tracer.
+In the following operations,
 .I pid
 specifies the thread ID of the tracee to be acted on.
-For requests other than
+For operations other than
 .BR PTRACE_ATTACH ,
 .BR PTRACE_SEIZE ,
 .BR PTRACE_INTERRUPT ,
@@ -212,7 +212,7 @@ in the tracee's memory, returning the word as the result of the
 .BR ptrace ()
 call.
 Linux does not have separate text and data address spaces,
-so these two requests are currently equivalent.
+so these two operations are currently equivalent.
 .RI ( data
 is ignored; but see NOTES.)
 .TP
@@ -246,7 +246,7 @@ As for
 .B PTRACE_PEEKTEXT
 and
 .BR PTRACE_PEEKDATA ,
-these two requests are currently equivalent.
+these two operations are currently equivalent.
 .TP
 .B PTRACE_POKEUSER
 .\" PTRACE_POKEUSR in kernel source, but glibc uses PTRACE_POKEUSER,
@@ -740,7 +740,7 @@ argument.
 The
 .I addr
 argument is ignored.
-This request is currently
+This operation is currently
 .\" As of 4.19-rc2
 supported only on arm (and arm64, though only for backwards compatibility),
 .\" commit 27aa55c5e5123fa8b8ad0156559d34d7edff58ca
@@ -770,7 +770,7 @@ argument is treated as for
 The
 .I addr
 argument is ignored.
-These requests are currently
+These operations are currently
 .\" As at 3.7
 supported only on x86.
 .TP
@@ -1211,7 +1211,7 @@ ptrace operation returned
 .I waitpid(WNOHANG)
 may return 0 instead.
 In other words, the tracee may be "not yet fully dead",
-but already refusing ptrace requests.
+but already refusing ptrace operations.
 .P
 The tracer can't assume that the tracee
 .I always
@@ -1355,7 +1355,7 @@ If the selected thread is traced, it enters signal-delivery-stop.
 At this point, the signal is not yet delivered to the process,
 and can be suppressed by the tracer.
 If the tracer doesn't suppress the signal,
-it passes the signal to the tracee in the next ptrace restart request.
+it passes the signal to the tracee in the next ptrace restart operation.
 This second step of signal delivery is called
 .I "signal injection"
 in this manual page.
@@ -1390,7 +1390,7 @@ ptrace(PTRACE_restart, pid, 0, sig)
 .P
 where
 .B PTRACE_restart
-is one of the restarting ptrace requests.
+is one of the restarting ptrace operations.
 If
 .I sig
 is 0, then a signal is not delivered.
@@ -1434,7 +1434,7 @@ Ptrace users should not try to "create a new signal" this way: use
 .BR tgkill (2)
 instead.
 .P
-The fact that signal injection requests may be ignored
+The fact that signal injection operations may be ignored
 when restarting the tracee after
 ptrace stops that are not signal-delivery-stops
 is a cause of confusion among ptrace users.
@@ -1798,7 +1798,7 @@ for example, a system call
 etc.),
 expiration of a POSIX timer,
 change of state on a POSIX message queue,
-or completion of an asynchronous I/O request.
+or completion of an asynchronous I/O operation.
 .TP
 .IR si_code " == SI_KERNEL (0x80)"
 .B SIGTRAP
@@ -2097,7 +2097,7 @@ use
 .B PTRACE_INTERRUPT
 command.
 .P
-The request
+The operation
 .P
 .in +4n
 .EX
@@ -2385,21 +2385,21 @@ the report is sent only once.
 .SH RETURN VALUE
 On success, the
 .B PTRACE_PEEK*
-requests return the requested data (but see NOTES),
+operations return the requested data (but see NOTES),
 the
 .B PTRACE_SECCOMP_GET_FILTER
-request returns the number of instructions in the BPF program,
+operation returns the number of instructions in the BPF program,
 the
 .B PTRACE_GET_SYSCALL_INFO
-request returns the number of bytes available to be written by the kernel,
-and other requests return zero.
+operation returns the number of bytes available to be written by the kernel,
+and other operations return zero.
 .P
-On error, all requests return \-1, and
+On error, all operations return \-1, and
 .I errno
 is set to indicate the error.
 Since the value returned by a successful
 .B PTRACE_PEEK*
-request may be \-1, the caller must clear
+operation may be \-1, the caller must clear
 .I errno
 before the call, and then check it afterward
 to determine whether or not an error occurred.
@@ -2423,11 +2423,11 @@ more or less arbitrarily.
 An attempt was made to set an invalid option.
 .TP
 .B EIO
-.I request
+.I op
 is invalid, or an attempt was made to read from or
 write to an invalid area in the tracer's or the tracee's memory,
 or there was a word-alignment violation,
-or an invalid signal was specified during a restart request.
+or an invalid signal was specified during a restart operation.
 .TP
 .B EPERM
 The specified process cannot be traced.
@@ -2445,7 +2445,7 @@ or (before Linux 2.6.26) be
 .B ESRCH
 The specified process does not exist, or is not currently being traced
 by the caller, or is not stopped
-(for requests that require a stopped tracee).
+(for operations that require a stopped tracee).
 .SH STANDARDS
 None.
 .SH HISTORY
@@ -2462,7 +2462,7 @@ are interpreted according to the prototype given,
 glibc currently declares
 .BR ptrace ()
 as a variadic function with only the
-.I request
+.I op
 argument fixed.
 It is recommended to always supply four arguments,
 even if the requested operation does not use them,
@@ -2829,7 +2829,7 @@ At the system call level, the
 .BR PTRACE_PEEKDATA ,
 and
 .B PTRACE_PEEKUSER
-requests have a different API: they store the result
+operations have a different API: they store the result
 at the address specified by the
 .I data
 parameter, and the return value is the error flag.

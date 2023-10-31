@@ -20,8 +20,8 @@ Standard C library
 .nf
 .B #include <sys/ioctl.h>
 .P
-.BI "int ioctl(int " fd ", unsigned long " request ", ...);" "\f[R]  /* glibc, BSD */\f[]"
-.BI "int ioctl(int " fd ", int " request ", ...);" "\f[R]            /* musl, other UNIX */\f[]"
+.BI "int ioctl(int " fd ", unsigned long " op ", ...);" "\f[R]  /* glibc, BSD */\f[]"
+.BI "int ioctl(int " fd ", int " op ", ...);" "\f[R]            /* musl, other UNIX */\f[]"
 .fi
 .SH DESCRIPTION
 The
@@ -30,12 +30,12 @@ system call manipulates the underlying device parameters of special files.
 In particular, many operating characteristics of character special files
 (e.g., terminals) may be controlled with
 .BR ioctl ()
-requests.
+operations.
 The argument
 .I fd
 must be an open file descriptor.
 .P
-The second argument is a device-dependent request code.
+The second argument is a device-dependent operation code.
 The third argument is an untyped pointer to memory.
 It's traditionally
 .BI "char *" argp
@@ -45,7 +45,7 @@ was valid C), and will be so named for this discussion.
 .P
 An
 .BR ioctl ()
-.I request
+.I op
 has encoded in it whether the argument is an
 .I in
 parameter or
@@ -55,7 +55,7 @@ parameter, and the size of the argument
 in bytes.
 Macros and defines used in specifying an
 .BR ioctl ()
-.I request
+.I op
 are located in the file
 .IR <sys/ioctl.h> .
 See NOTES.
@@ -63,7 +63,7 @@ See NOTES.
 Usually, on success zero is returned.
 A few
 .BR ioctl ()
-requests use the return value as an output parameter
+operations use the return value as an output parameter
 and return a nonnegative value on success.
 On error, \-1 is returned, and
 .I errno
@@ -79,7 +79,7 @@ is not a valid file descriptor.
 references an inaccessible memory area.
 .TP
 .B EINVAL
-.I request
+.I op
 or
 .I argp
 is not valid.
@@ -89,7 +89,7 @@ is not valid.
 is not associated with a character special device.
 .TP
 .B ENOTTY
-The specified request does not apply to the kind of object that the
+The specified operation does not apply to the kind of object that the
 file descriptor
 .I fd
 references.
@@ -106,7 +106,7 @@ Version\~7 AT&T UNIX has
 .PD 0
 .in +4n
 .nf
-.BI "ioctl(int " fildes ", int " request ", struct sgttyb *" argp );
+.BI "ioctl(int " fildes ", int " op ", struct sgttyb *" argp );
 .fi
 .in
 .P
@@ -117,7 +117,7 @@ has historically been used by
 .BR stty (2)
 and
 .BR gtty (2),
-and is polymorphic by request type (like a
+and is polymorphic by operation type (like a
 .B void *
 would be, if it had been available)).
 .P
@@ -129,7 +129,7 @@ without a type at all.
 .PD 0
 .in +4n
 .nf
-.BI "ioctl(int " d ", unsigned long " request ", char *" argp );
+.BI "ioctl(int " d ", unsigned long " op ", char *" argp );
 .fi
 .in
 .P
@@ -143,7 +143,7 @@ SysVr4 has
 .PD 0
 .in +4n
 .nf
-.BI "int ioctl(int " fildes ", int " request ", ... /* " arg " */);"
+.BI "int ioctl(int " fildes ", int " op ", ... /* " arg " */);"
 .fi
 .in
 .P
@@ -159,7 +159,9 @@ flag.
 .\"
 .SS ioctl structure
 .\" added two sections - aeb
-Ioctl command values are 32-bit constants.
+Ioctl
+.I op
+values are 32-bit constants.
 In principle these constants are completely arbitrary, but people have
 tried to build some structure into them.
 .P

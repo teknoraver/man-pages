@@ -22,13 +22,13 @@ Standard C library
 .nf
 .B #include <sys/file.h>
 .P
-.BI "int flock(int " fd ", int " operation );
+.BI "int flock(int " fd ", int " op );
 .fi
 .SH DESCRIPTION
 Apply or remove an advisory lock on the open file specified by
 .IR fd .
 The argument
-.I operation
+.I op
 is one of the following:
 .RS 4
 .TP 9
@@ -111,7 +111,7 @@ delivery of a signal caught by a handler; see
 .BR signal (7).
 .TP
 .B EINVAL
-.I operation
+.I op
 is invalid.
 .TP
 .B ENOLCK

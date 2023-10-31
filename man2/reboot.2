@@ -21,7 +21,7 @@ Standard C library
 .BR "#include <sys/syscall.h>   " "/* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "int syscall(SYS_reboot, int " magic ", int " magic2 ", int " cmd ", void *" arg );
+.BI "int syscall(SYS_reboot, int " magic ", int " magic2 ", int " op ", void *" arg );
 .P
 /* Under glibc and most alternative libc's (including uclibc, dietlibc,
    musl and a few others), some of the constants involved have gotten
@@ -31,7 +31,7 @@ Standard C library
 .BR "#include <sys/reboot.h>    " "/* Definition of " RB_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "int reboot(int " cmd );
+.BI "int reboot(int " op );
 .fi
 .SH DESCRIPTION
 The
@@ -66,7 +66,7 @@ are permitted as values for
 (The hexadecimal values of these constants are meaningful.)
 .P
 The
-.I cmd
+.I op
 argument can have the following values:
 .TP
 .B LINUX_REBOOT_CMD_CAD_OFF
@@ -157,7 +157,7 @@ if
 is called
 from a PID namespace other than the initial PID namespace
 with one of the
-.I cmd
+.I op
 values listed below,
 it performs a "reboot" of that namespace:
 the "init" process of the PID namespace is immediately terminated,
@@ -165,7 +165,7 @@ with the effects described in
 .BR pid_namespaces (7).
 .P
 The values that can be supplied in
-.I cmd
+.I op
 when calling
 .BR reboot ()
 in this case are as follows:
@@ -191,7 +191,7 @@ in the parent process reports that the child was killed with a
 signal.
 .P
 For the other
-.I cmd
+.I op
 values,
 .BR reboot ()
 returns \-1 and
@@ -200,13 +200,13 @@ is set to
 .BR EINVAL .
 .SH RETURN VALUE
 For the values of
-.I cmd
+.I op
 that stop or restart the system,
 a successful call to
 .BR reboot ()
 does not return.
 For the other
-.I cmd
+.I op
 values, zero is returned on success.
 In all cases, \-1 is returned on failure, and
 .I errno
@@ -218,7 +218,8 @@ Problem with getting user-space data under
 .BR LINUX_REBOOT_CMD_RESTART2 .
 .TP
 .B EINVAL
-Bad magic numbers or \fIcmd\fP.
+Bad magic numbers or
+.IR op .
 .TP
 .B EPERM
 The calling process has insufficient privilege to call

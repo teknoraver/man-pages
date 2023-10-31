@@ -17,7 +17,7 @@ Standard C library
 .BR "#include <linux/userfaultfd.h>" "  /* Definition of " UFFD* " constants */"
 .B #include <sys/ioctl.h>
 .P
-.BI "int ioctl(int " fd ", int " cmd ", ...);"
+.BI "int ioctl(int " fd ", int " op ", ...);"
 .fi
 .SH DESCRIPTION
 Various
@@ -28,18 +28,18 @@ using calls of the form:
 .P
 .in +4n
 .EX
-ioctl(fd, cmd, argp);
+ioctl(fd, op, argp);
 .EE
 .in
 .P
 In the above,
 .I fd
 is a file descriptor referring to a userfaultfd object,
-.I cmd
-is one of the commands listed below, and
+.I op
+is one of the operations listed below, and
 .I argp
 is a pointer to a data structure that is specific to
-.IR cmd .
+.IR op .
 .P
 The various
 .BR ioctl (2)

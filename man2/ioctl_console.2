@@ -25,8 +25,8 @@ ioctl_console \- ioctls for console terminal and virtual consoles
 .SH DESCRIPTION
 The following Linux-specific
 .BR ioctl (2)
-requests are supported for console terminals and virtual consoles.
-Each requires a third argument, assumed here to be
+operations are supported for console terminals and virtual consoles.
+Each operation requires a third argument, assumed here to be
 .IR argp .
 .TP
 .B KDGETLED
@@ -546,7 +546,7 @@ points to a
 struct vt_mode {
     char  mode;    /* vt mode */
     char  waitv;   /* if set, hang on writes if not active */
-    short relsig;  /* signal to raise on release req */
+    short relsig;  /* signal to raise on release op */
     short acqsig;  /* signal to raise on acquisition */
     short frsig;   /* unused (set to 0) */
 };
@@ -861,7 +861,7 @@ is invalid.
 .TP
 .B ENOTTY
 The file descriptor is not associated with a character special device,
-or the specified request does not apply to it.
+or the specified operation does not apply to it.
 .TP
 .B EPERM
 Insufficient permission.

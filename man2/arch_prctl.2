@@ -14,8 +14,8 @@ Standard C library
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "int syscall(SYS_arch_prctl, int " code ", unsigned long " addr );
-.BI "int syscall(SYS_arch_prctl, int " code ", unsigned long *" addr );
+.BI "int syscall(SYS_arch_prctl, int " op ", unsigned long " addr );
+.BI "int syscall(SYS_arch_prctl, int " op ", unsigned long *" addr );
 .fi
 .P
 .IR Note :
@@ -26,8 +26,8 @@ necessitating the use of
 .SH DESCRIPTION
 .BR arch_prctl ()
 sets architecture-specific process or thread state.
-.I code
-selects a subfunction
+.I op
+selects an operation
 and passes argument
 .I addr
 to it;
@@ -120,8 +120,8 @@ is set to indicate the error.
 points to an unmapped address or is outside the process address space.
 .TP
 .B EINVAL
-.I code
-is not a valid subcommand.
+.I op
+is not a valid operation.
 .TP
 .B ENODEV
 .B ARCH_SET_CPUID

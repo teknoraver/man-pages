@@ -17,7 +17,7 @@ Standard C library
 .nf
 .B #include <unistd.h>
 .P
-.BI "int lockf(int " fd ", int " cmd ", off_t " len );
+.BI "int lockf(int " fd ", int " op ", off_t " len );
 .fi
 .P
 .RS -4
@@ -37,7 +37,7 @@ Apply, test, or remove a POSIX lock on a section of an open file.
 The file is specified by
 .IR fd ,
 a file descriptor open for writing, the action by
-.IR cmd ,
+.IR op ,
 and the section consists of byte positions
 .IR pos .. pos + len \-1
 if
@@ -118,7 +118,7 @@ been memory-mapped by another process.
 .B EBADF
 .I fd
 is not an open file descriptor; or
-.I cmd
+.I op
 is
 .B F_LOCK
 or
@@ -128,7 +128,8 @@ and
 is not a writable file descriptor.
 .TP
 .B EDEADLK
-The command was
+.I op
+was
 .B F_LOCK
 and this lock operation would cause a deadlock.
 .TP
@@ -139,7 +140,7 @@ delivery of a signal caught by a handler; see
 .TP
 .B EINVAL
 An invalid operation was specified in
-.IR cmd .
+.IR op .
 .TP
 .B ENOLCK
 Too many segment locks open, lock table is full.

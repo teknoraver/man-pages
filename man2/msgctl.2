@@ -26,12 +26,12 @@ Standard C library
 .nf
 .B #include <sys/msg.h>
 .P
-.BI "int msgctl(int " msqid ", int " cmd ", struct msqid_ds *" buf );
+.BI "int msgctl(int " msqid ", int " op ", struct msqid_ds *" buf );
 .fi
 .SH DESCRIPTION
 .BR msgctl ()
 performs the control operation specified by
-.I cmd
+.I op
 on the System\ V message queue with identifier
 .IR msqid .
 .P
@@ -142,7 +142,7 @@ l l.
 Bits 0100, 0010, and 0001 (the execute bits) are unused by the system.
 .P
 Valid values for
-.I cmd
+.I op
 are:
 .TP
 .B IPC_STAT
@@ -320,7 +320,7 @@ is set to indicate the error.
 .TP
 .B EACCES
 The argument
-.I cmd
+.I op
 is equal to
 .B IPC_STAT
 or
@@ -333,7 +333,7 @@ capability in the user namespace that governs its IPC namespace.
 .TP
 .B EFAULT
 The argument
-.I cmd
+.I op
 has the value
 .B IPC_SET
 or
@@ -347,7 +347,7 @@ The message queue was removed.
 .TP
 .B EINVAL
 Invalid value for
-.I cmd
+.I op
 or
 .IR msqid .
 Or: for a
@@ -358,7 +358,7 @@ referred to an array slot that is currently unused.
 .TP
 .B EPERM
 The argument
-.I cmd
+.I op
 has the value
 .B IPC_SET
 or
@@ -402,7 +402,7 @@ a recompilation under glibc-2.1.91 or later should suffice.
 (The kernel distinguishes old and new calls by an
 .B IPC_64
 flag in
-.IR cmd .)
+.IR op .)
 .SH NOTES
 The
 .BR IPC_INFO ,

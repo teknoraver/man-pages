@@ -30,12 +30,12 @@ Standard C library
 .nf
 .B #include <sys/sem.h>
 .P
-.BI "int semctl(int " semid ", int " semnum ", int " cmd ", ...);"
+.BI "int semctl(int " semid ", int " semnum ", int " op ", ...);"
 .fi
 .SH DESCRIPTION
 .BR semctl ()
 performs the control operation specified by
-.I cmd
+.I op
 on the System\ V semaphore set identified by
 .IR semid ,
 or on the
@@ -44,7 +44,7 @@ semaphore of that set.
 (The semaphores in a set are numbered starting at 0.)
 .P
 This function has three or four arguments, depending on
-.IR cmd .
+.IR op .
 When there are four, the fourth has the type
 .IR "union semun" .
 The \fIcalling program\fP must define this union as follows:
@@ -149,7 +149,7 @@ In effect, "write" means "alter" for a semaphore set.
 Bits 0100, 0010, and 0001 (the execute bits) are unused by the system.
 .P
 Valid values for
-.I cmd
+.I op
 are:
 .TP
 .B IPC_STAT
@@ -380,7 +380,7 @@ The calling process must have alter permission on the semaphore set.
 On success,
 .BR semctl ()
 returns a nonnegative value depending on
-.I cmd
+.I op
 as follows:
 .TP
 .B GETNCNT
@@ -422,7 +422,7 @@ as for
 .BR SEM_STAT .
 .P
 All other
-.I cmd
+.I op
 values return 0 on success.
 .P
 On failure,
@@ -434,7 +434,7 @@ to indicate the error.
 .TP
 .B EACCES
 The argument
-.I cmd
+.I op
 has one of the values
 .BR GETALL ,
 .BR GETPID ,
@@ -464,7 +464,7 @@ The semaphore set was removed.
 .TP
 .B EINVAL
 Invalid value for
-.I cmd
+.I op
 or
 .IR semid .
 Or: for a
@@ -475,7 +475,7 @@ referred to an array slot that is currently unused.
 .TP
 .B EPERM
 The argument
-.I cmd
+.I op
 has the value
 .B IPC_SET
 or
@@ -493,7 +493,7 @@ capability.
 .TP
 .B ERANGE
 The argument
-.I cmd
+.I op
 has the value
 .B SETALL
 or
@@ -575,7 +575,7 @@ a recompilation under glibc-2.1.91 or later should suffice.
 (The kernel distinguishes old and new calls by an
 .B IPC_64
 flag in
-.IR cmd .)
+.IR op .)
 .P
 In some earlier versions of glibc, the
 .I semun

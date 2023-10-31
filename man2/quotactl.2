@@ -17,7 +17,7 @@ Standard C library
 " constants"
 .RB    "                        (or " <linux/dqblk_xfs.h> "; see NOTES) */"
 .P
-.BI "int quotactl(int " cmd ", const char *_Nullable " special ", int " id ,
+.BI "int quotactl(int " op ", const char *_Nullable " special ", int " id ,
 .BI "             caddr_t " addr );
 .fi
 .SH DESCRIPTION
@@ -35,14 +35,14 @@ The
 .BR quotactl ()
 call manipulates disk quotas.
 The
-.I cmd
-argument indicates a command to be applied to the user or
+.I op
+argument indicates an operation to be applied to the user or
 group ID specified in
 .IR id .
 To initialize the
-.I cmd
+.I op
 argument, use the
-.I QCMD(subcmd, type)
+.I QCMD(subop, type)
 macro.
 The
 .I type
@@ -55,7 +55,7 @@ for group quotas, or (since Linux 4.1)
 .BR PRJQUOTA ,
 for project quotas.
 The
-.I subcmd
+.I subop
 value is described below.
 .P
 The
@@ -65,14 +65,14 @@ of the (mounted) block special device for the filesystem being manipulated.
 .P
 The
 .I addr
-argument is the address of an optional, command-specific, data structure
+argument is the address of an optional, operation-specific, data structure
 that is copied in or out of the system.
 The interpretation of
 .I addr
 is given with each operation below.
 .P
 The
-.I subcmd
+.I subop
 value is one of the following operations:
 .TP
 .B Q_QUOTAON
@@ -649,7 +649,7 @@ structure)
 which identify what types of quota
 should be removed.
 (Note that the quota type passed in the
-.I cmd
+.I op
 argument is ignored, but should remain valid in order to pass preliminary
 quotactl syscall handler checks.)
 .IP
@@ -681,7 +681,7 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EACCES
-.I cmd
+.I op
 is
 .BR Q_QUOTAON ,
 and the quota file pointed to by
@@ -691,7 +691,7 @@ is not on the filesystem pointed to by
 .IR special .
 .TP
 .B EBUSY
-.I cmd
+.I op
 is
 .BR Q_QUOTAON ,
 but another
@@ -705,20 +705,20 @@ or
 is invalid.
 .TP
 .B EINVAL
-.I cmd
+.I op
 or
 .I type
 is invalid.
 .TP
 .B EINVAL
-.I cmd
+.I op
 is
 .BR Q_QUOTAON ,
 but the specified quota file is corrupted.
 .TP
 .BR EINVAL " (since Linux 5.5)"
 .\" 3dd4d40b420846dd35869ccc8f8627feef2cff32
-.I cmd
+.I op
 is
 .BR Q_XQUOTARM ,
 but
@@ -747,7 +747,7 @@ The caller lacked the required privilege
 for the specified operation.
 .TP
 .B ERANGE
-.I cmd
+.I op
 is
 .BR Q_SETQUOTA ,
 but the specified limits are out of the range allowed by the quota format.
@@ -757,13 +757,13 @@ No disk quota is found for the indicated user.
 Quotas have not been turned on for this filesystem.
 .TP
 .B ESRCH
-.I cmd
+.I op
 is
 .BR Q_QUOTAON ,
 but the specified quota format was not found.
 .TP
 .B ESRCH
-.I cmd
+.I op
 is
 .B Q_GETNEXTQUOTA
 or

@@ -18,12 +18,12 @@ Standard C library
 .BR    "                               Bnnn" ", " BOTHER ", " CBAUD ", " CLOCAL ,
 .BR    "                               TC*" { FLUSH , ON , OFF "} and other constants */"
 .P
-.BI "int ioctl(int " fd ", int " cmd ", ...);"
+.BI "int ioctl(int " fd ", int " op ", ...);"
 .fi
 .SH DESCRIPTION
 The
 .BR ioctl (2)
-call for terminals and serial ports accepts many possible command arguments.
+call for terminals and serial ports accepts many possible operation arguments.
 Most require a third argument, of varying type, here called
 .I argp
 or
@@ -735,7 +735,7 @@ Get the
 .I tty_struct
 corresponding to
 .IR fd .
-This command was removed in Linux 2.5.67.
+This operation was removed in Linux 2.5.67.
 .\"     commit b3506a09d15dc5aee6d4bb88d759b157016e1864
 .\"     Author: Andries E. Brouwer <andries.brouwer@cwi.nl>
 .\"     Date:   Tue Apr 1 04:42:46 2003 -0800
@@ -764,10 +764,10 @@ to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-Invalid command parameter.
+Invalid operation parameter.
 .TP
 .B ENOIOCTLCMD
-Unknown command.
+Unknown operation.
 .TP
 .B ENOTTY
 Inappropriate
