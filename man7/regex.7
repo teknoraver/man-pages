@@ -52,15 +52,15 @@ they will be discussed at the end.
 POSIX.2 leaves some aspects of RE syntax and semantics open;
 "\*(dg" marks decisions on these aspects that
 may not be fully portable to other POSIX.2 implementations.
-.PP
+.P
 A (modern) RE is one\*(dg or more nonempty\*(dg \fIbranches\fR,
 separated by \[aq]|\[aq].
 It matches anything that matches one of the branches.
-.PP
+.P
 A branch is one\*(dg or more \fIpieces\fR, concatenated.
 It matches a match for the first, followed by a match for the second,
 and so on.
-.PP
+.P
 A piece is an \fIatom\fR possibly followed
 by a single\*(dg \[aq]*\[aq], \[aq]+\[aq], \[aq]?\[aq], or \fIbound\fR.
 An atom followed by \[aq]*\[aq]
@@ -69,7 +69,7 @@ An atom followed by \[aq]+\[aq]
 matches a sequence of 1 or more matches of the atom.
 An atom followed by \[aq]?\[aq]
 matches a sequence of 0 or 1 matches of the atom.
-.PP
+.P
 A \fIbound\fR is \[aq]{\[aq] followed by an unsigned decimal integer,
 possibly followed by \[aq],\[aq]
 possibly followed by another unsigned decimal integer,
@@ -87,7 +87,7 @@ a sequence of \fIi\fR or more matches of the atom.
 An atom followed by a bound
 containing two integers \fIi\fR and \fIj\fR matches
 a sequence of \fIi\fR through \fIj\fR (inclusive) matches of the atom.
-.PP
+.P
 An atom is a regular expression enclosed in "\fI()\fP"
 (matching a match for the regular expression),
 an empty set of "\fI()\fP" (matching the null string)\*(dg,
@@ -105,7 +105,7 @@ A \[aq]{\[aq] followed by a character other than a digit
 is an ordinary character,
 not the beginning of a bound\*(dg.
 It is illegal to end an RE with \[aq]\e\[aq].
-.PP
+.P
 A \fIbracket expression\fR is a list of characters enclosed in "\fI[]\fP".
 It normally matches any single character from the list (but see below).
 If the list begins with \[aq]\[ha]\[aq],
@@ -119,7 +119,7 @@ It is illegal\*(dg for two ranges to share an
 endpoint, for example, "\fIa\-c\-e\fP".
 Ranges are very collating-sequence-dependent,
 and portable programs should avoid relying on them.
-.PP
+.P
 To include a literal \[aq]]\[aq] in the list, make it the first character
 (following a possible \[aq]\[ha]\[aq]).
 To include a literal \[aq]\-\[aq], make it the first or last character,
@@ -130,7 +130,7 @@ to make it a collating element (see below).
 With the exception of these and some combinations using \[aq][\[aq] (see next
 paragraphs), all other special characters, including \[aq]\e\[aq], lose their
 special significance within a bracket expression.
-.PP
+.P
 Within a bracket expression, a collating element (a character,
 a multicharacter sequence that collates as if it were a single character,
 or a collating-sequence name for either)
@@ -142,7 +142,7 @@ can thus match more than one character,
 for example, if the collating sequence includes a "ch" collating element,
 then the RE "\fI[[.ch.]]*c\fP" matches the first five characters
 of "chchcc".
-.PP
+.P
 Within a bracket expression, a collating element enclosed in "\fI[=\fP" and
 "\fI=]\fP" is an equivalence class, standing for the sequences of characters
 of all collating elements equivalent to that one, including itself.
@@ -154,13 +154,13 @@ then "\fI[[=o=]]\fP", "\fI[[=\(^o=]]\fP",
 and "\fI[o\(^o]\fP" are all synonymous.
 An equivalence class may not\*(dg be an endpoint
 of a range.
-.PP
+.P
 Within a bracket expression, the name of a \fIcharacter class\fR enclosed
 in "\fI[:\fP" and "\fI:]\fP" stands for the list
 of all characters belonging to that
 class.
 Standard character class names are:
-.PP
+.P
 .RS
 .TS
 l l l.
@@ -170,14 +170,14 @@ blank	lower	upper
 cntrl	print	xdigit
 .TE
 .RE
-.PP
+.P
 These stand for the character classes defined in
 .BR wctype (3).
 A locale may provide others.
 A character class may not be used as an endpoint of a range.
 .\" As per http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=295666
 .\" The following does not seem to apply in the glibc implementation
-.\" .PP
+.\" .P
 .\" There are two special cases\*(dg of bracket expressions:
 .\" the bracket expressions "\fI[[:<:]]\fP" and "\fI[[:>:]]\fP" match
 .\" the null string at the beginning and end of a word respectively.
@@ -194,7 +194,7 @@ A character class may not be used as an endpoint of a range.
 .\" compatible with but not specified by POSIX.2,
 .\" and should be used with
 .\" caution in software intended to be portable to other systems.
-.PP
+.P
 In the event that an RE could match more than one substring of a given
 string,
 the RE matches the one starting earliest in the string.
@@ -206,7 +206,7 @@ with subexpressions starting earlier in the RE taking priority over
 ones starting later.
 Note that higher-level subexpressions thus take priority over
 their lower-level component subexpressions.
-.PP
+.P
 Match lengths are measured in characters, not collating elements.
 A null string is considered longer than no match at all.
 For example,
@@ -218,7 +218,7 @@ matches all three characters, and
 when "\fI(a*)*\fP" is matched against "bc"
 both the whole RE and the parenthesized
 subexpression match the null string.
-.PP
+.P
 If case-independent matching is specified,
 the effect is much as if all case distinctions had vanished from the
 alphabet.
@@ -229,13 +229,13 @@ for example, \[aq]x\[aq] becomes "\fI[xX]\fP".
 When it appears inside a bracket expression, all case counterparts
 of it are added to the bracket expression, so that, for example, "\fI[x]\fP"
 becomes "\fI[xX]\fP" and "\fI[\[ha]x]\fP" becomes "\fI[\[ha]xX]\fP".
-.PP
+.P
 No particular limit is imposed on the length of REs\*(dg.
 Programs intended to be portable should not employ REs longer
 than 256 bytes,
 as an implementation can refuse to accept such REs and remain
 POSIX-compliant.
-.PP
+.P
 Obsolete ("basic") regular expressions differ in several respects.
 \[aq]|\[aq], \[aq]+\[aq], and \[aq]?\[aq] are
 ordinary characters and there is no equivalent
@@ -251,7 +251,7 @@ RE or\*(dg the end of a parenthesized subexpression,
 and \[aq]*\[aq] is an ordinary character if it appears at the beginning of the
 RE or the beginning of a parenthesized subexpression
 (after a possible leading \[aq]\[ha]\[aq]).
-.PP
+.P
 Finally, there is one new type of atom, a \fIback reference\fR:
 \[aq]\e\[aq] followed by a nonzero decimal digit \fId\fR
 matches the same sequence of characters
@@ -261,26 +261,26 @@ left to right),
 so that, for example, "\fI\e([bc]\e)\e1\fP" matches "bb" or "cc" but not "bc".
 .SH BUGS
 Having two kinds of REs is a botch.
-.PP
+.P
 The current POSIX.2 spec says that \[aq])\[aq] is an ordinary character in
 the absence of an unmatched \[aq](\[aq];
 this was an unintentional result of a wording error,
 and change is likely.
 Avoid relying on it.
-.PP
+.P
 Back references are a dreadful botch,
 posing major problems for efficient implementations.
 They are also somewhat vaguely defined
 (does
 "\fIa\e(\e(b\e)*\e2\e)*d\fP" match "abbbd"?).
 Avoid using them.
-.PP
+.P
 POSIX.2's specification of case-independent matching is vague.
 The "one case implies all cases" definition given above
 is current consensus among implementors as to the right interpretation.
 .\" As per http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=295666
 .\" The following does not seem to apply in the glibc implementation
-.\" .PP
+.\" .P
 .\" The syntax for word boundaries is incredibly ugly.
 .SH AUTHOR
 .\" Sigh... The page license means we must have the author's name
@@ -289,5 +289,5 @@ This page was taken from Henry Spencer's regex package.
 .SH SEE ALSO
 .BR grep (1),
 .BR regex (3)
-.PP
+.P
 POSIX.2, section 2.8 (Regular Expression Notation).

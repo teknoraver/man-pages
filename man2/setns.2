@@ -13,7 +13,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <sched.h>
-.PP
+.P
 .BI "int setns(int " fd ", int " nstype );
 .fi
 .SH DESCRIPTION
@@ -30,7 +30,7 @@ directory (or a bind mount to such a link);
 .IP \[bu]
 a PID file descriptor (see
 .BR pidfd_open (2)).
-.PP
+.P
 The
 .I nstype
 argument is interpreted differently in each case.
@@ -49,7 +49,7 @@ argument.
 In this usage, each call to
 .BR setns ()
 changes just one of the caller's namespace memberships.
-.PP
+.P
 The
 .I nstype
 argument specifies which type of namespace
@@ -93,7 +93,7 @@ must refer to a user namespace.
 .BR CLONE_NEWUTS " (since Linux 3.0)"
 .I fd
 must refer to a UTS namespace.
-.PP
+.P
 Specifying
 .I nstype
 as 0 suffices if the caller knows (or does not care)
@@ -121,7 +121,7 @@ In this usage,
 atomically moves the calling thread into one or more of the same namespaces
 as the thread referred to by
 .IR fd .
-.PP
+.P
 The
 .I nstype
 argument is a bit mask specified by ORing together
@@ -133,11 +133,11 @@ The caller is moved into each of the target thread's namespaces
 that is specified in
 .IR nstype ;
 the caller's memberships in the remaining namespaces are left unchanged.
-.PP
+.P
 For example, the following code would move the caller into the
 same user, network, and UTS namespaces as PID 1234,
 but would leave the caller's other namespace memberships unchanged:
-.PP
+.P
 .in +4n
 .EX
 int fd = pidfd_open(1234, 0);
@@ -312,7 +312,7 @@ For further information on the
 .IR /proc/ pid /ns/
 magic links, see
 .BR namespaces (7).
-.PP
+.P
 Not all of the attributes that can be shared when
 a new thread is created using
 .BR clone (2)
@@ -327,7 +327,7 @@ The remaining arguments specify a command and its arguments.
 The program opens the namespace file, joins that namespace using
 .BR setns (),
 and executes the specified command inside that namespace.
-.PP
+.P
 The following shell session demonstrates the use of this program
 (compiled as a binary named
 .IR ns_exec )
@@ -337,7 +337,7 @@ example program in the
 .BR clone (2)
 man page (complied as a binary named
 .IR newuts ).
-.PP
+.P
 We begin by executing the example program in
 .BR clone (2)
 in the background.
@@ -345,7 +345,7 @@ That program creates a child in a separate UTS namespace.
 The child changes the hostname in its namespace,
 and then both processes display the hostnames in their UTS namespaces,
 so that we can see that they are different.
-.PP
+.P
 .in +4n
 .EX
 $ \fBsu\fP                   # Need privilege for namespace operations
@@ -359,12 +359,12 @@ uts.nodename in parent: antero
 antero
 .EE
 .in
-.PP
+.P
 We then run the program shown below,
 using it to execute a shell.
 Inside that shell, we verify that the hostname is the one
 set by the child created by the first program:
-.PP
+.P
 .in +4n
 .EX
 # \fB./ns_exec /proc/3550/ns/uts /bin/bash\fP

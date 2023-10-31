@@ -20,15 +20,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B "#include <unistd.h>"
-.PP
+.P
 .BI "int usleep(useconds_t " usec );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR usleep ():
 .nf
     Since glibc 2.12:
@@ -85,14 +85,14 @@ POSIX.1-2001 declares it obsolete, suggesting
 .BR nanosleep (2)
 instead.
 Removed in POSIX.1-2008.
-.PP
+.P
 On the original BSD implementation,
 and before glibc 2.2.2, the return type of this function is
 .IR void .
 The POSIX version returns
 .IR int ,
 and this is also the prototype used since glibc 2.2.2.
-.PP
+.P
 Only the
 .B EINVAL
 error return is documented by SUSv2 and POSIX.1-2001.

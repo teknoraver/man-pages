@@ -11,7 +11,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/param.h>
-.PP
+.P
 .BI "int powerof2(" x );
 .fi
 .SH DESCRIPTION
@@ -19,7 +19,7 @@ This macro returns true if
 .I x
 is a power of 2,
 and false otherwise.
-.PP
+.P
 .B 0
 is considered a power of 2.
 This can make sense considering wrapping of unsigned integers,
@@ -34,7 +34,7 @@ respectively.
 BSD.
 .SH CAVEATS
 The arguments may be evaluated more than once.
-.PP
+.P
 Because this macro is implemented using bitwise operations,
 some negative values can invoke undefined behavior.
 For example,

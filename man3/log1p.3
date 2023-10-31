@@ -16,17 +16,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double log1p(double " x );
 .BI "float log1pf(float " x );
 .BI "long double log1pl(long double " x );
-.PP
+.P
 .fi
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .nf
 .BR log1p ():
     _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L
@@ -35,7 +35,7 @@ Feature Test Macro Requirements for glibc (see
         || /* Since glibc 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR log1pf (),
 .BR log1pl ():
 .nf
@@ -45,11 +45,11 @@ Feature Test Macro Requirements for glibc (see
 .fi
 .SH DESCRIPTION
 These functions return a value equivalent to
-.PP
+.P
 .nf
     log (1 + \fIx\fP)
 .fi
-.PP
+.P
 The result is computed in a way
 that is accurate even if the value of
 .I x
@@ -57,16 +57,16 @@ is near zero.
 .SH RETURN VALUE
 On success, these functions return the natural logarithm of
 .IR "(1\ +\ x)" .
-.PP
+.P
 If
 .I x
 is a NaN,
 a NaN is returned.
-.PP
+.P
 If
 .I x
 is positive infinity, positive infinity is returned.
-.PP
+.P
 If
 .I x
 is \-1, a pole error occurs,
@@ -76,7 +76,7 @@ and the functions return
 or
 .RB \- HUGE_VALL ,
 respectively.
-.PP
+.P
 If
 .I x
 is less than \-1 (including negative infinity),
@@ -89,7 +89,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Domain error: \fIx\fP is less than \-1
@@ -137,7 +137,7 @@ Before glibc 2.22, the glibc implementation did not set
 to
 .B EDOM
 when a domain error occurred.
-.PP
+.P
 Before glibc 2.22, the glibc implementation did not set
 .\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=6792
 .I errno

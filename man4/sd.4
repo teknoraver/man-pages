@@ -22,7 +22,7 @@ is a number denoting the partition on that physical drive.
 Often, the partition number,
 .IR p ,
 will be left off when the device corresponds to the whole drive.
-.PP
+.P
 SCSI disks have a major device number of 8, and a minor device number of
 the form (16 *
 .IR drive_number ") + " partition_number ,
@@ -37,7 +37,7 @@ partition 0 is the whole drive
 partitions 1\[en]4 are the DOS "primary" partitions
 .IP \[bu]
 partitions 5\[en]8 are the DOS "extended" (or "logical") partitions
-.PP
+.P
 For example,
 .I /dev/sda
 will have major 8, minor 0, and will refer to all of the first SCSI drive
@@ -45,7 +45,7 @@ in the system; and
 .I /dev/sdb3
 will have major 8, minor 19, and will refer to the third DOS "primary"
 partition on the second SCSI drive in the system.
-.PP
+.P
 At this time, only block devices are provided.
 Raw devices have not yet been implemented.
 .SH DESCRIPTION
@@ -55,7 +55,7 @@ are provided:
 .TP
 .B HDIO_GETGEO
 Returns the BIOS disk parameters in the following structure:
-.PP
+.P
 .in +4n
 .EX
 struct hd_geometry {

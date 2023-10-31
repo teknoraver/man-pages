@@ -12,15 +12,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "[[deprecated]] char *getpass(const char *" prompt );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getpass ():
 .nf
     Since glibc 2.2.2:
@@ -39,7 +39,7 @@ see the description of the
 .I ECHO
 flag in
 .BR termios (3).
-.PP
+.P
 The
 .BR getpass ()
 function opens
@@ -112,7 +112,7 @@ You should use instead
 .BR readpassphrase (3bsd),
 provided by
 .IR libbsd .
-.PP
+.P
 In the GNU C library implementation, if
 .I /dev/tty
 cannot be opened, the prompt is written to
@@ -121,7 +121,7 @@ and the password is read from
 .IR stdin .
 There is no limit on the length of the password.
 Line editing is not disabled.
-.PP
+.P
 According to SUSv2, the value of
 .B PASS_MAX
 must be defined in

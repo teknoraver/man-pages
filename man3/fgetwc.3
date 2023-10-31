@@ -21,7 +21,7 @@ Standard C library
 .nf
 .B #include <stdio.h>
 .B #include <wchar.h>
-.PP
+.P
 .BI "wint_t fgetwc(FILE *" stream );
 .BI "wint_t getwc(FILE *" stream );
 .fi
@@ -39,7 +39,7 @@ it returns
 If a wide-character conversion error occurs, it sets
 \fIerrno\fP to \fBEILSEQ\fP and returns
 .BR WEOF .
-.PP
+.P
 The
 .BR getwc ()
 function or macro functions identically to
@@ -47,7 +47,7 @@ function or macro functions identically to
 It may be implemented as a macro, and may evaluate its argument
 more than once.
 There is no reason ever to use it.
-.PP
+.P
 For nonlocking counterparts, see
 .BR unlocked_stdio (3).
 .SH RETURN VALUE
@@ -91,7 +91,7 @@ depends on the
 .B LC_CTYPE
 category of the
 current locale.
-.PP
+.P
 In the absence of additional information passed to the
 .BR fopen (3)
 call, it is

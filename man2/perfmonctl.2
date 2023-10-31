@@ -11,10 +11,10 @@ perfmonctl \- interface to IA-64 performance monitoring unit
 .nf
 .B #include <syscall.h>
 .B #include <perfmon.h>
-.PP
+.P
 .BI "long perfmonctl(int " fd ", int " cmd ", void " arg [. narg "], int " narg ");"
 .fi
-.PP
+.P
 .IR Note :
 There is no glibc wrapper for this system call; see HISTORY.
 .SH DESCRIPTION
@@ -25,7 +25,7 @@ PMU (performance monitoring unit).
 The PMU consists of PMD (performance monitoring data) registers and
 PMC (performance monitoring control) registers,
 which gather hardware statistics.
-.PP
+.P
 .BR perfmonctl ()
 applies the operation
 .I cmd
@@ -35,7 +35,7 @@ The number of arguments is defined by \fInarg\fR.
 The
 .I fd
 argument specifies the perfmon context to operate on.
-.PP
+.P
 Supported values for
 .I cmd
 are:
@@ -180,14 +180,14 @@ Linux on IA-64.
 Added in Linux 2.4;
 .\" commit ecf5b72d5f66af843f189dfe9ce31598c3e48ad7
 removed in Linux 5.10.
-.PP
+.P
 This system call was broken for many years,
 and ultimately removed in Linux 5.10.
-.PP
+.P
 glibc does not provide a wrapper for this system call;
 on kernels where it exists, call it using
 .BR syscall (2).
 .SH SEE ALSO
 .BR gprof (1)
-.PP
+.P
 The perfmon2 interface specification

@@ -30,15 +30,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .BI "int kill(pid_t " pid ", int " sig );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR kill ():
 .nf
     _POSIX_C_SOURCE
@@ -48,25 +48,25 @@ The
 .BR kill ()
 system call
 can be used to send any signal to any process group or process.
-.PP
+.P
 If \fIpid\fP is positive, then signal \fIsig\fP is sent to the
 process with the ID specified by \fIpid\fP.
-.PP
+.P
 If \fIpid\fP equals 0, then \fIsig\fP is sent to every process in the
 process group of the calling process.
-.PP
+.P
 If \fIpid\fP equals \-1, then \fIsig\fP is sent to every process
 for which the calling process has permission to send signals,
 except for process 1 (\fIinit\fP), but see below.
-.PP
+.P
 If \fIpid\fP is less than \-1, then \fIsig\fP is sent to every process
 in the process group whose ID is \fI\-pid\fP.
-.PP
+.P
 If \fIsig\fP is 0, then no signal is sent,
 but existence and permission checks are still performed;
 this can be used to check for the existence of a process ID or
 process group ID that the caller is permitted to signal.
-.PP
+.P
 For a process to have permission to send a signal,
 it must either be privileged (under Linux: have the
 .B CAP_KILL
@@ -125,13 +125,13 @@ process, are those for which
 has explicitly installed signal handlers.
 This is done to assure the
 system is not brought down accidentally.
-.PP
+.P
 POSIX.1 requires that \fIkill(\-1,sig)\fP send \fIsig\fP
 to all processes that the calling process may send signals to,
 except possibly for some implementation-defined system processes.
 Linux allows a process to signal itself, but on Linux the call
 \fIkill(\-1,sig)\fP does not signal the calling process.
-.PP
+.P
 POSIX.1 requires that if a process sends a signal to itself,
 and the sending thread does not have the signal blocked,
 and no other thread

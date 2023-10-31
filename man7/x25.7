@@ -11,7 +11,7 @@ x25 \- ITU-T X.25 / ISO-8208 protocol interface
 .nf
 .B #include <sys/socket.h>
 .B #include <linux/x25.h>
-.PP
+.P
 .IB x25_socket " = socket(AF_X25, SOCK_SEQPACKET, 0);"
 .fi
 .SH DESCRIPTION
@@ -23,7 +23,7 @@ International Telecommunication Union's recommendation X.25
 X25 sockets can also be used for communication
 without an intermediate X.25 network (X.25 DTE-DTE mode) as described
 in ISO-8208.
-.PP
+.P
 Message boundaries are preserved \[em] a
 .BR read (2)
 from a socket will
@@ -47,7 +47,7 @@ socket address family uses the
 .I struct sockaddr_x25
 for representing network addresses as defined in ITU-T
 recommendation X.121.
-.PP
+.P
 .in +4n
 .EX
 struct sockaddr_x25 {
@@ -56,7 +56,7 @@ struct sockaddr_x25 {
 };
 .EE
 .in
-.PP
+.P
 .I sx25_addr
 contains a char array
 .I x25_addr[]
@@ -98,23 +98,23 @@ The AF_X25 protocol family is a new feature of Linux 2.2.
 .SH BUGS
 Plenty, as the X.25 PLP implementation is
 .BR CONFIG_EXPERIMENTAL .
-.PP
+.P
 This man page is incomplete.
-.PP
+.P
 There is no dedicated application programmer's header file yet;
 you need to include the kernel header file
 .IR <linux/x25.h> .
 .B CONFIG_EXPERIMENTAL
 might also imply that future versions of the
 interface are not binary compatible.
-.PP
+.P
 X.25 N-Reset events are not propagated to the user process yet.
 Thus,
 if a reset occurred, data might be lost without notice.
 .SH SEE ALSO
 .BR socket (2),
 .BR socket (7)
-.PP
+.P
 Jonathan Simon Naylor:
 \[lq]The Re-Analysis and Re-Implementation of X.25.\[rq]
 The URL is

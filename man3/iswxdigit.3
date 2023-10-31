@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wctype.h>
-.PP
+.P
 .BI "int iswxdigit(wint_t " wc );
 .fi
 .SH DESCRIPTION
@@ -31,21 +31,21 @@ It tests whether
 .I wc
 is a wide character
 belonging to the wide-character class "xdigit".
-.PP
+.P
 The wide-character class "xdigit" is a subclass of the wide-character class
 "alnum", and therefore also a subclass of the wide-character class "graph" and
 of the wide-character class "print".
-.PP
+.P
 Being a subclass of the wide-character class "print", the wide-character class
 "xdigit" is disjoint from the wide-character class "cntrl".
-.PP
+.P
 Being a subclass of the wide-character class "graph", the wide-character class
 "xdigit" is disjoint from the wide-character class "space" and its subclass
 "blank".
-.PP
+.P
 Being a subclass of the wide-character class "alnum", the wide-character class
 "xdigit" is disjoint from the wide-character class "punct".
-.PP
+.P
 The wide-character class "xdigit" always contains at least the
 letters \[aq]A\[aq] to \[aq]F\[aq], \[aq]a\[aq] to \[aq]f\[aq]
 and the digits \[aq]0\[aq] to \[aq]9\[aq].

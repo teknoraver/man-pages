@@ -16,7 +16,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sched.h>
-.PP
+.P
 .BI "int sched_rr_get_interval(pid_t " pid ", struct timespec *" tp );
 .fi
 .SH DESCRIPTION
@@ -30,7 +30,7 @@ the round-robin time quantum for the process identified by
 The specified process should be running under the
 .B SCHED_RR
 scheduling policy.
-.PP
+.P
 If
 .I pid
 is zero, the time quantum for the calling process is written into

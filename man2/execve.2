@@ -23,7 +23,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int execve(const char *" pathname ", char *const _Nullable " argv [],
 .BI "           char *const _Nullable " envp []);
 .fi
@@ -33,18 +33,18 @@ executes the program referred to by \fIpathname\fP.
 This causes the program that is currently being run by the calling process
 to be replaced with a new program, with newly initialized stack, heap,
 and (initialized and uninitialized) data segments.
-.PP
+.P
 \fIpathname\fP must be either a binary executable, or a script
 starting with a line of the form:
-.PP
+.P
 .in +4n
 .EX
 \fB#!\fP\fIinterpreter \fP[optional-arg]
 .EE
 .in
-.PP
+.P
 For details of the latter case, see "Interpreter scripts" below.
-.PP
+.P
 .I argv
 is an array of pointers to strings passed to the new program
 as its command-line arguments.
@@ -57,7 +57,7 @@ array must be terminated by a NULL pointer.
 (Thus, in the new program,
 .I argv[argc]
 will be NULL.)
-.PP
+.P
 .I envp
 is an array of pointers to strings, conventionally of the form
 .BR key=value ,
@@ -65,7 +65,7 @@ which are passed as the environment of the new program.
 The
 .I envp
 array must be terminated by a NULL pointer.
-.PP
+.P
 This manual page describes the Linux system call in detail;
 for an overview of the nomenclature and the many, often preferable,
 standardised variants of this function provided by libc,
@@ -73,31 +73,31 @@ including ones that search the
 .B PATH
 environment variable, see
 .BR exec (3).
-.PP
+.P
 The argument vector and environment can be accessed by the
 new program's main function, when it is defined as:
-.PP
+.P
 .in +4n
 .EX
 int main(int argc, char *argv[], char *envp[])
 .EE
 .in
-.PP
+.P
 Note, however, that the use of a third argument to the main function
 is not specified in POSIX.1;
 according to POSIX.1,
 the environment should be accessed via the external variable
 .BR environ (7).
-.PP
+.P
 .BR execve ()
 does not return on success, and the text, initialized data,
 uninitialized data (bss), and stack of the calling process are overwritten
 according to the contents of the newly loaded program.
-.PP
+.P
 If the current program is being ptraced, a \fBSIGTRAP\fP signal is sent to it
 after a successful
 .BR execve ().
-.PP
+.P
 If the set-user-ID bit is set on the program file referred to by
 \fIpathname\fP,
 then the effective user ID of the calling process is changed
@@ -105,7 +105,7 @@ to that of the owner of the program file.
 Similarly, if the set-group-ID bit is set on the program file,
 then the effective group ID of the calling
 process is set to the group of the program file.
-.PP
+.P
 The aforementioned transformations of the effective IDs are
 .I not
 performed (i.e., the set-user-ID and set-group-ID bits are ignored)
@@ -125,20 +125,20 @@ flag for
 or
 .IP \[bu]
 the calling process is being ptraced.
-.PP
+.P
 The capabilities of the program file (see
 .BR capabilities (7))
 are also ignored if any of the above are true.
-.PP
+.P
 The effective user ID of the process is copied to the saved set-user-ID;
 similarly, the effective group ID is copied to the saved set-group-ID.
 This copying takes place after any effective ID changes that occur
 because of the set-user-ID and set-group-ID mode bits.
-.PP
+.P
 The process's real UID and real GID, as well as its supplementary group IDs,
 are unchanged by a call to
 .BR execve ().
-.PP
+.P
 If the executable is an a.out dynamically linked
 binary executable containing
 shared-library stubs, the Linux dynamic linker
@@ -146,7 +146,7 @@ shared-library stubs, the Linux dynamic linker
 is called at the start of execution to bring
 needed shared objects into memory
 and link the executable with them.
-.PP
+.P
 If the executable is a dynamically linked ELF executable, the
 interpreter named in the PT_INTERP segment is used to load the needed
 shared objects.
@@ -198,7 +198,7 @@ Exit handlers are not preserved
 .IP \[bu]
 The floating-point environment is reset to the default (see
 .BR fenv (3)).
-.PP
+.P
 The process attributes in the preceding list are all specified
 in POSIX.1.
 The following Linux-specific process attributes are also
@@ -257,7 +257,7 @@ The file descriptor table is unshared, undoing the effect of the
 .B CLONE_FILES
 flag of
 .BR clone (2).
-.PP
+.P
 Note the following further points:
 .IP \[bu] 3
 All threads other than the calling thread are destroyed during an
@@ -313,17 +313,17 @@ closed across an
 .SS Interpreter scripts
 An interpreter script is a text file that has execute
 permission enabled and whose first line is of the form:
-.PP
+.P
 .in +4n
 .EX
 \fB#!\fP\fIinterpreter \fP[optional-arg]
 .EE
 .in
-.PP
+.P
 The
 .I interpreter
 must be a valid pathname for an executable file.
-.PP
+.P
 If the
 .I pathname
 argument of
@@ -331,13 +331,13 @@ argument of
 specifies an interpreter script, then
 .I interpreter
 will be invoked with the following arguments:
-.PP
+.P
 .in +4n
 .EX
 \fIinterpreter\fP [optional-arg] \fIpathname\fP arg...
 .EE
 .in
-.PP
+.P
 where
 .I pathname
 is the pathname of the file specified as the first argument of
@@ -358,12 +358,12 @@ call.
 .\" See the P - preserve-argv[0] option.
 .\" Documentation/admin-guide/binfmt-misc.rst
 .\" https://www.kernel.org/doc/html/latest/admin-guide/binfmt-misc.html
-.PP
+.P
 For portable use,
 .I optional-arg
 should either be absent, or be specified as a single word (i.e., it
 should not contain white space); see NOTES below.
-.PP
+.P
 Since Linux 2.6.28,
 .\" commit bf2a9a39639b8b51377905397a5005f444e9a892
 the kernel permits the interpreter of a script to itself be a script.
@@ -383,14 +383,14 @@ constant (either defined in
 .I <limits.h>
 or available at run time using the call
 .IR "sysconf(_SC_ARG_MAX)" ).
-.PP
+.P
 Before Linux 2.6.23, the memory used to store the
 environment and argument strings was limited to 32 pages
 (defined by the kernel constant
 .BR MAX_ARG_PAGES ).
 On architectures with a 4-kB page size,
 this yields a maximum size of 128\ kB.
-.PP
+.P
 On Linux 2.6.23 and later, most architectures support a size limit
 derived from the soft
 .B RLIMIT_STACK
@@ -560,7 +560,7 @@ The specified executable was open for writing by one or more processes.
 .SH VERSIONS
 POSIX does not document the #! behavior, but it exists
 (with some variations) on other UNIX systems.
-.PP
+.P
 On Linux,
 .I argv
 and
@@ -582,7 +582,7 @@ case the same as Linux.
 .\" Bug filed 30 Apr 2007: http://bugzilla.kernel.org/show_bug.cgi?id=8408
 .\" Bug rejected (because fix would constitute an ABI change).
 .\"
-.PP
+.P
 POSIX.1 says that values returned by
 .BR sysconf (3)
 should be invariant over the lifetime of a process.
@@ -602,7 +602,7 @@ Before Linux 5.1, the limit is 127 characters.
 Since Linux 5.1,
 .\" commit 6eb3c3d0a52dca337e327ae8868ca1f44a712e02
 the limit is 255 characters.
-.PP
+.P
 The semantics of the
 .I optional-arg
 argument of an interpreter script vary across implementations.
@@ -621,7 +621,7 @@ an interpreter script can have multiple arguments,
 and white spaces in
 .I optional-arg
 are used to delimit the arguments.
-.PP
+.P
 Linux (like most other modern UNIX systems)
 ignores the set-user-ID and set-group-ID bits on scripts.
 .SH STANDARDS
@@ -632,7 +632,7 @@ POSIX.1-2001, SVr4, 4.3BSD.
 .\" conditions EAGAIN, EINTR, ELIBACC, ENOLINK, EMULTIHOP; POSIX does not
 .\" document ETXTBSY, EPERM, EFAULT, ELOOP, EIO, ENFILE, EMFILE, EINVAL,
 .\" EISDIR or ELIBBAD error conditions.
-.PP
+.P
 With UNIX\ V6, the argument list of an
 .BR exec ()
 call was ended by 0,
@@ -659,10 +659,10 @@ All that
 .BR execve ()
 does is arrange for an existing process (the calling process)
 to execute a new program.
-.PP
+.P
 Set-user-ID and set-group-ID processes can not be
 .BR ptrace (2)d.
-.PP
+.P
 The result of mounting a filesystem
 .I nosuid
 varies across Linux kernel versions:
@@ -673,7 +673,7 @@ give the user powers they did not have already (and return
 some will just ignore the set-user-ID and set-group-ID bits and
 .BR exec ()
 successfully.
-.PP
+.P
 In most cases where
 .BR execve ()
 fails, control returns to the original executable image,
@@ -696,7 +696,7 @@ A more detailed explanation of the
 error that can occur (since Linux 3.1) when calling
 .BR execve ()
 is as follows.
-.PP
+.P
 The
 .B EAGAIN
 error can occur when a
@@ -718,7 +718,7 @@ call to fail.
 .\" commit 909cc4ae86f3380152a18e2a3c44523893ee11c4
 the resource limit was not imposed on processes that
 changed their user IDs.)
-.PP
+.P
 Since Linux 3.1, the scenario just described no longer causes the
 .BR set*uid ()
 call to fail,
@@ -749,7 +749,7 @@ common privileged daemon workflow\[em]namely,
 .BR set*uid ()
 +
 .BR execve ().
-.PP
+.P
 If the resource limit was not still exceeded at the time of the
 .BR execve ()
 call
@@ -777,7 +777,7 @@ by this process succeeds.
 .SH EXAMPLES
 The following program is designed to be execed by the second program below.
 It just echoes its command-line arguments, one per line.
-.PP
+.P
 .in +4n
 .\" SRC BEGIN (myecho.c)
 .EX
@@ -797,10 +797,10 @@ main(int argc, char *argv[])
 .EE
 .\" SRC END
 .in
-.PP
+.P
 This program can be used to exec the program named in its command-line
 argument:
-.PP
+.P
 .in +4n
 .\" SRC BEGIN (execve.c)
 .EX
@@ -830,9 +830,9 @@ main(int argc, char *argv[])
 .EE
 .\" SRC END
 .in
-.PP
+.P
 We can use the second program to exec the first as follows:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " cc myecho.c \-o myecho"
@@ -843,13 +843,13 @@ argv[1]: hello
 argv[2]: world
 .EE
 .in
-.PP
+.P
 We can also use these programs to demonstrate the use of a script
 interpreter.
 To do this we create a script whose "interpreter" is our
 .I myecho
 program:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " cat > script"
@@ -858,9 +858,9 @@ program:
 .RB "$" " chmod +x script"
 .EE
 .in
-.PP
+.P
 We can then use our program to exec the script:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./execve ./script"

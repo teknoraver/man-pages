@@ -12,18 +12,18 @@ facility allows the creation of filesystems whose contents reside
 in virtual memory.
 Since the files on such filesystems typically reside in RAM,
 file access is extremely fast.
-.PP
+.P
 The filesystem is automatically created when mounting
 a filesystem with the type
 .B tmpfs
 via a command such as the following:
-.PP
+.P
 .in +4n
 .EX
 $ sudo mount \-t tmpfs \-o size=10M tmpfs /mnt/mytmpfs
 .EE
 .in
-.PP
+.P
 A
 .B tmpfs
 filesystem has the following properties:
@@ -38,7 +38,7 @@ During a remount operation
 .RI ( "mount\ \-o\ remount" ),
 the filesystem size can be changed
 (without losing the existing contents of the filesystem).
-.PP
+.P
 If a
 .B tmpfs
 filesystem is unmounted, its contents are discarded (lost).
@@ -218,7 +218,7 @@ In order for user-space tools and applications to create
 filesystems, the kernel must be configured with the
 .B CONFIG_TMPFS
 option.
-.PP
+.P
 The
 .B tmpfs
 filesystem supports extended attributes (see
@@ -226,7 +226,7 @@ filesystem supports extended attributes (see
 but
 .I user
 extended attributes are not permitted.
-.PP
+.P
 An internal shared memory filesystem is used for
 System V shared memory
 .RB ( shmget (2))
@@ -241,7 +241,7 @@ This filesystem is available regardless of whether
 the kernel was configured with the
 .B CONFIG_TMPFS
 option.
-.PP
+.P
 A
 .B tmpfs
 filesystem mounted at
@@ -250,7 +250,7 @@ is used for the implementation of POSIX shared memory
 .RB ( shm_overview (7))
 and POSIX semaphores
 .RB ( sem_overview (7)).
-.PP
+.P
 The amount of memory consumed by all
 .B tmpfs
 filesystems is shown in the
@@ -261,7 +261,7 @@ and in the
 .I shared
 field displayed by
 .BR free (1).
-.PP
+.P
 The
 .B tmpfs
 facility was formerly called
@@ -274,7 +274,7 @@ facility was formerly called
 .BR set_mempolicy (2),
 .BR shm_open (3),
 .BR mount (8)
-.PP
+.P
 The kernel source files
 .I Documentation/filesystems/tmpfs.txt
 and

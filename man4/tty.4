@@ -15,7 +15,7 @@ The file
 is a character file with major number 5 and
 minor number 0, usually with mode 0666 and ownership root:tty.
 It is a synonym for the controlling terminal of a process, if any.
-.PP
+.P
 In addition to the
 .BR ioctl (2)
 requests supported by the device that
@@ -27,7 +27,7 @@ request
 is supported.
 .SS TIOCNOTTY
 Detach the calling process from its controlling terminal.
-.PP
+.P
 If the process is the session leader,
 then
 .B SIGHUP
@@ -35,7 +35,7 @@ and
 .B SIGCONT
 signals are sent to the foreground process group
 and all processes in the current session lose their controlling tty.
-.PP
+.P
 This
 .BR ioctl (2)
 call works only on file descriptors connected

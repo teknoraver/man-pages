@@ -14,16 +14,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "char *ptsname(int " fd );
 .BI "int ptsname_r(int " fd ", char " buf [. buflen "], size_t " buflen );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR ptsname ():
 .nf
     Since glibc 2.24:
@@ -32,7 +32,7 @@ Feature Test Macro Requirements for glibc (see
     glibc 2.23 and earlier:
         _XOPEN_SOURCE
 .fi
-.PP
+.P
 .BR ptsname_r ():
 .nf
     _GNU_SOURCE
@@ -43,7 +43,7 @@ The
 function returns the name of the slave pseudoterminal device
 corresponding to the master referred to by the file descriptor
 .IR fd .
-.PP
+.P
 The
 .BR ptsname_r ()
 function is the reentrant equivalent of
@@ -62,7 +62,7 @@ returns a pointer to a string in static storage which will be
 overwritten by subsequent calls.
 This pointer must not be freed.
 On failure, NULL is returned.
-.PP
+.P
 On success,
 .BR ptsname_r ()
 returns 0.
@@ -121,7 +121,7 @@ Avoid using this function in portable programs.
 .TP
 .BR ptsname ():
 POSIX.1-2008.
-.PP
+.P
 .BR ptsname_r ()
 is a Linux extension, that is proposed for inclusion
 .\" FIXME . for later review when Issue 8 is one day released
@@ -133,7 +133,7 @@ in the next major revision of POSIX.1 (Issue 8).
 .BR ptsname ():
 POSIX.1-2001.
 glibc 2.1.
-.PP
+.P
 .BR ptsname ()
 is part of the UNIX 98 pseudoterminal support (see
 .BR pts (4)).

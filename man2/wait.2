@@ -35,21 +35,21 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/wait.h>
-.PP
+.P
 .BI "pid_t wait(int *_Nullable " "wstatus" );
 .BI "pid_t waitpid(pid_t " pid ", int *_Nullable " wstatus ", int " options );
-.PP
+.P
 .BI "int waitid(idtype_t " idtype ", id_t " id \
 ", siginfo_t *" infop ", int " options );
                 /* This is the glibc and POSIX interface; see
                    NOTES for information on the raw system call. */
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR waitid ():
 .nf
     Since glibc 2.26:
@@ -70,7 +70,7 @@ In the case of a terminated child, performing a wait allows
 the system to release the resources associated with the child;
 if a wait is not performed, then the terminated child remains in
 a "zombie" state (see NOTES below).
-.PP
+.P
 If a child has already changed state, then these calls return immediately.
 Otherwise, they block until either a child changes state or
 a signal handler interrupts the call (assuming that system calls
@@ -90,13 +90,13 @@ children terminates.
 The call
 .I wait(&wstatus)
 is equivalent to:
-.PP
+.P
 .in +4n
 .EX
 waitpid(\-1, &wstatus, 0);
 .EE
 .in
-.PP
+.P
 The
 .BR waitpid ()
 system call suspends execution of the calling thread until a
@@ -109,7 +109,7 @@ waits only for terminated children, but this behavior is modifiable
 via the
 .I options
 argument, as described below.
-.PP
+.P
 The value of
 .I pid
 can be:
@@ -131,7 +131,7 @@ equal to that of the calling process at the time of the call to
 meaning wait for the child whose process ID is equal to the
 value of
 .IR pid .
-.PP
+.P
 The value of
 .I options
 is an OR of zero or more of the following constants:
@@ -151,9 +151,9 @@ even if this option is not specified.
 .BR WCONTINUED " (since Linux 2.6.10)"
 also return if a stopped child has been resumed by delivery of
 .BR SIGCONT .
-.PP
+.P
 (For Linux-only options, see below.)
-.PP
+.P
 If
 .I wstatus
 is not NULL,
@@ -233,7 +233,7 @@ The
 .BR waitid ()
 system call (available since Linux 2.6.9) provides more precise
 control over which child state changes to wait for.
-.PP
+.P
 The
 .I idtype
 and
@@ -266,7 +266,7 @@ as the caller's process group at the time of the call.
 Wait for any child;
 .I id
 is ignored.
-.PP
+.P
 The child state changes to wait for are specified by ORing
 one or more of the following flags in
 .IR options :
@@ -281,7 +281,7 @@ Wait for children that have been stopped by delivery of a signal.
 Wait for (previously stopped) children that have been
 resumed by delivery of
 .BR SIGCONT .
-.PP
+.P
 The following flags may additionally be ORed in
 .IR options :
 .TP
@@ -292,7 +292,7 @@ As for
 .B WNOWAIT
 Leave the child in a waitable state; a later wait call
 can be used to again retrieve the child status information.
-.PP
+.P
 Upon successful return,
 .BR waitid ()
 fills in the following fields of the
@@ -337,7 +337,7 @@ Set to one of:
 .B CLD_CONTINUED
 (child continued by
 .BR SIGCONT ).
-.PP
+.P
 If
 .B WNOHANG
 was specified in
@@ -355,7 +355,7 @@ waitable state, zero out the
 .I si_pid
 field before the call and check for a nonzero value in this field
 after the call returns.
-.PP
+.P
 POSIX.1-2008 Technical Corrigendum 1 (2013) adds the requirement that when
 .B WNOHANG
 is specified in
@@ -382,7 +382,7 @@ not all implementations follow the POSIX.1 specification on this point.
 .BR wait ():
 on success, returns the process ID of the terminated child;
 on failure, \-1 is returned.
-.PP
+.P
 .BR waitpid ():
 on success, returns the process ID of the child whose state has changed;
 if
@@ -391,7 +391,7 @@ was specified and one or more child(ren) specified by
 .I pid
 exist, but have not yet changed state, then 0 is returned.
 On failure, \-1 is returned.
-.PP
+.P
 .BR waitid ():
 returns 0 on success or
 if
@@ -404,7 +404,7 @@ on failure, \-1 is returned.
 .\" returns the PID of the child.  Either this is a bug, or it is intended
 .\" behavior that needs to be documented.  See my Jan 2009 LKML mail
 .\" "waitid() return value strangeness when infop is NULL".
-.PP
+.P
 On failure, each of these calls sets
 .I errno
 to indicate the error.
@@ -465,7 +465,7 @@ is equal to
 .BR wait ()
 is actually a library function that (in glibc) is implemented as a call to
 .BR wait4 (2).
-.PP
+.P
 On some architectures, there is no
 .BR waitpid ()
 system call;
@@ -473,7 +473,7 @@ system call;
 instead, this interface is implemented via a C library
 wrapper function that calls
 .BR wait4 (2).
-.PP
+.P
 The raw
 .BR waitid ()
 system call takes a fifth argument, of type
@@ -507,7 +507,7 @@ are adopted by
 operation);
 .BR init (1)
 automatically performs a wait to remove the zombies.
-.PP
+.P
 POSIX.1-2001 specifies that if the disposition of
 .B SIGCHLD
 is set to
@@ -536,7 +536,7 @@ Note that even though the default disposition of
 is "ignore", explicitly setting the disposition to
 .B SIG_IGN
 results in different treatment of zombie process children.)
-.PP
+.P
 Linux 2.6 conforms to the POSIX requirements.
 However, Linux 2.4 (and earlier) does not:
 if a
@@ -565,7 +565,7 @@ of another thread, even when the latter belongs to the same thread group.
 However, POSIX prescribes such functionality, and since Linux 2.4
 a thread can, and by default will, wait on children of other threads
 in the same thread group.
-.PP
+.P
 The following Linux-specific
 .I options
 are for use with children created using
@@ -596,7 +596,7 @@ type ("clone" or "non-clone").
 Do not wait for children of other threads in
 the same thread group.
 This was the default before Linux 2.4.
-.PP
+.P
 Since Linux 4.7,
 .\" commit bf959931ddb88c4e4366e96dd22e68fa0db9527c
 .\" prevents cases where an unreapable zombie is created if
@@ -636,9 +636,9 @@ using the integer supplied on the command line as the exit status.
 The parent process executes a loop that monitors the child using
 .BR waitpid (),
 and uses the W*() macros described above to analyze the wait status value.
-.PP
+.P
 The following shell session demonstrates the use of the program:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out &"

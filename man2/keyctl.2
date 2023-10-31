@@ -11,7 +11,7 @@ keyctl \- manipulate the kernel's key management facility
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
-.PP
+.P
 Alternatively, Linux Key Management Utilities
 .RI ( libkeyutils ", " \-lkeyutils );
 see VERSIONS.
@@ -20,12 +20,12 @@ see VERSIONS.
 .BR "#include <linux/keyctl.h>" "     /* Definition of " KEY* " constants */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "long syscall(SYS_keyctl, int " operation ", unsigned long " arg2 ,
 .BI "             unsigned long " arg3 ", unsigned long " arg4 ,
 .BI "             unsigned long " arg5 );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR keyctl (),
@@ -34,7 +34,7 @@ necessitating the use of
 .SH DESCRIPTION
 .BR keyctl ()
 allows user-space programs to perform key manipulation.
-.PP
+.P
 The operation performed by
 .BR keyctl ()
 is determined by the value of the
@@ -46,7 +46,7 @@ library (provided by the
 .I keyutils
 package) into individual functions (noted below)
 to permit the compiler to check types.
-.PP
+.P
 The permitted values for
 .I operation
 are:
@@ -1653,7 +1653,7 @@ is 0, the required buffer size.
 .TP
 All other operations
 Zero.
-.PP
+.P
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
@@ -1968,7 +1968,7 @@ program provided by the
 package.
 For informational purposes,
 the program records various information in a log file.
-.PP
+.P
 As described in
 .BR request_key (2),
 the
@@ -1978,7 +1978,7 @@ describe a key that is to be instantiated.
 The example program fetches and logs these arguments.
 The program assumes authority to instantiate the requested key,
 and then instantiates that key.
-.PP
+.P
 The following shell session demonstrates the use of this program.
 In the session,
 we compile the program and then use it to temporarily replace the standard
@@ -1991,7 +1991,7 @@ While our example program is installed,
 we use the example program shown in
 .BR request_key (2)
 to request a key.
-.PP
+.P
 .in +4n
 .EX
 $ \fBcc \-o key_instantiate key_instantiate.c \-lkeyutils\fP
@@ -2002,10 +2002,10 @@ Key ID is 20d035bf
 $ \fBsudo mv /sbin/request\-key.backup /sbin/request\-key\fP
 .EE
 .in
-.PP
+.P
 Looking at the log file created by this program,
 we can see the command-line arguments supplied to our example program:
-.PP
+.P
 .in +4n
 .EX
 $ \fBcat /tmp/key_instantiate.log\fP
@@ -2027,7 +2027,7 @@ Destination keyring:  256e6a6
 Auth key description: .request_key_auth;1000;1000;0b010000;20d035bf
 .EE
 .in
-.PP
+.P
 The last few lines of the above output show that the example program
 was able to fetch:
 .IP \[bu] 3
@@ -2048,7 +2048,7 @@ the description of the authorization key,
 where we can see that the name of the authorization key matches
 the ID of the key that is to be instantiated
 .RI ( 20d035bf ).
-.PP
+.P
 The example program in
 .BR request_key (2)
 specified the destination keyring as
@@ -2062,7 +2062,7 @@ we can also see the newly created key with the name
 .I mykey
 and ID
 .IR 20d035bf .
-.PP
+.P
 .in +4n
 .EX
 $ \fBcat /proc/keys | egrep \[aq]mykey|256e6a6\[aq]\fP
@@ -2290,7 +2290,7 @@ main(int argc, char *argv[])
 .BR user_namespaces (7),
 .BR user\-session\-keyring (7),
 .BR request\-key (8)
-.PP
+.P
 The kernel source files under
 .I Documentation/security/keys/
 (or, before Linux 4.13, in the file

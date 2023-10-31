@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .EX
 .B #include <time.h>
-.PP
+.P
 .B struct itimerspec {
 .BR "    struct timespec  it_interval;" "  /* Interval for periodic timer */"
 .BR "    struct timespec  it_value;" "     /* Initial expiration */"

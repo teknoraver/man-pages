@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B "#include <unistd.h>"
-.PP
+.P
 .BI "pid_t tcgetpgrp(int " fd );
 .BI "int tcsetpgrp(int " fd ", pid_t " pgrp );
 .fi
@@ -24,7 +24,7 @@ terminal associated to
 .IR fd ,
 which must be the controlling terminal of the calling process.
 .\" The process itself may be a background process.
-.PP
+.P
 The function
 .BR tcsetpgrp ()
 makes the process group with process group ID
@@ -37,7 +37,7 @@ Moreover,
 .I pgrp
 must be a (nonempty) process group belonging to
 the same session as the calling process.
-.PP
+.P
 If
 .BR tcsetpgrp ()
 is called by a member of a background process group in its session,
@@ -61,7 +61,7 @@ does not refer to the controlling terminal of the calling process,
 \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 When successful,
 .BR tcsetpgrp ()
 returns 0.
@@ -116,7 +116,7 @@ ioctls.
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
-.PP
+.P
 The ioctls appeared in 4.2BSD.
 The functions are POSIX inventions.
 .SH SEE ALSO

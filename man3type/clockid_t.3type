@@ -7,7 +7,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/types.h>
-.PP
+.P
 .BR typedef " /* ... */ " clockid_t;
 .fi
 .SH DESCRIPTION

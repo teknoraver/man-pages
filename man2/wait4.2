@@ -19,18 +19,18 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/wait.h>
-.PP
+.P
 .BI "pid_t wait3(int *_Nullable " "wstatus" ", int " options ,
 .BI "            struct rusage *_Nullable " rusage );
 .BI "pid_t wait4(pid_t " pid ", int *_Nullable " wstatus ", int " options ,
 .BI "            struct rusage *_Nullable " rusage );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR wait3 ():
 .nf
     Since glibc 2.26:
@@ -44,7 +44,7 @@ Feature Test Macro Requirements for glibc (see
         _BSD_SOURCE || _XOPEN_SOURCE >= 500
 .\"          || _XOPEN_SOURCE && _XOPEN_SOURCE_EXTENDED
 .fi
-.PP
+.P
 .BR wait4 ():
 .nf
     Since glibc 2.19:
@@ -58,7 +58,7 @@ These functions are nonstandard; in new programs, the use of
 or
 .BR waitid (2)
 is preferable.
-.PP
+.P
 The
 .BR wait3 ()
 and
@@ -68,45 +68,45 @@ system calls are similar to
 but additionally return resource usage information about the
 child in the structure pointed to by
 .IR rusage .
-.PP
+.P
 Other than the use of the
 .I rusage
 argument, the following
 .BR wait3 ()
 call:
-.PP
+.P
 .in +4n
 .EX
 wait3(wstatus, options, rusage);
 .EE
 .in
-.PP
+.P
 is equivalent to:
-.PP
+.P
 .in +4n
 .EX
 waitpid(\-1, wstatus, options);
 .EE
 .in
-.PP
+.P
 Similarly, the following
 .BR wait4 ()
 call:
-.PP
+.P
 .in +4n
 .EX
 wait4(pid, wstatus, options, rusage);
 .EE
 .in
-.PP
+.P
 is equivalent to:
-.PP
+.P
 .in +4n
 .EX
 waitpid(pid, wstatus, options);
 .EE
 .in
-.PP
+.P
 In other words,
 .BR wait3 ()
 waits of any child, while
@@ -115,7 +115,7 @@ can be used to select a specific child, or children, on which to wait.
 See
 .BR wait (2)
 for further details.
-.PP
+.P
 If
 .I rusage
 is not NULL, the
@@ -135,14 +135,14 @@ As for
 None.
 .SH HISTORY
 4.3BSD.
-.PP
+.P
 SUSv1 included a specification of
 .BR wait3 ();
 SUSv2 included
 .BR wait3 (),
 but marked it LEGACY;
 SUSv3 removed it.
-.PP
+.P
 Including
 .I <sys/time.h>
 is not required these days, but increases portability.

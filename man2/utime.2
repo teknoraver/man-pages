@@ -17,12 +17,12 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <utime.h>
-.PP
+.P
 .BI "int utime(const char *" filename ,
 .BI "          const struct utimbuf *_Nullable " times );
-.PP
+.P
 .B #include <sys/time.h>
-.PP
+.P
 .BI "int utimes(const char *" filename ,
 .BI "          const struct timeval " times "[_Nullable 2]);"
 .fi
@@ -30,7 +30,7 @@ Standard C library
 .B Note:
 modern applications may prefer to use the interfaces described in
 .BR utimensat (2).
-.PP
+.P
 The
 .BR utime ()
 system call
@@ -43,23 +43,23 @@ fields of
 respectively.
 The status change time (ctime) will be set to the current time, even if the
 other time stamps don't actually change.
-.PP
+.P
 If
 .I times
 is NULL, then the access and modification times of the file are set
 to the current time.
-.PP
+.P
 Changing timestamps is permitted when: either
 the process has appropriate privileges,
 or the effective user ID equals the user ID
 of the file, or
 .I times
 is NULL and the process has write permission for the file.
-.PP
+.P
 The
 .I utimbuf
 structure is:
-.PP
+.P
 .in +4n
 .EX
 struct utimbuf {
@@ -68,12 +68,12 @@ struct utimbuf {
 };
 .EE
 .in
-.PP
+.P
 The
 .BR utime ()
 system call
 allows specification of timestamps with a resolution of 1 second.
-.PP
+.P
 The
 .BR utimes ()
 system call
@@ -86,7 +86,7 @@ structures, which allow a precision of 1 microsecond for specifying timestamps.
 The
 .I timeval
 structure is:
-.PP
+.P
 .in +4n
 .EX
 struct timeval {
@@ -95,7 +95,7 @@ struct timeval {
 };
 .EE
 .in
-.PP
+.P
 .I times[0]
 specifies the new access time, and
 .I times[1]

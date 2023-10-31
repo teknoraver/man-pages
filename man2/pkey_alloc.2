@@ -12,7 +12,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <sys/mman.h>
-.PP
+.P
 .BI "int pkey_alloc(unsigned int " flags ", unsigned int " access_rights ");"
 .BI "int pkey_free(int " pkey ");"
 .fi
@@ -20,12 +20,12 @@ Standard C library
 .BR pkey_alloc ()
 allocates a protection key (pkey) and allows it to be passed to
 .BR pkey_mprotect (2).
-.PP
+.P
 The
 .BR pkey_alloc ()
 .I flags
 is reserved for future use and currently must always be specified as 0.
-.PP
+.P
 The
 .BR pkey_alloc ()
 .I access_rights
@@ -36,13 +36,13 @@ Disable all data access to memory covered by the returned protection key.
 .TP
 .B PKEY_DISABLE_WRITE
 Disable write access to memory covered by the returned protection key.
-.PP
+.P
 .BR pkey_free ()
 frees a protection key and makes it available for later
 allocations.
 After a protection key has been freed, it may no longer be used
 in any protection-key-related operations.
-.PP
+.P
 An application should not call
 .BR pkey_free ()
 on any protection key which has been assigned to an address
@@ -96,7 +96,7 @@ It can be used in lieu of any other mechanism for detecting pkey support
 and will simply fail with the error
 .B ENOSPC
 if the operating system has no pkey support.
-.PP
+.P
 The kernel guarantees that the contents of the hardware rights
 register (PKRU) will be preserved only for allocated protection
 keys.

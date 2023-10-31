@@ -35,11 +35,11 @@ see "Library Support" below.
 .\" See also Changelog-2.6.14
 This file displays information about a process's
 NUMA memory policy and allocation.
-.PP
+.P
 Each line contains information about a memory range used by the process,
 displaying\[em]among other information\[em]the effective memory policy for
 that memory range and on which nodes the pages have been allocated.
-.PP
+.P
 .I numa_maps
 is a read-only file.
 When
@@ -47,14 +47,14 @@ When
 is read, the kernel will scan the virtual address space of the
 process and report how memory is used.
 One line is displayed for each unique memory range of the process.
-.PP
+.P
 The first field of each line shows the starting address of the memory range.
 This field allows a correlation with the contents of the
 .IR /proc/ pid /maps
 file,
 which contains the end address of the range and other information,
 such as the access permissions and sharing.
-.PP
+.P
 The second field shows the memory policy currently in effect for the
 memory range.
 Note that the effective policy is not necessarily the policy
@@ -62,7 +62,7 @@ installed by the process for that memory range.
 Specifically, if the process installed a "default" policy for that range,
 the effective policy for that range will be the process policy,
 which may or may not be "default".
-.PP
+.P
 The rest of the line contains information about the pages allocated in
 the memory range, as follows:
 .TP
@@ -143,7 +143,7 @@ and the required
 header are available in the
 .I numactl
 package.
-.PP
+.P
 However, applications should not use these system calls directly.
 Instead, the higher level interface provided by the
 .BR numa (3)

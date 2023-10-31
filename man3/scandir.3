@@ -31,43 +31,43 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <dirent.h>
-.PP
+.P
 .BI "int scandir(const char *restrict " dirp ,
 .BI "            struct dirent ***restrict " namelist ,
 .BI "            int (*" filter ")(const struct dirent *),"
 .BI "            int (*" compar ")(const struct dirent **,"
 .B "                          const struct dirent **));"
-.PP
+.P
 .BI "int alphasort(const struct dirent **" a ", const struct dirent **" b );
 .BI "int versionsort(const struct dirent **" a ", const struct dirent **" b );
-.PP
+.P
 .BR "#include <fcntl.h>" "          /* Definition of AT_* constants */"
 .B #include <dirent.h>
-.PP
+.P
 .BI "int scandirat(int " dirfd ", const char *restrict " dirp ,
 .BI "            struct dirent ***restrict " namelist ,
 .BI "            int (*" filter ")(const struct dirent *),"
 .BI "            int (*" compar ")(const struct dirent **,"
 .B "                          const struct dirent **));"
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR scandir (),
 .BR alphasort ():
 .nf
     /* Since glibc 2.10: */ _POSIX_C_SOURCE >= 200809L
         || /* glibc <= 2.19: */ _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR versionsort ():
 .nf
     _GNU_SOURCE
 .fi
-.PP
+.P
 .BR scandirat ():
 .nf
     _GNU_SOURCE
@@ -87,7 +87,7 @@ function \fIcompar\fP(), and collected in array \fInamelist\fP
 which is allocated via
 .BR malloc (3).
 If \fIfilter\fP is NULL, all entries are selected.
-.PP
+.P
 The
 .BR alphasort ()
 and
@@ -105,7 +105,7 @@ The
 function operates in exactly the same way as
 .BR scandir (),
 except for the differences described here.
-.PP
+.P
 If the pathname given in
 .I dirp
 is relative, then it is interpreted relative to the directory
@@ -115,7 +115,7 @@ referred to by the file descriptor
 the calling process, as is done by
 .BR scandir ()
 for a relative pathname).
-.PP
+.P
 If
 .I dirp
 is relative and
@@ -127,13 +127,13 @@ then
 is interpreted relative to the current working
 directory of the calling process (like
 .BR scandir ()).
-.PP
+.P
 If
 .I dirp
 is absolute, then
 .I dirfd
 is ignored.
-.PP
+.P
 See
 .BR openat (2)
 for an explanation of the need for
@@ -146,7 +146,7 @@ selected.
 On error, \-1 is returned, with
 .I errno
 set to indicate the error.
-.PP
+.P
 The
 .BR alphasort ()
 and
@@ -224,7 +224,7 @@ glibc 2.1.
 .TP
 .BR scandirat ()
 glibc 2.15.
-.\" .LP
+.\" .P
 .\" The functions
 .\" .BR scandir ()
 .\" and
@@ -245,7 +245,7 @@ calls
 .BR strcoll (3);
 earlier it used
 .BR strcmp (3).
-.PP
+.P
 Before glibc 2.10, the two arguments of
 .BR alphasort ()
 and

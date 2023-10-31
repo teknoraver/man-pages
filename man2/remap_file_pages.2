@@ -15,7 +15,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <sys/mman.h>
-.PP
+.P
 .BI "[[deprecated]] int remap_file_pages(void " addr [. size "], size_t " size ,
 .BI "                                    int " prot ", size_t " pgoff ", \
 int " flags );
@@ -34,7 +34,7 @@ This change was made because the kernel code for this system call was complex,
 and it is believed to be little used or perhaps even completely unused.
 While it had some use cases in database applications on 32-bit systems,
 those use cases don't exist on 64-bit systems.
-.PP
+.P
 The
 .BR remap_file_pages ()
 system call is used to create a nonlinear mapping, that is, a mapping
@@ -46,7 +46,7 @@ over using repeated calls to
 .BR mmap (2)
 is that the former approach does not require the kernel to create
 additional VMA (Virtual Memory Area) data structures.
-.PP
+.P
 To create a nonlinear mapping we perform the following steps:
 .TP 3
 1.
@@ -64,7 +64,7 @@ to rearrange the correspondence between the pages of the mapping
 and the pages of the file.
 It is possible to map the same page of a file
 into multiple locations within the mapped region.
-.PP
+.P
 The
 .I pgoff
 and
@@ -75,7 +75,7 @@ within the mapping:
 is a file offset in units of the system page size;
 .I size
 is the length of the region in bytes.
-.PP
+.P
 The
 .I addr
 argument serves two purposes.
@@ -93,7 +93,7 @@ identified by
 and
 .I size
 will be placed.
-.PP
+.P
 The values specified in
 .I addr
 and
@@ -107,11 +107,11 @@ to the nearest multiple of the page size.
 .\" This rounding is weird, and not consistent with the treatment of
 .\" the analogous arguments for munmap()/mprotect() and for mlock().
 .\" MTK, 14 Sep 2005
-.PP
+.P
 The
 .I prot
 argument must be specified as 0.
-.PP
+.P
 The
 .I flags
 argument has the same meaning as for

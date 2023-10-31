@@ -19,17 +19,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <string.h>
-.PP
+.P
 .BI "char *strtok(char *restrict " str ", const char *restrict " delim );
 .BI "char *strtok_r(char *restrict " str ", const char *restrict " delim ,
 .BI "               char **restrict " saveptr );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR strtok_r ():
 .nf
     _POSIX_C_SOURCE
@@ -47,7 +47,7 @@ specified in
 In each subsequent call that should parse the same string,
 .I str
 must be NULL.
-.PP
+.P
 The
 .I delim
 argument specifies a set of bytes that
@@ -56,7 +56,7 @@ The caller may specify different strings in
 .I delim
 in successive
 calls that parse the same string.
-.PP
+.P
 Each call to
 .BR strtok ()
 returns a pointer to a
@@ -65,7 +65,7 @@ This string does not include the delimiting byte.
 If no more tokens are found,
 .BR strtok ()
 returns NULL.
-.PP
+.P
 A sequence of calls to
 .BR strtok ()
 that operate on the same string maintains a pointer
@@ -85,7 +85,7 @@ returns NULL.
 will thus cause
 .BR strtok ()
 to return NULL on the first call.)
-.PP
+.P
 The end of each token is found by scanning forward until either
 the next delimiter byte is found or until the
 terminating null byte (\[aq]\e0\[aq]) is encountered.
@@ -98,7 +98,7 @@ when searching for the next token.
 In this case,
 .BR strtok ()
 returns a pointer to the start of the found token.
-.PP
+.P
 From the above description,
 it follows that a sequence of two or more contiguous delimiter bytes in
 the parsed string is considered to be a single delimiter, and that
@@ -112,7 +112,7 @@ successive calls to
 that specify the delimiter string "\fI;,\fP"
 would return the strings "\fIaaa\fP" and "\fIbbb\fP",
 and then a null pointer.
-.PP
+.P
 The
 .BR strtok_r ()
 function is a reentrant version of
@@ -125,7 +125,7 @@ variable that is used internally by
 .BR strtok_r ()
 in order to maintain context between successive calls that parse the
 same string.
-.PP
+.P
 On the first call to
 .BR strtok_r (),
 .I str
@@ -138,7 +138,7 @@ should be NULL, and
 .I saveptr
 (and the buffer that it points to)
 should be unchanged since the previous call.
-.PP
+.P
 Different strings may be parsed concurrently using sequences of calls to
 .BR strtok_r ()
 that specify different
@@ -217,9 +217,9 @@ The second argument specifies the delimiter byte(s)
 to be used to separate that string into "major" tokens.
 The third argument specifies the delimiter byte(s)
 to be used to separate the "major" tokens into subtokens.
-.PP
+.P
 An example of the output produced by this program is the following:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out \[aq]a/bbb///cc;xxx:yyy:\[aq] \[aq]:;\[aq] \[aq]/\[aq]"
@@ -272,7 +272,7 @@ main(int argc, char *argv[])
 }
 .EE
 .\" SRC END
-.PP
+.P
 Another example program using
 .BR strtok ()
 can be found in

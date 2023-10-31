@@ -13,53 +13,53 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "int getc_unlocked(FILE *" stream );
 .B "int getchar_unlocked(void);"
 .BI "int putc_unlocked(int " c ", FILE *" stream );
 .BI "int putchar_unlocked(int " c );
-.PP
+.P
 .BI "void clearerr_unlocked(FILE *" stream );
 .BI "int feof_unlocked(FILE *" stream );
 .BI "int ferror_unlocked(FILE *" stream );
 .BI "int fileno_unlocked(FILE *" stream );
 .BI "int fflush_unlocked(FILE *_Nullable " stream );
-.PP
+.P
 .BI "int fgetc_unlocked(FILE *" stream );
 .BI "int fputc_unlocked(int " c ", FILE *" stream );
-.PP
+.P
 .BI "size_t fread_unlocked(void " ptr "[restrict ." size " * ." n ],
 .BI "                      size_t " size ", size_t " n ,
 .BI "                      FILE *restrict " stream );
 .BI "size_t fwrite_unlocked(const void " ptr "[restrict ." size " * ." n ],
 .BI "                      size_t " size ", size_t " n ,
 .BI "                      FILE *restrict " stream );
-.PP
+.P
 .BI "char *fgets_unlocked(char " s "[restrict ." n "], int " n \
 ", FILE *restrict " stream );
 .BI "int fputs_unlocked(const char *restrict " s ", FILE *restrict " stream );
-.PP
+.P
 .B #include <wchar.h>
-.PP
+.P
 .BI "wint_t getwc_unlocked(FILE *" stream );
 .B "wint_t getwchar_unlocked(void);"
 .BI "wint_t fgetwc_unlocked(FILE *" stream );
-.PP
+.P
 .BI "wint_t fputwc_unlocked(wchar_t " wc ", FILE *" stream );
 .BI "wint_t putwc_unlocked(wchar_t " wc ", FILE *" stream );
 .BI "wint_t putwchar_unlocked(wchar_t " wc );
-.PP
+.P
 .BI "wchar_t *fgetws_unlocked(wchar_t " ws "[restrict ." n "], int " n ,
 .BI "                      FILE *restrict " stream );
 .BI "int fputws_unlocked(const wchar_t *restrict " ws ,
 .BI "                      FILE *restrict " stream );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR \%getc_unlocked (),
 .BR \%getchar_unlocked (),
 .BR \%putc_unlocked (),
@@ -69,7 +69,7 @@ Feature Test Macro Requirements for glibc (see
         || /* glibc <= 2.23: */ _POSIX_C_SOURCE
         || /* glibc <= 2.19: */ _SVID_SOURCE || _BSD_SOURCE
 .fi
-.PP
+.P
 .BR \%clearerr_unlocked (),
 .BR \%feof_unlocked (),
 .BR \%ferror_unlocked (),
@@ -83,7 +83,7 @@ Feature Test Macro Requirements for glibc (see
     /* glibc >= 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _SVID_SOURCE || _BSD_SOURCE
 .fi
-.PP
+.P
 .BR \%fgets_unlocked (),
 .BR \%fputs_unlocked (),
 .BR \%getwc_unlocked (),

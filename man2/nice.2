@@ -17,15 +17,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int nice(int " inc );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR nice ():
 .nf
     _XOPEN_SOURCE
@@ -38,10 +38,10 @@ adds
 .I inc
 to the nice value for the calling thread.
 (A higher nice value means a lower priority.)
-.PP
+.P
 The range of the nice value is +19 (low priority) to \-20 (high priority).
 Attempts to set a nice value outside the range are clamped to the range.
-.PP
+.P
 Traditionally, only a privileged process could lower the nice value
 (i.e., set a higher priority).
 However, since Linux 2.6.12, an unprivileged process can decrease
@@ -55,7 +55,7 @@ On success, the new nice value is returned (but see NOTES below).
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 A successful call can legitimately return \-1.
 To detect an error, set
 .I errno
@@ -85,7 +85,7 @@ However, the raw Linux system call returns 0 on success.
 Likewise, the
 .BR nice ()
 wrapper function provided in glibc 2.2.3 and earlier returns 0 on success.
-.PP
+.P
 Since glibc 2.2.4, the
 .BR nice ()
 wrapper function provided by glibc provides conformance to POSIX.1 by calling
@@ -101,7 +101,7 @@ POSIX.1-2001, SVr4, 4.3BSD.
 .SH NOTES
 For further details on the nice value, see
 .BR sched (7).
-.PP
+.P
 .IR Note :
 the addition of the "autogroup" feature in Linux 2.6.38 means that
 the nice value no longer has its traditional effect in many circumstances.

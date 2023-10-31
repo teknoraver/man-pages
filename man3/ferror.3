@@ -23,7 +23,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "void clearerr(FILE *" stream );
 .BI "int feof(FILE *" stream );
 .BI "int ferror(FILE *" stream );
@@ -33,7 +33,7 @@ The function
 .BR clearerr ()
 clears the end-of-file and error indicators for the stream pointed to by
 .IR stream .
-.PP
+.P
 The function
 .BR feof ()
 tests the end-of-file indicator for the stream pointed to by
@@ -41,7 +41,7 @@ tests the end-of-file indicator for the stream pointed to by
 returning nonzero if it is set.
 The end-of-file indicator can be cleared only by the function
 .BR clearerr ().
-.PP
+.P
 The function
 .BR ferror ()
 tests the error indicator for the stream pointed to by
@@ -50,7 +50,7 @@ returning nonzero if it is set.
 The error indicator can be reset only by the
 .BR clearerr ()
 function.
-.PP
+.P
 For nonlocking counterparts, see
 .BR unlocked_stdio (3).
 .SH RETURN VALUE
@@ -59,7 +59,7 @@ The
 function returns nonzero if the end-of-file indicator is set for
 .IR stream ;
 otherwise, it returns zero.
-.PP
+.P
 The
 .BR ferror ()
 function returns nonzero if the error indicator is set for

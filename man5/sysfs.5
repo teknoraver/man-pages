@@ -19,20 +19,20 @@ The files under
 .B sysfs
 provide information about devices, kernel modules, filesystems,
 and other kernel components.
-.PP
+.P
 The
 .B sysfs
 filesystem is commonly mounted at
 .IR /sys .
 Typically, it is mounted automatically by the system,
 but it can also be mounted manually using a command such as:
-.PP
+.P
 .in +4n
 .EX
 mount \-t sysfs sysfs /sys
 .EE
 .in
-.PP
+.P
 Many of the files in the
 .B sysfs
 filesystem are read-only,
@@ -261,12 +261,12 @@ of thing that needs to be updated very often.
 .SH SEE ALSO
 .BR proc (5),
 .BR udev (7)
-.PP
+.P
 P.\& Mochel. (2005).
 .IR "The sysfs filesystem" .
 Proceedings of the 2005 Ottawa Linux Symposium.
 .\" https://www.kernel.org/pub/linux/kernel/people/mochel/doc/papers/ols-2005/mochel.pdf
-.PP
+.P
 The kernel source file
 .I Documentation/filesystems/sysfs.txt
 and various other files in

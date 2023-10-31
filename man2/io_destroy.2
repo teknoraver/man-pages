@@ -13,10 +13,10 @@ Standard C library
 .BR "#include <linux/aio_abi.h>" "    /* Definition of " aio_context_t " */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_io_destroy, aio_context_t " ctx_id );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR io_destroy (),
@@ -31,7 +31,7 @@ uses a different type for the
 .I ctx_id
 argument.
 See VERSIONS.
-.PP
+.P
 The
 .BR io_destroy ()
 system call
@@ -62,7 +62,7 @@ You probably want to use the
 wrapper function provided by
 .\" http://git.fedorahosted.org/git/?p=libaio.git
 .IR libaio .
-.PP
+.P
 Note that the
 .I libaio
 wrapper function uses a different type

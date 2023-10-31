@@ -19,21 +19,21 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .BI "int sigemptyset(sigset_t *" set );
 .BI "int sigfillset(sigset_t *" set );
-.PP
+.P
 .BI "int sigaddset(sigset_t *" set ", int " signum );
 .BI "int sigdelset(sigset_t *" set ", int " signum );
-.PP
+.P
 .BI "int sigismember(const sigset_t *" set ", int " signum );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR sigemptyset (),
 .BR sigfillset (),
 .BR sigaddset (),
@@ -44,17 +44,17 @@ Feature Test Macro Requirements for glibc (see
 .fi
 .SH DESCRIPTION
 These functions allow the manipulation of POSIX signal sets.
-.PP
+.P
 .BR sigemptyset ()
 initializes the signal set given by
 .I set
 to empty, with all signals excluded from the set.
-.PP
+.P
 .BR sigfillset ()
 initializes
 .I set
 to full, including all signals.
-.PP
+.P
 .BR sigaddset ()
 and
 .BR sigdelset ()
@@ -62,13 +62,13 @@ add and delete respectively signal
 .I signum
 from
 .IR set .
-.PP
+.P
 .BR sigismember ()
 tests whether
 .I signum
 is a member of
 .IR set .
-.PP
+.P
 Objects of type
 .I sigset_t
 must be initialized by a call to either
@@ -93,7 +93,7 @@ The results are undefined if this is not done.
 and
 .BR sigdelset ()
 return 0 on success and \-1 on error.
-.PP
+.P
 .BR sigismember ()
 returns 1 if
 .I signum
@@ -102,7 +102,7 @@ is a member of
 0 if
 .I signum
 is not a member, and \-1 on error.
-.PP
+.P
 On error, these functions set
 .I errno
 to indicate the error.
@@ -139,7 +139,7 @@ If the
 feature test macro is defined, then \fI<signal.h>\fP
 exposes three other functions for manipulating signal
 sets:
-.PP
+.P
 .nf
 .BI "int sigisemptyset(const sigset_t *" set );
 .BI "int sigorset(sigset_t *" dest ", const sigset_t *" left ,
@@ -147,12 +147,12 @@ sets:
 .BI "int sigandset(sigset_t *" dest ", const sigset_t *" left ,
 .BI "              const sigset_t *" right );
 .fi
-.PP
+.P
 .BR sigisemptyset ()
 returns 1 if
 .I set
 contains no signals, and 0 otherwise.
-.PP
+.P
 .BR sigorset ()
 places the union of the sets
 .I left
@@ -168,7 +168,7 @@ and
 in
 .IR dest .
 Both functions return 0 on success, and \-1 on failure.
-.PP
+.P
 These functions are nonstandard (a few other systems provide similar
 functions) and their use should be avoided in portable applications.
 .SH STANDARDS

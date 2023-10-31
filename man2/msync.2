@@ -11,7 +11,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/mman.h>
-.PP
+.P
 .BI "int msync(void " addr [. length "], size_t " length ", int " flags );
 .fi
 .SH DESCRIPTION
@@ -30,7 +30,7 @@ corresponds to the memory area starting at
 and having length
 .I length
 is updated.
-.PP
+.P
 The
 .I flags
 argument should specify exactly one of
@@ -112,14 +112,14 @@ in
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
-.PP
+.P
 This call was introduced in Linux 1.3.21, and then used
 .B EFAULT
 instead of
 .BR ENOMEM .
 In Linux 2.4.19, this was changed to the POSIX value
 .BR ENOMEM .
-.PP
+.P
 On POSIX systems on which
 .BR msync ()
 is available, both
@@ -136,5 +136,5 @@ to a value greater than 0.
 .\" glibc defines them to 1.
 .SH SEE ALSO
 .BR mmap (2)
-.PP
+.P
 B.O. Gallmeister, POSIX.4, O'Reilly, pp. 128\[en]129 and 389\[en]391.

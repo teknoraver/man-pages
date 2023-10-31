@@ -12,11 +12,11 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <mcheck.h>
-.PP
+.P
 .BI "int mcheck(void (*" abortfunc ")(enum mcheck_status " mstatus ));
 .BI "int mcheck_pedantic(void (*" abortfunc ")(enum mcheck_status " mstatus ));
 .B void mcheck_check_all(void);
-.PP
+.P
 .BI "enum mcheck_status mprobe(void *" ptr );
 .fi
 .SH DESCRIPTION
@@ -30,7 +30,7 @@ on the state of the heap.
 The checks can detect application errors such as freeing a block of memory
 more than once or corrupting the bookkeeping data structures
 that immediately precede a block of allocated memory.
-.PP
+.P
 To be effective, the
 .BR mcheck ()
 function must be called before the first call to
@@ -42,7 +42,7 @@ inserts an implicit call to
 .BR mcheck ()
 (with a NULL argument)
 before the first call to a memory-allocation function.
-.PP
+.P
 The
 .BR mcheck_pedantic ()
 function is similar to
@@ -50,14 +50,14 @@ function is similar to
 but performs checks on all allocated blocks whenever
 one of the memory-allocation functions is called.
 This can be very slow!
-.PP
+.P
 The
 .BR mcheck_check_all ()
 function causes an immediate check on all allocated blocks.
 This call is effective only if
 .BR mcheck ()
 is called beforehand.
-.PP
+.P
 If the system detects an inconsistency in the heap,
 the caller-supplied function pointed to by
 .I abortfunc
@@ -70,7 +70,7 @@ is NULL, a default function prints an error message on
 .I stderr
 and calls
 .BR abort (3).
-.PP
+.P
 The
 .BR mprobe ()
 function performs a consistency check on
@@ -82,7 +82,7 @@ function should be called beforehand (otherwise
 .BR mprobe ()
 returns
 .BR MCHECK_DISABLED ).
-.PP
+.P
 The following list describes the values returned by
 .BR mprobe ()
 or passed as the
@@ -166,7 +166,7 @@ The program below calls
 with a NULL argument and then frees the same block of memory twice.
 The following shell session demonstrates what happens
 when running the program:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out"

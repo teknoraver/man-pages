@@ -16,17 +16,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "int ilogb(double " x );
 .BI "int ilogbf(float " x );
 .BI "int ilogbl(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR ilogb ():
 .nf
     _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L
@@ -35,7 +35,7 @@ Feature Test Macro Requirements for glibc (see
         || /* Since glibc 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR ilogbf (),
 .BR ilogbl ():
 .nf
@@ -55,7 +55,7 @@ functions, cast to
 On success, these functions return the exponent of
 .IR x ,
 as a signed integer.
-.PP
+.P
 If
 .I x
 is zero, then a domain error occurs, and the functions return
@@ -63,14 +63,14 @@ is zero, then a domain error occurs, and the functions return
 .\" case, but for ilogb() it says domain error.
 .BR FP_ILOGB0 .
 .\" glibc: The numeric value is either `INT_MIN' or `-INT_MAX'.
-.PP
+.P
 If
 .I x
 is a NaN, then a domain error occurs, and the functions return
 .BR FP_ILOGBNAN .
 .\" glibc: The numeric value is either `INT_MIN' or `INT_MAX'.
 .\" On i386, FP_ILOGB0 and FP_ILOGBNAN have the same value.
-.PP
+.P
 If
 .I x
 is negative infinity or positive infinity, then
@@ -88,7 +88,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Domain error: \fIx\fP is 0 or a NaN

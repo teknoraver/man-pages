@@ -23,18 +23,18 @@ is followed by a character that should be used as the escape character
 for the rest of the file to mark characters that should be interpreted
 in a special way.
 It defaults to the backslash (\e).
-.PP
+.P
 The mapping section starts with the keyword
 .I CHARIDS
 in the first column.
-.PP
+.P
 The mapping lines have the following form:
 .TP
 .I <symbolic-name> <code-point> comment
 This defines exactly one mapping,
 .I comment
 being optional.
-.PP
+.P
 The mapping section ends with the string
 .IR "END CHARIDS" .
 .SH FILES
@@ -47,7 +47,7 @@ POSIX.2.
 Repertoire maps are deprecated in favor of Unicode code points.
 .SH EXAMPLES
 A mnemonic for the Euro sign can be defined as follows:
-.PP
+.P
 .nf
 <Eu> <U20AC> EURO SIGN
 .fi

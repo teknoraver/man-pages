@@ -21,17 +21,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double modf(double " x ", double *" iptr );
 .BI "float modff(float " x ", float *" iptr );
 .BI "long double modfl(long double " x ", long double *" iptr );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR modff (),
 .BR modfl ():
 .nf
@@ -50,13 +50,13 @@ The integral part is stored in the location pointed to by
 .SH RETURN VALUE
 These functions return the fractional part of
 .IR x .
-.PP
+.P
 If
 .I x
 is a NaN, a NaN is returned, and
 .I *iptr
 is set to a NaN.
-.PP
+.P
 If
 .I x
 is positive infinity (negative infinity), +0 (\-0) is returned, and
@@ -84,7 +84,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to

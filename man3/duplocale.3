@@ -11,15 +11,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <locale.h>
-.PP
+.P
 .BI "locale_t duplocale(locale_t " locobj );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR duplocale ():
 .nf
     Since glibc 2.10:
@@ -32,7 +32,7 @@ The
 .BR duplocale ()
 function creates a duplicate of the locale object referred to by
 .IR locobj .
-.PP
+.P
 If
 .I locobj
 is
@@ -90,7 +90,7 @@ can be used to ensure that the
 .B LC_GLOBAL_LOCALE
 value is converted into a usable locale object.
 See EXAMPLES, below.
-.PP
+.P
 Each locale object created by
 .BR duplocale ()
 should be deallocated using
@@ -106,7 +106,7 @@ The program takes one command-line argument,
 a string of characters that is converted to uppercase and
 displayed on standard output.
 An example of its use is the following:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out abc\fP

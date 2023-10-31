@@ -15,7 +15,7 @@ POSIX threads library
 .nf
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_attr_setaffinity_np(pthread_attr_t *" attr ,
 .BI "                   size_t " cpusetsize ", const cpu_set_t *" cpuset );
 .BI "int pthread_attr_getaffinity_np(const pthread_attr_t *" attr ,
@@ -33,7 +33,7 @@ to the value specified in
 This attribute determines the CPU affinity mask
 of a thread created using the thread attributes object
 .IR attr .
-.PP
+.P
 The
 .BR pthread_attr_getaffinity_np ()
 function
@@ -42,14 +42,14 @@ referred to by
 .I attr
 in the buffer pointed to by
 .IR cpuset .
-.PP
+.P
 The argument
 .I cpusetsize
 is the length (in bytes) of the buffer pointed to by
 .IR cpuset .
 Typically, this argument would be specified as
 .IR sizeof(cpu_set_t) .
-.PP
+.P
 For more details on CPU affinity masks, see
 .BR sched_setaffinity (2).
 For a description of a set of macros

@@ -20,7 +20,7 @@ image stored in a file, so that it can be mounted with the
 .BR mount (8)
 command.
 You could do
-.PP
+.P
 .in +4n
 .EX
 $ \fBdd if=/dev/zero of=file.img bs=1MiB count=10\fP
@@ -30,14 +30,14 @@ $ \fBsudo mkdir /myloopdev\fP
 $ \fBsudo mount /dev/loop4 /myloopdev\fP
 .EE
 .in
-.PP
+.P
 See
 .BR losetup (8)
 for another example.
-.PP
+.P
 A transfer function can be specified for each loop device for
 encryption and decryption purposes.
-.PP
+.P
 The following
 .BR ioctl (2)
 operations are provided by the loop block device:
@@ -214,7 +214,7 @@ explicitly request read-only mode by setting
 in
 .IR loop_config.info.lo_flags .
 .RE
-.PP
+.P
 Since Linux 2.6, there are two new
 .BR ioctl (2)
 operations:
@@ -295,7 +295,7 @@ device to find a free loop device, opens the loop device,
 opens a file to be used as the underlying storage for the device,
 and then associates the loop device with the backing store.
 The following shell session demonstrates the use of the program:
-.PP
+.P
 .in +4n
 .EX
 $ \fBdd if=/dev/zero of=file.img bs=1MiB count=10\fP

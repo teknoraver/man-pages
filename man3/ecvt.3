@@ -19,18 +19,18 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "[[deprecated]] char *ecvt(double " number ", int " ndigits ,
 .BI "                          int *restrict " decpt ", int *restrict " sign );
 .BI "[[deprecated]] char *fcvt(double " number ", int " ndigits ,
 .BI "                          int *restrict " decpt ", int *restrict " sign );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR ecvt (),
 .BR fcvt ():
 .nf
@@ -68,7 +68,7 @@ otherwise it is set to 0.
 If
 .I number
 is zero, it is unspecified whether \fI*decpt\fP is 0 or 1.
-.PP
+.P
 The
 .BR fcvt ()
 function is identical to

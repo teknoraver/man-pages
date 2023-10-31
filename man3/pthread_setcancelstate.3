@@ -14,7 +14,7 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_setcancelstate(int " state ", int *" oldstate );
 .BI "int pthread_setcanceltype(int " type ", int *" oldtype );
 .fi
@@ -42,7 +42,7 @@ will respond to a cancelation request.
 The thread is not cancelable.
 If a cancelation request is received,
 it is blocked until cancelability is enabled.
-.PP
+.P
 The
 .BR pthread_setcanceltype ()
 sets the cancelability type of the calling thread to the value
@@ -72,7 +72,7 @@ The thread can be canceled at any time.
 (Typically,
 it will be canceled immediately upon receiving a cancelation request,
 but the system doesn't guarantee this.)
-.PP
+.P
 The set-and-get operation performed by each of these functions
 is atomic with respect to other threads in the process
 calling the same function.
@@ -87,7 +87,7 @@ can fail with the following error:
 .B EINVAL
 Invalid value for
 .IR state .
-.PP
+.P
 The
 .BR pthread_setcanceltype ()
 can fail with the following error:
@@ -132,7 +132,7 @@ POSIX.1-2001.
 .SH NOTES
 For details of what happens when a thread is canceled, see
 .BR \%pthread_cancel (3).
-.PP
+.P
 Briefly disabling cancelability is useful
 if a thread performs some critical action
 that must not be interrupted by a cancelation request.
@@ -158,7 +158,7 @@ Furthermore, some internal data structures
 family of functions) may be left in an inconsistent state
 if cancelation occurs in the middle of the function call.
 Consequently, clean-up handlers cease to be useful.
-.PP
+.P
 Functions that can be safely asynchronously canceled are called
 .IR "async-cancel-safe functions" .
 POSIX.1-2001 and POSIX.1-2008 require only that
@@ -169,7 +169,7 @@ and
 be async-cancel-safe.
 In general, other library functions
 can't be safely called from an asynchronously cancelable thread.
-.PP
+.P
 One of the few circumstances in which asynchronous cancelability is useful
 is for cancelation of a thread that is in a pure compute-bound loop.
 .SS Portability notes

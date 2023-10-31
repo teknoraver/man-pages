@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/random.h>
-.PP
+.P
 .BI "ssize_t getrandom(void " buf [. buflen "], size_t " buflen ", \
 unsigned int " flags );
 .fi
@@ -27,7 +27,7 @@ with up to
 random bytes.
 These bytes can be used to seed user-space random number generators
 or for cryptographic purposes.
-.PP
+.P
 By default,
 .BR getrandom ()
 draws entropy from the
@@ -38,7 +38,7 @@ device).
 This behavior can be changed via the
 .I flags
 argument.
-.PP
+.P
 If the
 .I urandom
 source has been initialized,
@@ -48,7 +48,7 @@ No such guarantees apply for larger buffer sizes.
 For example, if the call is interrupted by a signal handler,
 it may return a partially filled buffer, or fail with the error
 .BR EINTR .
-.PP
+.P
 If the
 .I urandom
 source has not yet been initialized, then
@@ -57,7 +57,7 @@ will block, unless
 .B GRND_NONBLOCK
 is specified in
 .IR flags .
-.PP
+.P
 The
 .I flags
 argument is a bit mask that can contain zero or more of the following values
@@ -119,7 +119,7 @@ was specified in
 and insufficient entropy was present in the
 .I random
 source or the system call was interrupted by a signal.
-.PP
+.P
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
@@ -164,7 +164,7 @@ glibc 2.25.
 For an overview and comparison of the various interfaces that
 can be used to obtain randomness, see
 .BR random (7).
-.PP
+.P
 Unlike
 .I /dev/random
 and
@@ -222,7 +222,7 @@ will block until some random bytes become available
 (unless the
 .B GRND_NONBLOCK
 flag was specified).
-.PP
+.P
 The behavior when a call to
 .BR getrandom ()
 that is blocked while reading from the
@@ -247,26 +247,26 @@ then
 will not fail with
 .BR EINTR .
 Instead, it will return all of the bytes that have been requested.
-.PP
+.P
 When reading from the
 .I random
 source, blocking requests of any size can be interrupted by a signal handler
 (the call fails with the error
 .BR EINTR ).
-.PP
+.P
 Using
 .BR getrandom ()
 to read small buffers (<=\ 256 bytes) from the
 .I urandom
 source is the preferred mode of usage.
-.PP
+.P
 The special treatment of small values of
 .I buflen
 was designed for compatibility with
 OpenBSD's
 .BR getentropy (3),
 which is nowadays supported by glibc.
-.PP
+.P
 The user of
 .BR getrandom ()
 .I must

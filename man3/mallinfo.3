@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <malloc.h>
-.PP
+.P
 .B struct mallinfo mallinfo(void);
 .B struct mallinfo2 mallinfo2(void);
 .fi
@@ -25,18 +25,18 @@ The structure returned by each function contains the same fields.
 However, the older function,
 .BR mallinfo (),
 is deprecated since the type used for the fields is too small (see BUGS).
-.PP
+.P
 Note that not all allocations are visible to these functions;
 see BUGS and consider using
 .BR malloc_info (3)
 instead.
-.PP
+.P
 The
 .I mallinfo2
 structure returned by
 .BR mallinfo2 ()
 is defined as follows:
-.PP
+.P
 .in +4n
 .EX
 struct mallinfo2 {
@@ -54,14 +54,14 @@ struct mallinfo2 {
 };
 .EE
 .in
-.PP
+.P
 The
 .I mallinfo
 structure returned by the deprecated
 .BR mallinfo ()
 function is exactly the same, except that the fields are typed as
 .IR int .
-.PP
+.P
 The structure fields contain the following information:
 .TP 10
 .I arena
@@ -134,7 +134,7 @@ T}	Thread safety	T{
 MT-Unsafe init const:mallopt
 T}
 .TE
-.PP
+.P
 .BR mallinfo ()/
 .BR mallinfo2 ()
 would access some global internal objects.
@@ -173,7 +173,7 @@ See
 and
 .BR malloc_info (3)
 for alternatives that include information about other arenas.
-.PP
+.P
 The fields of the
 .I mallinfo
 structure that is returned by the older
@@ -189,11 +189,11 @@ The program below employs
 to retrieve memory allocation statistics before and after
 allocating and freeing some blocks of memory.
 The statistics are displayed on standard output.
-.PP
+.P
 The first two command-line arguments specify the number and size of
 blocks to be allocated with
 .BR malloc (3).
-.PP
+.P
 The remaining three arguments specify which of the allocated blocks
 should be freed with
 .BR free (3).
@@ -207,11 +207,11 @@ of the last block to be freed
 (default is one greater than the maximum block number).
 If these three arguments are omitted,
 then the defaults cause all allocated blocks to be freed.
-.PP
+.P
 In the following example run of the program,
 1000 allocations of 100 bytes are performed,
 and then every second allocated block is freed:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out 1000 100 2\fP

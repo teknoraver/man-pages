@@ -24,7 +24,7 @@ NUMA (Non-Uniform Memory Access) policy library
 .SH SYNOPSIS
 .nf
 .B "#include <numaif.h>"
-.PP
+.P
 .BI "long mbind(void " addr [. len "], unsigned long " len  ", int " mode ,
 .BI "           const unsigned long " nodemask [(. maxnode " + ULONG_WIDTH - 1)"
 .B "                                        / ULONG_WIDTH],"
@@ -40,7 +40,7 @@ and continuing for
 .I len
 bytes.
 The memory policy defines from which node memory is allocated.
-.PP
+.P
 If the memory range specified by the
 .IR addr " and " len
 arguments includes an "anonymous" region of memory\[em]that is
@@ -62,7 +62,7 @@ an initial read access will allocate pages according to the
 memory policy of the thread that causes the page to be allocated.
 This may not be the thread that called
 .BR mbind ().
-.PP
+.P
 The specified policy will be ignored for any
 .B MAP_SHARED
 mappings in the specified memory range.
@@ -70,7 +70,7 @@ Rather the pages will be allocated according to the memory policy
 of the thread that caused the page to be allocated.
 Again, this may not be the thread that called
 .BR mbind ().
-.PP
+.P
 If the specified memory range includes a shared memory region
 created using the
 .BR shmget (2)
@@ -87,7 +87,7 @@ the huge pages will be allocated according to the policy specified
 only if the page allocation is caused by the process that calls
 .BR mbind ()
 for that region.
-.PP
+.P
 By default,
 .BR mbind ()
 has an effect only for new allocations; if the pages inside
@@ -98,7 +98,7 @@ This default behavior may be overridden by the
 and
 .B MPOL_MF_MOVE_ALL
 flags described below.
-.PP
+.P
 The
 .I mode
 argument must specify one of
@@ -115,7 +115,7 @@ require the caller to specify the node or nodes to which the mode applies,
 via the
 .I nodemask
 argument.
-.PP
+.P
 The
 .I mode
 argument may also include an optional
@@ -139,7 +139,7 @@ A nonempty
 .I nodemask
 specifies node IDs that are relative to the set of
 node IDs allowed by the thread's current cpuset.
-.PP
+.P
 .I nodemask
 points to a bit mask of nodes containing up to
 .I maxnode
@@ -167,7 +167,7 @@ allowed by the thread's current cpuset context
 .B MPOL_F_STATIC_NODES
 mode flag is specified),
 and contains memory.
-.PP
+.P
 The
 .I mode
 argument must include one of the following values:
@@ -265,7 +265,7 @@ By contrast,
 reverts to the memory policy of the thread (which may be set via
 .BR set_mempolicy (2));
 that policy may be something other than "local allocation".
-.PP
+.P
 If
 .B MPOL_MF_STRICT
 is passed in
@@ -281,7 +281,7 @@ if the existing pages in the memory range don't follow the policy.
 .\" --Lee Schermerhorn
 .\" In Linux 2.6.16 or later the kernel will also try to move pages
 .\" to the requested node with this flag.
-.PP
+.P
 If
 .B MPOL_MF_MOVE
 is specified in
@@ -299,7 +299,7 @@ If the
 policy was specified,
 pages already residing on the specified nodes
 will not be moved such that they are interleaved.
-.PP
+.P
 If
 .B MPOL_MF_MOVE_ALL
 is passed in
@@ -417,16 +417,16 @@ privilege.
 Linux.
 .SH HISTORY
 Linux 2.6.7.
-.PP
+.P
 Support for huge page policy was added with Linux 2.6.16.
 For interleave policy to be effective on huge page mappings the
 policied memory needs to be tens of megabytes or larger.
-.PP
+.P
 Before Linux 5.7.
 .\" commit dcf1763546d76c372f3136c8d6b2b6e77f140cf0
 .B MPOL_MF_STRICT
 was ignored on huge page mappings.
-.PP
+.P
 .B MPOL_MF_MOVE
 and
 .B MPOL_MF_MOVE_ALL
@@ -434,12 +434,12 @@ are available only on Linux 2.6.16 and later.
 .SH NOTES
 For information on library support, see
 .BR numa (7).
-.PP
+.P
 NUMA policy is not supported on a memory-mapped file range
 that was mapped with the
 .B MAP_SHARED
 flag.
-.PP
+.P
 The
 .B MPOL_DEFAULT
 mode can have different effects for

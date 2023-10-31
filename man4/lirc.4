@@ -13,7 +13,7 @@ bidirectional interface to infra-red (IR) remotes.
 Most of these devices can receive, and some can send.
 When receiving or sending data, the driver works in two different modes
 depending on the underlying hardware.
-.PP
+.P
 Some hardware (typically TV-cards) decodes the IR signal internally
 and provides decoded button presses as scancode values.
 Drivers for this kind of hardware work in
@@ -23,7 +23,7 @@ Such hardware usually does not support sending IR signals.
 Furthermore, such hardware can only decode a limited set of IR protocols,
 usually only the protocol of the specific remote which is
 bundled with, for example, a TV-card.
-.PP
+.P
 Other hardware provides a stream of pulse/space durations.
 Such drivers work in
 .B LIRC_MODE_MODE2
@@ -39,7 +39,7 @@ and attached to the
 device.
 Sometimes, this kind of hardware also supports
 sending IR data.
-.PP
+.P
 The \fBLIRC_GET_FEATURES\fR ioctl (see below) allows probing for whether
 receiving and sending is supported, and in which modes, amongst other
 features.
@@ -119,7 +119,7 @@ device cannot transmit.
 \&
 int ioctl(int fd, int cmd, int *val);
 .fi
-.PP
+.P
 The following
 .BR ioctl (2)
 operations are provided by the
@@ -132,7 +132,7 @@ hardware settings.
 .TP 4
 .BR LIRC_GET_FEATURES " (\fIvoid\fP)"
 Returns a bit mask of combined features bits; see FEATURES.
-.PP
+.P
 If a device returns an error code for
 .BR LIRC_GET_FEATURES ,
 it is safe to assume it is not a
@@ -418,6 +418,6 @@ Users of older kernels could use the file bundled in
 .\"
 .SH SEE ALSO
 \fBir\-ctl\fP(1), \fBlircd\fP(8),\ \fBbpf\fP(2)
-.PP
+.P
 .UR https://www.kernel.org/\:doc/\:html/\:latest/\:userspace\-api/\:media/\:rc/\:lirc\-dev.html
 .UE

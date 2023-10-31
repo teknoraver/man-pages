@@ -20,16 +20,16 @@ Standard C library
 .nf
 .B #include <sys/types.h>
 .B #include <dirent.h>
-.PP
+.P
 .BI "DIR *opendir(const char *" name );
 .BI "DIR *fdopendir(int " fd );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR fdopendir ():
 .nf
     Since glibc 2.10:
@@ -43,7 +43,7 @@ The
 function opens a directory stream corresponding to the
 directory \fIname\fP, and returns a pointer to the directory stream.
 The stream is positioned at the first entry in the directory.
-.PP
+.P
 The
 .BR fdopendir ()
 function
@@ -117,10 +117,10 @@ glibc 2.4.
 .SH NOTES
 Filename entries can be read from a directory stream using
 .BR readdir (3).
-.PP
+.P
 The underlying file descriptor of the directory stream can be obtained using
 .BR dirfd (3).
-.PP
+.P
 The
 .BR opendir ()
 function sets the close-on-exec flag for the file descriptor underlying the

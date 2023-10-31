@@ -17,16 +17,16 @@ System utilities library
 .SH SYNOPSIS
 .nf
 .B #include <pty.h>
-.PP
+.P
 .BI "int openpty(int *" amaster ", int *" aslave ", char *" name ,
 .BI "              const struct termios *" termp ,
 .BI "              const struct winsize *" winp );
 .BI "pid_t forkpty(int *" amaster ", char *" name ,
 .BI "              const struct termios *" termp ,
 .BI "              const struct winsize *" winp );
-.PP
+.P
 .B #include <utmp.h>
-.PP
+.P
 .BI "int login_tty(int " fd );
 .fi
 .SH DESCRIPTION
@@ -50,7 +50,7 @@ If
 .I winp
 is not NULL, the window size of the slave will be set to the values in
 .IR winp .
-.PP
+.P
 The
 .BR login_tty ()
 function prepares for a login on the terminal
@@ -66,7 +66,7 @@ the controlling terminal for the calling process, setting
 to be the standard input, output, and error streams of the current
 process, and closing
 .IR fd .
-.PP
+.P
 The
 .BR forkpty ()
 function combines
@@ -112,14 +112,14 @@ fails if:
 .TP
 .B ENOENT
 There are no available terminals.
-.PP
+.P
 .BR login_tty ()
 fails if
 .BR ioctl (2)
 fails to set
 .I fd
 to the controlling terminal of the calling process.
-.PP
+.P
 .BR forkpty ()
 fails if either
 .BR openpty ()
@@ -156,7 +156,7 @@ modifiers were added to the structure pointer arguments of
 and
 .BR forkpty ()
 in glibc 2.8.
-.PP
+.P
 Before glibc 2.0.92,
 .BR openpty ()
 returns file descriptors for a BSD pseudoterminal pair;

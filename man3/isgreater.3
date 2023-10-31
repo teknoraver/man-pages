@@ -16,7 +16,7 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "int isgreater(" x ", " y );
 .BI "int isgreaterequal(" x ", " y );
 .BI "int isless(" x ", " y );
@@ -24,12 +24,12 @@ Math library
 .BI "int islessgreater(" x ", " y );
 .BI "int isunordered(" x ", " y );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .nf
     All functions described here:
         _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L
@@ -41,7 +41,7 @@ The normal relational operations (like
 fail if one of the operands is NaN.
 This will cause an exception.
 To avoid this, C99 defines the macros listed below.
-.PP
+.P
 These macros are guaranteed to evaluate their arguments only once.
 The arguments must be of real floating-point type (note: do not pass
 integer values as arguments to these macros, since the arguments will
@@ -102,7 +102,7 @@ The macros other than
 .BR isunordered ()
 return the result of the relational comparison;
 these macros return 0 if either argument is a NaN.
-.PP
+.P
 .BR isunordered ()
 returns 1 if
 .I x

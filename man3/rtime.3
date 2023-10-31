@@ -17,20 +17,20 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B "#include <rpc/auth_des.h>"
-.PP
+.P
 .BI "int rtime(struct sockaddr_in *" addrp ", struct rpc_timeval *" timep ,
 .BI "          struct rpc_timeval *" timeout );
 .fi
 .SH DESCRIPTION
 This function uses the Time Server Protocol as described in
 RFC\ 868 to obtain the time from a remote machine.
-.PP
+.P
 The Time Server Protocol gives the time in seconds since
 00:00:00 UTC, 1 Jan 1900,
 and this function subtracts the appropriate constant in order to
 convert the result to seconds since the
 Epoch, 1970-01-01 00:00:00 +0000 (UTC).
-.PP
+.P
 When
 .I timeout
 is non-NULL, the udp/time socket (port 37) is used.
@@ -72,20 +72,20 @@ T}	Thread safety	MT-Safe
 .TE
 .SH NOTES
 Only IPv4 is supported.
-.PP
+.P
 Some
 .I in.timed
 versions support only TCP.
 Try the example program with
 .I use_tcp
 set to 1.
-.\" .PP
+.\" .P
 .\" Libc5 uses the prototype
-.\" .PP
+.\" .P
 .\" .nf
 .\"    int rtime(struct sockaddr_in *, struct timeval *, struct timeval *);
 .\" .fi
-.\" .PP
+.\" .P
 .\" and requires
 .\" .I <sys/time.h>
 .\" instead of
@@ -99,11 +99,11 @@ You may check
 that the time entry within
 .I /etc/inetd.conf
 is not commented out.
-.PP
+.P
 The program connects to a computer called "linux".
 Using "localhost" does not work.
 The result is the localtime of the computer "linux".
-.PP
+.P
 .\" SRC BEGIN (rtime.c)
 .EX
 #include <errno.h>

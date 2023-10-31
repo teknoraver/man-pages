@@ -10,24 +10,24 @@ clock_nanosleep \- high-resolution sleep with specifiable clock
 Standard C library
 .RI ( libc ", " \-lc ),
 since glibc 2.17
-.PP
+.P
 Before glibc 2.17,
 Real-time library
 .RI ( librt ", " \-lrt )
 .SH SYNOPSIS
 .B #include <time.h>
 .nf
-.PP
+.P
 .BI "int clock_nanosleep(clockid_t " clockid ", int " flags ,
 .BI "                    const struct timespec *" request ,
 .BI "                    struct timespec *_Nullable " remain );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR clock_nanosleep ():
 .nf
     _POSIX_C_SOURCE >= 200112L
@@ -42,11 +42,11 @@ It differs in allowing the caller to select the clock against
 which the sleep interval is to be measured,
 and in allowing the sleep interval to be specified as
 either an absolute or a relative value.
-.PP
+.P
 The time values passed to and returned by this call are specified using
 .BR timespec (3)
 structures.
-.PP
+.P
 The
 .I clockid
 argument specifies the clock against which the sleep interval
@@ -77,7 +77,7 @@ A settable per-process clock that measures CPU time consumed
 by all threads in the process.
 .\" There is some trickery between glibc and the kernel
 .\" to deal with the CLOCK_PROCESS_CPUTIME_ID case.
-.PP
+.P
 See
 .BR clock_getres (2)
 for further details on these clocks.
@@ -90,7 +90,7 @@ can also be passed in
 .\" Sleeping against CLOCK_REALTIME_ALARM and CLOCK_BOOTTIME_ALARM
 .\" is also possible (tested), with CAP_WAKE_ALARM, but I'm not
 .\" sure if this is useful or needs to be documented.
-.PP
+.P
 If
 .I flags
 is 0, then the value specified in
@@ -98,7 +98,7 @@ is 0, then the value specified in
 is interpreted as an interval relative to the current
 value of the clock specified by
 .IR clockid .
-.PP
+.P
 If
 .I flags
 is
@@ -113,7 +113,7 @@ is less than or equal to the current value of the clock,
 then
 .BR clock_nanosleep ()
 returns immediately without suspending the calling thread.
-.PP
+.P
 .BR clock_nanosleep ()
 suspends the execution of the calling thread
 until either at least the time specified by
@@ -121,7 +121,7 @@ until either at least the time specified by
 has elapsed,
 or a signal is delivered that causes a signal handler to be called or
 that terminates the process.
-.PP
+.P
 If the call is interrupted by a signal handler,
 .BR clock_nanosleep ()
 fails with the error
@@ -186,7 +186,7 @@ is not an exact multiple of the granularity underlying clock (see
 then the interval will be rounded up to the next multiple.
 Furthermore, after the sleep completes, there may still be a delay before
 the CPU becomes free to once again execute the calling thread.
-.PP
+.P
 Using an absolute timer is useful for preventing
 timer drift problems of the type described in
 .BR nanosleep (2).
@@ -201,14 +201,14 @@ and then call
 with the
 .B TIMER_ABSTIME
 flag.
-.PP
+.P
 .BR clock_nanosleep ()
 is never restarted after being interrupted by a signal handler,
 regardless of the use of the
 .BR sigaction (2)
 .B SA_RESTART
 flag.
-.PP
+.P
 The
 .I remain
 argument is unused, and unnecessary, when
@@ -218,11 +218,11 @@ is
 (An absolute sleep can be restarted using the same
 .I request
 argument.)
-.PP
+.P
 POSIX.1 specifies that
 .BR clock_nanosleep ()
 has no effect on signals dispositions or the signal mask.
-.PP
+.P
 POSIX.1 specifies that after changing the value of the
 .B CLOCK_REALTIME
 clock via
@@ -234,7 +234,7 @@ will wake up;
 if the new clock value falls past the end of the sleep interval, then the
 .BR clock_nanosleep ()
 call will return immediately.
-.PP
+.P
 POSIX.1 specifies that
 changing the value of the
 .B CLOCK_REALTIME

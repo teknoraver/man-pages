@@ -12,7 +12,7 @@ Standard C library
 .BR "#include <linux/fsmap.h>  " "/* Definition of " FS_IOC_GETFSMAP ,
 .BR "                             FM?_OF_*" ", and " *FMR_OWN_* " constants */"
 .B #include <sys/ioctl.h>
-.PP
+.P
 .BI "int ioctl(int " fd ", FS_IOC_GETFSMAP, struct fsmap_head * " arg );
 .fi
 .SH DESCRIPTION
@@ -21,10 +21,10 @@ This
 operation retrieves physical extent mappings for a filesystem.
 This information can be used to discover which files are mapped to a physical
 block, examine free space, or find known bad blocks, among other things.
-.PP
+.P
 The sole argument to this operation should be a pointer to a single
 .IR "struct fsmap_head" ":"
-.PP
+.P
 .in +4n
 .EX
 struct fsmap {
@@ -50,7 +50,7 @@ struct fsmap_head {
 };
 .EE
 .in
-.PP
+.P
 The two
 .I fmh_keys
 array elements specify the lowest and highest reverse-mapping
@@ -60,7 +60,7 @@ A reverse mapping key consists of the tuple (device, block, owner, offset).
 The owner and offset fields are part of the key because some filesystems
 support sharing physical blocks between multiple files and
 therefore may return multiple mappings for a given physical block.
-.PP
+.P
 Filesystem mappings are copied into the
 .I fmh_recs
 array, which immediately follows the header data.
@@ -70,7 +70,7 @@ The
 .I fmh_iflags
 field is a bit mask passed to the kernel to alter the output.
 No flags are currently defined, so the caller must set this value to zero.
-.PP
+.P
 The
 .I fmh_oflags
 field is a bit mask of flags set by the kernel concerning the returned mappings.
@@ -81,7 +81,7 @@ is set, then the
 field represents a
 .I dev_t
 structure containing the major and minor numbers of the block device.
-.PP
+.P
 The
 .I fmh_count
 field contains the number of elements in the array being passed to the
@@ -91,13 +91,13 @@ If this value is 0,
 will be set to the number of records that would have been returned had
 the array been large enough;
 no mapping information will be returned.
-.PP
+.P
 The
 .I fmh_entries
 field contains the number of elements in the
 .I fmh_recs
 array that contain useful information.
-.PP
+.P
 The
 .I fmh_reserved
 fields must be set to zero.
@@ -125,7 +125,7 @@ By convention, the field
 must contain the low key and
 .I fsmap_head.fmh_keys[1]
 must contain the high key for the request.
-.PP
+.P
 For convenience, if
 .I fmr_length
 is set in the low key, it will be added to
@@ -154,11 +154,11 @@ field, this field contains a
 from which major and minor numbers can be extracted.
 If the flag is not set, this field contains a value that must be unique
 for each unique storage device.
-.PP
+.P
 The
 .I fmr_physical
 field contains the disk address of the extent in bytes.
-.PP
+.P
 The
 .I fmr_owner
 field contains the owner of the extent.
@@ -168,7 +168,7 @@ is set in the
 .I fmr_flags
 field, in which case the value is determined by the filesystem.
 See the section below about owner values for more details.
-.PP
+.P
 The
 .I fmr_offset
 field contains the logical address in the mapping record in bytes.
@@ -176,11 +176,11 @@ This field has no meaning if the
 .BR FMR_OF_SPECIAL_OWNER " or " FMR_OF_EXTENT_MAP
 flags are set in
 .IR fmr_flags "."
-.PP
+.P
 The
 .I fmr_length
 field contains the length of the extent in bytes.
-.PP
+.P
 The
 .I fmr_flags
 field is a bit mask of extent state flags.
@@ -207,7 +207,7 @@ field contains a special value instead of an inode number.
 .B FMR_OF_LAST
 This is the last record in the data set.
 .RE
-.PP
+.P
 The
 .I fmr_reserved
 field will be set to zero.
@@ -239,7 +239,7 @@ This extent is in use but its owner is not known or not easily retrieved.
 .B FMR_OWN_METADATA
 This extent is filesystem metadata.
 .RE
-.PP
+.P
 XFS can return the following special owner values:
 .RS 0.4i
 .TP
@@ -276,7 +276,7 @@ This extent is being used to stage a copy-on-write.
 This extent has been marked defective either by the filesystem or the
 underlying device.
 .RE
-.PP
+.P
 ext4 can return the following special owner values:
 .RS 0.4i
 .TP
@@ -337,7 +337,7 @@ The filesystem does not support this command.
 The filesystem metadata is corrupt and needs repair.
 .SH STANDARDS
 Linux.
-.PP
+.P
 Not all filesystems support it.
 .SH HISTORY
 Linux 4.12.

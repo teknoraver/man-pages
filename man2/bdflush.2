@@ -11,7 +11,7 @@ bdflush \- start, flush, or tune buffer-dirty-flush daemon
 .SH SYNOPSIS
 .nf
 .B #include <sys/kdaemon.h>
-.PP
+.P
 .BI "[[deprecated]] int bdflush(int "  func ", long *" address );
 .BI "[[deprecated]] int bdflush(int "  func ", long " data );
 .fi
@@ -26,25 +26,25 @@ Nowadays, the task performed by
 is handled by the kernel
 .I pdflush
 thread.
-.PP
+.P
 .BR bdflush ()
 starts, flushes, or tunes the buffer-dirty-flush daemon.
 Only a privileged process (one with the
 .B CAP_SYS_ADMIN
 capability) may call
 .BR bdflush ().
-.PP
+.P
 If
 .I func
 is negative or 0, and no daemon has been started, then
 .BR bdflush ()
 enters the daemon code and never returns.
-.PP
+.P
 If
 .I func
 is 1,
 some dirty buffers are written to disk.
-.PP
+.P
 If
 .I func
 is 2 or more and is even (low bit is 0), then
@@ -53,7 +53,7 @@ is the address of a long word,
 and the tuning parameter numbered
 .RI "(" "func" "\-2)/2"
 is returned to the caller in that address.
-.PP
+.P
 If
 .I func
 is 3 or more and is odd (low bit is 1), then
@@ -62,7 +62,7 @@ is a long word,
 and the kernel sets tuning parameter numbered
 .RI "(" "func" "\-3)/2"
 to that value.
-.PP
+.P
 The set of parameters, their values, and their valid ranges
 are defined in the Linux kernel source file
 .IR fs/buffer.c .

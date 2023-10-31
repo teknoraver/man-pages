@@ -19,23 +19,23 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "char *getcwd(char " buf [. size "], size_t " size );
 .B "char *get_current_dir_name(void);"
-.PP
+.P
 .BI "[[deprecated]] char *getwd(char " buf [PATH_MAX]);
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR get_current_dir_name ():
 .nf
     _GNU_SOURCE
 .fi
-.PP
+.P
 .BR getwd ():
 .nf
     Since glibc 2.12:
@@ -53,7 +53,7 @@ the calling process.
 The pathname is returned as the function result and via the argument
 .IR buf ,
 if present.
-.PP
+.P
 The
 .BR getcwd ()
 function copies an absolute pathname of the current working directory
@@ -61,7 +61,7 @@ to the array pointed to by
 .IR buf ,
 which is of length
 .IR size .
-.PP
+.P
 If the length of the absolute pathname of the current working directory,
 including the terminating null byte, exceeds
 .I size
@@ -71,7 +71,7 @@ is set to
 .BR ERANGE ;
 an application should check for this error, and allocate a larger
 buffer if necessary.
-.PP
+.P
 As an extension to the POSIX.1-2001 standard, glibc's
 .BR getcwd ()
 allocates the buffer dynamically using
@@ -89,7 +89,7 @@ is allocated as big as necessary.
 The caller should
 .BR free (3)
 the returned buffer.
-.PP
+.P
 .BR get_current_dir_name ()
 will
 .BR malloc (3)
@@ -102,7 +102,7 @@ is set, and its value is correct, then that value will be returned.
 The caller should
 .BR free (3)
 the returned buffer.
-.PP
+.P
 .BR getwd ()
 does not
 .BR malloc (3)
@@ -136,7 +136,7 @@ and
 .BR getwd ()
 this is the same value as
 .IR buf .
-.PP
+.P
 On failure, these functions return NULL, and
 .I errno
 is set to indicate the error.
@@ -208,7 +208,7 @@ POSIX.1-2001 leaves the behavior of
 unspecified if
 .I buf
 is NULL.
-.PP
+.P
 POSIX.1-2001
 does not define any errors for
 .BR getwd ().
@@ -233,7 +233,7 @@ exceeds this limit, then the system call fails with the error
 .BR ENAMETOOLONG .
 In this case, the library functions fall back to
 a (slower) alternative implementation that returns the full pathname.
-.PP
+.P
 Following a change in Linux 2.6.36,
 .\" commit 8df9d1a4142311c084ffeeacb67cd34d190eff74
 the pathname returned by the
@@ -271,7 +271,7 @@ Removed in POSIX.1-2008.
 Use
 .BR getcwd ()
 instead.
-.PP
+.P
 Under Linux, these functions make use of the
 .BR getcwd ()
 system call (available since Linux 2.1.92).

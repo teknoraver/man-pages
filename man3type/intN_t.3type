@@ -15,47 +15,47 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdint.h>
-.PP
+.P
 .BR typedef " /* ... */ " int8_t;
 .BR typedef " /* ... */ " int16_t;
 .BR typedef " /* ... */ " int32_t;
 .BR typedef " /* ... */ " int64_t;
-.PP
+.P
 .BR typedef " /* ... */ " uint8_t;
 .BR typedef " /* ... */ " uint16_t;
 .BR typedef " /* ... */ " uint32_t;
 .BR typedef " /* ... */ " uint64_t;
-.PP
+.P
 .B "#define INT8_WIDTH   8"
 .B "#define INT16_WIDTH  16"
 .B "#define INT32_WIDTH  32"
 .B "#define INT64_WIDTH  64"
-.PP
+.P
 .B "#define UINT8_WIDTH  8"
 .B "#define UINT16_WIDTH 16"
 .B "#define UINT32_WIDTH 32"
 .B "#define UINT64_WIDTH 64"
-.PP
+.P
 .BR "#define INT8_MAX     " "/*  2**(INT8_WIDTH - 1) - 1   */"
 .BR "#define INT16_MAX    " "/*  2**(INT16_WIDTH - 1) - 1  */"
 .BR "#define INT32_MAX    " "/*  2**(INT32_WIDTH - 1) - 1  */"
 .BR "#define INT64_MAX    " "/*  2**(INT64_WIDTH - 1) - 1  */"
-.PP
+.P
 .BR "#define INT8_MIN     " "/*  - 2**(INT8_WIDTH - 1)     */"
 .BR "#define INT16_MIN    " "/*  - 2**(INT16_WIDTH - 1)    */"
 .BR "#define INT32_MIN    " "/*  - 2**(INT32_WIDTH - 1)    */"
 .BR "#define INT64_MIN    " "/*  - 2**(INT64_WIDTH - 1)    */"
-.PP
+.P
 .BR "#define UINT8_MAX    " "/*  2**INT8_WIDTH - 1         */"
 .BR "#define UINT16_MAX   " "/*  2**INT16_WIDTH - 1        */"
 .BR "#define UINT32_MAX   " "/*  2**INT32_WIDTH - 1        */"
 .BR "#define UINT64_MAX   " "/*  2**INT64_WIDTH - 1        */"
-.PP
+.P
 .BI "#define INT8_C(" c ")    " c " ## " "\fR/* ... */\fP"
 .BI "#define INT16_C(" c ")   " c " ## " "\fR/* ... */\fP"
 .BI "#define INT32_C(" c ")   " c " ## " "\fR/* ... */\fP"
 .BI "#define INT64_C(" c ")   " c " ## " "\fR/* ... */\fP"
-.PP
+.P
 .BI "#define UINT8_C(" c ")   " c " ## " "\fR/* ... */\fP"
 .BI "#define UINT16_C(" c ")  " c " ## " "\fR/* ... */\fP"
 .BI "#define UINT32_C(" c ")  " c " ## " "\fR/* ... */\fP"
@@ -74,7 +74,7 @@ They are be capable of storing values in the range
 substituting
 .I N
 by the appropriate number.
-.PP
+.P
 .IR uint N _t
 are
 unsigned integer types
@@ -86,7 +86,7 @@ They are capable of storing values in the range
 substituting
 .I N
 by the appropriate number.
-.PP
+.P
 According to POSIX,
 .RI [ u ] int8_t ,
 .RI [ u ] int16_t ,
@@ -96,25 +96,25 @@ are required;
 .RI [ u ] int64_t
 are only required in implementations that provide integer types with width 64;
 and all other types of this form are optional.
-.PP
+.P
 The macros
 .RB [ U ] INT \fIN\fP _WIDTH
 expand to the width in bits of these types
 .RI ( N ).
-.PP
+.P
 The macros
 .RB [ U ] INT \fIN\fP _MAX
 expand to the maximum value that these types can hold.
-.PP
+.P
 The macros
 .BI INT N _MIN
 expand to the minimum value that these types can hold.
-.PP
+.P
 The macros
 .RB [ U ] INT \fIN\fP _C ()
 expand their argument to an integer constant of type
 .RI [ u ] int N _t .
-.PP
+.P
 The length modifiers for the
 .RI [ u ] int N _t
 types for the
@@ -159,7 +159,7 @@ values.
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The
 .RB [ U ] INT \fIN\fP _WIDTH
 macros were added in C23.

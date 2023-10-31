@@ -23,16 +23,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int putenv(char *" string );
 .\" Not: const char *
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR putenv ():
 .nf
     _XOPEN_SOURCE
@@ -81,12 +81,12 @@ T}	Thread safety	MT-Unsafe const:env
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, SVr2, 4.3BSD-Reno.
-.PP
+.P
 The
 .BR putenv ()
 function is not required to be reentrant, and the
 one in glibc 2.0 is not, but the glibc 2.1 version is.
-.\" .LP
+.\" .P
 .\" Description for libc4, libc5, glibc:
 .\" If the argument \fIstring\fP is of the form \fIname\fP,
 .\" and does not contain an \[aq]=\[aq] character, then the variable \fIname\fP
@@ -99,7 +99,7 @@ one in glibc 2.0 is not, but the glibc 2.1 version is.
 .\" then it will be freed.
 .\" In no case will the old storage associated
 .\" to the environment variable itself be freed.
-.PP
+.P
 Since glibc 2.1.2, the glibc implementation conforms to SUSv2:
 the pointer \fIstring\fP given to
 .BR putenv ()
@@ -115,23 +115,23 @@ However, from glibc 2.0 to glibc 2.1.1, it differs:
 a copy of the string is used.
 On the one hand this causes a memory leak, and on the other hand
 it violates SUSv2.
-.PP
+.P
 The 4.3BSD-Reno version, like glibc 2.0, uses a copy;
 this is fixed in all modern BSDs.
-.PP
+.P
 SUSv2 removes the \fIconst\fP from the prototype, and so does glibc 2.1.3.
-.PP
+.P
 The GNU C library implementation provides a nonstandard extension.
 If
 .I string
 does not include an equal sign:
-.PP
+.P
 .in +4n
 .EX
 putenv("NAME");
 .EE
 .in
-.PP
+.P
 then the named variable is removed from the caller's environment.
 .SH SEE ALSO
 .BR clearenv (3),

@@ -13,7 +13,7 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <complex.h>
-.PP
+.P
 .BI "double complex catan(double complex " z );
 .BI "float complex catanf(float complex " z );
 .BI "long double complex catanl(long double complex " z );
@@ -23,9 +23,9 @@ These functions calculate the complex arc tangent of
 .IR z .
 If \fIy\~=\~catan(z)\fP, then \fIz\~=\~ctan(y)\fP.
 The real part of y is chosen in the interval [\-pi/2,pi/2].
-.PP
+.P
 One has:
-.PP
+.P
 .in +4n
 .EX
 catan(z) = (clog(1 + i * z) \- clog(1 \- i * z)) / (2 * i)

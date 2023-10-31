@@ -17,17 +17,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .B char *getusershell(void);
 .B void setusershell(void);
 .B void endusershell(void);
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getusershell (),
 .BR setusershell (),
 .BR endusershell ():
@@ -58,12 +58,12 @@ behaves as if
 and
 .I /bin/csh
 were listed in the file.
-.PP
+.P
 The
 .BR setusershell ()
 function rewinds
 .IR /etc/shells .
-.PP
+.P
 The
 .BR endusershell ()
 function closes

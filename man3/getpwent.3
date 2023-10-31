@@ -21,17 +21,17 @@ Standard C library
 .nf
 .B #include <sys/types.h>
 .B #include <pwd.h>
-.PP
+.P
 .B struct passwd *getpwent(void);
 .B void setpwent(void);
 .B void endpwent(void);
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getpwent (),
 .BR setpwent (),
 .BR endpwent ():
@@ -53,19 +53,19 @@ The first time
 .BR getpwent ()
 is called, it returns the first entry; thereafter, it returns successive
 entries.
-.PP
+.P
 The
 .BR setpwent ()
 function rewinds to the beginning
 of the password database.
-.PP
+.P
 The
 .BR endpwent ()
 function is used to close the password database
 after all processing has been performed.
-.PP
+.P
 The \fIpasswd\fP structure is defined in \fI<pwd.h>\fP as follows:
-.PP
+.P
 .in +4n
 .EX
 struct passwd {
@@ -79,7 +79,7 @@ struct passwd {
 };
 .EE
 .in
-.PP
+.P
 For more information about the fields of this structure, see
 .BR passwd (5).
 .SH RETURN VALUE
@@ -95,7 +95,7 @@ is set to indicate the error.
 If one wants to check
 .I errno
 after the call, it should be set to zero before the call.
-.PP
+.P
 The return value may point to a static area, and may be overwritten
 by subsequent calls to
 .BR getpwent (),
@@ -161,7 +161,7 @@ T}	Thread safety	T{
 MT-Unsafe race:pwent locale
 T}
 .TE
-.PP
+.P
 In the above table,
 .I pwent
 in

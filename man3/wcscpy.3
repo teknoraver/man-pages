@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "wchar_t *wcscpy(wchar_t *restrict " dest \
 ", const wchar_t *restrict " src );
 .fi
@@ -34,9 +34,9 @@ It copies the wide-character string pointed to by
 including the terminating null wide character (L\[aq]\e0\[aq]),
 to the array pointed to by
 .IR dest .
-.PP
+.P
 The strings may not overlap.
-.PP
+.P
 The programmer must ensure that there is
 room for at least
 .I wcslen(src)+1

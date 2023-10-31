@@ -21,7 +21,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/io.h>
-.PP
+.P
 .BI "int ioperm(unsigned long " from ", unsigned long " num ", int " turn_on );
 .fi
 .SH DESCRIPTION
@@ -38,7 +38,7 @@ If
 .I turn_on
 is nonzero, the calling thread must be privileged
 .RB ( CAP_SYS_RAWIO ).
-.PP
+.P
 Before Linux 2.6.8,
 only the first 0x3ff I/O ports could be specified in this manner.
 For more ports, the
@@ -47,7 +47,7 @@ system call had to be used (with a
 .I level
 argument of 3).
 Since Linux 2.6.8, 65,536 I/O ports can be specified.
-.PP
+.P
 Permissions are inherited by the child created by
 .BR fork (2)
 (but see NOTES).
@@ -55,7 +55,7 @@ Permissions are preserved across
 .BR execve (2);
 this is useful for giving port access permissions to unprivileged
 programs.
-.PP
+.P
 This call is mostly for the i386 architecture.
 On many other architectures it does not exist or will always
 return an error.

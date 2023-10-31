@@ -13,28 +13,28 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/types.h>
-.PP
+.P
 .BR typedef " /* ... */  " off_t;
-.PP
+.P
 .B #define _LARGEFILE64_SOURCE
 .B #include <sys/types.h>
-.PP
+.P
 .BR typedef " /* ... */  " off64_t;
-.PP
+.P
 .B #define _GNU_SOURCE
 .B #include <sys/types.h>
-.PP
+.P
 .BR typedef " /* ... */  " loff_t;
 .fi
 .SH DESCRIPTION
 .I off_t
 is used for describing file sizes.
 It is a signed integer type.
-.PP
+.P
 .I off64_t
 is a 64-bit version of the type,
 used in glibc.
-.PP
+.P
 .I loff_t
 is a 64-bit version of the type,
 introduced by the Linux kernel.
@@ -52,7 +52,7 @@ Linux.
 .TP
 .I off_t
 POSIX.1-2001.
-.PP
+.P
 .I <aio.h>
 and
 .I <stdio.h>
@@ -65,7 +65,7 @@ the width of
 .I off_t
 can be controlled with the feature test macro
 .BR _FILE_OFFSET_BITS .
-.PP
+.P
 The following headers also provide
 .IR off_t :
 .IR <aio.h> ,

@@ -19,26 +19,26 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/uio.h>
-.PP
+.P
 .BI "ssize_t readv(int " fd ", const struct iovec *" iov ", int " iovcnt );
 .BI "ssize_t writev(int " fd ", const struct iovec *" iov ", int " iovcnt );
-.PP
+.P
 .BI "ssize_t preadv(int " fd ", const struct iovec *" iov ", int " iovcnt ,
 .BI "                off_t " offset );
 .BI "ssize_t pwritev(int " fd ", const struct iovec *" iov ", int " iovcnt ,
 .BI "                off_t " offset );
-.PP
+.P
 .BI "ssize_t preadv2(int " fd ", const struct iovec *" iov ", int " iovcnt ,
 .BI "                off_t " offset ", int " flags );
 .BI "ssize_t pwritev2(int " fd ", const struct iovec *" iov ", int " iovcnt ,
 .BI "                off_t " offset ", int " flags );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR preadv (),
 .BR pwritev ():
 .nf
@@ -57,7 +57,7 @@ buffers from the file associated with the file descriptor
 into the buffers described by
 .I iov
 ("scatter input").
-.PP
+.P
 The
 .BR writev ()
 system call writes
@@ -67,7 +67,7 @@ buffers of data described by
 to the file associated with the file descriptor
 .I fd
 ("gather output").
-.PP
+.P
 The pointer
 .I iov
 points to an array of
@@ -75,19 +75,19 @@ points to an array of
 structures,
 described in
 .BR iovec (3type).
-.PP
+.P
 The
 .BR readv ()
 system call works just like
 .BR read (2)
 except that multiple buffers are filled.
-.PP
+.P
 The
 .BR writev ()
 system call works just like
 .BR write (2)
 except that multiple buffers are written out.
-.PP
+.P
 Buffers are processed in array order.
 This means that
 .BR readv ()
@@ -106,7 +106,7 @@ writes out the entire contents of
 before proceeding to
 .IR iov[1] ,
 and so on.
-.PP
+.P
 The data transfers performed by
 .BR readv ()
 and
@@ -136,7 +136,7 @@ but adds a fourth argument,
 .IR offset ,
 which specifies the file offset at which the input operation
 is to be performed.
-.PP
+.P
 The
 .BR pwritev ()
 system call combines the functionality of
@@ -149,7 +149,7 @@ but adds a fourth argument,
 .IR offset ,
 which specifies the file offset at which the output operation
 is to be performed.
-.PP
+.P
 The file offset is not changed by these system calls.
 The file referred to by
 .I fd
@@ -162,7 +162,7 @@ and
 calls, but add a fifth argument,
 .IR flags ,
 which modifies the behavior on a per-call basis.
-.PP
+.P
 Unlike
 .BR preadv ()
 and
@@ -170,7 +170,7 @@ and
 if the
 .I offset
 argument is \-1, then the current file offset is used and updated.
-.PP
+.P
 The
 .I flags
 argument contains a bitwise OR of zero or more of the following flags:
@@ -249,13 +249,13 @@ return the number of bytes read;
 and
 .BR pwritev2 ()
 return the number of bytes written.
-.PP
+.P
 Note that it is not an error for a successful call to transfer fewer bytes
 than requested (see
 .BR read (2)
 and
 .BR write (2)).
-.PP
+.P
 On error, \-1 is returned, and \fIerrno\fP is set to indicate the error.
 .SH ERRORS
 The errors are as given for
@@ -297,9 +297,9 @@ corresponding GNU C library wrapper functions shown in the SYNOPSIS.
 The final argument,
 .IR offset ,
 is unpacked by the wrapper functions into two arguments in the system calls:
-.PP
+.P
 .BI "    unsigned long " pos_l ", unsigned long " pos
-.PP
+.P
 These arguments contain, respectively, the low order and high order 32 bits of
 .IR offset .
 .SH STANDARDS
@@ -329,12 +329,12 @@ POSIX.1-2001,
 .\" and \fIint\fP as the return type.
 .\" The readv/writev system calls were buggy before Linux 1.3.40.
 .\" (Says release.libc.)
-.PP
+.P
 .BR preadv (),
 .BR pwritev ():
 Linux 2.6.30,
 glibc 2.10.
-.PP
+.P
 .BR preadv2 (),
 .BR pwritev2 ():
 Linux 4.6,
@@ -365,7 +365,7 @@ The wrapper function for
 .BR writev ()
 performed the analogous task using a temporary buffer and a call to
 .BR write (2).
-.PP
+.P
 The need for this extra effort in the glibc wrapper functions
 went away with Linux 2.2 and later.
 However, glibc continued to provide this behavior until glibc 2.10.
@@ -405,7 +405,7 @@ flag may return 0 even when not at end of file.
 .SH EXAMPLES
 The following code sample demonstrates the use of
 .BR writev ():
-.PP
+.P
 .in +4n
 .EX
 char          *str0 = "hello ";

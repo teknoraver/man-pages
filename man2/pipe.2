@@ -22,20 +22,20 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int pipe(int " pipefd [2]);
-.PP
+.P
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .BR "#include <fcntl.h>" "              /* Definition of " O_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int pipe2(int " pipefd "[2], int " flags );
-.PP
+.P
 /* On Alpha, IA-64, MIPS, SuperH, and SPARC/SPARC64, pipe() has the
    following prototype; see VERSIONS */
-.PP
+.P
 .B #include <unistd.h>
-.PP
+.P
 .B struct fd_pair {
 .B "    long fd[2];"
 .B "};"
@@ -56,7 +56,7 @@ Data written to the write end of the pipe is buffered by the kernel
 until it is read from the read end of the pipe.
 For further details, see
 .BR pipe (7).
-.PP
+.P
 If
 .I flags
 is 0, then
@@ -148,7 +148,7 @@ On error, \-1 is returned,
 is set to indicate the error, and
 .I pipefd
 is left unchanged.
-.PP
+.P
 On Linux (and other systems),
 .BR pipe ()
 does not modify

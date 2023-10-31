@@ -15,7 +15,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/eventfd.h>
-.PP
+.P
 .BI "int eventfd(unsigned int " initval ", int " flags );
 .fi
 .SH DESCRIPTION
@@ -28,12 +28,12 @@ The object contains an unsigned 64-bit integer
 counter that is maintained by the kernel.
 This counter is initialized with the value specified in the argument
 .IR initval .
-.PP
+.P
 As its return value,
 .BR eventfd ()
 returns a new file descriptor that can be used to refer to the
 eventfd object.
-.PP
+.P
 The following values may be bitwise ORed in
 .I flags
 to change the behavior of
@@ -62,11 +62,11 @@ to achieve the same result.
 .BR EFD_SEMAPHORE " (since Linux 2.6.30)"
 Provide semaphore-like semantics for reads from the new file descriptor.
 See below.
-.PP
+.P
 Up to Linux 2.6.26, the
 .I flags
 argument is unused, and must be specified as zero.
-.PP
+.P
 The following operations can be performed on the file descriptor returned by
 .BR eventfd ():
 .TP
@@ -207,7 +207,7 @@ and
 When the file descriptor is no longer required it should be closed.
 When all file descriptors associated with the same eventfd object
 have been closed, the resources for object are freed by the kernel.
-.PP
+.P
 A copy of the file descriptor created by
 .BR eventfd ()
 is inherited by the child produced by
@@ -283,7 +283,7 @@ where it is available.
 The GNU C library defines an additional type,
 and two functions that attempt to abstract some of the details of
 reading and writing on an eventfd file descriptor:
-.PP
+.P
 .in +4n
 .EX
 typedef uint64_t eventfd_t;
@@ -292,7 +292,7 @@ int eventfd_read(int fd, eventfd_t *value);
 int eventfd_write(int fd, eventfd_t value);
 .EE
 .in
-.PP
+.P
 The functions perform the read and write operations on an
 eventfd file descriptor,
 returning 0 if the correct number of bytes was transferred,
@@ -321,13 +321,13 @@ The kernel overhead of an eventfd file descriptor
 is much lower than that of a pipe,
 and only one file descriptor is
 required (versus the two required for a pipe).
-.PP
+.P
 When used in the kernel, an eventfd
 file descriptor can provide a bridge from kernel to user space, allowing,
 for example, functionalities like KAIO (kernel AIO)
 .\" or eventually syslets/threadlets
 to signal to a file descriptor that some operation is complete.
-.PP
+.P
 A key point about an eventfd file descriptor is that it can be
 monitored just like any other file descriptor using
 .BR select (2),
@@ -344,7 +344,7 @@ interface, these mechanisms could not be multiplexed via
 .BR poll (2),
 or
 .BR epoll (7).)
-.PP
+.P
 The current value of an eventfd counter can be viewed
 via the entry for the corresponding file descriptor in the process's
 .IR /proc/ pid /fdinfo
@@ -360,9 +360,9 @@ the child writes each of the integers supplied in the program's
 command-line arguments to the eventfd file descriptor.
 When the parent has finished sleeping,
 it reads from the eventfd file descriptor.
-.PP
+.P
 The following shell session shows a sample run of the program:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out 1 2 4 7 14"

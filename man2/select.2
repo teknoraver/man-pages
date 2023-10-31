@@ -27,31 +27,31 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/select.h>
-.PP
+.P
 .BR typedef " /* ... */ " fd_set;
-.PP
+.P
 .BI "int select(int " nfds ", fd_set *_Nullable restrict " readfds ,
 .BI "           fd_set *_Nullable restrict " writefds ,
 .BI "           fd_set *_Nullable restrict " exceptfds ,
 .BI "           struct timeval *_Nullable restrict " timeout );
-.PP
+.P
 .BI "void FD_CLR(int " fd ", fd_set *" set );
 .BI "int  FD_ISSET(int " fd ", fd_set *" set );
 .BI "void FD_SET(int " fd ", fd_set *" set );
 .BI "void FD_ZERO(fd_set *" set );
-.PP
+.P
 .BI "int pselect(int " nfds ", fd_set *_Nullable restrict " readfds ,
 .BI "           fd_set *_Nullable restrict " writefds ,
 .BI "           fd_set *_Nullable restrict " exceptfds ,
 .BI "           const struct timespec *_Nullable restrict " timeout ,
 .BI "           const sigset_t *_Nullable restrict " sigmask );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR pselect ():
 .nf
     _POSIX_C_SOURCE >= 200112L
@@ -68,7 +68,7 @@ All modern applications should instead use
 or
 .BR epoll (7),
 which do not suffer this limitation.
-.PP
+.P
 .BR select ()
 allows a program to monitor multiple file descriptors,
 waiting until one or more of the file descriptors become "ready"
@@ -99,14 +99,14 @@ Each of the
 .I fd_set
 arguments may be specified as NULL if no file descriptors are
 to be watched for the corresponding class of events.
-.PP
+.P
 .BR "Note well" :
 Upon return, each of the file descriptor sets is modified in place
 to indicate which file descriptors are currently "ready".
 Thus, if using
 .BR select ()
 within a loop, the sets \fImust be reinitialized\fP before each call.
-.PP
+.P
 The contents of a file descriptor set can be manipulated
 using the following macros:
 .TP
@@ -237,7 +237,7 @@ The
 .BR pselect ()
 system call allows an application to safely wait until either
 a file descriptor becomes ready or until a signal is caught.
-.PP
+.P
 The operation of
 .BR select ()
 and
@@ -267,7 +267,7 @@ argument, and behaves as
 .BR pselect ()
 called with NULL
 .IR sigmask .
-.PP
+.P
 .I sigmask
 is a pointer to a signal mask (see
 .BR sigprocmask (2));
@@ -283,24 +283,24 @@ is NULL,
 the signal mask is not modified during the
 .BR pselect ()
 call.)
-.PP
+.P
 Other than the difference in the precision of the
 .I timeout
 argument, the following
 .BR pselect ()
 call:
-.PP
+.P
 .in +4n
 .EX
 ready = pselect(nfds, &readfds, &writefds, &exceptfds,
                 timeout, &sigmask);
 .EE
 .in
-.PP
+.P
 is equivalent to
 .I atomically
 executing the following calls:
-.PP
+.P
 .in +4n
 .EX
 sigset_t origmask;
@@ -310,7 +310,7 @@ ready = select(nfds, &readfds, &writefds, &exceptfds, timeout);
 pthread_sigmask(SIG_SETMASK, &origmask, NULL);
 .EE
 .in
-.PP
+.P
 The reason that
 .BR pselect ()
 is needed is that if one wants to wait for either a signal
@@ -336,7 +336,7 @@ The
 argument for
 .BR select ()
 is a structure of the following type:
-.PP
+.P
 .in +4n
 .EX
 struct timeval {
@@ -345,13 +345,13 @@ struct timeval {
 };
 .EE
 .in
-.PP
+.P
 The corresponding argument for
 .BR pselect ()
 is a
 .BR timespec (3)
 structure.
-.PP
+.P
 On Linux,
 .BR select ()
 modifies
@@ -370,7 +370,7 @@ Consider
 to be undefined after
 .BR select ()
 returns.
-.\" .PP - it is rumored that:
+.\" .P - it is rumored that:
 .\" On BSD, when a timeout occurs, the file descriptor bits are not changed.
 .\" - it is certainly true that:
 .\" Linux follows SUSv2 and sets the bit masks to zero upon a timeout.
@@ -386,7 +386,7 @@ descriptor sets (that is, the total number of bits that are set in
 .IR exceptfds ).
 The return value may be zero if the timeout expired before any
 file descriptors became ready.
-.PP
+.P
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error;
@@ -464,7 +464,7 @@ The following header also provides the
 .I fd_set
 type:
 .IR <sys/time.h> .
-.PP
+.P
 An
 .I fd_set
 is a fixed size buffer.
@@ -481,7 +481,7 @@ in undefined behavior.
 Moreover, POSIX requires
 .I fd
 to be a valid file descriptor.
-.PP
+.P
 The operation of
 .BR select ()
 and
@@ -525,7 +525,7 @@ and the event notifications provided by
 .BR poll (2)
 and
 .BR epoll (7):
-.PP
+.P
 .in +4n
 .EX
 #define POLLIN_SET  (EPOLLRDNORM | EPOLLRDBAND | EPOLLIN |
@@ -564,7 +564,7 @@ However, in the glibc implementation, the
 .I fd_set
 type is fixed in size.
 See also BUGS.
-.PP
+.P
 The
 .BR pselect ()
 interface described in this page is implemented by glibc.
@@ -572,7 +572,7 @@ The underlying Linux system call is named
 .BR pselect6 ().
 This system call has somewhat different behavior from the glibc
 wrapper function.
-.PP
+.P
 The Linux
 .BR pselect6 ()
 system call modifies its
@@ -587,13 +587,13 @@ function does not modify its
 .I timeout
 argument;
 this is the behavior required by POSIX.1-2001.
-.PP
+.P
 The final argument of the
 .BR pselect6 ()
 system call is not a
 .I "sigset_t\ *"
 pointer, but is instead a structure of the form:
-.PP
+.P
 .in +4n
 .EX
 struct {
@@ -603,7 +603,7 @@ struct {
 };
 .EE
 .in
-.PP
+.P
 This allows the system call to obtain both
 a pointer to the signal set and its size,
 while allowing for the fact that most architectures
@@ -619,7 +619,7 @@ glibc 2.0 provided an incorrect version of
 that did not take a
 .I sigmask
 argument.
-.PP
+.P
 From glibc 2.1 to glibc 2.2.1,
 one must define
 .B _GNU_SOURCE
@@ -645,14 +645,14 @@ To monitor file descriptors greater than 1023, use
 or
 .BR epoll (7)
 instead.
-.PP
+.P
 The implementation of the
 .I fd_set
 arguments as value-result arguments is a design error that is avoided in
 .BR poll (2)
 and
 .BR epoll (7).
-.PP
+.P
 According to POSIX,
 .BR select ()
 should check all specified file descriptors in the three file descriptor sets,
@@ -664,7 +664,7 @@ that the process currently has open.
 According to POSIX, any such file descriptor that is specified in one
 of the sets should result in the error
 .BR EBADF .
-.PP
+.P
 Starting with glibc 2.1, glibc provided an emulation of
 .BR pselect ()
 that was implemented using
@@ -677,7 +677,7 @@ was designed to prevent.
 Modern versions of glibc use the (race-free)
 .BR pselect ()
 system call on kernels where it is provided.
-.PP
+.P
 On Linux,
 .BR select ()
 may report a socket file descriptor as "ready for reading", while
@@ -693,7 +693,7 @@ Thus it may be safer to use
 .B O_NONBLOCK
 on sockets that should not block.
 .\" Maybe the kernel should have returned EIO in such a situation?
-.PP
+.P
 On Linux,
 .BR select ()
 also modifies
@@ -760,6 +760,6 @@ main(void)
 .BR timespec (3),
 .BR epoll (7),
 .BR time (7)
-.PP
+.P
 For a tutorial with discussion and examples, see
 .BR select_tut (2).

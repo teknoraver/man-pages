@@ -23,17 +23,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double exp(double " x );
 .BI "float expf(float " x );
 .BI "long double expl(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR expf (),
 .BR expl ():
 .nf
@@ -48,26 +48,26 @@ logarithms) raised to the power of
 .SH RETURN VALUE
 On success, these functions return the exponential value of
 .IR x .
-.PP
+.P
 If
 .I x
 is a NaN,
 a NaN is returned.
-.PP
+.P
 If
 .I x
 is positive infinity,
 positive infinity is returned.
-.PP
+.P
 If
 .I x
 is negative infinity,
 +0 is returned.
-.PP
+.P
 If the result underflows,
 a range error occurs,
 and zero is returned.
-.PP
+.P
 If the result overflows,
 a range error occurs,
 and the functions return
@@ -81,7 +81,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Range error, overflow
@@ -119,7 +119,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to

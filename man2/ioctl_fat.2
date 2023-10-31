@@ -12,7 +12,7 @@ Standard C library
 .BR "#include <linux/msdos_fs.h>" "     /* Definition of [" V ] FAT_* " and"
 .BR "                                   ATTR_* " constants */"
 .B #include <sys/ioctl.h>
-.PP
+.P
 .BI "int ioctl(int " fd ", FAT_IOCTL_GET_ATTRIBUTES, uint32_t *" attr );
 .BI "int ioctl(int " fd ", FAT_IOCTL_SET_ATTRIBUTES, uint32_t *" attr );
 .BI "int ioctl(int " fd ", FAT_IOCTL_GET_VOLUME_ID, uint32_t *" id );
@@ -32,7 +32,7 @@ can be read with
 .B FAT_IOCTL_GET_ATTRIBUTES
 and written with
 .BR FAT_IOCTL_SET_ATTRIBUTES .
-.PP
+.P
 The
 .I fd
 argument contains a file descriptor for a file or directory.
@@ -41,7 +41,7 @@ It is sufficient to create the file descriptor by calling
 with the
 .B O_RDONLY
 flag.
-.PP
+.P
 The
 .I attr
 argument contains a pointer to a bit mask.
@@ -68,7 +68,7 @@ This attribute is read-only.
 This bit indicates that this file or directory should be archived.
 It is set when a file is created or modified.
 It is reset by an archiving system.
-.PP
+.P
 The zero value
 .B ATTR_NONE
 can be used to indicate that no attribute bit is set.
@@ -76,7 +76,7 @@ can be used to indicate that no attribute bit is set.
 FAT filesystems are identified by a volume ID.
 The volume ID can be read with
 .BR FAT_IOCTL_GET_VOLUME_ID .
-.PP
+.P
 The
 .I fd
 argument can be a file descriptor for any file or directory of the
@@ -86,13 +86,13 @@ It is sufficient to create the file descriptor by calling
 with the
 .B O_RDONLY
 flag.
-.PP
+.P
 The
 .I id
 argument is a pointer to the field that will be filled with the volume ID.
 Typically the volume ID is displayed to the user as a group of two
 16-bit fields:
-.PP
+.P
 .in +4n
 .EX
 printf("Volume ID %04x\-%04x\en", id >> 16, id & 0xFFFF);
@@ -104,12 +104,12 @@ consisting of up to 8 capital letters, optionally followed by a period
 and up to 3 capital letters for the file extension.
 If the actual filename does not fit into this scheme, it is stored
 as a long filename of up to 255 UTF-16 characters.
-.PP
+.P
 The short filenames in a directory can be read with
 .BR VFAT_IOCTL_READDIR_SHORT .
 .B VFAT_IOCTL_READDIR_BOTH
 reads both the short and the long filenames.
-.PP
+.P
 The
 .I fd
 argument must be a file descriptor for a directory.
@@ -122,11 +122,11 @@ The file descriptor can be used only once to iterate over the directory
 entries by calling
 .BR ioctl (2)
 repeatedly.
-.PP
+.P
 The
 .I entry
 argument is a two-element array of the following structures:
-.PP
+.P
 .in +4n
 .EX
 struct __fat_dirent {
@@ -137,10 +137,10 @@ struct __fat_dirent {
 };
 .EE
 .in
-.PP
+.P
 The first entry in the array is for the short filename.
 The second entry is for the long filename.
-.PP
+.P
 The
 .I d_ino
 and
@@ -154,7 +154,7 @@ The
 field holds the offset of the file entry in the directory.
 As these values are not available for short filenames, the user code should
 simply ignore them.
-.PP
+.P
 The field
 .I d_reclen
 contains the length of the filename in the field
@@ -174,7 +174,7 @@ is a character string of length 0 for the long filename.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 For
 .B VFAT_IOCTL_READDIR_BOTH
 and
@@ -205,7 +205,7 @@ does not refer to a directory.
 The file descriptor
 .I fd
 does not refer to an object in a FAT filesystem.
-.PP
+.P
 For further error values, see
 .BR ioctl (2).
 .SH STANDARDS
@@ -234,10 +234,10 @@ to manipulate file attributes.
 The program reads and displays the archive attribute of a file.
 After inverting the value of the attribute,
 the program reads and displays the attribute again.
-.PP
+.P
 The following was recorded when applying the program for the file
 .IR /mnt/user/foo :
-.PP
+.P
 .in +4n
 .EX
 # ./toggle_fat_archive_flag /mnt/user/foo
@@ -335,11 +335,11 @@ main(int argc, char *argv[])
 The following program demonstrates the use of
 .BR ioctl (2)
 to display the volume ID of a FAT filesystem.
-.PP
+.P
 The following output was recorded when applying the program for
 directory
 .IR /mnt/user :
-.PP
+.P
 .in +4n
 .EX
 $ ./display_fat_volume_id /mnt/user
@@ -400,10 +400,10 @@ main(int argc, char *argv[])
 The following program demonstrates the use of
 .BR ioctl (2)
 to list a directory.
-.PP
+.P
 The following was recorded when applying the program to the directory
 .IR /mnt/user :
-.PP
+.P
 .in +4n
 .EX
 $ \fB./fat_dir /mnt/user\fP

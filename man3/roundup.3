@@ -11,7 +11,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/param.h>
-.PP
+.P
 .BI roundup( x ", " step );
 .fi
 .SH DESCRIPTION
@@ -21,11 +21,11 @@ to the nearest multiple of
 .I step
 that is not less than
 .IR x .
-.PP
+.P
 It is typically used for
 rounding up a pointer to align it or
 increasing a buffer to be allocated.
-.PP
+.P
 This API is not designed to be generic,
 and doesn't work in some cases
 that are not important for the typical use cases described above.
@@ -36,13 +36,13 @@ This macro returns the rounded value.
 None.
 .SH CAVEATS
 The arguments may be evaluated more than once.
-.PP
+.P
 .I x
 should be nonnegative,
 and
 .I step
 should be positive.
-.PP
+.P
 If
 .I x + step
 would overflow or wrap around,

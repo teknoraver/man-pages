@@ -20,16 +20,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <langinfo.h>
-.PP
+.P
 .BI "char *nl_langinfo(nl_item " item );
 .BI "char *nl_langinfo_l(nl_item " item ", locale_t " locale );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR nl_langinfo_l ():
 .nf
     Since glibc 2.24:
@@ -56,7 +56,7 @@ which was previously created by
 .BR newlocale (3).
 Individual and additional elements of the locale categories can
 be queried.
-.PP
+.P
 Examples for the locale elements that can be specified in \fIitem\fP
 using the constants defined in \fI<langinfo.h>\fP are:
 .TP
@@ -249,7 +249,7 @@ function to recognize a negative response to a yes/no question.
 Return the currency symbol, preceded by "\-" if the symbol should
 appear before the value, "+" if the symbol should appear after the
 value, or "." if the symbol should replace the radix character.
-.PP
+.P
 The above list covers just some examples of items that can be requested.
 For a more detailed list, consult
 .IR "The GNU C Library Reference Manual" .
@@ -258,7 +258,7 @@ On success, these functions return a pointer to a string which
 is the value corresponding to
 .I item
 in the specified locale.
-.PP
+.P
 If no locale has been selected by
 .BR setlocale (3)
 for the appropriate category,
@@ -271,9 +271,9 @@ if
 specifies a locale where
 .I langinfo
 data is not defined.
-.PP
+.P
 If \fIitem\fP is not valid, a pointer to an empty string is returned.
-.PP
+.P
 The pointer returned by these functions may point to static data that
 may be overwritten, or the pointer itself may be invalidated,
 by a subsequent call to
@@ -289,7 +289,7 @@ is freed or modified by
 .BR freelocale (3)
 or
 .BR newlocale (3).
-.PP
+.P
 POSIX specifies that the application may not modify
 the string returned by these functions.
 .SH ATTRIBUTES
@@ -322,7 +322,7 @@ or is not a valid locale object handle.
 The following program sets the character type and the numeric locale
 according to the environment and queries the terminal character set and
 the radix character.
-.PP
+.P
 .\" SRC BEGIN (nl_langinfo.c)
 .EX
 #include <langinfo.h>
@@ -349,5 +349,5 @@ main(void)
 .BR setlocale (3),
 .BR charsets (7),
 .BR locale (7)
-.PP
+.P
 The GNU C Library Reference Manual

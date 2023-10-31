@@ -45,7 +45,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/prctl.h>
-.PP
+.P
 .BI "int prctl(int " option ", ..."
 .BI "          \fR/*\fP unsigned long " arg2 ", unsigned long " arg3 ,
 .BI "          unsigned long " arg4 ", unsigned long " arg5 " \fR*/\fP );"
@@ -54,12 +54,12 @@ Standard C library
 .BR prctl ()
 manipulates various aspects of the behavior
 of the calling thread or process.
-.PP
+.P
 Note that careless use of some
 .BR prctl ()
 operations can confuse the user-space run-time environment,
 so these operations should be used with care.
-.PP
+.P
 .BR prctl ()
 is called with a first argument describing what to do
 (with values defined in \fI<linux/prctl.h>\fP), and further
@@ -674,7 +674,7 @@ value.
 The requirements for the address are the same as for the
 .B PR_SET_MM_START_BRK
 option.
-.PP
+.P
 The following options are available since Linux 3.5.
 .\" commit fe8c7f5cbf91124987106faa3bdf0c8b955c4cf7
 .TP
@@ -741,7 +741,7 @@ This restriction was enforced for security reasons that were subsequently
 deemed specious,
 and the restriction was removed in Linux 4.10 because some
 user-space applications needed to perform this operation more than once.
-.PP
+.P
 The following options are available since Linux 3.18.
 .\" commit f606b77f1a9e362451aca8f81d8f36a3a112139e
 .TP
@@ -2555,13 +2555,13 @@ IRIX has a
 system call (also introduced in Linux 2.1.44
 as irix_prctl on the MIPS architecture),
 with prototype
-.PP
+.P
 .in +4n
 .EX
 .BI "ptrdiff_t prctl(int " option ", int " arg2 ", int " arg3 );
 .EE
 .in
-.PP
+.P
 and options to get the maximum number of processes per user,
 get the maximum number of processors the calling process can use,
 find out whether a specified process is currently blocked,

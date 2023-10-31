@@ -13,7 +13,7 @@ Standard C library
 .nf
 .BR "#include <linux/fcntl.h>" "      /* Definition of " AT_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int execveat(int " dirfd ", const char *" pathname ,
 .BI "             char *const _Nullable " argv [],
 .BI "             char *const _Nullable " envp [],
@@ -30,7 +30,7 @@ and
 It operates in exactly the same way as
 .BR execve (2),
 except for the differences described in this manual page.
-.PP
+.P
 If the pathname given in
 .I pathname
 is relative, then it is interpreted relative to the directory
@@ -40,7 +40,7 @@ referred to by the file descriptor
 the calling process, as is done by
 .BR execve (2)
 for a relative pathname).
-.PP
+.P
 If
 .I pathname
 is relative and
@@ -52,13 +52,13 @@ then
 is interpreted relative to the current working
 directory of the calling process (like
 .BR execve (2)).
-.PP
+.P
 If
 .I pathname
 is absolute, then
 .I dirfd
 is ignored.
-.PP
+.P
 If
 .I pathname
 is an empty string and the
@@ -68,7 +68,7 @@ flag is specified, then the file descriptor
 specifies the file to be executed (i.e.,
 .I dirfd
 refers to an executable file, rather than a directory).
-.PP
+.P
 The
 .I flags
 argument is a bit mask that can include zero or more of the following flags:
@@ -160,7 +160,7 @@ system call is also needed to allow
 to be implemented on systems that do not have the
 .I /proc
 filesystem mounted.
-.PP
+.P
 When asked to execute a script file, the
 .I argv[0]
 that is passed to the script interpreter is a string of the form
@@ -183,7 +183,7 @@ in this case,
 .I P
 is the value given in
 .IR pathname .
-.PP
+.P
 For the same reasons described in
 .BR fexecve (3),
 the natural idiom when using
@@ -196,13 +196,13 @@ The
 .B ENOENT
 error described above means that it is not possible to set the
 close-on-exec flag on the file descriptor given to a call of the form:
-.PP
+.P
 .in +4n
 .EX
 execveat(fd, "", argv, envp, AT_EMPTY_PATH);
 .EE
 .in
-.PP
+.P
 However, the inability to set the close-on-exec flag means that a file
 descriptor referring to the script leaks through to the script itself.
 As well as wasting a file descriptor,

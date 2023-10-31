@@ -11,7 +11,7 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B  #include <pthread.h>
-.PP
+.P
 .BI "int pthread_atfork(void (*" prepare ")(void), void (*" parent ")(void),"
 .BI "                   void (*" child ")(void));"
 .fi
@@ -23,7 +23,7 @@ function registers fork handlers that are to be executed when
 is called by any thread in a process.
 The handlers are executed in the context of the thread that calls
 .BR fork (2).
-.PP
+.P
 Three kinds of handler can be registered:
 .IP \[bu] 3
 .I prepare
@@ -40,7 +40,7 @@ processing completes.
 specifies a handler that is executed in the child process after
 .BR fork (2)
 processing completes.
-.PP
+.P
 Any of the three arguments may be NULL if no handler is needed
 in the corresponding phase of
 .BR fork (2)
@@ -88,7 +88,7 @@ was to provide a mechanism whereby the application (or a library)
 could ensure that mutexes and other process and thread state would be
 restored to a consistent state.
 In practice, this task is generally too difficult to be practicable.
-.PP
+.P
 After a
 .BR fork (2)
 in a multithreaded process returns in the child,
@@ -97,7 +97,7 @@ the child should call only async-signal-safe functions (see
 until such time as it calls
 .BR execve (2)
 to execute a new program.
-.PP
+.P
 POSIX.1 specifies that
 .BR pthread_atfork ()
 shall not fail with the error

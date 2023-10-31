@@ -12,14 +12,14 @@ Real-time library
 .SH SYNOPSIS
 .nf
 .B #include <mqueue.h>
-.PP
+.P
 .BI "int mq_close(mqd_t " mqdes );
 .fi
 .SH DESCRIPTION
 .BR mq_close ()
 closes the message queue descriptor
 .IR mqdes .
-.PP
+.P
 If the calling process has attached a notification request (see
 .BR mq_notify (3))
 to this message queue via

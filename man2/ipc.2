@@ -14,13 +14,13 @@ Standard C library
 .BR "#include <linux/ipc.h>" "        /* Definition of needed constants */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_ipc, unsigned int " call ", int " first ,
 .BI "            unsigned long " second ", unsigned long " third \
 ", void *" ptr ,
 .BI "            long " fifth );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR ipc (),
@@ -33,7 +33,7 @@ for messages, semaphores, and shared memory.
 .I call
 determines which IPC function to invoke;
 the other arguments are passed through to the appropriate call.
-.PP
+.P
 User-space programs should call the appropriate functions by their usual names.
 Only standard library implementors and kernel hackers need to know about
 .BR ipc ().

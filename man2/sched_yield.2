@@ -16,7 +16,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sched.h>
-.PP
+.P
 .B int sched_yield(void);
 .fi
 .SH DESCRIPTION
@@ -40,7 +40,7 @@ POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001 (but optional).
 POSIX.1-2008.
-.PP
+.P
 Before POSIX.1-2008,
 systems on which
 .BR sched_yield ()
@@ -59,12 +59,12 @@ Use of
 with nondeterministic scheduling policies such as
 .B SCHED_OTHER
 is unspecified and very likely means your application design is broken.
-.PP
+.P
 If the calling thread is the only thread in the highest
 priority list at that time,
 it will continue to run after a call to
 .BR sched_yield ().
-.PP
+.P
 Avoid calling
 .BR sched_yield ()
 unnecessarily or inappropriately

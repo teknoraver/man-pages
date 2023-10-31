@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "size_t wcrtomb(char *restrict " s ", wchar_t " wc \
 ", mbstate_t *restrict " ps );
 .fi
@@ -45,7 +45,7 @@ returns the length of said multibyte representation,
 that is, the number of bytes
 written at
 .IR s .
-.PP
+.P
 A different case is when
 .I s
 is not NULL,
@@ -69,7 +69,7 @@ it into the initial state),
 and returns the length of the shift sequence plus
 one, that is, the number of bytes written at
 .IR s .
-.PP
+.P
 A third case is when
 .I s
 is NULL.
@@ -77,17 +77,17 @@ In this case,
 .I wc
 is ignored,
 and the function effectively returns
-.PP
+.P
 .in +4n
 .EX
 wcrtomb(buf, L\[aq]\e0\[aq], ps)
 .EE
 .in
-.PP
+.P
 where
 .I buf
 is an internal anonymous buffer.
-.PP
+.P
 In all of the above cases, if
 .I ps
 is NULL, a static anonymous
@@ -135,7 +135,7 @@ depends on the
 .B LC_CTYPE
 category of the
 current locale.
-.PP
+.P
 Passing NULL as
 .I ps
 is not multithread safe.

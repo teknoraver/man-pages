@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <monetary.h>
-.PP
+.P
 .BI "ssize_t strfmon(char " s "[restrict ." max "], size_t " max ,
 .BI "                const char *restrict " format ", ...);"
 .BI "ssize_t strfmon_l(char " s "[restrict ." max "], size_t " max ", \
@@ -31,7 +31,7 @@ result in the character array
 .I s
 of size
 .IR max .
-.PP
+.P
 The
 .BR strfmon_l ()
 function performs the same task,
@@ -47,7 +47,7 @@ is the special locale object
 (see
 .BR duplocale (3))
 or is not a valid locale object handle.
-.PP
+.P
 Ordinary characters in
 .I format
 are copied to
@@ -83,20 +83,20 @@ Omit the currency symbol.
 .B \-
 Left justify all fields.
 The default is right justification.
-.PP
+.P
 Next, there may be a field width: a decimal digit string specifying
 a minimum field width in bytes.
 The default is 0.
 A result smaller than this width is padded with spaces
 (on the left, unless the left-justify flag was given).
-.PP
+.P
 Next, there may be a left precision of the form "#" followed by
 a decimal digit string.
 If the number of digits left of the
 radix character is smaller than this, the representation is
 padded on the left with the numeric fill character.
 Grouping characters are not counted in this field width.
-.PP
+.P
 Next, there may be a right precision of the form "." followed by
 a decimal digit string.
 The amount being formatted is rounded to
@@ -111,7 +111,7 @@ If the right precision is 0, no radix character is printed.
 .BR LC_MONETARY ,
 and may differ from that specified by
 .BR LC_NUMERIC .)
-.PP
+.P
 Finally, the conversion specification must be ended with a
 conversion character.
 The three conversion characters are
@@ -167,22 +167,22 @@ POSIX.1-2008.
 POSIX.1-2001.
 .SH EXAMPLES
 The call
-.PP
+.P
 .in +4n
 .EX
 strfmon(buf, sizeof(buf), "[%\[ha]=*#6n] [%=*#6i]",
         1234.567, 1234.567);
 .EE
 .in
-.PP
+.P
 outputs
-.PP
+.P
 .in +4n
 .EX
 [€ **1234,57] [EUR **1 234,57]
 .EE
 .in
-.PP
+.P
 in the
 .I nl_NL
 locale.
@@ -193,7 +193,7 @@ The
 and
 .I en_GB
 locales yield
-.PP
+.P
 .in +4n
 .EX
 [ **1234,57 €] [ **1.234,57 EUR]

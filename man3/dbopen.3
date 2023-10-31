@@ -18,7 +18,7 @@ Standard C library
 .B #include <limits.h>
 .B #include <db.h>
 .B #include <fcntl.h>
-.PP
+.P
 .BI "DB *dbopen(const char *" file ", int " flags ", int " mode \
 ", DBTYPE " type ,
 .BI "           const void *" openinfo );
@@ -30,7 +30,7 @@ Since glibc 2.2, glibc no longer provides these interfaces.
 Probably, you are looking for the APIs provided by the
 .I libdb
 library instead.
-.PP
+.P
 .BR dbopen ()
 is the library interface to database files.
 The supported file formats are btree, hashed, and UNIX file oriented.
@@ -44,7 +44,7 @@ in their respective manual pages
 .BR hash (3),
 and
 .BR recno (3).
-.PP
+.P
 .BR dbopen ()
 opens
 .I file
@@ -53,7 +53,7 @@ Files never intended to be preserved on disk may be created by setting
 the
 .I file
 argument to NULL.
-.PP
+.P
 The
 .I flags
 and
@@ -93,7 +93,7 @@ is not possible.)
 .\"DB_TXN
 .\"Support transactions in the database.
 .\"The DB_LOCK and DB_SHMEM flags must be set as well.
-.PP
+.P
 The
 .I type
 argument is of type
@@ -106,7 +106,7 @@ may be set to
 .BR DB_HASH ,
 or
 .BR DB_RECNO .
-.PP
+.P
 The
 .I openinfo
 argument is a pointer to an access-method-specific structure described
@@ -115,7 +115,7 @@ If
 .I openinfo
 is NULL, each access method will use defaults appropriate for the system
 and the access method.
-.PP
+.P
 .BR dbopen ()
 returns a pointer to a
 .I DB
@@ -126,7 +126,7 @@ structure is defined in the
 .I <db.h>
 include file, and contains at
 least the following fields:
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -144,7 +144,7 @@ typedef struct {
 } DB;
 .EE
 .in
-.PP
+.P
 These elements describe a database type and a set of functions performing
 various actions.
 These functions take a pointer to a structure as returned by
@@ -428,7 +428,7 @@ and 0 on success.
 .SS Key/data pairs
 Access to all file types is based on key/data pairs.
 Both keys and data are represented by the following data structure:
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -437,7 +437,7 @@ typedef struct {
 } DBT;
 .EE
 .in
-.PP
+.P
 The elements of the
 .I DBT
 structure are defined as follows:
@@ -447,7 +447,7 @@ A pointer to a byte string.
 .TP
 .I size
 The length of the byte string.
-.PP
+.P
 Key and data byte strings may reference strings of essentially unlimited
 length although any two of them must fit into available memory at the same
 time.
@@ -473,7 +473,7 @@ incompatible with the current file specification or which is not
 meaningful for the function (for example, use of the cursor without
 prior initialization) or there is a mismatch between the version
 number of file and the software.
-.PP
+.P
 The
 .I close
 routines may fail and set
@@ -485,7 +485,7 @@ for any of the errors specified for the library routines
 .BR free (3),
 or
 .BR fsync (2).
-.PP
+.P
 The
 .IR del ,
 .IR get ,
@@ -500,7 +500,7 @@ for any of the errors specified for the library routines
 .BR free (3),
 or
 .BR malloc (3).
-.PP
+.P
 The
 .I fd
 routines will fail and set
@@ -508,7 +508,7 @@ routines will fail and set
 to
 .B ENOENT
 for in memory databases.
-.PP
+.P
 The
 .I sync
 routines may fail and set
@@ -520,10 +520,10 @@ The typedef
 .I DBT
 is a mnemonic for "data base thang", and was used
 because no one could think of a reasonable name that wasn't already used.
-.PP
+.P
 The file descriptor interface is a kludge and will be deleted in a
 future version of the interface.
-.PP
+.P
 None of the access methods provide any form of concurrent access,
 locking, or transactions.
 .SH SEE ALSO
@@ -531,6 +531,6 @@ locking, or transactions.
 .BR hash (3),
 .BR mpool (3),
 .BR recno (3)
-.PP
+.P
 .IR "LIBTP: Portable, Modular Transactions for UNIX" ,
 Margo Seltzer, Michael Olson, USENIX proceedings, Winter 1992.

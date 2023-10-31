@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/epoll.h>
-.PP
+.P
 .BI "int epoll_ctl(int " epfd ", int " op ", int " fd ,
 .BI "              struct epoll_event *_Nullable " event );
 .fi
@@ -28,7 +28,7 @@ It requests that the operation
 .I op
 be performed for the target file descriptor,
 .IR fd .
-.PP
+.P
 Valid values for the
 .I op
 argument are:
@@ -58,7 +58,7 @@ from the interest list.
 The
 .I event
 argument is ignored and can be NULL (but see BUGS below).
-.PP
+.P
 The
 .I event
 argument describes the object linked to the file descriptor
@@ -67,7 +67,7 @@ The
 .I struct epoll_event
 is described in
 .BR epoll_event (3type).
-.PP
+.P
 The
 .I data
 member of the
@@ -75,7 +75,7 @@ member of the
 structure specifies data that the kernel should save and then return (via
 .BR epoll_wait (2))
 when this file descriptor becomes ready.
-.PP
+.P
 The
 .I events
 member of the
@@ -133,7 +133,7 @@ Note that when reading from a channel such as a pipe or a stream socket,
 this event merely indicates that the peer closed its end of the channel.
 Subsequent reads from the channel will return 0 (end of file)
 only after all outstanding data in the channel has been consumed.
-.PP
+.P
 And the available input flags are:
 .TP
 .B EPOLLET
@@ -395,7 +395,7 @@ when using
 Applications that need to be portable to kernels before Linux 2.6.9
 should specify a non-null pointer in
 .IR event .
-.PP
+.P
 If
 .B EPOLLWAKEUP
 is specified in

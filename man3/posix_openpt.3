@@ -13,15 +13,15 @@ Standard C library
 .nf
 .B #include <stdlib.h>
 .B #include <fcntl.h>
-.PP
+.P
 .BI "int posix_openpt(int " flags ");"
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR posix_openpt ():
 .nf
     _XOPEN_SOURCE >= 600
@@ -31,7 +31,7 @@ The
 .BR posix_openpt ()
 function opens an unused pseudoterminal master device, returning a
 file descriptor that can be used to refer to that device.
-.PP
+.P
 The
 .I flags
 argument is a bit mask that ORs together zero or more of
@@ -73,14 +73,14 @@ POSIX.1-2008.
 .SH HISTORY
 glibc 2.2.1.
 POSIX.1-2001.
-.PP
+.P
 It is part of the UNIX 98 pseudoterminal support (see
 .BR pts (4)).
 .SH NOTES
 Some older UNIX implementations that support System V
 (aka UNIX 98) pseudoterminals don't have this function, but it
 can be easily implemented by opening the pseudoterminal multiplexor device:
-.PP
+.P
 .in +4n
 .EX
 int
@@ -90,7 +90,7 @@ posix_openpt(int flags)
 }
 .EE
 .in
-.PP
+.P
 Calling
 .BR posix_openpt ()
 creates a pathname for the corresponding pseudoterminal slave device.

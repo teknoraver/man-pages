@@ -27,7 +27,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/socket.h>
-.PP
+.P
 .BI "int bind(int " sockfd ", const struct sockaddr *" addr ,
 .BI "         socklen_t " addrlen );
 .fi
@@ -44,14 +44,14 @@ to the socket referred to by the file descriptor
 specifies the size, in bytes, of the address structure pointed to by
 .IR addr .
 Traditionally, this operation is called \[lq]assigning a name to a socket\[rq].
-.PP
+.P
 It is normally necessary to assign a local address using
 .BR bind ()
 before a
 .B SOCK_STREAM
 socket may receive connections (see
 .BR accept (2)).
-.PP
+.P
 The rules used in name binding vary between address families.
 Consult the manual entries in Section 7 for detailed information.
 For
@@ -82,14 +82,14 @@ and for
 .BR AF_NETLINK ,
 see
 .BR netlink (7).
-.PP
+.P
 The actual structure passed for the
 .I addr
 argument will depend on the address family.
 The
 .I sockaddr
 structure is defined as something like:
-.PP
+.P
 .in +4n
 .EX
 struct sockaddr {
@@ -98,7 +98,7 @@ struct sockaddr {
 }
 .EE
 .in
-.PP
+.P
 The only purpose of this structure is to cast the structure
 pointer passed in
 .I addr
@@ -147,7 +147,7 @@ is not a valid address for this socket's domain.
 The file descriptor
 .I sockfd
 does not refer to a socket.
-.PP
+.P
 The following errors are specific to UNIX domain
 .RB ( AF_UNIX )
 sockets:
@@ -206,14 +206,14 @@ An example of the use of
 .BR bind ()
 with Internet domain sockets can be found in
 .BR getaddrinfo (3).
-.PP
+.P
 The following example shows how to bind a stream socket in the UNIX
 .RB ( AF_UNIX )
 domain, and accept connections:
 .\" listen.7 refers to this example.
 .\" accept.7 refers to this example.
 .\" unix.7 refers to this example.
-.PP
+.P
 .\" SRC BEGIN (bind.c)
 .EX
 #include <stdio.h>

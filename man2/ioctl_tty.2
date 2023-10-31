@@ -17,7 +17,7 @@ Standard C library
 .BR    "                               struct termios2" ", and"
 .BR    "                               Bnnn" ", " BOTHER ", " CBAUD ", " CLOCAL ,
 .BR    "                               TC*" { FLUSH , ON , OFF "} and other constants */"
-.PP
+.P
 .BI "int ioctl(int " fd ", int " cmd ", ...);"
 .fi
 .SH DESCRIPTION
@@ -28,14 +28,14 @@ Most require a third argument, of varying type, here called
 .I argp
 or
 .IR arg .
-.PP
+.P
 Use of
 .BR ioctl ()
 makes for nonportable programs.
 Use the POSIX interface described in
 .BR termios (3)
 whenever possible.
-.PP
+.P
 Please note that
 .B struct termios
 from
@@ -87,7 +87,7 @@ Equivalent to
 .IP
 Allow the output buffer to drain, discard pending input, and
 set the current serial port settings.
-.PP
+.P
 The following four ioctls, added in Linux 2.6.20,
 .\" commit 64bb6c5e1ddcd47c951740485026ef08975ee2e6
 .\" commit 592ee3a5e5e2a981ef2829a0380093006d045661
@@ -119,7 +119,7 @@ TCSETSW2	\fBconst struct termios2 *\fPargp
 TCSETSF2	\fBconst struct termios2 *\fPargp
 .TE
 .RE
-.PP
+.P
 The following four ioctls are just like
 .BR TCGETS ,
 .BR TCSETS ,
@@ -182,9 +182,9 @@ Argument:
 .BI "const struct winsize\~*" argp
 .IP
 Set window size.
-.PP
+.P
 The struct used by these ioctls is defined as
-.PP
+.P
 .in +4n
 .EX
 struct winsize {
@@ -195,7 +195,7 @@ struct winsize {
 };
 .EE
 .in
-.PP
+.P
 When the window size changes, a
 .B SIGWINCH
 signal is sent to the
@@ -603,7 +603,7 @@ and similar library functions that have insecure APIs.
 .BR ptsname (3)
 with a pathname where a devpts filesystem
 has been mounted in a different mount namespace.)
-.PP
+.P
 The BSD ioctls
 .BR TIOCSTOP ,
 .BR TIOCSTART ,
@@ -636,9 +636,9 @@ Argument:
 .BI "const int\~*" argp
 .IP
 Set the indicated modem bits.
-.PP
+.P
 The following bits are used by the above ioctls:
-.PP
+.P
 .TS
 lb l.
 TIOCM_LE	DSR (data set ready/line enable)
@@ -704,7 +704,7 @@ Set the CLOCAL flag in the
 structure when
 .RI * argp
 is nonzero, and clear it otherwise.
-.PP
+.P
 If the
 .B CLOCAL
 flag for a line is off, the hardware carrier detect (DCD)
@@ -747,7 +747,7 @@ This command was removed in Linux 2.5.67.
 .\"
 .\" .SS Serial info
 .\" .BR "#include <linux/serial.h>"
-.\" .PP
+.\" .P
 .\" .TP
 .\" .BI "TIOCGSERIAL	struct serial_struct *" argp
 .\" Get serial info.
@@ -777,7 +777,7 @@ Inappropriate
 Insufficient permission.
 .SH EXAMPLES
 Check the condition of DTR on the serial port.
-.PP
+.P
 .\" SRC BEGIN (tiocmget.c)
 .EX
 #include <fcntl.h>
@@ -800,9 +800,9 @@ main(void)
 }
 .EE
 .\" SRC END
-.PP
+.P
 Get or set arbitrary baudrate on the serial port.
-.PP
+.P
 .\" SRC BEGIN (tcgets.c)
 .EX
 /* SPDX-License-Identifier: GPL-2.0-or-later */

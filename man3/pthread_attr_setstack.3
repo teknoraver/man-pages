@@ -14,7 +14,7 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_attr_setstack(pthread_attr_t *" attr ,
 .BI "                          void " stackaddr [. stacksize ],
 .BI "                          size_t " stacksize );
@@ -22,12 +22,12 @@ POSIX threads library
 .BI "                          void **restrict " stackaddr ,
 .BI "                          size_t *restrict " stacksize );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR pthread_attr_getstack (),
 .BR pthread_attr_setstack ():
 .nf
@@ -47,13 +47,13 @@ respectively.
 These attributes specify the location and size of the stack that should
 be used by a thread that is created using the thread attributes object
 .IR attr .
-.PP
+.P
 .I stackaddr
 should point to the lowest addressable byte of a buffer of
 .I stacksize
 bytes that was allocated by the caller.
 The pages of the allocated buffer should be both readable and writable.
-.PP
+.P
 The
 .BR pthread_attr_getstack ()
 function returns the stack address and stack size attributes of the
@@ -81,7 +81,7 @@ On some systems, this error may also occur if
 or
 .I stackaddr\~+\~stacksize
 is not suitably aligned.
-.PP
+.P
 POSIX.1 also documents an
 .B EACCES
 error if the stack area described by
@@ -117,7 +117,7 @@ and the use of these functions should be avoided.
 (Use
 .BR pthread_attr_setstacksize (3)
 if an application simply requires a stack size other than the default.)
-.PP
+.P
 When an application employs
 .BR pthread_attr_setstack (),
 it takes over the responsibility of allocating the stack.
@@ -128,7 +128,7 @@ If deemed necessary,
 it is the application's responsibility to allocate a guard area
 (one or more pages protected against reading and writing)
 to handle the possibility of stack overflow.
-.PP
+.P
 The address specified in
 .I stackaddr
 should be suitably aligned:
@@ -139,7 +139,7 @@ may be useful for allocation.
 Probably,
 .I stacksize
 should also be a multiple of the system page size.
-.PP
+.P
 If
 .I attr
 is used to create multiple threads, then the caller must change the

@@ -21,7 +21,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .B [[noreturn]] void abort(void);
 .fi
 .SH DESCRIPTION
@@ -38,7 +38,7 @@ This results in the abnormal termination of the process unless the
 signal is caught and the signal handler does not return
 (see
 .BR longjmp (3)).
-.PP
+.P
 If the
 .B SIGABRT
 signal is ignored, or caught by a handler that returns, the
@@ -47,7 +47,7 @@ function will still terminate the process.
 It does this by restoring the default disposition for
 .B SIGABRT
 and then raising the signal for a second time.
-.PP
+.P
 As with other cases of abnormal termination the functions registered with
 .BR atexit (3)
 and
@@ -75,7 +75,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 SVr4, POSIX.1-2001, 4.3BSD, C89.
-.PP
+.P
 Up until glibc 2.26,
 if the
 .BR abort ()

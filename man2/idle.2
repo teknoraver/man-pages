@@ -15,7 +15,7 @@ idle \- make process 0 idle
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .B [[deprecated]] int idle(void);
 .fi
 .SH DESCRIPTION
@@ -25,7 +25,7 @@ It marks the process's pages as swappable, lowers its priority,
 and enters the main scheduling loop.
 .BR idle ()
 never returns.
-.PP
+.P
 Only process 0 may call
 .BR idle ().
 Any user process, even a process with superuser permission,

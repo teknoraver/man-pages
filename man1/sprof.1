@@ -44,10 +44,10 @@ with counts and ticks.
 .TQ
 .B \-q
 Generate a call graph.
-.PP
+.P
 If none of the above options is specified,
 then the default behavior is to display a flat profile and a call graph.
-.PP
+.P
 The following additional command-line options are available:
 .TP
 .B \-\-help
@@ -70,7 +70,7 @@ The following example demonstrates the use of
 The example consists of a main program that calls two functions
 in a shared object.
 First, the code of the main program:
-.PP
+.P
 .in +4n
 .EX
 $ \fBcat prog.c\fP
@@ -88,14 +88,14 @@ main(int argc, char *argv[])
 }
 .EE
 .in
-.PP
+.P
 The functions
 .IR x1 ()
 and
 .IR x2 ()
 are defined in the following source file that is used to
 construct the shared object:
-.PP
+.P
 .in +4n
 .EX
 $ \fBcat libdemo.c\fP
@@ -129,32 +129,32 @@ x2(void)
 }
 .EE
 .in
-.PP
+.P
 Now we construct the shared object with the real name
 .IR libdemo.so.1.0.1 ,
 and the soname
 .IR libdemo.so.1 :
-.PP
+.P
 .in +4n
 .EX
 $ \fBcc \-g \-fPIC \-shared \-Wl,\-soname,libdemo.so.1 \e\fP
         \fB\-o libdemo.so.1.0.1 libdemo.c\fP
 .EE
 .in
-.PP
+.P
 Then we construct symbolic links for the library soname and
 the library linker name:
-.PP
+.P
 .in +4n
 .EX
 $ \fBln \-sf libdemo.so.1.0.1 libdemo.so.1\fP
 $ \fBln \-sf libdemo.so.1 libdemo.so\fP
 .EE
 .in
-.PP
+.P
 Next, we compile the main program, linking it against the shared object,
 and then list the dynamic dependencies of the program:
-.PP
+.P
 .in +4n
 .EX
 $ \fBcc \-g \-o prog prog.c \-L. \-ldemo\fP
@@ -165,46 +165,46 @@ $ \fBldd prog\fP
 	/lib64/ld\-linux\-x86\-64.so.2 (0x00007fd4dc51f000)
 .EE
 .in
-.PP
+.P
 In order to get profiling information for the shared object,
 we define the environment variable
 .B LD_PROFILE
 with the soname of the library:
-.PP
+.P
 .in +4n
 .EX
 $ \fBexport LD_PROFILE=libdemo.so.1\fP
 .EE
 .in
-.PP
+.P
 We then define the environment variable
 .B LD_PROFILE_OUTPUT
 with the pathname of the directory where profile output should be written,
 and create that directory if it does not exist already:
-.PP
+.P
 .in +4n
 .EX
 $ \fBexport LD_PROFILE_OUTPUT=$(pwd)/prof_data\fP
 $ \fBmkdir \-p $LD_PROFILE_OUTPUT\fP
 .EE
 .in
-.PP
+.P
 .B LD_PROFILE
 causes profiling output to be
 .I appended
 to the output file if it already exists,
 so we ensure that there is no preexisting profiling data:
-.PP
+.P
 .in +4n
 .EX
 $ \fBrm \-f $LD_PROFILE_OUTPUT/$LD_PROFILE.profile\fP
 .EE
 .in
-.PP
+.P
 We then run the program to produce the profiling output,
 which is written to a file in the directory specified in
 .BR LD_PROFILE_OUTPUT :
-.PP
+.P
 .in +4n
 .EX
 $ \fBLD_LIBRARY_PATH=. ./prog\fP
@@ -212,11 +212,11 @@ $ \fBls prof_data\fP
 libdemo.so.1.profile
 .EE
 .in
-.PP
+.P
 We then use the
 .B sprof \-p
 option to generate a flat profile with counts and ticks:
-.PP
+.P
 .in +4n
 .EX
 $ \fBsprof \-p libdemo.so.1 $LD_PROFILE_OUTPUT/libdemo.so.1.profile\fP
@@ -231,11 +231,11 @@ Each sample counts as 0.01 seconds.
   0.00      0.10     0.00        1     0.00           x2
 .EE
 .in
-.PP
+.P
 The
 .B sprof \-q
 option generates a call graph:
-.PP
+.P
 .in +4n
 .EX
 $ \fBsprof \-q libdemo.so.1 $LD_PROFILE_OUTPUT/libdemo.so.1.profile\fP
@@ -258,15 +258,15 @@ index % time    self  children    called     name
 \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 .EE
 .in
-.PP
+.P
 Above and below, the "<UNKNOWN>" strings represent identifiers that
 are outside of the profiled object (in this example, these are instances of
 .IR main() ).
-.PP
+.P
 The
 .B sprof \-c
 option generates a list of call pairs and the number of their occurrences:
-.PP
+.P
 .in +4n
 .EX
 $ \fBsprof \-c libdemo.so.1 $LD_PROFILE_OUTPUT/libdemo.so.1.profile\fP

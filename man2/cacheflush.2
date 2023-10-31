@@ -12,10 +12,10 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/cachectl.h>
-.PP
+.P
 .BI "int cacheflush(void " addr [. nbytes "], int "nbytes ", int "cache );
 .fi
-.PP
+.P
 .IR Note :
 On some architectures,
 there is no glibc wrapper for this system call; see NOTES.
@@ -73,7 +73,7 @@ glibc provides a wrapper for this system call,
 with the prototype shown in SYNOPSIS,
 for the following architectures:
 ARC, CSKY, MIPS, and NIOS2.
-.PP
+.P
 On some other architectures,
 Linux provides this system call, with different arguments:
 .TP
@@ -92,7 +92,7 @@ NDS32:
 .nf
 .BI "int cacheflush(unsigned int " start ", unsigned int " end ", int " cache );
 .fi
-.PP
+.P
 On the above architectures,
 glibc does not provide a wrapper for this system call; call it using
 .BR syscall (2).
@@ -102,17 +102,17 @@ you probably want to use the GCC built-in function
 .BR __builtin___clear_cache (),
 which provides a portable interface
 across platforms supported by GCC and compatible compilers:
-.PP
+.P
 .in +4n
 .EX
 .BI "void __builtin___clear_cache(void *" begin ", void *" end );
 .EE
 .in
-.PP
+.P
 On platforms that don't require instruction cache flushes,
 .BR __builtin___clear_cache ()
 has no effect.
-.PP
+.P
 .IR Note :
 On some GCC-compatible compilers,
 the prototype for this built-in function uses
@@ -133,7 +133,7 @@ and
 .I nbytes
 arguments, making this function fairly expensive.
 Therefore, the whole cache is always flushed.
-.PP
+.P
 This function always behaves as if
 .B BCACHE
 has been passed for the

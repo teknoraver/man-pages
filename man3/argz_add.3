@@ -17,52 +17,52 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B "#include <argz.h>"
-.PP
+.P
 .BI "error_t argz_add(char **restrict " argz ", size_t *restrict " argz_len ,
 .BI "                const char *restrict " str );
-.PP
+.P
 .BI "error_t argz_add_sep(char **restrict " argz \
 ", size_t *restrict " argz_len ,
 .BI "                const char *restrict " str ", int " delim );
-.PP
+.P
 .BI "error_t argz_append(char **restrict " argz ", size_t *restrict " argz_len ,
 .BI "                const char *restrict " buf ", size_t " buf_len );
-.PP
+.P
 .BI "size_t argz_count(const char *" argz ", size_t " argz_len );
-.PP
+.P
 .BI "error_t argz_create(char *const " argv "[], char **restrict " argz ,
 .BI "                size_t *restrict " argz_len );
-.PP
+.P
 .BI "error_t argz_create_sep(const char *restrict " str ", int " sep ,
 .BI "                char **restrict " argz ", size_t *restrict " argz_len );
-.PP
+.P
 .BI "void argz_delete(char **restrict " argz ", size_t *restrict " argz_len ,
 .BI "                char *restrict " entry );
-.PP
+.P
 .BI "void argz_extract(const char *restrict " argz ", size_t " argz_len ,
 .BI "                char **restrict " argv );
-.PP
+.P
 .BI "error_t argz_insert(char **restrict " argz ", size_t *restrict " argz_len ,
 .BI "                char *restrict " before ", const char *restrict " entry );
-.PP
+.P
 .BI "char *argz_next(const char *restrict " argz ", size_t " argz_len ,
 .BI "                const char *restrict " entry );
-.PP
+.P
 .BI "error_t argz_replace(char **restrict " argz \
 ", size_t *restrict " argz_len ,
 .BI "                const char *restrict " str ", const char *restrict " with ,
 .BI "                unsigned int *restrict " replace_count );
-.PP
+.P
 .BI "void argz_stringify(char *" argz ", size_t " len ", int " sep );
 .fi
 .SH DESCRIPTION
 These functions are glibc-specific.
-.PP
+.P
 An argz vector is a pointer to a character buffer together with a length.
 The intended interpretation of the character buffer is an array
 of strings, where the strings are separated by null bytes (\[aq]\e0\[aq]).
 If the length is nonzero, the last byte of the buffer must be a null byte.
-.PP
+.P
 These functions are for handling argz vectors.
 The pair (NULL,0) is an argz vector, and, conversely,
 argz vectors of length 0 must have null pointer.
@@ -71,7 +71,7 @@ Allocation of nonempty argz vectors is done using
 so that
 .BR free (3)
 can be used to dispose of them again.
-.PP
+.P
 .BR argz_add ()
 adds the string
 .I str
@@ -81,7 +81,7 @@ and updates
 .I *argz
 and
 .IR *argz_len .
-.PP
+.P
 .BR argz_add_sep ()
 is similar, but splits the string
 .I str
@@ -89,7 +89,7 @@ into substrings separated by the delimiter
 .IR delim .
 For example, one might use this on a UNIX search path with
 delimiter \[aq]:\[aq].
-.PP
+.P
 .BR argz_append ()
 appends the argz vector
 .RI ( buf ,\  buf_len )
@@ -103,12 +103,12 @@ and
 .I *argz_len
 will be increased by
 .IR buf_len .)
-.PP
+.P
 .BR argz_count ()
 counts the number of strings, that is,
 the number of null bytes (\[aq]\e0\[aq]), in
 .RI ( argz ,\  argz_len ).
-.PP
+.P
 .BR argz_create ()
 converts a UNIX-style argument vector
 .IR argv ,
@@ -116,7 +116,7 @@ terminated by
 .IR "(char\ *)\ 0" ,
 into an argz vector
 .RI ( *argz ,\  *argz_len ).
-.PP
+.P
 .BR argz_create_sep ()
 converts the null-terminated string
 .I str
@@ -124,7 +124,7 @@ into an argz vector
 .RI ( *argz ,\  *argz_len )
 by breaking it up at every occurrence of the separator
 .IR sep .
-.PP
+.P
 .BR argz_delete ()
 removes the substring pointed to by
 .I entry
@@ -134,7 +134,7 @@ and updates
 .I *argz
 and
 .IR *argz_len .
-.PP
+.P
 .BR argz_extract ()
 is the opposite of
 .BR argz_create ().
@@ -149,7 +149,7 @@ The array
 must have room for
 .IR argz_count ( argz ", " argz_len ") + 1"
 pointers.
-.PP
+.P
 .BR argz_insert ()
 is the opposite of
 .BR argz_delete ().
@@ -168,7 +168,7 @@ If
 is NULL, then
 .I entry
 will inserted at the end.
-.PP
+.P
 .BR argz_next ()
 is a function to step through the argz vector.
 If
@@ -177,7 +177,7 @@ is NULL, the first entry is returned.
 Otherwise, the entry
 following is returned.
 It returns NULL if there is no following entry.
-.PP
+.P
 .BR argz_replace ()
 replaces each occurrence of
 .I str
@@ -189,7 +189,7 @@ If
 is non-NULL,
 .I *replace_count
 will be incremented by the number of replacements.
-.PP
+.P
 .BR argz_stringify ()
 is the opposite of
 .BR argz_create_sep ().

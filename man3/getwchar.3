@@ -19,7 +19,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .B "wint_t getwchar(void);"
 .fi
 .SH DESCRIPTION
@@ -42,7 +42,7 @@ to
 .B EILSEQ
 and returns
 .BR WEOF .
-.PP
+.P
 For a nonlocking counterpart, see
 .BR unlocked_stdio (3).
 .SH RETURN VALUE
@@ -76,7 +76,7 @@ depends on the
 .B LC_CTYPE
 category of the
 current locale.
-.PP
+.P
 It is reasonable to expect that
 .BR getwchar ()
 will actually

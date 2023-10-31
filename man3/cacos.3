@@ -13,7 +13,7 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <complex.h>
-.PP
+.P
 .BI "double complex cacos(double complex " z );
 .BI "float complex cacosf(float complex " z );
 .BI "long double complex cacosl(long double complex " z );
@@ -25,9 +25,9 @@ If \fIy\ =\ cacos(z)\fP, then \fIz\ =\ ccos(y)\fP.
 The real part of
 .I y
 is chosen in the interval [0,pi].
-.PP
+.P
 One has:
-.PP
+.P
 .nf
     cacos(z) = \-i * clog(z + i * csqrt(1 \- z * z))
 .fi

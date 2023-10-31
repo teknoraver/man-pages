@@ -31,21 +31,21 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "int sscanf(const char *restrict " str ,
 .BI "           const char *restrict " format ", ...);"
-.PP
+.P
 .B #include <stdarg.h>
-.PP
+.P
 .BI "int vsscanf(const char *restrict " str ,
 .BI "           const char *restrict " format ", va_list " ap );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR vsscanf ():
 .nf
     _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L
@@ -67,7 +67,7 @@ Each
 .I pointer
 argument must be of a type that is appropriate for the value returned
 by the corresponding conversion specification.
-.PP
+.P
 If the number of conversion specifications in
 .I format
 exceeds the number of
@@ -78,17 +78,17 @@ If the number of
 arguments exceeds the number of conversion specifications, then the excess
 .I pointer
 arguments are evaluated, but are otherwise ignored.
-.PP
+.P
 .BR sscanf ()
 These functions
 read their input from the string pointed to by
 .IR str .
-.PP
+.P
 The
 .BR vsscanf ()
 function is analogous to
 .BR vsprintf (3).
-.PP
+.P
 The
 .I format
 string consists of a sequence of
@@ -102,7 +102,7 @@ A "failure" can be either of the following:
 meaning that input characters were unavailable, or
 .IR "matching failure" ,
 meaning that the input was inappropriate (see below).
-.PP
+.P
 A directive is one of the following:
 .TP
 \[bu]
@@ -125,7 +125,7 @@ argument.
 If the next item of input does not match the conversion specification,
 the conversion fails\[em]this is a
 .IR "matching failure" .
-.PP
+.P
 Each
 .I conversion specification
 in
@@ -205,7 +205,7 @@ rather than a pointer to an
 A
 .I "conversion specifier"
 that specifies the type of input conversion to be performed.
-.PP
+.P
 The conversion specifications in
 .I format
 are of two forms, either beginning with \[aq]%\[aq] or beginning with
@@ -344,7 +344,7 @@ As for
 but the next pointer is a pointer to a
 .IR size_t .
 This modifier was introduced in C99.
-.PP
+.P
 The following
 .I "conversion specifiers"
 are available:
@@ -522,7 +522,7 @@ On success, these functions return the number of input items
 successfully matched and assigned;
 this can be fewer than provided for,
 or even zero, in the event of an early matching failure.
-.PP
+.P
 The value
 .B EOF
 is returned if the end of input is reached before either the first
@@ -558,7 +558,7 @@ T}	Thread safety	MT-Safe locale
 C11, POSIX.1-2008.
 .SH HISTORY
 C89, POSIX.1-2001.
-.PP
+.P
 The
 .B q
 specifier is the 4.4BSD notation for
@@ -568,7 +568,7 @@ while
 or the usage of
 .B L
 in integer conversions is the GNU notation.
-.PP
+.P
 The Linux version of these functions is based on the
 .I GNU
 .I libio
@@ -591,14 +591,14 @@ Thus, one could write the following to have
 allocate a buffer for a string,
 with a pointer to that buffer being returned in
 .IR *buf :
-.PP
+.P
 .in +4n
 .EX
 char *buf;
 sscanf(str, "%as", &buf);
 .EE
 .in
-.PP
+.P
 The use of the letter
 .B a
 for this purpose was problematic, since
@@ -609,7 +609,7 @@ is also specified by the ISO C standard as a synonym for
 POSIX.1-2008 instead specifies the
 .B m
 modifier for assignment allocation (as documented in DESCRIPTION, above).
-.PP
+.P
 Note that the
 .B a
 modifier is not available if the program is compiled with
@@ -621,13 +621,13 @@ or
 is also specified), in which case the
 .B a
 is interpreted as a specifier for floating-point numbers (see above).
-.PP
+.P
 Support for the
 .B m
 modifier was added to glibc 2.7,
 and new programs should use that modifier instead of
 .BR a .
-.PP
+.P
 As well as being standardized by POSIX, the
 .B m
 modifier has the following further advantages over
@@ -676,7 +676,7 @@ and
 modifiers.
 The latter may be considered to be a bug, as it changes the
 behavior of modifiers defined in C99.
-.PP
+.P
 Some combinations of the type modifiers and conversion
 specifiers defined by C99 do not make sense
 (e.g.,
@@ -692,7 +692,7 @@ in combination with
 \fBd\fP, \fBi\fP, \fBo\fP, \fBu\fP, \fBx\fP, and \fBX\fP
 conversions or
 .BR ll .
-.PP
+.P
 The usage of
 .B q
 is not the same as on 4.4BSD,
@@ -708,7 +708,7 @@ or
 The caller must
 .BR free (3)
 the returned string, as in the following example:
-.PP
+.P
 .in +4n
 .EX
 char *p;
@@ -726,7 +726,7 @@ if (n == 1) {
 }
 .EE
 .in
-.PP
+.P
 As shown in the above example, it is necessary to call
 .BR free (3)
 only if the

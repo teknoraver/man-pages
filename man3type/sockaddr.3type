@@ -15,30 +15,30 @@ Standard C library
 .SH SYNOPSIS
 .EX
 .B #include <sys/socket.h>
-.PP
+.P
 .B struct sockaddr {
 .BR "    sa_family_t     sa_family;" "      /* Address family */"
 .BR "    char            sa_data[];" "      /* Socket address */"
 .B };
-.PP
+.P
 .B struct sockaddr_storage {
 .BR "    sa_family_t     ss_family;" "      /* Address family */"
 .B };
-.PP
+.P
 .BR typedef " /* ... */ " socklen_t;
 .BR typedef " /* ... */ " sa_family_t;
-.PP
+.P
 .EE
 .SS Internet domain sockets
 .EX
 .B #include <netinet/in.h>
-.PP
+.P
 .B struct sockaddr_in {
 .BR "    sa_family_t     sin_family;" "     /* " AF_INET " */"
 .BR "    in_port_t       sin_port;" "       /* Port number */"
 .BR "    struct in_addr  sin_addr;" "       /* IPv4 address */"
 .B };
-.PP
+.P
 .B struct sockaddr_in6 {
 .BR "    sa_family_t     sin6_family;" "    /* " AF_INET6 " */"
 .BR "    in_port_t       sin6_port;" "      /* Port number */"
@@ -46,22 +46,22 @@ Standard C library
 .BR "    struct in6_addr sin6_addr;" "      /* IPv6 address */"
 .BR "    uint32_t        sin6_scope_id;" "  /* Set of interfaces for a scope */"
 .B };
-.PP
+.P
 .B struct in_addr {
 .B "    in_addr_t s_addr;"
 .B };
-.PP
+.P
 .B struct in6_addr {
 .B "    uint8_t   s6_addr[16];"
 .B };
-.PP
+.P
 .B typedef uint32_t in_addr_t;
 .B typedef uint16_t in_port_t;
 .EE
 .SS UNIX domain sockets
 .EX
 .B #include <sys/un.h>
-.PP
+.P
 .B struct sockaddr_un {
 .BR "    sa_family_t     sun_family;" "     /* Address family */"
 .BR "    char            sun_path[];" "     /* Socket pathname */"
@@ -112,12 +112,12 @@ Describes a UNIX domain socket address.
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
-.PP
+.P
 .I socklen_t
 was invented by POSIX.
 See also
 .BR accept (2).
-.PP
+.P
 These structures were invented before modern ISO C strict-aliasing rules.
 If aliasing rules are applied strictly,
 these structures would be extremely difficult to use
@@ -129,7 +129,7 @@ can be safely used as they were designed.
 .I socklen_t
 is also defined in
 .IR <netdb.h> .
-.PP
+.P
 .I sa_family_t
 is also defined in
 .I <netinet/in.h>

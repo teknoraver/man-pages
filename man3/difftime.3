@@ -17,7 +17,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <time.h>
-.PP
+.P
 .BI "double difftime(time_t " time1 ", time_t " time0 );
 .fi
 .SH DESCRIPTION
@@ -52,13 +52,13 @@ On a POSIX system,
 .I time_t
 is an arithmetic type, and one could just
 define
-.PP
+.P
 .in +4n
 .EX
 #define my_difftime(t1,t0) (double)(t1 \- t0)
 .EE
 .in
-.PP
+.P
 when the possible overflow in the subtraction is not a concern.
 .SH SEE ALSO
 .BR date (1),

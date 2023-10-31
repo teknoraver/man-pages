@@ -16,7 +16,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/epoll.h>
-.PP
+.P
 .BI "int epoll_wait(int " epfd ", struct epoll_event *" events ,
 .BI "               int " maxevents ", int " timeout );
 .BI "int epoll_pwait(int " epfd ", struct epoll_event *" events ,
@@ -46,7 +46,7 @@ are returned by
 The
 .I maxevents
 argument must be greater than zero.
-.PP
+.P
 The
 .I timeout
 argument specifies the number of milliseconds that
@@ -55,7 +55,7 @@ will block.
 Time is measured against the
 .B CLOCK_MONOTONIC
 clock.
-.PP
+.P
 A call to
 .BR epoll_wait ()
 will block until either:
@@ -65,7 +65,7 @@ a file descriptor delivers an event;
 the call is interrupted by a signal handler; or
 .IP \[bu]
 the timeout expires.
-.PP
+.P
 Note that the
 .I timeout
 interval will be rounded up to the system clock granularity,
@@ -80,12 +80,12 @@ to block indefinitely, while specifying a
 equal to zero cause
 .BR epoll_wait ()
 to return immediately, even if no events are available.
-.PP
+.P
 The
 .I struct epoll_event
 is described in
 .BR epoll_event (3type).
-.PP
+.P
 The
 .I data
 field of each returned
@@ -95,7 +95,7 @@ in the most recent call to
 .BR epoll_ctl (2)
 .RB ( EPOLL_CTL_ADD ", " EPOLL_CTL_MOD )
 for the corresponding open file descriptor.
-.PP
+.P
 The
 .I events
 field is a bit mask that indicates the events that have occurred for the
@@ -118,21 +118,21 @@ like
 .BR epoll_pwait ()
 allows an application to safely wait until either a file descriptor
 becomes ready or until a signal is caught.
-.PP
+.P
 The following
 .BR epoll_pwait ()
 call:
-.PP
+.P
 .in +4n
 .EX
 ready = epoll_pwait(epfd, &events, maxevents, timeout, &sigmask);
 .EE
 .in
-.PP
+.P
 is equivalent to
 .I atomically
 executing the following calls:
-.PP
+.P
 .in +4n
 .EX
 sigset_t origmask;
@@ -142,7 +142,7 @@ ready = epoll_wait(epfd, &events, maxevents, timeout);
 pthread_sigmask(SIG_SETMASK, &origmask, NULL);
 .EE
 .in
-.PP
+.P
 The
 .I sigmask
 argument may be specified as NULL, in which case
@@ -233,7 +233,7 @@ If the new file descriptor becomes ready,
 it will cause the
 .BR epoll_wait ()
 call to unblock.
-.PP
+.P
 If more than
 .I maxevents
 file descriptors are ready when
@@ -245,7 +245,7 @@ This behavior helps avoid starvation scenarios,
 where a process fails to notice that additional file descriptors
 are ready because it focuses on a set of file descriptors that
 are already known to be ready.
-.PP
+.P
 Note that it is possible to call
 .BR epoll_wait ()
 on an

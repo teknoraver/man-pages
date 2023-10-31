@@ -22,21 +22,21 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "div_t div(int " numerator ", int " denominator );
 .BI "ldiv_t ldiv(long " numerator ", long " denominator );
 .BI "lldiv_t lldiv(long long " numerator ", long long " denominator );
-.PP
+.P
 .B #include <inttypes.h>
-.PP
+.P
 .BI "imaxdiv_t imaxdiv(intmax_t " numerator ", intmax_t " denominator );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR lldiv ():
 .nf
     _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L
@@ -51,7 +51,7 @@ named \fIdiv_t\fP that contains
 two integer members (in unspecified order) named \fIquot\fP and \fIrem\fP.
 The quotient is rounded toward zero.
 The result satisfies \fIquot\fP*\fIdenominator\fP+\fIrem\fP = \fInumerator\fP.
-.PP
+.P
 The
 .BR ldiv (),
 .BR lldiv (),
@@ -85,20 +85,20 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, C89, C99, SVr4, 4.3BSD.
-.PP
+.P
 .BR lldiv ()
 and
 .BR imaxdiv ()
 were added in C99.
 .SH EXAMPLES
 After
-.PP
+.P
 .in +4n
 .EX
 div_t q = div(\-5, 3);
 .EE
 .in
-.PP
+.P
 the values \fIq.quot\fP and \fIq.rem\fP are \-1 and \-2, respectively.
 .SH SEE ALSO
 .BR abs (3),

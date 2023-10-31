@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B "#include <sys/timeb.h>"
-.PP
+.P
 .BI "int ftime(struct timeb *" tp );
 .fi
 .SH DESCRIPTION
@@ -27,13 +27,13 @@ This function is no longer provided by the GNU C library.
 Use
 .BR clock_gettime (2)
 instead.
-.PP
+.P
 This function returns the current time as seconds and milliseconds
 since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).
 The time is returned in
 .IR tp ,
 which is declared as follows:
-.PP
+.P
 .in +4n
 .EX
 struct timeb {
@@ -44,7 +44,7 @@ struct timeb {
 };
 .EE
 .in
-.PP
+.P
 Here \fItime\fP is the number of seconds since the Epoch,
 and \fImillitm\fP is the number of milliseconds since \fItime\fP
 seconds since the Epoch.
@@ -54,7 +54,7 @@ east of Greenwich).
 The \fIdstflag\fP field
 is a flag that, if nonzero, indicates that Daylight Saving time
 applies locally during the appropriate part of the year.
-.PP
+.P
 POSIX.1-2001 says that the contents of the \fItimezone\fP and \fIdstflag\fP
 fields are unspecified; avoid relying on them.
 .SH RETURN VALUE
@@ -80,7 +80,7 @@ None.
 Removed in glibc 2.33.
 4.2BSD, POSIX.1-2001.
 Removed in POSIX.1-2008.
-.PP
+.P
 This function is obsolete.
 Don't use it.
 If the time in seconds

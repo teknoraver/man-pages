@@ -14,7 +14,7 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .B [[deprecated]]
 .BI "int pthread_attr_setstackaddr(pthread_attr_t *" attr \
 ", void *" stackaddr );
@@ -30,7 +30,7 @@ Use
 and
 .BR pthread_attr_getstack (3)
 instead.
-.PP
+.P
 The
 .BR pthread_attr_setstackaddr ()
 function sets the stack address attribute of the
@@ -41,13 +41,13 @@ to the value specified in
 This attribute specifies the location of the stack that should
 be used by a thread that is created using the thread attributes object
 .IR attr .
-.PP
+.P
 .I stackaddr
 should point to a buffer of at least
 .B PTHREAD_STACK_MIN
 bytes that was allocated by the caller.
 The pages of the allocated buffer should be both readable and writable.
-.PP
+.P
 The
 .BR pthread_attr_getstackaddr ()
 function returns the stack address attribute of the

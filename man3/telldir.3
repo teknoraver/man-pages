@@ -17,15 +17,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <dirent.h>
-.PP
+.P
 .BI "long telldir(DIR *" dirp );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR telldir ():
 .nf
     _XOPEN_SOURCE
@@ -67,7 +67,7 @@ T}	Thread safety	MT-Safe
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, 4.3BSD.
-.PP
+.P
 Up to glibc 2.1.1, the return type of
 .BR telldir ()
 was
@@ -75,7 +75,7 @@ was
 POSIX.1-2001 specifies
 .IR long ,
 and this is the type used since glibc 2.1.2.
-.PP
+.P
 In early filesystems, the value returned by
 .BR telldir ()
 was a simple file offset within a directory.

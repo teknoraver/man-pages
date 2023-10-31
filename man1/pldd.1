@@ -52,16 +52,16 @@ None.
 glibc 2.15.
 .SH NOTES
 The command
-.PP
+.P
 .in +4n
 .EX
 lsof \-p PID
 .EE
 .in
-.PP
+.P
 also shows output that includes the dynamic shared objects
 that are linked into a process.
-.PP
+.P
 The
 .BR gdb (1)
 .I "info shared"
@@ -71,7 +71,7 @@ so that one can obtain similar output to
 using a command such as the following
 (to monitor the process with the specified
 .IR pid ):
-.PP
+.P
 .in +4n
 .EX
 $ \fBgdb \-ex "set confirm off" \-ex "set height 0" \-ex "info shared" \e\fP

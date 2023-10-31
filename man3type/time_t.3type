@@ -13,11 +13,11 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <time.h>
-.PP
+.P
 .BR typedef " /* ... */  " time_t;
-.PP
+.P
 .B #include <sys/types.h>
-.PP
+.P
 .BR typedef " /* ... */  " suseconds_t;
 .BR typedef " /* ... */  " useconds_t;
 .fi
@@ -64,12 +64,12 @@ C89, POSIX.1-2001.
 .TQ
 .I useconds_t
 POSIX.1-2001.
-.PP
+.P
 .I <sched.h>
 defines
 .I time_t
 since POSIX.1-2008.
-.PP
+.P
 POSIX.1-2001 defined
 .I useconds_t
 in
@@ -81,7 +81,7 @@ the width of
 .I time_t
 can be controlled with the feature test macro
 .BR _TIME_BITS .
-.PP
+.P
 The following headers also provide
 .IR time_t :
 .IR <sched.h> ,
@@ -94,7 +94,7 @@ The following headers also provide
 .IR <sys/types.h> ,
 and
 .IR <utime.h> .
-.PP
+.P
 The following headers also provide
 .IR suseconds_t :
 .I <sys/select.h>

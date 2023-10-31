@@ -15,17 +15,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "[[deprecated]] double scalb(double " x ", double " exp );
 .BI "[[deprecated]] float scalbf(float " x ", float " exp );
 .BI "[[deprecated]] long double scalbl(long double " x ", long double " exp );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR scalb ():
 .nf
     _XOPEN_SOURCE >= 500
@@ -33,7 +33,7 @@ Feature Test Macro Requirements for glibc (see
         || /* Since glibc 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR scalbf (),
 .BR scalbl ():
 .nf
@@ -50,11 +50,11 @@ by
 to the power of
 .IR exp ,
 that is:
-.PP
+.P
 .nf
     x * FLT_RADIX ** exp
 .fi
-.PP
+.P
 The definition of
 .B FLT_RADIX
 can be obtained by including
@@ -67,13 +67,13 @@ On success, these functions return
 .B FLT_RADIX
 **
 .IR exp .
-.PP
+.P
 If
 .I x
 or
 .I exp
 is a NaN, a NaN is returned.
-.PP
+.P
 If
 .I x
 is positive infinity (negative infinity),
@@ -81,13 +81,13 @@ and
 .I exp
 is not negative infinity,
 positive infinity (negative infinity) is returned.
-.PP
+.P
 If
 .I x
 is +0 (\-0), and
 .I exp
 is not positive infinity, +0 (\-0) is returned.
-.PP
+.P
 If
 .I x
 is zero, and
@@ -95,7 +95,7 @@ is zero, and
 is positive infinity,
 a domain error occurs, and
 a NaN is returned.
-.PP
+.P
 If
 .I x
 is an infinity,
@@ -104,7 +104,7 @@ and
 is negative infinity,
 a domain error occurs, and
 a NaN is returned.
-.PP
+.P
 If the result overflows,
 a range error occurs,
 and the functions return
@@ -114,7 +114,7 @@ or
 .BR HUGE_VALL ,
 respectively, with a sign the same as
 .IR x .
-.PP
+.P
 If the result underflows,
 a range error occurs,
 and the functions return zero, with a sign the same as
@@ -124,7 +124,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Domain error: \fIx\fP is 0, and \fIexp\fP is positive infinity, \

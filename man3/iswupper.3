@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wctype.h>
-.PP
+.P
 .BI "int iswupper(wint_t " wc );
 .fi
 .SH DESCRIPTION
@@ -31,31 +31,31 @@ It tests whether
 .I wc
 is a wide character
 belonging to the wide-character class "upper".
-.PP
+.P
 The wide-character class "upper" is a subclass of the wide-character class
 "alpha", and therefore also a subclass of the wide-character class "alnum", of
 the wide-character class "graph" and of the wide-character class "print".
-.PP
+.P
 Being a subclass of the wide-character class "print", the wide-character class
 "upper" is disjoint from the wide-character class "cntrl".
-.PP
+.P
 Being a subclass of the wide-character class "graph", the wide-character class
 "upper" is disjoint from the wide-character class "space" and its subclass
 "blank".
-.PP
+.P
 Being a subclass of the wide-character class "alnum", the wide-character class
 "upper" is disjoint from the wide-character class "punct".
-.PP
+.P
 Being a subclass of the wide-character class "alpha", the wide-character class
 "upper" is disjoint from the wide-character class "digit".
-.PP
+.P
 The wide-character class "upper" contains at least those characters
 .I wc
 which are equal to
 .I towupper(wc)
 and different from
 .IR towlower(wc) .
-.PP
+.P
 The wide-character class "upper" always contains at least the
 letters \[aq]A\[aq] to \[aq]Z\[aq].
 .SH RETURN VALUE
@@ -91,7 +91,7 @@ depends on the
 .B LC_CTYPE
 category of the
 current locale.
-.PP
+.P
 This function is not very appropriate for dealing with Unicode characters,
 because Unicode knows about three cases: upper, lower, and title case.
 .SH SEE ALSO

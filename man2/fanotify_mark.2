@@ -11,7 +11,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/fanotify.h>
-.PP
+.P
 .BI "int fanotify_mark(int " fanotify_fd ", unsigned int " flags ,
 .BI "                  uint64_t " mask ", int " dirfd ,
 .BI "                  const char *_Nullable " pathname );
@@ -19,17 +19,17 @@ Standard C library
 .SH DESCRIPTION
 For an overview of the fanotify API, see
 .BR fanotify (7).
-.PP
+.P
 .BR fanotify_mark ()
 adds, removes, or modifies an fanotify mark on a filesystem object.
 The caller must have read permission on the filesystem object that
 is to be marked.
-.PP
+.P
 The
 .I fanotify_fd
 argument is a file descriptor returned by
 .BR fanotify_init (2).
-.PP
+.P
 .I flags
 is a bit mask describing the modification to perform.
 It must include exactly one of the following values:
@@ -74,11 +74,11 @@ can be used in conjunction with
 .BR FAN_MARK_FLUSH .
 .I mask
 is ignored.
-.PP
+.P
 If none of the values above is specified, or more than one is specified,
 the call fails with the error
 .BR EINVAL .
-.PP
+.P
 In addition,
 zero or more of the following values may be ORed into
 .IR flags :
@@ -311,7 +311,7 @@ and if it is not,
 the listener sets a mark with an ignore mask on the directory.
 Evictable inode marks allow using this method for a large number of directories
 without the concern of pinning all inodes and exhausting the system's memory.
-.PP
+.P
 .I mask
 defines which events shall be listened for (or which shall be ignored).
 It is a bit mask composed of the following values:
@@ -486,7 +486,7 @@ and
 are not generated for children of marked directories.
 To monitor complete directory trees it is necessary to mark the relevant
 mount or filesystem.
-.PP
+.P
 The following composed values are defined:
 .TP
 .B FAN_CLOSE
@@ -496,7 +496,7 @@ A file is closed
 .B FAN_MOVE
 A file or directory has been moved
 .RB ( FAN_MOVED_FROM | FAN_MOVED_TO ).
-.PP
+.P
 The filesystem object to be marked is determined by the file descriptor
 .I dirfd
 and the pathname specified in
@@ -791,28 +791,28 @@ or
 .BR uselib (2).
 Events of these types will not be raised in the situation where an
 interpreter is passed (or reads) a file for interpretation.
-.PP
+.P
 Additionally, if a mark has also been placed on the Linux dynamic
 linker, a user should also expect to receive an event for it when
 an ELF object has been successfully opened using
 .BR execve (2)
 or
 .BR execveat (2).
-.PP
+.P
 For example, if the following ELF binary were to be invoked and a
 .B FAN_OPEN_EXEC
 mark has been placed on /:
-.PP
+.P
 .in +4n
 .EX
 $ /bin/echo foo
 .EE
 .in
-.PP
+.P
 The listening application in this case would receive
 .B FAN_OPEN_EXEC
 events for both the ELF binary and interpreter, respectively:
-.PP
+.P
 .in +4n
 .EX
 /bin/echo

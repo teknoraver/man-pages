@@ -13,12 +13,12 @@ Standard C library
 .B #include <linux/seccomp.h>
 .B #include <linux/filter.h>
 .B #include <linux/audit.h>
-.PP
+.P
 .BI "int seccomp(unsigned int " operation ", unsigned int " flags \
 ", void *" args );
-.PP
+.P
 .B #include <sys/ioctl.h>
-.PP
+.P
 .BI "int ioctl(int " fd ", SECCOMP_IOCTL_NOTIF_RECV,"
 .BI "          struct seccomp_notif *" req );
 .BI "int ioctl(int " fd ", SECCOMP_IOCTL_NOTIF_SEND,"
@@ -51,7 +51,7 @@ the handling of the system call to another user-space process.
 Note that this mechanism is explicitly
 .B not
 intended as a method implementing security policy; see NOTES.
-.PP
+.P
 In the discussion that follows,
 the thread(s) on which the seccomp filter is installed is (are)
 referred to as the
@@ -59,7 +59,7 @@ referred to as the
 and the process that is notified by the user-space notification
 mechanism is referred to as the
 .IR supervisor .
-.PP
+.P
 A suitably privileged supervisor can use the user-space notification
 mechanism to perform actions on behalf of the target.
 The advantage of the user-space notification mechanism is that
@@ -69,7 +69,7 @@ performed system call that the seccomp filter itself cannot.
 (A seccomp filter is limited in the information it can obtain and
 the actions that it can perform because it
 is running on a virtual machine inside the kernel.)
-.PP
+.P
 An overview of the steps performed by the target and the supervisor
 is as follows:
 .\"-------------------------------------
@@ -285,7 +285,7 @@ the system call in the target thread unblocks,
 returning the information that was provided by the supervisor
 in the notification response.
 .\"-------------------------------------
-.PP
+.P
 As a variation on the last two steps,
 the supervisor can send a response that tells the kernel that it
 should execute the target thread's system call; see the discussion of
@@ -317,7 +317,7 @@ The third
 argument is a pointer to a structure of the following form
 which contains information about the event.
 This structure must be zeroed out before the call.
-.PP
+.P
 .in +4n
 .EX
 struct seccomp_notif {
@@ -328,7 +328,7 @@ struct seccomp_notif {
 };
 .EE
 .in
-.PP
+.P
 The fields in this structure are as follows:
 .TP
 .I id
@@ -367,7 +367,7 @@ This is the same structure that is passed to the seccomp filter.
 See
 .BR seccomp (2)
 for details of this structure.
-.PP
+.P
 On success, this operation returns 0; on failure, \-1 is returned, and
 .I errno
 is set to indicate the cause of the error.
@@ -423,7 +423,7 @@ returned by an earlier
 operation is still valid
 (i.e., that the target still exists and its system call
 is still blocked waiting for a response).
-.PP
+.P
 The third
 .BR ioctl (2)
 argument is a pointer to the cookie
@@ -431,7 +431,7 @@ argument is a pointer to the cookie
 returned by the
 .B SECCOMP_IOCTL_NOTIF_RECV
 operation.
-.PP
+.P
 This operation is necessary to avoid race conditions that can occur when the
 .I pid
 returned by the
@@ -458,7 +458,7 @@ the
 file for the TID obtained in step 1, with the intention of (say)
 inspecting the memory location(s) that containing the argument(s) of
 the system call that triggered the notification in step 1.
-.PP
+.P
 In the above scenario, the risk is that the supervisor may try
 to access the memory of a process other than the target.
 This race can be avoided by following the call to
@@ -478,11 +478,11 @@ from the file descriptor may return 0, indicating end of file.)
 .\"     PID, or something like that.  (Actually, it is associated
 .\"     with the "struct pid", which is not reused, instead of the
 .\"     numeric PID.
-.PP
+.P
 See NOTES for a discussion of other cases where
 .B SECCOMP_IOCTL_NOTIF_ID_VALID
 checks must be performed.
-.PP
+.P
 On success (i.e., the notification ID is still valid),
 this operation returns 0.
 On failure (i.e., the notification ID is no longer valid),
@@ -499,7 +499,7 @@ is used to send a notification response back to the kernel.
 The third
 .BR ioctl (2)
 argument of this structure is a pointer to a structure of the following form:
-.PP
+.P
 .in +4n
 .EX
 struct seccomp_notif_resp {
@@ -510,7 +510,7 @@ struct seccomp_notif_resp {
 };
 .EE
 .in
-.PP
+.P
 The fields of this structure are as follows:
 .TP
 .I id
@@ -537,7 +537,7 @@ This is a bit mask that includes zero or more of the following flags:
 Tell the kernel to execute the target's system call.
 .\" commit fb3c5386b382d4097476ce9647260fc89b34afdb
 .RE
-.PP
+.P
 Two kinds of response are possible:
 .IP \[bu] 3
 A response to the kernel telling it to execute the
@@ -609,7 +609,7 @@ field contains a nonzero value.
 .\" verify that val and err are both 0 when CONTINUE is specified (as you
 .\" pointed out correctly above).
 .RE
-.PP
+.P
 On success, this operation returns 0; on failure, \-1 is returned, and
 .I errno
 is set to indicate the cause of the error.
@@ -656,7 +656,7 @@ messages described in
 this operation is semantically equivalent to duplicating
 a file descriptor from the supervisor's file descriptor table
 into the target's file descriptor table.
-.PP
+.P
 The
 .B SECCOMP_IOCTL_NOTIF_ADDFD
 operation permits the supervisor to emulate a target system call (such as
@@ -670,10 +670,10 @@ and then use this operation to allocate
 a file descriptor that refers to the same open file description in the target.
 (For an explanation of open file descriptions, see
 .BR open (2).)
-.PP
+.P
 Once this operation has been performed,
 the supervisor can close its copy of the file descriptor.
-.PP
+.P
 In the target,
 the received file descriptor is subject to the same
 Linux Security Module (LSM) checks as are applied to a file descriptor
@@ -686,11 +686,11 @@ it inherits the cgroup version 1 network controller settings
 and
 .IR netprioidx )
 of the target.
-.PP
+.P
 The third
 .BR ioctl (2)
 argument is a pointer to a structure of the following form:
-.PP
+.P
 .in +4n
 .EX
 struct seccomp_notif_addfd {
@@ -704,7 +704,7 @@ struct seccomp_notif_addfd {
 };
 .EE
 .in
-.PP
+.P
 The fields in this structure are as follows:
 .TP
 .I id
@@ -774,7 +774,7 @@ Currently, only the following flag is implemented:
 .B O_CLOEXEC
 Set the close-on-exec flag on the received file descriptor.
 .RE
-.PP
+.P
 On success, this
 .BR ioctl (2)
 call returns the number of the file descriptor that was allocated
@@ -787,11 +787,11 @@ this value can be used as the return value
 that is supplied in the response that is subsequently sent with the
 .B SECCOMP_IOCTL_NOTIF_SEND
 operation.
-.PP
+.P
 On error, \-1 is returned and
 .I errno
 is set to indicate the cause of the error.
-.PP
+.P
 This operation can fail with the following errors:
 .TP
 .B EBADF
@@ -838,12 +838,12 @@ exceeds the limit specified in
 The blocked system call in the target
 has been interrupted by a signal handler
 or the target has terminated.
-.PP
+.P
 Here is some sample code (with error handling omitted) that uses the
 .B SECCOMP_ADDFD_FLAG_SETFD
 operation (here, to emulate a call to
 .BR openat (2)):
-.PP
+.P
 .EX
 .in +4n
 int fd, removeFd;
@@ -942,12 +942,12 @@ to allow system calls to be performed on behalf of the target.
 The target's system call should either be handled by the supervisor or
 allowed to continue normally in the kernel (where standard security
 policies will be applied).
-.PP
+.P
 .BR "Note well" :
 this mechanism must not be used to make security policy decisions
 about the system call,
 which would be inherently race-prone for reasons described next.
-.PP
+.P
 The
 .B SECCOMP_USER_NOTIF_FLAG_CONTINUE
 flag must be used with caution.
@@ -956,7 +956,7 @@ However, there is a time-of-check, time-of-use race here,
 since an attacker could exploit the interval of time where the target is
 blocked waiting on the "continue" response to do things such as
 rewriting the system call arguments.
-.PP
+.P
 Note furthermore that a user-space notifier can be bypassed if
 the existing filters allow the use of
 .BR seccomp (2)
@@ -966,7 +966,7 @@ to install a filter that returns an action value with a higher precedence than
 .B SECCOMP_RET_USER_NOTIF
 (see
 .BR seccomp (2)).
-.PP
+.P
 It should thus be absolutely clear that the
 seccomp user-space notification mechanism
 .B can not
@@ -994,7 +994,7 @@ However, the use of this
 .BR ioctl (2)
 operation is also necessary in other situations,
 as explained in the following paragraphs.
-.PP
+.P
 Consider the following scenario, where the supervisor
 tries to read the pathname argument of a target's blocked
 .BR mount (2)
@@ -1031,7 +1031,7 @@ contain the pathname.
 The supervisor now calls
 .BR mount (2)
 with some arbitrary bytes obtained in the previous step.
-.PP
+.P
 The conclusion from the above scenario is this:
 since the target's blocked system call may be interrupted by a signal handler,
 the supervisor must be written to expect that the
@@ -1040,7 +1040,7 @@ target may abandon its system call at
 time;
 in such an event, any information that the supervisor obtained from
 the target's memory must be considered invalid.
-.PP
+.P
 To prevent such scenarios,
 every read from the target's memory must be separated from use of
 the bytes so obtained by a
@@ -1048,7 +1048,7 @@ the bytes so obtained by a
 check.
 In the above example, the check would be placed between the two final steps.
 An example of such a check is shown in EXAMPLES.
-.PP
+.P
 Following on from the above, it should be clear that
 a write by the supervisor into the target's memory can
 .B never
@@ -1059,7 +1059,7 @@ Suppose that the target performs a blocking system call (e.g.,
 .BR accept (2))
 that the supervisor should handle.
 The supervisor might then in turn execute the same blocking system call.
-.PP
+.P
 In this scenario,
 it is important to note that if the target's system call is now
 interrupted by a signal, the supervisor is
@@ -1077,7 +1077,7 @@ holding a port number that the target
 perhaps closed  its listening socket) might expect to be able to reuse in a
 .BR bind (2)
 call.
-.PP
+.P
 Therefore, when the supervisor wishes to emulate a blocking system call,
 it must do so in such a way that it gets informed if the target's
 system call is interrupted by a signal handler.
@@ -1095,7 +1095,7 @@ to monitor both the notification file descriptor
 .BR accept (2)
 call has been interrupted) and the listening file descriptor
 (so as to know when a connection is available).
-.PP
+.P
 If the target's system call is interrupted,
 the supervisor must take care to release resources (e.g., file descriptors)
 that it acquired on behalf of the target.
@@ -1121,14 +1121,14 @@ When (if) the supervisor attempts to send a notification response, the
 operation will fail with the
 .B ENOENT
 error.
-.PP
+.P
 In this scenario, the kernel will restart the target's system call.
 Consequently, the supervisor will receive another user-space notification.
 Thus, depending on how many times the blocked system call
 is interrupted by a signal handler,
 the supervisor may receive multiple notifications for
 the same instance of a system call in the target.
-.PP
+.P
 One oddity is that system call restarting as described in this scenario
 will occur even for the blocking system calls listed in
 .BR signal (7)
@@ -1156,7 +1156,7 @@ flag.
 .\" calls because it's impossible for the kernel to restart the call
 .\" with the right timeout value. I wonder what happens when those
 .\" system calls are restarted in the scenario we're discussing.)
-.PP
+.P
 Furthermore, if the supervisor response is a file descriptor
 added with
 .BR SECCOMP_IOCTL_NOTIF_ADDFD ,
@@ -1195,7 +1195,7 @@ The child process then calls
 once for each of the supplied command-line arguments,
 and reports the result returned by the call.
 After processing all arguments, the child process terminates.
-.PP
+.P
 The parent process acts as the supervisor, listening for the notifications
 that are generated when the target process calls
 .BR mkdir (2).
@@ -1232,14 +1232,14 @@ call appears to fail with the error
 ("Operation not supported").
 Additionally, if the specified pathname is exactly "/bye",
 then the supervisor terminates.
-.PP
+.P
 This program can be used to demonstrate various aspects of the
 behavior of the seccomp user-space notification mechanism.
 To help aid such demonstrations,
 the program logs various messages to show the operation
 of the target process (lines prefixed "T:") and the supervisor
 (indented lines prefixed "S:").
-.PP
+.P
 In the following example, the target attempts to create the directory
 .IR /tmp/x .
 Upon receiving the notification, the supervisor creates the directory on the
@@ -1247,7 +1247,7 @@ target's behalf,
 and spoofs a success return to be received by the target process's
 .BR mkdir (2)
 call.
-.PP
+.P
 .in +4n
 .EX
 $ \fB./seccomp_unotify /tmp/x\fP
@@ -1264,14 +1264,14 @@ T: terminating
         S: target has terminated; bye
 .EE
 .in
-.PP
+.P
 In the above output, note that the spoofed return value seen by the target
 process is 6 (the length of the pathname
 .IR /tmp/x ),
 whereas a normal
 .BR mkdir (2)
 call returns 0 on success.
-.PP
+.P
 In the next example, the target attempts to create a directory using the
 relative pathname
 .IR ./sub .
@@ -1282,7 +1282,7 @@ response to the kernel,
 and the kernel then (successfully) executes the target process's
 .BR mkdir (2)
 call.
-.PP
+.P
 .in +4n
 .EX
 $ \fB./seccomp_unotify ./sub\fP
@@ -1298,7 +1298,7 @@ T: terminating
         S: target has terminated; bye
 .EE
 .in
-.PP
+.P
 If the target process attempts to create a directory with
 a pathname that doesn't start with "." and doesn't begin with the prefix
 "/tmp/", then the supervisor spoofs an error return
@@ -1307,7 +1307,7 @@ a pathname that doesn't start with "." and doesn't begin with the prefix
 for the target's
 .BR mkdir (2)
 call (which is not executed):
-.PP
+.P
 .in +4n
 .EX
 $ \fB./seccomp_unotify /xxx\fP
@@ -1323,7 +1323,7 @@ T: terminating
         S: target has terminated; bye
 .EE
 .in
-.PP
+.P
 In the next example,
 the target process attempts to create a directory with the pathname
 .BR /tmp/nosuchdir/b .
@@ -1337,7 +1337,7 @@ Consequently, the supervisor spoofs an error return that passes the error
 that it received back to the target process's
 .BR mkdir (2)
 call.
-.PP
+.P
 .in +4n
 .EX
 $ \fB./seccomp_unotify /tmp/nosuchdir/b\fP
@@ -1354,7 +1354,7 @@ T: terminating
         S: target has terminated; bye
 .EE
 .in
-.PP
+.P
 If the supervisor receives a notification and sees that the
 argument of the target's
 .BR mkdir (2)
@@ -1370,7 +1370,7 @@ fail with the error
 .B ENOSYS
 ("Function not implemented").
 This is demonstrated by the following example:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./seccomp_unotify /bye /tmp/y\fP
@@ -2006,6 +2006,6 @@ main(int argc, char *argv[])
 .BR pidfd_getfd (2),
 .BR pidfd_open (2),
 .BR seccomp (2)
-.PP
+.P
 A further example program can be found in the kernel source file
 .IR samples/seccomp/user-trap.c .

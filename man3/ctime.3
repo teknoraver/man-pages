@@ -23,31 +23,31 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <time.h>
-.PP
+.P
 .BI "char *asctime(const struct tm *" tm );
 .BI "char *asctime_r(const struct tm *restrict " tm ,
 .BI "                    char " buf "[restrict 26]);"
-.PP
+.P
 .BI "char *ctime(const time_t *" timep );
 .BI "char *ctime_r(const time_t *restrict " timep ,
 .BI "                    char " buf "[restrict 26]);"
-.PP
+.P
 .BI "struct tm *gmtime(const time_t *" timep );
 .BI "struct tm *gmtime_r(const time_t *restrict " timep ,
 .BI "                    struct tm *restrict " result );
-.PP
+.P
 .BI "struct tm *localtime(const time_t *" timep );
 .BI "struct tm *localtime_r(const time_t *restrict " timep ,
 .BI "                    struct tm *restrict " result );
-.PP
+.P
 .BI "time_t mktime(struct tm *" tm );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR asctime_r (),
 .BR ctime_r (),
 .BR gmtime_r (),
@@ -66,7 +66,7 @@ functions all take
 an argument of data type \fItime_t\fP, which represents calendar time.
 When interpreted as an absolute time value, it represents the number of
 seconds elapsed since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).
-.PP
+.P
 The
 .BR asctime ()
 and
@@ -74,25 +74,25 @@ and
 functions both take an argument
 representing broken-down time, which is a representation
 separated into year, month, day, and so on.
-.PP
+.P
 Broken-down time is stored in the structure
 .IR tm ,
 described in
 .BR tm (3type).
-.PP
+.P
 The call
 .BI ctime( t )
 is equivalent to
 .BI asctime(localtime( t )) \fR.
 It converts the calendar time \fIt\fP into a
 null-terminated string of the form
-.PP
+.P
 .in +4n
 .EX
 "Wed Jun 30 21:49:08 1993\en"
 .EE
 .in
-.PP
+.P
 The abbreviations for the days of the week are "Sun", "Mon", "Tue", "Wed",
 "Thu", "Fri", and "Sat".
 The abbreviations for the months are "Jan",
@@ -112,7 +112,7 @@ string in a user-supplied buffer
 which should have room for at least 26 bytes.
 It need not
 set \fItzname\fP, \fItimezone\fP, and \fIdaylight\fP.
-.PP
+.P
 The
 .BR gmtime ()
 function converts the calendar time \fItimep\fP to
@@ -125,7 +125,7 @@ The
 .BR gmtime_r ()
 function does the same, but stores the data in a
 user-supplied struct.
-.PP
+.P
 The
 .BR localtime ()
 function converts the calendar time \fItimep\fP to
@@ -145,7 +145,7 @@ The
 function does the same, but stores the data in a
 user-supplied struct.
 It need not set \fItzname\fP, \fItimezone\fP, and \fIdaylight\fP.
-.PP
+.P
 The
 .BR asctime ()
 function converts the broken-down time value
@@ -157,7 +157,7 @@ The
 .BR asctime_r ()
 function does the same, but stores the string in
 a user-supplied buffer which should have room for at least 26 bytes.
-.PP
+.P
 The
 .BR mktime ()
 function converts a broken-down time structure, expressed
@@ -182,7 +182,7 @@ and a negative value means that
 .BR mktime ()
 should (use timezone information and system databases to)
 attempt to determine whether DST is in effect at the specified time.
-.PP
+.P
 The
 .BR mktime ()
 function modifies the fields of the
@@ -202,7 +202,7 @@ Calling
 .BR mktime ()
 also sets the external variable \fItzname\fP with
 information about the current timezone.
-.PP
+.P
 If the specified broken-down
 time cannot be represented as calendar time (seconds since the Epoch),
 .BR mktime ()
@@ -217,33 +217,33 @@ and
 .BR localtime ()
 return a pointer to a
 .IR "struct\ tm" .
-.PP
+.P
 On success,
 .BR gmtime_r ()
 and
 .BR localtime_r ()
 return the address of the structure pointed to by
 .IR result .
-.PP
+.P
 On success,
 .BR asctime ()
 and
 .BR ctime ()
 return a pointer to a string.
-.PP
+.P
 On success,
 .BR asctime_r ()
 and
 .BR ctime_r ()
 return a pointer to the string pointed to by
 .IR buf .
-.PP
+.P
 On success,
 .BR mktime ()
 returns the calendar time (seconds since the Epoch),
 expressed as a value of type
 .IR time_t .
-.PP
+.P
 On error,
 .BR mktime ()
 returns the value
@@ -321,11 +321,11 @@ POSIX doesn't specify the parameters of
 to be
 .IR restrict ;
 that is specific to glibc.
-.PP
+.P
 In many implementations, including glibc, a 0 in
 .I tm_mday
 is interpreted as meaning the last day of the preceding month.
-.PP
+.P
 According to POSIX.1-2001,
 .BR localtime ()
 is required to behave as though
@@ -401,7 +401,7 @@ The thread-safe versions,
 and
 .BR localtime_r (),
 are specified by SUSv2.
-.PP
+.P
 POSIX.1-2001 says:
 "The
 .BR asctime (),

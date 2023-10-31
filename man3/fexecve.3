@@ -12,15 +12,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int fexecve(int " fd ", char *const " argv "[], char *const " envp []);
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR fexecve ():
 .nf
     Since glibc 2.10:
@@ -96,7 +96,7 @@ T}	Thread safety	MT-Safe
 POSIX.1-2008.
 .SH HISTORY
 glibc 2.3.2.
-.PP
+.P
 On Linux with glibc versions 2.26 and earlier,
 .BR fexecve ()
 is implemented using the
@@ -130,7 +130,7 @@ of a file could be changed between the checksumming and the call to
 .BR fexecve ();
 for that, the solution is to ensure that the permissions on the file
 prevent it from being modified by malicious users.
-.PP
+.P
 The natural idiom when using
 .BR fexecve ()
 is to set the close-on-exec flag on

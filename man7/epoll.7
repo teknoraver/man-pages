@@ -21,7 +21,7 @@ The
 .B epoll
 API can be used either as an edge-triggered or a level-triggered
 interface and scales well to large numbers of watched file descriptors.
-.PP
+.P
 The central concept of the
 .B epoll
 API is the
@@ -45,7 +45,7 @@ The ready list is a subset of
 the file descriptors in the interest list.
 The ready list is dynamically populated
 by the kernel as a result of I/O activity on those file descriptors.
-.PP
+.P
 The following system calls are provided to
 create and manage an
 .B epoll
@@ -104,7 +104,7 @@ The pipe reader reads 1\ kB of data from
 A call to
 .BR epoll_wait (2)
 is done.
-.PP
+.P
 If the
 .I rfd
 file descriptor has been added to the
@@ -139,7 +139,7 @@ does not consume the whole buffer data, the call to
 done in step
 .B 5
 might block indefinitely.
-.PP
+.P
 An application that employs the
 .B EPOLLET
 flag should use nonblocking file descriptors to avoid having a blocking
@@ -158,7 +158,7 @@ or
 .BR write (2)
 return
 .BR EAGAIN .
-.PP
+.P
 By contrast, when used as a level-triggered interface
 (the default, when
 .B EPOLLET
@@ -168,7 +168,7 @@ is simply a faster
 .BR poll (2),
 and can be used wherever the latter is used since it shares the
 same semantics.
-.PP
+.P
 Since even with edge-triggered
 .BR epoll ,
 multiple events can be generated upon receipt of multiple chunks of data,
@@ -185,7 +185,7 @@ it is the caller's responsibility to rearm the file descriptor using
 .BR epoll_ctl (2)
 with
 .BR EPOLL_CTL_MOD .
-.PP
+.P
 If multiple threads
 (or processes, if child processes have inherited the
 .B epoll
@@ -214,7 +214,7 @@ it is necessary to use the
 .BR epoll_ctl (2)
 .B EPOLLWAKEUP
 flag.
-.PP
+.P
 When the
 .B EPOLLWAKEUP
 flag is set in the
@@ -284,7 +284,7 @@ it will continue to
 or
 .BR write (2)
 from where it stopped before.
-.PP
+.P
 .in +4n
 .EX
 #define MAX_EVENTS 10
@@ -337,7 +337,7 @@ for (;;) {
 }
 .EE
 .in
-.PP
+.P
 When used as an edge-triggered interface, for performance reasons, it is
 possible to add the file descriptor inside the
 .B epoll
@@ -595,7 +595,7 @@ directory.
 See
 .BR proc (5)
 for further details.
-.PP
+.P
 The
 .BR kcmp (2)
 .B KCMP_EPOLL_TFD

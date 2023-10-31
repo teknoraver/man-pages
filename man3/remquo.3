@@ -17,17 +17,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double remquo(double " x ", double " y ", int *" quo );
 .BI "float remquof(float " x ", float " y ", int *" quo );
 .BI "long double remquol(long double " x ", long double " y ", int *" quo );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR remquo (),
 .BR remquof (),
 .BR remquol ():
@@ -44,17 +44,17 @@ A few bits of the quotient are stored via the
 .I quo
 pointer.
 The remainder is returned as the function result.
-.PP
+.P
 The value of the remainder is the same as that computed by the
 .BR remainder (3)
 function.
-.PP
+.P
 The value stored via the
 .I quo
 pointer has the sign of
 .I x\~/\~y
 and agrees with the quotient in at least the low order 3 bits.
-.PP
+.P
 For example, \fIremquo(29.0,\ 3.0)\fP returns \-1.0 and might store 2.
 Note that the actual quotient might not fit in an integer.
 .\" A possible application of this function might be the computation
@@ -66,13 +66,13 @@ Note that the actual quotient might not fit in an integer.
 On success, these functions return the same value as
 the analogous functions described in
 .BR remainder (3).
-.PP
+.P
 If
 .I x
 or
 .I y
 is a NaN, a NaN is returned.
-.PP
+.P
 If
 .I x
 is an infinity,
@@ -81,7 +81,7 @@ and
 is not a NaN,
 a domain error occurs, and
 a NaN is returned.
-.PP
+.P
 If
 .I y
 is zero,
@@ -95,7 +95,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Domain error: \fIx\fP is an infinity or \fIy\fP is 0, \
@@ -106,7 +106,7 @@ and the other argument is not a NaN
 An invalid floating-point exception
 .RB ( FE_INVALID )
 is raised.
-.PP
+.P
 These functions do not set
 .IR errno .
 .\" FIXME . Is it intentional that these functions do not set errno?

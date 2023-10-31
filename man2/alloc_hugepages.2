@@ -15,7 +15,7 @@ size_t " len ,
 .BI "int syscall(SYS_free_hugepages, void *" addr );
 .\" asmlinkage int sys_free_hugepages(unsigned long addr);
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrappers for these system calls,
 necessitating the use of
@@ -31,7 +31,7 @@ They existed only on i386 and ia64 (when built with
 In Linux 2.4.20, the syscall numbers exist,
 but the calls fail with the error
 .BR ENOSYS .
-.PP
+.P
 On i386 the memory management hardware knows about ordinary pages (4\ KiB)
 and huge pages (2 or 4\ MiB).
 Similarly ia64 knows about huge pages of
@@ -39,7 +39,7 @@ several sizes.
 These system calls serve to map huge pages into the
 process's memory or to free them again.
 Huge pages are locked into memory, and are not swapped.
-.PP
+.P
 The
 .I key
 argument is an identifier.
@@ -48,7 +48,7 @@ not inherited by children.
 When positive the pages are shared with other applications using the same
 .IR key ,
 and inherited by child processes.
-.PP
+.P
 The
 .I addr
 argument of
@@ -63,12 +63,12 @@ argument of
 .BR alloc_hugepages ()
 is a hint, that the kernel may or may not follow.
 Addresses must be properly aligned.
-.PP
+.P
 The
 .I len
 argument is the length of the required segment.
 It must be a multiple of the huge page size.
-.PP
+.P
 The
 .I prot
 argument specifies the memory protection of the segment.
@@ -76,7 +76,7 @@ It is one of
 .BR PROT_READ ,
 .BR PROT_WRITE ,
 .BR PROT_EXEC .
-.PP
+.P
 The
 .I flag
 argument is ignored, unless
@@ -124,11 +124,11 @@ Memory backed by huge pages (if the CPU supports them) is obtained by
 using
 .BR mmap (2)
 to map files in this virtual filesystem.
-.PP
+.P
 The maximal number of huge pages can be specified using the
 .B hugepages=
 boot parameter.
-.\".PP
+.\".P
 .\" requires CONFIG_HUGETLB_PAGE (under "Processor type and features")
 .\" and CONFIG_HUGETLBFS (under "Filesystems").
 .\" mount \-t hugetlbfs hugetlbfs /huge

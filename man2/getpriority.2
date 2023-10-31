@@ -23,7 +23,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/resource.h>
-.PP
+.P
 .BI "int getpriority(int " which ", id_t " who );
 .BI "int setpriority(int " which ", id_t " who ", int " prio );
 .fi
@@ -41,7 +41,7 @@ call.
 The process attribute dealt with by these system calls is
 the same attribute (also known as the "nice" value) that is dealt with by
 .BR nice (2).
-.PP
+.P
 The value
 .I which
 is one of
@@ -64,7 +64,7 @@ A zero value for
 .I who
 denotes (respectively) the calling process, the process group of the
 calling process, or the real user ID of the calling process.
-.PP
+.P
 The
 .I prio
 argument is a value in the range \-20 to 19 (but see NOTES below),
@@ -73,7 +73,7 @@ Attempts to set a priority outside this range
 are silently clamped to the range.
 The default priority is 0;
 lower values give a process a higher scheduling priority.
-.PP
+.P
 The
 .BR getpriority ()
 call returns the highest priority (lowest numerical value)
@@ -82,7 +82,7 @@ The
 .BR setpriority ()
 call sets the priorities of all of the specified processes
 to the specified value.
-.PP
+.P
 Traditionally, only a privileged process could lower the nice value
 (i.e., set a higher priority).
 However, since Linux 2.6.12, an unprivileged process can decrease
@@ -98,7 +98,7 @@ returns the calling thread's nice value, which may be a negative number.
 On error, it returns \-1 and sets
 .I errno
 to indicate the error.
-.PP
+.P
 Since a successful call to
 .BR getpriority ()
 can legitimately return the value \-1, it is necessary
@@ -109,7 +109,7 @@ call, then check
 .I errno
 afterward to determine
 if \-1 is an error or a legitimate value.
-.PP
+.P
 .BR setpriority ()
 returns 0 on success.
 On failure, it returns \-1 and sets
@@ -154,19 +154,19 @@ SVr4, 4.4BSD (these interfaces first appeared in 4.2BSD).
 .SH NOTES
 For further details on the nice value, see
 .BR sched (7).
-.PP
+.P
 .IR Note :
 the addition of the "autogroup" feature in Linux 2.6.38 means that
 the nice value no longer has its traditional effect in many circumstances.
 For details, see
 .BR sched (7).
-.PP
+.P
 A child created by
 .BR fork (2)
 inherits its parent's nice value.
 The nice value is preserved across
 .BR execve (2).
-.PP
+.P
 The details on the condition for
 .B EPERM
 depend on the system.
@@ -204,6 +204,6 @@ which may be made standards conformant in the future.
 .BR fork (2),
 .BR capabilities (7),
 .BR sched (7)
-.PP
+.P
 .I Documentation/scheduler/sched\-nice\-design.txt
 in the Linux kernel source tree (since Linux 2.6.23)

@@ -13,15 +13,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sched.h>
-.PP
+.P
 .B int sched_getcpu(void);
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR sched_getcpu ():
 .nf
     Since glibc 2.14:
@@ -66,17 +66,17 @@ GNU.
 glibc 2.6.
 .SH NOTES
 The call
-.PP
+.P
 .in +4n
 .EX
 cpu = sched_getcpu();
 .EE
 .in
-.PP
+.P
 is equivalent to the following
 .BR getcpu (2)
 call:
-.PP
+.P
 .in +4n
 .EX
 int c, s;

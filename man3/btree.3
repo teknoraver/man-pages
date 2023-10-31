@@ -26,7 +26,7 @@ Since glibc 2.2, glibc no longer provides these interfaces.
 Probably, you are looking for the APIs provided by the
 .I libdb
 library instead.
-.PP
+.P
 The routine
 .BR dbopen (3)
 is the library interface to database files.
@@ -34,16 +34,16 @@ One of the supported file formats is btree files.
 The general description of the database access methods is in
 .BR dbopen (3),
 this manual page describes only the btree-specific information.
-.PP
+.P
 The btree data structure is a sorted, balanced tree structure storing
 associated key/data pairs.
-.PP
+.P
 The btree access-method-specific data structure provided to
 .BR dbopen (3)
 is defined in the
 .I <db.h>
 include file as follows:
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -58,7 +58,7 @@ typedef struct {
 } BTREEINFO;
 .EE
 .in
-.PP
+.P
 The elements of this structure are as follows:
 .TP
 .I flags
@@ -178,7 +178,7 @@ big endian order would be the number 4,321.
 If
 .I lorder
 is 0 (no order is specified), the current host order is used.
-.PP
+.P
 If the file already exists (and the
 .B O_TRUNC
 flag is not specified), the
@@ -189,15 +189,15 @@ and
 .I psize
 are ignored
 in favor of the values used when the tree was created.
-.PP
+.P
 Forward sequential scans of a tree are from the least key to the greatest.
-.PP
+.P
 Space freed up by deleting key/data pairs from the tree is never reclaimed,
 although it is normally made available for reuse.
 This means that the btree storage structure is grow-only.
 The only solutions are to avoid excessive deletions, or to create a fresh
 tree periodically from a scan of an existing one.
-.PP
+.P
 Searches, insertions, and deletions in a btree will all complete in
 O lg base N where base is the average fill factor.
 Often, inserting ordered data into btrees results in a low fill factor.
@@ -217,13 +217,13 @@ Only big and little endian byte order is supported.
 .BR hash (3),
 .BR mpool (3),
 .BR recno (3)
-.PP
+.P
 .IR "The Ubiquitous B-tree" ,
 Douglas Comer, ACM Comput. Surv. 11, 2 (June 1979), 121-138.
-.PP
+.P
 .IR "Prefix B-trees" ,
 Bayer and Unterauer, ACM Transactions on Database Systems, Vol. 2, 1
 (March 1977), 11-26.
-.PP
+.P
 .IR "The Art of Computer Programming Vol. 3: Sorting and Searching" ,
 D.E. Knuth, 1968, pp 471-480.

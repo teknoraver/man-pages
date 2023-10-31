@@ -14,13 +14,13 @@ when changing permissions.
 Memory Protection Keys provide a mechanism for changing
 protections without requiring modification of the page tables on
 every permission change.
-.PP
+.P
 To use pkeys, software must first "tag" a page in the page tables
 with a pkey.
 After this tag is in place, an application only has
 to change the contents of a register in order to remove write
 access, or all access to a tagged page.
-.PP
+.P
 Protection keys work in conjunction with the existing
 .BR PROT_READ ,
 .BR PROT_WRITE ,
@@ -32,7 +32,7 @@ and
 .BR mmap (2),
 but always act to further restrict these traditional permission
 mechanisms.
-.PP
+.P
 If a process performs an access that violates pkey
 restrictions, it receives a
 .B SIGSEGV
@@ -40,7 +40,7 @@ signal.
 See
 .BR sigaction (2)
 for details of the information available with that signal.
-.PP
+.P
 To use the pkeys feature, the processor must support it, and the kernel
 must contain support for the feature on a given processor.
 As of early 2016 only future Intel x86 processors are supported,
@@ -50,7 +50,7 @@ are available for actual application use.
 The default key is assigned to any memory region for which a
 pkey has not been explicitly assigned via
 .BR pkey_mprotect (2).
-.PP
+.P
 Protection keys have the potential to add a layer of security and
 reliability to applications.
 But they have not been primarily designed as
@@ -58,7 +58,7 @@ a security feature.
 For instance, WRPKRU is a completely unprivileged
 instruction, so pkeys are useless in any case that an attacker controls
 the PKRU register or can execute arbitrary instructions.
-.PP
+.P
 Applications should be very careful to ensure that they do not "leak"
 protection keys.
 For instance, before calling
@@ -77,7 +77,7 @@ Applications may implement these checks by searching the
 file for memory regions with the pkey assigned.
 Further details can be found in
 .BR proc (5).
-.PP
+.P
 Any application wanting to use protection keys needs to be able
 to function without them.
 They might be unavailable because the hardware that the
@@ -91,7 +91,7 @@ keys should simply call
 and test whether the call succeeds,
 instead of attempting to detect support for the
 feature in any other way.
-.PP
+.P
 Although unnecessary, hardware support for protection keys may be
 enumerated with the
 .I cpuid
@@ -104,7 +104,7 @@ under the "flags" field.
 The string "pku" in this field indicates hardware support for protection
 keys and the string "ospke" indicates that the kernel contains and has
 enabled protection keys support.
-.PP
+.P
 Applications using threads and protection keys should be especially
 careful.
 Threads inherit the protection key rights of the parent at the time
@@ -126,7 +126,7 @@ key rights upon entering a signal handler if the desired rights differ
 from the defaults.
 The rights of any interrupted context are restored when the signal
 handler returns.
-.PP
+.P
 This signal behavior is unusual and is due to the fact that the x86 PKRU
 register (which stores protection key access rights) is managed with the
 same hardware mechanism (XSAVE) that manages floating-point registers.
@@ -138,7 +138,7 @@ The Linux kernel implements the following pkey-related system calls:
 .BR pkey_alloc (2),
 and
 .BR pkey_free (2).
-.PP
+.P
 The Linux pkey system calls are available only if the kernel was
 configured and built with the
 .B CONFIG_X86_INTEL_MEMORY_PROTECTION_KEYS
@@ -151,7 +151,7 @@ After that, it attempts to allocate a protection key and
 disallows access to the page by using the WRPKRU instruction.
 It then tries to access the page,
 which we now expect to cause a fatal signal to the application.
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out"

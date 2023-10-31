@@ -22,18 +22,18 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int mkstemp(char *" template );
 .BI "int mkostemp(char *" template ", int " flags );
 .BI "int mkstemps(char *" template ", int " suffixlen );
 .BI "int mkostemps(char *" template ", int " suffixlen ", int " flags );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR mkstemp ():
 .nf
     _XOPEN_SOURCE >= 500
@@ -41,18 +41,18 @@ Feature Test Macro Requirements for glibc (see
         || /* glibc >= 2.12: */ _POSIX_C_SOURCE >= 200809L
         || /* glibc <= 2.19: */ _SVID_SOURCE || _BSD_SOURCE
 .fi
-.PP
+.P
 .BR mkostemp ():
 .nf
     _GNU_SOURCE
 .fi
-.PP
+.P
 .BR mkstemps ():
 .nf
     /* glibc >= 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _SVID_SOURCE || _BSD_SOURCE
 .fi
-.PP
+.P
 .BR mkostemps ():
 .nf
     _GNU_SOURCE
@@ -64,7 +64,7 @@ function generates a unique temporary filename from
 .IR template ,
 creates and opens the file,
 and returns an open file descriptor for the file.
-.PP
+.P
 The last six characters of
 .I template
 must be "XXXXXX" and these are replaced with a string that makes the
@@ -72,7 +72,7 @@ filename unique.
 Since it will be modified,
 .I template
 must not be a string constant, but should be declared as a character array.
-.PP
+.P
 The file is created with
 permissions 0600, that is, read plus write for owner only.
 The returned file descriptor provides both read and write access to the file.
@@ -80,7 +80,7 @@ The file is opened with the
 .BR open (2)
 .B O_EXCL
 flag, guaranteeing that the caller is the process that creates the file.
-.PP
+.P
 The
 .BR mkostemp ()
 function is like
@@ -111,7 +111,7 @@ argument given to
 is unnecessary, and produces errors on some
 .\" Reportedly, FreeBSD
 systems.
-.PP
+.P
 The
 .BR mkstemps ()
 function is like
@@ -127,7 +127,7 @@ is of the form
 .IR "prefixXXXXXXsuffix" ,
 and the string XXXXXX is modified as for
 .BR mkstemp ().
-.PP
+.P
 The
 .BR mkostemps ()
 function is to
@@ -166,7 +166,7 @@ is less than
 characters long, or the last 6 characters before the suffix in
 .I template
 were not XXXXXX.
-.PP
+.P
 These functions may also fail with any of the errors described for
 .BR open (2).
 .SH ATTRIBUTES
@@ -214,14 +214,14 @@ glibc 2.7.
 .TP
 .BR mkostemps ()
 glibc 2.11.
-.PP
+.P
 In glibc versions 2.06 and earlier, the file is created with permissions 0666,
 that is, read and write for all users.
 This old behavior may be
 a security risk, especially since other UNIX flavors use 0600,
 and somebody might overlook this detail when porting programs.
 POSIX.1-2008 adds a requirement that the file be created with mode 0600.
-.PP
+.P
 More generally, the POSIX specification of
 .BR mkstemp ()
 does not say anything

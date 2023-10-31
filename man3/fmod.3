@@ -22,17 +22,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double fmod(double " x ", double " y );
 .BI "float fmodf(float " x ", float " y );
 .BI "long double fmodl(long double " x ", long double " y );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR fmodf (),
 .BR fmodl ():
 .nf
@@ -58,10 +58,10 @@ is the quotient of
 /
 .IR y ,
 rounded toward zero to an integer.
-.PP
+.P
 To obtain the modulus, more specifically, the Least Positive Residue,
 you will need to adjust the result from fmod like so:
-.PP
+.P
 .in +4n
 .nf
 z = fmod(x, y);
@@ -69,7 +69,7 @@ if (z < 0)
 	z += y;
 .fi
 .in
-.PP
+.P
 An alternate way to express this is with
 .IR "fmod(fmod(x, y) + y, y)" ,
 but the second
@@ -84,25 +84,25 @@ such that the returned value has the same sign as
 .I x
 and a magnitude less than the magnitude of
 .IR y .
-.PP
+.P
 If
 .I x
 or
 .I y
 is a NaN, a NaN is returned.
-.PP
+.P
 If
 .I x
 is an infinity,
 a domain error occurs, and
 a NaN is returned.
-.PP
+.P
 If
 .I y
 is zero,
 a domain error occurs, and
 a NaN is returned.
-.PP
+.P
 If
 .I x
 is +0 (\-0), and
@@ -113,7 +113,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Domain error: \fIx\fP is an infinity
@@ -154,7 +154,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to
@@ -171,11 +171,11 @@ when a domain error occurred for an infinite
 The call
 .I fmod(372, 360)
 returns 348.
-.PP
+.P
 The call
 .I fmod(-372, 360)
 returns -12.
-.PP
+.P
 The call
 .I fmod(-372, -360)
 also returns -12.

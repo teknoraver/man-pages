@@ -22,12 +22,12 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <netdb.h>
-.PP
+.P
 .B struct servent *getservent(void);
-.PP
+.P
 .BI "struct servent *getservbyname(const char *" name ", const char *" proto );
 .BI "struct servent *getservbyport(int " port ", const char *" proto );
-.PP
+.P
 .BI "void setservent(int " stayopen );
 .B void endservent(void);
 .fi
@@ -41,7 +41,7 @@ and returns a
 structure containing
 the broken-out fields from the entry.
 A connection is opened to the database if necessary.
-.PP
+.P
 The
 .BR getservbyname ()
 function returns a
@@ -56,7 +56,7 @@ If
 .I proto
 is NULL, any protocol will be matched.
 A connection is opened to the database if necessary.
-.PP
+.P
 The
 .BR getservbyport ()
 function returns a
@@ -72,7 +72,7 @@ If
 .I proto
 is NULL, any protocol will be matched.
 A connection is opened to the database if necessary.
-.PP
+.P
 The
 .BR setservent ()
 function opens a connection to the database,
@@ -84,17 +84,17 @@ then the connection to the database
 will not be closed between calls to one of the
 .BR getserv* ()
 functions.
-.PP
+.P
 The
 .BR endservent ()
 function closes the connection to the database.
-.PP
+.P
 The
 .I servent
 structure is defined in
 .I <netdb.h>
 as follows:
-.PP
+.P
 .in +4n
 .EX
 struct servent {
@@ -105,7 +105,7 @@ struct servent {
 }
 .EE
 .in
-.PP
+.P
 The members of the
 .I servent
 structure are:
@@ -186,7 +186,7 @@ MT-Unsafe race:servent
 locale
 T}
 .TE
-.PP
+.P
 In the above table,
 .I servent
 in

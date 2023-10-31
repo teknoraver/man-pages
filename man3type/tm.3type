@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .EX
 .B #include <time.h>
-.PP
+.P
 .B struct tm {
 .BR "    int         tm_sec;" "    /* Seconds          [" 0 ", " 60 "] */"
 .BR "    int         tm_min;" "    /* Minutes          [" 0 ", " 59 "] */"
@@ -26,17 +26,17 @@ Standard C library
 .BR "    int         tm_yday;" \
 "   /* Day of the year  [" 0 ", " 365 "] (Jan/01 = " 0 ") */"
 .BR "    int         tm_isdst;" "  /* Daylight savings flag */"
-.PP
+.P
 .BR "    long        tm_gmtoff;" " /* Seconds East of UTC */"
 .BR "    const char *tm_zone;" "   /* Timezone abbreviation */"
 .B };
 .EE
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .IR tm_gmtoff ,
 .IR tm_zone :
 .nf
@@ -48,19 +48,19 @@ Feature Test Macro Requirements for glibc (see
 .fi
 .SH DESCRIPTION
 Describes time, broken down into distinct components.
-.PP
+.P
 .I tm_isdst
 describes whether daylight saving time is in effect at the time described.
 The value is positive if daylight saving time is in effect,
 zero if it is not,
 and negative if the information is not available.
-.PP
+.P
 .I tm_gmtoff
 is the difference, in seconds,
 of the timezone represented by this broken-down time and UTC
 (this is the additive inverse of
 .BR timezone (3)).
-.PP
+.P
 .I tm_zone
 is the equivalent of
 .BR tzname (3)
@@ -75,7 +75,7 @@ UTC doesn't permit double leap seconds,
 so it was limited to
 .B 60
 in C99.
-.PP
+.P
 .BR timezone (3),
 as a variable, is an XSI extension: some systems provide the V7-compatible
 .\" FreeBSD
@@ -84,7 +84,7 @@ function.
 The
 .I tm_gmtoff
 field provides an alternative (with the opposite sign) for those systems.
-.PP
+.P
 .I tm_zone
 points to static storage and may be overridden on subsequent calls to
 .BR localtime (3)
@@ -93,7 +93,7 @@ and similar functions (however, this never happens under glibc).
 C11, POSIX.1-2008.
 .SH HISTORY
 C89, POSIX.1-2001.
-.PP
+.P
 .I tm_gmtoff
 and
 .I tm_zone

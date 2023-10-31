@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "size_t wcstombs(char " dest "[restrict ." n "], \
 const wchar_t *restrict " src ,
 .BI "                size_t " n );
@@ -59,13 +59,13 @@ In this case, the conversion ends in the initial shift state.
 The number of bytes written to
 .IR dest ,
 excluding the terminating null byte (\[aq]\e0\[aq]), is returned.
-.PP
+.P
 The programmer must ensure that there is room for at least
 .I n
 bytes
 at
 .IR dest .
-.PP
+.P
 If
 .I dest
 is NULL,
@@ -73,7 +73,7 @@ is NULL,
 is ignored, and the conversion proceeds as
 above, except that the converted bytes are not written out to memory,
 and no length limit exists.
-.PP
+.P
 In order to avoid the case 2 above, the programmer should make sure
 .I n
 is greater than or equal to

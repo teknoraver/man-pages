@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <linux/close_range.h>
-.PP
+.P
 .BI "int close_range(unsigned int " first ", unsigned int " last ,
 .BI "                unsigned int " flags );
 .fi
@@ -24,9 +24,9 @@ system call closes all open file descriptors from
 to
 .I last
 (included).
-.PP
+.P
 Errors closing a given file descriptor are currently ignored.
-.PP
+.P
 .I flags
 is a bit mask containing 0 or more of the following:
 .TP
@@ -53,7 +53,7 @@ is not valid, or
 .I first
 is greater than
 .IR last .
-.PP
+.P
 The following can occur with
 .B CLOSE_RANGE_UNSHARE
 (when constructing the new descriptor table):
@@ -97,7 +97,7 @@ which provides significant performance benefits.
 .SS Closing file descriptors before exec
 .\" 60997c3d45d9a67daf01c56d805ae4fec37e0bd8
 File descriptors can be closed safely using
-.PP
+.P
 .in +4n
 .EX
 /* we don't want anything past stderr here */
@@ -105,17 +105,17 @@ close_range(3, \[ti]0U, CLOSE_RANGE_UNSHARE);
 execve(....);
 .EE
 .in
-.PP
+.P
 .B CLOSE_RANGE_UNSHARE
 is conceptually equivalent to
-.PP
+.P
 .in +4n
 .EX
 unshare(CLONE_FILES);
 close_range(first, last, 0);
 .EE
 .in
-.PP
+.P
 but can be more efficient:
 if the unshared range extends past
 the current maximum number of file descriptors allocated
@@ -168,7 +168,7 @@ uses
 to close all file descriptors greater than or equal to 3,
 and then once more displays the process's list of open files.
 The following example demonstrates the use of the program:
-.PP
+.P
 .in +4n
 .EX
 $ \fBtouch /tmp/a /tmp/b /tmp/c\fP
@@ -190,7 +190,7 @@ $ \fB./a.out /tmp/a /tmp/b /tmp/c\fP
 /proc/self/fd/3 ==> /proc/9005/fd
 .EE
 .in
-.PP
+.P
 Note that the lines showing the pathname
 .I /proc/9005/fd
 result from the calls to

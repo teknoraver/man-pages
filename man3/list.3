@@ -31,43 +31,43 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/queue.h>
-.PP
+.P
 .B LIST_ENTRY(TYPE);
-.PP
+.P
 .B LIST_HEAD(HEADNAME, TYPE);
 .BI "LIST_HEAD LIST_HEAD_INITIALIZER(LIST_HEAD " head );
 .BI "void LIST_INIT(LIST_HEAD *" head );
-.PP
+.P
 .BI "int LIST_EMPTY(LIST_HEAD *" head );
-.PP
+.P
 .BI "void LIST_INSERT_HEAD(LIST_HEAD *" head ,
 .BI "                        struct TYPE *" elm ", LIST_ENTRY " NAME );
 .BI "void LIST_INSERT_BEFORE(struct TYPE *" listelm ,
 .BI "                        struct TYPE *" elm ", LIST_ENTRY " NAME );
 .BI "void LIST_INSERT_AFTER(struct TYPE *" listelm ,
 .BI "                        struct TYPE *" elm ", LIST_ENTRY " NAME );
-.PP
+.P
 .BI "struct TYPE *LIST_FIRST(LIST_HEAD *" head );
 .\" .BI "struct TYPE *LIST_PREV(struct TYPE *" elm ", LIST_HEAD *" head ,
 .\" .BI "                        struct TYPE, LIST_ENTRY " NAME );
 .BI "struct TYPE *LIST_NEXT(struct TYPE *" elm ", LIST_ENTRY " NAME );
-.PP
+.P
 .BI "LIST_FOREACH(struct TYPE *" var ", LIST_HEAD *" head ", LIST_ENTRY " NAME );
 .\" .BI "LIST_FOREACH_FROM(struct TYPE *" var ", LIST_HEAD *" head ", LIST_ENTRY " NAME );
-.\" .PP
+.\" .P
 .\" .BI "LIST_FOREACH_SAFE(struct TYPE *" var ", LIST_HEAD *" head ,
 .\" .BI "                        LIST_ENTRY " NAME ", struct TYPE *" temp_var );
 .\" .BI "LIST_FOREACH_FROM_SAFE(struct TYPE *" var ", LIST_HEAD *" head ,
 .\" .BI "                        LIST_ENTRY " NAME ", struct TYPE *" temp_var );
-.PP
+.P
 .BI "void LIST_REMOVE(struct TYPE *" elm ", LIST_ENTRY " NAME );
-.\" .PP
+.\" .P
 .\" .BI "void LIST_SWAP(LIST_HEAD *" head1 ", LIST_HEAD *" head2 ,
 .\" .BI "                        struct TYPE, LIST_ENTRY " NAME );
 .fi
 .SH DESCRIPTION
 These macros define and operate on doubly linked lists.
-.PP
+.P
 In the macro definitions,
 .I TYPE
 is the name of a user-defined structure,
@@ -94,43 +94,43 @@ or at the head of the list.
 A
 .I LIST_HEAD
 structure is declared as follows:
-.PP
+.P
 .in +4
 .EX
 LIST_HEAD(HEADNAME, TYPE) head;
 .EE
 .in
-.PP
+.P
 where
 .I struct HEADNAME
 is the structure to be defined, and
 .I struct TYPE
 is the type of the elements to be linked into the list.
 A pointer to the head of the list can later be declared as:
-.PP
+.P
 .in +4
 .EX
 struct HEADNAME *headp;
 .EE
 .in
-.PP
+.P
 (The names
 .I head
 and
 .I headp
 are user selectable.)
-.PP
+.P
 .BR LIST_ENTRY ()
 declares a structure that connects the elements in the list.
-.PP
+.P
 .BR LIST_HEAD_INITIALIZER ()
 evaluates to an initializer for the list
 .IR head .
-.PP
+.P
 .BR LIST_INIT ()
 initializes the list referenced by
 .IR head .
-.PP
+.P
 .BR LIST_EMPTY ()
 evaluates to true if there are no elements in the list.
 .SS Insertion
@@ -138,13 +138,13 @@ evaluates to true if there are no elements in the list.
 inserts the new element
 .I elm
 at the head of the list.
-.PP
+.P
 .BR LIST_INSERT_BEFORE ()
 inserts the new element
 .I elm
 before the element
 .IR listelm .
-.PP
+.P
 .BR LIST_INSERT_AFTER ()
 inserts the new element
 .I elm
@@ -153,24 +153,24 @@ after the element
 .SS Traversal
 .BR LIST_FIRST ()
 returns the first element in the list, or NULL if the list is empty.
-.\" .PP
+.\" .P
 .\" .BR LIST_PREV ()
 .\" returns the previous element in the list, or NULL if this is the first.
 .\" List
 .\" .I head
 .\" must contain element
 .\" .IR elm .
-.PP
+.P
 .BR LIST_NEXT ()
 returns the next element in the list, or NULL if this is the last.
-.PP
+.P
 .BR LIST_FOREACH ()
 traverses the list referenced by
 .I head
 in the forward direction,
 assigning each element in turn to
 .IR var .
-.\" .PP
+.\" .P
 .\" .BR LIST_FOREACH_FROM ()
 .\" behaves identically to
 .\" .BR LIST_FOREACH ()
@@ -182,7 +182,7 @@ assigning each element in turn to
 .\" .I var
 .\" instead of the first element in the LIST referenced by
 .\" .IR head .
-.\" .PP
+.\" .P
 .\" .BR LIST_FOREACH_SAFE ()
 .\" traverses the list referenced by
 .\" .I head
@@ -194,7 +194,7 @@ assigning each element in turn to
 .\" .I var
 .\" as well as free it from within the loop safely without interfering with the
 .\" traversal.
-.\" .PP
+.\" .P
 .\" .BR LIST_FOREACH_FROM_SAFE ()
 .\" behaves identically to
 .\" .BR LIST_FOREACH_SAFE ()
@@ -221,14 +221,14 @@ from the list.
 .BR LIST_EMPTY ()
 returns nonzero if the list is empty,
 and zero if the list contains at least one entry.
-.PP
+.P
 .BR LIST_FIRST (),
 and
 .BR LIST_NEXT ()
 return a pointer to the first or next
 .I TYPE
 structure, respectively.
-.PP
+.P
 .BR LIST_HEAD_INITIALIZER ()
 returns an initializer that can be assigned to the list
 .IR head .

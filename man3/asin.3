@@ -22,17 +22,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double asin(double " x );
 .BI "float asinf(float " x );
 .BI "long double asinl(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR asinf (),
 .BR asinl ():
 .nf
@@ -49,16 +49,16 @@ that is the value whose sine is
 On success, these functions return the principal value of the arc sine of
 .I x
 in radians; the return value is in the range [\-pi/2,\ pi/2].
-.PP
+.P
 If
 .I x
 is a NaN, a NaN is returned.
-.PP
+.P
 If
 .I x
 is +0 (\-0),
 +0 (\-0) is returned.
-.PP
+.P
 If
 .I x
 is outside the range [\-1,\ 1],
@@ -72,7 +72,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Domain error: \fIx\fP is outside the range [\-1,\ 1]
@@ -102,7 +102,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to

@@ -13,7 +13,7 @@ Standard C library
 .B #define _GNU_SOURCE
 .B #define _FILE_OFFSET_BITS 64
 .B #include <unistd.h>
-.PP
+.P
 .BI "ssize_t copy_file_range(int " fd_in ", off_t *_Nullable " off_in ,
 .BI "                        int " fd_out ", off_t *_Nullable " off_out ,
 .BI "                        size_t " len ", unsigned int " flags );
@@ -31,7 +31,7 @@ bytes of data from the source file descriptor
 to the target file descriptor
 .IR fd_out ,
 overwriting any data that exists within the requested range of the target file.
-.PP
+.P
 The following semantics apply for
 .IR off_in ,
 and similar statements apply to
@@ -57,14 +57,14 @@ The file offset of
 is not changed, but
 .I off_in
 is adjusted appropriately.
-.PP
+.P
 .I fd_in
 and
 .I fd_out
 can refer to the same file.
 If they refer to the same file, then the source and target ranges are not
 allowed to overlap.
-.PP
+.P
 The
 .I flags
 argument is provided to allow for future extensions
@@ -79,7 +79,7 @@ If the file offset of
 is at or past the end of file, no bytes are copied, and
 .BR copy_file_range ()
 returns zero.
-.PP
+.P
 On error,
 .BR copy_file_range ()
 returns \-1 and
@@ -189,13 +189,13 @@ or do not support cross-filesystem copy.
 A major rework of the kernel implementation occurred in Linux 5.3.
 Areas of the API that weren't clearly defined were clarified and the API bounds
 are much more strictly checked than on earlier kernels.
-.PP
+.P
 Since Linux 5.19,
 cross-filesystem copies can be achieved
 when both filesystems are of the same type,
 and that filesystem implements support for it.
 See BUGS for behavior prior to Linux 5.19.
-.PP
+.P
 Applications should target the behaviour and requirements of Linux 5.19,
 that was also backported to earlier stable kernels.
 .SH STANDARDS
@@ -219,13 +219,13 @@ in a loop, and using the
 and
 .B SEEK_HOLE
 operations to find the locations of data segments.
-.PP
+.P
 .BR copy_file_range ()
 gives filesystems an opportunity to implement "copy acceleration" techniques,
 such as the use of reflinks (i.e., two or more inodes that share
 pointers to the same copy-on-write disk blocks)
 or server-side-copy (in the case of NFS).
-.PP
+.P
 .B _FILE_OFFSET_BITS
 should be defined to be 64 in code that uses non-null
 .I off_in

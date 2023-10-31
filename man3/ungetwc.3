@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "wint_t ungetwc(wint_t " wc ", FILE *" stream );
 .fi
 .SH DESCRIPTION
@@ -30,7 +30,7 @@ function.
 It pushes back a wide character onto
 .I stream
 and returns it.
-.PP
+.P
 If
 .I wc
 is
@@ -46,7 +46,7 @@ to
 .B EILSEQ
 and returns
 .BR WEOF .
-.PP
+.P
 If
 .I wc
 is a valid wide character, it is pushed back onto the stream
@@ -55,12 +55,12 @@ The file-position indicator is decremented by one or more.
 The end-of-file
 indicator is cleared.
 The backing storage of the file is not affected.
-.PP
+.P
 Note:
 .I wc
 need not be the last wide-character read from the stream;
 it can be any other valid wide character.
-.PP
+.P
 If the implementation supports multiple push-back operations in a row, the
 pushed-back wide characters will be read in reverse order; however, only one
 level of push-back is guaranteed.

@@ -26,18 +26,18 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/time.h>
-.PP
+.P
 .BI "int gettimeofday(struct timeval *restrict " tv ,
 .BI "                 struct timezone *_Nullable restrict " tz );
 .BI "int settimeofday(const struct timeval *" tv ,
 .BI "                 const struct timezone *_Nullable " tz );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR settimeofday ():
 .nf
     Since glibc 2.19:
@@ -51,14 +51,14 @@ The functions
 and
 .BR settimeofday ()
 can get and set the time as well as a timezone.
-.PP
+.P
 The
 .I tv
 argument is a
 .I struct timeval
 (as specified in
 .IR <sys/time.h> ):
-.PP
+.P
 .in +4n
 .EX
 struct timeval {
@@ -67,15 +67,15 @@ struct timeval {
 };
 .EE
 .in
-.PP
+.P
 and gives the number of seconds and microseconds since the Epoch (see
 .BR time (2)).
-.PP
+.P
 The
 .I tz
 argument is a
 .IR "struct timezone" :
-.PP
+.P
 .in +4n
 .EX
 struct timezone {
@@ -84,7 +84,7 @@ struct timezone {
 };
 .EE
 .in
-.PP
+.P
 If either
 .I tv
 or
@@ -96,17 +96,17 @@ is NULL, the corresponding structure is not set or returned.
 .I tv
 is NULL.)
 .\" The following is covered under EPERM below:
-.\" .PP
+.\" .P
 .\" Only the superuser may use
 .\" .BR settimeofday ().
-.PP
+.P
 The use of the
 .I timezone
 structure is obsolete; the
 .I tz
 argument should normally be specified as NULL.
 (See NOTES below.)
-.PP
+.P
 Under Linux, there are some peculiar "warp clock" semantics associated
 with the
 .BR settimeofday ()
@@ -175,7 +175,7 @@ On some architectures, an implementation of
 .BR gettimeofday ()
 is provided in the
 .BR vdso (7).
-.PP
+.P
 The kernel accepts NULL for both
 .I tv
 and
@@ -204,7 +204,7 @@ POSIX.1-2008 marks
 as obsolete, recommending the use of
 .BR clock_gettime (2)
 instead.
-.PP
+.P
 Traditionally, the fields of
 .I struct timeval
 were of type
@@ -235,7 +235,7 @@ or
 .\" Each and every occurrence of this field in the kernel source
 .\" (other than the declaration) is a bug.
 Thus, the following is purely of historical interest.
-.PP
+.P
 On old systems, the field
 .I tz_dsttime
 contains a symbolic constant (values are given below)
@@ -245,7 +245,7 @@ is in force.
 it does not indicate that DST is in force, it just selects an
 algorithm.)
 The daylight saving time algorithms defined are as follows:
-.PP
+.P
 .in +4n
 .EX
 \fBDST_NONE\fP     /* not on DST */
@@ -261,7 +261,7 @@ The daylight saving time algorithms defined are as follows:
 \fBDST_AUSTALT\fP  /* Australian style with shift in 1986 */
 .EE
 .in
-.PP
+.P
 Of course it turned out that the period in which
 Daylight Saving Time is in force cannot be given
 by a simple algorithm, one per country; indeed,
@@ -277,7 +277,7 @@ affected by discontinuous jumps in the system time
 (e.g., if the system administrator manually changes the system time).
 If you need a monotonically increasing clock, see
 .BR clock_gettime (2).
-.PP
+.P
 Macros for operating on
 .I timeval
 structures are described in

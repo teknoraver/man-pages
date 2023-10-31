@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "int mbsinit(const mbstate_t *" ps );
 .fi
 .SH DESCRIPTION
@@ -30,7 +30,7 @@ after the complete conversion of a number of characters, it may need to
 save a state for processing the remaining characters.
 Such a conversion
 state is needed for the sake of encodings such as ISO-2022 and UTF-7.
-.PP
+.P
 The initial state is the state at the beginning of conversion of a string.
 There are two kinds of state: the one used by multibyte to wide character
 conversion functions, such as
@@ -42,7 +42,7 @@ but they both fit in a
 .IR mbstate_t ,
 and they both have the same
 representation for an initial state.
-.PP
+.P
 For 8-bit encodings, all states are equivalent to the initial state.
 For multibyte encodings like UTF-8, EUC-*, BIG5, or SJIS, the wide character
 to multibyte conversion functions never produce non-initial states, but the
@@ -50,26 +50,26 @@ multibyte to wide-character conversion functions like
 .BR mbrtowc (3)
 do
 produce non-initial states when interrupted in the middle of a character.
-.PP
+.P
 One possible way to create an
 .I mbstate_t
 in initial state is to set it to zero:
-.PP
+.P
 .in +4n
 .EX
 mbstate_t state;
 memset(&state, 0, sizeof(state));
 .EE
 .in
-.PP
+.P
 On Linux, the following works as well, but might generate compiler warnings:
-.PP
+.P
 .in +4n
 .EX
 mbstate_t state = { 0 };
 .EE
 .in
-.PP
+.P
 The function
 .BR mbsinit ()
 tests whether

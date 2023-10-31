@@ -14,20 +14,20 @@ sysctl \- read/write system parameters
 .nf
 .B #include <unistd.h>
 .B #include <linux/sysctl.h>
-.PP
+.P
 .BI "[[deprecated]] int _sysctl(struct __sysctl_args *" args );
 .fi
 .SH DESCRIPTION
 .B This system call no longer exists on current kernels!
 See NOTES.
-.PP
+.P
 The
 .BR _sysctl ()
 call reads and/or writes kernel parameters.
 For example, the hostname,
 or the maximum number of open files.
 The argument has the form
-.PP
+.P
 .in +4n
 .EX
 struct __sysctl_args {
@@ -41,7 +41,7 @@ struct __sysctl_args {
 };
 .EE
 .in
-.PP
+.P
 This call does a search in a tree structure, possibly resembling
 a directory tree under
 .IR /proc/sys ,
@@ -80,7 +80,7 @@ Linux.
 .SH HISTORY
 Linux 1.3.57.
 Removed in Linux 5.5, glibc 2.32.
-.PP
+.P
 It originated in
 4.4BSD.
 Only Linux has the
@@ -97,7 +97,7 @@ and in Linux 5.5, the system call was finally removed.
 Use the
 .I /proc/sys
 interface instead.
-.PP
+.P
 Note that on older kernels where this system call still exists,
 it is available only if the kernel was configured with the
 .B CONFIG_SYSCTL_SYSCALL
@@ -108,9 +108,9 @@ necessitating the use of
 .SH BUGS
 The object names vary between kernel versions,
 making this system call worthless for applications.
-.PP
+.P
 Not all available objects are properly documented.
-.PP
+.P
 It is not yet possible to change operating system by writing to
 .IR /proc/sys/kernel/ostype .
 .SH EXAMPLES

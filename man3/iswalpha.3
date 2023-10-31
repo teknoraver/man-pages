@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wctype.h>
-.PP
+.P
 .BI "int iswalpha(wint_t " wc );
 .fi
 .SH DESCRIPTION
@@ -31,30 +31,30 @@ It tests whether
 .I wc
 is a wide character
 belonging to the wide-character class "alpha".
-.PP
+.P
 The wide-character class "alpha" is a subclass of the
 wide-character class "alnum",
 and therefore also a subclass of the wide-character class "graph" and
 of the wide-character class "print".
-.PP
+.P
 Being a subclass of the wide-character class "print",
 the wide-character class
 "alpha" is disjoint from the wide-character class "cntrl".
-.PP
+.P
 Being a subclass of the wide-character class "graph",
 the wide-character class "alpha" is disjoint from
 the wide-character class "space" and its subclass "blank".
-.PP
+.P
 Being a subclass of the wide-character class "alnum",
 the wide-character class "alpha" is disjoint from the
 wide-character class "punct".
-.PP
+.P
 The wide-character class "alpha" is disjoint from the wide-character class
 "digit".
-.PP
+.P
 The wide-character class "alpha" contains the wide-character classes "upper"
 and "lower".
-.PP
+.P
 The wide-character class "alpha" always contains at least the
 letters \[aq]A\[aq] to \[aq]Z\[aq] and \[aq]a\[aq] to \[aq]z\[aq].
 .SH RETURN VALUE

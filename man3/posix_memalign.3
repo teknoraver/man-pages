@@ -17,32 +17,32 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int posix_memalign(void **" memptr ", size_t " alignment ", size_t " size );
 .BI "void *aligned_alloc(size_t " alignment ", size_t " size );
 .BI "[[deprecated]] void *valloc(size_t " size );
-.PP
+.P
 .B #include <malloc.h>
-.PP
+.P
 .BI "[[deprecated]] void *memalign(size_t " alignment ", size_t " size );
 .BI "[[deprecated]] void *pvalloc(size_t " size );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR posix_memalign ():
 .nf
     _POSIX_C_SOURCE >= 200112L
 .fi
-.PP
+.P
 .BR aligned_alloc ():
 .nf
     _ISOC11_SOURCE
 .fi
-.PP
+.P
 .BR valloc ():
 .nf
     Since glibc 2.12:
@@ -74,7 +74,7 @@ the value placed in
 is either NULL
 .\" glibc does this:
 or a unique pointer value.
-.PP
+.P
 The obsolete function
 .BR memalign ()
 allocates
@@ -85,7 +85,7 @@ The memory address will be a multiple of
 which must be a power of two.
 .\" The behavior of memalign() for size==0 is as for posix_memalign()
 .\" but no standards govern this.
-.PP
+.P
 The function
 .BR aligned_alloc ()
 is the same as
@@ -93,7 +93,7 @@ is the same as
 except for the added restriction that
 .I alignment
 must be a power of two.
-.PP
+.P
 The obsolete function
 .BR valloc ()
 allocates
@@ -102,14 +102,14 @@ bytes and returns a pointer to the allocated memory.
 The memory address will be a multiple of the page size.
 It is equivalent to
 .IR "memalign(sysconf(_SC_PAGESIZE),size)" .
-.PP
+.P
 The obsolete function
 .BR pvalloc ()
 is similar to
 .BR valloc (),
 but rounds the size of the allocation up to
 the next multiple of the system page size.
-.PP
+.P
 For all of these functions, the memory is not zeroed.
 .SH RETURN VALUE
 .BR aligned_alloc (),
@@ -120,7 +120,7 @@ and
 return a pointer to the allocated memory on success.
 On error, NULL is returned, and \fIerrno\fP is set
 to indicate the error.
-.PP
+.P
 .BR posix_memalign ()
 returns zero on success, or one of the error values listed in the
 next section on failure.
@@ -208,11 +208,11 @@ glibc 2.0.
 Everybody agrees that
 .BR posix_memalign ()
 is declared in \fI<stdlib.h>\fP.
-.PP
+.P
 On some systems
 .BR memalign ()
 is declared in \fI<stdlib.h>\fP instead of \fI<malloc.h>\fP.
-.PP
+.P
 According to SUSv2,
 .BR valloc ()
 is declared in \fI<stdlib.h>\fP.
@@ -229,7 +229,7 @@ call that tells what alignment is needed.
 Now one can use
 .BR posix_memalign ()
 to satisfy this requirement.
-.PP
+.P
 .BR posix_memalign ()
 verifies that
 .I alignment
@@ -238,7 +238,7 @@ matches the requirements detailed above.
 may not check that the
 .I alignment
 argument is correct.
-.PP
+.P
 POSIX requires that memory obtained from
 .BR posix_memalign ()
 can be freed using
@@ -266,7 +266,7 @@ The glibc implementation
 allows memory obtained from any of these functions to be
 reclaimed with
 .BR free (3).
-.PP
+.P
 The glibc
 .BR malloc (3)
 always returns 8-byte aligned memory addresses, so these functions are

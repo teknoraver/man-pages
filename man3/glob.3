@@ -21,7 +21,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <glob.h>
-.PP
+.P
 .BI "int glob(const char *restrict " pattern ", int " flags ,
 .BI "         int (*" errfunc ")(const char *" epath ", int " eerrno ),
 .BI "         glob_t *restrict " pglob );
@@ -37,13 +37,13 @@ according to the rules used by the shell (see
 No tilde expansion or parameter substitution is done; if you want
 these, use
 .BR wordexp (3).
-.PP
+.P
 The
 .BR globfree ()
 function frees the dynamically allocated storage from an earlier call
 to
 .BR glob ().
-.PP
+.P
 The results of a
 .BR glob ()
 call are stored in the structure pointed to by
@@ -54,7 +54,7 @@ This structure is of type
 .IR <glob.h> )
 and includes the following elements defined by POSIX.2 (more may be
 present as an extension):
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -64,9 +64,9 @@ typedef struct {
 } glob_t;
 .EE
 .in
-.PP
+.P
 Results are stored in dynamically allocated storage.
-.PP
+.P
 The argument
 .I flags
 is made up of the bitwise OR of zero or more the following symbolic
@@ -117,7 +117,7 @@ character.
 Normally, a backslash can be used to quote the following character,
 providing a mechanism to turn off the special meaning
 metacharacters.
-.PP
+.P
 .I flags
 may also include any of the following, which are GNU
 extensions and not defined by POSIX.2:
@@ -193,7 +193,7 @@ However, the caller must still check that returned files
 are directories.
 (The purpose of this flag is merely to optimize performance when
 the caller is interested only in directories.)
-.PP
+.P
 If
 .I errfunc
 is not NULL,
@@ -216,14 +216,14 @@ is set,
 .BR glob ()
 will terminate after the call to
 .IR errfunc .
-.PP
+.P
 Upon successful return,
 .I pglob\->gl_pathc
 contains the number of matched pathnames and
 .I pglob\->gl_pathv
 contains a pointer to the list of pointers to matched pathnames.
 The list of pointers is terminated by a null pointer.
-.PP
+.P
 It is possible to call
 .BR glob ()
 several times.
@@ -232,7 +232,7 @@ In that case, the
 flag has to be set in
 .I flags
 on the second and later invocations.
-.PP
+.P
 As a GNU extension,
 .I pglob\->gl_flags
 is set to the flags specified,
@@ -278,7 +278,7 @@ T{
 .BR globfree ()
 T}	Thread safety	MT-Safe
 .TE
-.PP
+.P
 In the above table,
 .I utent
 in
@@ -319,15 +319,15 @@ These will store their error code in
 .IR errno .
 .SH EXAMPLES
 One example of use is the following code, which simulates typing
-.PP
+.P
 .in +4n
 .EX
 ls \-l *.c ../*.c
 .EE
 .in
-.PP
+.P
 in the shell:
-.PP
+.P
 .in +4n
 .EX
 glob_t globbuf;

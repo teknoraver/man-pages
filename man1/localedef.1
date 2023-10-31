@@ -58,7 +58,7 @@ locale functions in the C library
 etc.),
 and places the output in
 .IR outputpath .
-.PP
+.P
 The
 .I outputpath
 argument is interpreted as follows:
@@ -92,12 +92,12 @@ system-provided locales;
 it is used by all localized programs when the environment variable
 .B LOCPATH
 is not set.
-.PP
+.P
 In any case,
 .B localedef
 aborts if the directory in which it tries to write locale files has
 not already been created.
-.PP
+.P
 If no
 .I charmapfile
 is given,
@@ -386,13 +386,13 @@ POSIX.1-2008.
 Compile the locale files for Finnish in the UTF\-8 character set
 and add it to the default locale archive with the name
 .BR fi_FI.UTF\-8 :
-.PP
+.P
 .in +4n
 .EX
 localedef \-f UTF\-8 \-i fi_FI fi_FI.UTF\-8
 .EE
 .in
-.PP
+.P
 The next example does the same thing,
 but generates files into the
 .I fi_FI.UTF\-8
@@ -401,7 +401,7 @@ variable
 .B LOCPATH
 is set to the current directory (note that the last argument must
 contain a slash):
-.PP
+.P
 .in +4n
 .EX
 localedef \-f UTF\-8 \-i fi_FI ./fi_FI.UTF\-8

@@ -13,10 +13,10 @@ Standard C library
 .BR "#include <fcntl.h>" "            /* Definition of " O_* " constants */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_delete_module, const char *" name ", unsigned int " flags );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR delete_module (),
@@ -36,7 +36,7 @@ The
 argument is used to modify the behavior of the system call,
 as described below.
 This system call requires privilege.
-.PP
+.P
 Module removal is attempted according to the following rules:
 .IP (1) 5
 If there are other loaded modules that depend on
@@ -88,7 +88,7 @@ until the reference count is zero, at which point the call unblocks.
 The module is unloaded in the usual way.
 .RE
 .RE
-.PP
+.P
 The
 .B O_TRUNC
 flag has one further effect on the rules described above.
@@ -100,7 +100,7 @@ function, then an attempt to remove the module fails.
 However, if
 .B O_TRUNC
 was specified, this requirement is bypassed.
-.PP
+.P
 Using the
 .B O_TRUNC
 flag is dangerous!
@@ -174,13 +174,13 @@ alternatively, you can invoke the system call using
 .BR syscall (2).
 .SS Linux 2.4 and earlier
 In Linux 2.4 and earlier, the system call took only one argument:
-.PP
+.P
 .BI "   int delete_module(const char *" name );
-.PP
+.P
 If
 .I name
 is NULL, all unused modules marked auto-clean are removed.
-.PP
+.P
 Some further details of differences in the behavior of
 .BR delete_module ()
 in Linux 2.4 and earlier are

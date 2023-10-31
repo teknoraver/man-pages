@@ -51,20 +51,20 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/resource.h>
-.PP
+.P
 .BI "int getrlimit(int " resource ", struct rlimit *" rlim );
 .BI "int setrlimit(int " resource ", const struct rlimit *" rlim );
-.PP
+.P
 .BI "int prlimit(pid_t "  pid ", int " resource ,
 .BI "            const struct rlimit *_Nullable " new_limit ,
 .BI "            struct rlimit *_Nullable " old_limit );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR prlimit ():
 .nf
     _GNU_SOURCE
@@ -78,7 +78,7 @@ system calls get and set resource limits.
 Each resource has an associated soft and hard limit, as defined by the
 .I rlimit
 structure:
-.PP
+.P
 .in +4n
 .EX
 struct rlimit {
@@ -87,7 +87,7 @@ struct rlimit {
 };
 .EE
 .in
-.PP
+.P
 The soft limit is the value that the kernel enforces for the
 corresponding resource.
 The hard limit acts as a ceiling for the soft limit:
@@ -97,14 +97,14 @@ A privileged process (under Linux: one with the
 .B CAP_SYS_RESOURCE
 capability in the initial user namespace)
 may make arbitrary changes to either limit value.
-.PP
+.P
 The value
 .B RLIM_INFINITY
 denotes no limit on a resource (both in the structure returned by
 .BR getrlimit ()
 and in the structure passed to
 .BR setrlimit ()).
-.PP
+.P
 The
 .I resource
 argument must be one of:
@@ -450,14 +450,14 @@ system call combines and extends the functionality of
 and
 .BR getrlimit ().
 It can be used to both set and get the resource limits of an arbitrary process.
-.PP
+.P
 The
 .I resource
 argument has the same meaning as for
 .BR setrlimit ()
 and
 .BR getrlimit ().
-.PP
+.P
 If the
 .I new_limit
 argument is not NULL, then the
@@ -475,7 +475,7 @@ in the
 .I rlimit
 structure pointed to by
 .IR old_limit .
-.PP
+.P
 The
 .I pid
 argument specifies the ID of the process on which the call is to operate.
@@ -565,7 +565,7 @@ POSIX.1-2008.
 .TP
 .BR prlimit ()
 Linux.
-.PP
+.P
 .B RLIMIT_MEMLOCK
 and
 .B RLIMIT_NPROC
@@ -597,15 +597,15 @@ A child process created via
 inherits its parent's resource limits.
 Resource limits are preserved across
 .BR execve (2).
-.PP
+.P
 Resource limits are per-process attributes that are shared
 by all of the threads in a process.
-.PP
+.P
 Lowering the soft limit for a resource below the process's
 current consumption of that resource will succeed
 (but will prevent the process from further increasing
 its consumption of the resource).
-.PP
+.P
 One can set the resource limits of the shell using the built-in
 .I ulimit
 command
@@ -614,12 +614,12 @@ in
 .BR csh (1)).
 The shell's resource limits are inherited by the processes that
 it creates to execute commands.
-.PP
+.P
 Since Linux 2.6.24, the resource limits of any process can be inspected via
 .IR /proc/ pid /limits ;
 see
 .BR proc (5).
-.PP
+.P
 Ancient systems provided a
 .BR vlimit ()
 function with a similar purpose to
@@ -637,7 +637,7 @@ wrapper functions no longer invoke the corresponding system calls,
 but instead employ
 .BR prlimit (),
 for the reasons described in BUGS.
-.PP
+.P
 The name of the glibc wrapper function is
 .BR prlimit ();
 the underlying system call is
@@ -651,7 +651,7 @@ signals delivered when a process encountered the soft and hard
 .B RLIMIT_CPU
 limits were delivered one (CPU) second later than they should have been.
 This was fixed in Linux 2.6.8.
-.PP
+.P
 In Linux 2.6.x kernels before Linux 2.6.17, a
 .B RLIMIT_CPU
 limit of 0 is wrongly treated as "no limit" (like
@@ -659,12 +659,12 @@ limit of 0 is wrongly treated as "no limit" (like
 Since Linux 2.6.17, setting a limit of 0 does have an effect,
 but is actually treated as a limit of 1 second.
 .\" see http://marc.theaimsgroup.com/?l=linux-kernel&m=114008066530167&w=2
-.PP
+.P
 A kernel bug means that
 .\" See https://lwn.net/Articles/145008/
 .B RLIMIT_RTPRIO
 does not work in Linux 2.6.12; the problem is fixed in Linux 2.6.13.
-.PP
+.P
 In Linux 2.6.12, there was an off-by-one mismatch
 between the priority ranges returned by
 .BR getpriority (2)
@@ -675,7 +675,7 @@ was calculated as
 .IR "19\ \-\ rlim_cur" .
 This was fixed in Linux 2.6.13.
 .\" see http://marc.theaimsgroup.com/?l=linux-kernel&m=112256338703880&w=2
-.PP
+.P
 Since Linux 2.6.12,
 .\" The relevant patch, sent to LKML, seems to be
 .\" http://thread.gmane.org/gmane.linux.kernel/273462
@@ -702,7 +702,7 @@ portable applications should avoid relying on this Linux-specific behavior.
 The Linux-specific
 .B RLIMIT_RTTIME
 limit exhibits the same behavior when the soft limit is encountered.
-.PP
+.P
 Kernels before Linux 2.4.22 did not diagnose the error
 .B EINVAL
 for
@@ -712,7 +712,7 @@ when
 was greater than
 .IR rlim\->rlim_max .
 .\" d3561f78fd379a7110e46c87964ba7aa4120235c
-.PP
+.P
 Linux doesn't return an error when an attempt to set
 .B RLIMIT_CPU
 has failed, for compatibility reasons.
@@ -752,7 +752,7 @@ represent file offsets\[em]that is, as wide as a 64-bit
 .B off_t
 (assuming a program compiled with
 .IR _FILE_OFFSET_BITS=64 ).
-.PP
+.P
 To work around this kernel limitation,
 if a program tried to set a resource limit to a value larger than
 can be represented in a 32-bit
@@ -762,7 +762,7 @@ then the glibc
 wrapper function silently converted the limit value to
 .BR RLIM_INFINITY .
 In other words, the requested resource limit setting was silently ignored.
-.PP
+.P
 Since glibc 2.13,
 .\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=12201
 glibc works around the limitations of the
@@ -778,7 +778,7 @@ as wrapper functions that call
 .SH EXAMPLES
 The program below demonstrates the use of
 .BR prlimit ().
-.PP
+.P
 .\" SRC BEGIN (getrlimit.c)
 .EX
 #define _GNU_SOURCE

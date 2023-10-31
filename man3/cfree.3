@@ -11,29 +11,29 @@ Standard C library
 .RI ( libc ", " \-lc )
 .SH SYNOPSIS
 .nf
-.PP
+.P
 .B "#include <stdlib.h>"
-.PP
+.P
 /* In SunOS 4 */
 .BI "int cfree(void *" ptr );
-.PP
+.P
 /* In glibc or FreeBSD libcompat */
 .BI "void cfree(void *" ptr );
-.PP
+.P
 /* In SCO OpenServer */
 .BI "void cfree(char " ptr [. size " * ." num "], unsigned int " num ", \
 unsigned int " size );
-.PP
+.P
 /* In Solaris watchmalloc.so.1 */
 .BI "void cfree(void " ptr [. elsize " * ." nelem "], size_t " nelem ", \
 size_t " elsize );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR cfree ():
 .nf
     Since glibc 2.19:
@@ -53,7 +53,7 @@ In glibc, the function
 is a synonym for
 .BR free (3),
 "added for compatibility with SunOS".
-.PP
+.P
 Other systems have other functions with this name.
 The declaration is sometimes in
 .I <stdlib.h>
@@ -64,17 +64,17 @@ Some SCO and Solaris versions have malloc libraries with a 3-argument
 .BR cfree (),
 apparently as an analog to
 .BR calloc (3).
-.PP
+.P
 If you need it while porting something, add
-.PP
+.P
 .in +4n
 .EX
 #define cfree(p, n, s) free((p))
 .EE
 .in
-.PP
+.P
 to your file.
-.PP
+.P
 A frequently asked question is "Can I use
 .BR free (3)
 to free memory allocated with
@@ -83,7 +83,7 @@ or do I need
 .BR cfree ()?"
 Answer: use
 .BR free (3).
-.PP
+.P
 An SCO manual writes: "The cfree routine is provided for compliance
 to the iBCSe2 standard and simply calls free.
 The num and size

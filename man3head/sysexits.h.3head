@@ -23,11 +23,11 @@ lB2 lB2 l1 lX.
 #define EX_OK	0	/*	T{
 successful termination */
 T}
-.PP
+.P
 #define EX__BASE	64	/*	T{
 base value for error messages */
 T}
-.PP
+.P
 #define EX_USAGE	64	/*	T{
 command line usage error */
 T}
@@ -73,7 +73,7 @@ T}
 #define EX_CONFIG	78	/*	T{
 configuration error */
 T}
-.PP
+.P
 .T&
 lB2 l2 l1 lX.
 #define EX__MAX	...	/*	T{
@@ -82,7 +82,7 @@ T}
 .TE
 .SH DESCRIPTION
 A few programs exit with the following error codes.
-.PP
+.P
 The successful exit is always indicated by a status of
 .BR 0 ,
 or
@@ -181,7 +181,7 @@ but rather for higher level permissions.
 .TP
 .B EX_CONFIG
 Something was found in an unconfigured or misconfigured state.
-.PP
+.P
 The numerical values corresponding to the symbolical ones
 are given in parenthesis for easy reference.
 .SH STANDARDS

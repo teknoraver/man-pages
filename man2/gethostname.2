@@ -18,16 +18,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int gethostname(char *" name ", size_t " len );
 .BI "int sethostname(const char *" name ", size_t " len );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR gethostname ():
 .nf
     _XOPEN_SOURCE >= 500 || _POSIX_C_SOURCE >= 200112L
@@ -35,7 +35,7 @@ Feature Test Macro Requirements for glibc (see
 .\" The above is something of a simplification
 .\" also before glibc 2.3 there was a bit churn
 .fi
-.PP
+.P
 .BR sethostname ():
 .nf
     Since glibc 2.21:
@@ -50,7 +50,7 @@ Feature Test Macro Requirements for glibc (see
 These system calls are used to access or to change the system hostname.
 More precisely, they operate on the hostname associated with the calling
 process's UTS namespace.
-.PP
+.P
 .BR sethostname ()
 sets the hostname to the value given in the character array
 .IR name .
@@ -61,7 +61,7 @@ argument specifies the number of bytes in
 (Thus,
 .I name
 does not require a terminating null byte.)
-.PP
+.P
 .BR gethostname ()
 returns the null-terminated hostname in the character array
 .IR name ,
@@ -155,7 +155,7 @@ POSIX.1-2001 and POSIX.1-2008 specify
 .BR gethostname ()
 but not
 .BR sethostname ().
-.PP
+.P
 Versions of glibc before glibc 2.2
 .\" At least glibc 2.0 and glibc 2.1, older versions not checked
 handle the case where the length of the

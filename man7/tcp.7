@@ -96,7 +96,7 @@ tcp \- TCP protocol
 .B #include <sys/socket.h>
 .B #include <netinet/in.h>
 .B #include <netinet/tcp.h>
-.PP
+.P
 .IB tcp_socket " = socket(AF_INET, SOCK_STREAM, 0);"
 .fi
 .SH DESCRIPTION
@@ -112,7 +112,7 @@ retransmits lost packets.
 It generates and checks a per-packet checksum to catch
 transmission errors.
 TCP does not preserve record boundaries.
-.PP
+.P
 A newly created TCP socket has no remote or local address and is not
 fully specified.
 To create an outgoing TCP connection use
@@ -131,7 +131,7 @@ or
 .BR connect (2)
 successfully called on it is fully specified and may transmit data.
 Data cannot be transmitted on listening or not yet connected sockets.
-.PP
+.P
 Linux supports RFC\ 1323 TCP high performance
 extensions.
 These include Protection Against Wrapped
@@ -151,7 +151,7 @@ and
 socket options with the
 .BR setsockopt (2)
 call.
-.PP
+.P
 The maximum sizes for socket buffers declared via the
 .B SO_SNDBUF
 and
@@ -182,7 +182,7 @@ calls in order to have it take effect.
 See
 .BR socket (7)
 for more information.
-.PP
+.P
 TCP supports urgent data.
 Urgent data is used to signal the
 receiver that some important message is part of the data
@@ -214,7 +214,7 @@ flag is set for
 .BR recv (2)
 or
 .BR recvmsg (2).
-.PP
+.P
 When out-of-band data is present,
 .BR select (2)
 indicates the file descriptor as having an exceptional condition and
@@ -222,7 +222,7 @@ indicates the file descriptor as having an exceptional condition and
 indicates a
 .B POLLPRI
 event.
-.PP
+.P
 Linux 2.4 introduced a number of changes for improved
 throughput and scaling, as well as enhanced functionality.
 Some of these features include support for zero-copy
@@ -1068,7 +1068,7 @@ most
 socket options are valid on TCP sockets.
 For more information see
 .BR ip (7).
-.PP
+.P
 Following is a list of TCP-specific socket options.
 For details of some other socket options that are also applicable
 for TCP sockets, see
@@ -1368,19 +1368,19 @@ the stream (even when
 .B SO_OOBINLINE
 is not set).
 This differs from BSD-based stacks.
-.PP
+.P
 Linux uses the BSD compatible interpretation of the urgent
 pointer field by default.
 This violates RFC\ 1122, but is
 required for interoperability with other stacks.
 It can be changed via
 .IR /proc/sys/net/ipv4/tcp_stdurg .
-.PP
+.P
 It is possible to peek at out-of-band data using the
 .BR recv (2)
 .B MSG_PEEK
 flag.
-.PP
+.P
 Since Linux 2.4, Linux supports the use of
 .B MSG_TRUNC
 in the
@@ -1402,14 +1402,14 @@ The following
 calls return information in
 .IR value .
 The correct syntax is:
-.PP
+.P
 .RS
 .nf
 .BI int " value";
 .IB error " = ioctl(" tcp_socket ", " ioctl_type ", &" value ");"
 .fi
 .RE
-.PP
+.P
 .I ioctl_type
 is one of the following:
 .TP
@@ -1484,7 +1484,7 @@ When a network error occurs, TCP tries to resend the packet.
 If it doesn't succeed after some time, either
 .B ETIMEDOUT
 or the last received error on this connection is reported.
-.PP
+.P
 Some applications require a quicker error notification.
 This can be enabled with the
 .B IPPROTO_IP
@@ -1509,7 +1509,7 @@ executed on a shut down socket.
 .TP
 .B ETIMEDOUT
 The other end didn't acknowledge retransmitted data after some time.
-.PP
+.P
 Any errors defined for
 .BR ip (7)
 or the generic socket layer may also be returned for TCP.
@@ -1522,7 +1522,7 @@ Support for forward acknowledgement (FACK), TIME_WAIT recycling,
 and per-connection keepalive socket options were introduced in Linux 2.3.
 .SH BUGS
 Not all errors are documented.
-.PP
+.P
 IPv6 is not described.
 .\" Only a single Linux kernel version is described
 .\" Info for 2.2 was lost. Should be added again,
@@ -1544,10 +1544,10 @@ IPv6 is not described.
 .BR socket (2),
 .BR ip (7),
 .BR socket (7)
-.PP
+.P
 The kernel source file
 .IR Documentation/networking/ip\-sysctl.txt .
-.PP
+.P
 RFC\ 793 for the TCP specification.
 .br
 RFC\ 1122 for the TCP requirements and a description of the Nagle algorithm.

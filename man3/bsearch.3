@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "void *bsearch(const void " key [. size "], \
 const void " base [. size " * ." nmemb ],
 .BI "              size_t " nmemb ", size_t " size ,
@@ -39,7 +39,7 @@ that matches the object pointed to by
 The size of each member
 of the array is specified by
 .IR size .
-.PP
+.P
 The contents of the array should be in ascending sorted order according
 to the comparison function referenced by
 .IR compar .
@@ -83,7 +83,7 @@ The example below first sorts an array of structures using
 .BR qsort (3),
 then retrieves desired elements using
 .BR bsearch ().
-.PP
+.P
 .\" SRC BEGIN (bsearch.c)
 .EX
 #include <stdio.h>

@@ -17,15 +17,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "wchar_t *wcsdup(const wchar_t *" s );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR wcsdup ():
 .nf
     Since glibc 2.10:
@@ -43,7 +43,7 @@ function.
 It allocates and returns a new wide-character string whose initial
 contents is a duplicate of the wide-character string pointed to by
 .IR s .
-.PP
+.P
 Memory for the new wide-character string is
 obtained with
 .BR malloc (3),

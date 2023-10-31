@@ -13,12 +13,12 @@ Dynamic linking library
 .SH SYNOPSIS
 .nf
 .B #include <dlfcn.h>
-.PP
+.P
 .BI "void *dlsym(void *restrict " handle ", const char *restrict " symbol );
-.PP
+.P
 .B #define _GNU_SOURCE
 .B #include <dlfcn.h>
-.PP
+.P
 .BI "void *dlvsym(void *restrict " handle ", const char *restrict " symbol ,
 .BI "             const char *restrict " version );
 .fi
@@ -39,7 +39,7 @@ returns NULL.
 (The search performed by
 .BR dlsym ()
 is breadth first through the dependency tree of these shared objects.)
-.PP
+.P
 In unusual cases (see NOTES) the value of the symbol could actually be NULL.
 Therefore, a NULL return from
 .BR dlsym ()
@@ -53,7 +53,7 @@ and then call
 .BR dlerror (3)
 again, saving its return value into a variable, and check whether
 this saved value is not NULL.
-.PP
+.P
 There are two special pseudo-handles that may be specified in
 .IR handle :
 .TP
@@ -79,7 +79,7 @@ in
 can find and invoke the "real" function provided in another shared object
 (or for that matter, the "next" definition of the function in cases
 where there are multiple layers of preloading).
-.PP
+.P
 The
 .B _GNU_SOURCE
 feature test macro must be defined in order to obtain the
@@ -89,7 +89,7 @@ and
 .B RTLD_NEXT
 from
 .IR <dlfcn.h> .
-.PP
+.P
 The function
 .BR dlvsym ()
 does the same as

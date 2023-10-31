@@ -13,7 +13,7 @@ Real-time library
 .nf
 .B #include <mqueue.h>
 .BR "#include <signal.h>           " "/* Definition of SIGEV_* constants */"
-.PP
+.P
 .BI "int mq_notify(mqd_t " mqdes ", const struct sigevent *" sevp );
 .fi
 .SH DESCRIPTION
@@ -22,7 +22,7 @@ allows the calling process to register or unregister for delivery of
 an asynchronous notification when a new message arrives on
 the empty message queue referred to by the message queue descriptor
 .IR mqdes .
-.PP
+.P
 The
 .I sevp
 argument is a pointer to a
@@ -30,7 +30,7 @@ argument is a pointer to a
 structure.
 For the definition and general details of this structure, see
 .BR sigevent (3type).
-.PP
+.P
 If
 .I sevp
 is a non-null pointer, then
@@ -77,24 +77,24 @@ as if it were the start function of a new thread.
 See
 .BR sigevent (3type)
 for details.
-.PP
+.P
 Only one process can be registered to receive notification
 from a message queue.
-.PP
+.P
 If
 .I sevp
 is NULL, and the calling process is currently registered to receive
 notifications for this message queue, then the registration is removed;
 another process can then register to receive a message notification
 for this queue.
-.PP
+.P
 Message notification occurs only when a new message arrives and
 the queue was previously empty.
 If the queue was not empty at the time
 .BR mq_notify ()
 was called, then a notification will occur only after
 the queue is emptied and a new message arrives.
-.PP
+.P
 If another process or thread is waiting to read a message
 from an empty queue using
 .BR mq_receive (3),
@@ -102,7 +102,7 @@ then any message notification registration is ignored:
 the message is delivered to the process or thread calling
 .BR mq_receive (3),
 and the message notification registration remains in effect.
-.PP
+.P
 Notification occurs once: after a notification is delivered,
 the notification registration is removed,
 and another process can register for message notification.
@@ -142,7 +142,7 @@ is not a valid signal number.
 .TP
 .B ENOMEM
 Insufficient memory.
-.PP
+.P
 POSIX.1-2008 says that an implementation
 .I may
 generate an

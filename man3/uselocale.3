@@ -11,15 +11,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <locale.h>
-.PP
+.P
 .BI "locale_t uselocale(locale_t " newloc );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR uselocale ():
 .nf
     Since glibc 2.10:
@@ -37,7 +37,7 @@ After a successful call to
 any calls by this thread to functions that depend on the locale
 will operate as though the locale has been set to
 .IR newloc .
-.PP
+.P
 The
 .I newloc
 argument can have one of the following values:

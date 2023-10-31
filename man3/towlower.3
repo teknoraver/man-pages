@@ -19,16 +19,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wctype.h>
-.PP
+.P
 .BI "wint_t towlower(wint_t " wc );
 .BI "wint_t towlower_l(wint_t " wc ", locale_t " locale );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR towlower_l ():
 .nf
     Since glibc 2.10:
@@ -51,7 +51,7 @@ it returns the lowercase equivalent of
 In all other cases,
 .I wc
 is returned unchanged.
-.PP
+.P
 The
 .BR towlower_l ()
 function performs the same task,
@@ -67,7 +67,7 @@ is the special locale object
 (see
 .BR duplocale (3))
 or is not a valid locale object handle.
-.PP
+.P
 The argument
 .I wc
 must be representable as a
@@ -121,7 +121,7 @@ POSIX.1-2008.
 The behavior of these functions depends on the
 .B LC_CTYPE
 category of the locale.
-.PP
+.P
 These functions are not very appropriate for dealing with Unicode characters,
 because Unicode knows about three cases: upper, lower, and title case.
 .SH SEE ALSO

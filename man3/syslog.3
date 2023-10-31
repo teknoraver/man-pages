@@ -24,19 +24,19 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <syslog.h>
-.PP
+.P
 .BI "void openlog(const char *" ident ", int " option ", int " facility );
 .BI "void syslog(int " priority ", const char *" format ", ...);"
 .B "void closelog(void);"
-.PP
+.P
 .BI "void vsyslog(int " priority ", const char *" format ", va_list " ap );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR vsyslog ():
 .nf
     Since glibc 2.19:
@@ -48,7 +48,7 @@ Feature Test Macro Requirements for glibc (see
 .SS openlog()
 .BR openlog ()
 opens a connection to the system logger for a program.
-.PP
+.P
 The string pointed to by
 .I ident
 is prepended to every message, and is typically set to the program name.
@@ -58,7 +58,7 @@ is NULL, the program name is used.
 (POSIX.1-2008 does not specify the behavior when
 .I ident
 is NULL.)
-.PP
+.P
 The
 .I option
 argument specifies flags which control the operation of
@@ -75,7 +75,7 @@ The values that may be specified for
 and
 .I facility
 are described below.
-.PP
+.P
 The use of
 .BR openlog ()
 is optional; it will automatically be called by
@@ -88,7 +88,7 @@ will default to NULL.
 .BR syslog ()
 generates a log message, which will be distributed by
 .BR syslogd (8).
-.PP
+.P
 The
 .I priority
 argument is formed by ORing together a
@@ -107,7 +107,7 @@ is used, or, if there was no preceding
 call, a default of
 .B LOG_USER
 is employed.
-.PP
+.P
 The remaining arguments are a
 .IR format ,
 as in
@@ -120,7 +120,7 @@ will be replaced by
 the error message string
 .IR strerror ( errno ).
 The format string need not include a terminating newline character.
-.PP
+.P
 The function
 .BR vsyslog ()
 performs the same task as
@@ -254,7 +254,7 @@ informational message
 .TP
 .B LOG_DEBUG
 debug-level message
-.PP
+.P
 The function
 .BR setlogmask (3)
 can be used to restrict logging to specified levels only.
@@ -309,7 +309,7 @@ None.
 .\" .I <varargs.h>
 .\" mechanism, which is not compatible with
 .\" .IR <stdarg.h> .
-.PP
+.P
 POSIX.1-2001 specifies only the
 .B LOG_USER
 and
@@ -323,7 +323,7 @@ and
 the other
 .I facility
 values appear on most UNIX systems.
-.PP
+.P
 The
 .B LOG_PERROR
 value for
@@ -342,10 +342,10 @@ is changed,
 may start prepending the changed string, and if the string
 it points to ceases to exist, the results are undefined.
 Most portable is to use a string constant.
-.PP
+.P
 Never pass a string with user-supplied data as a format,
 use the following instead:
-.PP
+.P
 .in +4n
 .EX
 syslog(priority, "%s", string);

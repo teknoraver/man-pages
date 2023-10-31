@@ -22,7 +22,7 @@ Standard C library
 .\" Sun version
 .\" .B #include <des_crypt.h>
 .B #include <rpc/des_crypt.h>
-.PP
+.P
 .BI "[[deprecated]] int ecb_crypt(char *" key ", char " data [. datalen ],
 .BI "                             unsigned int " datalen ", \
 unsigned int " mode );
@@ -30,9 +30,9 @@ unsigned int " mode );
 .BI "                             unsigned int " datalen ", \
 unsigned int " mode ,
 .BI "                             char *" ivec );
-.PP
+.P
 .BI "[[deprecated]] void des_setparity(char *" key );
-.PP
+.P
 .BI "[[deprecated]] int DES_FAILED(int " status );
 .fi
 .SH DESCRIPTION
@@ -64,7 +64,7 @@ mode protects against insertions, deletions, and
 substitutions of blocks.
 Also, regularities in the clear text will
 not appear in the cipher text.
-.PP
+.P
 Here is how to use these routines.
 The first argument,
 .IR key ,
@@ -120,7 +120,7 @@ An error occurred in the hardware or driver.
 .TP
 .B DESERR_BADPARAM
 Bad argument to routine.
-.PP
+.P
 Given a result status
 .IR stat ,
 the macro
@@ -152,7 +152,7 @@ None.
 4.3BSD.
 glibc 2.1.
 Removed in glibc 2.28.
-.PP
+.P
 Because they employ the DES block cipher,
 which is no longer considered secure,
 these functions were removed.

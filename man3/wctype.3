@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wctype.h>
-.PP
+.P
 .BI "wctype_t wctype(const char *" name );
 .fi
 .SH DESCRIPTION
@@ -38,7 +38,7 @@ can be passed to the
 function
 to actually test whether a given
 wide character has the property.
-.PP
+.P
 The
 .BR wctype ()
 function returns a property, given by its name.
@@ -47,7 +47,7 @@ valid names depends on the
 .B LC_CTYPE
 category of the current locale, but the
 following names are valid in all locales.
-.PP
+.P
 .nf
     "alnum" \- realizes the \fBisalnum\fP(3) classification function
     "alpha" \- realizes the \fBisalpha\fP(3) classification function

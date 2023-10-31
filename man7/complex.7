@@ -15,7 +15,7 @@ Math library
 .SH DESCRIPTION
 Complex numbers are numbers of the form z = a+b*i, where a and b are
 real numbers and i = sqrt(\-1), so that i*i = \-1.
-.PP
+.P
 There are other ways to represent that number.
 The pair (a,b) of real
 numbers may be viewed as a point in the plane, given by X- and
@@ -25,7 +25,7 @@ the pair of real numbers (r,phi), where r is the distance to the origin O,
 and phi the angle between the X-axis and the line Oz.
 Now
 z = r*exp(i*phi) = r*(cos(phi)+i*sin(phi)).
-.PP
+.P
 The basic operations are defined on z = a+b*i and w = c+d*i as:
 .TP
 .B addition: z+w = (a+c) + (b+d)*i
@@ -33,13 +33,13 @@ The basic operations are defined on z = a+b*i and w = c+d*i as:
 .B multiplication: z*w = (a*c \- b*d) + (a*d + b*c)*i
 .TP
 .B division: z/w = ((a*c + b*d)/(c*c + d*d)) + ((b*c \- a*d)/(c*c + d*d))*i
-.PP
+.P
 Nearly all math function have a complex counterpart but there are
 some complex-only functions.
 .SH EXAMPLES
 Your C-compiler can work with complex numbers if it supports the C99 standard.
 The imaginary unit is represented by I.
-.PP
+.P
 .EX
 /* check that exp(i * pi) == \-1 */
 #include <math.h>        /* for atan */

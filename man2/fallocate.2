@@ -16,7 +16,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <fcntl.h>
-.PP
+.P
 .BI "int fallocate(int " fd ", int " mode ", off_t " offset \
 ", off_t " len ");"
 .fi
@@ -25,7 +25,7 @@ This is a nonportable, Linux-specific system call.
 For the portable, POSIX.1-specified method of ensuring that space
 is allocated for a file, see
 .BR posix_fallocate (3).
-.PP
+.P
 .BR fallocate ()
 allows the caller to directly manipulate the allocated disk space
 for the file referred to by
@@ -35,7 +35,7 @@ for the byte range starting at
 and continuing for
 .I len
 bytes.
-.PP
+.P
 The
 .I mode
 argument determines the operation to be performed on the given range.
@@ -63,13 +63,13 @@ This default behavior closely resembles the behavior of the
 .BR posix_fallocate (3)
 library function,
 and is intended as a method of optimally implementing that function.
-.PP
+.P
 After a successful call, subsequent writes into the range specified by
 .I offset
 and
 .I len
 are guaranteed not to fail because of lack of disk space.
-.PP
+.P
 If the
 .B FALLOC_FL_KEEP_SIZE
 flag is specified in
@@ -80,7 +80,7 @@ but the file size will not be changed even if
 is greater than the file size.
 Preallocating zeroed blocks beyond the end of the file in this manner
 is useful for optimizing append workloads.
-.PP
+.P
 If the
 .B FALLOC_FL_UNSHARE_RANGE
 flag is specified in
@@ -90,7 +90,7 @@ that a subsequent write will not fail due to lack of space.
 Typically, this will be done by performing a copy-on-write operation on
 all shared data in the file.
 This flag may not be supported by all filesystems.
-.PP
+.P
 Because allocation is done in block size chunks,
 .BR fallocate ()
 may allocate a larger range of disk space than was specified.
@@ -109,7 +109,7 @@ Within the specified range, partial filesystem blocks are zeroed,
 and whole filesystem blocks are removed from the file.
 After a successful call,
 subsequent reads from this range will return zeros.
-.PP
+.P
 The
 .B FALLOC_FL_PUNCH_HOLE
 flag must be ORed with
@@ -120,7 +120,7 @@ in other words, even when punching off the end of the file, the file size
 (as reported by
 .BR stat (2))
 does not change.
-.PP
+.P
 Not all filesystems support
 .BR FALLOC_FL_PUNCH_HOLE ;
 if a filesystem doesn't support the operation, an error is returned.
@@ -160,7 +160,7 @@ will be appended at the location
 and the file will be
 .I len
 bytes smaller.
-.PP
+.P
 A filesystem may place limitations on the granularity of the operation,
 in order to ensure efficient implementation.
 Typically,
@@ -174,7 +174,7 @@ If a filesystem has such a requirement,
 fails with the error
 .B EINVAL
 if this requirement is violated.
-.PP
+.P
 If the region specified by
 .I offset
 plus
@@ -183,12 +183,12 @@ reaches or passes the end of file, an error is returned;
 instead, use
 .BR ftruncate (2)
 to truncate a file.
-.PP
+.P
 No other flags may be specified in
 .I mode
 in conjunction with
 .BR FALLOC_FL_COLLAPSE_RANGE .
-.PP
+.P
 As at Linux 3.15,
 .B FALLOC_FL_COLLAPSE_RANGE
 is supported by
@@ -212,13 +212,13 @@ Within the specified range, blocks are preallocated for the regions
 that span the holes in the file.
 After a successful call, subsequent
 reads from this range will return zeros.
-.PP
+.P
 Zeroing is done within the filesystem preferably by converting the range into
 unwritten extents.
 This approach means that the specified range will not be physically zeroed
 out on the device (except for partial blocks at the either end of the range),
 and I/O is (otherwise) required only to update metadata.
-.PP
+.P
 If the
 .B FALLOC_FL_KEEP_SIZE
 flag is additionally specified in
@@ -230,7 +230,7 @@ is greater than the file size.
 This behavior is the same as when preallocating space with
 .B FALLOC_FL_KEEP_SIZE
 specified.
-.PP
+.P
 Not all filesystems support
 .BR FALLOC_FL_ZERO_RANGE ;
 if a filesystem doesn't support the operation, an error is returned.
@@ -270,7 +270,7 @@ bytes.
 Inserting a hole inside a file increases the file size by
 .I len
 bytes.
-.PP
+.P
 This mode has the same limitations as
 .B FALLOC_FL_COLLAPSE_RANGE
 regarding the granularity of the operation.
@@ -284,12 +284,12 @@ is equal to or greater than the end of file, an error is returned.
 For such operations (i.e., inserting a hole at the end of file),
 .BR ftruncate (2)
 should be used.
-.PP
+.P
 No other flags may be specified in
 .I mode
 in conjunction with
 .BR FALLOC_FL_INSERT_RANGE .
-.PP
+.P
 .B FALLOC_FL_INSERT_RANGE
 requires filesystem support.
 Filesystems that support this operation include

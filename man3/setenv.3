@@ -24,16 +24,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int setenv(const char *" name ", const char *" value ", int " overwrite );
 .BI "int unsetenv(const char *" name );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR setenv (),
 .BR unsetenv ():
 .nf
@@ -73,7 +73,7 @@ and
 .I value
 (by contrast with
 .BR putenv (3)).
-.PP
+.P
 The
 .BR unsetenv ()
 function deletes the variable
@@ -120,7 +120,7 @@ T}	Thread safety	MT-Unsafe const:env
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, 4.3BSD.
-.PP
+.P
 Prior to glibc 2.2.2,
 .BR unsetenv ()
 was prototyped

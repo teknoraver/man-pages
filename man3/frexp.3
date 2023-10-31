@@ -21,17 +21,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double frexp(double " x ", int *" exp );
 .BI "float frexpf(float " x ", int *" exp );
 .BI "long double frexpl(long double " x ", int *" exp );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR frexpf (),
 .BR frexpl ():
 .nf
@@ -55,20 +55,20 @@ the normalized fraction is
 times a power of two,
 and its absolute value is always in the range 1/2 (inclusive) to
 1 (exclusive), that is, [0.5,1).
-.PP
+.P
 If
 .I x
 is zero, then the normalized fraction is
 zero and zero is stored in
 .IR exp .
-.PP
+.P
 If
 .I x
 is a NaN,
 a NaN is returned, and the value of
 .I *exp
 is unspecified.
-.PP
+.P
 If
 .I x
 is positive infinity (negative infinity),
@@ -97,14 +97,14 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to
 SVr4, 4.3BSD, C89.
 .SH EXAMPLES
 The program below produces results such as the following:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out 2560"

@@ -21,7 +21,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/file.h>
-.PP
+.P
 .BI "int flock(int " fd ", int " operation );
 .fi
 .SH DESCRIPTION
@@ -45,7 +45,7 @@ file at a given time.
 .B LOCK_UN
 Remove an existing lock held by this process.
 .RE
-.PP
+.P
 A call to
 .BR flock ()
 may block if an incompatible lock is held by another process.
@@ -53,9 +53,9 @@ To make a nonblocking request, include
 .B LOCK_NB
 (by ORing)
 with any of the above operations.
-.PP
+.P
 A single file may not simultaneously have both shared and exclusive locks.
-.PP
+.P
 Locks created by
 .BR flock ()
 are associated with an open file description (see
@@ -70,7 +70,7 @@ Furthermore, the lock is released either by an explicit
 .B LOCK_UN
 operation on any of these duplicate file descriptors, or when all
 such file descriptors have been closed.
-.PP
+.P
 If a process uses
 .BR open (2)
 (or similar) to obtain more than one file descriptor for the same file,
@@ -79,19 +79,19 @@ these file descriptors are treated independently by
 An attempt to lock the file using one of these file descriptors
 may be denied by a lock that the calling process has
 already placed via another file descriptor.
-.PP
+.P
 A process may hold only one type of lock (shared or exclusive)
 on a file.
 Subsequent
 .BR flock ()
 calls on an already locked file will convert an existing lock to the new
 lock mode.
-.PP
+.P
 Locks created by
 .BR flock ()
 are preserved across an
 .BR execve (2).
-.PP
+.P
 A shared or exclusive lock can be placed on a file regardless of the
 mode in which the file was opened.
 .SH RETURN VALUE
@@ -149,7 +149,7 @@ Up to Linux 5.4,
 .BR flock ()
 is not propagated over SMB.
 A file with such locks will not appear locked for remote clients.
-.PP
+.P
 Since Linux 5.5,
 .BR flock ()
 locks are emulated with SMB byte-range locks on the entire file.
@@ -164,7 +164,7 @@ any IO on a locked file will always fail with
 when done from a separate file descriptor.
 This difference originates from the design of locks in the SMB protocol,
 which provides mandatory locking semantics.
-.PP
+.P
 Remote and mandatory locking semantics may vary with
 SMB protocol, mount options and server type.
 See
@@ -191,7 +191,7 @@ Instead, one could use
 byte-range locking, which does work over NFS,
 given a sufficiently recent version of
 Linux and a server which supports locking.
-.PP
+.P
 Since Linux 2.6.12, NFS clients support
 .BR flock ()
 locks by emulating them as
@@ -206,7 +206,7 @@ locks
 interact with one another over NFS.
 It also means that in order to place an exclusive lock,
 the file must be opened for writing.
-.PP
+.P
 Since Linux 2.6.37,
 .\" commit 5eebde23223aeb0ad2d9e3be6590ff8bbfab0fc2
 the kernel supports a compatibility mode that allows
@@ -224,7 +224,7 @@ places advisory locks only; given suitable permissions on a file,
 a process is free to ignore the use of
 .BR flock ()
 and perform I/O on the file.
-.PP
+.P
 .BR flock ()
 and
 .BR fcntl (2)
@@ -237,7 +237,7 @@ using
 the semantics of
 .BR flock ()
 will be different from those described in this manual page.
-.PP
+.P
 Converting a lock
 (shared to exclusive, or vice versa) is not guaranteed to be atomic:
 the existing lock is first removed, and then a new lock is established.
@@ -260,7 +260,7 @@ and occurs on many other implementations.)
 .BR open (2),
 .BR lockf (3),
 .BR lslocks (8)
-.PP
+.P
 .I Documentation/filesystems/locks.txt
 in the Linux kernel source tree
 .RI ( Documentation/locks.txt

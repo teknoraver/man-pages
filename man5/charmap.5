@@ -38,11 +38,11 @@ This value must be less than or equal than
 .RI < mb_cur_max >.
 If not specified, it defaults to
 .RI < mb_cur_max >.
-.PP
+.P
 The character set definition section starts with the keyword
 .I CHARMAP
 in the first column.
-.PP
+.P
 The following lines may have one of the two following forms to
 define the character set:
 .TP
@@ -55,23 +55,23 @@ being optional.
 This form defines a character range and its byte sequence,
 .I comment
 being optional.
-.PP
+.P
 The character set definition section ends with the string
 .IR "END CHARMAP" .
-.PP
+.P
 The character set definition section may optionally be followed by a
 section to define widths of characters.
-.PP
+.P
 The
 .I WIDTH_DEFAULT
 keyword can be used to define the default width for all characters
 not explicitly listed.
 The default character width is 1.
-.PP
+.P
 The width section for individual characters starts with the keyword
 .I WIDTH
 in the first column.
-.PP
+.P
 The following lines may have one of the two following forms to
 define the widths of the characters:
 .TP
@@ -80,7 +80,7 @@ This form defines the width of exactly one character.
 .TP
 .RI < character >...< character >\  width
 This form defines the width for all the characters in the range.
-.PP
+.P
 The width definition section ends with the string
 .IR "END WIDTH" .
 .SH FILES
@@ -93,7 +93,7 @@ POSIX.2.
 The Euro sign is defined as follows in the
 .I UTF\-8
 charmap:
-.PP
+.P
 .nf
 <U20AC>     /xe2/x82/xac EURO SIGN
 .fi

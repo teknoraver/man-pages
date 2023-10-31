@@ -19,14 +19,14 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <locale.h>
-.PP
+.P
 .BI "char *setlocale(int " category ", const char *" locale );
 .fi
 .SH DESCRIPTION
 The
 .BR setlocale ()
 function is used to set or query the program's current locale.
-.PP
+.P
 If
 .I locale
 is not NULL,
@@ -74,12 +74,12 @@ LC_TIME	T{
 Formatting of date and time values
 T}
 .TE
-.PP
+.P
 The categories marked with an asterisk in the above table
 are GNU extensions.
 For further information on these locale categories, see
 .BR locale (7).
-.PP
+.P
 The argument
 .I locale
 is a pointer to a character string containing the
@@ -88,7 +88,7 @@ required setting of
 Such a string is either a well-known constant like "C" or "da_DK"
 (see below), or an opaque string that was returned by another call of
 .BR setlocale ().
-.PP
+.P
 If
 .I locale
 is an empty string,
@@ -110,14 +110,14 @@ If its value is not a valid locale specification, the locale
 is unchanged, and
 .BR setlocale ()
 returns NULL.
-.PP
+.P
 The locale
 .B """C"""
 or
 .B """POSIX"""
 is a portable locale;
 it exists on all conforming systems.
-.PP
+.P
 A locale name is typically of the form
 .IR language "[_" territory "][." codeset "][@" modifier "],"
 where
@@ -132,22 +132,22 @@ or
 .BR "UTF\-8" .
 For a list of all supported locales, try "locale \-a" (see
 .BR locale (1)).
-.PP
+.P
 If
 .I locale
 is NULL, the current locale is only queried, not modified.
-.PP
+.P
 On startup of the main program, the portable
 .B """C"""
 locale is selected as default.
 A program may be made portable to all locales by calling:
-.PP
+.P
 .in +4n
 .EX
 setlocale(LC_ALL, "");
 .EE
 .in
-.PP
+.P
 after program initialization, and then:
 .IP \[bu] 3
 using the values returned from a

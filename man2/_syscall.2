@@ -22,9 +22,9 @@ _syscall \- invoking a system call without library support (OBSOLETE)
 .SH SYNOPSIS
 .nf
 .B #include <linux/unistd.h>
-.PP
+.P
 A _syscall macro
-.PP
+.P
 desired system call
 .fi
 .SH DESCRIPTION
@@ -33,13 +33,13 @@ You need to know how many arguments, their types,
 and the function return type.
 There are seven macros that make the actual call into the system easier.
 They have the form:
-.PP
+.P
 .in +4n
 .EX
 .RI _syscall X ( type , name , type1 , arg1 , type2 , arg2 ,...)
 .EE
 .in
-.PP
+.P
 where
 .IP
 .I X
@@ -57,7 +57,7 @@ is the Nth argument's type
 .IP
 .I argN
 is the name of the Nth argument
-.PP
+.P
 These macros create a function called
 .I name
 with the arguments you
@@ -85,7 +85,7 @@ The _syscall() macros
 produce a prototype.
 You may have to
 create one, especially for C++ users.
-.PP
+.P
 System calls are not required to return only positive or negative error
 codes.
 You need to read the source to be sure how it will return errors.
@@ -106,7 +106,7 @@ when
 is negative.
 For the error codes, see
 .BR errno (3).
-.PP
+.P
 When defining a system call, the argument types
 .I must
 be

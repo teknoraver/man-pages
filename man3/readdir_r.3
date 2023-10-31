@@ -13,17 +13,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <dirent.h>
-.PP
+.P
 .BI "[[deprecated]] int readdir_r(DIR *restrict " dirp ,
 .BI "                             struct dirent *restrict " entry ,
 .BI "                             struct dirent **restrict " result );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR readdir_r ():
 .nf
     _POSIX_C_SOURCE
@@ -33,7 +33,7 @@ Feature Test Macro Requirements for glibc (see
 This function is deprecated; use
 .BR readdir (3)
 instead.
-.PP
+.P
 The
 .BR readdir_r ()
 function was invented as a reentrant version of
@@ -46,13 +46,13 @@ For details of the
 .I dirent
 structure, see
 .BR readdir (3).
-.PP
+.P
 A pointer to the returned buffer is placed in
 .IR *result ;
 if the end of the directory stream was encountered,
 then NULL is instead returned in
 .IR *result .
-.PP
+.P
 It is recommended that applications use
 .BR readdir (3)
 instead of

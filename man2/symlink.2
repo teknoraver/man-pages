@@ -19,28 +19,28 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int symlink(const char *" target ", const char *" linkpath );
-.PP
+.P
 .BR "#include <fcntl.h>           " "/* Definition of " AT_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int symlinkat(const char *" target ", int " newdirfd \
 ", const char *" linkpath );
-.PP
+.P
 .fi
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR symlink ():
 .nf
     _XOPEN_SOURCE >= 500 || _POSIX_C_SOURCE >= 200112L
 .\"    || _XOPEN_SOURCE && _XOPEN_SOURCE_EXTENDED
         || /* glibc <= 2.19: */ _BSD_SOURCE
 .fi
-.PP
+.P
 .BR symlinkat ():
 .nf
     Since glibc 2.10:
@@ -54,20 +54,20 @@ creates a symbolic link named
 .I linkpath
 which contains the string
 .IR target .
-.PP
+.P
 Symbolic links are interpreted at run time as if the contents of the
 link had been substituted into the path being followed to find a file or
 directory.
-.PP
+.P
 Symbolic links may contain
 .I ..
 path components, which (if used at the start of the link) refer to the
 parent directories of that in which the link resides.
-.PP
+.P
 A symbolic link (also known as a soft link) may point to an existing
 file or to a nonexistent one; the latter case is known as a dangling
 link.
-.PP
+.P
 The permissions of a symbolic link are irrelevant; the ownership is
 ignored when following the link
 (except when the
@@ -79,7 +79,7 @@ renaming of the link is requested and the link is in a directory with
 the sticky bit
 .RB ( S_ISVTX )
 set.
-.PP
+.P
 If
 .I linkpath
 exists, it will
@@ -91,7 +91,7 @@ The
 system call operates in exactly the same way as
 .BR symlink (),
 except for the differences described here.
-.PP
+.P
 If the pathname given in
 .I linkpath
 is relative, then it is interpreted relative to the directory
@@ -101,7 +101,7 @@ referred to by the file descriptor
 the calling process, as is done by
 .BR symlink ()
 for a relative pathname).
-.PP
+.P
 If
 .I linkpath
 is relative and
@@ -113,13 +113,13 @@ then
 is interpreted relative to the current working
 directory of the calling process (like
 .BR symlink ()).
-.PP
+.P
 If
 .I linkpath
 is absolute, then
 .I newdirfd
 is ignored.
-.PP
+.P
 See
 .BR openat (2)
 for an explanation of the need for
@@ -246,7 +246,7 @@ argument.
 No checking of
 .I target
 is done.
-.PP
+.P
 Deleting the name referred to by a symbolic link will actually delete the
 file (unless it also has other hard links).
 If this behavior is not desired, use

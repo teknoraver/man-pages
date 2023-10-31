@@ -17,7 +17,7 @@ The kernel random-number generator relies on entropy gathered from
 device drivers and other sources of environmental noise to seed
 a cryptographically secure pseudorandom number generator (CSPRNG).
 It is designed for security, rather than speed.
-.PP
+.P
 The following interfaces provide access to output from the kernel CSPRNG:
 .IP \[bu] 3
 The
@@ -77,7 +77,7 @@ flag.
 The cryptographic algorithms used for the
 .I urandom
 source are quite conservative, and so should be sufficient for all purposes.
-.PP
+.P
 The disadvantage of
 .B GRND_RANDOM
 and reads from
@@ -194,7 +194,7 @@ or Diffie-Hellman private key has an effective key size of 128 bits
 (it requires about 2\[ha]128 operations to break) so a key generator
 needs only 128 bits (16 bytes) of seed material from
 .IR /dev/random .
-.PP
+.P
 While some safety margin above that minimum is reasonable, as a guard
 against flaws in the CSPRNG algorithm, no cryptographic primitive
 available today can hope to promise more than 256 bits of security,

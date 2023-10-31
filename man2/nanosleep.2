@@ -21,16 +21,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <time.h>
-.PP
+.P
 .BI "int nanosleep(const struct timespec *" req ,
 .BI "              struct timespec *_Nullable " rem );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR nanosleep ():
 .nf
     _POSIX_C_SOURCE >= 199309L
@@ -43,7 +43,7 @@ until either at least the time specified in
 has elapsed, or the delivery of a signal
 that triggers the invocation of a handler in the calling thread or
 that terminates the process.
-.PP
+.P
 If the call is interrupted by a signal handler,
 .BR nanosleep ()
 returns \-1, sets
@@ -60,14 +60,14 @@ The value of
 can then be used to call
 .BR nanosleep ()
 again and complete the specified pause (but see NOTES).
-.PP
+.P
 The
 .BR timespec (3)
 structure
 is used to specify intervals of time with nanosecond precision.
-.PP
+.P
 The value of the nanoseconds field must be in the range [0, 999999999].
-.PP
+.P
 Compared to
 .BR sleep (3)
 and
@@ -128,7 +128,7 @@ says that discontinuous changes in
 should not affect
 .BR nanosleep ():
 .RS
-.PP
+.P
 Setting the value of the
 .B CLOCK_REALTIME
 clock via
@@ -145,7 +145,7 @@ interval elapses, independently of the new or old value of the clock.
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
-.PP
+.P
 In order to support applications requiring much more precise pauses
 (e.g., in order to control some time-critical hardware),
 .BR nanosleep ()
@@ -165,7 +165,7 @@ is not an exact multiple of the granularity underlying clock (see
 then the interval will be rounded up to the next multiple.
 Furthermore, after the sleep completes, there may still be a delay before
 the CPU becomes free to once again execute the calling thread.
-.PP
+.P
 The fact that
 .BR nanosleep ()
 sleeps for a relative interval can be problematic if the call
@@ -194,7 +194,7 @@ To avoid such problems, use
 with the
 .B TIMER_ABSTIME
 flag to sleep to an absolute deadline.
-.PP
+.P
 In Linux 2.4, if
 .BR nanosleep ()
 is stopped by a signal (e.g.,

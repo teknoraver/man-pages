@@ -23,17 +23,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double exp2(double " x );
 .BI "float exp2f(float " x );
 .BI "long double exp2l(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR exp2 (),
 .BR exp2f (),
 .BR exp2l ():
@@ -46,7 +46,7 @@ These functions return the value of 2 raised to the power of
 .SH RETURN VALUE
 On success, these functions return the base-2 exponential value of
 .IR x .
-.PP
+.P
 For various special cases, including the handling of infinity and NaN,
 as well as overflows and underflows, see
 .BR exp (3).
@@ -55,7 +55,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 For a discussion of the errors that can occur for these functions, see
 .BR exp (3).
 .SH ATTRIBUTES
@@ -79,7 +79,7 @@ C11, POSIX.1-2008.
 .SH HISTORY
 glibc 2.1.
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to

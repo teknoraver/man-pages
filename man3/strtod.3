@@ -24,18 +24,18 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "double strtod(const char *restrict " nptr ", char **restrict " endptr );
 .BI "float strtof(const char *restrict " nptr ", char **restrict " endptr );
 .BI "long double strtold(const char *restrict " nptr \
 ", char **restrict " endptr );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR strtof (),
 .BR strtold ():
 .nf
@@ -55,14 +55,14 @@ to
 and
 .I long double
 representation, respectively.
-.PP
+.P
 The expected form of the (initial portion of the) string is
 optional leading white space as recognized by
 .BR isspace (3),
 an optional plus (\[aq]+\[aq]) or minus sign (\[aq]\-\[aq]) and then either
 (i) a decimal number, or (ii) a hexadecimal number,
 or (iii) an infinity, or (iv) a NAN (not-a-number).
-.PP
+.P
 A
 .I "decimal number"
 consists of a nonempty sequence of decimal digits
@@ -71,7 +71,7 @@ usually \[aq].\[aq]), optionally followed by a decimal exponent.
 A decimal exponent consists of an \[aq]E\[aq] or \[aq]e\[aq], followed by an
 optional plus or minus sign, followed by a nonempty sequence of
 decimal digits, and indicates multiplication by a power of 10.
-.PP
+.P
 A
 .I "hexadecimal number"
 consists of a "0x" or "0X" followed by a nonempty sequence of
@@ -82,11 +82,11 @@ consists of a \[aq]P\[aq] or \[aq]p\[aq], followed by an optional
 plus or minus sign, followed by a nonempty sequence of
 decimal digits, and indicates multiplication by a power of 2.
 At least one of radix character and binary exponent must be present.
-.PP
+.P
 An
 .I infinity
 is either "INF" or "INFINITY", disregarding case.
-.PP
+.P
 A
 .I NAN
 is "NAN" (disregarding case) optionally followed by a string,
@@ -97,21 +97,21 @@ specifies in an implementation-dependent
 way the type of NAN (see NOTES).
 .SH RETURN VALUE
 These functions return the converted value, if any.
-.PP
+.P
 If
 .I endptr
 is not NULL,
 a pointer to the character after the last character used in the conversion
 is stored in the location referenced by
 .IR endptr .
-.PP
+.P
 If no conversion is performed, zero is returned and (unless
 .I endptr
 is null) the value of
 .I nptr
 is stored in the location referenced by
 .IR endptr .
-.PP
+.P
 If the correct value would cause overflow, plus or minus
 .BR HUGE_VAL ,
 .BR HUGE_VALF ,
@@ -122,7 +122,7 @@ and
 .B ERANGE
 is stored in
 .IR errno .
-.PP
+.P
 If the correct value would cause underflow,
 a value with magnitude no larger than
 .BR DBL_MIN ,

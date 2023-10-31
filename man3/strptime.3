@@ -19,7 +19,7 @@ Standard C library
 .nf
 .BR "#define _XOPEN_SOURCE" "       /* See feature_test_macros(7) */"
 .B #include <time.h>
-.PP
+.P
 .BI "char *strptime(const char *restrict " s ", const char *restrict " format ,
 .BI "               struct tm *restrict " tm );
 .fi
@@ -36,12 +36,12 @@ structure pointed to by
 .IR tm ,
 using the format specified by
 .IR format .
-.PP
+.P
 The broken-down time structure
 .I tm
 is described in
 .BR tm (3type).
-.PP
+.P
 The
 .I format
 argument
@@ -59,7 +59,7 @@ except for whitespace, which matches zero or more
 whitespace characters in the input string.
 There should be white\%space or other alphanumeric characters
 between any two field descriptors.
-.PP
+.P
 The
 .BR strptime ()
 function processes the input string from left
@@ -68,7 +68,7 @@ Each of the three possible input elements (whitespace,
 literal, or format) are handled one after the other.
 If the input cannot be matched to the format string, the function stops.
 The remainder of the format and input strings are not processed.
-.PP
+.P
 The supported input field descriptors are listed below.
 In case a text string (such as the name of a day of the week or a month name)
 is to be matched, the comparison is case insensitive.
@@ -180,13 +180,13 @@ range 00\[en]68 refer to years in the twenty-first century (2000\[en]2068).
 .TP
 .B %Y
 The year, including century (for example, 1991).
-.PP
+.P
 Some field descriptors can be modified by the E or O modifier characters
 to indicate that an alternative format or specification should be used.
 If the
 alternative format or specification does not exist in the current locale, the
 unmodified field descriptor is used.
-.PP
+.P
 The E modifier specifies that the input string may contain
 alternative locale-dependent versions of the date and time representation:
 .TP
@@ -209,7 +209,7 @@ The offset from
 .TP
 .B %EY
 The full alternative year representation.
-.PP
+.P
 The O modifier specifies that the numerical input may be in an
 alternative locale-dependent format:
 .TP
@@ -294,7 +294,7 @@ explicitly specified, except that it recomputes the
 and
 .I tm_yday
 field if any of the year, month, or day elements changed.
-.\" .PP
+.\" .P
 .\" This function is available since libc 4.6.8.
 .\" Linux libc4 and libc5 includes define the prototype unconditionally;
 .\" glibc2 includes provide a prototype only when
@@ -302,12 +302,12 @@ field if any of the year, month, or day elements changed.
 .\" or
 .\" .B _GNU_SOURCE
 .\" are defined.
-.\" .PP
+.\" .P
 .\" Before libc 5.4.13 whitespace
 .\" (and the \[aq]n\[aq] and \[aq]t\[aq] specifications) was not handled,
 .\" no \[aq]E\[aq] and \[aq]O\[aq] locale modifier characters were accepted,
 .\" and the \[aq]C\[aq] specification was a synonym for the \[aq]c\[aq] specification.
-.PP
+.P
 The \[aq]y\[aq] (year in century) specification is taken to specify a year
 .\" in the 20th century by libc4 and libc5.
 .\" It is taken to be a year
@@ -354,7 +354,7 @@ An RFC-822/ISO 8601 standard timezone specification.
 .TP
 .B %Z
 The timezone name.
-.PP
+.P
 Similarly, because of GNU extensions to
 .BR strftime (3),
 .B %k
@@ -374,7 +374,7 @@ Finally
 .B %s
 The number of seconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).
 Leap seconds are not counted unless leap second support is available.
-.PP
+.P
 The glibc implementation does not require whitespace between
 two field descriptors.
 .SH EXAMPLES
@@ -382,7 +382,7 @@ The following example demonstrates the use of
 .BR strptime ()
 and
 .BR strftime (3).
-.PP
+.P
 .\" SRC BEGIN (strptime.c)
 .EX
 #define _XOPEN_SOURCE

@@ -27,13 +27,13 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/mman.h>
-.PP
+.P
 .BI "void *mmap(void " addr [. length "], size_t " length \
 ", int " prot ", int " flags ,
 .BI "           int " fd ", off_t " offset );
 .BI "int munmap(void " addr [. length "], size_t " length );
 .fi
-.PP
+.P
 See NOTES for information on feature test macro requirements.
 .SH DESCRIPTION
 .BR mmap ()
@@ -44,7 +44,7 @@ The starting address for the new mapping is specified in
 The
 .I length
 argument specifies the length of the mapping (which must be greater than 0).
-.PP
+.P
 If
 .I addr
 is NULL,
@@ -64,7 +64,7 @@ may or may not depend on the hint.
 .\" Before Linux 2.6.24, the address was rounded up to the next page
 .\" boundary; since Linux 2.6.24, it is rounded down!
 The address of the new mapping is returned as the result of the call.
-.PP
+.P
 The contents of a file mapping (as opposed to an anonymous mapping; see
 .B MAP_ANONYMOUS
 below), are initialized using
@@ -76,13 +76,13 @@ in the file (or other object) referred to by the file descriptor
 .I offset
 must be a multiple of the page size as returned by
 .IR sysconf(_SC_PAGE_SIZE) .
-.PP
+.P
 After the
 .BR mmap ()
 call has returned, the file descriptor,
 .IR fd ,
 can be closed immediately without invalidating the mapping.
-.PP
+.P
 The
 .I prot
 argument describes the desired memory protection of the mapping
@@ -147,7 +147,7 @@ the underlying file.
 It is unspecified whether changes made to the file after the
 .BR mmap ()
 call are visible in the mapped region.
-.PP
+.P
 Both
 .B MAP_SHARED
 and
@@ -155,7 +155,7 @@ and
 are described in POSIX.1-2001 and POSIX.1-2008.
 .B MAP_SHARED_VALIDATE
 is a Linux extension.
-.PP
+.P
 In addition, zero or more of the following values can be ORed in
 .IR flags :
 .TP
@@ -445,7 +445,7 @@ option.
 Because of the security implications,
 that option is normally enabled only on embedded devices
 (i.e., devices where one has complete control of the contents of user memory).
-.PP
+.P
 Of the above flags, only
 .B MAP_FIXED
 is specified in POSIX.1-2001 and POSIX.1-2008.
@@ -467,7 +467,7 @@ The region is also automatically unmapped
 when the process is terminated.
 On the other hand, closing the file
 descriptor does not unmap the region.
-.PP
+.P
 The address
 .I addr
 must be a multiple of the page size (but
@@ -490,7 +490,7 @@ On error, the value
 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 On success,
 .BR munmap ()
 returns 0.
@@ -638,7 +638,7 @@ in
 was set but the object specified by
 .I fd
 is open for writing.
-.PP
+.P
 Use of a mapped region can result in these signals:
 .TP
 .B SIGSEGV
@@ -678,7 +678,7 @@ or not.
 Portable programs should always set
 .B PROT_EXEC
 if they intend to execute code in the new mapping.
-.PP
+.P
 The portable way to create a mapping is to specify
 .I addr
 as 0 (NULL), and omit
@@ -693,7 +693,7 @@ If the
 flag is specified, and
 .I addr
 is 0 (NULL), then the mapped address will be 0 (NULL).
-.PP
+.P
 Certain
 .I flags
 constants are defined only if suitable feature test macros are defined
@@ -747,7 +747,7 @@ POSIX.1-2008.
 POSIX.1-2001, SVr4, 4.4BSD.
 .\" SVr4 documents additional error codes ENXIO and ENODEV.
 .\" SUSv2 documents additional error codes EMFILE and EOVERFLOW.
-.PP
+.P
 On POSIX systems on which
 .BR mmap (),
 .BR msync (2),
@@ -767,7 +767,7 @@ Memory mapped by
 is preserved across
 .BR fork (2),
 with the same attributes.
-.PP
+.P
 A file is mapped in multiples of the page size.
 For a file that is not
 a multiple of the page size,
@@ -777,7 +777,7 @@ and modifications to that region are not written out to the file.
 The effect of
 changing the size of the underlying file of a mapping on the pages that
 correspond to added or removed regions of the file is unspecified.
-.PP
+.P
 An application can determine which pages of a mapping are
 currently resident in the buffer/page cache using
 .BR mincore (2).
@@ -794,7 +794,7 @@ otherwise, the use of
 .B MAP_FIXED
 is hazardous because it forcibly removes preexisting mappings,
 making it easy for a multithreaded process to corrupt its own address space.
-.PP
+.P
 For example, suppose that thread A looks through
 .IR /proc/ pid /maps
 in order to locate an unused address range that it can map using
@@ -822,7 +822,7 @@ Examples include
 and the PAM libraries
 .UR http://www.linux-pam.org
 .UE .
-.PP
+.P
 Since Linux 4.17, a multithreaded program can use the
 .B MAP_FIXED_NOREPLACE
 flag to avoid the hazard described above
@@ -836,7 +836,7 @@ field for the mapped file may be updated at any time between the
 .BR mmap ()
 and the corresponding unmapping; the first reference to a mapped
 page will update the field if it has not been already.
-.PP
+.P
 The
 .I st_ctime
 and
@@ -861,7 +861,7 @@ and
 .BR munmap ()
 differ somewhat from the requirements for mappings
 that use the native system page size.
-.PP
+.P
 For
 .BR mmap (),
 .I offset
@@ -869,7 +869,7 @@ must be a multiple of the underlying huge page size.
 The system automatically aligns
 .I length
 to be a multiple of the underlying huge page size.
-.PP
+.P
 For
 .BR munmap (),
 .IR addr ,
@@ -882,14 +882,14 @@ On Linux, there are no guarantees like those suggested above under
 .BR MAP_NORESERVE .
 By default, any process can be killed
 at any moment when the system runs out of memory.
-.PP
+.P
 Before Linux 2.6.7, the
 .B MAP_POPULATE
 flag has effect only if
 .I prot
 is specified as
 .BR PROT_NONE .
-.PP
+.P
 SUSv3 specifies that
 .BR mmap ()
 should fail if
@@ -904,7 +904,7 @@ Since Linux 2.6.12,
 fails with the error
 .B EINVAL
 for this case.
-.PP
+.P
 POSIX specifies that the system shall always
 zero fill any partial page at the end
 of the object and that system will never write any modification of the
@@ -1023,14 +1023,14 @@ main(int argc, char *argv[])
 .BR userfaultfd (2),
 .BR shm_open (3),
 .BR shm_overview (7)
-.PP
+.P
 The descriptions of the following files in
 .BR proc (5):
 .IR /proc/ pid /maps ,
 .IR /proc/ pid /map_files ,
 and
 .IR /proc/ pid /smaps .
-.PP
+.P
 B.O. Gallmeister, POSIX.4, O'Reilly, pp. 128\[en]129 and 389\[en]391.
 .\"
 .\" Repeat after me: private read-only mappings are 100% equivalent to

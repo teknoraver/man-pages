@@ -15,14 +15,14 @@ Standard C library
 .BR "#include <sched.h>" "            /* Definition of " SCHED_* " constants */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_sched_setattr, pid_t " pid ", struct sched_attr *" attr ,
 .BI "            unsigned int " flags );
 .BI "int syscall(SYS_sched_getattr, pid_t " pid ", struct sched_attr *" attr ,
 .BI "            unsigned int " size ", unsigned int " flags );
 .fi
 .\" FIXME . Add feature test macro requirements
-.PP
+.P
 .IR Note :
 glibc provides no wrappers for these system calls,
 necessitating the use of
@@ -38,7 +38,7 @@ If
 .I pid
 equals zero,
 the scheduling policy and attributes of the calling thread will be set.
-.PP
+.P
 Currently, Linux supports the following "normal"
 (i.e., non-real-time) scheduling policies as values that may be specified in
 .IR policy :
@@ -55,7 +55,7 @@ for "batch" style execution of processes; and
 for running
 .I very
 low priority background jobs.
-.PP
+.P
 Various "real-time" policies are also supported,
 for special time-critical applications that need precise control over
 the way in which runnable threads are selected for execution.
@@ -70,20 +70,20 @@ a first-in, first-out policy; and
 .TP
 .B SCHED_RR
 a round-robin policy.
-.PP
+.P
 Linux also provides the following policy:
 .TP 14
 .B SCHED_DEADLINE
 a deadline scheduling policy; see
 .BR sched (7)
 for details.
-.PP
+.P
 The
 .I attr
 argument is a pointer to a structure that defines
 the new scheduling policy and attributes for the specified thread.
 This structure has the following form:
-.PP
+.P
 .in +4n
 .EX
 struct sched_attr {
@@ -101,7 +101,7 @@ struct sched_attr {
 };
 .EE
 .in
-.PP
+.P
 The fields of the
 .I sched_attr
 structure are as follows:
@@ -228,7 +228,7 @@ The value is expressed in nanoseconds.
 .I sched_period
 This field specifies the "Period" parameter for deadline scheduling.
 The value is expressed in nanoseconds.
-.PP
+.P
 The
 .I flags
 argument is provided to allow for future extensions to the interface;
@@ -246,7 +246,7 @@ If
 equals zero,
 the scheduling policy and attributes of the calling thread
 will be retrieved.
-.PP
+.P
 The
 .I size
 argument should be set to the size of the
@@ -256,7 +256,7 @@ The value must be at least as large as the size of the initially published
 .I sched_attr
 structure, or the call fails with the error
 .BR EINVAL .
-.PP
+.P
 The retrieved scheduling attributes are placed in the fields of the
 .I sched_attr
 structure pointed to by
@@ -266,7 +266,7 @@ The kernel sets
 to the size of its
 .I sched_attr
 structure.
-.PP
+.P
 If the caller-provided
 .I attr
 buffer is larger than the kernel's
@@ -280,7 +280,7 @@ outside the provided space.
 As with
 .BR sched_setattr (),
 these semantics allow for future extensibility of the interface.
-.PP
+.P
 The
 .I flags
 argument is provided to allow for future extensions to the interface;
@@ -312,7 +312,7 @@ is not zero.
 The thread whose ID is
 .I pid
 could not be found.
-.PP
+.P
 In addition,
 .BR sched_getattr ()
 can fail for the following reasons:
@@ -329,7 +329,7 @@ is too small.
 is invalid; that is, it is smaller than the initial version of the
 .I sched_attr
 structure (48 bytes) or larger than the system page size.
-.PP
+.P
 In addition,
 .BR sched_setattr ()
 can fail for the following reasons:
@@ -380,7 +380,7 @@ Linux 3.14.
 .SH NOTES
 glibc does not provide wrappers for these system calls; call them using
 .BR syscall (2).
-.PP
+.P
 .BR sched_setattr ()
 provides a superset of the functionality of
 .BR sched_setscheduler (2),
@@ -406,7 +406,7 @@ failed with the error
 instead of
 .B E2BIG
 for the case described in ERRORS.
-.PP
+.P
 Up to Linux 5.3,
 .BR sched_getattr ()
 failed with the error

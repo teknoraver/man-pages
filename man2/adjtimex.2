@@ -17,11 +17,11 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/timex.h>
-.PP
+.P
 .BI "int adjtimex(struct timex *" "buf" );
-.PP
+.P
 .BI "int clock_adjtime(clockid_t " clk_id, " struct timex *" "buf" );
-.PP
+.P
 .BI "int ntp_adjtime(struct timex *" buf );
 .fi
 .SH DESCRIPTION
@@ -34,7 +34,7 @@ It takes a pointer to a
 structure, updates kernel parameters from (selected) field values,
 and returns the same structure updated with the current kernel values.
 This structure is declared as follows:
-.PP
+.P
 .in +4n
 .EX
 struct timex {
@@ -81,7 +81,7 @@ struct timex {
 };
 .EE
 .in
-.PP
+.P
 The
 .I modes
 field determines which parameters, if any, to set.
@@ -204,7 +204,7 @@ and the difference between TAI and UTC, see
 .B ADJ_TICK
 Set tick value from
 .IR buf.tick .
-.PP
+.P
 Alternatively,
 .I modes
 can be specified as either of the following (multibit mask) values,
@@ -236,13 +236,13 @@ This feature was added in Linux 2.6.24,
 but did not work correctly
 .\" commit 916c7a855174e3b53d182b97a26b2e27a29726a1
 until Linux 2.6.28.
-.PP
+.P
 Ordinary users are restricted to a value of either 0 or
 .B ADJ_OFFSET_SS_READ
 for
 .IR modes .
 Only the superuser may set any parameters.
-.PP
+.P
 The
 .I buf.status
 field is a bit mask that is used to set and/or retrieve status
@@ -346,7 +346,7 @@ Mode (0 = Phase Locked Loop, 1 = Frequency Locked Loop).
 .\" commit eea83d896e318bda54be2d2770d2c5d6668d11db
 .\" Author: Roman Zippel <zippel@linux-m68k.org>
 Clock source (0 = A, 1 = B); currently unused.
-.PP
+.P
 Attempts to set read-only
 .I status
 bits are silently ignored.
@@ -452,13 +452,13 @@ The symbolic name
 is a synonym for
 .BR TIME_ERROR ,
 provided for backward compatibility.
-.PP
+.P
 Note that starting with Linux 3.4,
 .\" commit 6b43ae8a619d17c4935c3320d2ef9e92bdeed05d changed to asynchronous
 .\"  operation, so we can no longer rely on the return code.
 the call operates asynchronously and the return value usually will
 not reflect a state change caused by the call itself.
-.PP
+.P
 On failure, these calls return \-1 and set
 .I errno
 to indicate the error.
@@ -554,7 +554,7 @@ T}	Thread safety	MT-Safe
 .TQ
 .BR clock_adjtime ()
 Linux.
-.PP
+.P
 The preferred API for the NTP daemon is
 .BR ntp_adjtime ().
 .SH NOTES
@@ -570,7 +570,7 @@ actually means 2\[ha]-16 ppm, and 2\[ha]16=65536 is 1 ppm.
 This is the case for both input values (in the case of
 .IR freq )
 and output values.
-.PP
+.P
 The leap-second processing triggered by
 .B STA_INS
 and
@@ -588,7 +588,7 @@ for the leap second to be inserted or deleted.
 .BR time (7),
 .BR adjtimex (8),
 .BR hwclock (8)
-.PP
+.P
 .ad l
 .UR http://www.slac.stanford.edu/comp/unix/\:package/\:rtems/\:src/\:ssrlApps/\:ntpNanoclock/\:api.htm
 NTP "Kernel Application Program Interface"

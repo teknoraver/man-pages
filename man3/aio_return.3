@@ -12,7 +12,7 @@ Real-time library
 .SH SYNOPSIS
 .nf
 .B "#include <aio.h>"
-.PP
+.P
 .BI "ssize_t aio_return(struct aiocb *" aiocbp );
 .fi
 .SH DESCRIPTION
@@ -26,7 +26,7 @@ with control block pointed to by
 for a description of the
 .I aiocb
 structure.)
-.PP
+.P
 This function should be called only once for any given request, after
 .BR aio_error (3)
 returns something other than
@@ -41,7 +41,7 @@ or
 .BR fdatasync (2),
 call.
 On error, \-1 is returned, and \fIerrno\fP is set to indicate the error.
-.PP
+.P
 If the asynchronous I/O operation has not yet completed,
 the return value and effect of
 .BR aio_return ()

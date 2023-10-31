@@ -12,7 +12,7 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <complex.h>
-.PP
+.P
 .BI "double carg(double complex " z ");"
 .BI "float cargf(float complex " z ");"
 .BI "long double cargl(long double complex " z ");"
@@ -21,29 +21,29 @@ Math library
 These functions calculate the complex argument (also called phase angle) of
 .IR z ,
 with a branch cut along the negative real axis.
-.PP
+.P
 A complex number can be described by two real coordinates.
 One may use rectangular coordinates and gets
-.PP
+.P
 .in +4n
 .EX
 z = x + I * y
 .EE
 .in
-.PP
+.P
 where
 .I x\~=\~creal(z)
 and
 .IR y\~=\~cimag(z) .
-.PP
+.P
 Or one may use polar coordinates and gets
-.PP
+.P
 .in +4n
 .EX
 z = r * cexp(I * a)
 .EE
 .in
-.PP
+.P
 where
 .I r\~=\~cabs(z)
 is the "radius", the "modulus", the absolute value of
@@ -52,9 +52,9 @@ and
 .I a\~=\~carg(z)
 is the "phase angle", the argument of
 .IR z .
-.PP
+.P
 One has:
-.PP
+.P
 .in +4n
 .EX
 tan(carg(z)) = cimag(z) / creal(z)

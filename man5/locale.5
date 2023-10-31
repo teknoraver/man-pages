@@ -16,7 +16,7 @@ The
 definition file contains all the information that the
 .BR localedef (1)
 command needs to convert it into the binary locale database.
-.PP
+.P
 The definition files consist of sections which each describe a
 locale category in detail.
 See
@@ -36,7 +36,7 @@ It defaults to the backslash (\e).
 is followed by a character that will be used as the
 comment-character for the rest of the file.
 It defaults to the number sign (#).
-.PP
+.P
 The locale definition has one part for each locale category.
 Each part can be copied from another existing locale or
 can be defined from scratch.
@@ -52,7 +52,7 @@ and
 where a
 .I copy
 statement can be followed by locale-specific rules and selected overrides.
-.PP
+.P
 When defining a locale or a category from scratch, an existing system-
 provided locale definition file should be used as a reference to follow
 common glibc conventions.
@@ -70,7 +70,7 @@ The following category sections are defined by POSIX:
 .B LC_NUMERIC
 .IP \[bu]
 .B LC_TIME
-.PP
+.P
 In addition, since glibc 2.2,
 the GNU C library supports the following nonstandard categories:
 .IP \[bu] 3
@@ -85,7 +85,7 @@ the GNU C library supports the following nonstandard categories:
 .B LC_PAPER
 .IP \[bu]
 .B LC_TELEPHONE
-.PP
+.P
 See
 .BR locale (7)
 for a more detailed description of each category.
@@ -93,7 +93,7 @@ for a more detailed description of each category.
 The definition starts with the string
 .I LC_ADDRESS
 in the first column.
-.PP
+.P
 The following keywords are allowed:
 .TP
 .I postal_fmt
@@ -159,7 +159,7 @@ State, province, or prefecture.
 .TP
 %c
 Country, as taken from data record.
-.PP
+.P
 Each field descriptor may have an \[aq]R\[aq] after
 the \[aq]%\[aq] to specify that the
 information is taken from a Romanized version string of the
@@ -206,7 +206,7 @@ Applications should in general prefer
 .I lang_term
 over
 .IR lang_lib .
-.PP
+.P
 The
 .B LC_ADDRESS
 definition ends with the string
@@ -215,7 +215,7 @@ definition ends with the string
 The definition starts with the string
 .I LC_CTYPE
 in the first column.
-.PP
+.P
 The following keywords are allowed:
 .TP
 .I upper
@@ -461,7 +461,7 @@ in the target character set.
 .TP
 .I translit_end
 marks the end of the transliteration rules.
-.PP
+.P
 The
 .B LC_CTYPE
 definition ends with the string
@@ -469,11 +469,11 @@ definition ends with the string
 .SS LC_COLLATE
 Note that glibc does not support all POSIX-defined options,
 only the options described below are supported (as of glibc 2.23).
-.PP
+.P
 The definition starts with the string
 .I LC_COLLATE
 in the first column.
-.PP
+.P
 The following keywords are allowed:
 .TP
 .I coll_weight_max
@@ -518,7 +518,7 @@ followed by a declaration of a script.
 .I symbol\-equivalence
 followed by a collating-symbol to be equivalent to another defined
 collating-symbol.
-.PP
+.P
 The collation rule definition starts with a line:
 .TP
 .I order_start
@@ -530,7 +530,7 @@ or
 The order definition consists of lines that describe the collation
 order and is terminated with the keyword
 .IR order_end .
-.PP
+.P
 The
 .B LC_COLLATE
 definition ends with the string
@@ -539,7 +539,7 @@ definition ends with the string
 The definition starts with the string
 .I LC_IDENTIFICATION
 in the first column.
-.PP
+.P
 The following keywords are allowed:
 .TP
 .I title
@@ -595,7 +595,7 @@ followed by the revision number of this document.
 .TP
 .I date
 followed by the revision date of this document.
-.PP
+.P
 In addition, for each of the categories defined by the document,
 there should be a line starting with the keyword
 .IR category ,
@@ -608,7 +608,7 @@ a semicolon, and
 one of the
 .B LC_*
 identifiers.
-.PP
+.P
 The
 .B LC_IDENTIFICATION
 definition ends with the string
@@ -617,7 +617,7 @@ definition ends with the string
 The definition starts with the string
 .I LC_MESSAGES
 in the first column.
-.PP
+.P
 The following keywords are allowed:
 .TP
 .I yesexpr
@@ -633,7 +633,7 @@ followed by the output string corresponding to "yes".
 .TP
 .I nostr
 followed by the output string corresponding to "no".
-.PP
+.P
 The
 .B LC_MESSAGES
 definition ends with the string
@@ -642,7 +642,7 @@ definition ends with the string
 The definition starts with the string
 .I LC_MEASUREMENT
 in the first column.
-.PP
+.P
 The following keywords are allowed:
 .TP
 .I measurement
@@ -656,7 +656,7 @@ Metric.
 .B 2
 US customary measurements.
 .RE
-.PP
+.P
 The
 .B LC_MEASUREMENT
 definition ends with the string
@@ -665,7 +665,7 @@ definition ends with the string
 The definition starts with the string
 .I LC_MONETARY
 in the first column.
-.PP
+.P
 The following keywords are allowed:
 .TP
 .I int_curr_symbol
@@ -848,7 +848,7 @@ should be placed for a negative
 internationally formatted monetary quantity.
 The same values are recognized as for
 .IR p_sign_posn .
-.PP
+.P
 The
 .B LC_MONETARY
 definition ends with the string
@@ -857,7 +857,7 @@ definition ends with the string
 The definition starts with the string
 .I LC_NAME
 in the first column.
-.PP
+.P
 Various keywords are allowed, but only
 .I name_fmt
 is mandatory.
@@ -935,7 +935,7 @@ followed by the salutation for unmarried women.
 .TP
 .I name_ms
 followed by the salutation valid for all women.
-.PP
+.P
 The
 .B LC_NAME
 definition ends with the string
@@ -944,7 +944,7 @@ definition ends with the string
 The definition starts with the string
 .I LC_NUMERIC
 in the first column.
-.PP
+.P
 The following keywords are allowed:
 .TP
 .I decimal_point
@@ -967,7 +967,7 @@ left of the previous group.
 If the last integer is not \-1, then the size of the previous group
 (if any) is repeatedly used for the remainder of the digits.
 If the last integer is \-1, then no further grouping is performed.
-.PP
+.P
 The
 .B LC_NUMERIC
 definition ends with the string
@@ -976,7 +976,7 @@ definition ends with the string
 The definition starts with the string
 .I LC_PAPER
 in the first column.
-.PP
+.P
 The following keywords are allowed:
 .TP
 .I height
@@ -984,7 +984,7 @@ followed by the height, in millimeters, of the standard paper format.
 .TP
 .I width
 followed by the width, in millimeters, of the standard paper format.
-.PP
+.P
 The
 .B LC_PAPER
 definition ends with the string
@@ -993,7 +993,7 @@ definition ends with the string
 The definition starts with the string
 .I LC_TELEPHONE
 in the first column.
-.PP
+.P
 The following keywords are allowed:
 .TP
 .I tel_int_fmt
@@ -1036,7 +1036,7 @@ followed by the prefix used to call international phone numbers.
 .TP
 .I int_prefix
 followed by the prefix used from other countries to dial this country.
-.PP
+.P
 The
 .B LC_TELEPHONE
 definition ends with the string
@@ -1045,7 +1045,7 @@ definition ends with the string
 The definition starts with the string
 .I LC_TIME
 in the first column.
-.PP
+.P
 The following keywords are allowed:
 .TP
 .I abday
@@ -1105,9 +1105,9 @@ followed by semicolon-separated strings that define how years are
 counted and displayed for each era in the locale.
 Each string has the following format:
 .RS
-.PP
+.P
 .IR direction ":" offset ":" start_date ":" end_date ":" era_name ":" era_format
-.PP
+.P
 The fields are to be defined as follows:
 .TP 4
 .I direction
@@ -1237,7 +1237,7 @@ followed by the appropriate date representation for
 .BR date (1)
 (for syntax, see
 .BR strftime (3)).
-.PP
+.P
 The
 .B LC_TIME
 definition ends with the string

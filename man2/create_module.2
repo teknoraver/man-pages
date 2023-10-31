@@ -11,13 +11,13 @@ create_module \- create a loadable module entry
 .SH SYNOPSIS
 .nf
 .B #include <linux/module.h>
-.PP
+.P
 .BI "[[deprecated]] caddr_t create_module(const char *" name ", size_t " size );
 .fi
 .SH DESCRIPTION
 .IR Note :
 This system call is present only before Linux 2.6.
-.PP
+.P
 .BR create_module ()
 attempts to create a loadable module entry and reserve the kernel memory
 that will be needed to hold the module.
@@ -58,7 +58,7 @@ Linux.
 .SH HISTORY
 Removed in Linux 2.6.
 .\" Removed in Linux 2.5.48
-.PP
+.P
 This obsolete system call is not supported by glibc.
 No declaration is provided in glibc headers, but, through a quirk of history,
 glibc versions before glibc 2.23 did export an ABI for this system call.

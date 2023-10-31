@@ -15,27 +15,27 @@ devices are virtual Ethernet devices.
 They can act as tunnels between network namespaces to create
 a bridge to a physical network device in another namespace,
 but can also be used as standalone network devices.
-.PP
+.P
 .B veth
 devices are always created in interconnected pairs.
 A pair can be created using the command:
-.PP
+.P
 .in +4n
 .EX
 # ip link add <p1-name> type veth peer name <p2-name>
 .EE
 .in
-.PP
+.P
 In the above,
 .I p1-name
 and
 .I p2-name
 are the names assigned to the two connected end points.
-.PP
+.P
 Packets transmitted on one device in the pair are immediately received on
 the other device.
 When either device is down, the link state of the pair is down.
-.PP
+.P
 .B veth
 device pairs are useful for combining the network
 facilities of the kernel together in interesting ways.
@@ -46,28 +46,28 @@ thus allowing communication between network namespaces.
 To do this, one can provide the
 .B netns
 parameter when creating the interfaces:
-.PP
+.P
 .in +4n
 .EX
 # ip link add <p1\-name> netns <p1\-ns> type veth peer <p2\-name> netns <p2\-ns>
 .EE
 .in
-.PP
+.P
 or, for an existing
 .B veth
 pair, move one side to the other namespace:
-.PP
+.P
 .in +4n
 .EX
 # ip link set <p2\-name> netns <p2\-ns>
 .EE
 .in
-.PP
+.P
 .BR ethtool (8)
 can be used to find the peer of a
 .B veth
 network interface, using commands something like:
-.PP
+.P
 .in +4n
 .EX
 # \fBip link add ve_A type veth peer name ve_B\fP   # Create veth pair

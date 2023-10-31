@@ -19,7 +19,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/personality.h>
-.PP
+.P
 .BI "int personality(unsigned long " persona );
 .fi
 .SH DESCRIPTION
@@ -30,7 +30,7 @@ signal numbers into signal actions.
 The execution domain system allows
 Linux to provide limited support for binaries compiled under other
 UNIX-like operating systems.
-.PP
+.P
 If
 .I persona
 is not
@@ -42,7 +42,7 @@ Specifying
 .I persona
 as 0xffffffff provides a way of retrieving
 the current persona without changing it.
-.PP
+.P
 A list of the available execution domains can be found in
 .IR <sys/personality.h> .
 The execution domain is a 32-bit value in which the top three
@@ -108,7 +108,7 @@ kernel version-numbering switch from Linux 2.6.x to Linux 3.x.
 .TP
 .BR WHOLE_SECONDS " (since Linux 1.2.0)"
 No effect.
-.PP
+.P
 The available execution domains are:
 .TP
 .BR PER_BSD " (since Linux 1.2.0)"

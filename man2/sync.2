@@ -22,17 +22,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .B void sync(void);
-.PP
+.P
 .BI "int syncfs(int " fd );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR sync ():
 .nf
     _XOPEN_SOURCE >= 500
@@ -40,7 +40,7 @@ Feature Test Macro Requirements for glibc (see
         || /* Since glibc 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _BSD_SOURCE
 .fi
-.PP
+.P
 .BR syncfs ():
 .nf
     _GNU_SOURCE
@@ -49,7 +49,7 @@ Feature Test Macro Requirements for glibc (see
 .BR sync ()
 causes all pending modifications to filesystem metadata and cached file
 data to be written to the underlying filesystems.
-.PP
+.P
 .BR syncfs ()
 is like
 .BR sync (),
@@ -65,7 +65,7 @@ to indicate the error.
 .SH ERRORS
 .BR sync ()
 is always successful.
-.PP
+.P
 .BR syncfs ()
 can fail for at least the following reasons:
 .TP
@@ -118,7 +118,7 @@ POSIX.1-2001, SVr4, 4.3BSD.
 .BR syncfs ()
 Linux 2.6.39,
 glibc 2.14.
-.PP
+.P
 Since glibc 2.2.2, the Linux prototype for
 .BR sync ()
 is as listed above,
@@ -127,7 +127,7 @@ In glibc 2.2.1 and earlier,
 it was "int sync(void)", and
 .BR sync ()
 always returned 0.
-.PP
+.P
 In mainline kernel versions prior to Linux 5.8,
 .BR syncfs ()
 will fail only when passed a bad file descriptor

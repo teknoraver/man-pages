@@ -12,14 +12,14 @@ The Linux key-management facility
 is primarily a way for various kernel components
 to retain or cache security data,
 authentication keys, encryption keys, and other data in the kernel.
-.PP
+.P
 System call interfaces are provided so that user-space programs can manage
 those objects and also use the facility for their own purposes; see
 .BR add_key (2),
 .BR request_key (2),
 and
 .BR keyctl (2).
-.PP
+.P
 A library and some user-space utilities are provided to allow access to the
 facility.
 See
@@ -165,11 +165,11 @@ Since Linux 4.8,
 .\" commit 13100a72f40f5748a04017e0ab3df4cf27c809ef
 the payload data is encrypted when stored in tmpfs,
 thereby preventing it from being written unencrypted into swap space.
-.PP
+.P
 There are more specialized key types available also,
 but they aren't discussed here
 because they aren't intended for normal user-space use.
-.PP
+.P
 Key type names
 that begin with a period (\[aq].\[aq]) are reserved to the implementation.
 .\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -179,7 +179,7 @@ links to other keys (which may include other keyrings).
 Keys may be linked to by multiple keyrings.
 Keyrings may be considered as analogous to UNIX directories
 where each directory contains a set of hard links to files.
-.PP
+.P
 Various operations (system calls) may be applied only to keyrings:
 .TP
 Adding
@@ -204,7 +204,7 @@ A keyring may be considered the root of a tree or subtree in which keyrings
 form the branches and non-keyrings the leaves.
 This tree may be searched for a key matching
 a particular type and description.
-.PP
+.P
 See
 .BR keyctl_clear (3),
 .BR keyctl_link (3),
@@ -217,13 +217,13 @@ for more information.
 To prevent a key from being garbage collected,
 it must be anchored to keep its reference count elevated
 when it is not in active use by the kernel.
-.PP
+.P
 Keyrings are used to anchor other keys:
 each link is a reference on a key.
 Note that keyrings themselves are just keys and
 are also subject to the same anchoring requirement to prevent
 them being garbage collected.
-.PP
+.P
 The kernel makes available a number of anchor keyrings.
 Note that some of these keyrings will be created only when first accessed.
 .TP
@@ -302,7 +302,7 @@ encryption keys for module signature verification.
 .IP
 These special keyrings  are usually closed to direct alteration
 by user space.
-.PP
+.P
 An originally planned "group keyring",
 for storing keys associated with each GID known to the kernel,
 is not so far implemented, is unlikely to be implemented.
@@ -335,16 +335,16 @@ If a process is upcalled from the kernel to instantiate a key (see
 .BR request_key (2)),
 then it also possesses the requester's keyrings as in
 rule (1) as if it were the requester.
-.PP
+.P
 Note that possession is not a fundamental property of a key,
 but must rather be calculated each time the key is needed.
-.PP
+.P
 Possession is designed to allow set-user-ID programs run from, say
 a user's shell to access the user's keys.
 Granting permissions to the key possessor while denying them
 to the key owner and group allows the prevention of access to keys
 on the basis of UID and GID matches.
-.PP
+.P
 When it creates the session keyring,
 .BR pam_keyinit (8)
 adds a link to the
@@ -361,7 +361,7 @@ The ID of a group that is permitted to access the key
 A security label
 .IP \[bu]
 A permissions mask
-.PP
+.P
 The permissions mask contains four sets of rights.
 The first three sets are mutually exclusive.
 One and only one will be in force for a particular access check.
@@ -379,17 +379,17 @@ filesystem GID or one of the caller's supplementary group IDs.
 .I other
 The set specifies the rights granted
 if neither the key's user ID nor group ID matched.
-.PP
+.P
 The fourth set of rights is:
 .TP
 .I possessor
 The set specifies the rights granted
 if a key is determined to be possessed by the caller.
-.PP
+.P
 The complete set of rights for a key is the union of whichever
 of the first three sets is applicable plus the fourth set
 if the key is possessed.
-.PP
+.P
 The set of rights that may be granted in each of the four masks
 is as follows:
 .TP
@@ -421,14 +421,14 @@ doesn't require this permission.
 .I setattr
 The ownership details and security label of the key may be changed,
 the key's expiration time may be set, and the key may be revoked.
-.PP
+.P
 In addition to access rights, any active Linux Security Module (LSM) may
 prevent access to a key if its policy so dictates.
 A key may be given a
 security label or other attribute by the LSM;
 this label is retrievable via
 .BR keyctl_get_security (3).
-.PP
+.P
 See
 .BR keyctl_chown (3),
 .BR keyctl_describe (3),
@@ -447,7 +447,7 @@ system call is the primary point of
 access for user-space applications to find a key.
 (Internally, the kernel has something similar available
 for use by internal components that make use of keys.)
-.PP
+.P
 The search algorithm works as follows:
 .IP (1) 5
 The process keyrings are searched in the following order: the
@@ -480,10 +480,10 @@ If no valid matching key is found,
 then the first noted error state is returned; otherwise, an
 .B ENOKEY
 error is returned.
-.PP
+.P
 It is also possible to search a specific keyring, in which case only steps
 (3) to (6) apply.
-.PP
+.P
 See
 .BR request_key (2)
 and
@@ -498,18 +498,18 @@ will, if given a
 argument, create a new key and then upcall to user space to
 instantiate the key.
 This allows keys to be created on an as-needed basis.
-.PP
+.P
 Typically,
 this will involve the kernel creating a new process that executes the
 .BR request\-key (8)
 program, which will then execute the appropriate handler based on its
 configuration.
-.PP
+.P
 The handler is passed a special authorization key that allows it
 and only it to instantiate the new key.
 This is also used to permit searches performed by the
 handler program to also search the requester's keyrings.
-.PP
+.P
 See
 .BR request_key (2),
 .BR keyctl_assume_authority (3),
@@ -796,7 +796,7 @@ or the
 operation.)
 .IP
 The default value in this file is 259200 (i.e., 3 days).
-.PP
+.P
 The following files (which are writable by privileged processes)
 are used to enforce quotas on the number of keys
 and number of bytes of data that can be stored in key payloads:
@@ -833,14 +833,14 @@ may own.
 .IP
 .\"738c5d190f6540539a04baf36ce21d46b5da04bd
 The default value in this file is 1,000,000 (200 before Linux 3.17).
-.PP
+.P
 With respect to keyrings,
 note that each link in a keyring consumes 4 bytes of the keyring payload.
 .\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 .SS Users
 The Linux key-management facility has a number of users and usages,
 but is not limited to those that already exist.
-.PP
+.P
 In-kernel users of this facility include:
 .TP
 Network filesystems - DNS
@@ -863,7 +863,7 @@ The CIFS filesystem uses keys to store passwords for accessing remote shares.
 Module verification
 The kernel build process can be made to cryptographically sign modules.
 That signature is then checked when a module is loaded.
-.PP
+.P
 User-space users of this facility include:
 .TP
 Kerberos key storage
@@ -892,7 +892,7 @@ scripts can use them.
 .BR user\-session\-keyring (7),
 .BR pam_keyinit (8),
 .BR request\-key (8)
-.PP
+.P
 The kernel source files
 .I Documentation/crypto/asymmetric\-keys.txt
 and under

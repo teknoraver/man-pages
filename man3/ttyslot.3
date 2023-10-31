@@ -15,15 +15,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .BR "#include <unistd.h>" "       /* See NOTES */"
-.PP
+.P
 .B "int ttyslot(void);"
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR ttyslot ():
 .nf
     Since glibc 2.24:
@@ -37,7 +37,7 @@ Feature Test Macro Requirements for glibc (see
 The legacy function
 .BR ttyslot ()
 returns the index of the current user's entry in some file.
-.PP
+.P
 Now "What file?" you ask.
 Well, let's first look at some history.
 .SS Ancient history
@@ -57,7 +57,7 @@ indicating the sequence of line speeds to try (\[aq]\-\[aq] was: start trying
 Thus a typical line was "18\-".
 A hang on some line was solved by changing the \[aq]1\[aq] to a \[aq]0\[aq],
 signaling init, changing back again, and signaling init again.
-.PP
+.P
 In UNIX\ V7 the format was changed: here the second character
 was the argument to
 .BR getty (8)
@@ -65,7 +65,7 @@ indicating the sequence of line speeds to try (\[aq]0\[aq] was: cycle through
 300-1200-150-110 baud; \[aq]4\[aq] was for the on-line console DECwriter)
 while the rest of the line contained the name of the tty.
 Thus a typical line was "14console".
-.PP
+.P
 Later systems have more elaborate syntax.
 System V-like systems have
 .I /etc/inittab
@@ -129,7 +129,7 @@ None.
 .SH HISTORY
 SUSv1; marked as LEGACY in SUSv2; removed in POSIX.1-2001.
 SUSv2 requires \-1 on error.
-.PP
+.P
 The glibc2 implementation of this function reads the file
 .BR _PATH_TTYS ,
 defined in
@@ -138,7 +138,7 @@ as "/etc/ttys".
 It returns 0 on error.
 Since Linux systems do not usually have "/etc/ttys", it will
 always return 0.
-.PP
+.P
 On BSD-like systems and Linux, the declaration of
 .BR ttyslot ()
 is provided by
@@ -149,7 +149,7 @@ Since glibc 2.24,
 .I <stdlib.h>
 also provides the declaration with the following
 feature test macro definitions:
-.PP
+.P
 .in +4n
 .EX
 (_XOPEN_SOURCE >= 500 ||
@@ -157,7 +157,7 @@ feature test macro definitions:
     && ! (_POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE >= 600)
 .EE
 .in
-.PP
+.P
 Minix also has
 .IR fttyslot ( fd ).
 .\" .SH HISTORY

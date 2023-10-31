@@ -13,18 +13,18 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_mutexattr_getrobust(const pthread_mutexattr_t *" attr ,
 .BI "                                int *" robustness ");"
 .BI "int pthread_mutexattr_setrobust(pthread_mutexattr_t *" attr ,
 .BI "                                int " robustness ");"
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR pthread_mutexattr_getrobust (),
 .BR pthread_mutexattr_setrobust ():
 .nf
@@ -47,7 +47,7 @@ the mutex attributes object referred to by
 .I attr
 to the value specified in
 .IR *robustness .
-.PP
+.P
 The robustness attribute specifies the behavior of the mutex when
 the owning thread dies without unlocking the mutex.
 The following values are valid for
@@ -94,7 +94,7 @@ further
 .BR pthread_mutex_lock (3)
 operations on this mutex will still return
 .BR EOWNERDEAD .
-.PP
+.P
 Note that the
 .I attr
 argument of
@@ -107,7 +107,7 @@ otherwise the behavior is undefined.
 .SH RETURN VALUE
 On success, these functions return 0.
 On error, they return a positive error number.
-.PP
+.P
 In the glibc implementation,
 .BR pthread_mutexattr_getrobust ()
 always return zero.
@@ -136,7 +136,7 @@ POSIX.1-2008.
 .SH HISTORY
 glibc 2.12.
 POSIX.1-2008.
-.PP
+.P
 Before the addition of
 .BR pthread_mutexattr_getrobust ()
 and
@@ -145,7 +145,7 @@ to POSIX,
 glibc defined the following equivalent nonstandard functions if
 .B _GNU_SOURCE
 was defined:
-.PP
+.P
 .nf
 .B [[deprecated]]
 .BI "int pthread_mutexattr_getrobust_np(const pthread_mutexattr_t *" attr ,
@@ -154,13 +154,13 @@ was defined:
 .BI "int pthread_mutexattr_setrobust_np(const pthread_mutexattr_t *" attr ,
 .BI "                                   int " robustness ");"
 .fi
-.PP
+.P
 Correspondingly, the constants
 .B PTHREAD_MUTEX_STALLED_NP
 and
 .B PTHREAD_MUTEX_ROBUST_NP
 were also defined.
-.PP
+.P
 These GNU-specific APIs, which first appeared in glibc 2.4,
 are nowadays obsolete and should not be used in new programs;
 since glibc 2.34 these APIs are marked as deprecated.
@@ -173,9 +173,9 @@ The main thread subsequently acquires the mutex
 successfully and gets the error
 .BR EOWNERDEAD ,
 after which it makes the mutex consistent.
-.PP
+.P
 The following shell session shows what we see when running this program:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out\fP

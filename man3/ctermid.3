@@ -15,15 +15,15 @@ Standard C library
 .B #include <stdio.h>
 .\" POSIX also requires this function to be declared in <unistd.h>,
 .\" and glibc does so if suitable feature test macros are defined.
-.PP
+.P
 .BI "char *ctermid(char *" "s" );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR ctermid ():
 .nf
     _POSIX_C_SOURCE
@@ -65,7 +65,7 @@ POSIX.1-2001, Svr4.
 The returned pathname may not uniquely identify the controlling
 terminal; it may, for example, be
 .IR /dev/tty .
-.PP
+.P
 It is not assured that the program can open the terminal.
 .\" in glibc 2.3.x, x >= 4, the glibc headers threw an error
 .\" if ctermid() was given an argument; fixed in glibc 2.4.

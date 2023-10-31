@@ -24,25 +24,25 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double j0(double " x );
 .BI "double j1(double " x );
 .BI "double jn(int " n ", double " x );
-.PP
+.P
 .BI "float j0f(float " x );
 .BI "float j1f(float " x );
 .BI "float jnf(int " n ", float " x );
-.PP
+.P
 .BI "long double j0l(long double " x );
 .BI "long double j1l(long double " x );
 .BI "long double jnl(int " n ", long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR j0 (),
 .BR j1 (),
 .BR jn ():
@@ -51,7 +51,7 @@ Feature Test Macro Requirements for glibc (see
         || /* Since glibc 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _SVID_SOURCE || _BSD_SOURCE
 .fi
-.PP
+.P
 .BR j0f (),
 .BR j0l (),
 .BR j1f (),
@@ -79,7 +79,7 @@ returns the Bessel function of
 .I x
 of the first kind of order
 .IR n .
-.PP
+.P
 The
 .BR j0f (),
 .BR j1f (),
@@ -100,11 +100,11 @@ values.
 On success, these functions return the appropriate
 Bessel value of the first kind for
 .IR x .
-.PP
+.P
 If
 .I x
 is a NaN, a NaN is returned.
-.PP
+.P
 If
 .I x
 is too large in magnitude,
@@ -116,14 +116,14 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Range error: result underflow, or \fIx\fP is too large in magnitude
 .I errno
 is set to
 .BR ERANGE .
-.PP
+.P
 These functions do not raise exceptions for
 .BR fetestexcept (3).
 .\" e.g., j0(1.5e16)

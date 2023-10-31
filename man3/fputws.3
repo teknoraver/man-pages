@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "int fputws(const wchar_t *restrict " ws ", FILE *restrict " stream );
 .fi
 .SH DESCRIPTION
@@ -31,7 +31,7 @@ function.
 It writes the wide-character string starting at \fIws\fP,
 up to but not including the terminating null wide character (L\[aq]\e0\[aq]),
 to \fIstream\fP.
-.PP
+.P
 For a nonlocking counterpart, see
 .BR unlocked_stdio (3).
 .SH RETURN VALUE
@@ -65,7 +65,7 @@ depends on the
 .B LC_CTYPE
 category of the
 current locale.
-.PP
+.P
 In the absence of additional information passed to the
 .BR fopen (3)
 call, it is

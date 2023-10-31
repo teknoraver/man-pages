@@ -27,21 +27,21 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "int setvbuf(FILE *restrict " stream ", char " buf "[restrict ." size ],
 .BI "            int " mode ", size_t " size );
-.PP
+.P
 .BI "void setbuf(FILE *restrict " stream ", char *restrict " buf );
 .BI "void setbuffer(FILE *restrict " stream ", char " buf "[restrict ." size ],
 .BI "            size_t "  size );
 .BI "void setlinebuf(FILE *" stream );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR setbuffer (),
 .BR setlinebuf ():
 .nf
@@ -63,7 +63,7 @@ The function
 may be used to force the block out early.
 (See
 .BR fclose (3).)
-.PP
+.P
 Normally all files are block buffered.
 If a stream refers to a terminal (as
 .I stdout
@@ -71,7 +71,7 @@ normally does), it is line buffered.
 The standard error stream
 .I stderr
 is always unbuffered by default.
-.PP
+.P
 The
 .BR setvbuf ()
 function may be used on any open stream to change its buffer.
@@ -89,7 +89,7 @@ line buffered
 .B _IOFBF
 fully buffered
 .RE
-.PP
+.P
 Except for unbuffered files, the
 .I buf
 argument should point to a buffer at least
@@ -104,17 +104,17 @@ The
 .BR setvbuf ()
 function may be used only after opening a stream and before any other
 operations have been performed on it.
-.PP
+.P
 The other three calls are, in effect, simply aliases for calls to
 .BR setvbuf ().
 The
 .BR setbuf ()
 function is exactly equivalent to the call
-.PP
+.P
 .in +4n
 setvbuf(stream, buf, buf ? _IOFBF : _IONBF, BUFSIZ);
 .in
-.PP
+.P
 The
 .BR setbuffer ()
 function is the same, except that the size of the buffer is up to the
@@ -123,7 +123,7 @@ caller, rather than being determined by the default
 The
 .BR setlinebuf ()
 function is exactly equivalent to the call:
-.PP
+.P
 .in +4n
 setvbuf(stream, NULL, _IOLBF, 0);
 .in
@@ -137,7 +137,7 @@ is invalid or the request cannot be honored).
 It may set
 .I errno
 on failure.
-.PP
+.P
 The other functions do not return a value.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
@@ -193,14 +193,14 @@ in order to detect errors.
 .\" On 4.2BSD and 4.3BSD systems,
 .\" .BR setbuf ()
 .\" always uses a suboptimal buffer size and should be avoided.
-.\".PP
+.\".P
 You must make sure that the space that
 .I buf
 points to still exists by the time
 .I stream
 is closed, which also happens at program termination.
 For example, the following is invalid:
-.PP
+.P
 .\" [[invalid]] SRC BEGIN (setbuf.c)
 .EX
 #include <stdio.h>

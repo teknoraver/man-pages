@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "int wctob(wint_t " c );
 .fi
 .SH DESCRIPTION
@@ -32,7 +32,7 @@ starting in the initial state, consists of a single
 byte.
 If so, it is returned as an
 .IR "unsigned char" .
-.PP
+.P
 Never use this function.
 It cannot help you in writing internationalized
 programs.
@@ -71,7 +71,7 @@ depends on the
 .B LC_CTYPE
 category of the
 current locale.
-.PP
+.P
 This function should never be used.
 Internationalized programs must never
 distinguish single-byte and multibyte characters.

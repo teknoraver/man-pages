@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int mblen(const char " s [. n "], size_t " n );
 .fi
 .SH DESCRIPTION
@@ -39,7 +39,7 @@ If the multibyte character is not the null wide
 character, it returns the number of bytes that were consumed from
 .IR s .
 If the multibyte character is the null wide character, it returns 0.
-.PP
+.P
 If the
 .I n
 bytes starting at
@@ -53,14 +53,14 @@ This can happen even if
 is greater than or equal to
 .IR MB_CUR_MAX ,
 if the multibyte string contains redundant shift sequences.
-.PP
+.P
 If the multibyte string starting at
 .I s
 contains an invalid multibyte
 sequence before the next complete character,
 .BR mblen ()
 also returns \-1.
-.PP
+.P
 If
 .I s
 is NULL, the

@@ -32,7 +32,7 @@ When a child process is created via
 it inherits a
 .I copy
 of its parent's environment.
-.PP
+.P
 By convention, the strings in
 .I environ
 have the form "\fIname\fP\fB=\fP\fIvalue\fP".
@@ -41,7 +41,7 @@ the character "\fB=\fP".
 The value can be anything that can be represented as a string.
 The name and the value may not contain an embedded null byte (\[aq]\e0\[aq]),
 since this is assumed to terminate the string.
-.PP
+.P
 Environment variables may be placed in the shell's environment by the
 .I export
 command in
@@ -50,7 +50,7 @@ or by the
 .I setenv
 command if you use
 .BR csh (1).
-.PP
+.P
 The initial environment of the shell is populated in various ways,
 such as definitions from
 .I /etc/environment
@@ -63,21 +63,21 @@ In addition, various shell initialization scripts, such as the system-wide
 script and per-user initializations script may include commands
 that add variables to the shell's environment;
 see the manual page of your preferred shell for details.
-.PP
+.P
 Bourne-style shells support the syntax
-.PP
+.P
 .in +4n
 .EX
 NAME=value command
 .EE
 .in
-.PP
+.P
 to create an environment variable definition only in the scope
 of the process that executes
 .IR command .
 Multiple variable definitions, separated by white space, may precede
 .IR command .
-.PP
+.P
 Arguments may also be placed in the
 environment at the point of an
 .BR exec (3).
@@ -87,7 +87,7 @@ A C program can manipulate its environment using the functions
 .BR setenv (3),
 and
 .BR unsetenv (3).
-.PP
+.P
 What follows is a list of environment variables typically seen on a
 system.
 This list is incomplete and includes only common variables seen
@@ -194,7 +194,7 @@ command shall be valid.
 .\" .B BROWSER
 .\" The user's preferred utility to browse URLs. Sequence of colon-separated
 .\" browser commands. See http://www.catb.org/\[ti]esr/BROWSER/ .
-.PP
+.P
 Note that the behavior of many programs and library routines is
 influenced by the presence or value of certain environment variables.
 Examples include the following:
@@ -272,14 +272,14 @@ if the
 .B _GNU_SOURCE
 feature test macro is defined (see
 .BR feature_test_macros (7)).
-.PP
+.P
 The
 .BR prctl (2)
 .B PR_SET_MM_ENV_START
 and
 .B PR_SET_MM_ENV_END
 operations can be used to control the location of the process's environment.
-.PP
+.P
 The
 .BR HOME ,
 .BR LOGNAME ,
@@ -305,7 +305,7 @@ Clearly there is a security risk here.
 Many a system command has been
 tricked into mischief by a user who specified unusual values for
 .BR IFS " or " LD_LIBRARY_PATH .
-.PP
+.P
 There is also the risk of name space pollution.
 Programs like
 .I make

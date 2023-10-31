@@ -13,7 +13,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <sys/mman.h>
-.PP
+.P
 .BI "int memfd_create(const char *" name ", unsigned int " flags ");"
 .fi
 .SH DESCRIPTION
@@ -39,14 +39,14 @@ memory allocations such as those allocated using
 with the
 .B MAP_ANONYMOUS
 flag.
-.PP
+.P
 The initial size of the file is set to 0.
 Following the call, the file size should be set using
 .BR ftruncate (2).
 (Alternatively, the file may be populated by calls to
 .BR write (2)
 or similar.)
-.PP
+.P
 The name supplied in
 .I name
 is used as a filename and will be displayed
@@ -57,7 +57,7 @@ The displayed name is always prefixed with
 and serves only for debugging purposes.
 Names do not affect the behavior of the file descriptor,
 and as such multiple files can have the same name without any side effects.
-.PP
+.P
 The following values may be bitwise ORed in
 .I flags
 to change the behavior of
@@ -121,11 +121,11 @@ huge page sizes are included in the header file
 For details on encoding huge page sizes not included in the header file,
 see the discussion of the similarly named constants in
 .BR mmap (2).
-.PP
+.P
 Unused bits in
 .I flags
 must be 0.
-.PP
+.P
 As its return value,
 .BR memfd_create ()
 returns a new file descriptor that can be used to refer to the file.
@@ -134,7 +134,7 @@ This file descriptor is opened for both reading and writing
 and
 .B O_LARGEFILE
 is set for the file descriptor.
-.PP
+.P
 With respect to
 .BR fork (2)
 and
@@ -219,7 +219,7 @@ The primary purpose of
 is to create files and associated file descriptors that are
 used with the file-sealing APIs provided by
 .BR fcntl (2).
-.PP
+.P
 The
 .BR memfd_create ()
 system call also has uses without file sealing
@@ -251,13 +251,13 @@ location in the shared memory region.
 (Dealing with this possibility necessitates the use of a handler for the
 .B SIGBUS
 signal.)
-.PP
+.P
 Dealing with untrusted peers imposes extra complexity on
 code that employs shared memory.
 Memory sealing enables that extra complexity to be eliminated,
 by allowing a process to operate secure in the knowledge that
 its peer can't modify the shared memory in an undesired fashion.
-.PP
+.P
 An example of the usage of the sealing mechanism is as follows:
 .IP (1) 5
 The first process creates a
@@ -346,7 +346,7 @@ seal has not yet been applied).
 Below are shown two example programs that demonstrate the use of
 .BR memfd_create ()
 and the file sealing API.
-.PP
+.P
 The first program,
 .IR t_memfd_create.c ,
 creates a
@@ -361,18 +361,18 @@ The first argument is the name to associate with the file,
 the second argument is the size to be set for the file,
 and the optional third argument is a string of characters that specify
 seals to be set on the file.
-.PP
+.P
 The second program,
 .IR t_get_seals.c ,
 can be used to open an existing file that was created via
 .BR memfd_create ()
 and inspect the set of seals that have been applied to that file.
-.PP
+.P
 The following shell session demonstrates the use of these programs.
 First we create a
 .BR tmpfs (5)
 file and set some seals on it:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./t_memfd_create my_memfd_file 4096 sw &\fP
@@ -380,7 +380,7 @@ $ \fB./t_memfd_create my_memfd_file 4096 sw &\fP
 PID: 11775; fd: 3; /proc/11775/fd/3
 .EE
 .in
-.PP
+.P
 At this point, the
 .I t_memfd_create
 program continues to run in the background.
@@ -396,7 +396,7 @@ Using that pathname, we inspect the content of the
 symbolic link, and use our
 .I t_get_seals
 program to view the seals that have been placed on the file:
-.PP
+.P
 .in +4n
 .EX
 $ \fBreadlink /proc/11775/fd/3\fP

@@ -18,7 +18,7 @@ Standard C library
 .nf
 .B #include <sys/socket.h>
 .B #include <netdb.h>
-.PP
+.P
 .BI "int getnameinfo(const struct sockaddr *restrict " addr \
 ", socklen_t " addrlen ,
 .BI "                char " host "[_Nullable restrict ." hostlen ],
@@ -27,12 +27,12 @@ Standard C library
 .BI "                socklen_t " servlen ,
 .BI "                int " flags );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getnameinfo ():
 .nf
     Since glibc 2.22:
@@ -55,7 +55,7 @@ but unlike those functions,
 .BR getnameinfo ()
 is reentrant and allows programs to eliminate
 IPv4-versus-IPv6 dependencies.
-.PP
+.P
 The
 .I addr
 argument is a pointer to a generic socket address structure
@@ -78,7 +78,7 @@ respectively) into which
 .BR getnameinfo ()
 places null-terminated strings containing the host and
 service names respectively.
-.PP
+.P
 The caller can specify that no hostname (or no service name)
 is required by providing a NULL
 .I host
@@ -91,7 +91,7 @@ argument or a zero
 argument.
 However, at least one of hostname or service name
 must be requested.
-.PP
+.P
 The
 .I flags
 argument modifies the behavior of
@@ -202,7 +202,7 @@ was too small.
 A system error occurred.
 The error code can be found in
 .IR errno .
-.PP
+.P
 The
 .BR gai_strerror (3)
 function translates these error codes to a human readable string,
@@ -233,7 +233,7 @@ RFC\ 2553.
 .SH HISTORY
 glibc 2.1.
 POSIX.1-2001.
-.PP
+.P
 Before glibc 2.2, the
 .I hostlen
 and
@@ -245,14 +245,14 @@ In order to assist the programmer in choosing reasonable sizes
 for the supplied buffers,
 .I <netdb.h>
 defines the constants
-.PP
+.P
 .in +4n
 .EX
 #define NI_MAXHOST      1025
 #define NI_MAXSERV      32
 .EE
 .in
-.PP
+.P
 Since glibc 2.8,
 these definitions are exposed only if suitable
 feature test macros are defined, namely:
@@ -263,7 +263,7 @@ or (in glibc versions up to and including 2.19)
 .B _BSD_SOURCE
 or
 .BR _SVID_SOURCE .
-.PP
+.P
 The former is the constant
 .B MAXDNAME
 in recent versions of BIND's
@@ -276,7 +276,7 @@ The following code tries to get the numeric hostname and service name,
 for a given socket address.
 Note that there is no hardcoded reference to
 a particular address family.
-.PP
+.P
 .in +4n
 .EX
 struct sockaddr *addr;     /* input */
@@ -288,10 +288,10 @@ if (getnameinfo(addr, addrlen, hbuf, sizeof(hbuf), sbuf,
     printf("host=%s, serv=%s\en", hbuf, sbuf);
 .EE
 .in
-.PP
+.P
 The following version checks if the socket address has a
 reverse address mapping.
-.PP
+.P
 .in +4n
 .EX
 struct sockaddr *addr;     /* input */
@@ -305,7 +305,7 @@ else
     printf("host=%s\en", hbuf);
 .EE
 .in
-.PP
+.P
 An example program using
 .BR getnameinfo ()
 can be found in
@@ -325,17 +325,17 @@ can be found in
 .BR services (5),
 .BR hostname (7),
 .BR named (8)
-.PP
+.P
 R.\& Gilligan, S.\& Thomson, J.\& Bound and W.\& Stevens,
 .IR "Basic Socket Interface Extensions for IPv6" ,
 RFC\ 2553, March 1999.
-.PP
+.P
 Tatsuya Jinmei and Atsushi Onoe,
 .IR "An Extension of Format for IPv6 Scoped Addresses" ,
 internet draft, work in progress
 .UR ftp://ftp.ietf.org\:/internet\-drafts\:/draft\-ietf\-ipngwg\-scopedaddr\-format\-02.txt
 .UE .
-.PP
+.P
 Craig Metz,
 .IR "Protocol Independence Using the Sockets API" ,
 Proceedings of the freenix track:

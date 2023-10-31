@@ -20,10 +20,10 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <arpa/inet.h>
-.PP
+.P
 .BI "uint32_t htonl(uint32_t " hostlong );
 .BI "uint16_t htons(uint16_t " hostshort );
-.PP
+.P
 .BI "uint32_t ntohl(uint32_t " netlong );
 .BI "uint16_t ntohs(uint16_t " netshort );
 .fi
@@ -33,25 +33,25 @@ The
 function converts the unsigned integer
 .I hostlong
 from host byte order to network byte order.
-.PP
+.P
 The
 .BR htons ()
 function converts the unsigned short integer
 .I hostshort
 from host byte order to network byte order.
-.PP
+.P
 The
 .BR ntohl ()
 function converts the unsigned integer
 .I netlong
 from network byte order to host byte order.
-.PP
+.P
 The
 .BR ntohs ()
 function converts the unsigned short integer
 .I netshort
 from network byte order to host byte order.
-.PP
+.P
 On the i386 the host byte order is Least Significant Byte first,
 whereas the network byte order, as used on the Internet, is Most
 Significant Byte first.

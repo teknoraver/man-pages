@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "double atof(const char *" nptr );
 .fi
 .SH DESCRIPTION
@@ -28,13 +28,13 @@ function converts the initial portion of the string
 pointed to by \fInptr\fP to
 .IR double .
 The behavior is the same as
-.PP
+.P
 .in +4n
 .EX
 strtod(nptr, NULL);
 .EE
 .in
-.PP
+.P
 except that
 .BR atof ()
 does not detect errors.

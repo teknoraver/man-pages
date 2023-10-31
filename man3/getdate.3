@@ -17,25 +17,25 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B "#include <time.h>"
-.PP
+.P
 .BI "struct tm *getdate(const char *" string );
-.PP
+.P
 .B "extern int getdate_err;"
-.PP
+.P
 .BI "int getdate_r(const char *restrict " string ", struct tm *restrict " res );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getdate ():
 .nf
     _XOPEN_SOURCE >= 500
 .\"    || _XOPEN_SOURCE && _XOPEN_SOURCE_EXTENDED
 .fi
-.PP
+.P
 .BR getdate_r ():
 .nf
     _GNU_SOURCE
@@ -56,7 +56,7 @@ This
 structure is allocated in static storage,
 and consequently it will be overwritten by further calls to
 .BR getdate ().
-.PP
+.P
 In contrast to
 .BR strptime (3),
 (which has a
@@ -68,11 +68,11 @@ whose full pathname is given in the environment variable
 .BR DATEMSK .
 The first line in the file that matches the given input string
 is used for the conversion.
-.PP
+.P
 The matching is done case insensitively.
 Superfluous whitespace, either in the pattern or in the string to
 be converted, is ignored.
-.PP
+.P
 The conversion specifications that a pattern can contain are those given for
 .BR strptime (3).
 One more conversion specification is specified in POSIX.1-2001:
@@ -83,7 +83,7 @@ Timezone name.
 .\" Looking at the glibc 2.21 source code, where the implementation uses
 .\" strptime(), suggests that it might be supported.
 This is not implemented in glibc.
-.PP
+.P
 When
 .B %Z
 is given, the structure containing the broken-down time
@@ -92,21 +92,21 @@ time in the given timezone.
 Otherwise, the structure is initialized to the broken-down time
 corresponding to the current local time (as by a call to
 .BR localtime (3)).
-.PP
+.P
 When only the day of the week is given,
 the day is taken to be the first such day
 on or after today.
-.PP
+.P
 When only the month is given (and no year), the month is taken to
 be the first such month equal to or after the current month.
 If no day is given, it is the first day of the month.
-.PP
+.P
 When no hour, minute, and second are given, the current
 hour, minute, and second are taken.
-.PP
+.P
 If no date is given, but we know the hour, then that hour is taken
 to be the first such hour equal to or after the current hour.
-.PP
+.P
 .BR getdate_r ()
 is a GNU extension that provides a reentrant version of
 .BR getdate ().
@@ -127,7 +127,7 @@ to one of the error numbers shown below.
 Changes to
 .I errno
 are unspecified.
-.PP
+.P
 On success
 .BR getdate_r ()
 returns 0;
@@ -232,7 +232,7 @@ and for each call displays the values in the fields of the returned
 .I tm
 structure.
 The following shell session demonstrates the operation of the program:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " TFILE=$PWD/tfile"

@@ -12,9 +12,9 @@ Real-time library
 .RI ( librt ", " \-lrt )
 .SH SYNOPSIS
 .nf
-.PP
+.P
 .B "#include <aio.h>"
-.PP
+.P
 .BI "int aio_suspend(const struct aiocb *const " aiocb_list "[], int " nitems ,
 .BI "                const struct timespec *restrict " timeout );
 .fi
@@ -35,7 +35,7 @@ is not NULL and the specified time interval has passed.
 .I timespec
 structure, see
 .BR nanosleep (2).)
-.PP
+.P
 The
 .I nitems
 argument specifies the number of items in
@@ -53,7 +53,7 @@ or
 for a description of the
 .I aiocb
 structure.)
-.PP
+.P
 If
 .B CLOCK_MONOTONIC
 is supported, this clock is used to measure
@@ -101,7 +101,7 @@ POSIX.1-2008.
 .SH HISTORY
 glibc 2.1.
 POSIX.1-2001.
-.PP
+.P
 POSIX doesn't specify the parameters to be
 .IR restrict ;
 that is specific to glibc.
@@ -109,13 +109,13 @@ that is specific to glibc.
 One can achieve polling by using a non-NULL
 .I timeout
 that specifies a zero time interval.
-.PP
+.P
 If one or more of the asynchronous I/O operations specified in
 .I aiocb_list
 has already completed at the time of the call to
 .BR aio_suspend (),
 then the call returns immediately.
-.PP
+.P
 To determine which I/O operations have completed
 after a successful return from
 .BR aio_suspend (),

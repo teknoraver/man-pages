@@ -12,22 +12,22 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <setjmp.h>
-.PP
+.P
 .BI "int setjmp(jmp_buf " env );
 .BI "int sigsetjmp(sigjmp_buf " env ", int " savesigs );
-.PP
+.P
 .BI "[[noreturn]] void longjmp(jmp_buf " env ", int " val );
 .BI "[[noreturn]] void siglongjmp(sigjmp_buf " env ", int " val );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR setjmp ():
 see NOTES.
-.PP
+.P
 .BR sigsetjmp ():
 .nf
     _POSIX_C_SOURCE
@@ -42,7 +42,7 @@ function dynamically establishes the target to which control
 will later be transferred, and
 .BR longjmp ()
 performs the transfer of execution.
-.PP
+.P
 The
 .BR setjmp ()
 function saves various information about the calling environment
@@ -55,7 +55,7 @@ for later use by
 In this case,
 .BR setjmp ()
 returns 0.
-.PP
+.P
 The
 .BR longjmp ()
 function uses the information saved in
@@ -70,7 +70,7 @@ the values of some other registers and the process signal mask
 may be restored to their state at the time of the
 .BR setjmp ()
 call.
-.PP
+.P
 Following a successful
 .BR longjmp (),
 execution continues as if
@@ -89,7 +89,7 @@ and
 .BR siglongjmp ()
 also perform nonlocal gotos, but provide predictable handling of
 the process signal mask.
-.PP
+.P
 If, and only if, the
 .I savesigs
 argument provided to
@@ -112,7 +112,7 @@ or
 the nonzero value specified in
 .I val
 is returned.
-.PP
+.P
 The
 .BR longjmp ()
 or
@@ -161,7 +161,7 @@ POSIX.1-2001, C89.
 .TQ
 .BR siglongjmp ()
 POSIX.1-2001.
-.PP
+.P
 POSIX does not specify whether
 .BR setjmp ()
 will save the signal mask
@@ -238,7 +238,7 @@ and
 .IP \[bu]
 they are not declared as
 .IR volatile .
-.PP
+.P
 Analogous remarks apply for
 .BR siglongjmp ().
 .\"
@@ -262,13 +262,13 @@ call.
 call should employ a unique
 .I jmp_buf
 variable.)
-.PP
+.P
 Adding further difficulty, the
 .BR setjmp ()
 and
 .BR longjmp ()
 calls may not even be in the same source code module.
-.PP
+.P
 In summary, nonlocal gotos can make programs harder to understand
 and maintain, and an alternative should be used if possible.
 .\"
@@ -279,7 +279,7 @@ returns before
 .BR longjmp ()
 is called, the behavior is undefined.
 Some kind of subtle or unsubtle chaos is sure to result.
-.PP
+.P
 If, in a multithreaded program, a
 .BR longjmp ()
 call employs an
@@ -297,7 +297,7 @@ in a different thread, the behavior is undefined.
 .\"     (i.e., from a handler that was invoked in response to a signal that was
 .\"     generated while another signal was already in the process of being
 .\"     handled), the behavior is undefined.
-.PP
+.P
 POSIX.1-2008 Technical Corrigendum 2 adds
 .\" http://austingroupbugs.net/view.php?id=516#c1195
 .BR longjmp ()

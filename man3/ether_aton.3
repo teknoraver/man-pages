@@ -19,19 +19,19 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <netinet/ether.h>
-.PP
+.P
 .BI "char *ether_ntoa(const struct ether_addr *" addr );
 .BI "struct ether_addr *ether_aton(const char *" asc );
-.PP
+.P
 .BI "int ether_ntohost(char *" hostname ", const struct ether_addr *" addr );
 .BI "int ether_hostton(const char *" hostname ", struct ether_addr *" addr );
-.PP
+.P
 .BI "int ether_line(const char *" line ", struct ether_addr *" addr ,
 .BI "               char *" hostname );
-.PP
+.P
 /* GNU extensions */
 .BI "char *ether_ntoa_r(const struct ether_addr *" addr ", char *" buf );
-.PP
+.P
 .BI "struct ether_addr *ether_aton_r(const char *" asc ,
 .BI "                                struct ether_addr *" addr );
 .fi
@@ -45,7 +45,7 @@ allocated buffer, which subsequent calls will
 overwrite.
 .BR ether_aton ()
 returns NULL if the address is invalid.
-.PP
+.P
 The
 .BR ether_ntoa ()
 function converts the Ethernet host address
@@ -54,21 +54,21 @@ given in network byte order to a string in standard
 hex-digits-and-colons notation, omitting leading zeros.
 The string is returned in a statically allocated buffer,
 which subsequent calls will overwrite.
-.PP
+.P
 The
 .BR ether_ntohost ()
 function maps an Ethernet address to the
 corresponding hostname in
 .I /etc/ethers
 and returns nonzero if it cannot be found.
-.PP
+.P
 The
 .BR ether_hostton ()
 function maps a hostname to the
 corresponding Ethernet address in
 .I /etc/ethers
 and returns nonzero if it cannot be found.
-.PP
+.P
 The
 .BR ether_line ()
 function parses a line in
@@ -80,7 +80,7 @@ The buffer pointed to by
 .I hostname
 must be sufficiently long, for example, have the same length as
 .IR line .
-.PP
+.P
 The functions
 .BR ether_ntoa_r ()
 and
@@ -91,13 +91,13 @@ thread-safe versions of
 and
 .BR ether_aton ()
 respectively, and do not use static buffers.
-.PP
+.P
 The structure
 .I ether_addr
 is defined in
 .I <net/ethernet.h>
 as:
-.PP
+.P
 .in +4n
 .EX
 struct ether_addr {

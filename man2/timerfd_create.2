@@ -12,9 +12,9 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/timerfd.h>
-.PP
+.P
 .BI "int timerfd_create(int " clockid ", int " flags );
-.PP
+.P
 .BI "int timerfd_settime(int " fd ", int " flags ,
 .BI "                    const struct itimerspec *" new_value ,
 .BI "                    struct itimerspec *_Nullable " old_value );
@@ -32,7 +32,7 @@ with the advantage that the file descriptor may be monitored by
 .BR poll (2),
 and
 .BR epoll (7).
-.PP
+.P
 The use of these three system calls is analogous to the use of
 .BR timer_create (2),
 .BR timer_settime (2),
@@ -93,14 +93,14 @@ but will wake the system if it is suspended.
 The caller must have the
 .B CAP_WAKE_ALARM
 capability in order to set a timer against this clock.
-.PP
+.P
 See
 .BR clock_getres (2)
 for some further details on the above clocks.
-.PP
+.P
 The current value of each of these clocks can be retrieved using
 .BR clock_gettime (2).
-.PP
+.P
 Starting with Linux 2.6.27, the following values may be bitwise ORed in
 .I flags
 to change the behavior of
@@ -125,7 +125,7 @@ See the description of the
 flag in
 .BR open (2)
 for reasons why this may be useful.
-.PP
+.P
 In Linux versions up to and including 2.6.26,
 .I flags
 must be specified as zero.
@@ -134,7 +134,7 @@ must be specified as zero.
 arms (starts) or disarms (stops)
 the timer referred to by the file descriptor
 .IR fd .
-.PP
+.P
 The
 .I new_value
 argument specifies the initial expiration and interval for the timer.
@@ -142,7 +142,7 @@ The
 .I itimerspec
 structure used for this argument is described in
 .BR itimerspec (3type).
-.PP
+.P
 .I new_value.it_value
 specifies the initial expiration of the timer,
 in seconds and nanoseconds.
@@ -152,7 +152,7 @@ to a nonzero value arms the timer.
 Setting both fields of
 .I new_value.it_value
 to zero disarms the timer.
-.PP
+.P
 Setting one or both fields of
 .I new_value.it_interval
 to nonzero values specifies the period, in seconds and nanoseconds,
@@ -161,7 +161,7 @@ If both fields of
 .I new_value.it_interval
 are zero, the timer expires just once, at the time specified by
 .IR new_value.it_value .
-.PP
+.P
 By default,
 the initial expiration time specified in
 .I new_value
@@ -173,7 +173,7 @@ specifies a time relative to the current value of the clock specified by
 An absolute timeout can be selected via the
 .I flags
 argument.
-.PP
+.P
 The
 .I flags
 argument is a bit mask that can include the following values:
@@ -202,7 +202,7 @@ When such changes occur, a current or future
 .BR read (2)
 from the file descriptor will fail with the error
 .BR ECANCELED .
-.PP
+.P
 If the
 .I old_value
 argument is not NULL, then the
@@ -222,7 +222,7 @@ an
 structure that contains the current setting of the timer
 referred to by the file descriptor
 .IR fd .
-.PP
+.P
 The
 .I it_value
 field returns the amount of time
@@ -232,7 +232,7 @@ then the timer is currently disarmed.
 This field always contains a relative value, regardless of whether the
 .B TFD_TIMER_ABSTIME
 flag was specified when setting the timer.
-.PP
+.P
 The
 .I it_interval
 field returns the interval of the timer.
@@ -388,7 +388,7 @@ returns a new file descriptor.
 On error, \-1 is returned and
 .I errno
 is set to indicate the error.
-.PP
+.P
 .BR timerfd_settime ()
 and
 .BR timerfd_gettime ()
@@ -434,7 +434,7 @@ or
 but the caller did not have the
 .B CAP_WAKE_ALARM
 capability.
-.PP
+.P
 .BR timerfd_settime ()
 and
 .BR timerfd_gettime ()
@@ -454,7 +454,7 @@ is not a valid pointer.
 .B EINVAL
 .I fd
 is not a valid timerfd file descriptor.
-.PP
+.P
 .BR timerfd_settime ()
 can also fail with the following errors:
 .TP
@@ -504,7 +504,7 @@ the caller once more calls
 to rearm the timer (without first doing a
 .BR read (2)
 on the file descriptor).
-.PP
+.P
 In this case the following occurs:
 .IP \[bu] 3
 The
@@ -538,9 +538,9 @@ The second argument specifies the interval for the timer, in seconds.
 The third argument specifies the number of times the program should
 allow the timer to expire before terminating.
 The second and third command-line arguments are optional.
-.PP
+.P
 The following shell session demonstrates the use of the program:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " a.out 3 1 100"

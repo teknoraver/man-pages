@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <malloc.h>
-.PP
+.P
 .BI "int malloc_info(int " options ", FILE *" stream );
 .fi
 .SH DESCRIPTION
@@ -25,7 +25,7 @@ The string is printed on the file stream
 .IR stream .
 The exported string includes information about all arenas (see
 .BR malloc (3)).
-.PP
+.P
 As currently implemented,
 .I options
 must be zero.
@@ -65,13 +65,13 @@ The memory-allocation information is provided as an XML string
 because the information may change over time
 (according to changes in the underlying implementation).
 The output XML string includes a version field.
-.PP
+.P
 The
 .BR open_memstream (3)
 function can be used to send the output of
 .BR malloc_info ()
 directly into a buffer in memory, rather than to a file.
-.PP
+.P
 The
 .BR malloc_info ()
 function is designed to address deficiencies in
@@ -89,14 +89,14 @@ The third argument controls the size of the blocks to be allocated.
 The main thread creates blocks of this size,
 the second thread created by the program allocates blocks of twice this size,
 the third thread allocates blocks of three times this size, and so on.
-.PP
+.P
 The program calls
 .BR malloc_info ()
 twice to display the memory-allocation state.
 The first call takes place before any threads
 are created or memory allocated.
 The second call is performed after all threads have allocated memory.
-.PP
+.P
 In the following example,
 the command-line arguments specify the creation of one additional thread,
 and both the main thread and the additional thread
@@ -104,7 +104,7 @@ allocate 10000 blocks of memory.
 After the blocks of memory have been allocated,
 .BR malloc_info ()
 shows the state of two allocation arenas.
-.PP
+.P
 .in +4n
 .EX
 .RB "$ " "getconf GNU_LIBC_VERSION"

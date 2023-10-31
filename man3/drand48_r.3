@@ -16,35 +16,35 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int drand48_r(struct drand48_data *restrict " buffer ,
 .BI "              double *restrict " result );
 .BI "int erand48_r(unsigned short " xsubi [3] ","
 .BI "              struct drand48_data *restrict "buffer ,
 .BI "              double *restrict " result ");"
-.PP
+.P
 .BI "int lrand48_r(struct drand48_data *restrict " buffer ,
 .BI "              long *restrict " result );
 .BI "int nrand48_r(unsigned short " xsubi[3] ","
 .BI "              struct drand48_data *restrict "buffer ,
 .BI "              long *restrict " result ");"
-.PP
+.P
 .BI "int mrand48_r(struct drand48_data *restrict " buffer ,
 .BI "              long *restrict " result ");"
 .BI "int jrand48_r(unsigned short " xsubi[3] ","
 .BI "              struct drand48_data *restrict " buffer ,
 .BI "              long *restrict " result ");"
-.PP
+.P
 .BI "int srand48_r(long int " seedval ", struct drand48_data *" buffer ");"
 .BI "int seed48_r(unsigned short " seed16v[3] ", struct drand48_data *" buffer );
 .BI "int lcong48_r(unsigned short " param[7] ", struct drand48_data *" buffer );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 All functions shown above:
 .\" .BR drand48_r (),
 .\" .BR erand48_r (),
@@ -65,7 +65,7 @@ These functions are the reentrant analogs of the functions described in
 Instead of modifying the global random generator state, they use
 the supplied data
 .IR buffer .
-.PP
+.P
 Before the first use, this struct must be initialized, for example,
 by filling it with zeros, or by calling one of the functions
 .BR srand48_r (),

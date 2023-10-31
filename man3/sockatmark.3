@@ -12,15 +12,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/socket.h>
-.PP
+.P
 .BI "int sockatmark(int " sockfd );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR sockatmark ():
 .nf
     _POSIX_C_SOURCE >= 200112L
@@ -79,14 +79,14 @@ returns 1, then the out-of-band data can be read using the
 .B MSG_OOB
 flag of
 .BR recv (2).
-.PP
+.P
 Out-of-band data is supported only on some stream socket protocols.
-.PP
+.P
 .BR sockatmark ()
 can safely be called from a handler for the
 .B SIGURG
 signal.
-.PP
+.P
 .BR sockatmark ()
 is implemented using the
 .B SIOCATMARK
@@ -101,7 +101,7 @@ The following code can be used after receipt of a
 .B SIGURG
 signal to read (and discard) all data up to the mark,
 and then read the byte of data at the mark:
-.PP
+.P
 .EX
     char buf[BUF_LEN];
     char oobdata;

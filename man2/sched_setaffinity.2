@@ -23,7 +23,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <sched.h>
-.PP
+.P
 .BI "int sched_setaffinity(pid_t " pid ", size_t " cpusetsize ,
 .BI "                      const cpu_set_t *" mask );
 .BI "int sched_getaffinity(pid_t " pid ", size_t " cpusetsize ,
@@ -43,14 +43,14 @@ Restricting a thread to run on a single CPU also avoids
 the performance cost caused by the cache invalidation that occurs
 when a thread ceases to execute on one CPU and then
 recommences execution on a different CPU.
-.PP
+.P
 A CPU affinity mask is represented by the
 .I cpu_set_t
 structure, a "CPU set", pointed to by
 .IR mask .
 A set of macros for manipulating CPU sets is described in
 .BR CPU_SET (3).
-.PP
+.P
 .BR sched_setaffinity ()
 sets the CPU affinity mask of the thread whose ID is
 .I pid
@@ -65,14 +65,14 @@ is the length (in bytes) of the data pointed to by
 .IR mask .
 Normally this argument would be specified as
 .IR "sizeof(cpu_set_t)" .
-.PP
+.P
 If the thread specified by
 .I pid
 is not currently running on one of the CPUs specified in
 .IR mask ,
 then that thread is migrated to one of the CPUs specified in
 .IR mask .
-.PP
+.P
 .BR sched_getaffinity ()
 writes the affinity mask of the thread whose ID is
 .I pid
@@ -139,7 +139,7 @@ Linux.
 .SH HISTORY
 Linux 2.5.8,
 glibc 2.3.
-.PP
+.P
 Initially, the glibc interfaces included a
 .I cpusetsize
 argument, typed as
@@ -161,7 +161,7 @@ runs if the "cpuset" mechanism described in
 is being used.
 These restrictions on the actual set of CPUs on which the thread
 will run are silently imposed by the kernel.
-.PP
+.P
 There are various ways of determining the number of CPUs
 available on the system, including: inspecting the contents of
 .IR /proc/cpuinfo ;
@@ -173,10 +173,10 @@ and
 .B _SC_NPROCESSORS_ONLN
 parameters; and inspecting the list of CPU directories under
 .IR /sys/devices/system/cpu/ .
-.PP
+.P
 .BR sched (7)
 has a description of the Linux scheduling scheme.
-.PP
+.P
 The affinity mask is a per-thread attribute that can be
 adjusted independently for each of the threads in a thread group.
 The value returned from a call to
@@ -193,7 +193,7 @@ will set the attribute for the main thread of the thread group.
 .BR pthread_setaffinity_np (3)
 instead of
 .BR sched_setaffinity ().)
-.PP
+.P
 The
 .I isolcpus
 boot option can be used to isolate one or more CPUs at boot time,
@@ -211,7 +211,7 @@ As noted in that file,
 is the preferred mechanism of isolating CPUs
 (versus the alternative of manually setting the CPU affinity
 of all processes on the system).
-.PP
+.P
 A child created via
 .BR fork (2)
 inherits its parent's CPU affinity mask.
@@ -225,7 +225,7 @@ being typed as
 .IR "unsigned long\ *" ,
 reflecting the fact that the underlying implementation of CPU
 sets is a simple bit mask.
-.PP
+.P
 On success, the raw
 .BR sched_getaffinity ()
 system call returns the number of bytes placed copied into the
@@ -249,13 +249,13 @@ meaning that the maximum CPU number that can be represented is 1023.
 .\" and https://sourceware.org/ml/libc-alpha/2013-07/msg00288.html
 If the kernel CPU affinity mask is larger than 1024,
 then calls of the form:
-.PP
+.P
 .in +4n
 .EX
 sched_getaffinity(pid, sizeof(cpu_set_t), &mask);
 .EE
 .in
-.PP
+.P
 fail with the error
 .BR EINVAL ,
 the error produced by the underlying system call for the case where the
@@ -265,7 +265,7 @@ size specified in
 is smaller than the size of the affinity mask used by the kernel.
 (Depending on the system CPU topology, the kernel affinity mask can
 be substantially larger than the number of active CPUs in the system.)
-.PP
+.P
 When working on systems with large kernel CPU affinity masks,
 one must dynamically allocate the
 .I mask
@@ -276,7 +276,7 @@ of the required mask using
 .BR sched_getaffinity ()
 calls with increasing mask sizes (until the call does not fail with the error
 .BR EINVAL ).
-.PP
+.P
 Be aware that
 .BR CPU_ALLOC (3)
 may allocate a slightly larger CPU set than requested
@@ -300,16 +300,16 @@ The program takes three command-line arguments:
 the CPU number for the parent,
 the CPU number for the child,
 and the number of loop iterations that both processes should perform.
-.PP
+.P
 As the sample runs below demonstrate, the amount of real and CPU time
 consumed when running the program will depend on intra-core caching effects
 and whether the processes are using the same CPU.
-.PP
+.P
 We first employ
 .BR lscpu (1)
 to determine that this (x86)
 system has two cores, each with two CPUs:
-.PP
+.P
 .in +4n
 .EX
 $ \fBlscpu | egrep \-i \[aq]core.*:|socket\[aq]\fP
@@ -318,12 +318,12 @@ Core(s) per socket:    2
 Socket(s):             1
 .EE
 .in
-.PP
+.P
 We then time the operation of the example program for three cases:
 both processes running on the same CPU;
 both processes running on different CPUs on the same core;
 and both processes running on different CPUs on different cores.
-.PP
+.P
 .in +4n
 .EX
 $ \fBtime \-p ./a.out 0 0 100000000\fP

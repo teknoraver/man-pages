@@ -20,16 +20,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "char *getenv(const char *" name );
 .BI "char *secure_getenv(const char *" name );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR secure_getenv ():
 .nf
     _GNU_SOURCE
@@ -43,7 +43,7 @@ environment variable
 and returns a pointer to the corresponding
 .I value
 string.
-.PP
+.P
 The GNU-specific
 .BR secure_getenv ()
 function is just like
@@ -60,10 +60,10 @@ set-group-ID program);
 the effective capability bit was set on the executable file; or
 .IP \[bu]
 the process has a nonempty permitted capability set.
-.PP
+.P
 Secure execution may also be required if triggered
 by some Linux security modules.
-.PP
+.P
 The
 .BR secure_getenv ()
 function is intended for use in general-purpose libraries
@@ -106,13 +106,13 @@ POSIX.1-2001, C89, C99, SVr4, 4.3BSD.
 glibc 2.17.
 .SH NOTES
 The strings in the environment list are of the form \fIname=value\fP.
-.PP
+.P
 As typically implemented,
 .BR getenv ()
 returns a pointer to a string within the environment list.
 The caller must take care not to modify this string,
 since that would change the environment of the process.
-.PP
+.P
 The implementation of
 .BR getenv ()
 is not required to be reentrant.
@@ -125,7 +125,7 @@ and can be modified by a subsequent call to
 .BR setenv (3),
 or
 .BR unsetenv (3).
-.PP
+.P
 The "secure execution" mode of
 .BR secure_getenv ()
 is controlled by the

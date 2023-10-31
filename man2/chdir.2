@@ -19,16 +19,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int chdir(const char *" path );
 .BI "int fchdir(int " fd );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR fchdir ():
 .nf
     _XOPEN_SOURCE >= 500
@@ -41,7 +41,7 @@ Feature Test Macro Requirements for glibc (see
 changes the current working directory of the calling process to the
 directory specified in
 .IR path .
-.PP
+.P
 .BR fchdir ()
 is identical to
 .BR chdir ();
@@ -92,7 +92,7 @@ Insufficient kernel memory was available.
 A component of
 .I path
 is not a directory.
-.PP
+.P
 The general errors for
 .BR fchdir ()
 are listed below:
@@ -115,7 +115,7 @@ POSIX.1-2001, SVr4, 4.4BSD.
 .SH NOTES
 The current working directory is the starting point for interpreting
 relative pathnames (those not starting with \[aq]/\[aq]).
-.PP
+.P
 A child process created via
 .BR fork (2)
 inherits its parent's current working directory.

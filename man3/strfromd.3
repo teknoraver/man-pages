@@ -20,7 +20,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int strfromd(char " str "[restrict ." n "], size_t " n ,
 .BI "             const char *restrict " format ", double " fp ");"
 .BI "int strfromf(char " str "[restrict ." n "], size_t " n ,
@@ -28,12 +28,12 @@ Standard C library
 .BI "int strfroml(char " str "[restrict ." n "], size_t " n ,
 .BI "             const char *restrict " format ", long double " fp ");"
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR strfromd (),
 .BR strfromf (),
 .BR strfroml ():
@@ -52,26 +52,26 @@ At most
 .I n
 characters are stored into
 .IR str .
-.PP
+.P
 The terminating null byte ('\e0') is written if and only if
 .I n
 is sufficiently large, otherwise the written string is truncated at
 .I n
 characters.
-.PP
+.P
 The
 .BR strfromd (),
 .BR strfromf (),
 and
 .BR strfroml ()
 functions are equivalent to
-.PP
+.P
 .in +4n
 .EX
 snprintf(str, n, format, fp);
 .EE
 .in
-.PP
+.P
 except for the
 .I format
 string.
@@ -93,7 +93,7 @@ Finally, the format string should have one of the conversion specifiers
 .BR g ,
 or
 .BR G .
-.PP
+.P
 The conversion specifier is applied based on the floating-point type
 indicated by the function suffix.
 Therefore, unlike
@@ -102,10 +102,10 @@ the format string does not have a length modifier character.
 See
 .BR snprintf (3)
 for a detailed description of these conversion specifiers.
-.PP
+.P
 The implementation conforms to the C99 standard on conversion of NaN and
 infinity values:
-.PP
+.P
 .RS
 If
 .I fp
@@ -124,12 +124,12 @@ If
 .BR E ,
 .BR G )
 is the conversion specifier, the conversion is to "NAN" or "\-NAN".
-.PP
+.P
 Likewise if
 .I fp
 is infinity, it is converted to [\-]inf or [\-]INF.
 .RE
-.PP
+.P
 A malformed
 .I format
 string results in undefined behavior.
@@ -154,7 +154,7 @@ For an explanation of the terms used in this section, see
 and the
 .B POSIX Safety Concepts
 section in GNU C Library manual.
-.PP
+.P
 .TS
 allbox;
 lbx lb lb
@@ -170,7 +170,7 @@ T}	Thread safety	MT-Safe locale
 \^	Async-signal safety	AS-Unsafe heap
 \^	Async-cancel safety	AC-Unsafe mem
 .TE
-.PP
+.P
 Note: these attributes are preliminary.
 .SH STANDARDS
 ISO/IEC TS 18661-1.
@@ -189,7 +189,7 @@ category of the current locale.
 .SH EXAMPLES
 To convert the value 12.1 as a float type to a string using decimal
 notation, resulting in "12.100000":
-.PP
+.P
 .in +4n
 .EX
 #define __STDC_WANT_IEC_60559_BFP_EXT__
@@ -199,10 +199,10 @@ char s[ssize];
 strfromf(s, ssize, "%f", 12.1);
 .EE
 .in
-.PP
+.P
 To convert the value 12.3456 as a float type to a string using
 decimal notation with two digits of precision, resulting in "12.35":
-.PP
+.P
 .in +4n
 .EX
 #define __STDC_WANT_IEC_60559_BFP_EXT__
@@ -212,10 +212,10 @@ char s[ssize];
 strfromf(s, ssize, "%.2f", 12.3456);
 .EE
 .in
-.PP
+.P
 To convert the value 12.345e19 as a double type to a string using
 scientific notation with zero digits of precision, resulting in "1E+20":
-.PP
+.P
 .in +4n
 .EX
 #define __STDC_WANT_IEC_60559_BFP_EXT__

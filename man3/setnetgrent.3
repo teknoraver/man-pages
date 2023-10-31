@@ -16,25 +16,25 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <netdb.h>
-.PP
+.P
 .BI "int setnetgrent(const char *" netgroup );
 .B "void endnetgrent(void);"
-.PP
+.P
 .BI "int getnetgrent(char **restrict " host ,
 .BI "            char **restrict " user ", char **restrict " domain );
 .BI "int getnetgrent_r(char **restrict " host ,
 .BI "            char **restrict " user ", char **restrict " domain ,
 .BI "            char " buf "[restrict ." buflen "], size_t " buflen );
-.PP
+.P
 .BI "int innetgr(const char *" netgroup ", const char *" host ,
 .BI "            const char *" user ", const char *" domain );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR \%setnetgrent (),
 .BR \%endnetgrent (),
 .BR \%getnetgrent (),
@@ -59,7 +59,7 @@ The functions described here allow access to the netgroup databases.
 The file
 .I /etc/nsswitch.conf
 defines what database is searched.
-.PP
+.P
 The
 .BR setnetgrent ()
 call defines the netgroup that will be searched by subsequent
@@ -79,7 +79,7 @@ To avoid this problem you can use the GNU function
 that stores the strings in the supplied buffer.
 To free all allocated buffers use
 .BR endnetgrent ().
-.PP
+.P
 In most cases you want to check only if the triplet
 .RI ( hostname ", " username ", " domainname )
 is a member of a netgroup.
@@ -134,7 +134,7 @@ MT-Unsafe race:netgrent
 race:netgrentbuf locale
 T}
 .TE
-.PP
+.P
 In the above table,
 .I netgrent
 in

@@ -22,17 +22,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double atan2(double " y ", double " x );
 .BI "float atan2f(float " y ", float " x );
 .BI "long double atan2l(long double " y ", long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR atan2f (),
 .BR atan2l ():
 .nf
@@ -49,31 +49,31 @@ the quadrant of the result.
 On success, these functions return the principal value of the arc tangent of
 .I y/x
 in radians; the return value is in the range [\-pi,\ pi].
-.PP
+.P
 If
 .I y
 is +0 (\-0) and
 .I x
 is less than 0, +pi (\-pi) is returned.
-.PP
+.P
 If
 .I y
 is +0 (\-0) and
 .I x
 is greater than 0, +0 (\-0) is returned.
-.PP
+.P
 If
 .I y
 is less than 0 and
 .I x
 is +0 or \-0, \-pi/2 is returned.
-.PP
+.P
 If
 .I y
 is greater than 0 and
 .I x
 is +0 or \-0, pi/2 is returned.
-.PP
+.P
 .\" POSIX.1 says:
 .\" If
 .\" .I x
@@ -84,7 +84,7 @@ If either
 or
 .I y
 is NaN, a NaN is returned.
-.PP
+.P
 .\" POSIX.1 says:
 .\" If the result underflows, a range error may occur and
 .\" .I y/x
@@ -95,38 +95,38 @@ If
 is +0 (\-0) and
 .I x
 is \-0, +pi (\-pi) is returned.
-.PP
+.P
 If
 .I y
 is +0 (\-0) and
 .I x
 is +0, +0 (\-0) is returned.
-.PP
+.P
 If
 .I y
 is a finite value greater (less) than 0, and
 .I x
 is negative infinity, +pi (\-pi) is returned.
-.PP
+.P
 If
 .I y
 is a finite value greater (less) than 0, and
 .I x
 is positive infinity, +0 (\-0) is returned.
-.PP
+.P
 If
 .I y
 is positive infinity (negative infinity), and
 .I x
 is finite,
 pi/2 (\-pi/2) is returned.
-.PP
+.P
 If
 .I y
 is positive infinity (negative infinity) and
 .I x
 is negative infinity, +3*pi/4 (\-3*pi/4) is returned.
-.PP
+.P
 If
 .I y
 is positive infinity (negative infinity) and
@@ -159,7 +159,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to

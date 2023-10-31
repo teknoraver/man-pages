@@ -13,9 +13,9 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "[[deprecated]] int matherr(struct exception *" exc );
-.PP
+.P
 .B [[deprecated]] extern _LIB_VERSION_TYPE _LIB_VERSION;
 .fi
 .SH DESCRIPTION
@@ -32,7 +32,7 @@ and
 This page documents the
 .BR matherr ()
 mechanism as an aid for maintaining and porting older applications.
-.PP
+.P
 The System V Interface Definition (SVID) specifies that various
 math functions should invoke a function called
 .BR matherr ()
@@ -42,7 +42,7 @@ after
 .BR matherr ()
 returns, the system then returns to the math function,
 which in turn returns to the caller.
-.PP
+.P
 To employ
 .BR matherr (),
 the programmer must define the
@@ -55,7 +55,7 @@ and assign the value
 .B _SVID_
 to the external variable
 .BR _LIB_VERSION .
-.PP
+.P
 The system provides a default version of
 .BR matherr ().
 This version does nothing, and returns zero
@@ -67,7 +67,7 @@ version, which will be invoked when an exception occurs.
 The function is invoked with one argument, a pointer to an
 .I exception
 structure, defined as follows:
-.PP
+.P
 .in +4n
 .EX
 struct exception {
@@ -79,7 +79,7 @@ struct exception {
 }
 .EE
 .in
-.PP
+.P
 The
 .I type
 field has one of the following values:
@@ -130,7 +130,7 @@ is set to
 Partial loss of significance.
 This value is unused on glibc
 (and many other systems).
-.PP
+.P
 The
 .I arg1
 and
@@ -138,7 +138,7 @@ and
 fields are the arguments supplied to the function
 .RI ( arg2
 is undefined for functions that take only one argument).
-.PP
+.P
 The
 .I retval
 field specifies the return value that the math
@@ -146,14 +146,14 @@ function will return to its caller.
 The programmer-defined
 .BR matherr ()
 can modify this field to change the return value of the math function.
-.PP
+.P
 If the
 .BR matherr ()
 function returns zero, then the system sets
 .I errno
 as described above, and may print an error message on standard error
 (see below).
-.PP
+.P
 If the
 .BR matherr ()
 function returns a nonzero value, then the system does not set
@@ -169,15 +169,15 @@ when calling
 .BR matherr ().
 The "Result" column is the default return value assigned to
 .IR exc\->retval .
-.PP
+.P
 The "Msg?" and "errno" columns describe the default behavior if
 .BR matherr ()
 returns zero.
 If the "Msg?" columns contains "y",
 then the system prints an error message on standard error.
-.PP
+.P
 The table uses the following notations and abbreviations:
-.PP
+.P
 .RS
 .TS
 l l.
@@ -291,12 +291,12 @@ If the optional third command-line argument is supplied,
 then it specifies an alternative return value that
 .BR matherr ()
 should assign as the return value of the math function.
-.PP
+.P
 The following example run, where
 .BR log (3)
 is given an argument of 0.0, does not use
 .BR matherr ():
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out 0.0"
@@ -304,11 +304,11 @@ errno: Numerical result out of range
 x=\-inf
 .EE
 .in
-.PP
+.P
 In the following run,
 .BR matherr ()
 is called, and returns 0:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out 0.0 0"
@@ -320,13 +320,13 @@ errno: Numerical argument out of domain
 x=\-340282346638528859811704183484516925440.000000
 .EE
 .in
-.PP
+.P
 The message "log: SING error" was printed by the C library.
-.PP
+.P
 In the following run,
 .BR matherr ()
 is called, and returns a nonzero value:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out 0.0 1"
@@ -336,16 +336,16 @@ matherr SING exception in log() function
 x=\-340282346638528859811704183484516925440.000000
 .EE
 .in
-.PP
+.P
 In this case, the C library did not print a message, and
 .I errno
 was not set.
-.PP
+.P
 In the following run,
 .BR matherr ()
 is called, changes the return value of the math function,
 and returns a nonzero value:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out 0.0 1 12345.0"

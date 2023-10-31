@@ -16,19 +16,19 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B "#include <malloc.h>"
-.PP
+.P
 .BI "void *(*volatile __malloc_hook)(size_t " size ", const void *" caller );
-.PP
+.P
 .BI "void *(*volatile __realloc_hook)(void *" ptr ", size_t " size ,
 .BI "                         const void *" caller );
-.PP
+.P
 .BI "void *(*volatile __memalign_hook)(size_t " alignment ", size_t " size ,
 .BI "                         const void *" caller );
-.PP
+.P
 .BI "void (*volatile __free_hook)(void *" ptr ", const void *" caller );
-.PP
+.P
 .B "void (*__malloc_initialize_hook)(void);"
-.PP
+.P
 .B "void (*volatile __after_morecore_hook)(void);"
 .fi
 .SH DESCRIPTION
@@ -41,24 +41,24 @@ by specifying appropriate hook functions.
 You can use these hooks
 to help you debug programs that use dynamic memory allocation,
 for example.
-.PP
+.P
 The variable
 .B __malloc_initialize_hook
 points at a function that is called once when the malloc implementation
 is initialized.
 This is a weak variable, so it can be overridden in
 the application with a definition like the following:
-.PP
+.P
 .in +4n
 .EX
 void (*__malloc_initialize_hook)(void) = my_init_hook;
 .EE
 .in
-.PP
+.P
 Now the function
 .IR my_init_hook ()
 can do the initialization of all hooks.
-.PP
+.P
 The four functions pointed to by
 .BR __malloc_hook ,
 .BR __realloc_hook ,
@@ -74,7 +74,7 @@ respectively, except that they have a final argument
 that gives the address of the caller of
 .BR malloc (3),
 etc.
-.PP
+.P
 The variable
 .B __after_morecore_hook
 points at a function that is called each time after
@@ -101,7 +101,7 @@ and
 .BR calloc ().
 .SH EXAMPLES
 Here is a short example of how to use these variables.
-.PP
+.P
 .EX
 #include <stdio.h>
 #include <malloc.h>

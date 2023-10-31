@@ -13,7 +13,7 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_cancel(pthread_t " thread );
 .fi
 .SH DESCRIPTION
@@ -28,7 +28,7 @@ its cancelability
 .I state
 and
 .IR type .
-.PP
+.P
 A thread's cancelability state, determined by
 .BR pthread_setcancelstate (3),
 can be
@@ -40,7 +40,7 @@ then a cancelation request remains queued until the thread
 enables cancelation.
 If a thread has enabled cancelation,
 then its cancelability type determines when cancelation occurs.
-.PP
+.P
 A thread's cancelation type, determined by
 .BR pthread_setcanceltype (3),
 may be either
@@ -56,7 +56,7 @@ the thread next calls a function that is a
 .IR "cancelation point" .
 A list of functions that are or may be cancelation points is provided in
 .BR pthreads (7).
-.PP
+.P
 When a cancelation requested is acted on, the following steps occur for
 .I thread
 (in this order):
@@ -74,7 +74,7 @@ in an unspecified order.
 The thread is terminated.
 (See
 .BR pthread_exit (3).)
-.PP
+.P
 The above steps happen asynchronously with respect to the
 .BR pthread_cancel ()
 call;
@@ -82,7 +82,7 @@ the return status of
 .BR pthread_cancel ()
 merely informs the caller whether the cancelation request
 was successfully queued.
-.PP
+.P
 After a canceled thread has terminated,
 a join with that thread using
 .BR pthread_join (3)
@@ -135,7 +135,7 @@ The main thread joins with the canceled thread to check
 that its exit status was
 .BR PTHREAD_CANCELED .
 The following shell session shows what happens when we run the program:
-.PP
+.P
 .in +4n
 .EX
 $ ./a.out

@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stddef.h>
-.PP
+.P
 .BR typedef " /* ... */  " ptrdiff_t;
 .fi
 .SH DESCRIPTION
@@ -23,7 +23,7 @@ It is a signed integer type
 capable of storing values in the range
 .RB [ PTRDIFF_MIN ,
 .BR PTRDIFF_MAX ].
-.PP
+.P
 The length modifier for
 .I ptrdiff_t
 for the

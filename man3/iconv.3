@@ -20,7 +20,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <iconv.h>
-.PP
+.P
 .BI "size_t iconv(iconv_t " cd ,
 .BI "             char **restrict " inbuf ", size_t *restrict " inbytesleft ,
 .BI "             char **restrict " outbuf ", size_t *restrict " outbytesleft );
@@ -50,7 +50,7 @@ argument is the address of a variable that points to
 the first byte available in the output buffer;
 .I outbytesleft
 indicates the number of bytes available in the output buffer.
-.PP
+.P
 The main case is when \fIinbuf\fP is not NULL and \fI*inbuf\fP is not NULL.
 In this case, the
 .BR iconv ()
@@ -58,7 +58,7 @@ function converts the multibyte sequence
 starting at \fI*inbuf\fP to a multibyte sequence starting at \fI*outbuf\fP.
 At most \fI*inbytesleft\fP bytes, starting at \fI*inbuf\fP, will be read.
 At most \fI*outbytesleft\fP bytes, starting at \fI*outbuf\fP, will be written.
-.PP
+.P
 The
 .BR iconv ()
 function converts one multibyte character at a time, and for
@@ -134,7 +134,7 @@ beginning of the incomplete multibyte sequence.
 The output buffer has no more room for the next converted character.
 In this case, it sets \fIerrno\fP to \fBE2BIG\fP and returns
 .IR (size_t)\ \-1 .
-.PP
+.P
 A different case is when \fIinbuf\fP is NULL or \fI*inbuf\fP is NULL, but
 \fIoutbuf\fP is not NULL and \fI*outbuf\fP is not NULL.
 In this case, the
@@ -148,7 +148,7 @@ If the output buffer has no more room for this reset sequence, it sets
 Otherwise, it increments
 \fI*outbuf\fP and decrements \fI*outbytesleft\fP by the number of bytes
 written.
-.PP
+.P
 A third case is when \fIinbuf\fP is NULL or \fI*inbuf\fP is NULL, and
 \fIoutbuf\fP is NULL or \fI*outbuf\fP is NULL.
 In this case, the
@@ -191,7 +191,7 @@ T{
 .BR iconv ()
 T}	Thread safety	MT-Safe race:cd
 .TE
-.PP
+.P
 The
 .BR iconv ()
 function is MT-Safe, as long as callers arrange for
@@ -208,7 +208,7 @@ In each series of calls to
 .BR iconv (),
 the last should be one with \fIinbuf\fP or \fI*inbuf\fP equal to NULL,
 in order to flush out any partially converted input.
-.PP
+.P
 Although
 .I inbuf
 and
@@ -220,7 +220,7 @@ as C strings or as arrays of characters:
 the interpretation of character byte sequences is
 handled internally by the conversion functions.
 In some encodings, a zero byte may be a valid part of a multibyte character.
-.PP
+.P
 The caller of
 .BR iconv ()
 must ensure that the pointers passed to the function are suitable

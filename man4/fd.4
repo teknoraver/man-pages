@@ -26,14 +26,14 @@ number on its controller and 128 if the drive is on the secondary
 controller.
 In the following device tables, \fIn\fP represents the
 drive number.
-.PP
+.P
 \fBWarning: if you use formats with more tracks
 than supported by your drive, you may cause it mechanical damage.\fP
 Trying once if more tracks than the usual 40/80 are supported should not
 damage it, but no warranty is given for that.
 If you are not sure, don't create device
 entries for those formats, so as to prevent their usage.
-.PP
+.P
 Drive-independent device files which automatically detect the media
 format and capacity:
 .TS
@@ -44,7 +44,7 @@ Name	Base
 _
 \fBfd\fP\fIn\fP	0
 .TE
-.PP
+.P
 5.25 inch double-density device files:
 .TS
 lw(1i) l l l l c
@@ -54,7 +54,7 @@ Name	Capacity	Cyl.	Sect.	Heads	Base
 _
 \fBfd\fP\fIn\fP\fBd360\fP	360	40	9	2	4
 .TE
-.PP
+.P
 5.25 inch high-density device files:
 .TS
 lw(1i) l l l l c
@@ -73,7 +73,7 @@ _
 \fBfd\fP\fIn\fP\fBh1494\fP	1494	83	18	2	72
 \fBfd\fP\fIn\fP\fBh1600\fP	1600	80	20	2	92
 .TE
-.PP
+.P
 3.5 inch double-density device files:
 .TS
 lw(1i) l l l l c
@@ -87,7 +87,7 @@ _
 \fBfd\fP\fIn\fP\fBu1040\fP	1040	80	13	2	84
 \fBfd\fP\fIn\fP\fBu1120\fP	1120	80	14	2	88
 .TE
-.PP
+.P
 3.5 inch high-density device files:
 .TS
 lw(1i) l l l l c
@@ -108,7 +108,7 @@ _
 \fBfd\fP\fIn\fP\fBu1840\fP	1840	80	23	2	116
 \fBfd\fP\fIn\fP\fBu1920\fP	1920	80	24	2	100
 .TE
-.PP
+.P
 3.5 inch extra-density device files:
 .TS
 lw(1i) l l l l c
@@ -198,7 +198,7 @@ resets the floppy controller under certain conditions.
 .TP
 .B FDRAWCMD
 sends a raw command to the floppy controller.
-.PP
+.P
 For more precise information, consult also the \fI<linux/fd.h>\fP and
 \fI<linux/fdreg.h>\fP include files, as well as the
 .BR floppycontrol (1)
@@ -211,11 +211,11 @@ However, if a floppy is formatted with an inter-sector gap that is too small,
 performance may drop,
 to the point of needing a few seconds to access an entire track.
 To prevent this, use interleaved formats.
-.PP
+.P
 It is not possible to
 read floppies which are formatted using GCR (group code recording),
 which is used by Apple II and Macintosh computers (800k disks).
-.PP
+.P
 Reading floppies which are hard sectored (one hole per sector, with
 the index hole being a little skewed) is not supported.
 This used to be common with older 8-inch floppies.

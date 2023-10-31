@@ -13,19 +13,19 @@ Standard C library
 .SH SYNOPSIS
 .EX
 .B #include <sys/epoll.h>
-.PP
+.P
 .B struct epoll_event {
 .BR "    uint32_t      events;" "  /* Epoll events */"
 .BR "    epoll_data_t  data;" "    /* User data variable */"
 .B };
-.PP
+.P
 .B union epoll_data {
 .B "    void     *ptr;"
 .B "    int       fd;"
 .B "    uint32_t  u32;"
 .B "    uint64_t  u64;"
 .B };
-.PP
+.P
 .B "typedef union epoll_data  epoll_data_t;"
 .EE
 .SH DESCRIPTION
@@ -37,7 +37,7 @@ return when the corresponding file descriptor becomes ready.
 .SS C library/kernel differences
 The Linux kernel headers also provide this type,
 with a slightly different definition:
-.PP
+.P
 .in +4n
 .EX
 #include <linux/eventpoll.h>

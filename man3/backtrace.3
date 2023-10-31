@@ -35,9 +35,9 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <execinfo.h>
-.PP
+.P
 .BI "int backtrace(void *" buffer [. size "], int " size );
-.PP
+.P
 .BI "char **backtrace_symbols(void *const " buffer [. size "], int " size );
 .BI "void backtrace_symbols_fd(void *const " buffer [. size "], int " size ", \
 int " fd );
@@ -70,7 +70,7 @@ to obtain the complete backtrace, make sure that
 and
 .I size
 are large enough.
-.PP
+.P
 Given the set of addresses returned by
 .BR backtrace ()
 in
@@ -95,7 +95,7 @@ by
 and must be freed by the caller.
 (The strings pointed to by the array of pointers
 need not and should not be freed.)
-.PP
+.P
 .BR backtrace_symbols_fd ()
 takes the same
 .I buffer
@@ -123,7 +123,7 @@ then the full backtrace was stored; if it is equal to
 .IR size ,
 then it may have been truncated, in which case the addresses of the
 oldest stack frames are not returned.
-.PP
+.P
 On success,
 .BR backtrace_symbols ()
 returns a pointer to the array
@@ -179,7 +179,7 @@ If you need certain calls to these two functions to not allocate memory
 (in signal handlers, for example), you need to make sure
 .I libgcc
 is loaded beforehand.
-.PP
+.P
 The symbol names may be unavailable without the use of special linker
 options.
 For systems using the GNU linker, it is necessary to use the
@@ -194,7 +194,7 @@ and
 .BR backtrace_symbols ().
 The following shell session shows what we might see when running the
 program:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " cc \-rdynamic prog.c \-o prog"

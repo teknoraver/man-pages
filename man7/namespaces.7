@@ -15,7 +15,7 @@ have their own isolated instance of the global resource.
 Changes to the global resource are visible to other processes
 that are members of the namespace, but are invisible to other processes.
 One use of namespaces is to implement containers.
-.PP
+.P
 This page provides pointers to information on the various namespace types,
 describes the associated
 .I /proc
@@ -108,7 +108,7 @@ Various
 operations can be used to discover information about namespaces.
 These operations are described in
 .BR ioctl_ns (2).
-.PP
+.P
 Creation of new namespaces using
 .BR clone (2)
 and
@@ -131,7 +131,7 @@ Each process has a
 subdirectory containing one entry for each namespace that
 supports being manipulated by
 .BR setns (2):
-.PP
+.P
 .in +4n
 .EX
 $ \fBls \-l /proc/$$/ns | awk \[aq]{print $1, $9, $10, $11}\[aq]\fP
@@ -148,7 +148,7 @@ lrwxrwxrwx. user \-> user:[4026531837]
 lrwxrwxrwx. uts \-> uts:[4026531838]
 .EE
 .in
-.PP
+.P
 Bind mounting (see
 .BR mount (2))
 one of the files in this directory
@@ -156,7 +156,7 @@ to somewhere else in the filesystem keeps
 the corresponding namespace of the process specified by
 .I pid
 alive even if all processes currently in the namespace terminate.
-.PP
+.P
 Opening one of the files in this directory
 (or a file that is bind mounted to one of these files)
 returns a file handle for
@@ -167,7 +167,7 @@ the namespace will remain alive,
 even if all processes in the namespace terminate.
 The file descriptor can be passed to
 .BR setns (2).
-.PP
+.P
 In Linux 3.7 and earlier, these files were visible as hard links.
 Since Linux 3.8,
 .\" commit bf056bfa80596a5d14b26b17276a56a0dcb080e5
@@ -188,14 +188,14 @@ fields returned by
 .BR stat (2).
 The content of this symbolic link is a string containing
 the namespace type and inode number as in the following example:
-.PP
+.P
 .in +4n
 .EX
 $ \fBreadlink /proc/$$/ns/uts\fP
 uts:[4026531838]
 .EE
 .in
-.PP
+.P
 The symbolic links in this subdirectory are as follows:
 .TP
 .IR /proc/ pid /ns/cgroup " (since Linux 4.6)"
@@ -256,7 +256,7 @@ This file is a handle for the user namespace of the process.
 .TP
 .IR /proc/ pid /ns/uts " (since Linux 3.0)"
 This file is a handle for the UTS namespace of the process.
-.PP
+.P
 Permission to dereference or read
 .RB ( readlink (2))
 these symbolic links is governed by a ptrace access mode
@@ -305,7 +305,7 @@ user namespaces that may be created in the user namespace.
 .I max_uts_namespaces
 The value in this file defines a per-user limit on the number of
 uts namespaces that may be created in the user namespace.
-.PP
+.P
 Note the following details about these files:
 .IP \[bu] 3
 The values in these files are modifiable by privileged processes.

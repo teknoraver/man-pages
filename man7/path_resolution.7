@@ -20,7 +20,7 @@ system call, or may temporarily use a different root directory by using
 with the
 .B RESOLVE_IN_ROOT
 flag set.
-.PP
+.P
 A process may get an entirely private mount namespace in case
 it\[em]or one of its ancestors\[em]was started by an invocation of the
 .BR clone (2)
@@ -28,7 +28,7 @@ system call that had the
 .B CLONE_NEWNS
 flag set.
 This handles the \[aq]/\[aq] part of the pathname.
-.PP
+.P
 If the pathname does not start with the \[aq]/\[aq] character, the starting
 lookup directory of the resolution process is the current working directory of
 the process \[em] or in the case of
@@ -44,7 +44,7 @@ The current working directory is inherited from the parent, and can
 be changed by use of the
 .BR chdir (2)
 system call.
-.PP
+.P
 Pathnames starting with a \[aq]/\[aq] character are called absolute pathnames.
 Pathnames not starting with a \[aq]/\[aq] are called relative pathnames.
 .SS Step 2: walk along the path
@@ -52,27 +52,27 @@ Set the current lookup directory to the starting lookup directory.
 Now, for each nonfinal component of the pathname, where a component
 is a substring delimited by \[aq]/\[aq] characters, this component is looked up
 in the current lookup directory.
-.PP
+.P
 If the process does not have search permission on
 the current lookup directory,
 an
 .B EACCES
 error is returned ("Permission denied").
-.PP
+.P
 If the component is not found, an
 .B ENOENT
 error is returned
 ("No such file or directory").
-.PP
+.P
 If the component is found, but is neither a directory nor a symbolic link,
 an
 .B ENOTDIR
 error is returned ("Not a directory").
-.PP
+.P
 If the component is found and is a directory, we set the
 current lookup directory to that directory, and go to the
 next component.
-.PP
+.P
 If the component is found and is a symbolic link,
 we first resolve this symbolic link
 (with the current lookup directory
@@ -96,7 +96,7 @@ An
 .B ELOOP
 error is returned when the maximum is
 exceeded ("Too many levels of symbolic links").
-.PP
+.P
 .\"
 .\" presently: max recursion depth during symlink resolution: 5
 .\" max total number of symbolic links followed: 40
@@ -114,7 +114,7 @@ the kernel's pathname-resolution code
 was reworked to eliminate the use of recursion,
 so that the only limit that remains is the maximum of 40
 resolutions for the entire pathname.
-.PP
+.P
 The resolution of symbolic links during this stage can be blocked by using
 .BR openat2 (2),
 with the
@@ -136,11 +136,11 @@ system calls.
 By convention, every directory has the entries "." and "..",
 which refer to the directory itself and to its parent directory,
 respectively.
-.PP
+.P
 The path resolution process will assume that these entries have
 their conventional meanings, regardless of whether they are
 actually present in the physical filesystem.
-.PP
+.P
 One cannot walk up past the root: "/.." is the same as "/".
 .SS Mount points
 After a
@@ -148,11 +148,11 @@ After a
 command, the pathname "path" refers to
 the root of the filesystem hierarchy on the device "dev", and no
 longer to whatever it referred to earlier.
-.PP
+.P
 One can walk out of a mounted filesystem: "path/.." refers to
 the parent directory of "path",
 outside of the filesystem hierarchy on "dev".
-.PP
+.P
 Traversal of mount points can be blocked by using
 .BR openat2 (2),
 with the
@@ -202,16 +202,16 @@ effective group ID of the calling process, or is one of the
 supplementary group IDs of the calling process (as set by
 .BR setgroups (2)).
 When neither holds, the third group is used.
-.PP
+.P
 Of the three bits used, the first bit determines read permission,
 the second write permission, and the last execute permission
 in case of ordinary files, or search permission in case of directories.
-.PP
+.P
 Linux uses the fsuid instead of the effective user ID in permission checks.
 Ordinarily the fsuid will equal the effective user ID, but the fsuid can be
 changed by the system call
 .BR setfsuid (2).
-.PP
+.P
 (Here "fsuid" stands for something like "filesystem user ID".
 The concept was required for the implementation of a user space
 NFS server at a time when processes could send a signal to a process
@@ -219,7 +219,7 @@ with the same effective user ID.
 It is obsolete now.
 Nobody should use
 .BR setfsuid (2).)
-.PP
+.P
 Similarly, Linux uses the fsgid ("filesystem group ID")
 instead of the effective group ID.
 See
@@ -236,7 +236,7 @@ when accessing files.
 .\" on some implementations (e.g., Solaris, FreeBSD),
 .\" access(X_OK) by superuser will report success, regardless
 .\" of the file's execute permission bits. -- MTK (Oct 05)
-.PP
+.P
 On Linux, superuser privileges are divided into capabilities (see
 .BR capabilities (7)).
 Two capabilities are relevant for file permissions checks:
@@ -244,13 +244,13 @@ Two capabilities are relevant for file permissions checks:
 and
 .BR CAP_DAC_READ_SEARCH .
 (A process has these capabilities if its fsuid is 0.)
-.PP
+.P
 The
 .B CAP_DAC_OVERRIDE
 capability overrides all permission checking,
 but grants execute permission only when at least one
 of the file's three execute permission bits is set.
-.PP
+.P
 The
 .B CAP_DAC_READ_SEARCH
 capability grants read and search permission

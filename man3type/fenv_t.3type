@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <fenv.h>
-.PP
+.P
 .BR typedef " /* ... */ " fenv_t;
 .BR typedef " /* ... */ " fexcept_t;
 .fi
@@ -21,10 +21,10 @@ Standard C library
 .I fenv_t
 represents the entire floating-point environment,
 including control modes and status flags.
-.PP
+.P
 .I fexcept_t
 represents the floating-point status flags collectively.
-.PP
+.P
 For further details see
 .BR fenv (3).
 .SH STANDARDS

@@ -13,52 +13,52 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "int finite(double " x );
 .BI "int finitef(float " x );
 .BI "int finitel(long double " x );
-.PP
+.P
 .BI "int isinf(double " x );
 .BI "int isinff(float " x );
 .BI "int isinfl(long double " x );
-.PP
+.P
 .BI "int isnan(double " x );
 .BI "int isnanf(float " x );
 .BI "int isnanl(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR finite (),
 .BR finitef (),
 .BR finitel ():
 .nf
     /* glibc >= 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _BSD_SOURCE || _SVID_SOURCE
-.PP
+.P
 .BR isinf ():
     _XOPEN_SOURCE >= 600 || _ISOC99_SOURCE
         || /* glibc >= 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR isinff (),
 .BR isinfl ():
 .nf
     /* glibc >= 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR isnan ():
 .nf
     _XOPEN_SOURCE || _ISOC99_SOURCE
         || /* glibc >= 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR isnanf (),
 .BR isnanl ():
 .nf
@@ -76,7 +76,7 @@ functions return a nonzero value if
 .I x
 is neither infinite
 nor a "not-a-number" (NaN) value, and 0 otherwise.
-.PP
+.P
 The
 .BR isnan (),
 .BR isnanf (),
@@ -86,7 +86,7 @@ functions return a nonzero value if
 .I x
 is a NaN value,
 and 0 otherwise.
-.PP
+.P
 The
 .BR isinf (),
 .BR isinff (),

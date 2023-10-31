@@ -27,14 +27,14 @@ it creates a new frame on the user-space stack where it
 saves various pieces of process context
 (processor status word, registers, signal mask, and signal stack settings).
 .\" See arch/x86/kernel/signal.c::__setup_frame() [in Linux 3.17 source code]
-.PP
+.P
 The kernel also arranges that, during the transition back to user mode,
 the signal handler is called, and that, upon return from the handler,
 control passes to a piece of user-space code commonly called
 the "signal trampoline".
 The signal trampoline code in turn calls
 .BR sigreturn ().
-.PP
+.P
 This
 .BR sigreturn ()
 call undoes everything that was
@@ -82,7 +82,7 @@ vary depending on the architecture.
 takes no arguments, since all of the information that it requires
 is available in the stack frame that was previously created by the
 kernel on the user-space stack.)
-.PP
+.P
 Once upon a time, UNIX systems placed the signal trampoline code
 onto the user stack.
 Nowadays, pages of the user stack are protected so as to
@@ -107,7 +107,7 @@ and sets the
 flag in the
 .I sa_flags
 field.
-.PP
+.P
 The saved process context information is placed in a
 .I ucontext_t
 structure (see
@@ -118,7 +118,7 @@ as the third argument of a handler established via
 with the
 .B SA_SIGINFO
 flag.
-.PP
+.P
 On some other UNIX systems,
 the operation of the signal trampoline differs a little.
 In particular, on some systems, upon transitioning back to user mode,

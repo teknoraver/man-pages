@@ -21,12 +21,12 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "int fseek(FILE *" stream ", long " offset ", int " whence );
 .BI "long ftell(FILE *" stream );
-.PP
+.P
 .BI "void rewind(FILE *" stream );
-.PP
+.P
 .BI "int fgetpos(FILE *restrict " stream ", fpos_t *restrict " pos );
 .BI "int fsetpos(FILE *" stream ", const fpos_t *" pos );
 .fi
@@ -54,27 +54,27 @@ function clears the end-of-file indicator for the stream and undoes
 any effects of the
 .BR ungetc (3)
 function on the same stream.
-.PP
+.P
 The
 .BR ftell ()
 function obtains the current value of the file position indicator for the
 stream pointed to by
 .IR stream .
-.PP
+.P
 The
 .BR rewind ()
 function sets the file position indicator for the stream pointed to by
 .I stream
 to the beginning of the file.
 It is equivalent to:
-.PP
+.P
 .RS
 (void) fseek(stream, 0L, SEEK_SET)
 .RE
-.PP
+.P
 except that the error indicator for the stream is also cleared (see
 .BR clearerr (3)).
-.PP
+.P
 The
 .BR fgetpos ()
 and
@@ -94,7 +94,7 @@ On some non-UNIX systems, an
 .I fpos_t
 object may be a complex object and these routines may be the only way to
 portably reposition a text stream.
-.PP
+.P
 If the stream refers to a regular file
 and the resulting stream offset is beyond the size of the file,
 subsequent writes will extend the file with a hole, up to the offset,
@@ -135,7 +135,7 @@ Or: the resulting file offset would be negative.
 The file descriptor underlying
 .I stream
 is not seekable (e.g., it refers to a pipe, FIFO, or socket).
-.PP
+.P
 The functions
 .BR fgetpos (),
 .BR fseek (),

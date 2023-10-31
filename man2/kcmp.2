@@ -16,11 +16,11 @@ Standard C library
 .BR "#include <linux/kcmp.h>" "       /* Definition of " KCMP_* " constants */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_kcmp, pid_t " pid1 ", pid_t " pid2 ", int " type ,
 .BI "            unsigned long " idx1 ", unsigned long "  idx2 );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR kcmp (),
@@ -35,7 +35,7 @@ and
 .I pid2
 share a kernel resource such as virtual memory, file descriptors,
 and so on.
-.PP
+.P
 Permission to employ
 .BR kcmp ()
 is governed by ptrace access mode
@@ -46,7 +46,7 @@ and
 .IR pid2 ;
 see
 .BR ptrace (2).
-.PP
+.P
 The
 .I type
 argument specifies which resource is to be compared in the two processes.
@@ -161,7 +161,7 @@ The argument
 .I idx2
 is a pointer to a structure where the target file is described.
 This structure has the form:
-.PP
+.P
 .in +4n
 .EX
 struct kcmp_epoll_slot {
@@ -171,7 +171,7 @@ struct kcmp_epoll_slot {
 };
 .EE
 .in
-.PP
+.P
 Within this structure,
 .I efd
 is an epoll file descriptor returned from
@@ -183,7 +183,7 @@ is a target file offset counted from zero.
 Several different targets may be registered with
 the same file descriptor number and setting a specific
 offset helps to investigate each of them.
-.PP
+.P
 Note the
 .BR kcmp ()
 is not protected against false positives which may occur if
@@ -199,7 +199,7 @@ The return value of a successful call to
 is simply the result of arithmetic comparison
 of kernel pointers (when the kernel compares resources, it uses their
 memory addresses).
-.PP
+.P
 The easiest way to explain is to consider an example.
 Suppose that
 .I v1
@@ -231,11 +231,11 @@ is not equal to
 .IR v2 ,
 but ordering information is unavailable.
 .RE
-.PP
+.P
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 .BR kcmp ()
 was designed to return values suitable for sorting.
 This is particularly handy if one needs to compare
@@ -291,7 +291,7 @@ does not exist.
 Linux.
 .SH HISTORY
 Linux 3.5.
-.PP
+.P
 Before Linux 5.12,
 this system call is available only if the kernel is configured with
 .BR CONFIG_CHECKPOINT_RESTORE ,
@@ -317,7 +317,7 @@ the same open file description.
 The program tests different cases for the file descriptor pairs,
 as described in the program output.
 An example run of the program is as follows:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out\fP

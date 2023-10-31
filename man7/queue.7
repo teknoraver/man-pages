@@ -28,7 +28,7 @@ doubly linked tail queues
 .TP
 CIRCLEQ
 doubly linked circular queues
-.PP
+.P
 All structures support the following functionality:
 .IP \[bu] 3
 Insertion of a new entry at the head of the list.
@@ -40,7 +40,7 @@ O(1) removal of an entry from the head of the list.
 Forward traversal through the list.
 .\".IP \[bu]
 .\" Swapping the contents of two lists.
-.PP
+.P
 Code size and execution time
 depend on the complexity of the data structure being used,
 so programmers should take care to choose the appropriate one.
@@ -61,13 +61,13 @@ Entries can be added at the end of a list.
 O(n) removal of any entry in the list.
 .IP \[bu]
 They may be concatenated.
-.PP
+.P
 However:
 .IP \[bu] 3
 All list insertions must specify the head of the list.
 .IP \[bu]
 Each head entry requires two pointers rather than one.
-.PP
+.P
 Singly linked tail queues are ideal for applications with
 large datasets and few or no removals,
 or for implementing a FIFO queue.
@@ -78,7 +78,7 @@ additionally allow:
 Insertion of a new entry before any element in the list.
 .IP \[bu]
 O(1) removal of any entry in the list.
-.PP
+.P
 However:
 .IP \[bu] 3
 Each element requires two pointers rather than one.
@@ -87,7 +87,7 @@ Linked lists are the simplest of the doubly linked data structures.
 They add the following functionality over the above:
 .IP \[bu] 3
 They may be traversed backwards.
-.PP
+.P
 However:
 .IP \[bu] 3
 To traverse backwards, an entry to begin the traversal and the list in
@@ -100,7 +100,7 @@ Entries can be added at the end of a list.
 They may be traversed backwards, from tail to head.
 .IP \[bu]
 They may be concatenated.
-.PP
+.P
 However:
 .IP \[bu] 3
 All list insertions and removals must specify the head of the list.
@@ -110,7 +110,7 @@ Each head entry requires two pointers rather than one.
 Circular queues add the following functionality over the above:
 .IP \[bu] 3
 The first and last entries are connected.
-.PP
+.P
 However:
 .IP \[bu] 3
 The termination condition for traversal is more complex.

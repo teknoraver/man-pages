@@ -17,7 +17,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/epoll.h>
-.PP
+.P
 .BI "int epoll_create(int " size );
 .BI "int epoll_create1(int " flags );
 .fi
@@ -29,7 +29,7 @@ instance.
 Since Linux 2.6.8, the
 .I size
 argument is ignored, but must be greater than zero; see HISTORY.
-.PP
+.P
 .BR epoll_create ()
 returns a file descriptor referring to the new epoll instance.
 This file descriptor is used for all the subsequent calls to the
@@ -103,7 +103,7 @@ glibc 2.3.2.
 .BR epoll_create1 ()
 Linux 2.6.27,
 glibc 2.9.
-.PP
+.P
 In the initial
 .BR epoll_create ()
 implementation, the
@@ -126,7 +126,7 @@ must still be greater than zero,
 in order to ensure backward compatibility when new
 .B epoll
 applications are run on older kernels.
-.PP
+.P
 Prior to Linux 2.6.29,
 .\" commit 9df04e1f25effde823a600e755b51475d438f56b
 a

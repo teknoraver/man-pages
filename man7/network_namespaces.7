@@ -21,7 +21,7 @@ port numbers (sockets), and so on.
 In addition,
 network namespaces isolate the UNIX domain abstract socket namespace (see
 .BR unix (7)).
-.PP
+.P
 A physical network device can live in exactly one
 network namespace.
 When a network namespace is freed
@@ -29,7 +29,7 @@ When a network namespace is freed
 its physical network devices are moved back to the
 initial network namespace
 (not to the namespace of the parent of the process).
-.PP
+.P
 A virtual network
 .RB ( veth (4))
 device pair provides a pipe-like abstraction
@@ -39,7 +39,7 @@ in another namespace.
 When a namespace is freed, the
 .BR veth (4)
 devices that it contains are destroyed.
-.PP
+.P
 Use of network namespaces requires a kernel that is configured with the
 .B CONFIG_NET_NS
 option.

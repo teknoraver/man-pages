@@ -16,18 +16,18 @@ Standard C library
 .B #include <linux/netlink.h>
 .B #include <linux/rtnetlink.h>
 .B #include <sys/socket.h>
-.PP
+.P
 .BI "rtnetlink_socket = socket(AF_NETLINK, int " socket_type \
 ", NETLINK_ROUTE);"
-.PP
+.P
 .BI "int RTA_OK(struct rtattr *" rta ", int " rtabuflen );
-.PP
+.P
 .BI "void *RTA_DATA(struct rtattr *" rta );
 .BI "unsigned int RTA_PAYLOAD(struct rtattr *" rta );
-.PP
+.P
 .BI "struct rtattr *RTA_NEXT(struct rtattr *" rta \
 ", unsigned int " rtabuflen );
-.PP
+.P
 .BI "unsigned int RTA_LENGTH(unsigned int " length );
 .BI "unsigned int RTA_SPACE(unsigned int "length );
 .fi
@@ -38,7 +38,7 @@ messages consist of a
 .BR netlink (7)
 message header and appended attributes.
 The attributes should be manipulated only using the macros provided here.
-.PP
+.P
 .BI RTA_OK( rta ", " attrlen )
 returns true if
 .I rta
@@ -49,13 +49,13 @@ When not true then you must assume there are no more attributes in the
 message, even if
 .I attrlen
 is nonzero.
-.PP
+.P
 .BI RTA_DATA( rta )
 returns a pointer to the start of this attribute's data.
-.PP
+.P
 .BI RTA_PAYLOAD( rta )
 returns the length of this attribute's data.
-.PP
+.P
 .BI RTA_NEXT( rta ", " attrlen )
 gets the next attribute after
 .IR rta .
@@ -64,12 +64,12 @@ Calling this macro will update
 You should use
 .B RTA_OK
 to check the validity of the returned pointer.
-.PP
+.P
 .BI RTA_LENGTH( len )
 returns the length which is required for
 .I len
 bytes of data plus the header.
-.PP
+.P
 .BI RTA_SPACE( len )
 returns the amount of space which will be needed in a message with
 .I len
@@ -81,7 +81,7 @@ This manual page is incomplete.
 .SH EXAMPLES
 .\" FIXME . ? would be better to use libnetlink in the EXAMPLE code here
 Creating a rtnetlink message to set the MTU of a device:
-.PP
+.P
 .in +4n
 .EX
 #include <linux/rtnetlink.h>

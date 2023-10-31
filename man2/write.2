@@ -25,7 +25,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "ssize_t write(int " fd ", const void " buf [. count "], size_t " count );
 .fi
 .SH DESCRIPTION
@@ -36,7 +36,7 @@ bytes from the buffer starting at
 .I buf
 to the file referred to by the file descriptor
 .IR fd .
-.PP
+.P
 The number of bytes written may be less than
 .I count
 if, for example,
@@ -50,7 +50,7 @@ handler after having written less than
 bytes.
 (See also
 .BR pipe (7).)
-.PP
+.P
 For a seekable file (i.e., one to which
 .BR lseek (2)
 may be applied, for example, a regular file)
@@ -64,14 +64,14 @@ with
 the file offset is first set to the end of the file before writing.
 The adjustment of the file offset and the write operation
 are performed as an atomic step.
-.PP
+.P
 POSIX requires that a
 .BR read (2)
 that can be proved to occur after a
 .BR write ()
 has returned will return the new data.
 Note that not all filesystems are POSIX conforming.
-.PP
+.P
 According to POSIX.1, if
 .I count
 is greater than
@@ -82,7 +82,7 @@ see NOTES for the upper limit on Linux.
 On success, the number of bytes written is returned.
 On error, \-1 is returned, and \fIerrno\fP is set
 to indicate the error.
-.PP
+.P
 Note that a successful
 .BR write ()
 may transfer fewer than
@@ -100,7 +100,7 @@ In the event of a partial write, the caller can make another
 call to transfer the remaining bytes.
 The subsequent call will either transfer further bytes or
 may result in an error (e.g., if the disk is now full).
-.PP
+.P
 If \fIcount\fP is zero and
 .I fd
 refers to a regular file, then
@@ -222,7 +222,7 @@ When this happens the writing process will also receive a
 signal.
 (Thus, the write return value is seen only if the program
 catches, blocks or ignores this signal.)
-.PP
+.P
 Other errors may occur, depending on the object connected to
 .IR fd .
 .SH STANDARDS
@@ -231,7 +231,7 @@ POSIX.1-2008.
 SVr4, 4.3BSD, POSIX.1-2001.
 .\" SVr4 documents additional error
 .\" conditions EDEADLK, ENOLCK, ENOLNK, ENOSR, ENXIO, or ERANGE.
-.PP
+.P
 Under SVr4 a write may be interrupted and return
 .B EINTR
 at any point,
@@ -251,7 +251,7 @@ or even
 The only way to be sure is to call
 .BR fsync (2)
 after you are done writing all your data.
-.PP
+.P
 If a
 .BR write ()
 is interrupted by a signal handler before any bytes are written,
@@ -259,7 +259,7 @@ then the call fails with the error
 .BR EINTR ;
 if it is interrupted after at least one byte has been written,
 the call succeeds, and returns the number of bytes written.
-.PP
+.P
 On Linux,
 .BR write ()
 (and similar system calls) will transfer at most
@@ -267,7 +267,7 @@ On Linux,
 returning the number of bytes actually transferred.
 .\" commit e28cc71572da38a5a12c1cfe4d7032017adccf69
 (This is true on both 32-bit and 64-bit systems.)
-.PP
+.P
 An error return value while performing
 .BR write ()
 using direct I/O does not mean the
@@ -279,13 +279,13 @@ was attempted should be considered inconsistent.
 .SH BUGS
 According to POSIX.1-2008/SUSv4 Section XSI 2.9.7
 ("Thread Interactions with Regular File Operations"):
-.PP
+.P
 .RS 4
 All of the following functions shall be atomic with respect to
 each other in the effects specified in POSIX.1-2008 when they
 operate on regular files or symbolic links: ...
 .RE
-.PP
+.P
 Among the APIs subsequently listed are
 .BR write ()
 and

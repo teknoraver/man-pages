@@ -15,19 +15,19 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <ctype.h>
-.PP
+.P
 .BI "int toupper(int " "c" );
 .BI "int tolower(int " "c" );
-.PP
+.P
 .BI "int toupper_l(int " c ", locale_t " locale );
 .BI "int tolower_l(int " c ", locale_t " locale );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR toupper_l (),
 .BR tolower_l ():
 .nf
@@ -38,7 +38,7 @@ Feature Test Macro Requirements for glibc (see
 .fi
 .SH DESCRIPTION
 These functions convert lowercase letters to uppercase, and vice versa.
-.PP
+.P
 If
 .I c
 is a lowercase letter,
@@ -52,7 +52,7 @@ The
 function performs the same task,
 but uses the locale referred to by the locale handle
 .IR locale .
-.PP
+.P
 If
 .I c
 is an uppercase letter,
@@ -66,7 +66,7 @@ The
 function performs the same task,
 but uses the locale referred to by the locale handle
 .IR locale .
-.PP
+.P
 If
 .I c
 is neither an
@@ -75,7 +75,7 @@ value nor
 .BR EOF ,
 the behavior of these functions
 is undefined.
-.PP
+.P
 The behavior of
 .BR toupper_l ()
 and
@@ -144,7 +144,7 @@ is of type
 it must be cast to
 .IR "unsigned char" ,
 as in the following example:
-.PP
+.P
 .in +4n
 .EX
 char c;
@@ -152,7 +152,7 @@ char c;
 res = toupper((unsigned char) c);
 .EE
 .in
-.PP
+.P
 This is necessary because
 .I char
 may be the equivalent
@@ -162,13 +162,13 @@ converting to
 .IR int ,
 yielding a value that is outside the range of
 .IR "unsigned char" .
-.PP
+.P
 The details of what constitutes an uppercase or lowercase letter depend
 on the locale.
 For example, the default
 .B """C"""
 locale does not know about umlauts, so no conversion is done for them.
-.PP
+.P
 In some non-English locales, there are lowercase letters with no
 corresponding uppercase equivalent;
 .\" FIXME One day the statement about "sharp s" needs to be reworked,

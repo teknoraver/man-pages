@@ -70,7 +70,7 @@ system_data_types \- overview of system data types
 .IR <signal.h> .
 Alternatively,
 .IR <sys/wait.h> .
-.PP
+.P
 .EX
 typedef struct {
     int      si_signo;  /* Signal number */
@@ -82,15 +82,15 @@ typedef struct {
     union sigval si_value;  /* Signal value */
 } siginfo_t;
 .EE
-.PP
+.P
 Information associated with a signal.
 For further details on this structure
 (including additional, Linux-specific fields), see
 .BR sigaction (2).
-.PP
+.P
 .IR "Conforming to" :
 POSIX.1-2001 and later.
-.PP
+.P
 .IR "See also" :
 .BR pidfd_send_signal (2),
 .BR rt_sigqueueinfo (2),
@@ -108,13 +108,13 @@ Alternatively,
 .IR <spawn.h> ,
 or
 .IR <sys/select.h> .
-.PP
+.P
 This is a type that represents a set of signals.
 According to POSIX, this shall be an integer or structure type.
-.PP
+.P
 .IR "Conforming to" :
 POSIX.1-2001 and later.
-.PP
+.P
 .IR "See also" :
 .BR epoll_pwait (2),
 .BR ppoll (2),
@@ -149,7 +149,7 @@ POSIX.1-2001 and later.
 .SH NOTES
 The structures described in this manual page shall contain,
 at least, the members shown in their definition, in no particular order.
-.PP
+.P
 Most of the integer types described in this page don't have
 a corresponding length modifier for the
 .BR printf (3)
@@ -180,7 +180,7 @@ In "Conforming to" we only concern ourselves with
 C99 and later and POSIX.1-2001 and later.
 Some types may be specified in earlier versions of one of these standards,
 but in the interests of simplicity we omit details from earlier standards.
-.PP
+.P
 In "Include", we first note the "primary" header(s) that
 define the type according to either the C or POSIX.1 standards.
 Under "Alternatively", we note additional headers that
@@ -192,7 +192,7 @@ The appropriate conversions from and to
 .IR intmax_t ,
 and the appropriate range checks,
 are used as explained in the notes section above.
-.PP
+.P
 .EX
 #include <stdint.h>
 #include <stdio.h>

@@ -20,7 +20,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .B [[deprecated]] int setup(void);
 .fi
 .SH DESCRIPTION
@@ -29,7 +29,7 @@ is called once from within
 .IR linux/init/main.c .
 It calls initialization functions for devices and filesystems
 configured into the kernel and then mounts the root filesystem.
-.PP
+.P
 No user process may call
 .BR setup ().
 Any user process, even a process with superuser permission,
@@ -46,7 +46,7 @@ Always, for a user process.
 Linux.
 .SH VERSIONS
 Removed in Linux 2.1.121.
-.PP
+.P
 The calling sequence varied: at some times
 .BR setup ()
 has had a single argument

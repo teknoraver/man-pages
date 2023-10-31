@@ -23,16 +23,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <search.h>
-.PP
+.P
 .BI "void insque(void *" elem ", void *" prev );
 .BI "void remque(void *" elem );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR insque (),
 .BR remque ():
 .nf
@@ -53,19 +53,19 @@ backward pointer.
 The linked list may be linear (i.e., NULL forward pointer at
 the end of the list and NULL backward pointer at the start of the list)
 or circular.
-.PP
+.P
 The
 .BR insque ()
 function inserts the element pointed to by \fIelem\fP
 immediately after the element pointed to by \fIprev\fP.
-.PP
+.P
 If the list is linear, then the call
 .I "insque(elem, NULL)"
 can be used to insert the initial list element,
 and the call sets the forward and backward pointers of
 .I elem
 to NULL.
-.PP
+.P
 If the list is circular,
 the caller should ensure that the forward and backward pointers of the
 first element are initialized to point to that element,
@@ -74,7 +74,7 @@ and the
 argument of the
 .BR insque ()
 call should also point to the element.
-.PP
+.P
 The
 .BR remque ()
 function removes the element pointed to by \fIelem\fP from the
@@ -99,7 +99,7 @@ On ancient systems,
 .\" e.g., SunOS, Linux libc4 and libc5
 the arguments of these functions were of type \fIstruct qelem *\fP,
 defined as:
-.PP
+.P
 .in +4n
 .EX
 struct qelem {
@@ -109,12 +109,12 @@ struct qelem {
 };
 .EE
 .in
-.PP
+.P
 This is still what you will get if
 .B _GNU_SOURCE
 is defined before
 including \fI<search.h>\fP.
-.PP
+.P
 The location of the prototypes for these functions differs among several
 versions of UNIX.
 The above is the POSIX version.
@@ -136,7 +136,7 @@ with the forward and backward pointers in each element suitably initialized.
 The program below demonstrates the use of
 .BR insque ().
 Here is an example run of the program:
-.PP
+.P
 .in +4n
 .EX
 .RB "$ " "./a.out \-c a b c"

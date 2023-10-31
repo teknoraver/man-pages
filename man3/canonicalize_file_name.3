@@ -14,7 +14,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <stdlib.h>
-.PP
+.P
 .BI "char *canonicalize_file_name(const char *" path ");"
 .fi
 .SH DESCRIPTION
@@ -31,17 +31,17 @@ pathname components.
 Consecutive slash
 .RI ( / )
 characters are replaced by a single slash.
-.PP
+.P
 The returned string is dynamically allocated by
 .BR canonicalize_file_name ()
 and the caller should deallocate it with
 .BR free (3)
 when it is no longer required.
-.PP
+.P
 The call
 .I canonicalize_file_name(path)
 is equivalent to the call:
-.PP
+.P
 .in +4n
 .EX
 realpath(path, NULL);

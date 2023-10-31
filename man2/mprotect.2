@@ -19,12 +19,12 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/mman.h>
-.PP
+.P
 .BI "int mprotect(void " addr [. len "], size_t " len ", int " prot );
-.PP
+.P
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <sys/mman.h>
-.PP
+.P
 .BI "int pkey_mprotect(void " addr [. len "], size_t " len ", int " prot ", int " pkey ");"
 .fi
 .SH DESCRIPTION
@@ -34,12 +34,12 @@ containing any part of the address range in the
 interval [\fIaddr\fP,\ \fIaddr\fP+\fIlen\fP\-1].
 .I addr
 must be aligned to a page boundary.
-.PP
+.P
 If the calling process tries to access memory in a manner
 that violates the protections, then the kernel generates a
 .B SIGSEGV
 signal for the process.
-.PP
+.P
 .I prot
 is a combination of the following access flags:
 .B PROT_NONE
@@ -74,7 +74,7 @@ This feature is specific to
 the PowerPC architecture
 (version 2.06 of the architecture specification adds the SAO CPU feature,
 and it is available on POWER 7 or PowerPC A2, for example).
-.PP
+.P
 Additionally (since Linux 2.6.0),
 .I prot
 can have one of the following flags set:
@@ -100,7 +100,7 @@ that grows downward
 (which should be a stack segment or a segment mapped with the
 .B MAP_GROWSDOWN
 flag set).
-.PP
+.P
 Like
 .BR mprotect (),
 .BR pkey_mprotect ()
@@ -199,14 +199,14 @@ POSIX says that the behavior of
 is unspecified if it is applied to a region of memory that
 was not obtained via
 .BR mmap (2).
-.PP
+.P
 On Linux, it is always permissible to call
 .BR mprotect ()
 on any address in a process's address space (except for the
 kernel vsyscall area).
 In particular, it can be used
 to change existing code mappings to be writable.
-.PP
+.P
 Whether
 .B PROT_EXEC
 has any effect different from
@@ -220,12 +220,12 @@ specifying
 .B PROT_READ
 will implicitly add
 .BR PROT_EXEC .
-.PP
+.P
 On some hardware architectures (e.g., i386),
 .B PROT_WRITE
 implies
 .BR PROT_READ .
-.PP
+.P
 POSIX.1 says that an implementation may permit access
 other than that specified in
 .IR prot ,
@@ -234,7 +234,7 @@ but at a minimum can allow write access only if
 has been set, and must not allow any access if
 .B PROT_NONE
 has been set.
-.PP
+.P
 Applications should be careful when mixing use of
 .BR mprotect ()
 and
@@ -247,7 +247,7 @@ set to
 .B PROT_EXEC
 a pkey may be allocated and set on the memory implicitly
 by the kernel, but only when the pkey was 0 previously.
-.PP
+.P
 On systems that do not support protection keys in hardware,
 .BR pkey_mprotect ()
 may still be used, but
@@ -280,10 +280,10 @@ The program below demonstrates the use of
 The program allocates four pages of memory, makes the third
 of these pages read-only, and then executes a loop that walks upward
 through the allocated region modifying bytes.
-.PP
+.P
 An example of what we might see when running the program is the
 following:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out"

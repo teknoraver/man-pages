@@ -17,7 +17,7 @@ management of thread-specific data
 .
 .SH SYNOPSIS
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_key_create(pthread_key_t *" key ", void (*" destr_function ") (void *));"
 .BI "int pthread_key_delete(pthread_key_t " key ");"
 .BI "int pthread_setspecific(pthread_key_t " key ", const void *" pointer ");"
@@ -30,7 +30,7 @@ that have different values in different threads.
 Since threads share one memory space,
 this cannot be achieved with regular variables.
 Thread-specific data is the POSIX threads answer to this need.
-.PP
+.P
 Each thread possesses a private memory block,
 the thread-specific data area,
 or TSD area for short.
@@ -39,23 +39,23 @@ The TSD area associates values of type \fBvoid *\fP to TSD keys.
 TSD keys are common to all threads,
 but the value associated with a given TSD key
 can be different in each thread.
-.PP
+.P
 For concreteness,
 the TSD areas can be viewed as arrays of \fBvoid *\fP pointers,
 TSD keys as integer indices into these arrays,
 and the value of a TSD key
 as the value of the corresponding array element in the calling thread.
-.PP
+.P
 When a thread is created,
 its TSD area initially associates \fBNULL\fP with all keys.
-.PP
+.P
 \fBpthread_key_create\fP allocates a new TSD key.
 The key is stored in the location pointed to by \fIkey\fP.
 There is a limit of \fBPTHREAD_KEYS_MAX\fP
 on the number of keys allocated at a given time.
 The value initially associated with the returned key
 is \fBNULL\fP in all currently executing threads.
-.PP
+.P
 The \fIdestr_function\fP argument,
 if not \fBNULL\fP,
 specifies a destructor function associated with the key.
@@ -65,7 +65,7 @@ the value associated with the key in that thread.
 The \fIdestr_function\fP is not called if that value is \fBNULL\fP.
 The order in which destructor functions are called at thread termination time
 is unspecified.
-.PP
+.P
 Before the destructor function is called,
 the \fBNULL\fP value is associated with the key in the current thread.
 A destructor function might,
@@ -80,17 +80,17 @@ The glibc implementation stops the process
 after \fBPTHREAD_DESTRUCTOR_ITERATIONS\fP iterations,
 even if some non-\fBNULL\fP values with associated descriptors remain.
 Other implementations may loop indefinitely.
-.PP
+.P
 \fBpthread_key_delete\fP deallocates a TSD key.
 It does not check
 whether non-\fBNULL\fP values are associated with that key
 in the currently executing threads,
 nor call the destructor function associated with the key.
-.PP
+.P
 \fBpthread_setspecific\fP changes the value
 associated with \fIkey\fP in the calling thread,
 storing the given \fIpointer\fP instead.
-.PP
+.P
 \fBpthread_getspecific\fP returns the value
 currently associated with \fIkey\fP in the calling thread.
 .
@@ -103,7 +103,7 @@ return 0 on success and a non-zero error code on failure.
 If successful,
 \fBpthread_key_create\fP stores the newly allocated key
 in the location pointed to by its \fIkey\fP argument.
-.PP
+.P
 \fBpthread_getspecific\fP returns
 the value associated with \fIkey\fP on success,
 and \fBNULL\fP on error.
@@ -116,7 +116,7 @@ and \fBNULL\fP on error.
 \fBEAGAIN\fP
 \fBPTHREAD_KEYS_MAX\fP keys are already allocated.
 .RE
-.PP
+.P
 \fBpthread_key_delete\fP and \fBpthread_setspecific\fP return
 the following error code on error:
 .RS
@@ -124,7 +124,7 @@ the following error code on error:
 \fBEINVAL\fP
 \fIkey\fP is not a valid, allocated TSD key.
 .RE
-.PP
+.P
 \fBpthread_getspecific\fP returns \fBNULL\fP if \fIkey\fP is not a valid,
 allocated TSD key.
 .
@@ -137,7 +137,7 @@ pthread_create(3), pthread_exit(3), pthread_testcancel(3).
 The following code fragment
 allocates a thread-specific array of 100 characters,
 with automatic reclaimation at thread exit:
-.PP
+.P
 .RS
 .ft 3
 .nf
@@ -173,6 +173,6 @@ static void buffer_destroy(void * buf)
   free(buf);
 }
 .ft
-.LP
+.P
 .RE
 .fi

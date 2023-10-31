@@ -14,7 +14,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <string.h>
-.PP
+.P
 .BI "int strverscmp(const char *" s1 ", const char *" s2 );
 .fi
 .SH DESCRIPTION
@@ -33,7 +33,7 @@ which is implemented using
 .BR versionsort (3),
 which again uses
 .BR strverscmp ().
-.PP
+.P
 Thus, the task of
 .BR strverscmp ()
 is to compare two strings and find the "right" order, while
@@ -44,7 +44,7 @@ the locale category
 .BR LC_COLLATE ,
 so is meant mostly for situations
 where the strings are expected to be in ASCII.
-.PP
+.P
 What this function does is the following.
 If both strings are equal, return 0.
 Otherwise, find the position
@@ -104,7 +104,7 @@ It uses
 .BR strverscmp ()
 to compare the two strings given as its command-line arguments.
 An example of its use is the following:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out jan1 jan10\fP

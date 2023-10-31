@@ -16,7 +16,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "[[noreturn]] void exit(int " status );
 .fi
 .SH DESCRIPTION
@@ -26,7 +26,7 @@ function causes normal process termination and the least significant byte of
 .I status
 (i.e., \fIstatus & 0xFF\fP) is returned to the parent (see
 .BR wait (2)).
-.PP
+.P
 All functions registered with
 .BR atexit (3)
 and
@@ -53,14 +53,14 @@ If a function has been registered multiple times using
 or
 .BR on_exit (3),
 then it is called as many times as it was registered.
-.PP
+.P
 All open
 .BR stdio (3)
 streams are flushed and closed.
 Files created by
 .BR tmpfile (3)
 are removed.
-.PP
+.P
 The C standard specifies two constants,
 \fBEXIT_SUCCESS\fP and \fBEXIT_FAILURE\fP,
 that may be passed to
@@ -85,7 +85,7 @@ T{
 .BR exit ()
 T}	Thread safety	MT-Unsafe race:exit
 .TE
-.PP
+.P
 The
 .BR exit ()
 function uses a global variable that is not protected,
@@ -109,7 +109,7 @@ removes registrations created using
 .BR atexit (3)
 and
 .BR on_exit (3).
-.PP
+.P
 The use of
 .B EXIT_SUCCESS
 and
@@ -118,12 +118,12 @@ is slightly more portable
 (to non-UNIX environments) than the use of 0 and some nonzero value
 like 1 or \-1.
 In particular, VMS uses a different convention.
-.PP
+.P
 BSD has attempted to standardize exit codes
 (which some C libraries such as the GNU C library have also adopted);
 see the file
 .IR <sysexits.h> .
-.PP
+.P
 After
 .BR exit (),
 the exit status must be transmitted to the
@@ -150,7 +150,7 @@ This allows the parent to subsequently use
 .BR waitpid (2)
 (or similar) to learn the termination status of the child;
 at that point the zombie process slot is released.
-.PP
+.P
 If the implementation supports the
 .B SIGCHLD
 signal, this signal
@@ -170,7 +170,7 @@ is sent a
 signal, and the terminal is disassociated
 from this session, allowing it to be acquired by a new controlling
 process.
-.PP
+.P
 If the exit of the process causes a process group to become orphaned,
 and if any member of the newly orphaned process group is stopped,
 then a
@@ -182,7 +182,7 @@ sent to each process in this process group.
 See
 .BR setpgid (2)
 for an explanation of orphaned process groups.
-.PP
+.P
 Except in the above cases,
 where the signalled processes may be children of the terminating process,
 termination of a process does

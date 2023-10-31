@@ -22,7 +22,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/socket.h>
-.PP
+.P
 .BI "int getsockopt(int " sockfd ", int " level ", int " optname ,
 .BI "               void " optval "[restrict *." optlen ],
 .BI "               socklen_t *restrict " optlen );
@@ -39,7 +39,7 @@ manipulate options for the socket referred to by the file descriptor
 Options may exist at multiple
 protocol levels; they are always present at the uppermost
 socket level.
-.PP
+.P
 When manipulating socket options, the level at which the
 option resides and the name of the option must be specified.
 To manipulate options at the sockets API level,
@@ -58,7 +58,7 @@ should be set to the protocol number of
 .BR TCP ;
 see
 .BR getprotoent (3).
-.PP
+.P
 The arguments
 .I optval
 and
@@ -80,7 +80,7 @@ the value returned.
 If no option value is to be supplied or returned,
 .I optval
 may be NULL.
-.PP
+.P
 .I Optname
 and any specified options are passed uninterpreted to the appropriate
 protocol module for interpretation.
@@ -90,7 +90,7 @@ contains definitions for socket level options, described below.
 Options at
 other protocol levels vary in format and name; consult the appropriate
 entries in section 4 of the manual.
-.PP
+.P
 Most socket-level options utilize an
 .I int
 argument for
@@ -99,7 +99,7 @@ For
 .BR setsockopt (),
 the argument should be nonzero to enable a boolean option, or zero if the
 option is to be disabled.
-.PP
+.P
 For a description of the available socket options see
 .BR socket (7)
 and the appropriate protocol man pages.
@@ -108,7 +108,7 @@ On success, zero is returned for the standard options.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 Netfilter allows the programmer
 to define custom socket options with associated handlers; for such
 options, the return value on success is the value returned by the handler.

@@ -17,7 +17,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <spawn.h>
-.PP
+.P
 .BI "int posix_spawn(pid_t *restrict " pid ", const char *restrict " path ,
 .BI "                const posix_spawn_file_actions_t *restrict " file_actions ,
 .BI "                const posix_spawnattr_t *restrict " attrp ,
@@ -42,7 +42,7 @@ to support the
 .BR fork (2)
 system call.
 These machines are generally small, embedded systems lacking MMU support.
-.PP
+.P
 The
 .BR posix_spawn ()
 and
@@ -60,7 +60,7 @@ and
 system calls.
 In fact, they provide only a subset of the functionality
 that can be achieved by using the system calls.
-.PP
+.P
 The only difference between
 .BR posix_spawn ()
 and
@@ -83,7 +83,7 @@ For the remainder of this page, the discussion is phrased in terms of
 with the understanding that
 .BR posix_spawnp ()
 differs only on the point just described.
-.PP
+.P
 The remaining arguments to these two functions are as follows:
 .TP
 .I pid
@@ -125,7 +125,7 @@ functions.
 specify the argument list and environment for the program
 that is executed in the child process, as for
 .BR execve (2).
-.PP
+.P
 Below, the functions are described in terms of a three-step process: the
 .BR fork ()
 step, the
@@ -149,20 +149,20 @@ Older implementations use
 or possibly
 .BR vfork (2)
 (see below).
-.PP
+.P
 The PID of the new child process is placed in
 .IR *pid .
 The
 .BR posix_spawn ()
 function then returns control to the parent process.
-.PP
+.P
 Subsequently, the parent can use one of the system calls described in
 .BR wait (2)
 to check the status of the child process.
 If the child fails in any of the housekeeping steps described below,
 or fails to execute the desired file,
 it exits with a status of 127.
-.PP
+.P
 Before glibc 2.24, the child process is created using
 .BR vfork (2)
 instead of
@@ -190,7 +190,7 @@ does \fInot\fP contain
 .BR POSIX_SPAWN_SETPGROUP ,
 or
 .BR POSIX_SPAWN_RESETIDS .
-.PP
+.P
 In other words,
 .BR vfork (2)
 is used if the caller requests it,
@@ -231,7 +231,7 @@ functions.
 File descriptors with the
 .B FD_CLOEXEC
 flag set are closed.
-.PP
+.P
 All process attributes in the child,
 other than those affected by attributes specified in the
 object pointed to by
@@ -242,7 +242,7 @@ will be affected as though the child was created with
 .BR fork (2)
 and it executed the program with
 .BR execve (2).
-.PP
+.P
 The process attributes actions are defined by the attributes object
 pointed to by
 .IR attrp .
@@ -253,7 +253,7 @@ attribute (set using
 controls the general actions that occur,
 and other attributes in the object specify values
 to be used during those actions.
-.PP
+.P
 The effects of the flags that may be specified in
 .I spawn-flags
 are as follows:
@@ -325,7 +325,7 @@ attribute
 of the object pointed to by
 .I attrp
 (but see BUGS).
-.PP
+.P
 If the
 .B POSIX_SPAWN_SETSCHEDPARAM
 and
@@ -387,7 +387,7 @@ feature test macro must be defined to obtain the definition of this constant.
 .\" http://austingroupbugs.net/view.php?id=1044
 .\" and has been implemented since glibc 2.26
 .\" commit daeb1fa2e1b33323e719015f5f546988bd4cc73b
-.PP
+.P
 If
 .I attrp
 is NULL, then the default behaviors described above for each flag apply.
@@ -398,7 +398,7 @@ is NULL, then the default behaviors described above for each flag apply.
 .\" .I attrp
 .\" when you are done with it;
 .\" however, on Linux systems this operation is a no-op.
-.PP
+.P
 The
 .I file_actions
 argument specifies a sequence of file operations
@@ -415,7 +415,7 @@ except those for which the
 .B FD_CLOEXEC
 flag has been set.
 File locks remain in place.
-.PP
+.P
 If
 .I file_actions
 is not NULL, then it contains an ordered set of requests to
@@ -444,7 +444,7 @@ The requested operations are performed in the order they were added to
 .\" closed by the earlier operations
 .\" added to
 .\" .I file_actions .
-.PP
+.P
 If any of the housekeeping actions fails
 (due to bogus values being passed or other reasons why signal handling,
 process scheduling, process group ID functions,
@@ -454,7 +454,7 @@ the child process exits with exit value 127.
 Once the child has successfully forked and performed
 all requested pre-exec steps,
 the child runs the requested executable.
-.PP
+.P
 The child process takes its environment from the
 .I envp
 argument, which is interpreted as if it had been passed to
@@ -479,7 +479,7 @@ the contents of
 .I *pid
 are unspecified,
 and these functions return an error number as described below.
-.PP
+.P
 Even when these functions return a success status,
 the child process may still fail for a plethora of reasons related to its
 pre-\fBexec\fR() initialization.
@@ -503,7 +503,7 @@ which will be one of the errors described for
 .BR vfork (2),
 or
 .BR clone (2).
-.PP
+.P
 In addition, these functions fail if:
 .TP
 .B ENOSYS
@@ -537,7 +537,7 @@ only the POSIX-specified functions.
 (In other words,
 although these objects may be implemented as structures containing fields,
 portable programs must avoid dependence on such implementation details.)
-.PP
+.P
 According to POSIX, it is unspecified whether fork handlers established with
 .BR pthread_atfork (3)
 are called when
@@ -548,7 +548,7 @@ Since glibc 2.24, the fork handlers are not executed in any case.
 On older implementations,
 fork handlers are called only if the child is created using
 .BR fork (2).
-.PP
+.P
 There is no "posix_fspawn" function (i.e., a function that is to
 .BR posix_spawn ()
 as
@@ -582,13 +582,13 @@ The program accepts command-line attributes that can be used
 to create file actions and attributes objects.
 The remaining command-line arguments are used as the executable name
 and command-line arguments of the program that is executed in the child.
-.PP
+.P
 In the first run, the
 .BR date (1)
 command is executed in the child, and the
 .BR posix_spawn ()
 call employs no file actions or attributes objects.
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out date\fP
@@ -597,7 +597,7 @@ Tue Feb  1 19:47:50 CEST 2011
 Child status: exited, status=0
 .EE
 .in
-.PP
+.P
 In the next run, the
 .I \-c
 command-line option is used to create a file actions object that closes
@@ -605,7 +605,7 @@ standard output in the child.
 Consequently,
 .BR date (1)
 fails when trying to perform output and exits with a status of 1.
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out \-c date\fP
@@ -614,7 +614,7 @@ date: write error: Bad file descriptor
 Child status: exited, status=1
 .EE
 .in
-.PP
+.P
 In the next run, the
 .I \-s
 command-line option is used to create an attributes object that
@@ -629,24 +629,24 @@ Therefore, to kill the child,
 is necessary
 .RB ( SIGKILL
 can't be blocked).
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out \-s sleep 60 &\fP
 [1] 7637
 $ PID of child: 7638
-.PP
+.P
 $ \fBkill 7638\fP
 $ \fBkill \-KILL 7638\fP
 $ Child status: killed by signal 9
 [1]+  Done                    ./a.out \-s sleep 60
 .EE
 .in
-.PP
+.P
 When we try to execute a nonexistent command in the child, the
 .BR exec (3)
 fails and the child exits with a status of 127.
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out xxxxx

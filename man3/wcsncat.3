@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "wchar_t *wcsncat(wchar_t " dest "[restrict ." n ],
 .BI "                 const wchar_t " src "[restrict ." n ],
 .BI "                 size_t " n );
@@ -38,9 +38,9 @@ to the end of the wide-character string pointed
 to by
 .IR dest ,
 and adds a terminating null wide character (L\[aq]\e0\[aq]).
-.PP
+.P
 The strings may not overlap.
-.PP
+.P
 The programmer must ensure that there is room for at least
 .IR wcslen(dest) + n +1
 wide characters at

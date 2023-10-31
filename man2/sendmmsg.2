@@ -15,7 +15,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <sys/socket.h>
-.PP
+.P
 .BI "int sendmmsg(int " sockfd ", struct mmsghdr *" msgvec \
 ", unsigned int " vlen ","
 .BI "             int " flags ");"
@@ -29,12 +29,12 @@ that allows the caller to transmit multiple messages on a socket
 using a single system call.
 (This has performance benefits for some applications.)
 .\" See commit 228e548e602061b08ee8e8966f567c12aa079682
-.PP
+.P
 The
 .I sockfd
 argument is the file descriptor of the socket
 on which data is to be transmitted.
-.PP
+.P
 The
 .I msgvec
 argument is a pointer to an array of
@@ -42,13 +42,13 @@ argument is a pointer to an array of
 structures.
 The size of this array is specified in
 .IR vlen .
-.PP
+.P
 The
 .I mmsghdr
 structure is defined in
 .I <sys/socket.h>
 as:
-.PP
+.P
 .in +4n
 .EX
 struct mmsghdr {
@@ -57,7 +57,7 @@ struct mmsghdr {
 };
 .EE
 .in
-.PP
+.P
 The
 .I msg_hdr
 field is a
@@ -71,13 +71,13 @@ field is used to return the number of bytes sent from the message in
 (i.e., the same as the return value from a single
 .BR sendmsg (2)
 call).
-.PP
+.P
 The
 .I flags
 argument contains flags ORed together.
 The flags are the same as for
 .BR sendmsg (2).
-.PP
+.P
 A blocking
 .BR sendmmsg ()
 call blocks until
@@ -87,7 +87,7 @@ A nonblocking call sends as many messages as possible
 (up to the limit specified by
 .IR vlen )
 and returns immediately.
-.PP
+.P
 On return from
 .BR sendmmsg (),
 the
@@ -109,7 +109,7 @@ if this is less than
 the caller can retry with a further
 .BR sendmmsg ()
 call to send the remaining messages.
-.PP
+.P
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
@@ -163,7 +163,7 @@ and
 .I three
 in two distinct UDP datagrams using one system call.
 The contents of the first datagram originates from a pair of buffers.
-.PP
+.P
 .\" SRC BEGIN (sendmmsg.c)
 .EX
 #define _GNU_SOURCE

@@ -13,15 +13,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .BI "int sigwait(const sigset_t *restrict " set ", int *restrict " sig );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR sigwait ():
 .nf
     Since glibc 2.26:
@@ -40,7 +40,7 @@ The function accepts the signal
 (removes it from the pending list of signals),
 and returns the signal number in
 .IR sig .
-.PP
+.P
 The operation of
 .BR sigwait ()
 is the same as
@@ -82,7 +82,7 @@ T}	Thread safety	MT-Safe
 .BR sigwait ()
 is implemented using
 .BR sigtimedwait (2).
-.PP
+.P
 The glibc implementation of
 .BR sigwait ()
 silently ignores attempts to wait for the two real-time signals that

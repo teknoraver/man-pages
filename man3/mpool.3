@@ -16,18 +16,18 @@ Standard C library
 .nf
 .B #include <db.h>
 .B #include <mpool.h>
-.PP
+.P
 .BI "MPOOL *mpool_open(DBT *" key ", int " fd ", pgno_t " pagesize \
 ", pgno_t " maxcache );
-.PP
+.P
 .BI "void mpool_filter(MPOOL *" mp ", void (*pgin)(void *, pgno_t, void *),"
 .BI "                  void (*" pgout ")(void *, pgno_t, void *),"
 .BI "                  void *" pgcookie );
-.PP
+.P
 .BI "void *mpool_new(MPOOL *" mp ", pgno_t *" pgnoaddr );
 .BI "void *mpool_get(MPOOL *" mp ", pgno_t " pgno ", unsigned int " flags );
 .BI "int mpool_put(MPOOL *" mp ", void *" pgaddr ", unsigned int " flags );
-.PP
+.P
 .BI "int mpool_sync(MPOOL *" mp );
 .BI "int mpool_close(MPOOL *" mp );
 .fi
@@ -38,12 +38,12 @@ Since glibc 2.2, glibc no longer provides these interfaces.
 Probably, you are looking for the APIs provided by the
 .I libdb
 library instead.
-.PP
+.P
 .I Mpool
 is the library interface intended to provide page oriented buffer management
 of files.
 The buffers may be shared between processes.
-.PP
+.P
 The function
 .BR mpool_open ()
 initializes a memory pool.
@@ -64,7 +64,7 @@ If
 is non-NULL and matches a file already being mapped, the
 .I fd
 argument is ignored.
-.PP
+.P
 The
 .I pagesize
 argument is the size, in bytes, of the pages into which the file is broken up.
@@ -75,7 +75,7 @@ at any one time.
 This value is not relative to the number of processes which share a file's
 buffers, but will be the largest value specified by any of the processes
 sharing the file.
-.PP
+.P
 The
 .BR mpool_filter ()
 function is intended to make transparent input and output processing of the
@@ -91,7 +91,7 @@ backing file.
 Both functions are called with the
 .I pgcookie
 pointer, the page number and a pointer to the page to being read or written.
-.PP
+.P
 The function
 .BR mpool_new ()
 takes an
@@ -104,7 +104,7 @@ address.
 Otherwise, NULL is returned and
 .I errno
 is set.
-.PP
+.P
 The function
 .BR mpool_get ()
 takes an
@@ -117,7 +117,7 @@ is set.
 The
 .I flags
 argument is not currently used.
-.PP
+.P
 The function
 .BR mpool_put ()
 unpins the page referenced by
@@ -132,10 +132,10 @@ any of the following values:
 .TP
 .B MPOOL_DIRTY
 The page has been modified and needs to be written to the backing file.
-.PP
+.P
 .BR mpool_put ()
 returns 0 on success and \-1 if an error occurs.
-.PP
+.P
 The function
 .BR mpool_sync ()
 writes all modified pages associated with the
@@ -144,7 +144,7 @@ pointer to the
 backing file.
 .BR mpool_sync ()
 returns 0 on success and \-1 if an error occurs.
-.PP
+.P
 The
 .BR mpool_close ()
 function free's up any allocated memory associated with the memory pool
@@ -161,7 +161,7 @@ function may fail and set
 .I errno
 for any of the errors specified for the library routine
 .BR malloc (3).
-.PP
+.P
 The
 .BR mpool_get ()
 function may fail and set
@@ -170,7 +170,7 @@ for the following:
 .TP 15
 .B EINVAL
 The requested record doesn't exist.
-.PP
+.P
 The
 .BR mpool_new ()
 and
@@ -182,14 +182,14 @@ for any of the errors specified for the library routines
 .BR write (2),
 and
 .BR malloc (3).
-.PP
+.P
 The
 .BR mpool_sync ()
 function may fail and set
 .I errno
 for any of the errors specified for the library routine
 .BR write (2).
-.PP
+.P
 The
 .BR mpool_close ()
 function may fail and set

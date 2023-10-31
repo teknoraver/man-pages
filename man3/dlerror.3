@@ -13,7 +13,7 @@ Dynamic linking library
 .SH SYNOPSIS
 .nf
 .B #include <dlfcn.h>
-.PP
+.P
 .B "char *dlerror(void);"
 .fi
 .SH DESCRIPTION
@@ -27,7 +27,7 @@ since the last call to
 The returned string does
 .I not
 include a trailing newline.
-.PP
+.P
 .BR dlerror ()
 returns NULL if no errors have occurred since initialization or since
 it was last called.
@@ -50,7 +50,7 @@ POSIX.1-2008.
 .SH HISTORY
 glibc 2.0.
 POSIX.1-2001.
-.PP
+.P
 SunOS.
 .SH NOTES
 The message returned by
@@ -59,7 +59,7 @@ may reside in a statically allocated buffer that is
 overwritten by subsequent
 .BR dlerror ()
 calls.
-.\" .LP
+.\" .P
 .\" The string returned by
 .\" .BR dlerror ()
 .\" should not be modified.

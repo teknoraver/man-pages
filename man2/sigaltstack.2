@@ -13,16 +13,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .BI "int sigaltstack(const stack_t *_Nullable restrict " ss ,
 .BI "                stack_t *_Nullable restrict " old_ss );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR sigaltstack ():
 .nf
     _XOPEN_SOURCE >= 500
@@ -39,7 +39,7 @@ An alternate signal stack is used during the
 execution of a signal handler if the establishment of that handler (see
 .BR sigaction (2))
 requested it.
-.PP
+.P
 The normal sequence of events for using an alternate signal stack
 is the following:
 .TP 3
@@ -59,18 +59,18 @@ When establishing a signal handler using
 inform the system that the signal handler should be executed
 on the alternate signal stack by
 specifying the \fBSA_ONSTACK\fP flag.
-.PP
+.P
 The \fIss\fP argument is used to specify a new
 alternate signal stack, while the \fIold_ss\fP argument
 is used to retrieve information about the currently
 established signal stack.
 If we are interested in performing just one
 of these tasks, then the other argument can be specified as NULL.
-.PP
+.P
 The
 .I stack_t
 type used to type the arguments of this function is defined as follows:
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -80,7 +80,7 @@ typedef struct {
 } stack_t;
 .EE
 .in
-.PP
+.P
 To establish a new alternate signal stack,
 the fields of this structure are set as follows:
 .TP
@@ -119,14 +119,14 @@ The constant \fBSIGSTKSZ\fP is defined to be large enough
 to cover the usual size requirements for an alternate signal stack,
 and the constant \fBMINSIGSTKSZ\fP defines the minimum
 size required to execute a signal handler.
-.PP
+.P
 To disable an existing stack, specify \fIss.ss_flags\fP
 as \fBSS_DISABLE\fP.
 In this case, the kernel ignores any other flags in
 .I ss.ss_flags
 and the remaining fields
 in \fIss\fP.
-.PP
+.P
 If \fIold_ss\fP is not NULL, then it is used to return information about
 the alternate signal stack which was in effect prior to the
 call to
@@ -162,7 +162,7 @@ using a further call to
 .B SS_AUTODISARM
 The alternate signal stack has been marked to be autodisarmed
 as described above.
-.PP
+.P
 By specifying
 .I ss
 as NULL, and
@@ -209,7 +209,7 @@ T}	Thread safety	MT-Safe
 .TE
 .SH STANDARDS
 POSIX.1-2008.
-.PP
+.P
 .B SS_AUTODISARM
 is a Linux extension.
 .SH HISTORY
@@ -222,7 +222,7 @@ standard stack is exhausted: in this case, a signal handler for
 .B SIGSEGV
 cannot be invoked on the standard stack; if we wish to handle it,
 we must use an alternate signal stack.
-.PP
+.P
 Establishing an alternate signal stack is useful if a thread
 expects that it may exhaust its standard stack.
 This may occur, for example, because the stack grows so large
@@ -232,13 +232,13 @@ If the standard stack is exhausted, the kernel sends
 the thread a \fBSIGSEGV\fP signal.
 In these circumstances the only way to catch this signal is
 on an alternate signal stack.
-.PP
+.P
 On most hardware architectures supported by Linux, stacks grow
 downward.
 .BR sigaltstack ()
 automatically takes account
 of the direction of stack growth.
-.PP
+.P
 Functions called from a signal handler executing on an alternate
 signal stack will also use the alternate signal stack.
 (This also applies to any handlers invoked for other signals while
@@ -247,7 +247,7 @@ Unlike the standard stack, the system does not
 automatically extend the alternate signal stack.
 Exceeding the allocated size of the alternate signal stack will
 lead to unpredictable results.
-.PP
+.P
 A successful call to
 .BR execve (2)
 removes any existing alternate
@@ -263,7 +263,7 @@ and do not include
 .BR CLONE_VFORK ,
 in which case any alternate signal stack that was established in the parent
 is disabled in the child process.
-.PP
+.P
 .BR sigaltstack ()
 supersedes the older
 .BR sigstack ()
@@ -326,7 +326,7 @@ to install an alternate signal stack that is employed by a handler
 for the
 .B SIGSEGV
 signal:
-.PP
+.P
 .in +4n
 .EX
 stack_t ss;

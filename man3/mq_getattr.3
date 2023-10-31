@@ -12,7 +12,7 @@ Real-time library
 .SH SYNOPSIS
 .nf
 .B #include <mqueue.h>
-.PP
+.P
 .BI "int mq_getattr(mqd_t " mqdes ", struct mq_attr *" attr );
 .BI "int mq_setattr(mqd_t " mqdes ", const struct mq_attr *restrict " newattr ,
 .BI "               struct mq_attr *restrict " oldattr );
@@ -24,14 +24,14 @@ and
 respectively retrieve and modify attributes of the message queue
 referred to by the message queue descriptor
 .IR mqdes .
-.PP
+.P
 .BR mq_getattr ()
 returns an
 .I mq_attr
 structure in the buffer pointed by
 .IR attr .
 This structure is defined as:
-.PP
+.P
 .in +4n
 .EX
 struct mq_attr {
@@ -42,7 +42,7 @@ struct mq_attr {
 };
 .EE
 .in
-.PP
+.P
 The
 .I mq_flags
 field contains flags associated with the open message queue description.
@@ -50,7 +50,7 @@ This field is initialized when the queue is created by
 .BR mq_open (3).
 The only flag that can appear in this field is
 .BR O_NONBLOCK .
-.PP
+.P
 The
 .I mq_maxmsg
 and
@@ -71,11 +71,11 @@ Two
 .I /proc
 files that place ceilings on the values for these fields are described in
 .BR mq_overview (7).
-.PP
+.P
 The
 .I mq_curmsgs
 field returns the number of messages currently held in the queue.
-.PP
+.P
 .BR mq_setattr ()
 sets message queue attributes using information supplied in the
 .I mq_attr
@@ -152,7 +152,7 @@ in which the
 .I attr
 argument is NULL.
 Here is an example run of the program:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out /testq\fP
@@ -160,13 +160,13 @@ Maximum # of messages on queue:   10
 Maximum message size:             8192
 .EE
 .in
-.PP
+.P
 Since Linux 3.5, the following
 .I /proc
 files (described in
 .BR mq_overview (7))
 can be used to control the defaults:
-.PP
+.P
 .in +4n
 .EX
 $ \fBuname \-sr\fP

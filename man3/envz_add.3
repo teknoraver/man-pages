@@ -16,29 +16,29 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <envz.h>
-.PP
+.P
 .BI "error_t envz_add(char **restrict " envz ", size_t *restrict " envz_len ,
 .BI "               const char *restrict " name \
 ", const char *restrict " value );
-.PP
+.P
 .BI "char *envz_entry(const char *restrict " envz ", size_t " envz_len ,
 .BI "               const char *restrict " name );
-.PP
+.P
 .BI "char *envz_get(const char *restrict " envz ", size_t " envz_len ,
 .BI "               const char *restrict " name );
-.PP
+.P
 .BI "error_t envz_merge(char **restrict " envz ", size_t *restrict " envz_len ,
 .BI "               const char *restrict " envz2 ", size_t " envz2_len ,
 .BI "               int " override );
-.PP
+.P
 .BI "void envz_remove(char **restrict " envz ", size_t *restrict " envz_len ,
 .BI "               const char *restrict " name );
-.PP
+.P
 .BI "void envz_strip(char **restrict " envz ", size_t *restrict " envz_len );
 .fi
 .SH DESCRIPTION
 These functions are glibc-specific.
-.PP
+.P
 An argz vector is a pointer to a character buffer together with a length,
 see
 .BR argz_add (3).
@@ -48,9 +48,9 @@ Everything after the first \[aq]=\[aq] is considered
 to be the value.
 If there is no \[aq]=\[aq], the value is taken to be NULL.
 (While the value in case of a trailing \[aq]=\[aq] is the empty string "".)
-.PP
+.P
 These functions are for handling envz vectors.
-.PP
+.P
 .BR envz_add ()
 adds the string
 .RI \&" name = value \&"
@@ -69,14 +69,14 @@ and
 If an entry with the same
 .I name
 existed, it is removed.
-.PP
+.P
 .BR envz_entry ()
 looks for
 .I name
 in the envz vector
 .RI ( envz ,\  envz_len )
 and returns the entry if found, or NULL if not.
-.PP
+.P
 .BR envz_get ()
 looks for
 .I name
@@ -87,7 +87,7 @@ and returns the value if found, or NULL if not.
 an entry for
 .I name
 without \[aq]=\[aq] sign.)
-.PP
+.P
 .BR envz_merge ()
 adds each entry in
 .I envz2
@@ -102,14 +102,14 @@ is true, then values in
 will supersede those with the same name in
 .IR *envz ,
 otherwise not.
-.PP
+.P
 .BR envz_remove ()
 removes the entry for
 .I name
 from
 .RI ( *envz ,\  *envz_len )
 if there was one.
-.PP
+.P
 .BR envz_strip ()
 removes all entries with value NULL.
 .SH RETURN VALUE

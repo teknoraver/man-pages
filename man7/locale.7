@@ -22,18 +22,18 @@ such as language for messages, different character sets, lexicographic
 conventions, and so on.
 A program needs to be able to determine its locale
 and act accordingly to be portable to different cultures.
-.PP
+.P
 The header
 .I <locale.h>
 declares data types, functions, and macros which are useful in this
 task.
-.PP
+.P
 The functions it declares are
 .BR setlocale (3)
 to set the current locale, and
 .BR localeconv (3)
 to get information about number formatting.
-.PP
+.P
 There are different categories for locale information a program might
 need; they are declared as macros.
 Using them as the first argument
@@ -213,7 +213,7 @@ and
 .TP
 .B LC_ALL
 All of the above.
-.PP
+.P
 If the second argument to
 .BR setlocale (3)
 is an empty string,
@@ -234,13 +234,13 @@ If there is a non-null environment variable
 the value of
 .B LANG
 is used.
-.PP
+.P
 Values about local numeric formatting is made available in a
 .I struct lconv
 returned by the
 .BR localeconv (3)
 function, which has the following declaration:
-.PP
+.P
 .in +4n
 .EX
 struct lconv {
@@ -299,7 +299,7 @@ based on implementations that first appeared in glibc 2.3.
 These extensions are designed to address the problem that
 the traditional locale APIs do not mix well with multithreaded applications
 and with applications that must deal with multiple locales.
-.PP
+.P
 The extensions take the form of new functions for creating and
 manipulating locale objects
 .RB ( newlocale (3),

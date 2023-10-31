@@ -13,16 +13,16 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .BI "void pthread_cleanup_push_defer_np(void (*" routine ")(void *), void *" arg );
 .BI "void pthread_cleanup_pop_restore_np(int " execute );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR pthread_cleanup_push_defer_np (),
 .BR pthread_cleanup_pop_defer_np ():
 .nf
@@ -34,7 +34,7 @@ These functions are the same as
 and
 .BR pthread_cleanup_pop (3),
 except for the differences noted on this page.
-.PP
+.P
 Like
 .BR pthread_cleanup_push (3),
 .BR pthread_cleanup_push_defer_np ()
@@ -47,7 +47,7 @@ and sets the cancelability type to "deferred" (see
 this ensures that cancelation clean-up will occur
 even if the thread's cancelability type was "asynchronous"
 before the call.
-.PP
+.P
 Like
 .BR pthread_cleanup_pop (3),
 .BR pthread_cleanup_pop_restore_np ()
@@ -56,24 +56,24 @@ stack of cancelation clean-up handlers.
 In addition, it restores the thread's cancelability
 type to its value at the time of the matching
 .BR pthread_cleanup_push_defer_np ().
-.PP
+.P
 The caller must ensure that calls to these
 functions are paired within the same function,
 and at the same lexical nesting level.
 Other restrictions apply, as described in
 .BR pthread_cleanup_push (3).
-.PP
+.P
 This sequence of calls:
-.PP
+.P
 .in +4n
 .EX
 pthread_cleanup_push_defer_np(routine, arg);
 pthread_cleanup_pop_restore_np(execute);
 .EE
 .in
-.PP
+.P
 is equivalent to (but shorter and more efficient than):
-.PP
+.P
 .\" As far as I can see, LinuxThreads reverses the two substeps
 .\" in the push and pop below.
 .in +4n

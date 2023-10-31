@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/xattr.h>
-.PP
+.P
 .BI "int setxattr(const char *" path ", const char *" name ,
 .BI "              const void " value [. size "], size_t " size ", int " flags );
 .BI "int lsetxattr(const char *" path ", const char *" name ,
@@ -30,7 +30,7 @@ with all inodes in the system (i.e., the
 data).
 A complete overview of extended attributes concepts can be found in
 .BR xattr (7).
-.PP
+.P
 .BR setxattr ()
 sets the
 .I value
@@ -44,13 +44,13 @@ The
 argument specifies the size (in bytes) of
 .IR value ;
 a zero-length value is permitted.
-.PP
+.P
 .BR lsetxattr ()
 is identical to
 .BR setxattr (),
 except in the case of a symbolic link, where the extended attribute is
 set on the link itself, not the file that it refers to.
-.PP
+.P
 .BR fsetxattr ()
 is identical to
 .BR setxattr (),
@@ -60,7 +60,7 @@ only the extended attribute is set on the open file referred to by
 .BR open (2))
 in place of
 .IR path .
-.PP
+.P
 An extended attribute name is a null-terminated string.
 The
 .I name
@@ -70,7 +70,7 @@ The
 .I value
 of an extended attribute is a chunk of arbitrary textual or
 binary data of specified length.
-.PP
+.P
 By default
 (i.e.,
 .I flags
@@ -125,7 +125,7 @@ Extended attributes are not supported by the filesystem, or are disabled,
 The file is marked immutable or append-only.
 (See
 .BR ioctl_iflags (2).)
-.PP
+.P
 In addition, the errors documented in
 .BR stat (2)
 can also occur.

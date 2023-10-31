@@ -36,15 +36,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int rpmatch(const char *" response );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR rpmatch ():
 .nf
     Since glibc 2.19:
@@ -56,14 +56,14 @@ Feature Test Macro Requirements for glibc (see
 .BR rpmatch ()
 handles a user response to yes or no questions, with
 support for internationalization.
-.PP
+.P
 .I response
 should be a null-terminated string containing a
 user-supplied response, perhaps obtained with
 .BR fgets (3)
 or
 .BR getline (3).
-.PP
+.P
 The user's language preference is taken into account per the
 environment variables
 .BR LANG ,
@@ -73,7 +73,7 @@ and
 if the program has called
 .BR setlocale (3)
 to effect their changes.
-.PP
+.P
 Regardless of the locale, responses matching
 .B \[ha][Yy]
 are always accepted as affirmative, and those matching
@@ -92,7 +92,7 @@ is unrecognized.
 A return value of \-1 may indicate either an invalid input, or some
 other error.
 It is incorrect to only test if the return value is nonzero.
-.PP
+.P
 .BR rpmatch ()
 can fail for any of the reasons that
 .BR regcomp (3)
@@ -138,7 +138,7 @@ being the proper way to distinguish between binary answers.
 The following program displays the results when
 .BR rpmatch ()
 is applied to the string given in the program's command-line argument.
-.PP
+.P
 .\" SRC BEGIN (rpmatch.c)
 .EX
 #define _DEFAULT_SOURCE

@@ -8,7 +8,7 @@ st \- SCSI tape device
 .SH SYNOPSIS
 .nf
 .B #include <sys/mtio.h>
-.PP
+.P
 .BI "int ioctl(int " fd ", int " request " [, (void *)" arg3 "]);"
 .BI "int ioctl(int " fd ", MTIOCTOP, (struct mtop *)" mt_cmd );
 .BI "int ioctl(int " fd ", MTIOCGET, (struct mtget *)" mt_status );
@@ -23,7 +23,7 @@ Currently, the driver takes control of all detected devices of type
 The
 .B st
 driver uses major device number 9.
-.PP
+.P
 Each device uses eight minor device numbers.
 The lowermost five bits
 in the minor numbers are assigned sequentially in the order of
@@ -43,7 +43,7 @@ Devices opened using the \[lq]no-rewind\[rq] device number will not.
 for instance, mt does not lead to the desired result: the tape is
 rewound after the mt command and the next command starts from the
 beginning of the tape).
-.PP
+.P
 Within each group, four minor numbers are available to define
 devices with different characteristics (block size, compression,
 density, etc.)
@@ -57,9 +57,9 @@ drive.
 The default allocation allows control of 32 tape drives.
 For instance, it is possible to control up to 64 tape drives
 with two minor numbers for different options.)
-.PP
+.P
 Devices are typically created by:
-.PP
+.P
 .in +4n
 .EX
 mknod \-m 666 /dev/st0 c 9 0
@@ -72,9 +72,9 @@ mknod \-m 666 /dev/nst0m c 9 192
 mknod \-m 666 /dev/nst0a c 9 224
 .EE
 .in
-.PP
+.P
 There is no corresponding block device.
-.PP
+.P
 The driver uses an internal buffer that has to be large enough to hold
 at least one tape block.
 Before Linux 2.1.121, the buffer is
@@ -89,7 +89,7 @@ By default, the
 maximum number of parts is 16.
 This means that the maximum block size
 is very large (2\ MB if allocation of 16 blocks of 128\ kB succeeds).
-.PP
+.P
 The driver's internal buffer size is determined by a compile-time
 constant which can be overridden with a kernel startup option.
 In addition to this, the driver tries to allocate a larger temporary
@@ -98,7 +98,7 @@ However, run-time allocation of large
 contiguous blocks of memory may fail and it is advisable not to rely
 too much on dynamic buffer allocation before Linux 2.1.121
 (this applies also to demand-loading the driver with kerneld or kmod).
-.PP
+.P
 The driver does not specifically support any tape drive brand or
 model.
 After system start-up the tape device options are defined by
@@ -111,7 +111,7 @@ be changed with explicit
 calls and remain in effect when the device is closed and reopened.
 Setting the options affects both the auto-rewind and the nonrewind
 device.
-.PP
+.P
 Different options can be specified for the different devices within
 the subgroup of four.
 The options take effect when the device is
@@ -120,7 +120,7 @@ For example, the system administrator can define
 one device that writes in fixed-block mode with a certain block size,
 and one which writes in variable-block mode (if the drive supports
 both modes).
-.PP
+.P
 The driver supports
 .B tape partitions
 if they are supported by the drive.
@@ -143,12 +143,12 @@ compile-time constant (originally four).
 The driver contains an
 .BR ioctl (2)
 that can format a tape with either one or two partitions.
-.PP
+.P
 Device
 .I /dev/tape
 is usually created as a hard or soft link to the default tape device
 on the system.
-.PP
+.P
 Starting from Linux 2.6.2, the driver exports in the sysfs directory
 .I /sys/class/scsi_tape
 the attached devices and some parameters assigned to the devices.
@@ -165,7 +165,7 @@ Note that
 the blocks on the tape don't contain any information about the
 writing mode: when reading, the only important thing is to use
 commands that accept the block sizes on the tape.
-.PP
+.P
 In variable-block mode the read byte count does not have to match
 the tape block size exactly.
 If the byte count is larger than the
@@ -173,7 +173,7 @@ next block on tape, the driver returns the data and the function
 returns the actual block size.
 If the block size is larger than the
 byte count, an error is returned.
-.PP
+.P
 In fixed-block mode the read byte counts can be arbitrary if
 buffering is enabled, or a multiple of the tape block size if
 buffering is disabled.
@@ -182,7 +182,7 @@ arbitrary byte count if buffering is enabled.
 In all other cases
 (before Linux 2.1.121 with buffering disabled or newer kernel) the
 write byte count must be a multiple of the tape block size.
-.PP
+.P
 In Linux 2.6, the driver tries to use direct transfers between the user
 buffer and the device.
 If this is not possible, the driver's internal buffer
@@ -191,10 +191,10 @@ The reasons for not using direct transfers include improper alignment
 of the user buffer (default is 512 bytes but this can be changed by the HBA
 driver), one or more pages of the user buffer not reachable by the
 SCSI adapter, and so on.
-.PP
+.P
 A filemark is automatically written to tape if the last tape operation
 before close was a write.
-.PP
+.P
 When a filemark is encountered while reading, the following
 happens.
 If there are data remaining in the buffer when the filemark
@@ -224,7 +224,7 @@ Not all drives support all operations.
 The driver returns an
 .B EIO
 error if the drive rejects an operation.
-.PP
+.P
 .in +4n
 .EX
 /* Structure for MTIOCTOP \- mag tape op command: */
@@ -234,7 +234,7 @@ struct mtop {
 };
 .EE
 .in
-.PP
+.P
 Magnetic tape operations for normal tape use:
 .TP
 .B MTBSF
@@ -395,7 +395,7 @@ filemarks.
 Write
 .I mt_count
 setmarks.
-.PP
+.P
 Magnetic tape operations for setting of device options (by the superuser):
 .TP
 .B MTSETDRVBUFFER
@@ -609,9 +609,9 @@ In BSD semantics the tape position is not changed.
 .BR MT_NO_WAIT " (Default: false)"
 Enables immediate mode (i.e., don't wait for the command to finish) for some
 commands (e.g., rewind).
-.PP
+.P
 An example:
-.PP
+.P
 .in +4n
 .EX
 struct mtop mt_cmd;
@@ -621,14 +621,14 @@ mt_cmd.mt_count = MT_ST_BOOLEANS |
 ioctl(fd, MTIOCTOP, mt_cmd);
 .EE
 .in
-.PP
+.P
 The default block size for a device can be set with
 .B MT_ST_DEF_BLKSIZE
 and the default density code can be set with
 .BR MT_ST_DEFDENSITY .
 The values for the parameters are or'ed
 with the operation code.
-.PP
+.P
 With Linux 2.1.x and later, the timeout values can be set with the
 subcommand
 .B MT_ST_SET_TIMEOUT
@@ -645,7 +645,7 @@ These commands can be used to set more
 practical values for a specific drive.
 The timeouts set for one device
 apply for all devices linked to the same drive.
-.PP
+.P
 Starting from Linux 2.4.19 and Linux 2.5.43, the driver supports a status
 bit which indicates whether the drive requests cleaning.
 The method used by the
@@ -670,7 +670,7 @@ the masked sense data byte.
 .SS MTIOCGET \[em] get status
 This request takes an argument of type
 .IR "(struct mtget\ *)" .
-.PP
+.P
 .in +4n
 .EX
 /* structure for MTIOCGET \- mag tape get status command */
@@ -812,7 +812,7 @@ This drive must be a SCSI-2 drive that supports the
 command (device-specific address)
 or a Tandberg-compatible SCSI-1 drive (Tandberg, Archive
 Viper, Wangtek, ... ).
-.PP
+.P
 .in +4n
 .EX
 /* structure for MTIOCPOS \- mag tape get position command */
@@ -940,7 +940,7 @@ telling it to use larger blocks).
 If this is not possible, direct transfers can be disabled.
 .SH SEE ALSO
 .BR mt (1)
-.PP
+.P
 The file
 .I drivers/scsi/README.st
 or

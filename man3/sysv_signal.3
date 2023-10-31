@@ -13,9 +13,9 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <signal.h>
-.PP
+.P
 .B typedef void (*sighandler_t)(int);
-.PP
+.P
 .BI "sighandler_t sysv_signal(int " signum ", sighandler_t " handler );
 .fi
 .SH DESCRIPTION
@@ -23,7 +23,7 @@ The
 .BR sysv_signal ()
 function takes the same arguments, and performs the same task, as
 .BR signal (2).
-.PP
+.P
 However
 .BR sysv_signal ()
 provides the System V unreliable signal semantics, that is:
@@ -62,7 +62,7 @@ Use of
 should be avoided; use
 .BR sigaction (2)
 instead.
-.PP
+.P
 On older Linux systems,
 .BR sysv_signal ()
 and
@@ -73,7 +73,7 @@ But on newer systems,
 provides reliable signal semantics; see
 .BR signal (2)
 for details.
-.PP
+.P
 The use of
 .I sighandler_t
 is a GNU extension;

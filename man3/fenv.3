@@ -18,16 +18,16 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <fenv.h>
-.PP
+.P
 .BI "int feclearexcept(int " excepts );
 .BI "int fegetexceptflag(fexcept_t *" flagp ", int " excepts );
 .BI "int feraiseexcept(int " excepts );
 .BI "int fesetexceptflag(const fexcept_t *" flagp ", int " excepts );
 .BI "int fetestexcept(int " excepts );
-.PP
+.P
 .B "int fegetround(void);"
 .BI "int fesetround(int " rounding_mode );
-.PP
+.P
 .BI "int fegetenv(fenv_t *" envp );
 .BI "int feholdexcept(fenv_t *" envp );
 .BI "int fesetenv(const fenv_t *" envp );
@@ -41,20 +41,20 @@ The
 .I divide-by-zero
 exception occurs when an operation on finite numbers
 produces infinity as exact answer.
-.PP
+.P
 The
 .I overflow
 exception occurs when a result has to be represented as a
 floating-point number, but has (much) larger absolute value than the
 largest (finite) floating-point number that is representable.
-.PP
+.P
 The
 .I underflow
 exception occurs when a result has to be represented as a
 floating-point number, but has smaller absolute value than the smallest
 positive normalized floating-point number (and would lose much accuracy
 when represented as a denormalized number).
-.PP
+.P
 The
 .I inexact
 exception occurs when the rounded result of an operation
@@ -64,7 +64,7 @@ It may occur whenever
 or
 .I underflow
 occurs.
-.PP
+.P
 The
 .I invalid
 exception occurs when there is no well-defined result
@@ -75,7 +75,7 @@ Exceptions are represented in two ways: as a single bit
 implementation-defined way with bit positions in an integer,
 and also as an opaque structure that may contain more information
 about the exception (perhaps the code address where it occurred).
-.PP
+.P
 Each of the macros
 .BR FE_DIVBYZERO ,
 .BR FE_INEXACT ,
@@ -91,12 +91,12 @@ Other exceptions may be supported.
 The macro
 .B FE_ALL_EXCEPT
 is the bitwise OR of all bits corresponding to supported exceptions.
-.PP
+.P
 The
 .BR feclearexcept ()
 function clears the supported exceptions represented by the bits
 in its argument.
-.PP
+.P
 The
 .BR fegetexceptflag ()
 function stores a representation of the state of the exception flags
@@ -104,12 +104,12 @@ represented by the argument
 .I excepts
 in the opaque object
 .IR *flagp .
-.PP
+.P
 The
 .BR feraiseexcept ()
 function raises the supported exceptions represented by the bits in
 .IR excepts .
-.PP
+.P
 The
 .BR fesetexceptflag ()
 function sets the complete status for the exceptions represented by
@@ -120,7 +120,7 @@ This value must have been obtained by an earlier call of
 .BR fegetexceptflag ()
 with a last argument that contained all bits in
 .IR excepts .
-.PP
+.P
 The
 .BR fetestexcept ()
 function returns a word in which the bits are set that were
@@ -135,7 +135,7 @@ round to nearest (the default),
 round up (toward positive infinity),
 round down (toward negative infinity), and
 round toward zero.
-.PP
+.P
 Each of the macros
 .BR FE_TONEAREST ,
 .BR FE_UPWARD ,
@@ -144,17 +144,17 @@ and
 .B FE_TOWARDZERO
 is defined when the implementation supports getting and setting
 the corresponding rounding direction.
-.PP
+.P
 The
 .BR fegetround ()
 function returns the macro corresponding to the current
 rounding mode.
-.PP
+.P
 The
 .BR fesetround ()
 function sets the rounding mode as specified by its argument
 and returns zero when it was successful.
-.PP
+.P
 C99 and POSIX.1-2008 specify an identifier,
 .BR FLT_ROUNDS ,
 defined in
@@ -177,9 +177,9 @@ Rounding is toward positive infinity.
 .TP
 .B 3
 Rounding is toward negative infinity.
-.PP
+.P
 Other values represent machine-dependent, nonstandard rounding modes.
-.PP
+.P
 The value of
 .B FLT_ROUNDS
 should reflect the current rounding mode as set by
@@ -197,19 +197,19 @@ The default environment is denoted by
 This is the environment setup at program start and it is defined by
 ISO C to have round to nearest, all exceptions cleared and a nonstop
 (continue on exceptions) mode.
-.PP
+.P
 The
 .BR fegetenv ()
 function saves the current floating-point environment in the object
 .IR *envp .
-.PP
+.P
 The
 .BR feholdexcept ()
 function does the same, then clears all exception flags,
 and sets a nonstop (continue on exceptions) mode,
 if available.
 It returns zero when successful.
-.PP
+.P
 The
 .BR fesetenv ()
 function restores the floating-point environment from
@@ -222,7 +222,7 @@ or
 or equal to
 .BR FE_DFL_ENV .
 This call does not raise exceptions.
-.PP
+.P
 The
 .BR feupdateenv ()
 function installs the floating-point environment represented by
@@ -298,16 +298,16 @@ and
 to set individual floating-point traps, and
 .BR fegetexcept ()
 to query the state.
-.PP
+.P
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B "#include <fenv.h>"
-.PP
+.P
 .BI "int feenableexcept(int " excepts );
 .BI "int fedisableexcept(int " excepts );
 .B "int fegetexcept(void);"
 .fi
-.PP
+.P
 The
 .BR feenableexcept ()
 and

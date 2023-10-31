@@ -14,7 +14,7 @@ and a
 .IR "write end" .
 Data written to the write end of a pipe can be read
 from the read end of the pipe.
-.PP
+.P
 A pipe is created using
 .BR pipe (2),
 which creates a new pipe and returns two file descriptors,
@@ -24,7 +24,7 @@ Pipes can be used to create a communication channel between related
 processes; see
 .BR pipe (2)
 for an example.
-.PP
+.P
 A FIFO (short for First In First Out) has a name within the filesystem
 (created using
 .BR mkfifo (3)),
@@ -48,7 +48,7 @@ The only difference between pipes and FIFOs is the manner in which
 they are created and opened.
 Once these tasks have been accomplished,
 I/O on pipes and FIFOs has exactly the same semantics.
-.PP
+.P
 If a process attempts to read from an empty pipe, then
 .BR read (2)
 will block until data is available.
@@ -56,7 +56,7 @@ If a process attempts to write to a full pipe (see below), then
 .BR write (2)
 blocks until sufficient data has been read from the pipe
 to allow the write to complete.
-.PP
+.P
 Nonblocking I/O is possible by using the
 .BR fcntl (2)
 .B F_SETFL
@@ -69,11 +69,11 @@ with
 If any process has the pipe open for writing, reads fail with
 .BR EAGAIN ;
 otherwise\[em]with no potential writers\[em]reads succeed and return empty.
-.PP
+.P
 The communication channel provided by a pipe is a
 .IR "byte stream" :
 there is no concept of message boundaries.
-.PP
+.P
 If all file descriptors referring to the write end of a pipe
 have been closed, then an attempt to
 .BR read (2)
@@ -100,7 +100,7 @@ calls to close unnecessary duplicate file descriptors;
 this ensures that end-of-file and
 .BR SIGPIPE / EPIPE
 are delivered when appropriate.
-.PP
+.P
 It is not possible to apply
 .BR lseek (2)
 to a pipe.
@@ -116,7 +116,7 @@ Applications should not rely on a particular capacity:
 an application should be designed so that a reading process consumes data
 as soon as it is available,
 so that a writing process does not remain blocked.
-.PP
+.P
 Before Linux 2.6.11, the capacity of a pipe was the same as
 the system page size (e.g., 4096 bytes on i386).
 Since Linux 2.6.11, the pipe capacity is 16 pages
@@ -131,7 +131,7 @@ operations.
 See
 .BR fcntl (2)
 for more information.
-.PP
+.P
 The following
 .BR ioctl (2)
 operation, which can be applied to a file descriptor
@@ -139,13 +139,13 @@ that refers to either end of a pipe,
 places a count of the number of unread bytes in the pipe in the
 .I int
 buffer pointed to by the final argument of the call:
-.PP
+.P
 .in +4n
 .EX
 ioctl(fd, FIONREAD, &nbytes);
 .EE
 .in
-.PP
+.P
 The
 .B FIONREAD
 operation is not specified in any standard,
@@ -227,7 +227,7 @@ and attempts to increase a pipe's capacity will be denied.
 When the value of this limit is zero, no soft limit is applied.
 The default value for this file is 16384,
 which permits creating up to 1024 pipes with the default capacity.
-.PP
+.P
 Before Linux 4.9, some bugs affected the handling of the
 .I pipe\-user\-pages\-soft
 and
@@ -310,7 +310,7 @@ a pipe or FIFO are
 .B O_NONBLOCK
 and
 .BR O_ASYNC .
-.PP
+.P
 Setting the
 .B O_ASYNC
 flag for the read end of a pipe causes a signal
@@ -383,7 +383,7 @@ allocation could be pushed over the limit.
 Starting with Linux 4.9,
 the accounting step is performed before doing the allocation,
 and the operation fails if the limit would be exceeded.
-.PP
+.P
 Before Linux 4.9, bugs similar to points (a) and (c) could also occur
 when the kernel allocated memory for a new pipe buffer;
 that is, when calling

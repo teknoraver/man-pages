@@ -25,7 +25,7 @@ Standard C library
 .nf
 .B #define _GNU_SOURCE
 .B #include <sched.h>
-.PP
+.P
 .BI "int unshare(int " flags );
 .fi
 .SH DESCRIPTION
@@ -40,12 +40,12 @@ or
 while other parts, such as virtual memory, may be
 shared by explicit request when creating a process or thread using
 .BR clone (2).
-.PP
+.P
 The main use of
 .BR unshare ()
 is to allow a process to control its
 shared execution context without creating a new process.
-.PP
+.P
 The
 .I flags
 argument is a bit mask that specifies which parts of
@@ -250,7 +250,7 @@ to the corresponding semaphores, as described in
 .BR semop (2).
 .\" CLONE_NEWNS If CLONE_SIGHAND is set and signals are also being shared
 .\" (i.e., current->signal->count > 1), force CLONE_THREAD.
-.PP
+.P
 In addition,
 .BR CLONE_THREAD ,
 .BR CLONE_SIGHAND ,
@@ -277,7 +277,7 @@ automatically implies
 If the process is multithreaded, then
 the use of these flags results in an error.
 .\" See kernel/fork.c::check_unshare_flags()
-.PP
+.P
 If
 .I flags
 is specified as zero, then
@@ -457,7 +457,7 @@ Such functionality may be added in the future, if required.
 .\"be incrementally added to unshare without affecting legacy
 .\"applications using unshare.
 .\"
-.PP
+.P
 Creating all kinds of namespace, except user namespaces, requires the
 .B CAP_SYS_ADMIN
 capability.
@@ -477,7 +477,7 @@ Here's an example of the use of this program,
 running a shell in a new mount namespace,
 and verifying that the original shell and the
 new shell are in separate mount namespaces:
-.PP
+.P
 .in +4n
 .EX
 $ \fBreadlink /proc/$$/ns/mnt\fP
@@ -487,7 +487,7 @@ $ \fBsudo ./unshare \-m /bin/bash\fP
 mnt:[4026532325]
 .EE
 .in
-.PP
+.P
 The differing output of the two
 .BR readlink (1)
 commands shows that the two shells are in different mount namespaces.
@@ -563,7 +563,7 @@ main(int argc, char *argv[])
 .BR setns (2),
 .BR vfork (2),
 .BR namespaces (7)
-.PP
+.P
 .I Documentation/userspace\-api/unshare.rst
 in the Linux kernel source tree
 .\" commit f504d47be5e8fa7ecf2bf660b18b42e6960c0eb2

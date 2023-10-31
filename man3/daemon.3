@@ -15,15 +15,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int daemon(int " nochdir ", int " noclose );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR daemon ():
 .nf
     Since glibc 2.21:
@@ -39,7 +39,7 @@ The
 .BR daemon ()
 function is for programs wishing to detach themselves from the
 controlling terminal and run in the background as system daemons.
-.PP
+.P
 If
 .I nochdir
 is zero,
@@ -47,7 +47,7 @@ is zero,
 changes the process's current working directory
 to the root directory ("/");
 otherwise, the current working directory is left unchanged.
-.PP
+.P
 If
 .I noclose
 is zero,
@@ -90,7 +90,7 @@ T}	Thread safety	MT-Safe
 .TE
 .SH VERSIONS
 A similar function appears on the BSDs.
-.PP
+.P
 The glibc implementation can also return \-1 when
 .I /dev/null
 exists but is not a character device with the expected

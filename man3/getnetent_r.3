@@ -14,7 +14,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <netdb.h>
-.PP
+.P
 .BI "int getnetent_r(struct netent *restrict " result_buf ,
 .BI "                char " buf "[restrict ." buflen "], size_t " buflen ,
 .BI "                struct netent **restrict " result ,
@@ -29,13 +29,13 @@ Standard C library
 .BI "                char " buf "[restrict ." buflen "], size_t " buflen ,
 .BI "                struct netent **restrict " result ,
 .BI "                int *restrict " h_errnop );
-.PP
+.P
 .fi
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getnetent_r (),
 .BR getnetbyname_r (),
 .BR getnetbyaddr_r ():
@@ -62,13 +62,13 @@ structure is returned,
 and in the function calling signature and return value.
 This manual page describes just the differences from
 the nonreentrant functions.
-.PP
+.P
 Instead of returning a pointer to a statically allocated
 .I netent
 structure as the function result,
 these functions copy the structure into the location pointed to by
 .IR result_buf .
-.PP
+.P
 The
 .I buf
 array is used to store the string fields pointed to by the returned
@@ -85,7 +85,7 @@ and the caller must try again with a larger buffer.
 (A buffer of length 1024 bytes should be sufficient for most applications.)
 .\" I can find no information on the required/recommended buffer size;
 .\" the nonreentrant functions use a 1024 byte buffer -- mtk.
-.PP
+.P
 If the function call successfully obtains a network record, then
 .I *result
 is set pointing to
@@ -93,7 +93,7 @@ is set pointing to
 otherwise,
 .I *result
 is set to NULL.
-.PP
+.P
 The buffer pointed to by
 .I h_errnop
 is used to return the value that would be stored in the global variable
@@ -104,7 +104,7 @@ by the nonreentrant versions of these functions.
 .SH RETURN VALUE
 On success, these functions return 0.
 On error, they return one of the positive error numbers listed in ERRORS.
-.PP
+.P
 On error, record not found
 .RB ( getnetbyname_r (),
 .BR getnetbyaddr_r ()),

@@ -33,7 +33,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <printf.h>
-.PP
+.P
 .BI "int register_printf_specifier(int " spec ", printf_function " func ,
 .BI "                              printf_arginfo_size_function " arginfo );
 .BI "int register_printf_modifier(const wchar_t *" str );
@@ -148,7 +148,7 @@ or a custom one,
 and optionally ORed with an appropriate length modifier
 .RB ( PA_FLAG_ *).
 .RS
-.PP
+.P
 The type is determined by using one of the following constants:
 .TP
 .B PA_INT
@@ -188,7 +188,7 @@ For user-defined types,
 the size of the type (in bytes) should also be specified through this array.
 Otherwise, leave it unused.
 .RE
-.PP
+.P
 .I arginfo
 is called before
 .IR func ,
@@ -209,7 +209,7 @@ The callback of type
 .I printf_function
 should return the number of characters written,
 or \-1 on error.
-.PP
+.P
 The callback of type
 .I \%printf_arginfo_size_function
 should return the number of arguments to be parsed by this specifier.
@@ -229,7 +229,7 @@ is an older function similar to
 .BR \%register_printf_specifier (),
 and is now deprecated.
 That function can't handle user-defined types.
-.PP
+.P
 .BR \%register_printf_specifier ()
 superseeds
 .BR \%register_printf_function (3).
@@ -238,7 +238,7 @@ The following example program registers the 'b' and 'B' specifiers
 to print integers in binary format,
 mirroring rules for other unsigned conversion specifiers like 'x' and 'u'.
 This can be used to print in binary prior to C23.
-.PP
+.P
 .\" SRC BEGIN (register_printf_specifier.c)
 .EX
 /* This code is in the public domain */

@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wctype.h>
-.PP
+.P
 .BI "wctrans_t wctrans(const char *" name );
 .fi
 .SH DESCRIPTION
@@ -37,7 +37,7 @@ values can be passed to the
 .BR towctrans (3)
 function to actually perform
 the wide-character mapping.
-.PP
+.P
 The
 .BR wctrans ()
 function returns a mapping, given by its name.
@@ -46,7 +46,7 @@ valid names depends on the
 .B LC_CTYPE
 category of the current locale, but the
 following names are valid in all locales.
-.PP
+.P
 .nf
     "tolower" \- realizes the \fBtolower\fP(3) mapping
     "toupper" \- realizes the \fBtoupper\fP(3) mapping

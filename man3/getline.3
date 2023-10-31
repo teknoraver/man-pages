@@ -13,18 +13,18 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "ssize_t getline(char **restrict " lineptr ", size_t *restrict " n ,
 .BI "                FILE *restrict " stream );
 .BI "ssize_t getdelim(char **restrict " lineptr ", size_t *restrict " n ,
 .BI "                int " delim ", FILE *restrict " stream );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getline (),
 .BR getdelim ():
 .nf
@@ -40,7 +40,7 @@ storing the address of the buffer containing the text into
 .IR *lineptr .
 The buffer is null-terminated and includes the newline character, if
 one was found.
-.PP
+.P
 If
 .I *lineptr
 is set to NULL before the call, then
@@ -50,7 +50,7 @@ This buffer should be freed by the user program
 even if
 .BR getline ()
 failed.
-.PP
+.P
 Alternatively, before calling
 .BR getline (),
 .I *lineptr
@@ -68,13 +68,13 @@ updating
 and
 .I *n
 as necessary.
-.PP
+.P
 In either case, on a successful call,
 .I *lineptr
 and
 .I *n
 will be updated to reflect the buffer address and allocated size respectively.
-.PP
+.P
 .BR getdelim ()
 works like
 .BR getline (),
@@ -94,13 +94,13 @@ return the number of characters read, including the delimiter character,
 but not including the terminating null byte (\[aq]\e0\[aq]).
 This value can be used
 to handle embedded null bytes in the line read.
-.PP
+.P
 Both functions return \-1 on failure to read a line (including end-of-file
 condition).
 In the event of a failure,
 .I errno
 is set to indicate the error.
-.PP
+.P
 If
 .I *lineptr
 was set to NULL before the call, then the buffer should be freed by the

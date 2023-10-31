@@ -53,7 +53,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <fcntl.h>
-.PP
+.P
 .BI "int fcntl(int " fd ", int " cmd ", ... /* " arg " */ );"
 .fi
 .SH DESCRIPTION
@@ -62,7 +62,7 @@ performs one of the operations described below on the open file descriptor
 .IR fd .
 The operation is determined by
 .IR cmd .
-.PP
+.P
 .BR fcntl ()
 can take an optional third argument.
 Whether or not this argument is required is determined by
@@ -76,7 +76,7 @@ and we identify the argument using the name
 or
 .I void
 is specified if the argument is not required.
-.PP
+.P
 Certain of the operations below are supported only since a particular
 Linux kernel version.
 The preferred method of checking whether the host kernel supports
@@ -147,7 +147,7 @@ is ignored.
 .BR F_SETFD " (\fIint\fP)"
 Set the file descriptor flags to the value specified by
 .IR arg .
-.PP
+.P
 In multithreaded programs, using
 .BR fcntl ()
 .B F_SETFD
@@ -177,7 +177,7 @@ Duplicated file descriptors
 .BR fork (2),
 etc.) refer to the same open file description, and thus
 share the same file status flags.
-.PP
+.P
 The file status flags and their semantics are described in
 .BR open (2).
 .TP
@@ -216,7 +216,7 @@ Linux implements traditional ("process-associated") UNIX record locks,
 as standardized by POSIX.
 For a Linux-specific alternative with better semantics,
 see the discussion of open file description locks below.
-.PP
+.P
 .BR F_SETLK ,
 .BR F_SETLKW ,
 and
@@ -227,7 +227,7 @@ The third argument,
 .IR lock ,
 is a pointer to a structure that has at least the following fields
 (in unspecified order).
-.PP
+.P
 .in +4n
 .EX
 struct flock {
@@ -244,13 +244,13 @@ struct flock {
 };
 .EE
 .in
-.PP
+.P
 The
 .IR l_whence ", " l_start ", and " l_len
 fields of this structure specify the range of bytes we wish to lock.
 Bytes past the end of the file may be locked,
 but not bytes before the start of the file.
-.PP
+.P
 .I l_start
 is the starting offset for the lock, and is interpreted
 relative to either:
@@ -270,7 +270,7 @@ In the final two cases,
 .I l_start
 can be a negative number provided the
 offset does not lie before the start of the file.
-.PP
+.P
 .I l_len
 specifies the number of bytes to be locked.
 If
@@ -285,7 +285,7 @@ has the special meaning: lock all bytes starting at the
 location specified by
 .IR l_whence " and " l_start
 through to the end of file, no matter how large the file grows.
-.PP
+.P
 POSIX.1-2001 allows (but does not require)
 an implementation to support a negative
 .I l_len
@@ -298,7 +298,7 @@ covers bytes
 up to and including
 .IR l_start \-1.
 This is supported since Linux 2.4.21 and Linux 2.5.49.
-.PP
+.P
 The
 .I l_type
 field can be used to place a read
@@ -387,7 +387,7 @@ If the conflicting lock is an open file description lock, then
 is set to \-1.
 Note that the returned information
 may already be out of date by the time the caller inspects it.
-.PP
+.P
 In order to place a read lock,
 .I fd
 must be open for reading.
@@ -395,7 +395,7 @@ In order to place a write lock,
 .I fd
 must be open for writing.
 To place both types of lock, open a file read-write.
-.PP
+.P
 When placing locks with
 .BR F_SETLKW ,
 the kernel detects
@@ -418,16 +418,16 @@ attempting regain the locks that it requires.
 Circular deadlocks involving more than two processes are also detected.
 Note, however, that there are limitations to the kernel's
 deadlock-detection algorithm; see BUGS.
-.PP
+.P
 As well as being removed by an explicit
 .BR F_UNLCK ,
 record locks are automatically released when the process terminates.
-.PP
+.P
 Record locks are not inherited by a child created via
 .BR fork (2),
 but are preserved across an
 .BR execve (2).
-.PP
+.P
 Because of the buffering performed by the
 .BR stdio (3)
 library, the use of record locking with routines in that package
@@ -436,7 +436,7 @@ should be avoided; use
 and
 .BR write (2)
 instead.
-.PP
+.P
 The record locks described above are associated with the process
 (unlike the open file description locks described below).
 This has some unfortunate consequences:
@@ -461,7 +461,7 @@ The threads in a process share locks.
 In other words,
 a multithreaded program can't use record locking to ensure
 that threads don't simultaneously access the same region of a file.
-.PP
+.P
 Open file description locks solve both of these problems.
 .SS Open file description locks (non-POSIX)
 Open file description locks are advisory byte-range locks whose operation is
@@ -474,7 +474,7 @@ and available since Linux 3.15.
 to include this lock type in the next revision of POSIX.1.)
 For an explanation of open file descriptions, see
 .BR open (2).
-.PP
+.P
 The principal difference between the two lock types
 is that whereas traditional record locks
 are associated with a process,
@@ -492,13 +492,13 @@ with
 and are only automatically released on the last close
 of the open file description,
 instead of being released on any close of the file.
-.PP
+.P
 Conflicting lock combinations
 (i.e., a read lock and a write lock or two write locks)
 where one lock is an open file description lock and the other
 is a traditional record lock conflict
 even when they are acquired by the same process on the same file descriptor.
-.PP
+.P
 Open file description locks placed via the same open file description
 (i.e., via the same file descriptor,
 or via a duplicate of the file descriptor created by
@@ -511,7 +511,7 @@ if a new lock is placed on an already locked region,
 then the existing lock is converted to the new lock type.
 (Such conversions may result in splitting, shrinking, or coalescing with
 an existing lock as discussed above.)
-.PP
+.P
 On the other hand, open file description locks may conflict with
 each other when they are acquired via different open file descriptions.
 Thus, the threads in a multithreaded program can use
@@ -519,7 +519,7 @@ open file description locks to synchronize access to a file region
 by having each thread perform its own
 .BR open (2)
 on the file and applying locks via the resulting file descriptor.
-.PP
+.P
 As with traditional advisory locks, the third argument to
 .BR fcntl (),
 .IR lock ,
@@ -530,7 +530,7 @@ By contrast with traditional record locks, the
 .I l_pid
 field of that structure must be set to zero
 when using the commands described below.
-.PP
+.P
 The commands for working with open file description locks are analogous
 to those used with traditional locks:
 .TP
@@ -587,7 +587,7 @@ then details about one of these locks are returned via
 .IR lock ,
 as described above for
 .BR F_GETLK .
-.PP
+.P
 In the current implementation,
 .\" commit 57b65325fe34ec4c917bc4e555144b4a94d9e1f7
 no deadlock detection is performed for open file description locks.
@@ -604,12 +604,12 @@ since Linux 4.5, mandatory locking has been made an optional feature,
 governed by a configuration option
 .RB ( CONFIG_MANDATORY_FILE_LOCKING ).
 This feature is no longer supported at all in Linux 5.15 and above.
-.PP
+.P
 By default, both traditional (process-associated) and open file description
 record locks are advisory.
 Advisory locks are not enforced and are useful only between
 cooperating processes.
-.PP
+.P
 Both lock types can also be mandatory.
 Mandatory locks are enforced for all processes.
 If a process tries to perform an incompatible access (e.g.,
@@ -629,7 +629,7 @@ If the
 .B O_NONBLOCK
 flag is enabled, then the system call fails with the error
 .BR EAGAIN .
-.PP
+.P
 To make use of mandatory locks, mandatory locking must be enabled
 both on the filesystem that contains the file to be locked,
 and on the file itself.
@@ -646,7 +646,7 @@ permission bit (see
 .BR chmod (1)
 and
 .BR chmod (2)).
-.PP
+.P
 Mandatory locking is not specified by POSIX.
 Some other systems also support mandatory locking,
 although the details of how to enable it vary across systems.
@@ -658,7 +658,7 @@ This may happen due to administrative action on the server, or due to a
 network partition (i.e., loss of network connectivity with the server)
 which lasts long enough for the server to assume
 that the client is no longer functioning.
-.PP
+.P
 When the filesystem determines that a lock has been lost, future
 .BR read (2)
 or
@@ -670,7 +670,7 @@ descriptor is closed.
 Since Linux 3.12,
 .\" commit ef1820f9be27b6ad158f433ab38002ab8131db4d
 this happens at least for NFSv4 (including all minor versions).
-.PP
+.P
 Some versions of UNIX send a signal
 .RB ( SIGLOST )
 in this circumstance.
@@ -1002,14 +1002,14 @@ delivering
 and this signal is delivered to the entire
 process rather than to a specific thread.
 .\" See fs/fcntl.c::send_sigio_to_task() (2.4/2.6) sources -- MTK, Apr 05
-.PP
+.P
 Using these mechanisms, a program can implement fully asynchronous I/O
 without using
 .BR select (2)
 or
 .BR poll (2)
 most of the time.
-.PP
+.P
 The use of
 .B O_ASYNC
 is specific to BSD and Linux.
@@ -1074,7 +1074,7 @@ other open file descriptors for the file.
 .B F_UNLCK
 Remove our lease from the file.
 .RE
-.PP
+.P
 Leases are associated with an open file description (see
 .BR open (2)).
 This means that duplicate file descriptors (created by, for example,
@@ -1087,7 +1087,7 @@ Furthermore, the lease is released by either an explicit
 .B F_UNLCK
 operation on any of these duplicate file descriptors, or when all
 such file descriptors have been closed.
-.PP
+.P
 Leases may be taken out only on regular files.
 An unprivileged process may take out a lease only on a file whose
 UID (owner) matches the filesystem UID of the process.
@@ -1103,7 +1103,7 @@ by returning either
 indicating, respectively, a read lease , a write lease, or no lease.
 .I arg
 is ignored.
-.PP
+.P
 When a process (the "lease breaker") performs an
 .BR open (2)
 or
@@ -1134,12 +1134,12 @@ command specifying
 .I arg
 as
 .BR F_RDLCK .
-.PP
+.P
 If the lease holder fails to downgrade or remove the lease within
 the number of seconds specified in
 .IR /proc/sys/fs/lease\-break\-time ,
 then the kernel forcibly removes or downgrades the lease holder's lease.
-.PP
+.P
 Once a lease break has been initiated,
 .B F_GETLEASE
 returns the target lease type (either
@@ -1149,11 +1149,11 @@ or
 depending on what would be compatible with the lease breaker)
 until the lease holder voluntarily downgrades or removes the lease or
 the kernel forcibly does so after the lease break timer expires.
-.PP
+.P
 Once the lease has been voluntarily or forcibly removed or downgraded,
 and assuming the lease breaker has not unblocked its system call,
 the kernel permits the lease breaker's system call to proceed.
-.PP
+.P
 If the lease breaker's blocked
 .BR open (2)
 or
@@ -1174,7 +1174,7 @@ flag when calling
 then the call immediately fails with the error
 .BR EWOULDBLOCK ,
 but the other steps still occur as described above.
-.PP
+.P
 The default signal used to notify the lease holder is
 .BR SIGIO ,
 but this can be changed using the
@@ -1206,7 +1206,7 @@ The events to be notified are specified in
 .IR arg ,
 which is a bit mask specified by ORing together zero or more of
 the following bits:
-.PP
+.P
 .RS
 .PD 0
 .TP
@@ -1377,7 +1377,7 @@ file and filesystem.
 For an overview of file sealing, a discussion of its purpose,
 and some code examples, see
 .BR memfd_create (2).
-.PP
+.P
 Currently,
 file seals can be applied only to a file descriptor returned by
 .BR memfd_create (2)
@@ -1388,7 +1388,7 @@ On other filesystems, all
 .BR fcntl ()
 operations that operate on seals will return
 .BR EINVAL .
-.PP
+.P
 Seals are a property of an inode.
 Thus, all open file descriptors referring to the same inode share
 the same set of seals.
@@ -1421,7 +1421,7 @@ If the file does not support sealing, \-1 is returned and
 .I errno
 is set to
 .BR EINVAL .
-.PP
+.P
 The following seals are available:
 .TP
 .B F_SEAL_SEAL
@@ -1534,7 +1534,7 @@ for an explanation of open file descriptions.)
 In this context, the term "write lifetime" means
 the expected time the data will live on media, before
 being overwritten or erased.
-.PP
+.P
 An application may use the different hint values specified below to
 separate writes into different write classes,
 so that multiple users or applications running on a single storage back-end
@@ -1542,7 +1542,7 @@ can aggregate their I/O patterns in a consistent manner.
 However, there are no functional semantics implied by these flags,
 and different I/O classes can use the write lifetime hints
 in arbitrary ways, so long as the hints are used consistently.
-.PP
+.P
 The following operations can be applied to the file descriptor,
 .IR fd :
 .TP
@@ -1567,10 +1567,10 @@ the open file description referred to by
 Sets the read/write hint value associated with the open file description
 referred to by
 .IR fd .
-.PP
+.P
 If an open file description has not been assigned a read/write hint,
 then it shall use the value assigned to the inode, if any.
-.PP
+.P
 The following read/write
 hints are valid since Linux 4.13:
 .TP
@@ -1602,7 +1602,7 @@ Data written to this inode or via this open file description
 is expected to have a lifetime longer than
 data written with
 .BR RWH_WRITE_LIFE_LONG .
-.PP
+.P
 All the write-specific hints are relative to each other,
 and no individual absolute meaning should be attributed to them.
 .SH RETURN VALUE
@@ -1641,7 +1641,7 @@ for the inode referred to by
 .TP
 All other commands
 Zero.
-.PP
+.P
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
@@ -1813,7 +1813,7 @@ or the current set of seals on the file already includes
 .BR F_SEAL_SEAL .
 .SH STANDARDS
 POSIX.1-2008.
-.PP
+.P
 .BR F_GETOWN_EX ,
 .BR F_SETOWN_EX ,
 .BR F_SETPIPE_SZ ,
@@ -1828,9 +1828,9 @@ are Linux-specific.
 (Define the
 .B _GNU_SOURCE
 macro to obtain these definitions.)
-.\" .PP
+.\" .P
 .\" SVr4 documents additional EIO, ENOLINK and EOVERFLOW error conditions.
-.PP
+.P
 .BR F_OFD_SETLK ,
 .BR F_OFD_SETLKW ,
 and
@@ -1839,7 +1839,7 @@ are Linux-specific (and one must define
 .B _GNU_SOURCE
 to obtain their definitions),
 but work is being done to have them included in the next version of POSIX.1.
-.PP
+.P
 .B F_ADD_SEALS
 and
 .B F_GET_SEALS
@@ -1847,7 +1847,7 @@ are Linux-specific.
 .\" FIXME . Once glibc adds support, add a note about FTM requirements
 .SH HISTORY
 SVr4, 4.3BSD, POSIX.1-2001.
-.PP
+.P
 Only the operations
 .BR F_DUPFD ,
 .BR F_GETFD ,
@@ -1859,7 +1859,7 @@ Only the operations
 and
 .B F_SETLKW
 are specified in POSIX.1-2001.
-.PP
+.P
 .B F_GETOWN
 and
 .B F_SETOWN
@@ -1871,7 +1871,7 @@ are specified in POSIX.1-2001.
 with the value 500 or greater, or
 .B _POSIX_C_SOURCE
 with the value 200809L or greater.)
-.PP
+.P
 .B F_DUPFD_CLOEXEC
 is specified in POSIX.1-2008.
 (To get this definition, define
@@ -1913,7 +1913,7 @@ placed by
 .BR flock (2)
 and
 .BR fcntl ().
-.PP
+.P
 Several systems have more fields in
 .I "struct flock"
 such as, for example,
@@ -1928,7 +1928,7 @@ alone is not going to be very useful if the process holding the lock
 may live on a different machine;
 on Linux, while present on some architectures (such as MIPS32),
 this field is not used.
-.PP
+.P
 The original Linux
 .BR fcntl ()
 system call was not designed to handle large file offsets
@@ -1977,7 +1977,7 @@ The default value for this file is 90.)
 This scenario potentially risks data corruption,
 since another process might acquire a lock in the intervening period
 and perform file I/O.
-.PP
+.P
 Since Linux 3.12,
 .\" commit ef1820f9be27b6ad158f433ab38002ab8131db4d
 if an NFSv4 client loses contact with the server,
@@ -2098,7 +2098,7 @@ It is therefore inadvisable to rely on mandatory locking.
 .BR capabilities (7),
 .BR feature_test_macros (7),
 .BR lslocks (8)
-.PP
+.P
 .IR locks.txt ,
 .IR mandatory\-locking.txt ,
 and

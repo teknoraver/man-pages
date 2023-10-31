@@ -19,7 +19,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/ioctl.h>
-.PP
+.P
 .BI "int ioctl(int " fd ", unsigned long " request ", ...);" "\f[R]  /* glibc, BSD */\f[]"
 .BI "int ioctl(int " fd ", int " request ", ...);" "\f[R]            /* musl, other UNIX */\f[]"
 .fi
@@ -34,7 +34,7 @@ requests.
 The argument
 .I fd
 must be an open file descriptor.
-.PP
+.P
 The second argument is a device-dependent request code.
 The third argument is an untyped pointer to memory.
 It's traditionally
@@ -42,7 +42,7 @@ It's traditionally
 (from the days before
 .B "void *"
 was valid C), and will be so named for this discussion.
-.PP
+.P
 An
 .BR ioctl ()
 .I request
@@ -109,7 +109,7 @@ Version\~7 AT&T UNIX has
 .BI "ioctl(int " fildes ", int " request ", struct sgttyb *" argp );
 .fi
 .in
-.PP
+.P
 .PD
 (where
 .B struct sgttyb
@@ -120,11 +120,11 @@ and
 and is polymorphic by request type (like a
 .B void *
 would be, if it had been available)).
-.PP
+.P
 SysIII documents
 .I arg
 without a type at all.
-.PP
+.P
 4.3BSD has
 .PD 0
 .in +4n
@@ -132,13 +132,13 @@ without a type at all.
 .BI "ioctl(int " d ", unsigned long " request ", char *" argp );
 .fi
 .in
-.PP
+.P
 .PD
 (with
 .B char *
 similarly in for
 .BR "void *" ).
-.PP
+.P
 SysVr4 has
 .PD 0
 .in +4n
@@ -146,7 +146,7 @@ SysVr4 has
 .BI "int ioctl(int " fildes ", int " request ", ... /* " arg " */);"
 .fi
 .in
-.PP
+.P
 .PD
 .SH NOTES
 In order to use this call, one needs an open file descriptor.
@@ -162,7 +162,7 @@ flag.
 Ioctl command values are 32-bit constants.
 In principle these constants are completely arbitrary, but people have
 tried to build some structure into them.
-.PP
+.P
 The old Linux situation was that of mostly 16-bit constants, where the
 last byte is a serial number, and the preceding byte(s) give a type
 indicating the driver.
@@ -181,7 +181,7 @@ has value
 .B CYGETTIMEOUT
 has value 0x00435906, with 0x43 0x59 = \[aq]C\[aq] \[aq]Y\[aq]
 indicating the cyclades driver.
-.PP
+.P
 Later (0.98p5) some more information was built into the number.
 One has 2 direction bits
 (00: none, 01: write, 10: read, 11: read/write)
@@ -189,7 +189,7 @@ followed by 14 size bits (giving the size of the argument),
 followed by an 8-bit type (collecting the ioctls in groups
 for a common purpose or a common driver), and an 8-bit
 serial number.
-.PP
+.P
 The macros describing this structure live in
 .I <asm/ioctl.h>
 and are
@@ -200,12 +200,12 @@ They use
 .I sizeof(size)
 so that size is a
 misnomer here: this third argument is a data type.
-.PP
+.P
 Note that the size bits are very unreliable: in lots of cases
 they are wrong, either because of buggy macros using
 .IR sizeof(sizeof(struct)) ,
 or because of legacy values.
-.PP
+.P
 Thus, it seems that the new structure only gave disadvantages:
 it does not help in checking, but it causes varying values
 for the various architectures.

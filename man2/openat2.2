@@ -14,11 +14,11 @@ Standard C library
 .BR "#include <linux/openat2.h>" "  /* Definition of " RESOLVE_* " constants */"
 .BR "#include <sys/syscall.h>" "    /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "long syscall(SYS_openat2, int " dirfd ", const char *" pathname ,
 .BI "             struct open_how *" how ", size_t " size );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR openat2 (),
@@ -30,7 +30,7 @@ The
 system call is an extension of
 .BR openat (2)
 and provides a superset of its functionality.
-.PP
+.P
 The
 .BR openat2 ()
 system call opens the file specified by
@@ -40,7 +40,7 @@ If the specified file does not exist, it may optionally (if
 is specified in
 .IR how.flags )
 be created.
-.PP
+.P
 As with
 .BR openat (2),
 if
@@ -64,7 +64,7 @@ in which case
 .I pathname
 is resolved relative to
 .IR dirfd ).
-.PP
+.P
 Rather than taking a single
 .I flags
 argument, an extensible structure (\fIhow\fP) is passed to allow for
@@ -90,7 +90,7 @@ This argument is a pointer to an
 structure,
 described in
 .BR open_how (2type).
-.PP
+.P
 Any future extensions to
 .BR openat2 ()
 will be implemented as new fields appended to the
@@ -105,7 +105,7 @@ initialization.
 (See the "Extensibility" section of the
 .B NOTES
 for more detail on why this is necessary.)
-.PP
+.P
 The fields of the
 .I open_how
 structure are as follows:
@@ -471,7 +471,7 @@ Linux.
 .SH HISTORY
 Linux 5.6.
 .\" commit fddb5d430ad9fa91b49b1d34d0202ffe2fa0e179
-.PP
+.P
 The semantics of
 .B RESOLVE_BENEATH
 were modeled after FreeBSD's
@@ -495,7 +495,7 @@ This extensibility design is very similar to other system calls such as
 .BR perf_event_open (2),
 and
 .BR clone3 (2).
-.PP
+.P
 If we let
 .I usize
 be the size of the structure as specified by the user-space application, and
@@ -538,7 +538,7 @@ If any unsupported extension fields are nonzero, then \-1 is returned and
 is set to
 .BR E2BIG .
 This provides forwards-compatibility.
-.PP
+.P
 Because the definition of
 .I struct open_how
 may change in the future (with new fields being added when system headers are
@@ -548,18 +548,18 @@ to ensure that recompiling the program with new headers will not result in
 spurious errors at run time.
 The simplest way is to use a designated
 initializer:
-.PP
+.P
 .in +4n
 .EX
 struct open_how how = { .flags = O_RDWR,
                         .resolve = RESOLVE_IN_ROOT };
 .EE
 .in
-.PP
+.P
 or explicitly using
 .BR memset (3)
 or similar:
-.PP
+.P
 .in +4n
 .EX
 struct open_how how;
@@ -568,7 +568,7 @@ how.flags = O_RDWR;
 how.resolve = RESOLVE_IN_ROOT;
 .EE
 .in
-.PP
+.P
 A user-space application that wishes to determine which extensions
 the running kernel supports can do so by conducting a binary search on
 .I size

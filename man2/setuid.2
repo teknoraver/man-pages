@@ -17,7 +17,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int setuid(uid_t " uid );
 .fi
 .SH DESCRIPTION
@@ -28,7 +28,7 @@ If the calling process is privileged
 .B CAP_SETUID
 capability in its user namespace),
 the real UID and saved set-user-ID are also set.
-.PP
+.P
 Under Linux,
 .BR setuid ()
 is implemented like the POSIX version with the
@@ -37,7 +37,7 @@ feature.
 This allows a set-user-ID (other than root) program to drop all of its user
 privileges, do some un-privileged work, and then reengage the original
 effective user ID in a secure manner.
-.PP
+.P
 If the user is root or the program is set-user-ID-root, special care must be
 taken:
 .BR setuid ()
@@ -46,7 +46,7 @@ the superuser, all process-related user ID's are set to
 .IR uid .
 After this has occurred, it is impossible for the program to regain root
 privileges.
-.PP
+.P
 Thus, a set-user-ID-root program wishing to temporarily drop root
 privileges, assume the identity of an unprivileged user, and then regain
 root privileges afterward cannot use
@@ -58,7 +58,7 @@ On success, zero is returned.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 .IR Note :
 there are cases where
 .BR setuid ()
@@ -119,11 +119,11 @@ For details, see
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, SVr4.
-.PP
+.P
 Not quite compatible with the 4.4BSD call, which
 sets all of the real, saved, and effective user IDs.
 .\" SVr4 documents an additional EINVAL error condition.
-.PP
+.P
 The original Linux
 .BR setuid ()
 system call supported only 16-bit user IDs.
@@ -141,7 +141,7 @@ The
 call also sets the filesystem user ID of the calling process.
 See
 .BR setfsuid (2).
-.PP
+.P
 If
 .I uid
 is different from the old effective UID, the process will

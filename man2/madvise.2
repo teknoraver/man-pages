@@ -21,15 +21,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/mman.h>
-.PP
+.P
 .BI "int madvise(void " addr [. length "], size_t " length ", int " advice );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR madvise ():
 .nf
     Since glibc 2.19:
@@ -54,7 +54,7 @@ The value of
 is rounded up to a multiple of page size.
 In most cases,
 the goal of such advice is to improve system or application performance.
-.PP
+.P
 Initially, the system call supported a set of "conventional"
 .I advice
 values, which are also available on several other implementations.
@@ -86,7 +86,7 @@ values listed here have analogs in the POSIX-specified
 .BR posix_madvise (3)
 function, and the values have the same meanings, with the exception of
 .BR MADV_DONTNEED .
-.PP
+.P
 The advice is indicated in the
 .I advice
 argument, which is one of the following:
@@ -845,7 +845,7 @@ Other implementations typically implement at least the flags listed
 above under
 .IR "Conventional advice flags" ,
 albeit with some variation in semantics.
-.PP
+.P
 POSIX.1-2001 describes
 .BR posix_madvise (3)
 with constants
@@ -868,7 +868,7 @@ that are not mapped, the Linux version of
 ignores them and applies the call to the rest (but returns
 .B ENOMEM
 from the system call, as it should).
-.PP
+.P
 .I madvise(0,\ 0,\ advice)
 will return zero iff
 .I advice
@@ -877,7 +877,7 @@ is supported by the kernel and can be relied on to probe for support.
 None.
 .SH HISTORY
 First appeared in 4.4BSD.
-.PP
+.P
 Since Linux 3.18,
 .\" commit d3ac21cacc24790eb45d735769f35753f5b56ceb
 support for this system call is optional,

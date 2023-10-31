@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .EX
 .B #include <locale.h>
-.PP
+.P
 .BR "struct lconv {" "                /* Values in the \[dq]C\[dq] locale: */"
 .BR "    char *decimal_point;" "      /* \[dq].\[dq] */"
 .BR "    char *thousands_sep;" "      /* \[dq]\[dq] */"

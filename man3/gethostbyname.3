@@ -30,31 +30,31 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <netdb.h>
-.PP
+.P
 .BI "void sethostent(int " stayopen );
 .B void endhostent(void);
-.PP
+.P
 .B [[deprecated]] extern int h_errno;
-.PP
+.P
 .BI "[[deprecated]] struct hostent *gethostbyname(const char *" name );
 .BI "[[deprecated]] struct hostent *gethostbyaddr(const void " addr [. len ],
 .BI "                                             socklen_t " len ", int " type );
-.PP
+.P
 .BI "[[deprecated]] void herror(const char *" s );
 .BI "[[deprecated]] const char *hstrerror(int " err );
-.PP
+.P
 /* System V/POSIX extension */
 .B struct hostent *gethostent(void);
-.PP
+.P
 /* GNU extensions */
 .B [[deprecated]]
 .BI "struct hostent *gethostbyname2(const char *" name ", int " af );
-.PP
+.P
 .BI "int gethostent_r(struct hostent *restrict " ret ,
 .BI "                 char " buf "[restrict ." buflen "], size_t " buflen ,
 .BI "                 struct hostent **restrict " result ,
 .BI "                 int *restrict " h_errnop );
-.PP
+.P
 .B [[deprecated]]
 .BI "int gethostbyaddr_r(const void " addr "[restrict ." len "], socklen_t " len ,
 .BI "                 int " type ,
@@ -75,12 +75,12 @@ Standard C library
 .BI "                 struct hostent **restrict " result ,
 .BI "                 int *restrict " h_errnop );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR gethostbyname2 (),
 .BR gethostent_r (),
 .BR gethostbyaddr_r (),
@@ -92,7 +92,7 @@ Feature Test Macro Requirements for glibc (see
     glibc up to and including 2.19:
         _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR herror (),
 .BR hstrerror ():
 .nf
@@ -103,7 +103,7 @@ Feature Test Macro Requirements for glibc (see
     Before glibc 2.8:
         none
 .fi
-.PP
+.P
 .BR h_errno :
 .nf
     Since glibc 2.19
@@ -127,19 +127,19 @@ Applications should use
 and
 .BR gai_strerror (3)
 instead.
-.PP
+.P
 The
 .BR sethostent ()
 function specifies, if \fIstayopen\fP is true (1),
 that a connected TCP socket should be used for the name server queries and
 that the connection should remain open during successive queries.
 Otherwise, name server queries will use UDP datagrams.
-.PP
+.P
 The
 .BR endhostent ()
 function ends the use of a TCP connection for name
 server queries.
-.PP
+.P
 The
 .BR gethostbyname ()
 function returns a structure of type
@@ -178,7 +178,7 @@ will first be searched for
 for the file format).
 The current domain and its parents are searched unless \fIname\fP
 ends in a dot.
-.PP
+.P
 The
 .BR gethostbyaddr ()
 function returns a structure of type \fIhostent\fP
@@ -196,17 +196,17 @@ obtained via a call to
 .BR inet_addr (3))
 for address type
 .BR AF_INET .
-.PP
+.P
 The (obsolete)
 .BR herror ()
 function prints the error message associated
 with the current value of \fIh_errno\fP on \fIstderr\fP.
-.PP
+.P
 The (obsolete)
 .BR hstrerror ()
 function takes an error number
 (typically \fIh_errno\fP) and returns the corresponding message string.
-.PP
+.P
 The domain name queries carried out by
 .BR gethostbyname ()
 and
@@ -224,15 +224,15 @@ configured sources, failing that, a local name server
 The
 .BR nsswitch.conf (5)
 file is the modern way of controlling the order of host lookups.
-.PP
+.P
 In glibc 2.4 and earlier, the
 .I order
 keyword was used to control the order of host lookups as defined in
 .I /etc/host.conf
 .RB ( host.conf (5)).
-.PP
+.P
 The \fIhostent\fP structure is defined in \fI<netdb.h>\fP as follows:
-.PP
+.P
 .in +4n
 .EX
 struct hostent {
@@ -245,7 +245,7 @@ struct hostent {
 #define h_addr h_addr_list[0] /* for backward compatibility */
 .EE
 .in
-.PP
+.P
 The members of the \fIhostent\fP structure are:
 .TP
 .I h_name
@@ -387,7 +387,7 @@ T{
 .BR gethostbyname2_r ()
 T}	Thread safety	MT-Safe env locale
 .TE
-.PP
+.P
 In the above table,
 .I hostent
 in
@@ -445,7 +445,7 @@ later calls.
 Copying the
 .I struct hostent
 does not suffice, since it contains pointers; a deep copy is required.
-.PP
+.P
 In the original BSD implementation the
 .I len
 argument
@@ -469,7 +469,7 @@ POSIX.1-2001 makes it
 which is OK.)
 See also
 .BR accept (2).
-.PP
+.P
 The BSD prototype for
 .BR gethostbyaddr ()
 uses
@@ -498,7 +498,7 @@ glibc2 also has a
 that works like
 .BR gethostbyname (),
 but permits to specify the address family to which the address must belong.
-.PP
+.P
 glibc2 also has reentrant versions
 .BR gethostent_r (),
 .BR gethostbyaddr_r (),

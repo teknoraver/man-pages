@@ -19,16 +19,16 @@ Standard C library
 .B #include <stdio.h>
 .B #include <sys/types.h>
 .B #include <pwd.h>
-.PP
+.P
 .BI "int putpwent(const struct passwd *restrict " p \
 ", FILE *restrict " stream );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR putpwent ():
 .nf
     Since glibc 2.19:
@@ -41,9 +41,9 @@ The
 .BR putpwent ()
 function writes a password entry from the
 structure \fIp\fP in the file associated with \fIstream\fP.
-.PP
+.P
 The \fIpasswd\fP structure is defined in \fI<pwd.h>\fP as follows:
-.PP
+.P
 .in +4n
 .EX
 struct passwd {

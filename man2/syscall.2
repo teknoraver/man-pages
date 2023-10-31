@@ -22,15 +22,15 @@ Standard C library
 .nf
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "long syscall(long " number ", ...);"
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR syscall ():
 .nf
     Since glibc 2.19:
@@ -49,13 +49,13 @@ Employing
 .BR syscall ()
 is useful, for example,
 when invoking a system call that has no wrapper function in the C library.
-.PP
+.P
 .BR syscall ()
 saves CPU registers before making the system call,
 restores the registers upon return from the system call,
 and stores any error returned by the system call in
 .BR errno (3).
-.PP
+.P
 Symbolic constants for system call numbers can be found in the header file
 .IR <sys/syscall.h> .
 .SH RETURN VALUE
@@ -68,7 +68,7 @@ and an error number is stored in
 .TP
 .B ENOSYS
 The requested system call number is not implemented.
-.PP
+.P
 Other errors are specific to the invoked system call.
 .SH NOTES
 .BR syscall ()
@@ -85,7 +85,7 @@ However, when using
 to make a system call,
 the caller might need to handle architecture-dependent details;
 this requirement is most commonly encountered on certain 32-bit architectures.
-.PP
+.P
 For example, on the ARM architecture Embedded ABI (EABI), a
 64-bit value (e.g.,
 .IR "long long" )
@@ -97,7 +97,7 @@ the
 .BR readahead (2)
 system call would be invoked as follows on the ARM architecture with the EABI
 in little endian mode:
-.PP
+.P
 .in +4n
 .EX
 syscall(SYS_readahead, fd, 0,
@@ -106,7 +106,7 @@ syscall(SYS_readahead, fd, 0,
         count);
 .EE
 .in
-.PP
+.P
 Since the offset argument is 64 bits, and the first argument
 .RI ( fd )
 is passed in
@@ -120,16 +120,16 @@ That means inserting a dummy value into
 (the second argument of 0).
 Care also must be taken so that the split follows endian conventions
 (according to the C ABI for the platform).
-.PP
+.P
 Similar issues can occur on MIPS with the O32 ABI,
 on PowerPC and parisc with the 32-bit ABI, and on Xtensa.
 .\" Mike Frysinger: this issue ends up forcing MIPS
 .\" O32 to take 7 arguments to syscall()
-.PP
+.P
 .\" See arch/parisc/kernel/sys_parisc.c.
 Note that while the parisc C ABI also uses aligned register pairs,
 it uses a shim layer to hide the issue from user space.
-.PP
+.P
 The affected system calls are
 .BR fadvise64_64 (2),
 .BR ftruncate64 (2),
@@ -140,7 +140,7 @@ The affected system calls are
 .BR sync_file_range (2),
 and
 .BR truncate64 (2).
-.PP
+.P
 .\" You need to look up the syscalls directly in the kernel source to see if
 .\" they should be in this list.  For example, look at fs/read_write.c and
 .\" the function signatures that do:
@@ -159,7 +159,7 @@ Welcome to the wonderful world of historical baggage.
 Every architecture has its own way of invoking and passing arguments to the
 kernel.
 The details for various architectures are listed in the two tables below.
-.PP
+.P
 The first table lists the instruction used to transition to kernel mode
 (which might not be the fastest or best way to transition to the kernel,
 so you might have to refer to
@@ -202,7 +202,7 @@ x86-64	syscall	rax	rax	rdx	-	5
 x32	syscall	rax	rax	rdx	-	5
 xtensa	syscall	a2	a2	-	-
 .TE
-.PP
+.P
 Notes:
 .IP \[bu] 3
 On a few architectures,
@@ -292,7 +292,7 @@ in the system call interface, even if it is defined in the System V ABI.
 .in
 .ft P
 \}
-.PP
+.P
 The second table shows the registers used to pass the system call arguments.
 .if t \{\
 .ft CW
@@ -329,7 +329,7 @@ x86-64	rdi	rsi	rdx	r10	r8	r9	-
 x32	rdi	rsi	rdx	r10	r8	r9	-
 xtensa	a6	a3	a4	a5	a8	a9	-
 .TE
-.PP
+.P
 Notes:
 .IP \[bu] 3
 The mips/o32 system call convention passes
@@ -338,7 +338,7 @@ arguments 5 through 8 on the user stack.
 .in
 .ft P
 \}
-.PP
+.P
 Note that these tables don't cover the entire calling convention\[em]some
 architectures may indiscriminately clobber other registers not listed here.
 .SH EXAMPLES

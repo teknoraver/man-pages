@@ -15,15 +15,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .BI "int sigqueue(pid_t " pid ", int " sig ", const union sigval " value );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR sigqueue ():
 .nf
     _POSIX_C_SOURCE >= 199309L
@@ -40,12 +40,12 @@ As with
 .BR kill (2),
 the null signal (0) can be used to check if a process with a given
 PID exists.
-.PP
+.P
 The
 .I value
 argument is used to specify an accompanying item of data (either an integer
 or a pointer value) to be sent with the signal, and has the following type:
-.PP
+.P
 .in +4n
 .EX
 union sigval {
@@ -54,7 +54,7 @@ union sigval {
 };
 .EE
 .in
-.PP
+.P
 If the receiving process has installed a handler for this signal using the
 .B SA_SIGINFO
 flag to
@@ -129,7 +129,7 @@ Inside the glibc
 wrapper, this argument,
 .IR uinfo ,
 is initialized as follows:
-.PP
+.P
 .in +4n
 .EX
 uinfo.si_signo = sig;      /* Argument supplied to sigqueue() */

@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int wctomb(char *" s ", wchar_t " wc );
 .fi
 .SH DESCRIPTION
@@ -41,13 +41,13 @@ and returns the length of said multibyte representation,
 that is, the number of
 bytes written at
 .IR s .
-.PP
+.P
 The programmer must ensure that there is
 room for at least
 .B MB_CUR_MAX
 bytes at
 .IR s .
-.PP
+.P
 If
 .I s
 is NULL, the
@@ -73,7 +73,7 @@ If
 can not be
 represented as a multibyte sequence (according
 to the current locale), \-1 is returned.
-.PP
+.P
 If
 .I s
 is NULL, the

@@ -47,7 +47,7 @@ defines the format of ELF executable binary files.
 Amongst these files are
 normal executable files, relocatable object files, core files, and shared
 objects.
-.PP
+.P
 An executable file using the ELF file format consists of an ELF header,
 followed by a program header table or a section header table, or both.
 The ELF header is always at offset zero of the file.
@@ -56,7 +56,7 @@ table and the section header table's offset in the file are defined in the
 ELF header.
 The two tables describe the rest of the particularities of
 the file.
-.PP
+.P
 .\" Applications which wish to process ELF binary files for their native
 .\" architecture only should include
 .\" .I <elf_abi.h>
@@ -68,7 +68,7 @@ the file.
 .\" ELF_xxx".
 .\" Applications written this way can be compiled on any architecture,
 .\" regardless of whether the host is 32-bit or 64-bit.
-.\" .PP
+.\" .P
 .\" Should an application need to process ELF files of an unknown
 .\" architecture, then the application needs to explicitly use either
 .\" "Elf32_xxx"
@@ -79,7 +79,7 @@ the file.
 .\" "ELF32_xxx"
 .\" or
 .\" "ELF64_xxx".
-.\" .PP
+.\" .P
 This header file describes the above mentioned headers as C structures
 and also includes structures for dynamic sections, relocation sections and
 symbol tables.
@@ -96,7 +96,7 @@ stands for
 .I uint32_t
 or
 .IR uint64_t ):
-.PP
+.P
 .in +4n
 .EX
 ElfN_Addr       Unsigned program address, uintN_t
@@ -112,7 +112,7 @@ ElfN_Xword      uint64_t
 .\" Elf32_Size  Unsigned object size
 .EE
 .in
-.PP
+.P
 (Note: the *BSD terminology is a bit different.
 There,
 .I Elf64_Half
@@ -125,7 +125,7 @@ is used for
 .IR uint16_t .
 In order to avoid confusion these types are replaced by explicit ones
 in the below.)
-.PP
+.P
 All data structures that the file format defines follow the
 "natural"
 size and alignment guidelines for the relevant class.
@@ -138,7 +138,7 @@ The ELF header is described by the type
 .I Elf32_Ehdr
 or
 .IR Elf64_Ehdr :
-.PP
+.P
 .in +4n
 .EX
 #define EI_NIDENT 16
@@ -161,7 +161,7 @@ typedef struct {
 } ElfN_Ehdr;
 .EE
 .in
-.PP
+.P
 The fields have the following meanings:
 .\"
 .\"
@@ -632,7 +632,7 @@ The ELF program header is described by the type
 or
 .I Elf64_Phdr
 depending on the architecture:
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -647,7 +647,7 @@ typedef struct {
 } Elf32_Phdr;
 .EE
 .in
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -662,7 +662,7 @@ typedef struct {
 } Elf64_Phdr;
 .EE
 .in
-.PP
+.P
 The main difference between the 32-bit and the 64-bit program header lies
 in the location of the
 .I p_flags
@@ -826,7 +826,7 @@ header table.
 holds the number of entries the section header table contains.
 .I e_shentsize
 holds the size in bytes of each entry.
-.PP
+.P
 A section header table index is a subscript into this array.
 Some section
 header table indices are reserved:
@@ -879,9 +879,9 @@ and
 inclusive.
 The section header table does not contain entries for the
 reserved indices.
-.PP
+.P
 The section header has the following structure:
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -898,7 +898,7 @@ typedef struct {
 } Elf32_Shdr;
 .EE
 .in
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -915,7 +915,7 @@ typedef struct {
 } Elf64_Shdr;
 .EE
 .in
-.PP
+.P
 No real differences exist between the 32-bit and 64-bit section headers.
 .TP
 .I sh_name
@@ -1112,7 +1112,7 @@ Some sections hold a table of fixed-sized entries, such as a symbol table.
 For such a section, this member gives the size in bytes for each entry.
 This member contains zero if the section does not hold a table of
 fixed-size entries.
-.PP
+.P
 Various sections hold program and control information:
 .TP
 .I .bss
@@ -1444,12 +1444,12 @@ The first byte, which is index zero, is defined to hold
 a null byte (\[aq]\e0\[aq]).
 Similarly, a string table's last byte is defined to
 hold a null byte, ensuring null termination for all strings.
-.PP
+.P
 An object file's symbol table holds information needed to locate and
 relocate a program's symbolic definitions and references.
 A symbol table
 index is a subscript into this array.
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -1462,7 +1462,7 @@ typedef struct {
 } Elf32_Sym;
 .EE
 .in
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -1475,7 +1475,7 @@ typedef struct {
 } Elf64_Sym;
 .EE
 .in
-.PP
+.P
 The 32-bit and 64-bit versions have the same members, just in a different
 order.
 .TP
@@ -1607,9 +1607,9 @@ references in the local module always resolve to the local symbol
 Symbol is available to other modules,
 but references in the local module always resolve to the local symbol.
 .PD
-.PP
+.P
 There are macros for extracting the visibility type:
-.PP
+.P
 .BR ELF32_ST_VISIBILITY (other)
 or
 .BR ELF64_ST_VISIBILITY (other)
@@ -1630,9 +1630,9 @@ describes how to modify their section contents, thus allowing executable
 and shared object files to hold the right information for a process's
 program image.
 Relocation entries are these data.
-.PP
+.P
 Relocation structures that do not need an addend:
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -1641,7 +1641,7 @@ typedef struct {
 } Elf32_Rel;
 .EE
 .in
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -1650,9 +1650,9 @@ typedef struct {
 } Elf64_Rel;
 .EE
 .in
-.PP
+.P
 Relocation structures that need an addend:
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -1662,7 +1662,7 @@ typedef struct {
 } Elf32_Rela;
 .EE
 .in
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -1710,7 +1710,7 @@ The
 member controls the interpretation
 of
 .IR d_un .
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -1723,7 +1723,7 @@ typedef struct {
 extern Elf32_Dyn _DYNAMIC[];
 .EE
 .in
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -1872,7 +1872,7 @@ but many projects define their own set of extensions.
 For example,
 the GNU tool chain uses ELF notes to pass information from
 the linker to the C library.
-.PP
+.P
 Note sections contain a series of notes (see the
 .I struct
 definitions below).
@@ -1880,10 +1880,10 @@ Each note is followed by the name field (whose length is defined in
 \fIn_namesz\fR) and then by the descriptor field (whose length is defined in
 \fIn_descsz\fR) and whose starting address has a 4 byte alignment.
 Neither field is defined in the note struct due to their arbitrary lengths.
-.PP
+.P
 An example for parsing out two consecutive notes should clarify their layout
 in memory:
-.PP
+.P
 .in +4n
 .EX
 void *memory, *name, *desc;
@@ -1907,7 +1907,7 @@ next_note = memory + sizeof(*note) +
                      ALIGN_UP(note\->n_descsz, 4);
 .EE
 .in
-.PP
+.P
 Keep in mind that the interpretation of
 .I n_type
 depends on the namespace defined by the
@@ -1919,7 +1919,7 @@ field is not set (e.g., is 0), then there are two sets of notes:
 one for core files and one for all other ELF types.
 If the namespace is unknown, then tools will usually fallback to these sets
 of notes as well.
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -1929,7 +1929,7 @@ typedef struct {
 } Elf32_Nhdr;
 .EE
 .in
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -2160,7 +2160,7 @@ Architecture information.
 ELF first appeared in
 System V.
 The ELF format is an adopted standard.
-.PP
+.P
 The extensions for
 .IR e_phnum ,
 .IR e_shnum ,
@@ -2195,19 +2195,19 @@ look under SEE ALSO.
 .BR dl_iterate_phdr (3),
 .BR core (5),
 .BR ld.so (8)
-.PP
+.P
 Hewlett-Packard,
 .IR "Elf-64 Object File Format" .
-.PP
+.P
 Santa Cruz Operation,
 .IR "System V Application Binary Interface" .
-.PP
+.P
 UNIX System Laboratories,
 "Object Files",
 .IR "Executable and Linking Format (ELF)" .
-.PP
+.P
 Sun Microsystems,
 .IR "Linker and Libraries Guide" .
-.PP
+.P
 AMD64 ABI Draft,
 .IR "System V Application Binary Interface AMD64 Architecture Processor Supplement" .

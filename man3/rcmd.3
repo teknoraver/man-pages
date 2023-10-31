@@ -24,27 +24,27 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .BR "#include <netdb.h>    " "/* Or <unistd.h> on some systems */"
-.PP
+.P
 .BI "int rcmd(char **restrict " ahost ", unsigned short " inport ,
 .BI "            const char *restrict " locuser ,
 .BI "            const char *restrict " remuser ,
 .BI "            const char *restrict " cmd ", int *restrict " fd2p );
-.PP
+.P
 .BI "int rresvport(int *" port );
-.PP
+.P
 .BI "int iruserok(uint32_t " raddr ", int " superuser ,
 .BI "            const char *" ruser ", const char *" luser );
 .BI "int ruserok(const char *" rhost ", int " superuser ,
 .BI "            const char *" ruser ", const char *" luser );
-.PP
+.P
 .BI "int rcmd_af(char **restrict " ahost ", unsigned short " inport ,
 .BI "            const char *restrict " locuser ,
 .BI "            const char *restrict " remuser ,
 .BI "            const char *restrict " cmd ", int *restrict " fd2p ,
 .BI "            sa_family_t " af );
-.PP
+.P
 .BI "int rresvport_af(int *" port ", sa_family_t " af );
-.PP
+.P
 .BI "int iruserok_af(const void *restrict " raddr ", int " superuser ,
 .BI "            const char *restrict " ruser ", const char *restrict " luser ,
 .BI "            sa_family_t " af );
@@ -52,13 +52,13 @@ Standard C library
 .BI "            const char *" ruser ", const char *" luser ,
 .BI "            sa_family_t " af );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
 .ad l
-.PP
+.P
 .BR rcmd (),
 .BR rcmd_af (),
 .BR rresvport (),
@@ -110,7 +110,7 @@ is set to the standard name of the host
 and a connection is established to a server
 residing at the well-known Internet port
 .IR inport .
-.PP
+.P
 If the connection succeeds,
 a socket in the Internet domain of type
 .B SOCK_STREAM
@@ -139,7 +139,7 @@ command) will be made the same as the
 and no
 provision is made for sending arbitrary signals to the remote process,
 although you may be able to get its attention by using out-of-band data.
-.PP
+.P
 The protocol is described in detail in
 .BR rshd (8).
 .SS rresvport()
@@ -182,7 +182,7 @@ If that lookup is not done, or is unsuccessful, the
 .I .rhosts
 in the local user's home directory is checked to see if the request for
 service is allowed.
-.PP
+.P
 If this file does not exist, is not a regular file, is owned by anyone
 other than the user or the superuser, is writable by anyone other
 than the owner, or is hardlinked anywhere, the check automatically fails.
@@ -198,7 +198,7 @@ return \-1.
 If the local domain (as obtained from
 .BR gethostname (2))
 is the same as the remote domain, only the machine name need be specified.
-.PP
+.P
 If the IP address of the remote host is known,
 .BR iruserok ()
 should be used in preference to
@@ -226,7 +226,7 @@ The
 function
 returns a valid socket descriptor on success.
 It returns \-1 on error and prints a diagnostic message on the standard error.
-.PP
+.P
 The
 .BR rresvport ()
 function
@@ -237,7 +237,7 @@ to indicate the error.
 The error code
 .B EAGAIN
 is overloaded to mean: "All network ports in use".
-.PP
+.P
 For information on the return from
 .BR ruserok ()
 and
@@ -284,7 +284,7 @@ BSD.
 .TQ
 .BR ruserok_af ()
 glibc 2.2.
-.PP
+.P
 Solaris, 4.2BSD.
 The "_af" variants are more recent additions,
 and are not present on as wide a range of systems.

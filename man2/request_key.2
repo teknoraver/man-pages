@@ -13,7 +13,7 @@ Linux Key Management Utilities
 .SH SYNOPSIS
 .nf
 .B #include <keyutils.h>
-.PP
+.P
 .BI "key_serial_t request_key(const char *" type ", const char *" description ,
 .BI "                         const char *_Nullable " callout_info ,
 .BI "                         key_serial_t " dest_keyring );
@@ -30,13 +30,13 @@ If the key is found or created,
 attaches it to the keyring whose ID is specified in
 .I dest_keyring
 and returns the key's serial number.
-.PP
+.P
 .BR request_key ()
 first recursively searches for a matching key in all of the keyrings
 attached to the calling process.
 The keyrings are searched in the order: thread-specific keyring,
 process-specific keyring, and then session keyring.
-.PP
+.P
 If
 .BR request_key ()
 is called from a program invoked by
@@ -48,7 +48,7 @@ supplementary group IDs, and security context to determine access.
 .\" David Howells: we can then have an arbitrarily long sequence
 .\" of "recursive" request-key upcalls. There is no limit, other
 .\" than number of PIDs, etc.
-.PP
+.P
 The search of the keyring tree is breadth-first:
 the keys in each keyring searched are checked for a match before any child
 keyrings are recursed into.
@@ -57,18 +57,18 @@ Only keys for which the caller has
 permission be found, and only keyrings for which the caller has
 .I search
 permission may be searched.
-.PP
+.P
 If the key is not found and
 .I callout
 is NULL, then the call fails with the error
 .BR ENOKEY .
-.PP
+.P
 If the key is not found and
 .I callout
 is not NULL, then the kernel attempts to invoke a user-space
 program to instantiate the key.
 The details are given below.
-.PP
+.P
 The
 .I dest_keyring
 serial number may be that of a valid keyring for which the caller has
@@ -94,13 +94,13 @@ This specifies the caller's UID-specific keyring (see
 .B KEY_SPEC_USER_SESSION_KEYRING
 This specifies the caller's UID-session keyring (see
 .BR user\-session\-keyring (7)).
-.PP
+.P
 When the
 .I dest_keyring
 is specified as 0
 and no key construction has been performed,
 then no additional linking is done.
-.PP
+.P
 Otherwise, if
 .I dest_keyring
 is 0 and a new key is constructed, the new key will be linked
@@ -180,7 +180,7 @@ This keyring is also expected to always exist.
 .\"
 .\"     will all create a keyring under some circumstances.  Whereas the rest,
 .\"     such as KEYCTL_GET_SECURITY, KEYCTL_READ and KEYCTL_REVOKE, won't.
-.PP
+.P
 If the
 .BR keyctl (2)
 .B KEYCTL_SET_REQKEY_KEYRING
@@ -337,7 +337,7 @@ At this point, the
 .BR request_key ()
 call completes, and the requesting program can continue execution.
 .RE
-.PP
+.P
 If these steps are unsuccessful, then an
 .B ENOKEY
 error will be returned to the caller of
@@ -353,7 +353,7 @@ The purpose of this negatively instantiated key is to prevent
 (that require expensive
 .BR request\-key (8)
 upcalls) for a key that can't (at the moment) be positively instantiated.
-.PP
+.P
 Once the key has been instantiated, the authorization key
 .RB ( KEY_SPEC_REQKEY_AUTH_KEY )
 is revoked, and the destination keyring
@@ -361,7 +361,7 @@ is revoked, and the destination keyring
 is no longer accessible from the
 .BR request\-key (8)
 program.
-.PP
+.P
 If a key is created, then\[em]regardless of whether it is a valid key or
 a negatively instantiated key\[em]it will displace any other key with
 the same type and description from the keyring specified in
@@ -429,7 +429,7 @@ argument started with a period (\[aq].\[aq]).
 Linux.
 .SH HISTORY
 Linux 2.6.10.
-.PP
+.P
 The ability to instantiate keys upon request was added
 .\" commit 3e30148c3d524a9c1c63ca28261bc24c457eb07a
 in Linux 2.6.13.
@@ -444,11 +444,11 @@ and
 arguments for the system call are taken from the values
 supplied in the command-line arguments.
 The call specifies the session keyring as the target keyring.
-.PP
+.P
 In order to demonstrate this program,
 we first create a suitable entry in the file
 .IR /etc/request\-key.conf .
-.PP
+.P
 .in +4n
 .EX
 $ sudo sh
@@ -457,7 +457,7 @@ $ sudo sh
 # \fBexit\fP
 .EE
 .in
-.PP
+.P
 This entry specifies that when a new "user" key with the prefix
 "mtk:" must be instantiated, that task should be performed via the
 .BR keyctl (1)
@@ -482,11 +482,11 @@ See
 for details of these
 .I %
 specifiers.
-.PP
+.P
 Then we run the program and check the contents of
 .I /proc/keys
 to verify that the requested key has been instantiated:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./t_request_key user mtk:key1 "Payload data"\fP
@@ -494,7 +494,7 @@ $ \fBgrep \[aq]2dddaf50\[aq] /proc/keys\fP
 2dddaf50 I\-\-Q\-\-\-  1 perm 3f010000  1000  1000 user  mtk:key1: 12
 .EE
 .in
-.PP
+.P
 For another example of the use of this program, see
 .BR keyctl (2).
 .SS Program source
@@ -549,7 +549,7 @@ main(int argc, char *argv[])
 .BR user\-keyring (7),
 .BR user\-session\-keyring (7),
 .BR request\-key (8)
-.PP
+.P
 The kernel source files
 .I Documentation/security/keys/core.rst
 and

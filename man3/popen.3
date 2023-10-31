@@ -19,16 +19,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "FILE *popen(const char *" command ", const char *" type );
 .BI "int pclose(FILE *" stream );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR popen (),
 .BR pclose ():
 .nf
@@ -44,7 +44,7 @@ Since a pipe is by definition unidirectional, the
 .I type
 argument may specify only reading or writing, not both; the resulting
 stream is correspondingly read-only or write-only.
-.PP
+.P
 The
 .I command
 argument is a pointer to a null-terminated string containing a shell
@@ -54,7 +54,7 @@ This command is passed to
 using the
 .B \-c
 flag; interpretation, if any, is performed by the shell.
-.PP
+.P
 The
 .I type
 argument is a pointer to a null-terminated string which must contain
@@ -69,7 +69,7 @@ see the description of the
 flag in
 .BR open (2)
 for reasons why this may be useful.
-.PP
+.P
 The return value from
 .BR popen ()
 is a normal standard I/O stream in all respects save that it must be closed
@@ -85,11 +85,11 @@ Conversely, reading from
 the stream reads the command's standard output, and the command's
 standard input is the same as that of the process that called
 .BR popen ().
-.PP
+.P
 Note that output
 .BR popen ()
 streams are block buffered by default.
-.PP
+.P
 The
 .BR pclose ()
 function waits for the associated process to terminate and returns the exit
@@ -105,7 +105,7 @@ or
 .BR pipe (2)
 calls fail, or if the function cannot allocate memory,
 NULL is returned.
-.PP
+.P
 .BR pclose ():
 on success, returns the exit status of the command; if
 .\" These conditions actually give undefined results, so I commented
@@ -117,7 +117,7 @@ on success, returns the exit status of the command; if
 .BR wait4 (2)
 returns an error, or some other error is detected,
 \-1 is returned.
-.PP
+.P
 On failure, both functions set
 .I errno
 to indicate the error.
@@ -140,7 +140,7 @@ argument is invalid, and this condition is detected,
 .I errno
 is set to
 .BR EINVAL .
-.PP
+.P
 If
 .BR pclose ()
 cannot obtain the child status,
@@ -186,7 +186,7 @@ The latter can be avoided by calling
 .BR fflush (3)
 before
 .BR popen ().
-.PP
+.P
 Failure to execute the shell is indistinguishable from the shell's failure
 to execute the command, or an immediate exit of the command.
 The only hint is an exit status of 127.

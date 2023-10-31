@@ -11,17 +11,17 @@ Standard C library
 .nf
 .BR "#include <fcntl.h>" "            /* Definition of " O_* " constants */"
 .B #include <sys/fanotify.h>
-.PP
+.P
 .BI "int fanotify_init(unsigned int " flags ", unsigned int " event_f_flags );
 .fi
 .SH DESCRIPTION
 For an overview of the fanotify API, see
 .BR fanotify (7).
-.PP
+.P
 .BR fanotify_init ()
 initializes a new fanotify group and returns a file descriptor for the event
 queue associated with the group.
-.PP
+.P
 The file descriptor is used in calls to
 .BR fanotify_mark (2)
 to specify the files, directories, mounts, or filesystems for which fanotify
@@ -32,25 +32,25 @@ Other events can be used to determine whether
 another application is permitted to access a file or directory.
 Permission to access filesystem objects is granted by writing to the file
 descriptor.
-.PP
+.P
 Multiple programs may be using the fanotify interface at the same time to
 monitor the same files.
-.PP
+.P
 The number of fanotify groups per user is limited.
 See
 .BR fanotify (7)
 for details about this limit.
-.PP
+.P
 The
 .I flags
 argument contains a multi-bit field defining the notification class of the
 listening application and further single bit fields specifying the behavior
 of the file descriptor.
-.PP
+.P
 If multiple listeners for permission events exist,
 the notification class is used to establish the sequence
 in which the listeners receive the events.
-.PP
+.P
 Only one of the following notification classes may be specified in
 .IR flags :
 .TP
@@ -82,7 +82,7 @@ It does not need to be specified.
 This value only allows the receipt of events notifying that a file has been
 accessed.
 Permission decisions before the file is accessed are not possible.
-.PP
+.P
 Listeners with different notification classes will receive events in the
 order
 .BR FAN_CLASS_PRE_CONTENT ,
@@ -90,7 +90,7 @@ order
 .BR FAN_CLASS_NOTIF .
 The order of notification for listeners in the same notification class
 is undefined.
-.PP
+.P
 The following bits can additionally be set in
 .IR flags :
 .TP
@@ -364,7 +364,7 @@ so this restriction may eventually be lifted.
 For more details on information records,
 see
 .BR fanotify (7).
-.PP
+.P
 The
 .I event_f_flags
 argument
@@ -386,7 +386,7 @@ This value allows only write access.
 .TP
 .B O_RDWR
 This value allows read and write access.
-.PP
+.P
 Additional bits can be set in
 .IR event_f_flags .
 The most useful values are:
@@ -406,7 +406,7 @@ See the description of the
 flag in
 .BR open (2)
 for reasons why this may be useful.
-.PP
+.P
 The following are also allowable:
 .BR O_APPEND ,
 .BR O_DSYNC ,
@@ -525,7 +525,7 @@ The
 .B O_CLOEXEC
 is ignored when passed in
 .IR event_f_flags .
-.PP
+.P
 The following bug was present before Linux 3.14:
 .IP \[bu] 3
 .\" Fixed by commit 48149e9d3a7e924010a0daab30a6197b7d7b6580

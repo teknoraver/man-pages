@@ -13,7 +13,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <grp.h>
-.PP
+.P
 .BI "int putgrent(const struct group *restrict " grp \
 ", FILE *restrict " stream );
 .fi
@@ -27,11 +27,11 @@ The function writes the content of the provided
 into the
 .IR stream .
 The list of group members must be NULL-terminated or NULL-initialized.
-.PP
+.P
 The
 .I struct group
 is defined as follows:
-.PP
+.P
 .in +4n
 .EX
 struct group {

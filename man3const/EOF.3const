@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BR "#define EOF  " "/* ... */"
 .fi
 .SH DESCRIPTION
@@ -20,7 +20,7 @@ Standard C library
 represents the end of an input file, or an error indication.
 It is a negative value, of type
 .IR int .
-.PP
+.P
 .B EOF
 is not a character
 (it can't be represented by

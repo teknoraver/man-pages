@@ -17,10 +17,10 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sched.h>
-.PP
+.P
 .BI "int sched_setparam(pid_t " pid ", const struct sched_param *" param );
 .BI "int sched_getparam(pid_t " pid ", struct sched_param *" param );
-.PP
+.P
 \fBstruct sched_param {
     ...
     int \fIsched_priority\fB;
@@ -40,13 +40,13 @@ policy of the thread identified by
 See
 .BR sched (7)
 for a description of the scheduling policies supported under Linux.
-.PP
+.P
 .BR sched_getparam ()
 retrieves the scheduling parameters for the
 thread identified by \fIpid\fP.
 If \fIpid\fP is zero, then the parameters
 of the calling thread are retrieved.
-.PP
+.P
 .BR sched_setparam ()
 checks the validity of \fIparam\fP for the scheduling policy of the
 thread.
@@ -55,11 +55,11 @@ range given by
 .BR sched_get_priority_min (2)
 and
 .BR sched_get_priority_max (2).
-.PP
+.P
 For a discussion of the privileges and resource limits related to
 scheduling priority and policy, see
 .BR sched (7).
-.PP
+.P
 POSIX systems on which
 .BR sched_setparam ()
 and

@@ -15,21 +15,21 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double scalbln(double " x ", long " exp );
 .BI "float scalblnf(float " x ", long " exp );
 .BI "long double scalblnl(long double " x ", long " exp );
-.PP
+.P
 .BI "double scalbn(double " x ", int " exp );
 .BI "float scalbnf(float " x ", int " exp );
 .BI "long double scalbnl(long double " x ", int " exp );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR scalbln (),
 .BR scalblnf (),
 .BR scalblnl ():
@@ -37,7 +37,7 @@ Feature Test Macro Requirements for glibc (see
     _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L
         || /* Since glibc 2.19: */ _DEFAULT_SOURCE
 .fi
-.PP
+.P
 .BR scalbn (),
 .BR scalbnf (),
 .BR scalbnl ():
@@ -55,11 +55,11 @@ by
 to the power of
 .IR exp ,
 that is:
-.PP
+.P
 .nf
     x * FLT_RADIX ** exp
 .fi
-.PP
+.P
 The definition of
 .B FLT_RADIX
 can be obtained by including
@@ -72,20 +72,20 @@ On success, these functions return
 .B FLT_RADIX
 **
 .IR exp .
-.PP
+.P
 If
 .I x
 is a NaN, a NaN is returned.
-.PP
+.P
 If
 .I x
 is positive infinity (negative infinity),
 positive infinity (negative infinity) is returned.
-.PP
+.P
 If
 .I x
 is +0 (\-0), +0 (\-0) is returned.
-.PP
+.P
 If the result overflows,
 a range error occurs,
 and the functions return
@@ -95,7 +95,7 @@ or
 .BR HUGE_VALL ,
 respectively, with a sign the same as
 .IR x .
-.PP
+.P
 If the result underflows,
 a range error occurs,
 and the functions return zero, with a sign the same as
@@ -105,7 +105,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Range error, overflow

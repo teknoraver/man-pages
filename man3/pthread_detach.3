@@ -13,7 +13,7 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_detach(pthread_t " thread );
 .fi
 .SH DESCRIPTION
@@ -25,7 +25,7 @@ as detached.
 When a detached thread terminates,
 its resources are automatically released back to the system without
 the need for another thread to join with the terminated thread.
-.PP
+.P
 Attempting to detach an already detached thread results
 in unspecified behavior.
 .SH RETURN VALUE
@@ -65,21 +65,21 @@ POSIX.1-2001.
 Once a thread has been detached, it can't be joined with
 .BR pthread_join (3)
 or be made joinable again.
-.PP
+.P
 A new thread can be created in a detached state using
 .BR pthread_attr_setdetachstate (3)
 to set the detached attribute of the
 .I attr
 argument of
 .BR pthread_create (3).
-.PP
+.P
 The detached attribute merely determines the behavior of the system
 when the thread terminates;
 it does not prevent the thread from being terminated
 if the process terminates using
 .BR exit (3)
 (or equivalently, if the main thread returns).
-.PP
+.P
 Either
 .BR pthread_join (3)
 or
@@ -90,7 +90,7 @@ so that system resources for the thread can be released.
 actions has not been done will be freed when the process terminates.)
 .SH EXAMPLES
 The following statement detaches the calling thread:
-.PP
+.P
 .in +4n
 .EX
 pthread_detach(pthread_self());

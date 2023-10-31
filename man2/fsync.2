@@ -24,17 +24,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int fsync(int " fd );
-.PP
+.P
 .BI "int fdatasync(int " fd );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .nf
 .BR fsync ():
     glibc 2.16 and later:
@@ -43,7 +43,7 @@ Feature Test Macro Requirements for glibc (see
         _BSD_SOURCE || _XOPEN_SOURCE
             || /* Since glibc 2.8: */ _POSIX_C_SOURCE >= 200112L
 .fi
-.PP
+.P
 .BR fdatasync ():
 .nf
     _POSIX_C_SOURCE >= 199309L || _XOPEN_SOURCE >= 500
@@ -59,12 +59,12 @@ changed information can be retrieved even if the system crashes or
 is rebooted.
 This includes writing through or flushing a disk cache if present.
 The call blocks until the device reports that the transfer has completed.
-.PP
+.P
 As well as flushing the file data,
 .BR fsync ()
 also flushes the metadata information associated with the file (see
 .BR inode (7)).
-.PP
+.P
 Calling
 .BR fsync ()
 does not necessarily ensure
@@ -72,7 +72,7 @@ that the entry in the directory containing the file has also reached disk.
 For that an explicit
 .BR fsync ()
 on a file descriptor for the directory is also needed.
-.PP
+.P
 .BR fdatasync ()
 is similar to
 .BR fsync (),
@@ -93,7 +93,7 @@ On the other hand, a change to the file size
 as made by say
 .BR ftruncate (2)),
 would require a metadata flush.
-.PP
+.P
 The aim of
 .BR fdatasync ()
 is to reduce disk activity for applications that do not
@@ -163,13 +163,13 @@ to a value greater than 0.
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, 4.2BSD.
-.PP
+.P
 In Linux 2.2 and earlier,
 .BR fdatasync ()
 is equivalent to
 .BR fsync (),
 and so has no performance advantage.
-.PP
+.P
 The
 .BR fsync ()
 implementations in older kernels and lesser used filesystems
@@ -179,7 +179,7 @@ In these cases disk caches need to be disabled using
 or
 .BR sdparm (8)
 to guarantee safe operation.
-.PP
+.P
 Under AT&T UNIX System V Release 4
 .I fd
 needs to be opened for writing.

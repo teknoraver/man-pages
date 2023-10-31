@@ -16,29 +16,29 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <endian.h>
-.PP
+.P
 .BI "uint16_t htobe16(uint16_t " host_16bits );
 .BI "uint16_t htole16(uint16_t " host_16bits );
 .BI "uint16_t be16toh(uint16_t " big_endian_16bits );
 .BI "uint16_t le16toh(uint16_t " little_endian_16bits );
-.PP
+.P
 .BI "uint32_t htobe32(uint32_t " host_32bits );
 .BI "uint32_t htole32(uint32_t " host_32bits );
 .BI "uint32_t be32toh(uint32_t " big_endian_32bits );
 .BI "uint32_t le32toh(uint32_t " little_endian_32bits );
-.PP
+.P
 .BI "uint64_t htobe64(uint64_t " host_64bits );
 .BI "uint64_t htole64(uint64_t " host_64bits );
 .BI "uint64_t be64toh(uint64_t " big_endian_64bits );
 .BI "uint64_t le64toh(uint64_t " little_endian_64bits );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
 .ad l
-.PP
+.P
 .BR htobe16 (),
 .BR htole16 (),
 .BR be16toh (),
@@ -62,21 +62,21 @@ Feature Test Macro Requirements for glibc (see
 These functions convert the byte encoding of integer values from
 the byte order that the current CPU (the "host") uses,
 to and from little-endian and big-endian byte order.
-.PP
+.P
 The number,
 .IR nn ,
 in the name of each function indicates the size of
 integer handled by the function, either 16, 32, or 64 bits.
-.PP
+.P
 The functions with names of the form "htobe\fInn\fP" convert
 from host byte order to big-endian order.
-.PP
+.P
 The functions with names of the form "htole\fInn\fP" convert
 from host byte order to little-endian order.
-.PP
+.P
 The functions with names of the form "be\fInn\fPtoh" convert
 from big-endian order to host byte order.
-.PP
+.P
 The functions with names of the form "le\fInn\fPtoh" convert
 from little-endian order to host byte order.
 .SH VERSIONS
@@ -97,7 +97,7 @@ the equivalent of OpenBSDs "betoh32" is "be32toh").
 None.
 .SH HISTORY
 glibc 2.9.
-.PP
+.P
 These functions are similar to the older
 .BR byteorder (3)
 family of functions.
@@ -105,7 +105,7 @@ For example,
 .BR be32toh ()
 is identical to
 .BR ntohl ().
-.PP
+.P
 The advantage of the
 .BR byteorder (3)
 functions is that they are standard functions available
@@ -120,7 +120,7 @@ Since host byte order is either little-endian or big-endian,
 only one of these conversions will have an effect.
 When we run this program on a little-endian system such as x86-32,
 we see the following:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out\fP

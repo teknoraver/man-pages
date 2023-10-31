@@ -13,15 +13,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "char *mkdtemp(char *" template );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR mkdtemp ():
 .nf
     /* Since glibc 2.19: */ _DEFAULT_SOURCE
@@ -53,7 +53,7 @@ is set to indicate the error.
 .B EINVAL
 The last six characters of \fItemplate\fP were not XXXXXX.
 Now \fItemplate\fP is unchanged.
-.PP
+.P
 Also see
 .BR mkdir (2)
 for other possible values for \fIerrno\fP.

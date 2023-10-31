@@ -14,17 +14,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double floor(double " x );
 .BI "float floorf(float " x );
 .BI "long double floorl(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR floorf (),
 .BR floorl ():
 .nf
@@ -35,7 +35,7 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 These functions return the largest integral value that is not greater than
 .IR x .
-.PP
+.P
 For example,
 .I floor(0.5)
 is 0.0, and
@@ -44,7 +44,7 @@ is \-1.0.
 .SH RETURN VALUE
 These functions return the floor of
 .IR x .
-.PP
+.P
 If
 .I x
 is integral, +0, \-0, NaN, or an infinity,
@@ -73,12 +73,12 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to
 SVr4, 4.3BSD, C89.
-.PP
+.P
 SUSv2 and POSIX.1-2001 contain text about overflow (which might set
 .I errno
 to

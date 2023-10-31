@@ -20,15 +20,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "size_t confstr(int " "name" ", char " buf [. size "], size_t " size );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR confstr ():
 .nf
     _POSIX_C_SOURCE >= 2 || _XOPEN_SOURCE
@@ -36,7 +36,7 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 .BR confstr ()
 gets the value of configuration-dependent string variables.
-.PP
+.P
 The
 .I name
 argument is the system variable to be queried.
@@ -55,7 +55,7 @@ A value for the
 .B PATH
 variable which indicates where all the POSIX.2 standard utilities can
 be found.
-.PP
+.P
 If
 .I buf
 is not NULL and
@@ -71,7 +71,7 @@ This can be detected by comparing the return value of
 .BR confstr ()
 against
 .IR size .
-.PP
+.P
 If
 .I size
 is zero and
@@ -91,7 +91,7 @@ This value may be greater than
 which means that the value in
 .I buf
 is truncated.
-.PP
+.P
 If
 .I name
 is a valid configuration variable,
@@ -133,7 +133,7 @@ POSIX.1-2001.
 .SH EXAMPLES
 The following code fragment determines the path where to find
 the POSIX.2 system utilities:
-.PP
+.P
 .in +4n
 .EX
 char *pathbuf;

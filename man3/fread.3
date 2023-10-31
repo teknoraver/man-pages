@@ -25,7 +25,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "size_t fread(void " ptr "[restrict ." size " * ." nmemb ],
 .BI "             size_t " size ", size_t " nmemb ,
 .BI "             FILE *restrict " stream );
@@ -44,7 +44,7 @@ bytes long, from the stream pointed to by
 .IR stream ,
 storing them at the location given by
 .IR ptr .
-.PP
+.P
 The function
 .BR fwrite ()
 writes
@@ -55,7 +55,7 @@ bytes long, to the stream pointed to by
 .IR stream ,
 obtaining them from the location given by
 .IR ptr .
-.PP
+.P
 For nonlocking counterparts, see
 .BR unlocked_stdio (3).
 .SH RETURN VALUE
@@ -69,10 +69,10 @@ This number equals the number of bytes transferred only when
 is 1.
 If an error occurs, or the end of the file is reached,
 the return value is a short item count (or zero).
-.PP
+.P
 The file position indicator for the stream is advanced by the number
 of bytes successfully read or written.
-.PP
+.P
 .BR fread ()
 does not distinguish between end-of-file and error, and callers must use
 .BR feof (3)
@@ -103,7 +103,7 @@ The program below demonstrates the use of
 .BR fread ()
 by parsing /bin/sh ELF executable in binary mode and printing its
 magic and class:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out\fP

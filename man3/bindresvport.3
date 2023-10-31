@@ -18,7 +18,7 @@ Standard C library
 .nf
 .B #include <sys/types.h>
 .B #include <netinet/in.h>
-.PP
+.P
 .BI "int bindresvport(int " sockfd ", struct sockaddr_in *" sin );
 .fi
 .SH DESCRIPTION
@@ -29,7 +29,7 @@ file descriptor
 to a privileged anonymous IP port,
 that is, a port number arbitrarily selected from the range 512 to 1023.
 .\" glibc actually starts searching with a port # in the range 600 to 1023
-.PP
+.P
 If the
 .BR bind (2)
 performed by
@@ -39,7 +39,7 @@ is successful, and
 is not NULL, then
 .I sin\->sin_port
 returns the port number actually allocated.
-.PP
+.P
 .I sin
 can be NULL, in which case
 .I sin\->sin_family
@@ -96,7 +96,7 @@ glibc\ >=\ 2.17: MT-Safe;
 glibc\ <\ 2.17: MT-Unsafe
 T}
 .TE
-.PP
+.P
 The
 .BR bindresvport ()
 function uses a static variable that was not protected by a lock

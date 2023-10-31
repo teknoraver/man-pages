@@ -20,7 +20,7 @@ including pointers to functions,
 may be converted to a pointer to
 .I void
 and back.
-.PP
+.P
 Conversions from and to any other pointer type are done implicitly,
 not requiring casts at all.
 Note that this feature prevents any kind of type checking:
@@ -28,13 +28,13 @@ the programmer should be careful not to convert a
 .I void *
 value to a type incompatible to that of the underlying data,
 because that would result in undefined behavior.
-.PP
+.P
 This type is useful in function parameters and return value
 to allow passing values of any type.
 The function will typically use some mechanism to know
 the real type of the data being passed via a pointer to
 .IR void .
-.PP
+.P
 A value of this type can't be dereferenced,
 as it would give a value of type
 .IR void ,

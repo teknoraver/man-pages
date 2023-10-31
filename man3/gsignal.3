@@ -14,19 +14,19 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .B typedef void (*sighandler_t)(int);
-.PP
+.P
 .BI "[[deprecated]] int gsignal(int " signum );
-.PP
+.P
 .BI "[[deprecated]] sighandler_t ssignal(int " signum ", sighandler_t " action );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR gsignal (),
 .BR ssignal ():
 .nf
@@ -43,7 +43,7 @@ aliases for
 and
 .BR signal (2),
 respectively.
-.PP
+.P
 Elsewhere, on System V-like systems, these functions implement
 software signaling, entirely independent of the classical
 .BR signal (2)

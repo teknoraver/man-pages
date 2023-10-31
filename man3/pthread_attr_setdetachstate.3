@@ -14,7 +14,7 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_attr_setdetachstate(pthread_attr_t *" attr \
 ", int " detachstate );
 .BI "int pthread_attr_getdetachstate(const pthread_attr_t *" attr ,
@@ -32,7 +32,7 @@ The detach state attribute determines whether a thread created using
 the thread attributes object
 .I attr
 will be created in a joinable or a detached state.
-.PP
+.P
 The following values may be specified in
 .IR detachstate :
 .TP
@@ -45,11 +45,11 @@ will be created in a detached state.
 Threads that are created using
 .I attr
 will be created in a joinable state.
-.PP
+.P
 The default setting of the detach state attribute in a newly initialized
 thread attributes object is
 .BR PTHREAD_CREATE_JOINABLE .
-.PP
+.P
 The
 .BR pthread_attr_getdetachstate ()
 returns the detach state attribute of the thread attributes object
@@ -89,7 +89,7 @@ POSIX.1-2001.
 See
 .BR pthread_create (3)
 for more details on detached and joinable threads.
-.PP
+.P
 A thread that is created in a joinable state should
 eventually either be joined using
 .BR pthread_join (3)
@@ -97,7 +97,7 @@ or detached using
 .BR pthread_detach (3);
 see
 .BR pthread_create (3).
-.PP
+.P
 It is an error to specify the thread ID of
 a thread that was created in a detached state
 in a later call to

@@ -32,26 +32,26 @@ Standard C library
 .B #include <sys/socket.h>
 .B #include <netinet/in.h>
 .B #include <arpa/inet.h>
-.PP
+.P
 .BI "int inet_aton(const char *" cp ", struct in_addr *" inp );
-.PP
+.P
 .BI "in_addr_t inet_addr(const char *" cp );
 .BI "in_addr_t inet_network(const char *" cp );
-.PP
+.P
 .BI "[[deprecated]] char *inet_ntoa(struct in_addr " in );
-.PP
+.P
 .BI "[[deprecated]] struct in_addr inet_makeaddr(in_addr_t " net ,
 .BI "                                            in_addr_t " host );
-.PP
+.P
 .BI "[[deprecated]] in_addr_t inet_lnaof(struct in_addr " in );
 .BI "[[deprecated]] in_addr_t inet_netof(struct in_addr " in );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR inet_aton (),
 .BR inet_ntoa ():
 .nf
@@ -104,7 +104,7 @@ The value
 .I a
 is interpreted as a 32-bit value that is stored directly
 into the binary address without any byte rearrangement.
-.PP
+.P
 In all of the above forms,
 components of the dotted address can be specified in decimal,
 octal (with a leading
@@ -117,7 +117,7 @@ The form that uses exactly four decimal numbers is referred to as
 .I IPv4 dotted-decimal notation
 (or sometimes:
 .IR "IPv4 dotted-quad notation" ).
-.PP
+.P
 .BR inet_aton ()
 returns 1 if the supplied string was successfully interpreted,
 or 0 if the string is invalid
@@ -125,7 +125,7 @@ or 0 if the string is invalid
 is
 .I not
 set on error).
-.PP
+.P
 The
 .BR inet_addr ()
 function converts the Internet host address
@@ -142,7 +142,7 @@ Avoid its use in favor of
 or
 .BR getaddrinfo (3),
 which provide a cleaner way to indicate error return.
-.PP
+.P
 The
 .BR inet_network ()
 function converts
@@ -152,7 +152,7 @@ into a number in host byte order suitable for use as an
 Internet network address.
 On success, the converted address is returned.
 If the input is invalid, \-1 is returned.
-.PP
+.P
 The
 .BR inet_ntoa ()
 function converts the Internet host address
@@ -160,19 +160,19 @@ function converts the Internet host address
 dotted-decimal notation.
 The string is returned in a statically
 allocated buffer, which subsequent calls will overwrite.
-.PP
+.P
 The
 .BR inet_lnaof ()
 function returns the local network address part
 of the Internet address \fIin\fP.
 The returned value is in host byte order.
-.PP
+.P
 The
 .BR inet_netof ()
 function returns the network number part of
 the Internet address \fIin\fP.
 The returned value is in host byte order.
-.PP
+.P
 The
 .BR inet_makeaddr ()
 function is the converse of
@@ -183,7 +183,7 @@ It returns an Internet host address in network byte order,
 created by combining the network number \fInet\fP
 with the local address \fIhost\fP, both in
 host byte order.
-.PP
+.P
 The structure \fIin_addr\fP as used in
 .BR inet_ntoa (),
 .BR inet_makeaddr (),
@@ -193,7 +193,7 @@ and
 is defined in
 .I <netinet/in.h>
 as:
-.PP
+.P
 .in +4n
 .EX
 typedef uint32_t in_addr_t;
@@ -242,7 +242,7 @@ None.
 .TQ
 .BR inet_ntoa ()
 POSIX.1-2001, 4.3BSD.
-.PP
+.P
 .BR inet_lnaof (),
 .BR inet_netof (),
 and
@@ -269,7 +269,7 @@ This address type is indicated by the binary value 110 in the
 most significant three bits of the address.
 The network address is contained in the three most significant bytes,
 and the host address occupies the remaining byte.
-.PP
+.P
 Classful network addresses are now obsolete,
 having been superseded by Classless Inter-Domain Routing (CIDR),
 which divides addresses into network and host components at
@@ -285,7 +285,7 @@ and
 .BR inet_ntoa ()
 is shown below.
 Here are some example runs:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out 226.000.000.037" "      # Last byte is in octal"

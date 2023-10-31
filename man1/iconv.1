@@ -22,7 +22,7 @@ reads from standard input.
 If no output file is given,
 .B iconv
 writes to standard output.
-.PP
+.P
 If no
 .I from-encoding
 is given, the default is derived
@@ -169,7 +169,7 @@ Usual system default gconv module configuration file.
 .TP
 .I /usr/lib/gconv/gconv\-modules.cache
 Usual system gconv module configuration cache.
-.PP
+.P
 Depending on the architecture,
 the above files may instead be located at directories with the path prefix
 .IR /usr/lib64 .
@@ -179,16 +179,16 @@ POSIX.1-2008.
 POSIX.1-2001.
 .SH EXAMPLES
 Convert text from the ISO 8859-15 character encoding to UTF-8:
-.PP
+.P
 .in +4n
 .EX
 $ \fBiconv \-f ISO\-8859\-15 \-t UTF\-8 < input.txt > output.txt\fP
 .EE
 .in
-.PP
+.P
 The next example converts from UTF-8 to ASCII, transliterating when
 possible:
-.PP
+.P
 .in +4n
 .EX
 $ \fBecho abc ß α € àḃç | iconv \-f UTF\-8 \-t ASCII//TRANSLIT\fP

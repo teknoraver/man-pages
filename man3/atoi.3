@@ -20,17 +20,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int atoi(const char *" nptr );
 .BI "long atol(const char *" nptr );
 .BI "long long atoll(const char *" nptr );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR atoll ():
 .nf
     _ISOC99_SOURCE
@@ -43,17 +43,17 @@ function converts the initial portion of the string
 pointed to by \fInptr\fP to
 .IR int .
 The behavior is the same as
-.PP
+.P
 .in +4n
 .EX
 strtol(nptr, NULL, 10);
 .EE
 .in
-.PP
+.P
 except that
 .BR atoi ()
 does not detect errors.
-.PP
+.P
 The
 .BR atol ()
 and
@@ -89,7 +89,7 @@ On glibc, musl libc, and uClibc, 0 is returned on error.
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001, SVr4, 4.3BSD.
-.PP
+.P
 C89 and
 POSIX.1-1996 include the functions
 .BR atoi ()

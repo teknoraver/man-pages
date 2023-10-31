@@ -14,12 +14,12 @@ Standard C library
 .BR "#include <linux/mount.h>" " /* Definition of " MOUNT_ATTR_* " constants */"
 .BR "#include <sys/syscall.h>" " /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_mount_setattr, int " dirfd ", const char *" pathname ,
 .BI "            unsigned int " flags ", struct mount_attr *" attr \
 ", size_t " size );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR mount_setattr (),
@@ -57,7 +57,7 @@ are changed.
 for an explanation of why the
 .I dirfd
 argument is useful.)
-.PP
+.P
 The
 .BR mount_setattr ()
 system call uses an extensible structure
@@ -75,7 +75,7 @@ zero-fill this structure on initialization.
 See the "Extensibility" subsection under
 .B NOTES
 for more details.
-.PP
+.P
 The
 .I size
 argument should usually be specified as
@@ -96,7 +96,7 @@ For example, the macro for the size of the initial version of
 .I struct mount_attr
 is
 .BR MOUNT_ATTR_SIZE_VER0 .
-.PP
+.P
 The
 .I flags
 argument can be used to alter the pathname resolution behavior.
@@ -118,13 +118,13 @@ Don't follow trailing symbolic links.
 .TP
 .B AT_NO_AUTOMOUNT
 Don't trigger automounts.
-.PP
+.P
 The
 .I attr
 argument of
 .BR mount_setattr ()
 is a structure of the following form:
-.PP
+.P
 .in +4n
 .EX
 struct mount_attr {
@@ -135,7 +135,7 @@ struct mount_attr {
 };
 .EE
 .in
-.PP
+.P
 The
 .I attr_set
 and
@@ -148,7 +148,7 @@ enable a property on a mount or mount tree,
 and flags set in
 .I attr_clr
 remove a property from a mount or mount tree.
-.PP
+.P
 When changing mount properties,
 the kernel will first clear the flags specified
 in the
@@ -158,7 +158,7 @@ and then set the flags specified in the
 .I attr_set
 field.
 For example, these settings:
-.PP
+.P
 .in +4n
 .EX
 struct mount_attr attr = {
@@ -167,9 +167,9 @@ struct mount_attr attr = {
 };
 .EE
 .in
-.PP
+.P
 are equivalent to the following steps:
-.PP
+.P
 .in +4n
 .EX
 unsigned int current_mnt_flags = mnt\->mnt_flags;
@@ -189,18 +189,18 @@ current_mnt_flags |= attr\->attr_set;
 mnt\->mnt_flags = current_mnt_flags;
 .EE
 .in
-.PP
+.P
 As a result of this change, the mount or mount tree (a) is read-only;
 (b) blocks the execution of set-user-ID and set-group-ID programs;
 (c) allows execution of programs; and (d) allows access to devices.
-.PP
+.P
 Multiple changes with the same set of flags requested
 in
 .I attr_clr
 and
 .I attr_set
 are guaranteed to be idempotent after the changes have been applied.
-.PP
+.P
 The following mount attributes can be specified in the
 .I attr_set
 or
@@ -361,7 +361,7 @@ in
 .IR attr_clr .
 .IP
 For further details, see the subsection "ID-mapped mounts" under NOTES.
-.PP
+.P
 The
 .I propagation
 field is used to specify the propagation type of the mount or mount tree.
@@ -380,7 +380,7 @@ Turn all mounts into dependent mounts.
 .TP
 .B MS_UNBINDABLE
 Turn all mounts into unbindable mounts.
-.PP
+.P
 For further details on the above propagation types, see
 .BR mount_namespaces (7).
 .SH RETURN VALUE
@@ -597,7 +597,7 @@ visible only via a specific mount.
 All other users and locations where the filesystem is exposed are unaffected.
 It is a temporary change because
 the ownership changes are tied to the lifetime of the mount.
-.PP
+.P
 Whenever callers interact with the filesystem through an ID-mapped mount,
 the ID mapping of the mount will be applied to
 user and group IDs associated with filesystem objects.
@@ -623,7 +623,7 @@ whenever user IDs or group IDs are stored in
 or
 .B ACL_GROUP
 entries.
-.PP
+.P
 The following conditions must be met in order to create an ID-mapped mount:
 .IP \[bu] 3
 The caller must have the
@@ -687,7 +687,7 @@ flag and it must not already have been visible in a mount namespace.
 the mount must not have been attached to the filesystem hierarchy
 with a system call such as
 .BR move_mount (2).)
-.PP
+.P
 ID mappings can be created for user IDs, group IDs, and project IDs.
 An ID mapping is essentially a mapping of a range of user or group IDs into
 another or the same range of user or group IDs.
@@ -702,15 +702,15 @@ user ID 1000 in the caller's user namespace is mapped to
 user ID 1001 in its ancestor user namespace.
 Since the map range is 1,
 only user ID 1000 is mapped.
-.PP
+.P
 It is possible to specify up to 340 ID mappings for each ID mapping type.
 If any user IDs or group IDs are not mapped,
 all files owned by that unmapped user or group ID will appear as
 being owned by the overflow user ID or overflow group ID respectively.
-.PP
+.P
 Further details on setting up ID mappings can be found in
 .BR user_namespaces (7).
-.PP
+.P
 In the common case, the user namespace passed in
 .I userns_fd
 (together with
@@ -723,7 +723,7 @@ a user's login session as is the case for portable home directories in
 .BR systemd-homed.service (8)).
 It is also perfectly fine to create a dedicated user namespace
 for the sake of ID mapping a mount.
-.PP
+.P
 ID-mapped mounts can be useful in the following
 and a variety of other scenarios:
 .IP \[bu] 3
@@ -808,7 +808,7 @@ This extensibility design is very similar to other system calls such as
 .BR clone3 (2)
 and
 .BR openat2 (2).
-.PP
+.P
 Let
 .I usize
 be the size of the structure as specified by the user-space application,
@@ -852,7 +852,7 @@ then \-1 is returned and
 is set to
 .BR E2BIG .
 This provides forwards-compatibility.
-.PP
+.P
 Because the definition of
 .I struct mount_attr
 may change in the future
@@ -862,7 +862,7 @@ user-space applications should zero-fill
 to ensure that recompiling the program with new headers will not result in
 spurious errors at run time.
 The simplest way is to use a designated initializer:
-.PP
+.P
 .in +4n
 .EX
 struct mount_attr attr = {
@@ -871,11 +871,11 @@ struct mount_attr attr = {
 };
 .EE
 .in
-.PP
+.P
 Alternatively, the structure can be zero-filled using
 .BR memset (3)
 or similar functions:
-.PP
+.P
 .in +4n
 .EX
 struct mount_attr attr;
@@ -884,7 +884,7 @@ attr.attr_set = MOUNT_ATTR_RDONLY;
 attr.attr_clr = MOUNT_ATTR_NODEV;
 .EE
 .in
-.PP
+.P
 A user-space application that wishes to determine which extensions the running
 kernel supports can do so by conducting a binary search on
 .I size

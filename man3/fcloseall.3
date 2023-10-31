@@ -13,7 +13,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <stdio.h>
-.PP
+.P
 .B int fcloseall(void);
 .fi
 .SH DESCRIPTION
@@ -24,7 +24,7 @@ Buffered output for each stream is written before it is closed
 (as for
 .BR fflush (3));
 buffered input is discarded.
-.PP
+.P
 The standard streams,
 .IR stdin ,
 .IR stdout ,
@@ -50,7 +50,7 @@ T{
 .BR fcloseall ()
 T}	Thread safety	MT-Unsafe race:streams
 .TE
-.PP
+.P
 The
 .BR fcloseall ()
 function does not lock the streams, so it is not thread-safe.

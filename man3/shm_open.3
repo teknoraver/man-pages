@@ -14,7 +14,7 @@ Real-time library
 .B #include <sys/mman.h>
 .BR "#include <sys/stat.h>" "        /* For mode constants */"
 .BR "#include <fcntl.h>" "           /* For O_* constants */"
-.PP
+.P
 .BI "int shm_open(const char *" name ", int " oflag ", mode_t " mode );
 .BI "int shm_unlink(const char *" name );
 .fi
@@ -30,7 +30,7 @@ The
 function performs the converse operation,
 removing an object previously created by
 .BR shm_open ().
-.PP
+.P
 The operation of
 .BR shm_open ()
 is analogous to that of
@@ -51,7 +51,7 @@ followed by one or more characters, none of which are slashes.
 .\" case the subdirectory must exist under /dev/shm, and allow the
 .\" required permissions if a user wants to create a shared memory
 .\" object in that subdirectory.
-.PP
+.P
 .I oflag
 is a bit mask created by ORing together exactly one of
 .B O_RDONLY
@@ -107,10 +107,10 @@ does not exist, are performed atomically.
 .TP
 .B O_TRUNC
 If the shared memory object already exists, truncate it to zero bytes.
-.PP
+.P
 Definitions of these flag values can be obtained by including
 .IR <fcntl.h> .
-.PP
+.P
 On successful completion
 .BR shm_open ()
 returns a new file descriptor referring to the shared memory object.
@@ -121,7 +121,7 @@ The
 flag (see
 .BR fcntl (2))
 is set for the file descriptor.
-.PP
+.P
 The file descriptor is normally used in subsequent calls
 to
 .BR ftruncate (2)
@@ -130,7 +130,7 @@ to
 After a call to
 .BR mmap (2)
 the file descriptor may be closed without affecting the memory mapping.
-.PP
+.P
 The operation
 of
 .BR shm_unlink ()
@@ -243,7 +243,7 @@ and
 unspecified.
 On Linux, this will successfully truncate an existing
 shared memory object\[em]this may not be so on other UNIX systems.
-.PP
+.P
 The POSIX shared memory object implementation on Linux makes use
 of a dedicated
 .BR tmpfs (5)
@@ -254,7 +254,7 @@ POSIX.1-2008.
 .SH HISTORY
 glibc 2.2.
 POSIX.1-2001.
-.PP
+.P
 POSIX.1-2001 says that the group ownership of a newly created shared
 memory object is set to either the calling process's effective group ID
 or "a system default group ID".
@@ -270,7 +270,7 @@ of a string that is placed into the shared memory by the "send" program.
 Once the data has been modified, the "send" program then prints
 the contents of the modified shared memory.
 An example execution of the two programs is the following:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./pshm_ucase_bounce /myshm &\fP
@@ -279,14 +279,14 @@ $ \fB./pshm_ucase_send /myshm hello\fP
 HELLO
 .EE
 .in
-.PP
+.P
 Further detail about these programs is provided below.
 .\"
 .SS Program source: pshm_ucase.h
 The following header file is included by both programs below.
 Its primary purpose is to define a structure that will be imposed
 on the memory object that is shared between the two programs.
-.PP
+.P
 .in +4n
 .\" SRC BEGIN (pshm_ucase.h)
 .EX
@@ -324,12 +324,12 @@ match the size of the
 structure defined in the header file.
 It then maps the object into the process's address space,
 and initializes two POSIX semaphores inside the object to 0.
-.PP
+.P
 After the "send" program has posted the first of the semaphores,
 the "bounce" program upper cases the data that has been placed
 in the memory by the "send" program and then posts the second semaphore
 to tell the "send" program that it may now access the shared memory.
-.PP
+.P
 .in +4n
 .\" SRC BEGIN (pshm_ucase_bounce.c)
 .EX
@@ -412,7 +412,7 @@ main(int argc, char *argv[])
 The "send" program takes two command-line arguments:
 the pathname of a shared memory object previously created by the "bounce"
 program and a string that is to be copied into that object.
-.PP
+.P
 The program opens the shared memory object
 and maps the object into its address space.
 It then copies the data specified in its second argument
@@ -422,7 +422,7 @@ which tells the "bounce" program that it can now access that data.
 After the "bounce" program posts the second semaphore,
 the "send" program prints the contents of the shared memory
 on standard output.
-.PP
+.P
 .in +4n
 .\" SRC BEGIN (pshm_ucase_send.c)
 .EX

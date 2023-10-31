@@ -22,17 +22,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double tan(double " x );
 .BI "float tanf(float " x );
 .BI "long double tanl(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR tanf (),
 .BR tanl ():
 .nf
@@ -50,17 +50,17 @@ given in radians.
 .SH RETURN VALUE
 On success, these functions return the tangent of
 .IR x .
-.PP
+.P
 If
 .I x
 is a NaN, a NaN is returned.
-.PP
+.P
 If
 .I x
 is positive infinity or negative infinity,
 a domain error occurs,
 and a NaN is returned.
-.PP
+.P
 If the correct result would overflow,
 a range error occurs,
 and the functions return
@@ -83,7 +83,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Domain error: \fIx\fP is an infinity
@@ -124,7 +124,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to

@@ -14,7 +14,7 @@ Standard C library
 .BR "#include <linux/fs.h>" "  /* Definition of " "struct pm_scan_arg" ,
 .BR "                          struct page_region" ", and " PAGE_IS_* " constants */"
 .B #include <sys/ioctl.h>
-.PP
+.P
 .BI "int ioctl(int " pagemap_fd ", PAGEMAP_SCAN, struct pm_scan_arg *" arg );
 .fi
 .SH DESCRIPTION
@@ -24,7 +24,7 @@ is used to get and optionally clear some specific flags from page table entries.
 The information is returned with
 .B PAGE_SIZE
 granularity.
-.PP
+.P
 To start tracking the written state (flag) of a page or range of memory,
 the
 .B UFFD_FEATURE_WP_ASYNC

@@ -15,19 +15,19 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "[[noreturn]] void _exit(int " status );
-.PP
+.P
 .B #include <stdlib.h>
-.PP
+.P
 .BI "[[noreturn]] void _Exit(int " status );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR _Exit ():
 .nf
     _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L
@@ -45,14 +45,14 @@ operation).
 The process's parent is sent a
 .B SIGCHLD
 signal.
-.PP
+.P
 The value
 .I "status & 0xFF"
 is returned to the parent process as the process's exit status, and
 can be collected by the parent using one of the
 .BR wait (2)
 family of calls.
-.PP
+.P
 The function
 .BR _Exit ()
 is equivalent to
@@ -68,14 +68,14 @@ POSIX.1-2008.
 C11, POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, SVr4, 4.3BSD.
-.PP
+.P
 .BR _Exit ()
 was introduced by C99.
 .SH NOTES
 For a discussion on the effects of an exit, the transmission of
 exit status, zombie processes, signals sent, and so on, see
 .BR exit (3).
-.PP
+.P
 The function
 .BR _exit ()
 is like
@@ -108,7 +108,7 @@ which is to terminate a process,
 and these are the semantics specified by POSIX.1 and implemented
 by the C library wrapper function.
 On modern systems, this means termination of all threads in the process.
-.PP
+.P
 By contrast with the C library wrapper function, the raw Linux
 .BR _exit ()
 system call terminates only the calling thread, and actions such as
@@ -117,7 +117,7 @@ reparenting child processes or sending
 to the parent process are performed only if this is
 the last thread in the thread group.
 .\" _exit() is used by pthread_exit() to terminate the calling thread
-.PP
+.P
 Up to glibc 2.3, the
 .BR _exit ()
 wrapper function invoked the kernel system call of the same name.

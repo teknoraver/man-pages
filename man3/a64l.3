@@ -15,16 +15,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "long a64l(const char *" str64 );
 .BI "char *l64a(long " value );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR a64l (),
 .BR l64a ():
 .nf
@@ -48,9 +48,9 @@ uses only the low order 32 bits of
 and
 .BR a64l ()
 sign-extends its 32-bit result.
-.PP
+.P
 The 64 digits in the base-64 system are:
-.PP
+.P
 .RS
 .nf
 \&\[aq].\[aq]	represents a 0
@@ -60,7 +60,7 @@ A-Z	represent 12-37
 a-z	represent 38-63
 .fi
 .RE
-.PP
+.P
 So 123 = 59*64\[ha]0 + 1*64\[ha]1 = "v/".
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
@@ -90,7 +90,7 @@ The value returned by
 .BR l64a ()
 may be a pointer to a static buffer, possibly overwritten
 by later calls.
-.PP
+.P
 The behavior of
 .BR l64a ()
 is undefined when
@@ -99,10 +99,10 @@ is negative.
 If
 .I value
 is zero, it returns an empty string.
-.PP
+.P
 These functions are broken before glibc 2.2.5
 (puts most significant digit first).
-.PP
+.P
 This is not the encoding used by
 .BR uuencode (1).
 .SH SEE ALSO

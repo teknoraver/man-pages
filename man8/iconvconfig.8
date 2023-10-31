@@ -21,12 +21,12 @@ Loading and parsing such a configuration file would slow down
 programs that use
 .BR iconv (3),
 so a caching mechanism is employed.
-.PP
+.P
 The
 .B iconvconfig
 program reads iconv module configuration files and writes
 a fast-loading gconv module configuration cache file.
-.PP
+.P
 In addition to the system provided gconv modules, the user can specify
 custom gconv module directories with the environment variable
 .BR GCONV_PATH .
@@ -83,7 +83,7 @@ Usual system default gconv module configuration file.
 .TP
 .I /usr/lib/gconv/gconv\-modules.cache
 Usual system gconv module configuration cache.
-.PP
+.P
 Depending on the architecture,
 the above files may instead be located at directories with the path prefix
 .IR /usr/lib64 .

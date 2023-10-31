@@ -12,7 +12,7 @@ Real-time library
 .SH SYNOPSIS
 .nf
 .B "#include <aio.h>"
-.PP
+.P
 .BI "int aio_cancel(int " fd ", struct aiocb *" aiocbp );
 .fi
 .SH DESCRIPTION
@@ -33,7 +33,7 @@ is canceled.
 for a description of the
 .I aiocb
 structure.)
-.PP
+.P
 Normal asynchronous notification occurs for canceled requests (see
 .BR aio (7)
 and
@@ -45,21 +45,21 @@ is set to \-1, and the request error status
 is set to
 .BR ECANCELED .
 The control block of requests that cannot be canceled is not changed.
-.PP
+.P
 If the request could not be canceled,
 then it will terminate in the usual way after performing the I/O operation.
 (In this case,
 .BR aio_error (3)
 will return the status
 .BR EINPROGRESSS .)
-.PP
+.P
 If
 .I aiocbp
 is not NULL, and
 .I fd
 differs from the file descriptor with which the asynchronous operation
 was initiated, unspecified results occur.
-.PP
+.P
 Which operations are cancelable is implementation-defined.
 .\" FreeBSD: not those on raw disk devices.
 .SH RETURN VALUE

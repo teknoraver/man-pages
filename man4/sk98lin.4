@@ -46,27 +46,27 @@ sk98lin \- Marvell/SysKonnect Gigabit Ethernet driver v6.21
 .hy 0
 .BR Note :
 This obsolete driver was removed in Linux 2.6.26.
-.PP
+.P
 .B sk98lin
 is the Gigabit Ethernet driver for
 Marvell and SysKonnect network adapter cards.
 It supports SysKonnect SK-98xx/SK-95xx
 compliant Gigabit Ethernet Adapter and
 any Yukon compliant chipset.
-.PP
+.P
 When loading the driver using insmod,
 parameters for the network adapter cards
 might be stated as a sequence of comma separated commands.
 If for instance two network adapters are installed and AutoNegotiation on
 Port A of the first adapter should be ON,
 but on the Port A of the second adapter switched OFF, one must enter:
-.PP
+.P
 .in +4n
 .EX
 insmod sk98lin.o AutoNeg_A=On,Off
 .EE
 .in
-.PP
+.P
 After
 .B sk98lin
 is bound to one or more adapter cards and the
@@ -81,7 +81,7 @@ where
 .I x
 is the number of the interface that has been assigned to a
 dedicated port by the system.
-.PP
+.P
 If loading is finished, any desired IP address can be
 assigned to the respective
 .I eth[x]
@@ -91,7 +91,7 @@ command.
 This causes the adapter to connect to the Ethernet and to display a status
 message on the console saying "ethx: network connection up using port y"
 followed by the configured or detected connection parameters.
-.PP
+.P
 The
 .B sk98lin
 also supports large frames (also called jumbo frames).
@@ -107,22 +107,22 @@ command with the mtu parameter.
 If for instance eth0 needs an IP
 address and a large frame MTU size,
 the following two commands might be used:
-.PP
+.P
 .in +4n
 .EX
 ifconfig eth0 10.1.1.1
 ifconfig eth0 mtu 9000
 .EE
 .in
-.PP
+.P
 Those two commands might even be combined into one:
-.PP
+.P
 .in +4n
 .EX
 ifconfig eth0 10.1.1.1 mtu 9000
 .EE
 .in
-.PP
+.P
 Note that large frames can be used only if permitted by
 your network infrastructure.
 This means, that any switch being used in your Ethernet must
@@ -135,23 +135,23 @@ In addition to the switches inside the network,
 all network adapters that are to be used must also be
 enabled regarding jumbo frames.
 If an adapter is not set to receive large frames, it will simply drop them.
-.PP
+.P
 Switching back to the standard Ethernet frame size can be done by using the
 .BR ifconfig (8)
 command again:
-.PP
+.P
 .in +4n
 .EX
 ifconfig eth0 mtu 1500
 .EE
 .in
-.PP
+.P
 The Marvell/SysKonnect Gigabit Ethernet driver for Linux is able to
 support VLAN and Link Aggregation according to
 IEEE standards 802.1, 802.1q, and 802.3ad.
 Those features are available only after installation of open source modules
 which can be found on the Internet:
-.PP
+.P
 .IR VLAN :
 .UR http://www.candelatech.com\:/\[ti]greear\:/vlan.html
 .UE
@@ -160,7 +160,7 @@ which can be found on the Internet:
 .IR Aggregation :
 .UR http://www.st.rim.or.jp\:/\[ti]yumo
 .UE
-.PP
+.P
 Note that Marvell/SysKonnect does not offer any support for these
 open source modules and does not take the responsibility for any
 kind of failures or problems arising when using these modules.

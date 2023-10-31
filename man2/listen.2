@@ -23,7 +23,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/socket.h>
-.PP
+.P
 .BI "int listen(int " sockfd ", int " backlog );
 .fi
 .SH DESCRIPTION
@@ -33,14 +33,14 @@ marks the socket referred to by
 as a passive socket, that is, as a socket that will
 be used to accept incoming connection requests using
 .BR accept (2).
-.PP
+.P
 The
 .I sockfd
 argument is a file descriptor that refers to a socket of type
 .B SOCK_STREAM
 or
 .BR SOCK_SEQPACKET .
-.PP
+.P
 The
 .I backlog
 argument defines the maximum length
@@ -114,7 +114,7 @@ connections are specified with
 Connections are accepted with
 .BR accept (2).
 .RE
-.PP
+.P
 The behavior of the
 .I backlog
 argument on TCP sockets changed with Linux 2.2.
@@ -130,7 +130,7 @@ length and this setting is ignored.
 See
 .BR tcp (7)
 for more information.
-.PP
+.P
 If the
 .I backlog
 argument is greater than the value in

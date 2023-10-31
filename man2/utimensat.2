@@ -14,17 +14,17 @@ Standard C library
 .nf
 .BR "#include <fcntl.h>" "            /* Definition of " AT_* " constants */"
 .B #include <sys/stat.h>
-.PP
+.P
 .BI "int utimensat(int " dirfd ", const char *" pathname ,
 .BI "              const struct timespec " times "[_Nullable 2], int " flags );
 .BI "int futimens(int " fd ", const struct timespec " times "[_Nullable 2]);"
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR utimensat ():
 .nf
     Since glibc 2.10:
@@ -32,7 +32,7 @@ Feature Test Macro Requirements for glibc (see
     Before glibc 2.10:
         _ATFILE_SOURCE
 .fi
-.PP
+.P
 .BR futimens ():
 .nf
     Since glibc 2.10:
@@ -51,7 +51,7 @@ and
 .BR utimes (2),
 which permit only second and microsecond precision, respectively,
 when setting file timestamps.
-.PP
+.P
 With
 .BR utimensat ()
 the file is specified via the pathname given in
@@ -61,7 +61,7 @@ With
 the file whose timestamps are to be updated is specified via
 an open file descriptor,
 .IR fd .
-.PP
+.P
 For both calls, the new file timestamps are specified in the array
 .IR times :
 .I times[0]
@@ -75,10 +75,10 @@ since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).
 This information is conveyed in a
 .BR timespec (3)
 structure.
-.PP
+.P
 Updated file timestamps are set to the greatest value
 supported by the filesystem that is not greater than the specified time.
-.PP
+.P
 If the
 .I tv_nsec
 field of one of the
@@ -97,12 +97,12 @@ In both of these cases, the value of the corresponding
 .I tv_sec
 .\" 2.6.22 was broken: it is not ignored
 field is ignored.
-.PP
+.P
 If
 .I times
 is NULL, then both timestamps are set to the current time.
 .\"
-.PP
+.P
 The status change time (ctime) will be set to the current time, even if the
 other time stamps don't actually change.
 .SS Permissions requirements
@@ -123,7 +123,7 @@ the caller must have write access to the file;
 the caller's effective user ID must match the owner of the file; or
 .IP \[bu]
 the caller must have appropriate privileges.
-.PP
+.P
 To make any change other than setting both timestamps to the
 current time (i.e.,
 .I times
@@ -138,7 +138,7 @@ and neither
 field is
 .BR UTIME_OMIT ),
 either condition 2 or 3 above must apply.
-.PP
+.P
 If both
 .I tv_nsec
 fields are specified as
@@ -161,7 +161,7 @@ for a relative pathname).
 See
 .BR openat (2)
 for an explanation of why this can be useful.
-.PP
+.P
 If
 .I pathname
 is relative and
@@ -173,13 +173,13 @@ then
 is interpreted relative to the current working
 directory of the calling process (like
 .BR utimes (2)).
-.PP
+.P
 If
 .I pathname
 is absolute, then
 .I dirfd
 is ignored.
-.PP
+.P
 The
 .I flags
 field is a bit mask that may be 0, or include the following constant,
@@ -401,13 +401,13 @@ the file referred to by the file descriptor
 Using this feature, the call
 .I "futimens(fd,\ times)"
 is implemented as:
-.PP
+.P
 .in +4n
 .EX
 utimensat(fd, NULL, times, 0);
 .EE
 .in
-.PP
+.P
 Note, however, that the glibc wrapper for
 .BR utimensat ()
 disallows passing NULL as the value for
@@ -431,7 +431,7 @@ POSIX.1-2008.
 .BR utimensat ()
 obsoletes
 .BR futimesat (2).
-.PP
+.P
 On Linux, timestamps cannot be changed for a file marked immutable,
 and the only change permitted for files marked append-only is to
 set the timestamps to the current time.
@@ -440,7 +440,7 @@ set the timestamps to the current time.
 and
 .BR utimes (2)
 on Linux.)
-.PP
+.P
 If both
 .I tv_nsec
 fields are specified as

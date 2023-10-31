@@ -12,7 +12,7 @@ Real-time library
 .SH SYNOPSIS
 .nf
 .B "#include <aio.h>"
-.PP
+.P
 .BI "int aio_fsync(int " op ", struct aiocb *" aiocbp );
 .fi
 .SH DESCRIPTION
@@ -26,7 +26,7 @@ associated with
 for a description of the
 .I aiocb
 structure.)
-.PP
+.P
 More precisely, if
 .I op
 is
@@ -40,9 +40,9 @@ is
 .BR O_DSYNC ,
 this call is the asynchronous analog of
 .BR fdatasync (2).
-.PP
+.P
 Note that this is a request only; it does not wait for I/O completion.
-.PP
+.P
 Apart from
 .IR aio_fildes ,
 the only field in the structure pointed to by

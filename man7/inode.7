@@ -17,7 +17,7 @@ structure, or
 which returns a
 .I statx
 structure.
-.PP
+.P
 The following is a list of the information typically found in,
 or associated with, the file inode,
 with the names of the corresponding structure fields returned by
@@ -184,12 +184,12 @@ Last status change timestamp (ctime)
 This is the file's last status change timestamp.
 It is changed by writing or by setting inode information
 (i.e., owner, group, link count, mode, etc.).
-.PP
+.P
 The timestamp fields report time measured with a zero point at the
 .IR Epoch ,
 1970-01-01 00:00:00 +0000, UTC (see
 .BR time (7)).
-.PP
+.P
 Nanosecond timestamps are supported on XFS, JFS, Btrfs, and
 ext4 (since Linux 2.6.23).
 .\" commit ef7f38359ea8b3e9c7f2cae9a4d4935f55ca9e80
@@ -220,7 +220,7 @@ field (for
 the
 .I statx.stx_mode
 field) contains the file type and mode.
-.PP
+.P
 POSIX refers to the
 .I stat.st_mode
 bits corresponding to the mask
@@ -231,7 +231,7 @@ the 12 bits corresponding to the mask 07777 as the
 .I file mode bits
 and the least significant 9 bits (0777) as the
 .IR "file permission bits" .
-.PP
+.P
 The following mask values are defined for the file type:
 .in +4n
 .TS
@@ -247,9 +247,9 @@ S_IFCHR	0020000	character device
 S_IFIFO	0010000	FIFO
 .TE
 .in
-.PP
+.P
 Thus, to test for a regular file (for example), one could write:
-.PP
+.P
 .in +4n
 .EX
 stat(pathname, &sb);
@@ -258,7 +258,7 @@ if ((sb.st_mode & S_IFMT) == S_IFREG) {
 }
 .EE
 .in
-.PP
+.P
 Because tests of the above form are common, additional
 macros are defined by POSIX to allow the test of the file type in
 .I st_mode
@@ -286,9 +286,9 @@ symbolic link?  (Not in POSIX.1-1996.)
 .BR S_ISSOCK (m)
 socket?  (Not in POSIX.1-1996.)
 .RE
-.PP
+.P
 The preceding code snippet could thus be rewritten as:
-.PP
+.P
 .in +4n
 .EX
 stat(pathname, &sb);
@@ -297,7 +297,7 @@ if (S_ISREG(sb.st_mode)) {
 }
 .EE
 .in
-.PP
+.P
 The definitions of most of the above file type test macros
 are provided if any of the following feature test macros is defined:
 .B _BSD_SOURCE
@@ -314,7 +314,7 @@ and
 are provided if
 .B _XOPEN_SOURCE
 is defined.
-.PP
+.P
 The definition of
 .B S_IFSOCK
 can also be exposed either by defining
@@ -323,7 +323,7 @@ with a value of 500 or greater or (since glibc 2.24) by defining both
 .B _XOPEN_SOURCE
 and
 .BR _XOPEN_SOURCE_EXTENDED .
-.PP
+.P
 The definition of
 .BR S_ISSOCK ()
 is exposed if any of the following feature test macros is defined:
@@ -338,7 +338,7 @@ with a value of 200112L or greater, or (since glibc 2.24) by defining both
 .B _XOPEN_SOURCE
 and
 .BR _XOPEN_SOURCE_EXTENDED .
-.PP
+.P
 The following mask values are defined for
 the file mode component of the
 .I st_mode
@@ -396,7 +396,7 @@ others have execute permission
 T}
 .TE
 .in
-.PP
+.P
 The set-group-ID bit
 .RB ( S_ISGID )
 has several special uses.
@@ -413,7 +413,7 @@ For a file that does not have the group execution bit
 .RB ( S_IXGRP )
 set,
 the set-group-ID bit indicates mandatory file/record locking.
-.PP
+.P
 The sticky bit
 .RB ( S_ISVTX )
 on a directory means that a file
@@ -424,7 +424,7 @@ process.
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
-.PP
+.P
 POSIX.1-1990 did not describe the
 .BR S_IFMT ,
 .BR S_IFSOCK ,
@@ -440,7 +440,7 @@ constants, but instead specified the use of
 the macros
 .BR S_ISDIR ()
 and so on.
-.PP
+.P
 The
 .BR S_ISLNK ()
 and
@@ -448,7 +448,7 @@ and
 macros were not in
 POSIX.1-1996;
 the former is from SVID 4, the latter from SUSv2.
-.PP
+.P
 UNIX\ V7 (and later systems) had
 .BR S_IREAD ,
 .BR S_IWRITE ,

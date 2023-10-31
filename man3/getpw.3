@@ -21,7 +21,7 @@ Standard C library
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <sys/types.h>
 .B #include <pwd.h>
-.PP
+.P
 .BI "[[deprecated]] int getpw(uid_t " uid ", char *" buf );
 .fi
 .SH DESCRIPTION
@@ -30,15 +30,15 @@ The
 function reconstructs the password line entry for
 the given user ID \fIuid\fP in the buffer \fIbuf\fP.
 The returned buffer contains a line of format
-.PP
+.P
 .in +4n
 .EX
 .B name:passwd:uid:gid:gecos:dir:shell
 .EE
 .in
-.PP
+.P
 The \fIpasswd\fP structure is defined in \fI<pwd.h>\fP as follows:
-.PP
+.P
 .in +4n
 .EX
 struct passwd {
@@ -52,7 +52,7 @@ struct passwd {
 };
 .EE
 .in
-.PP
+.P
 For more information about the fields of this structure, see
 .BR passwd (5).
 .SH RETURN VALUE
@@ -61,7 +61,7 @@ The
 function returns 0 on success; on error, it returns \-1, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 If
 .I uid
 is not found in the password database,

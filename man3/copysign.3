@@ -18,17 +18,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double copysign(double " x ", double " y );
 .BI "float copysignf(float " x ", float " y );
 .BI "long double copysignl(long double " x ", long double " y );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR copysign (),
 .BR copysignf (),
 .BR copysignl ():
@@ -42,7 +42,7 @@ These functions return a value whose absolute value matches that of
 .IR x ,
 but whose sign bit matches that of
 .IR y .
-.PP
+.P
 For example,
 .I "copysign(42.0,\ \-1.0)"
 and
@@ -53,7 +53,7 @@ On success, these functions return a value whose magnitude is taken from
 .I x
 and whose sign is taken from
 .IR y .
-.PP
+.P
 If
 .I x
 is a NaN,
@@ -83,7 +83,7 @@ On architectures where the floating-point formats are not IEEE 754 compliant,
 these functions may treat a negative zero as positive.
 .SH STANDARDS
 C11, POSIX.1-2008.
-.PP
+.P
 This function is defined in IEC 559 (and the appendix with
 recommended functions in IEEE 754/IEEE 854).
 .SH HISTORY

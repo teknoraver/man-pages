@@ -17,17 +17,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "size_t mbsnrtowcs(wchar_t " dest "[restrict ." len "], const char **restrict " src ,
 .BI "                  size_t " nms ", size_t " len \
 ", mbstate_t *restrict " ps );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR mbsnrtowcs ():
 .nf
     Since glibc 2.10:
@@ -46,7 +46,7 @@ the number of bytes to be converted, starting at
 is limited to at most
 .I nms
 bytes.
-.PP
+.P
 If
 .I dest
 is not NULL, the
@@ -120,13 +120,13 @@ characters written to
 .IR dest ,
 excluding the terminating null wide character,
 is returned.
-.PP
+.P
 According to POSIX.1,
 if the input buffer ends with an incomplete character,
 it is unspecified whether conversion stops at the end of
 the previous character (if any), or at the end of the input buffer.
 The glibc implementation adopts the former behavior.
-.PP
+.P
 If
 .I dest
 is NULL,
@@ -135,14 +135,14 @@ is ignored, and the conversion proceeds as
 above, except that the converted wide characters
 are not written out to memory,
 and that no destination length limit exists.
-.PP
+.P
 In both of the above cases, if
 .I ps
 is NULL, a static anonymous
 state known only to the
 .BR mbsnrtowcs ()
 function is used instead.
-.PP
+.P
 The programmer must ensure that there is room for at least
 .I len
 wide
@@ -188,7 +188,7 @@ depends on the
 .B LC_CTYPE
 category of the
 current locale.
-.PP
+.P
 Passing NULL as
 .I ps
 is not multithread safe.

@@ -85,7 +85,7 @@ ipv6 \- Linux IPv6 protocol implementation
 .nf
 .B #include <sys/socket.h>
 .B #include <netinet/in.h>
-.PP
+.P
 .IB tcp6_socket " = socket(AF_INET6, SOCK_STREAM, 0);"
 .IB raw6_socket " = socket(AF_INET6, SOCK_RAW, " protocol ");"
 .IB udp6_socket " = socket(AF_INET6, SOCK_DGRAM, " protocol ");"
@@ -97,12 +97,12 @@ implemented by the Linux kernel and glibc 2.1.
 The interface
 is based on the BSD sockets interface; see
 .BR socket (7).
-.PP
+.P
 The IPv6 API aims to be mostly compatible with the
 IPv4 API (see
 .BR ip (7)).
 Only differences are described in this man page.
-.PP
+.P
 To bind an
 .B AF_INET6
 socket to any process, the local address should be copied from the
@@ -114,21 +114,21 @@ In static initializations,
 .B IN6ADDR_ANY_INIT
 may also be used, which expands to a constant expression.
 Both of them are in network byte order.
-.PP
+.P
 The IPv6 loopback address (::1) is available in the global
 .I in6addr_loopback
 variable.
 For initializations,
 .B IN6ADDR_LOOPBACK_INIT
 should be used.
-.PP
+.P
 IPv4 connections can be handled with the v6 API by using the
 v4-mapped-on-v6 address type;
 thus a program needs to support only this API type to
 support both protocols.
 This is handled transparently by the address
 handling functions in the C library.
-.PP
+.P
 IPv4 and IPv6 share the local port space.
 When you get an IPv4 connection
 or packet to an IPv6 socket,
@@ -149,7 +149,7 @@ struct in6_addr {
 };
 .EE
 .in
-.PP
+.P
 .I sin6_family
 is always set to
 .BR AF_INET6 ;
@@ -169,19 +169,19 @@ Linux supports it only for link-local addresses, in that case
 .I sin6_scope_id
 contains the interface index (see
 .BR netdevice (7))
-.PP
+.P
 IPv6 supports several address types: unicast to address a single
 host, multicast to address a group of hosts,
 anycast to address the nearest member of a group of hosts
 (not implemented in Linux), IPv4-on-IPv6 to
 address an IPv4 host, and other reserved address types.
-.PP
+.P
 The address notation for IPv6 is a group of 8 4-digit hexadecimal
 numbers, separated with a \[aq]:\[aq].
 \&"::" stands for a string of 0 bits.
 Special addresses are ::1 for loopback and ::FFFF:<IPv4 address>
 for IPv4-mapped-on-IPv6.
-.PP
+.P
 The port space of IPv6 is shared with IPv4.
 .SS Socket options
 IPv6 supports some protocol-specific socket options that can be set with
@@ -368,7 +368,7 @@ or
 into other structures may not be.
 This is not
 a problem for 32-bit hosts like i386.
-.PP
+.P
 The
 .I sin6_flowinfo
 field is new in Linux 2.4.
@@ -386,7 +386,7 @@ Programs that assume that all address types can be stored safely in a
 need to be changed to use
 .I struct sockaddr_storage
 for that instead.
-.PP
+.P
 .BR SOL_IP ,
 .BR SOL_IPV6 ,
 .BR SOL_ICMPV6 ,
@@ -401,16 +401,16 @@ The IPv6 extended API as in RFC\ 2292 is currently only partly
 implemented;
 although the 2.2 kernel has near complete support for receiving options,
 the macros for generating IPv6 options are missing in glibc 2.1.
-.PP
+.P
 IPSec support for EH and AH headers is missing.
-.PP
+.P
 Flow label management is not complete and not documented here.
-.PP
+.P
 This man page is not complete.
 .SH SEE ALSO
 .BR cmsg (3),
 .BR ip (7)
-.PP
+.P
 RFC\ 2553: IPv6 BASIC API;
 Linux tries to be compliant to this.
 RFC\ 2460: IPv6 specification.

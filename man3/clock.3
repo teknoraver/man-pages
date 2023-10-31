@@ -16,7 +16,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <time.h>
-.PP
+.P
 .B clock_t clock(void);
 .fi
 .SH DESCRIPTION
@@ -50,7 +50,7 @@ XSI requires that
 .B CLOCKS_PER_SEC
 equals 1000000 independent
 of the actual resolution.
-.PP
+.P
 On several other implementations,
 the value returned by
 .BR clock ()
@@ -73,7 +73,7 @@ caller and its children, may be preferable.
 C11, POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, C89.
-.PP
+.P
 In glibc 2.17 and earlier,
 .BR clock ()
 was implemented on top of
@@ -89,7 +89,7 @@ The C standard allows for arbitrary values at the start of the program;
 subtract the value returned from a call to
 .BR clock ()
 at the start of the program to get maximum portability.
-.PP
+.P
 Note that the time can wrap around.
 On a 32-bit system where
 .B CLOCKS_PER_SEC

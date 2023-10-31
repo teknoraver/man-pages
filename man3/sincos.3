@@ -15,7 +15,7 @@ Math library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <math.h>
-.PP
+.P
 .BI "void sincos(double " x ", double *" sin ", double *" cos );
 .BI "void sincosf(float " x ", float *" sin ", float *" cos );
 .BI "void sincosl(long double " x ", long double *" sin ", long double *" cos );
@@ -31,7 +31,7 @@ Using this function can be more efficient than two separate calls to
 .BR sin (3)
 and
 .BR cos (3).
-.PP
+.P
 If
 .I x
 is a NaN,
@@ -39,7 +39,7 @@ a NaN is returned in
 .I *sin
 and
 .IR *cos .
-.PP
+.P
 If
 .I x
 is positive infinity or negative infinity,
@@ -56,7 +56,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Domain error: \fIx\fP is an infinity
@@ -93,7 +93,7 @@ To see the performance advantage of
 it may be necessary to disable
 .BR gcc (1)
 built-in optimizations, using flags such as:
-.PP
+.P
 .in +4n
 .EX
 cc \-O \-lm \-fno\-builtin prog.c

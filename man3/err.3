@@ -18,18 +18,18 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <err.h>
-.PP
+.P
 .BI "[[noreturn]] void err(int " eval ", const char *" fmt ", ...);"
 .BI "[[noreturn]] void errx(int " eval ", const char *" fmt ", ...);"
-.PP
+.P
 .BI "void warn(const char *" fmt ", ...);"
 .BI "void warnx(const char *" fmt ", ...);"
-.PP
+.P
 .B #include <stdarg.h>
-.PP
+.P
 .BI "[[noreturn]] void verr(int " eval ", const char *" fmt ", va_list " args );
 .BI "[[noreturn]] void verrx(int " eval ", const char *" fmt ", va_list " args );
-.PP
+.P
 .BI "void vwarn(const char *" fmt ", va_list " args );
 .BI "void vwarnx(const char *" fmt ", va_list " args );
 .fi
@@ -48,7 +48,7 @@ argument is not NULL, the
 .BR printf (3)-like
 formatted error message is output.
 The output is terminated by a newline character.
-.PP
+.P
 The
 .BR err (),
 .BR verr (),
@@ -63,13 +63,13 @@ preceded by another colon and space unless the
 .I fmt
 argument is
 NULL.
-.PP
+.P
 The
 .BR errx ()
 and
 .BR warnx ()
 functions do not append an error message.
-.PP
+.P
 The
 .BR err (),
 .BR verr (),
@@ -111,7 +111,7 @@ BSD.
 Display the current
 .I errno
 information string and exit:
-.PP
+.P
 .in +4n
 .EX
 p = malloc(size);
@@ -122,9 +122,9 @@ if (fd == \-1)
     err(EXIT_FAILURE, "%s", file_name);
 .EE
 .in
-.PP
+.P
 Display an error message and exit:
-.PP
+.P
 .in +4n
 .EX
 if (tm.tm_hour < START_TIME)
@@ -132,9 +132,9 @@ if (tm.tm_hour < START_TIME)
             start_time_string);
 .EE
 .in
-.PP
+.P
 Warn of an error:
-.PP
+.P
 .in +4n
 .EX
 fd = open(raw_device, O_RDONLY, 0);

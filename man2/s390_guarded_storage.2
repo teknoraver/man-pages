@@ -14,11 +14,11 @@ Standard C library
 .BR "#include <sys/syscall.h>         " \
 "/* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_s390_guarded_storage, int " command ,
 .BI "            struct gs_cb *" gs_cb );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR s390_guarded_storage (),
@@ -29,7 +29,7 @@ The
 .BR s390_guarded_storage ()
 system call enables the use of the Guarded Storage Facility
 (a z/Architecture-specific feature) for user-space processes.
-.PP
+.P
 .\" The description is based on
 .\" http://www-05.ibm.com/de/linux-on-z-ws-us/agenda/pdfs/8_-_Linux_Whats_New_-_Stefan_Raspl.pdf
 .\" and "z/Architecture Principles of Operation" obtained from
@@ -40,7 +40,7 @@ reading a pointer with a newly introduced "Load Guarded" (LGG)
 or "Load Logical and Shift Guarded" (LLGFSG) instructions will cause
 a range check on the loaded value and invoke a (previously set up)
 user-space handler if one of the guarded regions is affected.
-.PP
+.P
 The
 .\" The command description is copied from v4.12-rc1~139^2~56^2 commit message
 .I command
@@ -88,7 +88,7 @@ The broadcast guarded storage control block is consumed; a second broadcast
 without a refresh of the stored control block with
 .B GS_SET_BC_CB
 will not have any effect.
-.PP
+.P
 The
 .I gs_cb
 argument specifies the address of a guarded storage control block structure
@@ -99,7 +99,7 @@ command; all other aforementioned commands ignore this argument.
 On success, the return value of
 .BR s390_guarded_storage ()
 is 0.
-.PP
+.P
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
@@ -138,7 +138,7 @@ instructions and Guarded Storage Control Block and
 Guarded Storage Event Parameter List structure layouts
 is available in "z/Architecture Principles of Operations"
 beginning from the twelfth edition.
-.PP
+.P
 The
 .I gs_cb
 structure has a field
@@ -153,7 +153,7 @@ field), and its layout is available as a
 structure type definition in the
 .I asm/guarded_storage.h
 header.
-.\" .PP
+.\" .P
 .\" For the example of using the guarded storage facility, see
 .\" .UR https://developer.ibm.com/javasdk/2017/09/25/concurrent-scavenge-using-guarded-storage-facility-works/
 .\" the article with the description of its usage in the Java Garbage Collection

@@ -10,10 +10,10 @@ dsp56k \- DSP56001 interface device
 .SH SYNOPSIS
 .nf
 .B #include <asm/dsp56k.h>
-.PP
+.P
 .BI "ssize_t read(int " fd ", void *" data ", size_t " length );
 .BI "ssize_t write(int " fd ", void *" data ", size_t " length );
-.PP
+.P
 .BI "int ioctl(int " fd ", DSP56K_UPLOAD, struct dsp56k_upload *" program );
 .BI "int ioctl(int " fd ", DSP56K_SET_TX_WSIZE, int " wsize );
 .BI "int ioctl(int " fd ", DSP56K_SET_RX_WSIZE, int " wsize );
@@ -31,7 +31,7 @@ processor found in Atari Falcon030-compatible computers.
 The \fIdsp56k\fP special file is used to control the DSP56001, and
 to send and receive data using the bidirectional handshaked host
 port.
-.PP
+.P
 To send a data stream to the signal processor, use
 .BR write (2)
 to the
@@ -41,7 +41,7 @@ to receive processed data.
 The data can be sent or
 received in 8, 16, 24, or 32-bit quantities on the host side, but will
 always be seen as 24-bit quantities in the DSP56001.
-.PP
+.P
 The following
 .BR ioctl (2)
 calls are used to control the

@@ -14,7 +14,7 @@ Dynamic linking library
 .B #define _GNU_SOURCE
 .B #include <link.h>
 .B #include <dlfcn.h>
-.PP
+.P
 .BR "int dlinfo(void *restrict " handle ", int " request \
 ", void *restrict " info );
 .fi
@@ -36,7 +36,7 @@ The
 argument is a pointer to a buffer used to store information
 returned by the call; the type of this argument depends on
 .IR request .
-.PP
+.P
 The following values are supported for
 .I request
 (with the corresponding type for
@@ -231,7 +231,7 @@ and
 .B RTLD_DI_SERINFO
 requests to obtain the library search path list for the library.
 Here is an example of what we might see when running the program:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out /lib64/libm.so.6\fP

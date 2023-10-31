@@ -15,17 +15,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double ceil(double " x );
 .BI "float ceilf(float " x );
 .BI "long double ceill(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR ceilf (),
 .BR ceill ():
 .nf
@@ -36,7 +36,7 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 These functions return the smallest integral value that is not less than
 .IR x .
-.PP
+.P
 For example,
 .I ceil(0.5)
 is 1.0, and
@@ -45,7 +45,7 @@ is 0.0.
 .SH RETURN VALUE
 These functions return the ceiling of
 .IR x .
-.PP
+.P
 If
 .I x
 is integral, +0, \-0, NaN, or infinite,
@@ -74,7 +74,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to
@@ -97,7 +97,7 @@ the maximum value of the exponent is 127 (respectively, 1023),
 and the number of mantissa bits
 including the implicit bit
 is 24 (respectively, 53).)
-.PP
+.P
 The integral value returned by these functions may be too large
 to store in an integer type
 .RI ( int ,

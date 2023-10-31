@@ -15,7 +15,7 @@ deprecated mutex creation attributes
 .
 .SH SYNOPSIS
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_mutexattr_setkind_np(pthread_mutexattr_t *" attr ", int " kind ");"
 .BI "int pthread_mutexattr_getkind_np(const pthread_mutexattr_t *" attr ", int *" kind ");"
 .
@@ -29,7 +29,7 @@ instead.
 .
 .SH "RETURN VALUE"
 \fBpthread_mutexattr_getkind_np\fP always returns 0.
-.PP
+.P
 \fBpthread_mutexattr_setkind_np\fP
 returns 0 on success and a non-zero error code on error.
 .

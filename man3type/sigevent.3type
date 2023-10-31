@@ -10,7 +10,7 @@ sigevent, sigval \- structure for notification from asynchronous routines
 .SH SYNOPSIS
 .EX
 .B #include <signal.h>
-.PP
+.P
 .B struct sigevent {
 .BR "    int             sigev_notify;" "  /* Notification type */"
 .BR "    int             sigev_signo;" "   /* Signal number */"
@@ -27,7 +27,7 @@ sigevent, sigval \- structure for notification from asynchronous routines
 .BR "                                " "   /* ID of thread to signal"
 .BR "                                " "      (SIGEV_THREAD_ID) */"
 .B };
-.PP
+.P
 .BR "union sigval {" "                     /* Data passed with notification */"
 .BR "    int             sival_int;" "     /* Integer value */"
 .BR "    void           *sival_ptr;" "     /* Pointer value */"
@@ -41,7 +41,7 @@ structure is used by various APIs
 to describe the way a process is to be notified about an event
 (e.g., completion of an asynchronous request, expiration of a timer,
 or the arrival of a message).
-.PP
+.P
 The definition shown in the SYNOPSIS is approximate:
 some of the fields in the
 .I sigevent
@@ -49,7 +49,7 @@ structure may be defined as part of a union.
 Programs should employ only those fields relevant
 to the value specified in
 .IR sigev_notify .
-.PP
+.P
 The
 .I sigev_notify
 field specifies how notification is to be performed.
@@ -117,7 +117,7 @@ Data passed with a signal.
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
-.PP
+.P
 .I <aio.h>
 and
 .I <time.h>

@@ -20,7 +20,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/socket.h>
-.PP
+.P
 .BI "int getpeername(int " sockfd ", struct sockaddr *restrict " addr ,
 .BI "                socklen_t *restrict " addrlen );
 .fi
@@ -37,7 +37,7 @@ by
 .IR addr .
 On return it contains the actual size of the name returned (in bytes).
 The name is truncated if the buffer provided is too small.
-.PP
+.P
 The returned address is truncated if the buffer provided is too small;
 in this case,
 .I addrlen

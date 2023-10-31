@@ -11,23 +11,23 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "int scanf(const char *restrict " format ", ...);"
 .BI "int fscanf(FILE *restrict " stream ,
 .BI "           const char *restrict " format ", ...);"
-.PP
+.P
 .B #include <stdarg.h>
-.PP
+.P
 .BI "int vscanf(const char *restrict " format ", va_list " ap );
 .BI "int vfscanf(FILE *restrict " stream ,
 .BI "           const char *restrict " format ", va_list " ap );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR vscanf (),
 .BR vfscanf ():
 .nf
@@ -49,7 +49,7 @@ and parse them later with
 .BR sscanf (3)
 or more specialized functions such as
 .BR strtol (3).
-.PP
+.P
 The
 .BR scanf ()
 function reads input from the standard input stream
@@ -58,7 +58,7 @@ and
 .BR fscanf ()
 reads input from the stream pointer
 .IR stream .
-.PP
+.P
 The
 .BR vfscanf ()
 function is analogous to
@@ -77,7 +77,7 @@ On success, these functions return the number of input items
 successfully matched and assigned;
 this can be fewer than provided for,
 or even zero, in the event of an early matching failure.
-.PP
+.P
 The value
 .B EOF
 is returned if the end of input is reached before either the first

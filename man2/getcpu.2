@@ -14,7 +14,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <sched.h>
-.PP
+.P
 .BI "int getcpu(unsigned int *_Nullable " cpu ", \
 unsigned int *_Nullable " node );
 .fi
@@ -35,7 +35,7 @@ When either
 or
 .I node
 is NULL nothing is written to the respective pointer.
-.PP
+.P
 The information placed in
 .I cpu
 is guaranteed to be current only at the time of the call:
@@ -67,21 +67,21 @@ glibc 2.29.
 .\"
 .SS C library/kernel differences
 The kernel system call has a third argument:
-.PP
+.P
 .in +4n
 .nf
 .BI "int getcpu(unsigned int *" cpu ", unsigned int *" node ,
 .BI "           struct getcpu_cache *" tcache );
 .fi
 .in
-.PP
+.P
 The
 .I tcache
 argument is unused since Linux 2.6.24,
 and (when invoking the system call directly)
 should be specified as NULL,
 unless portability to Linux 2.6.23 or earlier is required.
-.PP
+.P
 .\" commit 4307d1e5ada595c87f9a4d16db16ba5edb70dcb1
 .\" Author: Ingo Molnar <mingo@elte.hu>
 .\" Date:   Wed Nov 7 18:37:48 2007 +0100

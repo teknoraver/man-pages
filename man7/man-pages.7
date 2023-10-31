@@ -86,12 +86,12 @@ submitted inline.
 The first command in a man page should be a
 .B TH
 command:
-.PP
+.P
 .RS
 .B \&.TH
 .I "title section date source manual-section"
 .RE
-.PP
+.P
 The arguments of the command are as follows:
 .TP
 .I title
@@ -126,7 +126,7 @@ Most manual pages should include at least the
 sections.
 Arrange a new manual page so that sections
 are placed in the order shown in the list.
-.PP
+.P
 .RS
 .TS
 l l.
@@ -163,7 +163,7 @@ COPYRIGHT	[Not used in man-pages]
 \fBSEE ALSO\fP
 .TE
 .RE
-.PP
+.P
 .IR "Where a traditional heading would apply" ", " "please use it" ;
 this kind of consistency can make the information easier to understand.
 If you must, you can create your own
@@ -172,7 +172,7 @@ be especially useful for pages in Sections 4 and 5).
 However, before doing this, consider whether you could use the
 traditional headings, with some subsections (\fI.SS\fP) within
 those sections.
-.PP
+.P
 The following list elaborates on the contents of each of
 the above sections.
 .TP
@@ -386,7 +386,7 @@ The
 .BR syscalls (2)
 manual page also provides information about kernel versions
 in which various system calls first appeared.
-.PP
+.P
 Old versions of standards should be mentioned here,
 rather than in STANDARDS,
 for example,
@@ -479,13 +479,13 @@ project.
 Wrap the function prototype(s) in a
 .IR .nf / .fi
 pair to prevent filling.
-.PP
+.P
 In general, where more than one function prototype is shown in the SYNOPSIS,
 the prototypes should
 .I not
 be separated by blank lines.
 However, blank lines (achieved using
-.IR .PP )
+.IR .P )
 may be added in the following cases:
 .IP \[bu] 3
 to separate long lists of function prototypes into related groups
@@ -493,7 +493,7 @@ to separate long lists of function prototypes into related groups
 .BR list (3));
 .IP \[bu]
 in other cases that may improve readability.
-.PP
+.P
 In the SYNOPSIS, a long function prototype may need to be
 continued over to the next line.
 The continuation line is indented according to the following rules:
@@ -565,7 +565,7 @@ Make free use of
 macro pairs to allow table cells to be broken over multiple lines
 (also bearing in mind that pages may sometimes be rendered to a
 width of less than 80 columns).
-.PP
+.P
 For examples of all of the above, see the source code of various pages.
 .SH STYLE GUIDE
 The following subsections describe the preferred style for the
@@ -584,7 +584,7 @@ pronoun is acceptable.
 For manual pages that describe a command (typically in Sections 1 and 8),
 the arguments are always specified using italics,
 .IR "even in the SYNOPSIS section" .
-.PP
+.P
 The name of the command, and its options, should
 always be formatted in bold.
 .\"
@@ -593,11 +593,11 @@ For manual pages that describe functions (typically in Sections 2 and 3),
 the arguments are always specified using italics,
 .IR "even in the SYNOPSIS section" ,
 where the rest of the function is specified in bold:
-.PP
+.P
 .BI "    int myfunction(int " argc ", char **" argv );
-.PP
+.P
 Variable names should, like argument names, be specified in italics.
-.PP
+.P
 Any reference to the subject of the current manual page
 should be written with the name in bold followed by
 a pair of parentheses in Roman (normal) font.
@@ -606,11 +606,11 @@ For example, in the
 man page, references to the subject of the page would be written as:
 .BR fcntl ().
 The preferred way to write this in the source file is:
-.PP
+.P
 .EX
     .BR fcntl ()
 .EE
-.PP
+.P
 (Using this format, rather than the use of "\efB...\efP()"
 makes it easier to write tools that parse man page source files.)
 .\"
@@ -676,7 +676,7 @@ usually covered by this type of list.
 Numbered notes
 Not really a list,
 but the syntax is identical to "positional lists".
-.PP
+.P
 There should always be exactly
 2 spaces between the list symbol and the elements.
 This doesn't apply to "tagged paragraphs",
@@ -684,14 +684,14 @@ which use the default indentation rules.
 .\"
 .SS Formatting conventions (general)
 Paragraphs should be separated by suitable markers (usually either
-.I .PP
+.I .P
 or
 .IR .IP ).
 Do
 .I not
 separate paragraphs using blank lines, as this results in poor rendering
 in some output formats (such as PostScript and PDF).
-.PP
+.P
 Filenames (whether pathnames, or references to header files)
 are always in italics (e.g.,
 .IR <stdio.h> ),
@@ -701,26 +701,26 @@ When referring to a standard header file include,
 specify the header file surrounded by angle brackets,
 in the usual C way (e.g.,
 .IR <stdio.h> ).
-.PP
+.P
 Special macros, which are usually in uppercase, are in bold (e.g.,
 .BR MAXINT ).
 Exception: don't boldface NULL.
-.PP
+.P
 When enumerating a list of error codes, the codes are in bold (this list
 usually uses the
 .B \&.TP
 macro).
-.PP
+.P
 Complete commands should, if long,
 be written as an indented line on their own,
 with a blank line before and after the command, for example
-.PP
+.P
 .in +4n
 .EX
 man 7 man\-pages
 .EE
 .in
-.PP
+.P
 If the command is short, then it can be included inline in the text,
 in italic format, for example,
 .IR "man 7 man-pages" .
@@ -728,23 +728,23 @@ In this case, it may be worth using nonbreaking spaces
 (\e[ti]) at suitable places in the command.
 Command options should be written in italics (e.g.,
 .IR \-l ).
-.PP
+.P
 Expressions, if not written on a separate indented line, should
 be specified in italics.
 Again, the use of nonbreaking spaces may be appropriate
 if the expression is inlined with normal text.
-.PP
+.P
 When showing example shell sessions,
 user input should be formatted in bold,
 for example
-.PP
+.P
 .in +4n
 .EX
 $ \fBdate\fP
 Thu Jul  7 13:01:27 CEST 2016
 .EE
 .in
-.PP
+.P
 Any reference to another man page
 should be written with the name in bold,
 .I always
@@ -753,15 +753,15 @@ formatted in Roman (normal) font, without any
 separating spaces (e.g.,
 .BR intro (2)).
 The preferred way to write this in the source file is:
-.PP
+.P
 .EX
     .BR intro (2)
 .EE
-.PP
+.P
 (Including the section number in cross references lets tools like
 .BR man2html (1)
 create properly hyperlinked pages.)
-.PP
+.P
 Control characters should be written in bold face,
 with no quotes; for example,
 .BR \[ha]X .
@@ -771,7 +771,7 @@ Starting with release 2.59,
 follows American spelling conventions
 (previously, there was a random mix of British and American spellings);
 please write all new pages and patches according to these conventions.
-.PP
+.P
 Aside from the well-known spelling differences,
 there are a few other subtleties to watch for:
 .IP \[bu] 3
@@ -797,7 +797,7 @@ capitalize the first word in the heading, but otherwise use lowercase,
 except where English usage (e.g., proper nouns) or programming
 language requirements (e.g., identifier names) dictate otherwise.
 For example:
-.PP
+.P
 .in +4n
 .EX
 \&.SS Unicode under Linux
@@ -815,14 +815,14 @@ format them using the
 and
 .I .EE
 macros, and surround them with suitable paragraph markers (either
-.I .PP
+.I .P
 or
 .IR .IP ).
 For example:
-.PP
+.P
 .in +4n
 .EX
-\&.PP
+\&.P
 \&.in +4n
 \&.EX
 int
@@ -832,7 +832,7 @@ main(int argc, char *argv[])
 }
 \&.EE
 \&.in
-\&.PP
+\&.P
 .EE
 .in
 .SS Preferred terms
@@ -897,7 +897,7 @@ Except if referring to result of "uname\ \-m" or similar
 T}
 zeros	zeroes
 .TE
-.PP
+.P
 See also the discussion
 .I Hyphenation of attributive compounds
 below.
@@ -958,10 +958,10 @@ is the
 .IR "null byte" ,
 a byte with the value 0, represented in C via the character constant
 .IR \[aq]\e0\[aq] .
-.PP
+.P
 The preferred term for the pointer is "null pointer" or simply "NULL";
 avoid writing "NULL pointer".
-.PP
+.P
 The preferred term for the byte is "null byte".
 Avoid writing "NUL", since it is too easily confused with "NULL".
 Avoid also the terms "zero byte" and "null character".
@@ -977,7 +977,7 @@ macro pair
 .BR groff_man (7)).
 This produces proper hyperlinks that can be used in a web browser,
 when rendering a page with, say:
-.PP
+.P
 .in +4n
 .EX
 BROWSER=firefox man -H pagename
@@ -988,11 +988,11 @@ In general, the use of abbreviations such as "e.g.", "i.e.", "etc.",
 "cf.", and "a.k.a." should be avoided,
 in favor of suitable full wordings
 ("for example", "that is", "and so on", "compare to", "also known as").
-.PP
+.P
 The only place where such abbreviations may be acceptable is in
 .I short
 parenthetical asides (e.g., like this one).
-.PP
+.P
 Always include periods in such abbreviations, as shown here.
 In addition, "e.g." and "i.e." should always be followed by a comma.
 .SS Em-dashes
@@ -1046,7 +1046,7 @@ subcomponent
 subdirectory
 subsystem
 .TE
-.PP
+.P
 Hyphens should be retained when the prefixes are used in nonstandard
 English words, with trademarks, proper nouns, acronyms, or compound terms.
 Some examples:
@@ -1058,7 +1058,7 @@ non-English
 non-NULL
 non-real-time
 .TE
-.PP
+.P
 Finally, note that "re-create" and "recreate" are two different verbs,
 and the former is probably what you want.
 .\"
@@ -1069,15 +1069,15 @@ for man page cross references such as
 or when writing options that have a leading dash, such as in
 .IR "ls\ \-l"),
 use the following form in the man page source:
-.PP
+.P
 .in +4n
 .EX
 \e\-
 .EE
 .in
-.PP
+.P
 This guideline applies also to code examples.
-.PP
+.P
 The use of real minus signs serves the following purposes:
 .\" https://lore.kernel.org/linux-man/20210121061158.5ul7226fgbrmodbt@localhost.localdomain/
 .IP \[bu] 3
@@ -1087,26 +1087,26 @@ notably in PDF and on Unicode/UTF\-8-capable terminals.
 .IP \[bu]
 To generate glyphs that when copied from rendered pages will
 produce real minus signs when pasted into a terminal.
-.PP
+.P
 To produce unslanted single quotes that render well in ASCII, UTF-8, and PDF,
 use "\e[aq]" ("apostrophe quote"); for example
-.PP
+.P
 .in +4n
 .EX
 \e[aq]C\e[aq]
 .EE
 .in
-.PP
+.P
 where
 .I C
 is the quoted character.
 This guideline applies also to character constants used in code examples.
-.PP
+.P
 Where a proper caret (\[ha]) that renders well in both a terminal and PDF
 is required, use "\\[ha]".
 This is especially necessary in code samples,
 to get a nicely rendered caret when rendering to PDF.
-.PP
+.P
 Using a naked "\[ti]" character results in a poor rendering in PDF.
 Instead use "\\[ti]".
 This is especially necessary in code samples,
@@ -1195,7 +1195,7 @@ as in:
 .in
 .IP
 Always do this if the explanatory text includes a shell session log.
-.PP
+.P
 If you include a shell session log demonstrating the use of a program
 or other system feature:
 .IP \[bu] 3
@@ -1205,7 +1205,7 @@ Indent the session log by four spaces.
 .IP \[bu]
 Boldface the user input text,
 to distinguish it from output produced by the system.
-.PP
+.P
 For some examples of what example programs should look like, see
 .BR wait (2)
 and

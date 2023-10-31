@@ -23,17 +23,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double log10(double " x );
 .BI "float log10f(float " x );
 .BI "long double log10l(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR log10f (),
 .BR log10l ():
 .nf
@@ -47,7 +47,7 @@ These functions return the base 10 logarithm of
 .SH RETURN VALUE
 On success, these functions return the base 10 logarithm of
 .IR x .
-.PP
+.P
 For special cases, including where
 .I x
 is 0, 1, negative, infinity, or NaN, see
@@ -57,7 +57,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 For a discussion of the errors that can occur for these functions, see
 .BR log (3).
 .SH ATTRIBUTES
@@ -80,7 +80,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to

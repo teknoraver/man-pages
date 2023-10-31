@@ -15,15 +15,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .B pid_t vfork(void);
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR vfork ():
 .nf
     Since glibc 2.12:
@@ -61,7 +61,7 @@ just like
 creates a child process of the calling process.
 For details and return value and errors, see
 .BR fork (2).
-.PP
+.P
 .BR vfork ()
 is a special case of
 .BR clone (2).
@@ -70,7 +70,7 @@ the parent process.
 It may be useful in performance-sensitive applications
 where a child is created which then immediately issues an
 .BR execve (2).
-.PP
+.P
 .BR vfork ()
 differs from
 .BR fork (2)
@@ -90,7 +90,7 @@ established by the parent process and flushing the parent's
 .BR stdio (3)
 buffers), but may call
 .BR _exit (2).
-.PP
+.P
 As with
 .BR fork (2),
 the child process created by
@@ -101,7 +101,7 @@ the
 .BR vfork ()
 call differs only in the treatment of the virtual address space,
 as described above.
-.PP
+.P
 Signals sent to the parent
 arrive after the child releases the parent's memory
 (i.e., after the child terminates
@@ -145,7 +145,7 @@ remaining blocked until the child either terminates or calls
 .BR execve (2),
 and cannot rely on any specific behavior with respect to shared memory.
 .\" In AIXv3.1 vfork is equivalent to fork.
-.PP
+.P
 Some consider the semantics of
 .BR vfork ()
 to be an architectural blemish, and the 4.2BSD man page stated:
@@ -211,7 +211,7 @@ LinuxThreads threading library.
 (See
 .BR pthreads (7)
 for a description of Linux threading libraries.)
-.PP
+.P
 A call to
 .BR vfork ()
 is equivalent to calling
@@ -219,7 +219,7 @@ is equivalent to calling
 with
 .I flags
 specified as:
-.PP
+.P
 .in +4n
 .EX
  CLONE_VM | CLONE_VFORK | SIGCHLD
@@ -231,7 +231,7 @@ None.
 4.3BSD; POSIX.1-2001 (but marked OBSOLETE).
 POSIX.1-2008 removes the specification of
 .BR vfork ().
-.PP
+.P
 The
 .BR vfork ()
 system call appeared in 3.0BSD.
@@ -261,7 +261,7 @@ changes memory, those changes may result in an inconsistent process state
 from the perspective of the parent process
 (e.g., memory changes would be visible in the parent,
 but changes to the state of open file descriptors would not be visible).
-.PP
+.P
 When
 .BR vfork ()
 is called in a multithreaded process,

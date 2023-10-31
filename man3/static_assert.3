@@ -11,9 +11,9 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <assert.h>
-.PP
+.P
 .BI "void static_assert(scalar " constant-expression ", const char *" msg );
-.PP
+.P
 /* Since C23: */
 .BI "void static_assert(scalar " constant-expression );
 .fi
@@ -23,14 +23,14 @@ This macro is similar to
 but it works at compile time,
 generating a compilation error (with an optional message)
 when the input is false (i.e., compares equal to zero).
-.PP
+.P
 If the input is nonzero,
 no code is emitted.
-.PP
+.P
 .I msg
 must be a string literal.
 Since C23, this argument is optional.
-.PP
+.P
 There's a keyword,
 .BR \%_Static_assert (),
 that behaves identically,
@@ -57,7 +57,7 @@ a macro
 can be written in terms of
 .BR \%static_assert ().
 The following program uses the macro to get the size of an array safely.
-.PP
+.P
 .in +4n
 .\" SRC BEGIN (must_be.c)
 .EX

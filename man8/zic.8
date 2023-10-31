@@ -194,37 +194,37 @@ the named file rather than in the standard location.
 .B \*-v
 Be more verbose, and complain about the following situations:
 .RS
-.PP
+.P
 The input specifies a link to a link,
 something not supported by some older parsers, including
 .B zic
 itself through release 2022e.
-.PP
+.P
 A year that appears in a data file is outside the range
 of representable years.
-.PP
+.P
 A time of 24:00 or more appears in the input.
 Pre-1998 versions of
 .B zic
 prohibit 24:00, and pre-2007 versions prohibit times greater than 24:00.
-.PP
+.P
 A rule goes past the start or end of the month.
 Pre-2004 versions of
 .B zic
 prohibit this.
-.PP
+.P
 A time zone abbreviation uses a
 .B %z
 format.
 Pre-2015 versions of
 .B zic
 do not support this.
-.PP
+.P
 A timestamp contains fractional seconds.
 Pre-2018 versions of
 .B zic
 do not support this.
-.PP
+.P
 The input contains abbreviations that are mishandled by pre-2018 versions of
 .B zic
 due to a longstanding coding bug.
@@ -242,20 +242,20 @@ and
 .q Su
 for
 .q Sun .
-.PP
+.P
 The output file does not contain all the information about the
 long-term future of a timezone, because the future cannot be summarized as
 an extended POSIX TZ string.  For example, as of 2023 this problem
 occurs for Morocco's daylight-saving rules, as these rules are based
 on predictions for when Ramadan will be observed, something that
 an extended POSIX TZ string cannot represent.
-.PP
+.P
 The output contains data that may not be handled properly by client
 code designed for older
 .B zic
 output formats.  These compatibility issues affect only timestamps
 before 1970 or after the start of 2038.
-.PP
+.P
 The output contains a truncated leap second table,
 which can cause some older TZif readers to misbehave.
 This can occur if the
@@ -264,17 +264,17 @@ option is used, and either an Expires line is present or
 the
 .B "\*-r"
 option is also used.
-.PP
+.P
 The output file contains more than 1200 transitions,
 which may be mishandled by some clients.
 The current reference client supports at most 2000 transitions;
 pre-2014 versions of the reference client support at most 1200
 transitions.
-.PP
+.P
 A time zone abbreviation has fewer than 3 or more than 6 characters.
 POSIX requires at least 3, and requires implementations to support
 at least 6.
-.PP
+.P
 An output file name contains a byte that is not an ASCII letter,
 .q "\*-" ,
 .q "/" ,
@@ -288,7 +288,7 @@ or that starts with
 Input files use the format described in this section; output files use
 .BR tzfile (5)
 format.
-.PP
+.P
 Input files should be text files, that is, they should be a series of
 zero or more lines, each ending in a newline byte and containing at
 most 2048 bytes counting the newline, and without any NUL bytes.
@@ -303,7 +303,7 @@ nearly any character, other software will work better if these are
 limited to the restricted syntax described under the
 .B \*-v
 option.
-.PP
+.P
 Input lines are made up of fields.
 Fields are separated from one another by one or more white space characters.
 The white space characters are space, form feed, carriage return, newline,
@@ -316,7 +316,7 @@ White space characters and sharp characters may be enclosed in double quotes
 Any line that is blank (after comment stripping) is ignored.
 Nonblank lines are expected to be of one of three types:
 rule lines, zone lines, and link lines.
-.PP
+.P
 Names must be in English and are case insensitive.
 They appear in several contexts, and include month and weekday names
 and keywords such as
@@ -327,7 +327,7 @@ and
 .BR "Zone" .
 A name can be abbreviated by omitting all but an initial prefix; any
 abbreviation must be unambiguous in context.
-.PP
+.P
 A rule line has the form
 .nf
 .ti +.5i
@@ -528,7 +528,7 @@ of time zone abbreviations to be used when this rule is in effect.
 If this field is
 .q \*- ,
 the variable part is null.
-.PP
+.P
 A zone line has the form
 .sp
 .nf
@@ -632,7 +632,7 @@ Continuation lines may contain
 .q "until"
 information, just as zone lines do, indicating that the next line is a further
 continuation.
-.PP
+.P
 If a zone changes at the same instant that a rule would otherwise take
 effect in the earlier zone or continuation line, the rule is ignored.
 A zone or continuation line
@@ -647,7 +647,7 @@ earliest rule use the rule in effect after
 first transition into standard time.
 In a single zone it is an error if two rules take effect at the same
 instant, or if two zone changes take effect at the same instant.
-.PP
+.P
 If a continuation line subtracts
 .I N
 seconds from the UT offset after a transition that would be
@@ -683,7 +683,7 @@ However,
 .B zic
 interprets this more sensibly as a single transition from 02:00 CST (\*-05) to
 02:00 CDT (\*-05).
-.PP
+.P
 A link line has the form
 .sp
 .nf
@@ -727,12 +727,12 @@ Zone	Etc/GMT\0\00\0\0\*-\0\0GMT
 .fi
 The two links are chained together, and G_M_T, Greenwich, and Etc/GMT
 all name the same zone.
-.PP
+.P
 Except for continuation lines,
 lines may appear in any order in the input.
 However, the behavior is unspecified if multiple zone or link lines
 define the same name.
-.PP
+.P
 The file that describes leap seconds can have leap lines and an
 expiration line.
 Leap lines have the following form:
@@ -775,7 +775,7 @@ or
 .q "Rolling"
 if the leap second time given by the other fields should be interpreted as
 local (wall clock) time.
-.PP
+.P
 Rolling leap seconds were implemented back when it was not
 clear whether common practice was rolling or stationary,
 with concerns that one would see
@@ -788,7 +788,7 @@ which means rolling leap seconds are not used in practice;
 also, they are not supported if the
 .B \*-r
 option is used.
-.PP
+.P
 The expiration line, if present, has the form:
 .nf
 .ti +.5i
@@ -856,7 +856,7 @@ and Swiss daylight saving rules (defined with lines beginning with
 .q "Rule Swiss")
 apply.  From 1981 to the present, EU daylight saving rules have
 applied, and the UTC offset has remained at one hour.
-.PP
+.P
 In 1941 and 1942, daylight saving time applied from the first Monday
 in May at 01:00 to the first Monday in October at 02:00.
 The pre-1981 EU daylight-saving rules have no effect
@@ -864,7 +864,7 @@ here, but are included for completeness.  Since 1981, daylight
 saving has begun on the last Sunday in March at 01:00 UTC.
 Until 1995 it ended the last Sunday in September at 01:00 UTC,
 but this changed to the last Sunday in October starting in 1996.
-.PP
+.P
 For purposes of display,
 .q "LMT"
 and
@@ -886,7 +886,7 @@ you may need to use local standard time in the
 .B AT
 field of the earliest transition time's rule to ensure that
 the earliest transition time recorded in the compiled file is correct.
-.PP
+.P
 If,
 for a particular timezone,
 a clock advance caused by the start of daylight saving

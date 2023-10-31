@@ -12,17 +12,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "void flockfile(FILE *" filehandle );
 .BI "int ftrylockfile(FILE *" filehandle );
 .BI "void funlockfile(FILE *" filehandle );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 All functions shown above:
 .nf
     /* Since glibc 2.24: */ _POSIX_C_SOURCE >= 199309L
@@ -41,13 +41,13 @@ For each library call, these functions wait until the
 object
 is no longer locked by a different thread, then lock it, do the
 requested I/O, and unlock the object again.
-.PP
+.P
 (Note: this locking has nothing to do with the file locking done
 by functions like
 .BR flock (2)
 and
 .BR lockf (3).)
-.PP
+.P
 All this is invisible to the C-programmer, but there may be two
 reasons to wish for more detailed control.
 On the one hand, maybe
@@ -55,7 +55,7 @@ a series of I/O actions by one thread belongs together, and should
 not be interrupted by the I/O of some other thread.
 On the other hand, maybe the locking overhead should be avoided
 for greater efficiency.
-.PP
+.P
 To this end, a thread can explicitly lock the
 .I FILE
 object,
@@ -72,7 +72,7 @@ instead of
 .BR getc (3)
 and
 .BR putc (3).
-.PP
+.P
 The
 .BR flockfile ()
 function waits for
@@ -83,11 +83,11 @@ current thread owner of
 .IR *filehandle ,
 and increments
 the lockcount.
-.PP
+.P
 The
 .BR funlockfile ()
 function decrements the lock count.
-.PP
+.P
 The
 .BR ftrylockfile ()
 function is a nonblocking version
@@ -125,7 +125,7 @@ T}	Thread safety	MT-Safe
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
-.PP
+.P
 These functions are available when
 .B _POSIX_THREAD_SAFE_FUNCTIONS
 is defined.

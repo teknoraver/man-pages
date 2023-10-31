@@ -16,15 +16,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int lockf(int " fd ", int " cmd ", off_t " len );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR lockf ():
 .nf
     _XOPEN_SOURCE >= 500
@@ -53,7 +53,7 @@ is the current file position, and if
 is zero, the section extends from the current file position to
 infinity, encompassing the present and future end-of-file positions.
 In all cases, the section may extend past current end-of-file.
-.PP
+.P
 On Linux,
 .BR lockf ()
 is just an interface on top of
@@ -68,7 +68,7 @@ and
 locks unspecified.
 A portable application should probably avoid mixing calls
 to these interfaces.
-.PP
+.P
 Valid operations are given below:
 .TP
 .B F_LOCK
@@ -164,7 +164,7 @@ POSIX.1-2001, SVr4.
 .SH SEE ALSO
 .BR fcntl (2),
 .BR flock (2)
-.PP
+.P
 .I locks.txt
 and
 .I mandatory\-locking.txt

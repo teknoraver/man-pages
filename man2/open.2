@@ -37,25 +37,25 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <fcntl.h>
-.PP
+.P
 .BI "int open(const char *" pathname ", int " flags ", ..."
 .BI "           \fR/*\fP mode_t " mode " \fR*/\fP );"
-.PP
+.P
 .BI "int creat(const char *" pathname ", mode_t " mode );
-.PP
+.P
 .BI "int openat(int " dirfd ", const char *" pathname ", int " flags ", ..."
 .BI "           \fR/*\fP mode_t " mode " \fR*/\fP );"
-.PP
+.P
 /* Documented separately, in \fBopenat2\fP(2): */
 .BI "int openat2(int " dirfd ", const char *" pathname ,
 .BI "           const struct open_how *" how ", size_t " size );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR openat ():
 .nf
     Since glibc 2.10:
@@ -75,7 +75,7 @@ is specified in
 .IR flags )
 be created by
 .BR open ().
-.PP
+.P
 The return value of
 .BR open ()
 is a file descriptor, a small, nonnegative integer that is an index
@@ -86,7 +86,7 @@ in subsequent system calls
 etc.) to refer to the open file.
 The file descriptor returned by a successful call will be
 the lowest-numbered file descriptor not currently open for the process.
-.PP
+.P
 By default, the new file descriptor is set to remain open across an
 .BR execve (2)
 (i.e., the
@@ -98,7 +98,7 @@ is initially disabled); the
 flag, described below, can be used to change this default.
 The file offset is set to the beginning of the file (see
 .BR lseek (2)).
-.PP
+.P
 A call to
 .BR open ()
 creates a new
@@ -111,7 +111,7 @@ this reference is unaffected if
 .I pathname
 is subsequently removed or modified to refer to a different file.
 For further details on open file descriptions, see NOTES.
-.PP
+.P
 The argument
 .I flags
 must include one of the following
@@ -119,7 +119,7 @@ must include one of the following
 .BR O_RDONLY ", " O_WRONLY ", or " O_RDWR .
 These request opening the file read-only, write-only, or read/write,
 respectively.
-.PP
+.P
 In addition, zero or more file creation flags and file status flags
 can be
 bitwise ORed
@@ -159,7 +159,7 @@ The file status flags can be retrieved and (in some cases)
 modified; see
 .BR fcntl (2)
 for details.
-.PP
+.P
 The full list of file creation flags and file status flags is as follows:
 .TP
 .B O_APPEND
@@ -907,7 +907,7 @@ The
 system call operates in exactly the same way as
 .BR open (),
 except for the differences described here.
-.PP
+.P
 The
 .I dirfd
 argument is used in conjunction with the
@@ -948,7 +948,7 @@ must be a directory that was opened for reading
 or using the
 .B O_PATH
 flag.
-.PP
+.P
 If the pathname given in
 .I pathname
 is relative, and
@@ -1309,7 +1309,7 @@ Regardless of whether an implementation supports this option,
 it must at least support the use of
 .B O_SYNC
 for regular files.
-.PP
+.P
 Linux implements
 .B O_SYNC
 and
@@ -1324,7 +1324,7 @@ to have the same value as
 is defined in the Linux header file
 .I <asm/fcntl.h>
 on HP PA-RISC, but it is not used.)
-.PP
+.P
 .B O_SYNC
 provides synchronized I/O
 .I file
@@ -1342,7 +1342,7 @@ to allow a subsequent read operation to complete successfully.
 Data integrity completion can reduce the number of disk operations
 that are required for applications that don't need the guarantees
 of file integrity completion.
-.PP
+.P
 To understand the difference between the two types of completion,
 consider two pieces of file metadata:
 the file last modification timestamp
@@ -1359,7 +1359,7 @@ would only guarantee to flush updates to the file length metadata
 (whereas
 .B O_SYNC
 would also always flush the last modification timestamp metadata).
-.PP
+.P
 Before Linux 2.6.33, Linux implemented only the
 .B O_SYNC
 flag for
@@ -1371,7 +1371,7 @@ integrity completion (i.e.,
 .B O_SYNC
 was actually implemented as the equivalent of
 .BR O_DSYNC ).
-.PP
+.P
 Since Linux 2.6.33, proper
 .B O_SYNC
 support is provided.
@@ -1408,10 +1408,10 @@ For certain architectures, this is also true before glibc 2.26.
 .TQ
 .BR openat ()
 POSIX.1-2008.
-.PP
+.P
 .BR openat2 (2)
 Linux.
-.PP
+.P
 The
 .BR O_DIRECT ,
 .BR O_NOATIME ,
@@ -1422,7 +1422,7 @@ flags are Linux-specific.
 One must define
 .B _GNU_SOURCE
 to obtain their definitions.
-.PP
+.P
 The
 .BR O_CLOEXEC ,
 .BR O_DIRECTORY ,
@@ -1457,7 +1457,7 @@ For example,
 this may be used to open a device in order to get a file descriptor
 for use with
 .BR ioctl (2).
-.PP
+.P
 Note that
 .BR open ()
 can open device special files, but
@@ -1465,7 +1465,7 @@ can open device special files, but
 cannot create them; use
 .BR mknod (2)
 instead.
-.PP
+.P
 If the file is newly created, its
 .IR st_atime ,
 .IR st_ctime ,
@@ -1488,7 +1488,7 @@ flag, its
 and
 .I st_mtime
 fields are set to the current time.
-.PP
+.P
 The files in the
 .IR /proc/ pid /fd
 directory show the open file descriptors of the process with the PID
@@ -1499,7 +1499,7 @@ directory show even more information about these file descriptors.
 See
 .BR proc (5)
 for further details of both of these directories.
-.PP
+.P
 The Linux header file
 .B <asm/fcntl.h>
 doesn't define
@@ -1517,7 +1517,7 @@ variously also called an "open file object",
 a "file handle", an "open file table entry",
 or\[em]in kernel-developer parlance\[em]a
 .IR "struct file" .
-.PP
+.P
 When a file descriptor is duplicated (using
 .BR dup (2)
 or similar),
@@ -1530,13 +1530,13 @@ a child process created via
 .BR fork (2)
 inherits duplicates of its parent's file descriptors,
 and those duplicates refer to the same open file descriptions.
-.PP
+.P
 Each
 .BR open ()
 of a file creates a new open file description;
 thus, there may be multiple open file descriptions
 corresponding to a file inode.
-.PP
+.P
 On Linux, one can use the
 .BR kcmp (2)
 .B KCMP_FILE
@@ -1548,7 +1548,7 @@ refer to the same open file description.
 There are many infelicities in the protocol underlying NFS, affecting
 amongst others
 .BR O_SYNC " and " O_NDELAY .
-.PP
+.P
 On NFS filesystems with UID mapping enabled,
 .BR open ()
 may
@@ -1587,7 +1587,7 @@ In other words, the combination
 .B "O_RDONLY | O_WRONLY"
 is a logical error, and certainly does not have the same meaning as
 .BR O_RDWR .
-.PP
+.P
 Linux reserves the special, nonstandard access mode 3 (binary 11) in
 .I flags
 to mean:
@@ -1639,7 +1639,7 @@ address two problems with the older interfaces that preceded them.
 Here, the explanation is in terms of the
 .BR openat ()
 call, but the rationale is analogous for the other interfaces.
-.PP
+.P
 First,
 .BR openat ()
 allows an application to avoid race conditions that could
@@ -1680,7 +1680,7 @@ even if the directory is renamed; and
 the open file descriptor prevents the underlying filesystem from
 being dismounted,
 just as when a process has a current working directory on a filesystem.
-.PP
+.P
 Second,
 .BR openat ()
 allows the implementation of a per-thread "current working
@@ -1689,7 +1689,7 @@ directory", via file descriptor(s) maintained by the application.
 on the use of
 .IR /proc/self/fd/ dirfd,
 but less efficiently.)
-.PP
+.P
 The
 .I dirfd
 argument for these APIs can be obtained by using
@@ -1705,7 +1705,7 @@ Alternatively, such a file descriptor can be obtained by applying
 .BR dirfd (3)
 to a directory stream created using
 .BR opendir (3).
-.PP
+.P
 When these APIs are given a
 .I dirfd
 argument of
@@ -1733,7 +1733,7 @@ I/Os also varies;
 they can either fail with
 .B EINVAL
 or fall back to buffered I/O.
-.PP
+.P
 Since Linux 6.1,
 .B O_DIRECT
 support and alignment restrictions for a file can be queried using
@@ -1746,7 +1746,7 @@ Support for
 varies by filesystem;
 see
 .BR statx (2).
-.PP
+.P
 Some filesystems provide their own interfaces for querying
 .B O_DIRECT
 alignment restrictions,
@@ -1756,7 +1756,7 @@ operation in
 .BR xfsctl (3).
 .B STATX_DIOALIGN
 should be used instead when it is available.
-.PP
+.P
 If none of the above is available,
 then direct I/O support and alignment restrictions
 can only be assumed from known characteristics of the filesystem,
@@ -1775,13 +1775,13 @@ A block device's logical block size can be determined using the
 .BR ioctl (2)
 .B BLKSSZGET
 operation or from the shell using the command:
-.PP
+.P
 .in +4n
 .EX
 blockdev \-\-getss
 .EE
 .in
-.PP
+.P
 .B O_DIRECT
 I/Os should never be run concurrently with the
 .BR fork (2)
@@ -1815,7 +1815,7 @@ with
 ensuring that it will not be available
 to the child after
 .BR fork (2).
-.PP
+.P
 The
 .B O_DIRECT
 flag was introduced in SGI IRIX, where it has alignment
@@ -1825,7 +1825,7 @@ IRIX has also a
 call to query appropriate alignments, and sizes.
 FreeBSD 4.x introduced
 a flag of the same name, but without alignment restrictions.
-.PP
+.P
 .B O_DIRECT
 support was added in Linux 2.4.10.
 Older Linux kernels simply ignore this flag.
@@ -1834,7 +1834,7 @@ Some filesystems may not implement the flag, in which case
 fails with the error
 .B EINVAL
 if it is used.
-.PP
+.P
 Applications should avoid mixing
 .B O_DIRECT
 and normal I/O to the same file,
@@ -1845,7 +1845,7 @@ using either mode alone.
 Likewise, applications should avoid mixing
 .BR mmap (2)
 of files with direct I/O to the same files.
-.PP
+.P
 The behavior of
 .B O_DIRECT
 with NFS will differ from local filesystems.
@@ -1867,7 +1867,7 @@ in the event of server power failure.
 The Linux NFS client places no alignment restrictions on
 .B O_DIRECT
 I/O.
-.PP
+.P
 In summary,
 .B O_DIRECT
 is a potentially powerful tool that should be used with caution.
@@ -1885,7 +1885,7 @@ use
 to enable this flag.
 .\" FIXME . Check bugzilla report on open(O_ASYNC)
 .\" See http://bugzilla.kernel.org/show_bug.cgi?id=5993
-.PP
+.P
 One must check for two different error codes,
 .B EISDIR
 and
@@ -1893,7 +1893,7 @@ and
 when trying to determine whether the kernel supports
 .B O_TMPFILE
 functionality.
-.PP
+.P
 When both
 .B O_CREAT
 and

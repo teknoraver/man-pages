@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <termios.h>
-.PP
+.P
 .BR typedef " /* ... */ " cc_t;
 .BR typedef " /* ... */ " speed_t;
 .BR typedef " /* ... */ " tcflag_t;
@@ -25,7 +25,7 @@ is used for terminal special characters,
 for baud rates, and
 .I tcflag_t
 for modes.
-.PP
+.P
 All are unsigned integer types.
 .SH STANDARDS
 POSIX.1-2008.

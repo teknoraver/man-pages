@@ -14,7 +14,7 @@ Dynamic linking library
 .nf
 .B #define _GNU_SOURCE
 .B #include <dlfcn.h>
-.PP
+.P
 .BI "int dladdr(const void *" addr ", Dl_info *" info );
 .BI "int dladdr1(const void *" addr ", Dl_info *" info ", void **" extra_info ,
 .BI "            int " flags );
@@ -32,7 +32,7 @@ returns information about the shared object and symbol that overlaps
 This information is returned in a
 .I Dl_info
 structure:
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -47,7 +47,7 @@ typedef struct {
 } Dl_info;
 .EE
 .in
-.PP
+.P
 If no symbol matching
 .I addr
 could be found, then
@@ -55,7 +55,7 @@ could be found, then
 and
 .I dli_saddr
 are set to NULL.
-.PP
+.P
 The function
 .BR dladdr1 ()
 is like
@@ -203,7 +203,7 @@ but not to a symbol in the shared object, then the
 and
 .I info\->dli_saddr
 fields are set to NULL.
-.PP
+.P
 If the address specified in
 .I addr
 could not be matched to a shared object, then these functions return 0.
@@ -237,7 +237,7 @@ glibc 2.0.
 .TP
 .BR dladdr1 ()
 glibc 2.3.3.
-.PP
+.P
 Solaris.
 .SH BUGS
 Sometimes, the function pointers you pass to
@@ -251,7 +251,7 @@ may end up pointing back at the object from which you called
 .BR dladdr (),
 even if the function used as an argument should come from
 a dynamically linked library.
-.PP
+.P
 The problem is that the function pointer will still be resolved
 at compile time, but merely point to the
 .I plt

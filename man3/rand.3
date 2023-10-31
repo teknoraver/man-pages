@@ -28,18 +28,18 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .B int rand(void);
 .BI "void srand(unsigned int " seed );
-.PP
+.P
 .BI "[[deprecated]] int rand_r(unsigned int *" seedp );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR rand_r ():
 .nf
     Since glibc 2.24:
@@ -53,7 +53,7 @@ The
 function returns a pseudo-random integer in the range 0 to
 .B RAND_MAX
 inclusive (i.e., the mathematical range [0,\ \fBRAND_MAX\fR]).
-.PP
+.P
 The
 .BR srand ()
 function sets its argument as the seed for a new
@@ -62,11 +62,11 @@ sequence of pseudo-random integers to be returned by
 These sequences are repeatable by calling
 .BR srand ()
 with the same seed value.
-.PP
+.P
 If no seed value is provided, the
 .BR rand ()
 function is automatically seeded with a value of 1.
-.PP
+.P
 The function
 .BR rand ()
 is not reentrant, since it
@@ -77,7 +77,7 @@ In order to get reproducible behavior in a threaded
 application, this state must be made explicit;
 this can be done using the reentrant function
 .BR rand_r ().
-.PP
+.P
 Like
 .BR rand (),
 .BR rand_r ()
@@ -93,7 +93,7 @@ is called with the same initial value for the integer pointed to by
 .IR seedp ,
 and that value is not modified between calls,
 then the same pseudo-random sequence will result.
-.PP
+.P
 The value pointed to by the
 .I seedp
 argument of
@@ -174,7 +174,7 @@ POSIX.1-2001 gives the following example of an implementation of
 and
 .BR srand (),
 possibly useful when one needs the same sequence on two different machines.
-.PP
+.P
 .in +4n
 .EX
 static unsigned long next = 1;
@@ -190,7 +190,7 @@ void mysrand(unsigned int seed) {
 }
 .EE
 .in
-.PP
+.P
 The following program can be used to display the
 pseudo-random sequence produced by
 .BR rand ()
@@ -198,7 +198,7 @@ when given a particular seed.
 When the seed is
 .IR \-1 ,
 the program uses a random seed.
-.PP
+.P
 .in +4n
 .\" SRC BEGIN (rand.c)
 .EX

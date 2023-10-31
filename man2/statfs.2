@@ -14,11 +14,11 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .BR "#include <sys/vfs.h>    " "/* or <sys/statfs.h> */"
-.PP
+.P
 .BI "int statfs(const char *" path ", struct statfs *" buf );
 .BI "int fstatfs(int " fd ", struct statfs *" buf );
 .fi
-.PP
+.P
 Unless you need the
 .I f_type
 field, you should use the standard
@@ -34,7 +34,7 @@ is the pathname of any file within the mounted filesystem.
 is a pointer to a
 .I statfs
 structure defined approximately as follows:
-.PP
+.P
 .in +4n
 .EX
 struct statfs {
@@ -56,10 +56,10 @@ struct statfs {
 };
 .EE
 .in
-.PP
+.P
 The following filesystem types may appear in
 .IR f_type :
-.PP
+.P
 .in +4n
 .EX
 ADFS_SUPER_MAGIC      0xadf5
@@ -150,11 +150,11 @@ XFS_SUPER_MAGIC       0x58465342
 _XIAFS_SUPER_MAGIC    0x012fd16d /* Linux 2.0 and earlier */
 .EE
 .in
-.PP
+.P
 Most of these MAGIC constants are defined in
 .IR /usr/include/linux/magic.h ,
 and some are hardcoded in kernel sources.
-.PP
+.P
 The
 .I f_flags
 field is a bit mask indicating mount options for the filesystem.
@@ -201,13 +201,13 @@ in
 .\" dab741e0e02bd3c4f5e2e97be74b39df2523fc6e
 Symbolic links are not followed when resolving paths; see
 .BR mount (2).
-.PP
+.P
 Nobody knows what
 .I f_fsid
 is supposed to contain (but see below).
-.PP
+.P
 Fields that are undefined for a particular filesystem are set to 0.
-.PP
+.P
 .BR fstatfs ()
 returns the same information about an open file referenced by descriptor
 .IR fd .
@@ -299,7 +299,7 @@ is defined as
 .IR "struct { int val[2]; }" .
 The same holds for FreeBSD, except that it uses the include file
 .IR <sys/mount.h> .
-.PP
+.P
 The general idea is that
 .I f_fsid
 contains some random stuff such that the pair
@@ -312,7 +312,7 @@ Several operating systems restrict giving out the
 field to the superuser only (and zero it for unprivileged users),
 because this field is used in the filehandle of the filesystem
 when NFS-exported, and giving it out is a security concern.
-.PP
+.P
 Under some operating systems, the
 .I fsid
 can be used as the second argument to the
@@ -325,7 +325,7 @@ The Linux
 .BR statfs ()
 was inspired by the 4.4BSD one
 (but they do not use the same structure).
-.PP
+.P
 The original Linux
 .BR statfs ()
 and
@@ -347,7 +347,7 @@ The glibc
 and
 .BR fstatfs ()
 wrapper functions transparently deal with the kernel differences.
-.PP
+.P
 LSB has deprecated the library calls
 .BR statfs ()
 and
@@ -369,7 +369,7 @@ or compare these fields to local variables in a program.
 Using
 .I "unsigned\ int"
 for such variables suffices on most systems.
-.PP
+.P
 Some systems have only \fI<sys/vfs.h>\fP, other systems also have
 \fI<sys/statfs.h>\fP, where the former includes the latter.
 So it seems

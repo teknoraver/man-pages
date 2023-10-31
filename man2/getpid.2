@@ -11,7 +11,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .B pid_t getpid(void);
 .B pid_t getppid(void);
 .fi
@@ -20,7 +20,7 @@ Standard C library
 returns the process ID (PID) of the calling process.
 (This is often used by
 routines that generate unique temporary filenames.)
-.PP
+.P
 .BR getppid ()
 returns the process ID of the parent of the calling process.
 This will be either the ID of the process that created this process using
@@ -109,7 +109,7 @@ via the glibc wrapper function.
 .BR clone (2).)
 Furthermore, the complexity of the caching code had been
 the source of a few bugs within glibc over the years.
-.PP
+.P
 Because of the aforementioned problems,
 since glibc 2.25, the PID cache is removed:
 .\" commit c579f48edba88380635ab98cb612030e3ed8691e
@@ -124,7 +124,7 @@ If the caller's parent is in a different PID namespace (see
 .BR pid_namespaces (7)),
 .BR getppid ()
 returns 0.
-.PP
+.P
 From a kernel perspective,
 the PID (which is shared by all of the threads in a multithreaded process)
 is sometimes also known as the thread group ID (TGID).

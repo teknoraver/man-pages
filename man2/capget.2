@@ -23,13 +23,13 @@ Standard C library
 .BR "                                 _LINUX_CAPABILITY_*" " constants */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_capget, cap_user_header_t " hdrp ,
 .BI "            cap_user_data_t " datap );
 .BI "int syscall(SYS_capset, cap_user_header_t " hdrp ,
 .BI "            const cap_user_data_t " datap );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrappers for these system calls,
 necessitating the use of
@@ -43,7 +43,7 @@ these system calls (in particular the format of the
 .I cap_user_*_t
 types) is subject to extension with each kernel revision,
 but old programs will keep working.
-.PP
+.P
 The portable interfaces are
 .BR cap_set_proc (3)
 and
@@ -53,7 +53,7 @@ if possible, you should use those interfaces in applications; see NOTES.
 .SS Current details
 Now that you have been warned, some current kernel details.
 The structures are defined as follows.
-.PP
+.P
 .in +4n
 .EX
 #define _LINUX_CAPABILITY_VERSION_1  0x19980330
@@ -82,7 +82,7 @@ typedef struct __user_cap_data_struct {
 } *cap_user_data_t;
 .EE
 .in
-.PP
+.P
 The
 .IR effective ,
 .IR permitted ,
@@ -99,7 +99,7 @@ To define the structures for passing to the system call, you have to use the
 and
 .I struct __user_cap_data_struct
 names because the typedefs are only pointers.
-.PP
+.P
 Kernels prior to Linux 2.6.25 prefer
 32-bit capabilities with version
 .BR _LINUX_CAPABILITY_VERSION_1 .
@@ -108,26 +108,26 @@ Linux 2.6.25 added 64-bit capability sets, with version
 There was, however, an API glitch, and Linux 2.6.26 added
 .B _LINUX_CAPABILITY_VERSION_3
 to fix the problem.
-.PP
+.P
 Note that 64-bit capabilities use
 .I datap[0]
 and
 .IR datap[1] ,
 whereas 32-bit capabilities use only
 .IR datap[0] .
-.PP
+.P
 On kernels that support file capabilities (VFS capabilities support),
 these system calls behave slightly differently.
 This support was added as an option in Linux 2.6.24,
 and became fixed (nonoptional) in Linux 2.6.33.
-.PP
+.P
 For
 .BR capget ()
 calls, one can probe the capabilities of any process by specifying its
 process ID with the
 .I hdrp\->pid
 field value.
-.PP
+.P
 For details on the data, see
 .BR capabilities (7).
 .\"
@@ -179,7 +179,7 @@ On success, zero is returned.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 The calls fail with the error
 .BR EINVAL ,
 and set the

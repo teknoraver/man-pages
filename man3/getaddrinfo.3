@@ -34,22 +34,22 @@ Standard C library
 .B #include <sys/types.h>
 .B #include <sys/socket.h>
 .B #include <netdb.h>
-.PP
+.P
 .BI "int getaddrinfo(const char *restrict " node ,
 .BI "                const char *restrict " service ,
 .BI "                const struct addrinfo *restrict " hints ,
 .BI "                struct addrinfo **restrict " res );
-.PP
+.P
 .BI "void freeaddrinfo(struct addrinfo *" res );
-.PP
+.P
 .BI "const char *gai_strerror(int " errcode );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getaddrinfo (),
 .BR freeaddrinfo (),
 .BR gai_strerror ():
@@ -84,13 +84,13 @@ and
 functions into a single interface, but unlike the latter functions,
 .BR getaddrinfo ()
 is reentrant and allows programs to eliminate IPv4-versus-IPv6 dependencies.
-.PP
+.P
 The
 .I addrinfo
 structure used by
 .BR getaddrinfo ()
 contains the following fields:
-.PP
+.P
 .in +4n
 .EX
 struct addrinfo {
@@ -105,7 +105,7 @@ struct addrinfo {
 };
 .EE
 .in
-.PP
+.P
 The
 .I hints
 argument points to an
@@ -160,11 +160,11 @@ any protocol can be returned by
 .I ai_flags
 This field specifies additional options, described below.
 Multiple flags are specified by bitwise OR-ing them together.
-.PP
+.P
 All the other fields in the structure pointed to by
 .I hints
 must contain either 0 or a null pointer, as appropriate.
-.PP
+.P
 Specifying
 .I hints
 as NULL is equivalent to setting
@@ -199,7 +199,7 @@ must be a numerical network address.
 The
 .B AI_NUMERICHOST
 flag suppresses any potentially lengthy network host address lookups.
-.PP
+.P
 If the
 .B AI_PASSIVE
 flag is specified in
@@ -224,7 +224,7 @@ If
 is not NULL, then the
 .B AI_PASSIVE
 flag is ignored.
-.PP
+.P
 If the
 .B AI_PASSIVE
 flag is not set in
@@ -244,7 +244,7 @@ for IPv4 addresses,
 for IPv6 address);
 this is used by applications that intend to communicate
 with peers running on the same host.
-.PP
+.P
 .I service
 sets the port in each returned address structure.
 If this argument is a service name (see
@@ -267,13 +267,13 @@ is not NULL, then
 must point to a string containing a numeric port number.
 This flag is used to inhibit the invocation of a name resolution service
 in cases where it is known not to be required.
-.PP
+.P
 Either
 .I node
 or
 .IR service ,
 but not both, may be NULL.
-.PP
+.P
 The
 .BR getaddrinfo ()
 function allocates and initializes a linked list of
@@ -289,7 +289,7 @@ and returns a pointer to the start of the list in
 The items in the linked list are linked by the
 .I ai_next
 field.
-.PP
+.P
 There are several reasons why
 the linked list may have more than one
 .I addrinfo
@@ -311,7 +311,7 @@ is defined in RFC\ 3484; the order can be tweaked for a particular
 system by editing
 .I /etc/gai.conf
 (available since glibc 2.5).
-.PP
+.P
 If
 .I hints.ai_flags
 includes the
@@ -326,7 +326,7 @@ official name of the host.
 .\" structure was set pointing to the canonical name; that was
 .\" more than POSIX.1-2001 specified, or other implementations provided.
 .\" MTK, Aug 05
-.PP
+.P
 The remaining fields of each returned
 .I addrinfo
 structure are initialized as follows:
@@ -360,7 +360,7 @@ field, and the length of the socket address, in bytes,
 is placed in the
 .I ai_addrlen
 field.
-.PP
+.P
 If
 .I hints.ai_flags
 includes the
@@ -379,7 +379,7 @@ does not return IPv6 socket addresses that would always fail in
 .BR connect (2)
 or
 .BR bind (2).
-.PP
+.P
 If
 .I hints.ai_flags
 specifies the
@@ -404,7 +404,7 @@ in the list pointed to by
 is ignored if
 .B AI_V4MAPPED
 is not also specified.
-.PP
+.P
 The
 .BR freeaddrinfo ()
 function frees the memory that was allocated
@@ -572,7 +572,7 @@ respectively).
 Other system error;
 .I errno
 is set to indicate the error.
-.PP
+.P
 The
 .BR gai_strerror ()
 function translates these error codes to a human readable string,

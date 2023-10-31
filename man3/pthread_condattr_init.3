@@ -15,7 +15,7 @@ condition creation attributes
 .
 .SH SYNOPSIS
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_condattr_init(pthread_condattr_t *" attr ");"
 .BI "int pthread_condattr_destroy(pthread_condattr_t *" attr ");"
 .
@@ -27,11 +27,11 @@ as second argument to \fBpthread_cond_init\fP(3).
 Passing \fBNULL\fP is equivalent to
 passing a condition attribute object
 with all attributes set to their default values.
-.PP
+.P
 The LinuxThreads implementation supports no attributes for conditions.
 The functions on condition attributes are
 included only for compliance with the POSIX standard.
-.PP
+.P
 \fBpthread_condattr_init\fP
 initializes the condition attribute object \fIattr\fP
 and fills it with default values for the attributes.

@@ -11,15 +11,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .B int getpagesize(void);
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getpagesize ():
 .nf
     Since glibc 2.20:
@@ -52,19 +52,19 @@ Portable applications should employ
 .I sysconf(_SC_PAGESIZE)
 instead of
 .BR getpagesize ():
-.PP
+.P
 .in +4n
 .EX
 #include <unistd.h>
 long sz = sysconf(_SC_PAGESIZE);
 .EE
 .in
-.PP
+.P
 (Most systems allow the synonym
 .B _SC_PAGE_SIZE
 for
 .BR _SC_PAGESIZE .)
-.PP
+.P
 Whether
 .BR getpagesize ()
 is present as a Linux system call depends on the architecture.

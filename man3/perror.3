@@ -19,22 +19,22 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "void perror(const char *" s );
-.PP
+.P
 .B #include <errno.h>
-.PP
+.P
 .BI "int " errno ";       \fR/* Not really declared this way; see errno(3) */"
-.PP
+.P
 .BI "[[deprecated]] const char *const " sys_errlist [];
 .BI "[[deprecated]] int " sys_nerr ;
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .IR sys_errlist ,
 .IR sys_nerr :
 .nf
@@ -48,7 +48,7 @@ The
 .BR perror ()
 function produces a message on standard error describing the last
 error encountered during a call to a system or library function.
-.PP
+.P
 First (if
 .I s
 is not NULL and
@@ -59,10 +59,10 @@ is printed, followed by a colon and a blank.
 Then an error message corresponding to the current value of
 .I errno
 and a new-line.
-.PP
+.P
 To be of most use, the argument string should include the name
 of the function that incurred the error.
-.PP
+.P
 The global error list
 .IR sys_errlist "[],"
 which can be indexed by
@@ -78,7 +78,7 @@ The use of
 is nowadays deprecated; use
 .BR strerror (3)
 instead.
-.PP
+.P
 When a system call fails, it usually returns \-1 and sets the
 variable
 .I errno

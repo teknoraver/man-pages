@@ -41,11 +41,11 @@ The configuration file is considered a trusted source of DNS information;
 see the
 .B trust-ad
 option below for details.
-.PP
+.P
 If this file does not exist, only the name server on the local machine
 will be queried, and the search list contains the local domain name
 determined from the hostname.
-.PP
+.P
 The different configuration options are:
 .TP
 \fBnameserver\fP Name server IP address
@@ -140,7 +140,7 @@ The syntax is
 .RS
 .IP
 \fBoptions\fP \fIoption\fP \fI...\fP
-.PP
+.P
 where \fIoption\fP is one of the following:
 .TP
 \fBdebug\fP
@@ -373,22 +373,22 @@ In glibc 2.30 and earlier,
 the AD is not set automatically in queries,
 and is passed through unchanged to applications in responses.
 .RE
-.PP
+.P
 The \fIsearch\fP keyword of a system's \fIresolv.conf\fP file can be
 overridden on a per-process basis by setting the environment variable
 .B LOCALDOMAIN
 to a space-separated list of search domains.
-.PP
+.P
 The \fIoptions\fP keyword of a system's \fIresolv.conf\fP file can be
 amended on a per-process basis by setting the environment variable
 .B RES_OPTIONS
 to a space-separated list of resolver options
 as explained above under \fBoptions\fP.
-.PP
+.P
 The keyword and value must appear on a single line, and the keyword
 (e.g., \fBnameserver\fP) must start the line.
 The value follows the keyword, separated by white space.
-.PP
+.P
 Lines that contain a semicolon (;) or hash character (#)
 in the first column are treated as comments.
 .SH FILES
@@ -402,5 +402,5 @@ in the first column are treated as comments.
 .BR nsswitch.conf (5),
 .BR hostname (7),
 .BR named (8)
-.PP
+.P
 Name Server Operations Guide for BIND

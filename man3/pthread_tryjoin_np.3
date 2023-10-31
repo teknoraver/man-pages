@@ -15,7 +15,7 @@ POSIX threads library
 .nf
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_tryjoin_np(pthread_t " thread ", void **" retval );
 .BI "int pthread_timedjoin_np(pthread_t " thread ", void **" retval ,
 .BI "                         const struct timespec *" abstime );
@@ -24,7 +24,7 @@ POSIX threads library
 These functions operate in the same way as
 .BR pthread_join (3),
 except for the differences described on this page.
-.PP
+.P
 The
 .BR pthread_tryjoin_np ()
 function performs a nonblocking join with the thread
@@ -36,7 +36,7 @@ If
 has not yet terminated, then instead of blocking, as is done by
 .BR pthread_join (3),
 the call returns an error.
-.PP
+.P
 The
 .BR pthread_timedjoin_np ()
 function performs a join-with-timeout.
@@ -72,7 +72,7 @@ can in addition fail with the following error:
 .B EBUSY
 .I thread
 had not yet terminated at the time of the call.
-.PP
+.P
 .BR pthread_timedjoin_np ()
 can in addition fail with the following errors:
 .TP
@@ -88,7 +88,7 @@ is greater than 1e9).
 The call timed out before
 .I thread
 terminated.
-.PP
+.P
 .BR pthread_timedjoin_np ()
 never returns the error
 .BR EINTR .
@@ -126,7 +126,7 @@ Consequently, the timeout is unaffected by discontinuous changes to the
 clock.
 .SH EXAMPLES
 The following code waits to join for up to 5 seconds:
-.PP
+.P
 .in +4n
 .EX
 struct timespec ts;

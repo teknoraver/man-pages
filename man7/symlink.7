@@ -17,7 +17,7 @@ symlink \- symbolic link handling
 Symbolic links are files that act as pointers to other files.
 To understand their behavior, you must first understand how hard links
 work.
-.PP
+.P
 A hard link to a file is indistinguishable from the original file because
 it is a reference to the object underlying the original filename.
 (To be precise: each of the hard links to a file is a reference to
@@ -33,7 +33,7 @@ Hard links may not refer to directories
 which would confuse many programs)
 and may not refer to files on different filesystems
 (because inode numbers are not unique across filesystems).
-.PP
+.P
 A symbolic link is a special type of file whose contents are a string
 that is the pathname of another file, the file to which the link refers.
 (The contents of a symbolic link can be read using
@@ -42,13 +42,13 @@ In other words, a symbolic link is a pointer to another name,
 and not to an underlying object.
 For this reason, symbolic links may refer to directories and may cross
 filesystem boundaries.
-.PP
+.P
 There is no requirement that the pathname referred to by a symbolic link
 should exist.
 A symbolic link that refers to a pathname that does not exist is said
 to be a
 .IR "dangling link" .
-.PP
+.P
 Because a symbolic link and its referenced object coexist in the filesystem
 name space, confusion can arise in distinguishing between the link itself
 and the referenced object.
@@ -76,7 +76,7 @@ representation of a file handle.
 As such, these magic links allow users to
 access files which cannot be referenced with normal paths (such as unlinked
 files still referenced by a running program ).
-.PP
+.P
 Because they can bypass ordinary
 .BR mount_namespaces (7)-based
 restrictions,
@@ -94,22 +94,22 @@ and when the
 .I fs.protected_symlinks
 sysctl is set (see
 .BR proc (5)).
-.PP
+.P
 The last access and last modification timestamps
 of a symbolic link can be changed using
 .BR utimensat (2)
 or
 .BR lutimes (3).
-.PP
+.P
 .\" Linux does not currently implement an lchmod(2).
 On Linux, the permissions of an ordinary symbolic link are not used in any
 operations; the permissions are always 0777 (read, write, and execute for all
 user categories), and can't be changed.
-.PP
+.P
 However, magic links do not follow this rule.
 They can have a non-0777 mode,
 though this mode is not currently used in any permission checks.
-.\" .PP
+.\" .P
 .\" The
 .\" 4.4BSD
 .\" system differs from historical
@@ -140,7 +140,7 @@ and
 .BR readlinkat (2),
 in order to operate on the symbolic link itself
 (rather than the file to which it refers).
-.PP
+.P
 By default
 (i.e., if the
 .B AT_SYMLINK_FOLLOW
@@ -171,7 +171,7 @@ or a loop is detected.
 (Loop detection is done by placing an upper limit on the number of
 links that may be followed, and an error results if this limit is
 exceeded.)
-.PP
+.P
 There are three separate areas that need to be discussed.
 They are as follows:
 .IP \[bu] 3
@@ -183,7 +183,7 @@ are not traversing a file tree.
 Symbolic links encountered by utilities that are traversing a file tree
 (either specified on the command line or encountered as part of the
 file hierarchy walk).
-.PP
+.P
 Before describing the treatment of symbolic links by system calls and commands,
 we require some terminology.
 Given a pathname of the form
@@ -201,7 +201,7 @@ component.
 .SS Treatment of symbolic links in system calls
 The first area is symbolic links used as filename arguments for
 system calls.
-.PP
+.P
 The treatment of symbolic links within a pathname passed to
 a system call is as follows:
 .IP (1) 5
@@ -224,7 +224,7 @@ the system call
 .I "open(""slink"" ...\&)"
 would return a file descriptor referring to the file
 .IR afile .
-.PP
+.P
 Various system calls do not follow links in
 the basename component of a pathname,
 and operate on the symbolic link itself.
@@ -240,7 +240,7 @@ They are:
 .BR rmdir (2),
 and
 .BR unlink (2).
-.PP
+.P
 Certain other system calls optionally follow symbolic links
 in the basename component of a pathname.
 They are:
@@ -265,7 +265,7 @@ When
 .BR rmdir (2)
 is applied to a symbolic link, it fails with the error
 .BR ENOTDIR .
-.PP
+.P
 .BR link (2)
 warrants special discussion.
 POSIX.1-2001 specifies that
@@ -282,7 +282,7 @@ either behavior in an implementation.
 .SS Commands not traversing a file tree
 The second area is symbolic links, specified as command-line
 filename arguments, to commands which are not traversing a file tree.
-.PP
+.P
 Except as noted below, commands follow symbolic links named as
 command-line arguments.
 For example, if there were a symbolic link
@@ -293,7 +293,7 @@ the command
 .I "cat slink"
 would display the contents of the file
 .IR afile .
-.PP
+.P
 It is important to realize that this rule includes commands which may
 optionally traverse file trees; for example, the command
 .I "chown file"
@@ -301,7 +301,7 @@ is included in this rule, while the command
 .IR "chown\ \-R file" ,
 which performs a tree traversal, is not.
 (The latter is described in the third area, below.)
-.PP
+.P
 If it is explicitly intended that the command operate on the symbolic
 link instead of following the symbolic link\[em]for example, it is desired that
 .I "chown slink"
@@ -319,7 +319,7 @@ while
 would change the ownership of
 .I slink
 itself.
-.PP
+.P
 There are some exceptions to this rule:
 .IP \[bu] 3
 The
@@ -392,16 +392,16 @@ The following commands either optionally or always traverse file trees:
 .BR rm (1),
 and
 .BR tar (1).
-.PP
+.P
 It is important to realize that the following rules apply equally to
 symbolic links encountered during the file tree traversal and symbolic
 links listed as command-line arguments.
-.PP
+.P
 The \fIfirst rule\fP applies to symbolic links that reference files other
 than directories.
 Operations that apply to symbolic links are performed on the links
 themselves, but otherwise the links are ignored.
-.PP
+.P
 The command
 .I "rm\ \-r slink directory"
 will remove
@@ -413,12 +413,12 @@ In no case will
 .BR rm (1)
 affect the file referred to by
 .IR slink .
-.PP
+.P
 The \fIsecond rule\fP applies to symbolic links that refer to directories.
 Symbolic links that refer to directories are never followed by default.
 This is often referred to as a "physical" walk, as opposed to a "logical"
 walk (where symbolic links that refer to directories are followed).
-.PP
+.P
 Certain conventions are (should be) followed as consistently as
 possible by commands that perform file tree walks:
 .IP \[bu] 3
@@ -486,7 +486,7 @@ provide the default behavior by specifying the
 (for "physical") flag.
 This flag is intended to make the entire name space look like the
 physical name space.
-.PP
+.P
 For commands that do not by default do file tree traversals, the
 .IR \-H ,
 .IR \-L ,
@@ -504,7 +504,7 @@ options more than once;
 the last one specified determines the command's behavior.
 This is intended to permit you to alias commands to behave one way
 or the other, and then override that behavior on the command line.
-.PP
+.P
 The
 .BR ls (1)
 and

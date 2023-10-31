@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .EX
 .B #include <sys/stat.h>
-.PP
+.P
 .B struct stat {
 .BR "    dev_t      st_dev;" "      /* ID of device containing file */"
 .BR "    ino_t      st_ino;" "      /* Inode number */"
@@ -39,12 +39,12 @@ Standard C library
 .B "#define st_ctime  st_ctim.tv_sec"
 .B };
 .EE
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .IR st_atim ,
 .IR st_mtim ,
 .IR st_ctim :
@@ -56,7 +56,7 @@ Feature Test Macro Requirements for glibc (see
 .fi
 .SH DESCRIPTION
 Describes information about a file.
-.PP
+.P
 The fields are as follows:
 .TP
 .I st_dev
@@ -113,14 +113,14 @@ This is the time of last modification of file data.
 .I st_ctime
 This is the file's last status change timestamp
 (time of last change to the inode).
-.PP
+.P
 For further information on the above fields, see
 .BR inode (7).
 .SH STANDARDS
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
-.PP
+.P
 Old kernels and old standards did not support nanosecond timestamp fields.
 Instead, there were three timestamp
 .RI fields\[em] st_atime ,
@@ -130,7 +130,7 @@ and
 as
 .I time_t
 that recorded timestamps with one-second precision.
-.PP
+.P
 Since Linux 2.5.48, the
 .I stat
 structure supports nanosecond resolution for the three file timestamp fields.

@@ -24,14 +24,14 @@ Dynamic linking library
 .SH SYNOPSIS
 .nf
 .B #include <dlfcn.h>
-.PP
+.P
 .BI "void *dlopen(const char *" filename ", int " flags );
 .BI "int dlclose(void *" handle );
-.PP
+.P
 .B #define _GNU_SOURCE
 .br
 .B #include <dlfcn.h>
-.PP
+.P
 .BI "void *dlmopen(Lmid_t " lmid ", const char *" filename ", int " flags );
 .fi
 .SH DESCRIPTION
@@ -49,7 +49,7 @@ This handle is employed with other functions in the dlopen API, such as
 .BR dlinfo (3),
 and
 .BR dlclose ().
-.PP
+.P
 If
 .I filename
 .\" FIXME On Solaris, when handle is NULL, we seem to get back
@@ -99,7 +99,7 @@ The directories
 and
 .I /usr/lib
 are searched (in that order).
-.PP
+.P
 If the object specified by
 .I filename
 has dependencies on other shared objects,
@@ -107,7 +107,7 @@ then these are also automatically loaded by the dynamic linker
 using the same rules.
 (This process may occur recursively,
 if those objects in turn have dependencies, and so on.)
-.PP
+.P
 One of the following two values must be included in
 .IR flags :
 .TP
@@ -132,7 +132,7 @@ all undefined symbols in the shared object are resolved before
 .BR dlopen ()
 returns.
 If this cannot be done, an error is returned.
-.PP
+.P
 Zero or more of the following values may also be ORed in
 .IR flags :
 .TP
@@ -176,7 +176,7 @@ shared object ahead of the global scope.
 This means that a self-contained object will use
 its own symbols in preference to global symbols with the same name
 contained in objects that have already been loaded.
-.PP
+.P
 If
 .I filename
 is NULL, then the returned handle is for the main program.
@@ -188,7 +188,7 @@ and then all shared objects loaded by
 .BR dlopen ()
 with the flag
 .BR RTLD_GLOBAL .
-.PP
+.P
 Symbol references in the shared object are resolved using (in order):
 symbols in the link map of objects loaded for the main program and its
 dependencies;
@@ -200,7 +200,7 @@ using the
 flag;
 and definitions in the shared object itself
 (and any dependencies that were loaded for that object).
-.PP
+.P
 Any global symbols in the executable that were placed into
 its dynamic symbol table by
 .BR ld (1)
@@ -212,7 +212,7 @@ the executable's global symbols to be placed in the dynamic symbol table,
 or because
 .BR ld (1)
 noted a dependency on a symbol in another object during static linking.
-.PP
+.P
 If the same shared object is opened again with
 .BR dlopen (),
 the same object handle is returned.
@@ -225,7 +225,7 @@ has been called on it as many times as
 has succeeded on it.
 Constructors (see below) are called only when the object is actually loaded
 into memory (i.e., when the reference count increases to 1).
-.PP
+.P
 A subsequent
 .BR dlopen ()
 call that loads the same shared object with
@@ -238,7 +238,7 @@ can be promoted to
 .B RTLD_GLOBAL
 in a subsequent
 .BR dlopen ().
-.PP
+.P
 If
 .BR dlopen ()
 fails for any reason, it returns NULL.
@@ -251,7 +251,7 @@ and
 .I flags
 arguments, as well as the return value, are the same,
 except for the differences noted below.
-.PP
+.P
 The
 .BR dlmopen ()
 function differs from
@@ -270,7 +270,7 @@ call is made.)
 The
 .I Lmid_t
 type is an opaque handle that refers to a namespace.
-.PP
+.P
 The
 .I lmid
 argument is either the ID of an existing namespace
@@ -289,7 +289,7 @@ Create a new namespace and load the shared object in that namespace.
 The object must have been correctly linked
 to reference all of the other shared objects that it requires,
 since the new namespace is initially empty.
-.PP
+.P
 If
 .I filename
 is NULL, then the only permitted value for
@@ -302,7 +302,7 @@ The function
 decrements the reference count on the
 dynamically loaded shared object referred to by
 .IR handle .
-.PP
+.P
 If the object's reference count drops to zero
 and no symbols in this object are required by other objects,
 then the object is unloaded
@@ -311,13 +311,13 @@ after first calling any destructors defined for the object.
 because this object was opened with the
 .B RTLD_GLOBAL
 flag and one of its symbols satisfied a relocation in another object.)
-.PP
+.P
 All shared objects that were automatically loaded when
 .BR dlopen ()
 was invoked on the object referred to by
 .I handle
 are recursively closed in the same manner.
-.PP
+.P
 A successful return from
 .BR dlclose ()
 does not guarantee that the symbols associated with
@@ -339,11 +339,11 @@ On error
 (file could not be found, was not readable, had the wrong format,
 or caused errors during loading),
 these functions return NULL.
-.PP
+.P
 On success,
 .BR dlclose ()
 returns 0; on error, it returns a nonzero value.
-.PP
+.P
 Errors from these functions can be diagnosed using
 .BR dlerror (3).
 .SH ATTRIBUTES
@@ -397,7 +397,7 @@ dependent shared objects are implicitly loaded according to the usual rules,
 and symbol references are likewise resolved according to the usual rules,
 but such resolution is confined to the definitions provided by the
 objects that have been (explicitly and implicitly) loaded into the namespace.
-.PP
+.P
 The
 .BR dlmopen ()
 function permits object-load isolation\[em]the ability
@@ -417,7 +417,7 @@ without exposing those symbols to the entire application.
 This can be achieved by using a separate namespace and the
 .B RTLD_GLOBAL
 flag.
-.PP
+.P
 The
 .BR dlmopen ()
 function also can be used to provide better isolation than the
@@ -433,7 +433,7 @@ Thus,
 .B RTLD_LOCAL
 is insufficient to isolate a loaded shared object except in the (uncommon)
 case where one has explicit control over all shared object dependencies.
-.PP
+.P
 Possible uses of
 .BR dlmopen ()
 are plugins where the author of the plugin-loading framework
@@ -448,7 +448,7 @@ Using
 .BR dlmopen (),
 this can be achieved by loading the same shared object file into
 different namespaces.
-.PP
+.P
 The glibc implementation supports a maximum of
 .\" DL_NNS
 16 namespaces.
@@ -472,7 +472,7 @@ See the
 info pages (under "Function attributes")
 .\" info gcc "C Extensions" "Function attributes"
 for further information.
-.PP
+.P
 An older method of (partially) achieving the same result is via the use of
 two special symbols recognized by the linker:
 .B _init
@@ -492,7 +492,7 @@ this can be done by using the
 .BR gcc (1)
 .I \-nostartfiles
 command-line option.
-.PP
+.P
 Use of
 .B _init
 and
@@ -513,7 +513,7 @@ permit multiple initialization and finalization functions to be defined.
 .\" .\" void _init(void) __attribute__((constructor));
 .\" .\" void _fini(void) __attribute__((destructor));
 .\"
-.PP
+.P
 Since glibc 2.2.3,
 .BR atexit (3)
 can be used to register an exit handler that is automatically
@@ -542,7 +542,7 @@ looks up the address of the
 .BR cos (3)
 function, and prints the cosine of 2.0.
 The following is an example of building and running the program:
-.PP
+.P
 .in +4n
 .EX
 $ \fBcc dlopen_demo.c \-ldl\fP
@@ -620,5 +620,5 @@ main(void)
 .BR rtld\-audit (7),
 .BR ld.so (8),
 .BR ldconfig (8)
-.PP
+.P
 gcc info pages, ld info pages

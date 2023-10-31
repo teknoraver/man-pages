@@ -8,17 +8,17 @@ io_setup \- create an asynchronous I/O context
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
-.PP
+.P
 Alternatively, Asynchronous I/O library
 .RI ( libaio ", " \-laio );
 see VERSIONS.
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/aio_abi.h>" "          /* Defines needed types */"
-.PP
+.P
 .BI "long io_setup(unsigned int " nr_events ", aio_context_t *" ctx_idp );
 .fi
-.PP
+.P
 .IR Note :
 There is no glibc wrapper for this system call; see VERSIONS.
 .SH DESCRIPTION
@@ -30,7 +30,7 @@ uses a different type for the
 .I ctx_idp
 argument.
 See VERSIONS.
-.PP
+.P
 The
 .BR io_setup ()
 system call
@@ -79,7 +79,7 @@ But instead, you probably want to use the
 wrapper function provided by
 .\" http://git.fedorahosted.org/git/?p=libaio.git
 .IR libaio .
-.PP
+.P
 Note that the
 .I libaio
 wrapper function uses a different type

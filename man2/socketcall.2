@@ -15,10 +15,10 @@ Standard C library
 .BR "#include <linux/net.h>" "        /* Definition of " SYS_* " constants */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_socketcall " */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_socketcall, int " call ", unsigned long *" args );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR socketcall (),
@@ -32,11 +32,11 @@ determines which socket function to invoke.
 .I args
 points to a block containing the actual arguments,
 which are passed through to the appropriate call.
-.PP
+.P
 User programs should call the appropriate functions by their usual names.
 Only standard library implementors and kernel hackers need to know about
 .BR socketcall ().
-.PP
+.P
 .TS
 tab(:);
 l l.
@@ -152,7 +152,7 @@ system call; instead
 and so on really are implemented as separate system calls.
 .SH STANDARDS
 Linux.
-.PP
+.P
 On x86-32,
 .BR socketcall ()
 was historically the only entry point for the sockets API.

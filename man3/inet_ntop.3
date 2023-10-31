@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <arpa/inet.h>
-.PP
+.P
 .BI "const char *inet_ntop(int " af ", const void *restrict " src ,
 .BI "                      char " dst "[restrict ." size "], socklen_t " size );
 .fi
@@ -29,7 +29,7 @@ which must be a non-null pointer.
 The caller specifies the number of bytes available in this buffer in
 the argument
 .IR size .
-.PP
+.P
 .BR inet_ntop ()
 extends the
 .BR inet_ntoa (3)
@@ -99,7 +99,7 @@ T}	Thread safety	MT-Safe locale
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
-.PP
+.P
 Note that RFC\ 2553 defines a prototype where the last argument
 .I size
 is of type

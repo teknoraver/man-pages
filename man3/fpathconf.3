@@ -29,7 +29,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "long fpathconf(int " fd ", int " name );
 .BI "long pathconf(const char *" path ", int " name );
 .fi
@@ -39,13 +39,13 @@ gets a value for the configuration option
 .I name
 for the open file descriptor
 .IR fd .
-.PP
+.P
 .BR pathconf ()
 gets a value for configuration option
 .I name
 for the filename
 .IR path .
-.PP
+.P
 The corresponding macros defined in
 .I <unistd.h>
 are minimum values; if an application wants to take advantage of values
@@ -54,7 +54,7 @@ which may change, a call to
 or
 .BR pathconf ()
 can be made, which may yield more liberal results.
-.PP
+.P
 Setting
 .I name
 equal to one of the following constants returns the following
@@ -262,7 +262,7 @@ Files with name lengths longer than the value returned for
 equal to
 .B _PC_NAME_MAX
 may exist in the given directory.
-.PP
+.P
 Some returned values may be huge; they are not suitable for allocating
 memory.
 .SH SEE ALSO

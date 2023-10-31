@@ -14,11 +14,11 @@ Standard C library
 .nf
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_pivot_root, const char *" new_root \
 ", const char *" put_old );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR pivot_root (),
@@ -32,7 +32,7 @@ directory \fIput_old\fP and makes \fInew_root\fP the new root mount.
 The calling process must have the
 .B CAP_SYS_ADMIN
 capability in the user namespace that owns the caller's mount namespace.
-.PP
+.P
 .BR pivot_root ()
 changes the root directory and the current working directory
 of each process or thread in the same mount namespace to
@@ -45,7 +45,7 @@ does not change the caller's current working directory
 (unless it is on the old root directory),
 and thus it should be followed by a
 \fBchdir("/")\fP call.
-.PP
+.P
 The following restrictions apply:
 .IP \[bu] 3
 .I new_root
@@ -158,7 +158,7 @@ Linux 2.3.41.
 .SH NOTES
 A command-line interface for this system call is provided by
 .BR pivot_root (8).
-.PP
+.P
 .BR pivot_root ()
 allows the caller to switch to a new root filesystem while at the same time
 placing the old root mount at a location under
@@ -168,7 +168,7 @@ from where it can subsequently be unmounted.
 or current working directory on the old root directory to the
 new root frees the old root directory of users,
 allowing the old root mount to be unmounted more easily.)
-.PP
+.P
 One use of
 .BR pivot_root ()
 is during system startup, when the
@@ -178,7 +178,7 @@ then mounts the real root filesystem, and eventually turns the latter into
 the root directory of all relevant processes and threads.
 A modern use is to set up a root filesystem during
 the creation of a container.
-.PP
+.P
 The fact that
 .BR pivot_root ()
 modifies process root and current working directories in the
@@ -187,7 +187,7 @@ is necessary in order to prevent kernel threads from keeping the old
 root mount busy with their root and current working directories,
 even if they never access
 the filesystem in any way.
-.PP
+.P
 The rootfs (initial ramfs) cannot be
 .BR pivot_root ()ed.
 The recommended method of changing the root filesystem in this case is
@@ -207,7 +207,7 @@ and
 may be the same directory.
 In particular, the following sequence allows a pivot-root operation
 without needing to create and remove a temporary directory:
-.PP
+.P
 .in +4n
 .EX
 chdir(new_root);
@@ -215,7 +215,7 @@ pivot_root(".", ".");
 umount2(".", MNT_DETACH);
 .EE
 .in
-.PP
+.P
 This sequence succeeds because the
 .BR pivot_root ()
 call stacks the old root mount point
@@ -237,7 +237,7 @@ with the result that old root mount point is unmounted.
 .SS Historical notes
 For many years, this manual page carried the following text:
 .RS
-.PP
+.P
 .BR pivot_root ()
 may or may not change the current root and the current
 working directory of any processes or threads which use the old
@@ -250,7 +250,7 @@ An easy way to ensure this is to change their
 root and current working directory to \fInew_root\fP before invoking
 .BR pivot_root ().
 .RE
-.PP
+.P
 This text, written before the system call implementation was
 even finalized in the kernel, was probably intended to warn users
 at that time that the implementation might change before final release.
@@ -269,12 +269,12 @@ After pivoting to the root directory named in the program's
 first command-line argument, the child created by
 .BR clone (2)
 then executes the program named in the remaining command-line arguments.
-.PP
+.P
 We demonstrate the program by creating a directory that will serve as
 the new root filesystem and placing a copy of the (statically linked)
 .BR busybox (1)
 executable in that directory.
-.PP
+.P
 .in +4n
 .EX
 $ \fBmkdir /tmp/rootfs\fP
@@ -296,7 +296,7 @@ hello world
 .in
 .SS Program source
 \&
-.PP
+.P
 .\" SRC BEGIN (pivot_root.c)
 .EX
 /* pivot_root_demo.c */

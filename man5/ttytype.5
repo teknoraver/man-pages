@@ -23,14 +23,14 @@ Each line consists of a terminal type, followed by
 whitespace, followed by a tty name (a device name without the
 .I /dev/
 prefix).
-.PP
+.P
 This association is used by the program
 .BR tset (1)
 to set the environment variable
 .B TERM
 to the default terminal name for
 the user's current tty.
-.PP
+.P
 This facility was designed for a traditional time-sharing environment
 featuring character-cell terminals hardwired to a UNIX minicomputer.
 It is little used on modern workstation and personal UNIX systems.
@@ -42,7 +42,7 @@ the tty definitions file.
 A typical
 .I /etc/ttytype
 is:
-.PP
+.P
 .in +4n
 .EX
 con80x25 tty1

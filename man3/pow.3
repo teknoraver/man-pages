@@ -22,17 +22,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double pow(double " x ", double " y );
 .BI "float powf(float " x ", float " y );
 .BI "long double powl(long double " x ", long double " y );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR powf (),
 .BR powl ():
 .nf
@@ -51,7 +51,7 @@ On success, these functions return the value of
 .I x
 to the power of
 .IR y .
-.PP
+.P
 If the result overflows,
 a range error occurs,
 .\" The range error is generated at least as far back as glibc 2.4
@@ -61,14 +61,14 @@ and the functions return
 or
 .BR HUGE_VALL ,
 respectively, with the mathematically correct sign.
-.PP
+.P
 If result underflows, and is not representable,
 a range error occurs,
 and 0.0 with the appropriate sign is returned.
 .\" POSIX.1 does not specify the sign of the zero,
 .\" but https://www.sourceware.org/bugzilla/show_bug.cgi?id=2678
 .\" points out that the zero has the wrong sign in some cases.
-.PP
+.P
 .\" pow(\(+-0, <0 [[odd]]) = HUGE_VAL*
 If
 .I x
@@ -84,7 +84,7 @@ or
 is returned,
 with the same sign as
 .IR x .
-.PP
+.P
 .\" pow(\(+-0, <0 [[!odd]]) = HUGE_VAL*
 If
 .I x
@@ -99,7 +99,7 @@ a pole error occurs and
 or
 .RB + HUGE_VALL ,
 is returned.
-.PP
+.P
 .\" pow(\(+-0, >0 [[odd]]) = \(+-0
 If
 .I x
@@ -108,7 +108,7 @@ and
 .I y
 is an odd integer greater than 0,
 the result is +0 (\-0).
-.PP
+.P
 .\" pow(\(+-0, >0 [[!odd]]) = +0
 If
 .I x
@@ -117,7 +117,7 @@ and
 .I y
 greater than 0 and not an odd integer,
 the result is +0.
-.PP
+.P
 .\" pow(-1, \(+-INFINITY) = 1.0
 If
 .I x
@@ -126,21 +126,21 @@ and
 .I y
 is positive infinity or negative infinity,
 the result is 1.0.
-.PP
+.P
 .\" pow(+1, y) = 1.0
 If
 .I x
 is +1, the result is 1.0 (even if
 .I y
 is a NaN).
-.PP
+.P
 .\" pow(x, \(+-0) = 1.0
 If
 .I y
 is 0, the result is 1.0 (even if
 .I x
 is a NaN).
-.PP
+.P
 .\" pow(<0, y) = NaN
 If
 .I x
@@ -149,7 +149,7 @@ is a finite value less than 0, and
 is a finite noninteger, a domain error occurs,
 .\" The domain error is generated at least as far back as glibc 2.4
 and a NaN is returned.
-.PP
+.P
 .\" pow(|x|<1, -INFINITY) = INFINITY
 If the absolute value of
 .I x
@@ -158,7 +158,7 @@ and
 .I y
 is negative infinity,
 the result is positive infinity.
-.PP
+.P
 .\" pow(|x|>1, -INFINITY) = +0
 If the absolute value of
 .I x
@@ -167,7 +167,7 @@ and
 .I y
 is negative infinity,
 the result is +0.
-.PP
+.P
 .\" pow(|x|<1, INFINITY) = +0
 If the absolute value of
 .I x
@@ -176,7 +176,7 @@ and
 .I y
 is positive infinity,
 the result is +0.
-.PP
+.P
 .\" pow(|x|>1, INFINITY) = INFINITY
 If the absolute value of
 .I x
@@ -185,7 +185,7 @@ and
 .I y
 is positive infinity,
 the result is positive infinity.
-.PP
+.P
 .\" pow(-INFINITY, <0 [[odd]]) = -0
 If
 .I x
@@ -194,7 +194,7 @@ and
 .I y
 is an odd integer less than 0,
 the result is \-0.
-.PP
+.P
 .\" pow(-INFINITY, <0 [[!odd]]) = +0
 If
 .I x
@@ -203,7 +203,7 @@ and
 .I y
 less than 0 and not an odd integer,
 the result is +0.
-.PP
+.P
 .\" pow(-INFINITY, >0 [[odd]]) = -INFINITY
 If
 .I x
@@ -212,7 +212,7 @@ and
 .I y
 is an odd integer greater than 0,
 the result is negative infinity.
-.PP
+.P
 .\" pow(-INFINITY, >0 [[!odd]]) = INFINITY
 If
 .I x
@@ -221,7 +221,7 @@ and
 .I y
 greater than 0 and not an odd integer,
 the result is positive infinity.
-.PP
+.P
 .\" pow(INFINITY, <0) = +0
 If
 .I x
@@ -230,7 +230,7 @@ and
 .I y
 less than 0,
 the result is +0.
-.PP
+.P
 .\" pow(INFINITY, >0) = INFINITY
 If
 .I x
@@ -239,7 +239,7 @@ and
 .I y
 greater than 0,
 the result is positive infinity.
-.PP
+.P
 .\" pow(NaN, y) or pow(x, NaN) = NaN
 Except as specified above, if
 .I x
@@ -271,7 +271,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Domain error: \fIx\fP is negative, and \fIy\fP is a finite noninteger
@@ -326,7 +326,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to
@@ -348,13 +348,13 @@ nor
 This problem was fixed
 .\" commit c3d466cba1692708a19c6ff829d0386c83a0c6e5
 in glibc 2.28.
-.PP
+.P
 A number of bugs
 .\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=3866
 in the glibc implementation of
 .BR pow ()
 were fixed in glibc 2.16.
-.PP
+.P
 In glibc 2.9 and earlier,
 .\"
 .\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=6776
@@ -368,7 +368,7 @@ Since glibc 2.10,
 .\" or possibly 2.9, I haven't found the source code change
 .\" and I don't have a 2.9 system to test
 glibc does the right thing.
-.PP
+.P
 In glibc 2.3.2 and earlier,
 .\" Actually, glibc 2.3.2 is the earliest test result I have; so yet
 .\" to confirm if this error occurs only in glibc 2.3.2.

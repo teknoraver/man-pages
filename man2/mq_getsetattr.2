@@ -10,13 +10,13 @@ mq_getsetattr \- get/set message queue attributes
 .BR "#include <mqueue.h>" "           /* Definition of " "struct mq_attr" " */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_mq_getsetattr, mqd_t " mqdes ,
 .BI "            const struct mq_attr *" newattr ", struct mq_attr *" oldattr );
 .fi
 .SH DESCRIPTION
 Do not use this system call.
-.PP
+.P
 This is the low-level system call used to implement
 .BR mq_getattr (3)
 and

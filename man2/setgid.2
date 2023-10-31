@@ -16,7 +16,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int setgid(gid_t " gid );
 .fi
 .SH DESCRIPTION
@@ -26,7 +26,7 @@ If the calling process is privileged (more precisely: has the
 .B CAP_SETGID
 capability in its user namespace),
 the real GID and saved set-group-ID are also set.
-.PP
+.P
 Under Linux,
 .BR setgid ()
 is implemented like the POSIX version with the
@@ -73,7 +73,7 @@ For details, see
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, SVr4.
-.PP
+.P
 The original Linux
 .BR setgid ()
 system call supported only 16-bit group IDs.

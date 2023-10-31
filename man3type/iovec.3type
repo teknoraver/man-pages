@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .EX
 .B #include <sys/uio.h>
-.PP
+.P
 .B struct iovec {
 .BR "    void   *iov_base;" "  /* Starting address */"
 .BR "    size_t  iov_len;" "   /* Size of the memory pointed to by "\c

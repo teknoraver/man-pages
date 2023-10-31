@@ -24,20 +24,20 @@ Password hashing library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "char *crypt(const char *" key ", const char *" salt );
-.PP
+.P
 .B #include <crypt.h>
-.PP
+.P
 .BI "char *crypt_r(const char *" key ", const char *" salt ,
 .BI "              struct crypt_data *restrict " data );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR crypt ():
 .nf
     Since glibc 2.28:
@@ -45,7 +45,7 @@ Feature Test Macro Requirements for glibc (see
     glibc 2.27 and earlier:
         _XOPEN_SOURCE
 .fi
-.PP
+.P
 .BR crypt_r ():
 .nf
     _GNU_SOURCE
@@ -56,16 +56,16 @@ is the password hashing function.
 It is based on the Data Encryption
 Standard algorithm with variations intended (among other things) to
 discourage use of hardware implementations of a key search.
-.PP
+.P
 .I key
 is a user's typed password.
-.PP
+.P
 .I salt
 is a two-character string chosen from the set
 [\fBa\-zA\-Z0\-9./\fP].
 This string is used to
 perturb the algorithm in one of 4096 different ways.
-.PP
+.P
 By taking the lowest 7 bits of each of the first eight characters of the
 .IR key ,
 a 56-bit key is obtained.
@@ -76,7 +76,7 @@ value points to the hashed password, a series of 13 printable ASCII
 characters (the first two characters represent the salt itself).
 The return value points to static data whose content is
 overwritten by each call.
-.PP
+.P
 Warning: the key space consists of
 .if t 2\s-2\u56\s0\d
 .if n 2**56
@@ -93,7 +93,7 @@ The use of a
 .BR passwd (1)
 program that checks for crackable passwords during the selection process is
 recommended.
-.PP
+.P
 The DES algorithm itself has a few quirks which make the use of the
 .BR crypt ()
 interface a very poor choice for anything other than password
@@ -102,7 +102,7 @@ If you are planning on using the
 .BR crypt ()
 interface for a cryptography project, don't do it: get a good book on
 encryption and one of the widely available DES libraries.
-.PP
+.P
 .BR crypt_r ()
 is a reentrant version of
 .BR crypt ().
@@ -128,22 +128,22 @@ The
 .BR crypt ()
 function was not implemented, probably because of U.S.A. export restrictions.
 .\" This level of detail is not necessary in this man page. . .
-.\" .PP
+.\" .P
 .\" When encrypting a plain text P using DES with the key K results in the
 .\" encrypted text C, then the complementary plain text P' being encrypted
 .\" using the complementary key K' will result in the complementary encrypted
 .\" text C'.
-.\" .PP
+.\" .P
 .\" Weak keys are keys which stay invariant under the DES key transformation.
 .\" The four known weak keys 0101010101010101, fefefefefefefefe,
 .\" 1f1f1f1f0e0e0e0e and e0e0e0e0f1f1f1f1 must be avoided.
-.\" .PP
+.\" .P
 .\" There are six known half weak key pairs, which keys lead to the same
 .\" encrypted data.  Keys which are part of such key clusters should be
 .\" avoided.
 .\" Sorry, I could not find out what they are.
 .\""
-.\" .PP
+.\" .P
 .\" Heavily redundant data causes trouble with DES encryption, when used in the
 .\" .I codebook
 .\" mode that
@@ -152,13 +152,13 @@ function was not implemented, probably because of U.S.A. export restrictions.
 .\" .BR crypt ()
 .\" interface should be used only for its intended purpose of password
 .\" verification, and should not be used as part of a data encryption tool.
-.\" .PP
+.\" .P
 .\" The first and last three output bits of the fourth S-box can be
 .\" represented as function of their input bits.  Empiric studies have
 .\" shown that S-boxes partially compute the same output for similar input.
 .\" It is suspected that this may contain a back door which could allow the
 .\" NSA to decrypt DES encrypted data.
-.\" .PP
+.\" .P
 .\" Making encrypted data computed using crypt() publicly available has
 .\" to be considered insecure for the given reasons.
 .TP
@@ -225,17 +225,17 @@ is an ABI-compatible drop-in replacement.
 .SS Features in glibc
 The glibc version of this function supports additional
 hashing algorithms.
-.PP
+.P
 If
 .I salt
 is a character string starting with the characters "$\fIid\fP$"
 followed by a string optionally terminated by "$",
 then the result has the form:
 .RS
-.PP
+.P
 $\fIid\fP$\fIsalt\fP$\fIhashed\fP
 .RE
-.PP
+.P
 .I id
 identifies the hashing method used instead of DES and this
 then determines how the rest of the password string is interpreted.
@@ -263,11 +263,11 @@ T}
 6	SHA-512 (since glibc 2.7)
 .TE
 .RE
-.PP
+.P
 Thus, $5$\fIsalt\fP$\fIhashed\fP and $6$\fIsalt\fP$\fIhashed\fP
 contain the password hashed with, respectively, functions
 based on SHA-256 and SHA-512.
-.PP
+.P
 "\fIsalt\fP" stands for the up to 16 characters
 following "$\fIid\fP$" in the salt.
 The "\fIhashed\fP"
@@ -281,14 +281,14 @@ SHA-256	43 characters
 SHA-512	86 characters
 .TE
 .RE
-.PP
+.P
 The characters in "\fIsalt\fP" and "\fIhashed\fP" are drawn from the set
 [\fBa\-zA\-Z0\-9./\fP].
 In the MD5 and SHA implementations the entire
 .I key
 is significant (instead of only the first
 8 bytes in DES).
-.PP
+.P
 Since glibc 2.7,
 .\" glibc commit 9425cb9eea6a62fc21d99aafe8a60f752b934b05
 the SHA-256 and SHA-512 implementations support a user-supplied number of
@@ -297,10 +297,10 @@ If the "$\fIid\fP$" characters in the salt are
 followed by "rounds=\fIxxx\fP$", where \fIxxx\fP is an integer, then the
 result has the form
 .RS
-.PP
+.P
 $\fIid\fP$\fIrounds=yyy\fP$\fIsalt\fP$\fIhashed\fP
 .RE
-.PP
+.P
 where \fIyyy\fP is the number of hashing rounds actually used.
 The number of rounds actually used is 1000 if
 .I xxx

@@ -14,23 +14,23 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int random_r(struct random_data *restrict " buf ,
 .BI "             int32_t *restrict " result );
 .BI "int srandom_r(unsigned int " seed ", struct random_data *" buf );
-.PP
+.P
 .BI "int initstate_r(unsigned int " seed ", \
 char " statebuf "[restrict ." statelen ],
 .BI "             size_t " statelen ", struct random_data *restrict " buf );
 .BI "int setstate_r(char *restrict " statebuf ,
 .BI "             struct random_data *restrict " buf );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR random_r (),
 .BR srandom_r (),
 .BR initstate_r (),
@@ -45,7 +45,7 @@ of the functions described in
 .BR random (3).
 They are suitable for use in multithreaded programs where each thread
 needs to obtain an independent, reproducible sequence of random numbers.
-.PP
+.P
 The
 .BR random_r ()
 function is like
@@ -58,7 +58,7 @@ which must have been previously initialized by
 .BR initstate_r ().
 The generated random number is returned in the argument
 .IR result .
-.PP
+.P
 The
 .BR srandom_r ()
 function is like
@@ -69,7 +69,7 @@ whose state is maintained in the object pointed to by
 which must have been previously initialized by
 .BR initstate_r (),
 instead of the seed associated with the global state variable.
-.PP
+.P
 The
 .BR initstate_r ()
 function is like
@@ -97,7 +97,7 @@ should typically be allocated as a static variable,
 or allocated on the heap using
 .BR malloc (3)
 or similar.)
-.PP
+.P
 The
 .BR setstate_r ()
 function is like

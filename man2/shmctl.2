@@ -33,7 +33,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/shm.h>
-.PP
+.P
 .BI "int shmctl(int " shmid ", int " cmd ", struct shmid_ds *" buf );
 .fi
 .SH DESCRIPTION
@@ -42,12 +42,12 @@ performs the control operation specified by
 .I cmd
 on the System\ V shared memory segment whose identifier is given in
 .IR shmid .
-.PP
+.P
 The
 .I buf
 argument is a pointer to a \fIshmid_ds\fP structure,
 defined in \fI<sys/shm.h>\fP as follows:
-.PP
+.P
 .in +4n
 .EX
 struct shmid_ds {
@@ -64,7 +64,7 @@ struct shmid_ds {
 };
 .EE
 .in
-.PP
+.P
 The fields of the
 .I shmid_ds
 structure are as follows:
@@ -106,13 +106,13 @@ system call on this segment.
 .TP
 .I shm_nattch
 Number of processes that have this segment attached.
-.PP
+.P
 The
 .I ipc_perm
 structure is defined as follows
 (the highlighted fields are settable using
 .BR IPC_SET ):
-.PP
+.P
 .in +4n
 .EX
 struct ipc_perm {
@@ -127,7 +127,7 @@ struct ipc_perm {
 };
 .EE
 .in
-.PP
+.P
 The least significant 9 bits of the
 .I mode
 field of the
@@ -143,7 +143,7 @@ l l.
 0004	Read by others
 0002	Write by others
 .TE
-.PP
+.P
 Bits 0100, 0010, and 0001 (the execute bits) are unused by the system.
 (It is not necessary to have execute permission on a segment
 in order to perform a
@@ -151,7 +151,7 @@ in order to perform a
 call with the
 .B SHM_EXEC
 flag.)
-.PP
+.P
 Valid values for
 .I cmd
 are:
@@ -307,7 +307,7 @@ is not checked for read access for
 meaning that any user can employ this operation (just as any user may read
 .I /proc/sysvipc/shm
 to obtain the same information).
-.PP
+.P
 The caller can prevent or allow swapping of a shared
 memory segment with the following \fIcmd\fP values:
 .TP
@@ -325,7 +325,7 @@ will be set.
 .TP
 .BR SHM_UNLOCK " (Linux-specific)"
 Unlock the segment, allowing it to be swapped out.
-.PP
+.P
 Before Linux 2.6.10, only a privileged process
 could employ
 .B SHM_LOCK
@@ -363,7 +363,7 @@ operation returns the identifier of the shared memory segment
 whose index was given in
 .IR shmid .
 Other operations return 0 on success.
-.PP
+.P
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
@@ -456,7 +456,7 @@ POSIX.1-2001, SVr4.
 .\" SVr4 documents additional error conditions EINVAL,
 .\" ENOENT, ENOSPC, ENOMEM, EEXIST.  Neither SVr4 nor SVID documents
 .\" an EIDRM error condition.
-.PP
+.P
 Various fields in a \fIstruct shmid_ds\fP were typed as
 .I short
 under Linux 2.2

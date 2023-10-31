@@ -22,7 +22,7 @@ file allows one to discover information about who is currently using the
 system.
 There may be more users currently using the system, because not
 all programs use utmp logging.
-.PP
+.P
 .B Warning:
 .I utmp
 must not be writable by the user class "other",
@@ -32,7 +32,7 @@ You risk faked system logfiles and
 modifications of system files if you leave
 .I utmp
 writable to any user other than the owner and group owner of the file.
-.PP
+.P
 The file is a sequence of
 .I utmp
 structures,
@@ -40,7 +40,7 @@ declared as follows in
 .I <utmp.h>
 (note that this is only one of several definitions
 around; details depend on the version of libc):
-.PP
+.P
 .in +4n
 .EX
 /* Values for ut_type field, below */
@@ -112,7 +112,7 @@ struct utmp {
 #define ut_addr ut_addr_v6[0]
 .EE
 .in
-.PP
+.P
 This structure gives the name of the special file associated with the
 user's terminal, the user's login name, and the time of login in the form
 of
@@ -120,7 +120,7 @@ of
 String fields are terminated by a null byte (\[aq]\e0\[aq])
 if they are shorter than the size
 of the field.
-.PP
+.P
 The first entries ever created result from
 .BR init (1)
 processing
@@ -137,7 +137,7 @@ with the needed \fIut_id\fP can be found,
 creates a new one.
 It sets \fIut_id\fP from the inittab, \fIut_pid\fP and \fIut_time\fP to the
 current values, and \fIut_type\fP to \fBINIT_PROCESS\fP.
-.PP
+.P
 .BR mingetty (8)
 (or
 .BR agetty (8))
@@ -156,7 +156,7 @@ and
 .BR login (1),
 records may be located by
 \fIut_line\fP instead of the preferable \fIut_pid\fP.
-.PP
+.P
 When
 .BR init (1)
 finds that a process has exited, it locates its utmp entry by
@@ -171,7 +171,7 @@ and clears
 and
 .I ut_time
 with null bytes.
-.PP
+.P
 .BR xterm (1)
 and other terminal emulators directly create a
 \fBUSER_PROCESS\fP record and generate the \fIut_id\fP by using the
@@ -184,7 +184,7 @@ If they can, they
 will mark it as \fBDEAD_PROCESS\fP on exiting and it is advised that
 they null \fIut_line\fP, \fIut_time\fP, \fIut_user\fP, and \fIut_host\fP
 as well.
-.PP
+.P
 .BR telnetd (8)
 sets up a \fBLOGIN_PROCESS\fP entry and leaves the rest to
 .BR login (1)
@@ -192,7 +192,7 @@ as usual.
 After the telnet session ends,
 .BR telnetd (8)
 cleans up utmp in the described way.
-.PP
+.P
 The \fIwtmp\fP file records all logins and logouts.
 Its format is exactly like \fIutmp\fP except that a null username
 indicates a logout
@@ -237,7 +237,7 @@ POSIX.1 does not specify the lengths of the
 and
 .I ut_user
 fields.
-.PP
+.P
 Linux defines the
 .I utmpx
 structure to be the same as the
@@ -248,14 +248,14 @@ Linux.
 .SH HISTORY
 Linux utmp entries conform neither to v7/BSD nor to System V; they are a
 mix of the two.
-.PP
+.P
 v7/BSD has fewer fields; most importantly it lacks
 \fIut_type\fP, which causes native v7/BSD-like programs to display (for
 example) dead or login entries.
 Further, there is no configuration file
 which allocates slots to sessions.
 BSD does so because it lacks \fIut_id\fP fields.
-.PP
+.P
 In Linux (as in System V), the \fIut_id\fP field of a
 record will never change once it has been set, which reserves that slot
 without needing a configuration file.
@@ -267,7 +267,7 @@ with null bytes is not required by System V semantics,
 but makes it possible to run
 many programs which assume BSD semantics and which do not modify utmp.
 Linux uses the BSD conventions for line contents, as documented above.
-.PP
+.P
 .\" mtk: What is the referrent of "them" in the following sentence?
 .\" System V only uses the type field to mark them and logs
 .\" informative messages such as \fB"new time"\fP in the line field.
@@ -279,10 +279,10 @@ must always exist on Linux.
 If you want to disable
 .BR who (1),
 then do not make utmp world readable.
-.PP
+.P
 The file format is machine-dependent, so it is recommended that it be
 processed only on the machine architecture where it was created.
-.PP
+.P
 Note that on \fIbiarch\fP platforms, that is, systems which can run both
 32-bit and 64-bit applications (x86-64, ppc64, s390x, etc.),
 \fIut_tv\fP is the same size in 32-bit mode as in 64-bit mode.
@@ -303,15 +303,15 @@ and
 .IR tv_usec .
 Since \fIut_tv\fP may not be the same as \fIstruct timeval\fP,
 then instead of the call:
-.PP
+.P
 .in +4n
 .EX
 gettimeofday((struct timeval *) &ut.ut_tv, NULL);
 .EE
 .in
-.PP
+.P
 the following method of setting this field is recommended:
-.PP
+.P
 .in +4n
 .EX
 struct utmp ut;
@@ -322,7 +322,7 @@ ut.ut_tv.tv_sec = tv.tv_sec;
 ut.ut_tv.tv_usec = tv.tv_usec;
 .EE
 .in
-.\" .PP
+.\" .P
 .\" Note that the \fIutmp\fP struct from libc5 has changed in libc6.
 .\" Because of this,
 .\" binaries using the old libc5 struct will corrupt

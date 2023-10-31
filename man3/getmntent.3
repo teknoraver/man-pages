@@ -21,31 +21,31 @@ Standard C library
 .nf
 .B #include <stdio.h>
 .B #include <mntent.h>
-.PP
+.P
 .BI "FILE *setmntent(const char *" filename ", const char *" type );
-.PP
+.P
 .BI "struct mntent *getmntent(FILE *" stream );
-.PP
+.P
 .BI "int addmntent(FILE *restrict " stream ,
 .BI "              const struct mntent *restrict " mnt );
-.PP
+.P
 .BI "int endmntent(FILE *" streamp );
-.PP
+.P
 .BI "char *hasmntopt(const struct mntent *" mnt ", const char *" opt );
-.PP
+.P
 /* GNU extension */
 .B #include <mntent.h>
-.PP
+.P
 .BI "struct mntent *getmntent_r(FILE *restrict " streamp ,
 .BI "              struct mntent *restrict " mntbuf ,
 .BI "              char " buf "[restrict ." buflen "], int " buflen );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getmntent_r ():
 .nf
     Since glibc 2.19:
@@ -58,7 +58,7 @@ These routines are used to access the filesystem description file
 .I /etc/fstab
 and the mounted filesystem description file
 .IR /etc/mtab .
-.PP
+.P
 The
 .BR setmntent ()
 function opens the filesystem description file
@@ -76,7 +76,7 @@ The returned stream should be closed using
 .BR endmntent ()
 rather than
 .BR fclose (3).
-.PP
+.P
 The
 .BR getmntent ()
 function reads the next line of the filesystem
@@ -88,7 +88,7 @@ The pointer
 points to a static area of memory which is overwritten by subsequent
 calls to
 .BR getmntent ().
-.PP
+.P
 The
 .BR addmntent ()
 function adds the
@@ -98,13 +98,13 @@ structure
 to
 the end of the open
 .IR stream .
-.PP
+.P
 The
 .BR endmntent ()
 function closes the
 .I stream
 associated with the filesystem description file.
-.PP
+.P
 The
 .BR hasmntopt ()
 function scans the
@@ -121,7 +121,7 @@ See
 and
 .BR mount (8)
 for valid mount options.
-.PP
+.P
 The reentrant
 .BR getmntent_r ()
 function is similar to
@@ -136,13 +136,13 @@ in the provided array
 .I buf
 of size
 .IR buflen .
-.PP
+.P
 The
 .I mntent
 structure is defined in
 .I <mntent.h>
 as follows:
-.PP
+.P
 .in +4n
 .EX
 struct mntent {
@@ -155,7 +155,7 @@ struct mntent {
 };
 .EE
 .in
-.PP
+.P
 Since fields in the mtab and fstab files are separated by whitespace,
 octal escapes are used to represent the characters space (\e040),
 tab (\e011), newline (\e012), and backslash (\e\e) in those files
@@ -179,15 +179,15 @@ functions return
 a pointer to the
 .I mntent
 structure or NULL on failure.
-.PP
+.P
 The
 .BR addmntent ()
 function returns 0 on success and 1 on failure.
-.PP
+.P
 The
 .BR endmntent ()
 function always returns 1.
-.PP
+.P
 The
 .BR hasmntopt ()
 function returns the address of the substring if
@@ -247,7 +247,7 @@ A routine
 was introduced in HP-UX 10, but it returns an
 .IR int .
 The prototype shown above is glibc-only.
-.PP
+.P
 System V also has a
 .BR getmntent ()
 function but the calling sequence

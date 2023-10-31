@@ -25,22 +25,22 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double remainder(double " x ", double " y );
 .BI "float remainderf(float " x ", float " y );
 .BI "long double remainderl(long double " x ", long double " y );
-.PP
+.P
 /* Obsolete synonyms */
 .BI "[[deprecated]] double drem(double " x ", double " y );
 .BI "[[deprecated]] float dremf(float " x ", float " y );
 .BI "[[deprecated]] long double dreml(long double " x ", long double " y );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR remainder ():
 .nf
     _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L
@@ -49,7 +49,7 @@ Feature Test Macro Requirements for glibc (see
         || /* Since glibc 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR remainderf (),
 .BR remainderl ():
 .nf
@@ -57,7 +57,7 @@ Feature Test Macro Requirements for glibc (see
         || /* Since glibc 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR drem (),
 .BR dremf (),
 .BR dreml ():
@@ -83,10 +83,10 @@ If the absolute value of
 is 0.5,
 .I n
 is chosen to be even.
-.PP
+.P
 These functions are unaffected by the current rounding mode (see
 .BR fenv (3)).
-.PP
+.P
 The
 .BR drem ()
 function does precisely the same thing.
@@ -96,13 +96,13 @@ functions return the floating-point remainder,
 \fIx\fP\-\fIn\fP*\fIy\fP.
 If the return value is 0, it has the sign of
 .IR x .
-.PP
+.P
 If
 .I x
 or
 .I y
 is a NaN, a NaN is returned.
-.PP
+.P
 If
 .I x
 is an infinity,
@@ -111,7 +111,7 @@ and
 is not a NaN,
 a domain error occurs, and
 a NaN is returned.
-.PP
+.P
 If
 .I y
 is zero,
@@ -127,7 +127,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Domain error: \fIx\fP is an infinity and \fIy\fP is not a NaN
@@ -206,16 +206,16 @@ Tru64, glibc2.
 Before glibc 2.15,
 .\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=6779
 the call
-.PP
+.P
 .in +4n
 .EX
 remainder(nan(""), 0);
 .EE
 .in
-.PP
+.P
 returned a NaN, as expected, but wrongly caused a domain error.
 Since glibc 2.15, a silent NaN (i.e., no domain error) is returned.
-.PP
+.P
 Before glibc 2.15,
 .\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=6783
 .I errno

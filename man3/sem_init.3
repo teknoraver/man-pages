@@ -12,7 +12,7 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <semaphore.h>
-.PP
+.P
 .BI "int sem_init(sem_t *" sem ", int " pshared ", unsigned int " value );
 .fi
 .SH DESCRIPTION
@@ -22,12 +22,12 @@ initializes the unnamed semaphore at the address pointed to by
 The
 .I value
 argument specifies the initial value for the semaphore.
-.PP
+.P
 The
 .I pshared
 argument indicates whether this semaphore is to be shared
 between the threads of a process, or between processes.
-.PP
+.P
 If
 .I pshared
 has the value 0,
@@ -35,7 +35,7 @@ then the semaphore is shared between the threads of a process,
 and should be located at some address that is visible to all threads
 (e.g., a global variable, or a variable allocated dynamically on
 the heap).
-.PP
+.P
 If
 .I pshared
 is nonzero, then the semaphore is shared between processes,
@@ -52,7 +52,7 @@ can operate on the semaphore using
 .BR sem_post (3),
 .BR sem_wait (3),
 and so on.
-.PP
+.P
 Initializing a semaphore that has already been initialized
 results in undefined behavior.
 .SH RETURN VALUE
@@ -91,7 +91,7 @@ T}	Thread safety	MT-Safe
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
-.PP
+.P
 Bizarrely, POSIX.1-2001 does not specify the value that should
 be returned by a successful call to
 .BR sem_init ().

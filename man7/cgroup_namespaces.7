@@ -9,14 +9,14 @@ cgroup_namespaces \- overview of Linux cgroup namespaces
 .SH DESCRIPTION
 For an overview of namespaces, see
 .BR namespaces (7).
-.PP
+.P
 Cgroup namespaces virtualize the view of a process's cgroups (see
 .BR cgroups (7))
 as seen via
 .IR /proc/ pid /cgroup
 and
 .IR /proc/ pid /mountinfo .
-.PP
+.P
 Each cgroup namespace has its own set of cgroup root directories.
 These root directories are the base points for the relative
 locations displayed in the corresponding records in the
@@ -33,7 +33,7 @@ cgroups directories become the cgroup root directories
 of the new namespace.
 (This applies both for the cgroups version 1 hierarchies
 and the cgroups version 2 unified hierarchy.)
-.PP
+.P
 When reading the cgroup memberships of a "target" process from
 .IR /proc/ pid /cgroup ,
 the pathname shown in the third field of each record will be
@@ -44,16 +44,16 @@ the root directory of the reading process's cgroup namespace,
 then the pathname will show
 .I ../
 entries for each ancestor level in the cgroup hierarchy.
-.PP
+.P
 The following shell session demonstrates the effect of creating
 a new cgroup namespace.
-.PP
+.P
 First, (as superuser) in a shell in the initial cgroup namespace,
 we create a child cgroup in the
 .I freezer
 hierarchy, and place a process in that cgroup that we will
 use as part of the demonstration below:
-.PP
+.P
 .in +4n
 .EX
 # \fBmkdir \-p /sys/fs/cgroup/freezer/sub2\fP
@@ -62,11 +62,11 @@ use as part of the demonstration below:
 # \fBecho 20124 > /sys/fs/cgroup/freezer/sub2/cgroup.procs\fP
 .EE
 .in
-.PP
+.P
 We then create another child cgroup in the
 .I freezer
 hierarchy and put the shell into that cgroup:
-.PP
+.P
 .in +4n
 .EX
 # \fBmkdir \-p /sys/fs/cgroup/freezer/sub\fP
@@ -77,17 +77,17 @@ hierarchy and put the shell into that cgroup:
 7:freezer:/sub
 .EE
 .in
-.PP
+.P
 Next, we use
 .BR unshare (1)
 to create a process running a new shell in new cgroup and mount namespaces:
-.PP
+.P
 .in +4n
 .EX
 # \fBPS1="sh2# " unshare \-Cm bash\fP
 .EE
 .in
-.PP
+.P
 From the new shell started by
 .BR unshare (1),
 we then inspect the
@@ -97,7 +97,7 @@ a process that is in the initial cgroup namespace
 .RI ( init ,
 with PID 1), and the process in the sibling cgroup
 .RI ( sub2 ):
-.PP
+.P
 .in +4n
 .EX
 sh2# \fBcat /proc/self/cgroup | grep freezer\fP
@@ -108,7 +108,7 @@ sh2# \fBcat /proc/20124/cgroup | grep freezer\fP
 7:freezer:/../sub2
 .EE
 .in
-.PP
+.P
 From the output of the first command,
 we see that the freezer cgroup membership of the new shell
 (which is in the same cgroup as the initial shell)
@@ -122,18 +122,18 @@ and the root directory of the freezer cgroup hierarchy
 in the new cgroup namespace is also
 .IR /sub .
 Thus, the new shell's cgroup membership is displayed as \[aq]/\[aq].)
-.PP
+.P
 However, when we look in
 .I /proc/self/mountinfo
 we see the following anomaly:
-.PP
+.P
 .in +4n
 .EX
 sh2# \fBcat /proc/self/mountinfo | grep freezer\fP
 155 145 0:32 /.. /sys/fs/cgroup/freezer ...
 .EE
 .in
-.PP
+.P
 The fourth field of this line
 .RI ( /.. )
 should show the
@@ -148,7 +148,7 @@ filesystem corresponding to the initial cgroup namespace
 To fix this problem, we must remount the freezer cgroup filesystem
 from the new shell (i.e., perform the mount from a process that is in the
 new cgroup namespace), after which we see the expected results:
-.PP
+.P
 .in +4n
 .EX
 sh2# \fBmount \-\-make\-rslave /\fP     # Don\[aq]t propagate mount events
@@ -166,7 +166,7 @@ Linux.
 Use of cgroup namespaces requires a kernel that is configured with the
 .B CONFIG_CGROUPS
 option.
-.PP
+.P
 The virtualization provided by cgroup namespaces serves a number of purposes:
 .IP \[bu] 3
 It prevents information leaks whereby cgroup directory paths outside of

@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wctype.h>
-.PP
+.P
 .BI "int iswspace(wint_t " wc );
 .fi
 .SH DESCRIPTION
@@ -31,16 +31,16 @@ It tests whether
 .I wc
 is a wide character
 belonging to the wide-character class "space".
-.PP
+.P
 The wide-character class "space" is disjoint from the wide-character class
 "graph" and therefore also disjoint from its subclasses "alnum", "alpha",
 "upper", "lower", "digit", "xdigit", "punct".
 .\" Note: UNIX98 (susv2/xbd/locale.html) says that "space" and "graph" may
 .\" have characters in common, except U+0020. But C99 (ISO/IEC 9899:1999
 .\" section 7.25.2.1.10) says that "space" and "graph" are disjoint.
-.PP
+.P
 The wide-character class "space" contains the wide-character class "blank".
-.PP
+.P
 The wide-character class "space"
 always contains at least the space character
 and the control characters

@@ -13,18 +13,18 @@ access to a running kernel image, attempting to protect against unauthorized
 modification of the kernel image and to prevent access to security and
 cryptographic data located in kernel memory, whilst still permitting driver
 modules to be loaded.
-.PP
+.P
 If a prohibited or restricted feature is accessed or used, the kernel will emit
 a message that looks like:
-.PP
+.P
 .in +4n
 .EX
 Lockdown: X: Y is restricted, see man kernel_lockdown.7
 .EE
 .in
-.PP
+.P
 where X indicates the process name and Y indicates what is restricted.
-.PP
+.P
 On an EFI-enabled x86 or arm64 machine, lockdown will be automatically enabled
 if the system boots in EFI Secure Boot mode.
 .\"
@@ -33,7 +33,7 @@ When lockdown is in effect, a number of features are disabled or have their
 use restricted.
 This includes special device files and kernel services that allow
 direct access of the kernel image:
-.PP
+.P
 .RS
 /dev/mem
 .br
@@ -47,7 +47,7 @@ BPF
 .br
 kprobes
 .RE
-.PP
+.P
 and the ability to directly configure and control devices, so as to prevent
 the use of a device to access or modify a kernel image:
 .IP \[bu] 3
@@ -73,7 +73,7 @@ The use of ACPI error injection.
 The specification of the ACPI RDSP address.
 .IP \[bu]
 The use of ACPI custom methods.
-.PP
+.P
 Certain facilities are restricted:
 .IP \[bu] 3
 Only validly signed modules may be loaded (waived if the module file being

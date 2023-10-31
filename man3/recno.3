@@ -26,7 +26,7 @@ Since glibc 2.2, glibc no longer provides these interfaces.
 Probably, you are looking for the APIs provided by the
 .I libdb
 library instead.
-.PP
+.P
 The routine
 .BR dbopen (3)
 is the library interface to database files.
@@ -34,7 +34,7 @@ One of the supported file formats is record number files.
 The general description of the database access methods is in
 .BR dbopen (3),
 this manual page describes only the recno-specific information.
-.PP
+.P
 The record number data structure is either variable or fixed-length
 records stored in a flat-file format, accessed by the logical record
 number.
@@ -43,13 +43,13 @@ one through four, and the deletion of record number one causes
 record number five to be renumbered to record number four, as well
 as the cursor, if positioned after record number one, to shift down
 one record.
-.PP
+.P
 The recno access-method-specific data structure provided to
 .BR dbopen (3)
 is defined in the
 .I <db.h>
 include file as follows:
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -63,7 +63,7 @@ typedef struct {
 } RECNOINFO;
 .EE
 .in
-.PP
+.P
 The elements of this structure are defined as follows:
 .TP
 .I flags
@@ -151,7 +151,7 @@ is non-NULL, it specifies the name of the btree file,
 as if specified as the filename for a
 .BR dbopen (3)
 of a btree file.
-.PP
+.P
 The data part of the key/data pair used by the
 .I recno
 access method
@@ -169,12 +169,12 @@ the implementation.
 The
 .I size
 field of the key should be the size of that type.
-.PP
+.P
 Because there can be no metadata associated with the underlying
 recno access method files, any changes made to the default values
 (e.g., fixed record length or byte separator value) must be explicitly
 specified each time the file is opened.
-.PP
+.P
 In the interface specified by
 .BR dbopen (3),
 using the
@@ -201,7 +201,7 @@ Only big and little endian byte order is supported.
 .BR dbopen (3),
 .BR hash (3),
 .BR mpool (3)
-.PP
+.P
 .IR "Document Processing in a Relational Database System" ,
 Michael Stonebraker, Heidi Stettner, Joseph Kalash, Antonin Guttman,
 Nadene Lynn, Memorandum No. UCB/ERL M82/32, May 1982.

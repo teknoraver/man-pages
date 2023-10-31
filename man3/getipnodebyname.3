@@ -15,7 +15,7 @@ Standard C library
 .B #include <sys/types.h>
 .B #include <sys/socket.h>
 .B #include <netdb.h>
-.PP
+.P
 .BI "[[deprecated]] struct hostent *getipnodebyname(const char *" name ", int " af ,
 .BI "                                            int " flags ", int *" error_num );
 .BI "[[deprecated]] struct hostent *getipnodebyaddr(const void " addr [. len ],
@@ -30,7 +30,7 @@ Use
 and
 .BR getnameinfo (3)
 instead.
-.PP
+.P
 The
 .BR getipnodebyname ()
 and
@@ -38,7 +38,7 @@ and
 functions return the names and addresses of a network host.
 These functions return a pointer to the
 following structure:
-.PP
+.P
 .in +4n
 .EX
 struct hostent {
@@ -50,7 +50,7 @@ struct hostent {
 };
 .EE
 .in
-.PP
+.P
 These functions replace the
 .BR gethostbyname (3)
 and
@@ -61,7 +61,7 @@ The
 and
 .BR getipnodebyaddr ()
 functions can access multiple network address families.
-.PP
+.P
 Unlike the
 .B gethostby
 functions,
@@ -95,7 +95,7 @@ The
 .I name
 argument points to a hexadecimal IPv6 address or a name
 of an IPv6 network host.
-.PP
+.P
 The
 .I flags
 argument specifies additional options.
@@ -185,7 +185,7 @@ The domain name server returned a permanent failure response.
 .B TRY_AGAIN
 The domain name server returned a temporary failure response.
 You might have better luck next time.
-.PP
+.P
 A successful query returns a pointer to a
 .I hostent
 structure that contains the following fields:
@@ -242,7 +242,7 @@ None.
 .SH HISTORY
 .\" Not in POSIX.1-2001.
 RFC\ 2553.
-.PP
+.P
 Present in glibc 2.1.91-95, but removed again.
 Several UNIX-like systems support them, but all
 call them deprecated.

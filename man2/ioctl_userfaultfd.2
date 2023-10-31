@@ -16,7 +16,7 @@ Standard C library
 .nf
 .BR "#include <linux/userfaultfd.h>" "  /* Definition of " UFFD* " constants */"
 .B #include <sys/ioctl.h>
-.PP
+.P
 .BI "int ioctl(int " fd ", int " cmd ", ...);"
 .fi
 .SH DESCRIPTION
@@ -25,13 +25,13 @@ Various
 operations can be performed on a userfaultfd object (created by a call to
 .BR userfaultfd (2))
 using calls of the form:
-.PP
+.P
 .in +4n
 .EX
 ioctl(fd, cmd, argp);
 .EE
 .in
-.PP
+.P
 In the above,
 .I fd
 is a file descriptor referring to a userfaultfd object,
@@ -40,7 +40,7 @@ is one of the commands listed below, and
 .I argp
 is a pointer to a data structure that is specific to
 .IR cmd .
-.PP
+.P
 The various
 .BR ioctl (2)
 operations are described below.
@@ -63,13 +63,13 @@ events.
 .SS UFFDIO_API
 (Since Linux 4.3.)
 Enable operation of the userfaultfd and perform API handshake.
-.PP
+.P
 The
 .I argp
 argument is a pointer to a
 .I uffdio_api
 structure, defined as:
-.PP
+.P
 .in +4n
 .EX
 struct uffdio_api {
@@ -79,7 +79,7 @@ struct uffdio_api {
 };
 .EE
 .in
-.PP
+.P
 The
 .I api
 field denotes the API version requested by the application.
@@ -91,7 +91,7 @@ and
 fields to bit masks representing all the available features and the generic
 .BR ioctl (2)
 operations available.
-.PP
+.P
 Since Linux 4.11,
 applications should use the
 .I features
@@ -102,7 +102,7 @@ is called with the
 .I features
 field set to zero.
 The kernel responds by setting all supported feature bits.
-.PP
+.P
 Applications which do not require any specific features
 can begin using the userfaultfd immediately.
 Applications which do need specific features
@@ -110,7 +110,7 @@ should call
 .B UFFDIO_API
 again with a subset of the reported feature bits set
 to enable those features.
-.PP
+.P
 Before Linux 4.11, the
 .I features
 field must be initialized to zero before the call to
@@ -119,13 +119,13 @@ and zero (i.e., no feature bits) is placed in the
 .I features
 field by the kernel upon return from
 .BR ioctl (2).
-.PP
+.P
 If the application sets unsupported feature bits,
 the kernel will zero out the returned
 .I uffdio_api
 structure and return
 .BR EINVAL .
-.PP
+.P
 The following feature bits may be set:
 .TP
 .BR UFFD_FEATURE_EVENT_FORK " (since Linux 4.11)"
@@ -249,7 +249,7 @@ ioctl.
 If this feature bit is set,
 the write protection faults would be asynchronously resolved
 by the kernel.
-.PP
+.P
 The returned
 .I ioctls
 field can contain the following bits:
@@ -270,7 +270,7 @@ operation is supported.
 The
 .B UFFDIO_UNREGISTER
 operation is supported.
-.PP
+.P
 This
 .BR ioctl (2)
 operation returns 0 on success.
@@ -324,13 +324,13 @@ Register a memory address range with the userfaultfd object.
 The pages in the range must be \[lq]compatible\[rq].
 Please refer to the list of register modes below
 for the compatible memory backends for each mode.
-.PP
+.P
 The
 .I argp
 argument is a pointer to a
 .I uffdio_register
 structure, defined as:
-.PP
+.P
 .in +4n
 .EX
 struct uffdio_range {
@@ -345,7 +345,7 @@ struct uffdio_register {
 };
 .EE
 .in
-.PP
+.P
 The
 .I range
 field defines a memory range starting at
@@ -353,7 +353,7 @@ field defines a memory range starting at
 and continuing for
 .I len
 bytes that should be handled by the userfaultfd.
-.PP
+.P
 The
 .I mode
 field defines the mode of operation desired for this memory region.
@@ -378,7 +378,7 @@ Since Linux 5.13,
 only hugetlbfs ranges are compatible.
 Since Linux 5.14,
 compatibility with shmem ranges was added.
-.PP
+.P
 If the operation is successful, the kernel modifies the
 .I ioctls
 bit-mask field to indicate which
@@ -415,7 +415,7 @@ operation is supported.
 The
 .B UFFDIO_POISON
 operation is supported.
-.PP
+.P
 This
 .BR ioctl (2)
 operation returns 0 on success.
@@ -464,12 +464,12 @@ Unregister a memory address range from userfaultfd.
 The pages in the range must be \[lq]compatible\[rq]
 (see the description of
 .BR UFFDIO_REGISTER .)
-.PP
+.P
 The address range to unregister is specified in the
 .I uffdio_range
 structure pointed to by
 .IR argp .
-.PP
+.P
 This
 .BR ioctl (2)
 operation returns 0 on success.
@@ -509,7 +509,7 @@ fields of the
 .I uffdio_copy
 structure pointed to by
 .IR argp :
-.PP
+.P
 .in +4n
 .EX
 struct uffdio_copy {
@@ -521,7 +521,7 @@ struct uffdio_copy {
 };
 .EE
 .in
-.PP
+.P
 The following value may be bitwise ORed in
 .I mode
 to change the behavior of the
@@ -540,7 +540,7 @@ This is used only when both
 and
 .B UFFDIO_REGISTER_MODE_WP
 modes are enabled for the registered range.
-.PP
+.P
 The
 .I copy
 field is used by the kernel to return the number of bytes
@@ -561,7 +561,7 @@ field is output-only;
 it is not read by the
 .B UFFDIO_COPY
 operation.
-.PP
+.P
 This
 .BR ioctl (2)
 operation returns 0 on success.
@@ -618,14 +618,14 @@ operation.
 .SS UFFDIO_ZEROPAGE
 (Since Linux 4.3.)
 Zero out a memory range registered with userfaultfd.
-.PP
+.P
 The requested range is specified by the
 .I range
 field of the
 .I uffdio_zeropage
 structure pointed to by
 .IR argp :
-.PP
+.P
 .in +4n
 .EX
 struct uffdio_zeropage {
@@ -635,7 +635,7 @@ struct uffdio_zeropage {
 };
 .EE
 .in
-.PP
+.P
 The following value may be bitwise ORed in
 .I mode
 to change the behavior of the
@@ -644,7 +644,7 @@ operation:
 .TP
 .B UFFDIO_ZEROPAGE_MODE_DONTWAKE
 Do not wake up the thread that waits for page-fault resolution.
-.PP
+.P
 The
 .I zeropage
 field is used by the kernel to return the number of bytes
@@ -665,7 +665,7 @@ field is output-only;
 it is not read by the
 .B UFFDIO_ZEROPAGE
 operation.
-.PP
+.P
 This
 .BR ioctl (2)
 operation returns 0 on success.
@@ -706,7 +706,7 @@ operation.
 (Since Linux 4.3.)
 Wake up the thread waiting for page-fault resolution on
 a specified memory address range.
-.PP
+.P
 The
 .B UFFDIO_WAKE
 operation is used in conjunction with
@@ -726,13 +726,13 @@ and
 .B UFFDIO_ZEROPAGE
 operations in a batch and then explicitly wake up the faulting thread using
 .BR UFFDIO_WAKE .
-.PP
+.P
 The
 .I argp
 argument is a pointer to a
 .I uffdio_range
 structure (shown above) that specifies the address range.
-.PP
+.P
 This
 .BR ioctl (2)
 operation returns 0 on success.
@@ -756,13 +756,13 @@ was zero; or the specified range was otherwise invalid.
 Write-protect or write-unprotect a userfaultfd-registered memory range
 registered with mode
 .BR UFFDIO_REGISTER_MODE_WP .
-.PP
+.P
 The
 .I argp
 argument is a pointer to a
 .I uffdio_range
 structure as shown below:
-.PP
+.P
 .in +4n
 .EX
 struct uffdio_writeprotect {
@@ -771,7 +771,7 @@ struct uffdio_writeprotect {
 };
 .EE
 .in
-.PP
+.P
 There are two mode bits that are supported in this structure:
 .TP
 .B UFFDIO_WRITEPROTECT_MODE_WP
@@ -788,7 +788,7 @@ page-fault resolution after the operation.
 This can be specified only if
 .B UFFDIO_WRITEPROTECT_MODE_WP
 is not specified.
-.PP
+.P
 This
 .BR ioctl (2)
 operation returns 0 on success.
@@ -826,13 +826,13 @@ Encountered a generic fault during processing.
 Resolve a minor page fault
 by installing page table entries
 for existing pages in the page cache.
-.PP
+.P
 The
 .I argp
 argument is a pointer to a
 .I uffdio_continue
 structure as shown below:
-.PP
+.P
 .in +4n
 .EX
 struct uffdio_continue {
@@ -843,7 +843,7 @@ struct uffdio_continue {
 };
 .EE
 .in
-.PP
+.P
 The following value may be bitwise ORed in
 .I mode
 to change the behavior of the
@@ -852,7 +852,7 @@ operation:
 .TP
 .B UFFDIO_CONTINUE_MODE_DONTWAKE
 Do not wake up the thread that waits for page-fault resolution.
-.PP
+.P
 The
 .I mapped
 field is used by the kernel
@@ -871,7 +871,7 @@ field is output-only;
 it is not read by the
 .B UFFDIO_CONTINUE
 operation.
-.PP
+.P
 This
 .BR ioctl (2)
 operation returns 0 on success.
@@ -936,13 +936,13 @@ Unlike
 this works by installing page table entries,
 rather than "really" poisoning the underlying physical pages.
 This means it only affects this particular address space.
-.PP
+.P
 The
 .I argp
 argument is a pointer to a
 .I uffdio_poison
 structure as shown below:
-.PP
+.P
 .in +4n
 .EX
 struct uffdio_poison {
@@ -953,7 +953,7 @@ struct uffdio_poison {
 };
 .EE
 .in
-.PP
+.P
 The following value may be bitwise ORed in
 .I mode
 to change the behavior of the
@@ -962,7 +962,7 @@ operation:
 .TP
 .B UFFDIO_POISON_MODE_DONTWAKE
 Do not wake up the thread that waits for page-fault resolution.
-.PP
+.P
 The
 .I updated
 field is used by the kernel
@@ -981,7 +981,7 @@ field is output-only;
 it is not read by the
 .B UFFDIO_POISON
 operation.
-.PP
+.P
 This
 .BR ioctl (2)
 operation returns 0 on success.
@@ -1067,6 +1067,6 @@ See
 .BR ioctl (2),
 .BR mmap (2),
 .BR userfaultfd (2)
-.PP
+.P
 .I Documentation/admin\-guide/mm/userfaultfd.rst
 in the Linux kernel source tree

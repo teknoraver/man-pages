@@ -14,14 +14,14 @@ Standard C library
 .nf
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_s390_pci_mmio_write, unsigned long " mmio_addr ,
 .BI "                       const void " user_buffer [. length "], \
 size_t " length );
 .BI "int syscall(SYS_s390_pci_mmio_read, unsigned long " mmio_addr ,
 .BI "                       void " user_buffer [. length "], size_t " length );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrappers for these system calls,
 necessitating the use of
@@ -44,7 +44,7 @@ data from the PCI MMIO memory location specified by
 .I mmio_addr
 to the user-space buffer
 .IR user_buffer .
-.PP
+.P
 These system calls must be used instead of the simple assignment
 or data-transfer operations that are used to access the PCI MMIO
 memory areas mapped to user space on the Linux System z platform.

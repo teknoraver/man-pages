@@ -15,16 +15,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <aliases.h>
-.PP
+.P
 .B "void setaliasent(void);"
 .B "void endaliasent(void);"
-.PP
+.P
 .B "struct aliasent *getaliasent(void);"
 .BI "int getaliasent_r(struct aliasent *restrict " result ,
 .BI "                     char " buffer "[restrict ." buflen "], \
 size_t " buflen ,
 .BI "                     struct aliasent **restrict " res );
-.PP
+.P
 .BI "struct aliasent *getaliasbyname(const char *" name );
 .BI "int getaliasbyname_r(const char *restrict " name ,
 .BI "                     struct aliasent *restrict " result ,
@@ -38,48 +38,48 @@ is the aliases database, that contains mail aliases.
 (To find out which databases are supported, try
 .IR "getent \-\-help" .)
 Six functions are provided to access the aliases database.
-.PP
+.P
 The
 .BR getaliasent ()
 function returns a pointer to a structure containing
 the group information from the aliases database.
 The first time it is called it returns the first entry;
 thereafter, it returns successive entries.
-.PP
+.P
 The
 .BR setaliasent ()
 function rewinds the file pointer to the beginning of the
 aliases database.
-.PP
+.P
 The
 .BR endaliasent ()
 function closes the aliases database.
-.PP
+.P
 .BR getaliasent_r ()
 is the reentrant version of the previous function.
 The requested structure
 is stored via the first argument but the programmer needs to fill the other
 arguments also.
 Not providing enough space causes the function to fail.
-.PP
+.P
 The function
 .BR getaliasbyname ()
 takes the name argument and searches the aliases database.
 The entry is returned as a pointer to a
 .IR "struct aliasent" .
-.PP
+.P
 .BR getaliasbyname_r ()
 is the reentrant version of the previous function.
 The requested structure
 is stored via the second argument but the programmer needs to fill the other
 arguments also.
 Not providing enough space causes the function to fail.
-.PP
+.P
 The
 .I "struct aliasent"
 is defined in
 .IR <aliases.h> :
-.PP
+.P
 .in +4n
 .EX
 struct aliasent {
@@ -129,7 +129,7 @@ T}	Thread safety	MT-Unsafe
 GNU.
 .SH HISTORY
 The NeXT system has similar routines:
-.PP
+.P
 .in +4n
 .EX
 #include <aliasdb.h>
@@ -144,7 +144,7 @@ alias_ent *alias_getbyname(char *name);
 The following example compiles with
 .IR "gcc example.c \-o example" .
 It will dump all names in the alias database.
-.PP
+.P
 .\" SRC BEGIN (setaliasent.c)
 .EX
 #include <aliases.h>

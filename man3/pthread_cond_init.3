@@ -19,9 +19,9 @@ operations on conditions
 .
 .SH SYNOPSIS
 .B #include <pthread.h>
-.PP
+.P
 .BI "pthread_cond_t " cond " = PTHREAD_COND_INITIALIZER;"
-.PP
+.P
 .BI "int pthread_cond_init(pthread_cond_t *" cond ", pthread_condattr_t *" cond_attr ");"
 .BI "int pthread_cond_signal(pthread_cond_t *" cond ");"
 .BI "int pthread_cond_broadcast(pthread_cond_t *" cond ");"
@@ -39,22 +39,22 @@ The basic operations on conditions are:
 signal the condition (when the predicate becomes true),
 and wait for the condition,
 suspending the thread execution until another thread signals the condition.
-.PP
+.P
 A condition variable must always be associated with a mutex,
 to avoid the race condition where
 a thread prepares to wait on a condition variable
 and another thread signals the condition
 just before the first thread actually waits on it.
-.PP
+.P
 \fBpthread_cond_init\fP initializes the condition variable \fIcond\fP,
 using the condition attributes specified in \fIcond_attr\fP,
 or default attributes if \fIcond_attr\fP is \fBNULL\fP.
 The LinuxThreads implementation supports no attributes for conditions,
 hence the \fIcond_attr\fP parameter is actually ignored.
-.PP
+.P
 Variables of type \fBpthread_cond_t\fP can also be initialized statically,
 using the constant \fBPTHREAD_COND_INITIALIZER\fP.
-.PP
+.P
 \fBpthread_cond_signal\fP restarts one of the threads that
 are waiting on the condition variable \fIcond\fP.
 If no threads are waiting on \fIcond\fP,
@@ -62,11 +62,11 @@ nothing happens.
 If several threads are waiting on \fIcond\fP,
 exactly one is restarted,
 but it is not specified which.
-.PP
+.P
 \fBpthread_cond_broadcast\fP restarts all the threads that
 are waiting on the condition variable \fIcond\fP.
 Nothing happens if no threads are waiting on \fIcond\fP.
-.PP
+.P
 \fBpthread_cond_wait\fP atomically unlocks the \fImutex\fP
 (as per \fBpthread_unlock_mutex\fP)
 and waits for the condition variable \fIcond\fP to be signaled.
@@ -77,14 +77,14 @@ on entrance to \fBpthread_cond_wait\fP.
 Before returning to the calling thread,
 \fBpthread_cond_wait\fP re-acquires \fImutex\fP
 (as per \fBpthread_lock_mutex\fP).
-.PP
+.P
 Unlocking the mutex and suspending on the condition variable is done atomically.
 Thus,
 if all threads always acquire the mutex before signaling the condition,
 this guarantees that the condition cannot be signaled (and thus ignored)
 between the time a thread locks the mutex
 and the time it waits on the condition variable.
-.PP
+.P
 \fBpthread_cond_timedwait\fP atomically unlocks \fImutex\fP
 and waits on \fIcond\fP,
 as \fBpthread_cond_wait\fP does,
@@ -97,7 +97,7 @@ The \fIabstime\fP parameter specifies an absolute time,
 with the same origin as \fBtime\fP(2) and \fBgettimeofday\fP(2):
 an \fIabstime\fP of 0
 corresponds to 00:00:00 GMT, January 1, 1970.
-.PP
+.P
 \fBpthread_cond_destroy\fP destroys a condition variable,
 freeing the resources it might hold.
 No threads must be waiting on the condition variable
@@ -141,7 +141,7 @@ and a non-zero error code on error.
 \fBpthread_cond_broadcast\fP,
 and \fBpthread_cond_wait\fP
 never return an error code.
-.PP
+.P
 The \fBpthread_cond_timedwait\fP function returns
 the following error codes on error:
 .RS
@@ -153,7 +153,7 @@ until the timeout specified by \fIabstime\fP.
 \fBEINTR\fP
 \fBpthread_cond_timedwait\fP was interrupted by a signal.
 .RE
-.PP
+.P
 The \fBpthread_cond_destroy\fP function returns
 the following error code on error:
 .RS
@@ -177,7 +177,7 @@ protected by the mutex \fImut\fP,
 and a condition variable \fIcond\fP
 that is to be signaled
 whenever \fIx\fP becomes greater than \fIy\fP.
-.PP
+.P
 .RS
 .ft 3
 .nf
@@ -186,12 +186,12 @@ int x,y;
 pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
 .ft
-.LP
+.P
 .RE
 .fi
-.PP
+.P
 Waiting until \fIx\fP is greater than \fIy\fP is performed as follows:
-.PP
+.P
 .RS
 .ft 3
 .nf
@@ -203,14 +203,14 @@ while (x <= y) {
 /* operate on x and y */
 pthread_mutex_unlock(&mut);
 .ft
-.LP
+.P
 .RE
 .fi
-.PP
+.P
 Modifications on \fIx\fP and \fIy\fP
 that may cause \fIx\fP to become greater than \fIy\fP
 should signal the condition if needed:
-.PP
+.P
 .RS
 .ft 3
 .nf
@@ -220,10 +220,10 @@ pthread_mutex_lock(&mut);
 if (x > y) pthread_cond_broadcast(&cond);
 pthread_mutex_unlock(&mut);
 .ft
-.LP
+.P
 .RE
 .fi
-.PP
+.P
 If it can be proved that at most one waiting thread needs to be waken up
 (for instance,
 if there are only two threads communicating through \fIx\fP and \fIy\fP),
@@ -231,11 +231,11 @@ if there are only two threads communicating through \fIx\fP and \fIy\fP),
 a slightly more efficient alternative to \fBpthread_cond_broadcast\fP.
 In doubt,
 use \fBpthread_cond_broadcast\fP.
-.PP
+.P
 To wait for \fIx\fP to become greater than \fIy\fP
 with a timeout of 5 seconds,
 do:
-.PP
+.P
 .RS
 .ft 3
 .nf
@@ -259,6 +259,6 @@ if (retcode == ETIMEDOUT) {
 }
 pthread_mutex_unlock(&mut);
 .ft
-.LP
+.P
 .RE
 .fi

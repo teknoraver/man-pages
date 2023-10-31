@@ -18,7 +18,7 @@ It also guarantees "round-trip compatibility";
 in other words,
 conversion tables can be built such that no information is lost
 when a string is converted from any other encoding to UCS and back.
-.PP
+.P
 UCS contains the characters required to represent practically all
 known languages.
 This includes not only the Latin, Greek, Cyrillic,
@@ -40,7 +40,7 @@ graphical, typographical, mathematical, and scientific symbols,
 including those provided by TeX, Postscript, APL, MS-DOS, MS-Windows,
 Macintosh, OCR fonts, as well as many word processing and publishing
 systems, and more are being added.
-.PP
+.P
 The UCS standard (ISO/IEC 10646) describes a
 31-bit character set architecture
 consisting of 128 24-bit
@@ -71,7 +71,7 @@ The supplemental planes added by
 ISO/IEC 10646-2 cover only more exotic characters for special scientific,
 dictionary printing, publishing industry, higher-level protocol and
 enthusiast needs.
-.PP
+.P
 The representation of each UCS character as a 2-byte word is referred
 to as the UCS-2 form (only for BMP characters),
 whereas UCS-4 is the representation of each character by a 4-byte word.
@@ -79,7 +79,7 @@ In addition, there exist two encoding forms UTF-8
 for backward compatibility with ASCII processing software and UTF-16
 for the backward-compatible handling of non-BMP characters up to
 0x10ffff by UCS-2 software.
-.PP
+.P
 The UCS characters 0x0000 to 0x007f are identical to those of the
 classic US-ASCII
 character set and the characters in the range 0x0000 to 0x00ff
@@ -101,7 +101,7 @@ character Umlaut-A ("Latin capital letter A with diaeresis") can
 either be represented by the precomposed UCS code 0x00c4, or
 alternatively as the combination of a normal "Latin capital letter A"
 followed by a "combining diaeresis": 0x0041 0x0308.
-.PP
+.P
 Combining characters are essential for instance for encoding the Thai
 script or for mathematical typesetting and users of the International
 Phonetic Alphabet.
@@ -124,7 +124,7 @@ Arabic, Devanagari, Malayalam).
 .TP
 Level 3
 All UCS characters are supported.
-.PP
+.P
 The Unicode 3.0 Standard
 published by the Unicode Consortium
 contains exactly the UCS Basic Multilingual Plane
@@ -147,7 +147,7 @@ code values (in all locales), a convention that is signaled by the GNU
 C library to applications by defining the constant
 .B __STDC_ISO_10646__
 as specified in the ISO C99 standard.
-.PP
+.P
 UCS/Unicode can be used just like ASCII in input/output streams,
 terminal communication, plaintext files, filenames, and environment
 variables in the ASCII compatible UTF-8 multibyte encoding.
@@ -156,7 +156,7 @@ encoding to all applications, a suitable
 .I locale
 has to be selected via environment variables (e.g.,
 "LANG=en_GB.UTF-8").
-.PP
+.P
 The
 .B nl_langinfo(CODESET)
 function returns the name of the selected encoding.
@@ -189,7 +189,7 @@ in the Linux kernel sources
 (or
 .I Documentation/unicode.txt
 before Linux 4.10).
-.PP
+.P
 Two other planes are reserved for private usage, plane 15
 (Supplementary Private Use Area-A, range 0xf0000 to 0xffffd)
 and plane 16 (Supplementary Private Use Area-B, range

@@ -11,7 +11,7 @@ Linux kernel headers
 .SH SYNOPSIS
 .EX
 .B #include <linux/openat2.h>
-.PP
+.P
 .B struct open_how {
 .BR "    u64  flags;" "    /* " O_ "* flags */"
 .BR "    u64  mode;" "     /* Mode for " O_ { CREAT , TMPFILE "} */"
@@ -21,7 +21,7 @@ Linux kernel headers
 .EE
 .SH DESCRIPTION
 Specifies how a pathname should be opened.
-.PP
+.P
 The fields are as follows:
 .TP
 .I flags

@@ -20,7 +20,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "wchar_t *fgetws(wchar_t " ws "[restrict ." n "], int " n \
 ", FILE *restrict " stream );
 .fi
@@ -37,10 +37,10 @@ and adds a terminating null wide character (L\[aq]\e0\[aq]).
 It stops reading wide characters after it has encountered and
 stored a newline wide character.
 It also stops when end of stream is reached.
-.PP
+.P
 The programmer must ensure that there is room for at least \fIn\fP wide
 characters at \fIws\fP.
-.PP
+.P
 For a nonlocking counterpart, see
 .BR unlocked_stdio (3).
 .SH RETURN VALUE
@@ -74,7 +74,7 @@ depends on the
 .B LC_CTYPE
 category of the
 current locale.
-.PP
+.P
 In the absence of additional information passed to the
 .BR fopen (3)
 call, it is
@@ -82,7 +82,7 @@ reasonable to expect that
 .BR fgetws ()
 will actually read a multibyte string
 from the stream and then convert it to a wide-character string.
-.PP
+.P
 This function is unreliable,
 because it does not permit to deal properly with
 null wide characters that may be present in the input.

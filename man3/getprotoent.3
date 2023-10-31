@@ -18,12 +18,12 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <netdb.h>
-.PP
+.P
 .B struct protoent *getprotoent(void);
-.PP
+.P
 .BI "struct protoent *getprotobyname(const char *" name );
 .BI "struct protoent *getprotobynumber(int " proto );
-.PP
+.P
 .BI "void setprotoent(int " stayopen );
 .B void endprotoent(void);
 .fi
@@ -37,7 +37,7 @@ and returns a
 structure
 containing the broken-out fields from the entry.
 A connection is opened to the database if necessary.
-.PP
+.P
 The
 .BR getprotobyname ()
 function returns a
@@ -47,7 +47,7 @@ for the entry from the database
 that matches the protocol name
 .IR name .
 A connection is opened to the database if necessary.
-.PP
+.P
 The
 .BR getprotobynumber ()
 function returns a
@@ -57,7 +57,7 @@ for the entry from the database
 that matches the protocol number
 .IR number .
 A connection is opened to the database if necessary.
-.PP
+.P
 The
 .BR setprotoent ()
 function opens a connection to the database,
@@ -69,17 +69,17 @@ then the connection to the database
 will not be closed between calls to one of the
 .BR getproto* ()
 functions.
-.PP
+.P
 The
 .BR endprotoent ()
 function closes the connection to the database.
-.PP
+.P
 The
 .I protoent
 structure is defined in
 .I <netdb.h>
 as follows:
-.PP
+.P
 .in +4n
 .EX
 struct protoent {
@@ -89,7 +89,7 @@ struct protoent {
 }
 .EE
 .in
-.PP
+.P
 The members of the
 .I protoent
 structure are:
@@ -169,7 +169,7 @@ MT-Unsafe race:protoent
 locale
 T}
 .TE
-.PP
+.P
 In the above table,
 .I protoent
 in

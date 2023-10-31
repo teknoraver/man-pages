@@ -18,15 +18,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wctype.h>
-.PP
+.P
 .BI "int iswblank(wint_t " wc );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR iswblank ():
 .nf
     _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L
@@ -39,16 +39,16 @@ function is the wide-character equivalent of the
 function.
 It tests whether \fIwc\fP is a wide character
 belonging to the wide-character class "blank".
-.PP
+.P
 The wide-character class "blank" is a subclass of the wide-character class
 "space".
-.PP
+.P
 Being a subclass of the wide-character class "space",
 the wide-character class "blank" is disjoint from the
 wide-character class "graph" and therefore also disjoint
 from its subclasses "alnum", "alpha", "upper", "lower", "digit",
 "xdigit", "punct".
-.PP
+.P
 The wide-character class "blank" always contains
 at least the space character
 and the control character \[aq]\et\[aq].

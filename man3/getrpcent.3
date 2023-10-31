@@ -16,12 +16,12 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <netdb.h>
-.PP
+.P
 .B struct rpcent *getrpcent(void);
-.PP
+.P
 .BI "struct rpcent *getrpcbyname(const char *" name );
 .BI "struct rpcent *getrpcbynumber(int " number );
-.PP
+.P
 .BI "void setrpcent(int " stayopen );
 .B void endrpcent(void);
 .fi
@@ -34,7 +34,7 @@ and
 functions each return a pointer to an object with the
 following structure containing the broken-out
 fields of an entry in the RPC program number data base.
-.PP
+.P
 .in +4n
 .EX
 struct rpcent {
@@ -44,7 +44,7 @@ struct rpcent {
 };
 .EE
 .in
-.PP
+.P
 The members of this structure are:
 .TP
 .I r_name
@@ -55,12 +55,12 @@ A NULL-terminated list of alternate names for the RPC program.
 .TP
 .I r_number
 The RPC program number for this service.
-.PP
+.P
 The
 .BR getrpcent ()
 function reads the next entry from the database.
 A connection is opened to the database if necessary.
-.PP
+.P
 The
 .BR setrpcent ()
 function opens a connection to the database,
@@ -72,11 +72,11 @@ then the connection to the database
 will not be closed between calls to one of the
 .BR getrpc* ()
 functions.
-.PP
+.P
 The
 .BR endrpcent ()
 function closes the connection to the database.
-.PP
+.P
 The
 .BR getrpcbyname ()
 and

@@ -19,31 +19,31 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "int rename(const char *" oldpath ", const char *" newpath );
-.PP
+.P
 .BR "#include <fcntl.h>           " "/* Definition of " AT_* " constants */"
 .B #include <stdio.h>
-.PP
+.P
 .BI "int renameat(int " olddirfd ", const char *" oldpath ,
 .BI "             int " newdirfd ", const char *" newpath );
 .BI "int renameat2(int " olddirfd ", const char *" oldpath ,
 .BI "             int " newdirfd ", const char *" newpath \
 ", unsigned int " flags );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .nf
 .BR renameat ():
     Since glibc 2.10:
         _POSIX_C_SOURCE >= 200809L
     Before glibc 2.10:
         _ATFILE_SOURCE
-.PP
+.P
 .BR renameat2 ():
     _GNU_SOURCE
 .fi
@@ -56,10 +56,10 @@ are unaffected.
 Open file descriptors for
 .I oldpath
 are also unaffected.
-.PP
+.P
 Various restrictions determine whether or not the rename operation succeeds:
 see ERRORS below.
-.PP
+.P
 If
 .I newpath
 already exists, it will be atomically replaced, so that there is
@@ -71,7 +71,7 @@ However, there will probably be a window in which both
 and
 .I newpath
 refer to the file being renamed.
-.PP
+.P
 If
 .I oldpath
 and
@@ -79,7 +79,7 @@ and
 are existing hard links referring to the same file, then
 .BR rename ()
 does nothing, and returns a success status.
-.PP
+.P
 If
 .I newpath
 exists but the operation fails for some reason,
@@ -87,13 +87,13 @@ exists but the operation fails for some reason,
 guarantees to leave an instance of
 .I newpath
 in place.
-.PP
+.P
 .I oldpath
 can specify a directory.
 In this case,
 .I newpath
 must either not exist, or it must specify an empty directory.
-.PP
+.P
 If
 .I oldpath
 refers to a symbolic link, the link is renamed; if
@@ -105,7 +105,7 @@ The
 system call operates in exactly the same way as
 .BR rename (),
 except for the differences described here.
-.PP
+.P
 If the pathname given in
 .I oldpath
 is relative, then it is interpreted relative to the directory
@@ -115,7 +115,7 @@ referred to by the file descriptor
 the calling process, as is done by
 .BR rename ()
 for a relative pathname).
-.PP
+.P
 If
 .I oldpath
 is relative and
@@ -127,13 +127,13 @@ then
 is interpreted relative to the current working
 directory of the calling process (like
 .BR rename ()).
-.PP
+.P
 If
 .I oldpath
 is absolute, then
 .I olddirfd
 is ignored.
-.PP
+.P
 The interpretation of
 .I newpath
 is as for
@@ -141,7 +141,7 @@ is as for
 except that a relative pathname is interpreted relative
 to the directory referred to by the file descriptor
 .IR newdirfd .
-.PP
+.P
 See
 .BR openat (2)
 for an explanation of the need for
@@ -157,7 +157,7 @@ call with a zero
 .I flags
 argument is equivalent to
 .BR renameat ().
-.PP
+.P
 The
 .I flags
 argument is a bit mask consisting of zero or more of the following flags:
@@ -414,7 +414,7 @@ are not on the same mounted filesystem.
 .BR rename ()
 does not work across different mount points,
 even if the same filesystem is mounted on both.)
-.PP
+.P
 The following additional errors can occur for
 .BR renameat ()
 and
@@ -437,7 +437,7 @@ or similar for
 .I newpath
 and
 .I newdirfd
-.PP
+.P
 The following additional errors can occur for
 .BR renameat2 ():
 .TP

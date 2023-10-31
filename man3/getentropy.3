@@ -11,15 +11,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int getentropy(void " buffer [. length "], size_t " length );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getentropy ():
 .nf
     _DEFAULT_SOURCE
@@ -35,7 +35,7 @@ at the location pointed to by
 The maximum permitted value for the
 .I length
 argument is 256.
-.PP
+.P
 A successful call to
 .BR getentropy ()
 always provides the requested number of bytes of entropy.
@@ -76,19 +76,19 @@ The
 .BR getentropy ()
 function is implemented using
 .BR getrandom (2).
-.PP
+.P
 Whereas the glibc wrapper makes
 .BR getrandom (2)
 a cancelation point,
 .BR getentropy ()
 is not a cancelation point.
-.PP
+.P
 .BR getentropy ()
 is also declared in
 .BR <sys/random.h> .
 (No feature test macro need be defined to obtain the declaration from
 that header file.)
-.PP
+.P
 A call to
 .BR getentropy ()
 may block if the system has just booted and the kernel has

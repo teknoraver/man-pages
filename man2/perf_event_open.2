@@ -17,12 +17,12 @@ Standard C library
 .BR "#include <linux/hw_breakpoint.h>" " /* Definition of " HW_* " constants */"
 .BR "#include <sys/syscall.h>" "         /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_perf_event_open, struct perf_event_attr *" attr ,
 .BI "            pid_t " pid ", int " cpu ", int " group_fd \
 ", unsigned long " flags  );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR perf_event_open (),
@@ -33,7 +33,7 @@ Given a list of parameters,
 .BR perf_event_open ()
 returns a file descriptor, for use in subsequent system calls
 .RB ( read "(2), " mmap "(2), " prctl "(2), " fcntl "(2), etc.)."
-.PP
+.P
 A call to
 .BR perf_event_open ()
 creates a file descriptor that allows measuring performance
@@ -41,14 +41,14 @@ information.
 Each file descriptor corresponds to one
 event that is measured; these can be grouped together
 to measure multiple events simultaneously.
-.PP
+.P
 Events can be enabled and disabled in two ways: via
 .BR ioctl (2)
 and via
 .BR prctl (2).
 When an event is disabled it does not count or generate overflows but does
 continue to exist and maintain its count value.
-.PP
+.P
 Events come in two flavors: counting and sampled.
 A
 .I counting
@@ -95,7 +95,7 @@ value of less than 1.
 .TP
 .BR "pid == \-1" " and " "cpu == \-1"
 This setting is invalid and will return an error.
-.PP
+.P
 When
 .I pid
 is greater than zero, permission to perform this system call
@@ -105,7 +105,7 @@ is governed by
 .B PTRACE_MODE_READ_REALCREDS
 check on older Linux versions; see
 .BR ptrace (2).
-.PP
+.P
 The
 .I group_fd
 argument allows event groups to be created.
@@ -127,7 +127,7 @@ This means that the values of the member events can be meaningfully compared
 \[em]added, divided (to get ratios), and so on\[em]
 with each other,
 since they have counted events for the same set of executed instructions.
-.PP
+.P
 The
 .I flags
 argument is formed by ORing together zero or more of the following values:
@@ -186,12 +186,12 @@ must be passed as the
 parameter.
 cgroup monitoring is available only
 for system-wide events and may therefore require extra permissions.
-.PP
+.P
 The
 .I perf_event_attr
 structure provides detailed configuration information
 for the event being created.
-.PP
+.P
 .in +4n
 .EX
 struct perf_event_attr {
@@ -291,7 +291,7 @@ struct perf_event_attr {
 };
 .EE
 .in
-.PP
+.P
 The fields of the
 .I perf_event_attr
 structure are described in more detail below:
@@ -562,7 +562,7 @@ This counts context switches to a task in a different cgroup.
 In other words, if the next task is in the same cgroup,
 it won't count the switch.
 .RE
-.PP
+.P
 .RS
 If
 .I type
@@ -575,7 +575,7 @@ can be obtained from under debugfs
 .I tracing/events/*/*/id
 if ftrace is enabled in the kernel.
 .RE
-.PP
+.P
 .RS
 If
 .I type
@@ -586,7 +586,7 @@ To calculate the appropriate
 .I config
 value, use the following equation:
 .RS 4
-.PP
+.P
 .in +4n
 .EX
 config = (perf_hw_cache_id) |
@@ -594,7 +594,7 @@ config = (perf_hw_cache_id) |
          (perf_hw_cache_op_result_id << 16);
 .EE
 .in
-.PP
+.P
 where
 .I perf_hw_cache_id
 is one of:
@@ -622,7 +622,7 @@ for measuring the branch prediction unit
 .\" commit 89d6c0b5bdbb1927775584dcf532d98b3efe1477
 for measuring local memory accesses
 .RE
-.PP
+.P
 and
 .I perf_hw_cache_op_id
 is one of:
@@ -637,7 +637,7 @@ for write accesses
 .B PERF_COUNT_HW_CACHE_OP_PREFETCH
 for prefetch accesses
 .RE
-.PP
+.P
 and
 .I perf_hw_cache_op_result_id
 is one of:
@@ -650,7 +650,7 @@ to measure accesses
 to measure misses
 .RE
 .RE
-.PP
+.P
 If
 .I type
 is
@@ -666,7 +666,7 @@ The libpfm4 library can be used to translate from the name in the
 architectural manuals to the raw hex value
 .BR perf_event_open ()
 expects in this field.
-.PP
+.P
 If
 .I type
 is
@@ -675,7 +675,7 @@ then leave
 .I config
 set to zero.
 Its parameters are set in other places.
-.PP
+.P
 If
 .I type
 is
@@ -933,7 +933,7 @@ not both.
 It has the following format and
 the meaning of each field is
 dependent on the hardware implementation.
-.PP
+.P
 .in +4n
 .EX
 union perf_sample_weight {
@@ -1410,7 +1410,7 @@ Count when we read or write the memory location.
 .TP
 .B HW_BREAKPOINT_X
 Count when we execute code at the memory location.
-.PP
+.P
 The values can be combined via a bitwise or, but the
 combination of
 .B HW_BREAKPOINT_R
@@ -1484,7 +1484,7 @@ Branch target is in hypervisor.
 .TP
 .B PERF_SAMPLE_BRANCH_PLM_ALL
 A convenience value that is the three preceding values ORed together.
-.PP
+.P
 In addition to the privilege value, at least one or more of the
 following bits must be set.
 .TP
@@ -1601,12 +1601,12 @@ The values that are there are specified by the
 field in the
 .I attr
 structure at open time.
-.PP
+.P
 If you attempt to read into a buffer that is not big enough to hold the
 data, the error
 .B ENOSPC
 results.
-.PP
+.P
 Here is the layout of the data returned by a read:
 .IP \[bu] 3
 If
@@ -1645,7 +1645,7 @@ struct read_format {
 };
 .EE
 .in
-.PP
+.P
 The values read are as follows:
 .TP
 .I nr
@@ -1692,18 +1692,18 @@ mmap tracking)
 are logged into a ring-buffer.
 This ring-buffer is created and accessed through
 .BR mmap (2).
-.PP
+.P
 The mmap size should be 1+2\[ha]n pages, where the first page is a
 metadata page
 .RI ( "struct perf_event_mmap_page" )
 that contains various
 bits of information such as where the ring-buffer head is.
-.PP
+.P
 Before Linux 2.6.39, there is a bug that means you must allocate an mmap
 ring buffer when sampling even if you do not plan to access it.
-.PP
+.P
 The structure of the first metadata mmap page is as follows:
-.PP
+.P
 .in +4n
 .EX
 struct perf_event_mmap_page {
@@ -1741,7 +1741,7 @@ struct perf_event_mmap_page {
 }
 .EE
 .in
-.PP
+.P
 The following list describes the fields in the
 .I perf_event_mmap_page
 structure in more detail:
@@ -2033,9 +2033,9 @@ rules as the previous described
 .I data_head
 and
 .IR data_tail .
-.PP
+.P
 The following 2^n ring-buffer pages have the layout described below.
-.PP
+.P
 If
 .I perf_event_attr.sample_id_all
 is set, then all event types will
@@ -2049,9 +2049,9 @@ fields, that is, at the end of the payload.
 This allows a newer perf.data
 file to be supported by older perf tools, with the new optional
 fields being ignored.
-.PP
+.P
 The mmap values start with a header:
-.PP
+.P
 .in +4n
 .EX
 struct perf_event_header {
@@ -2061,7 +2061,7 @@ struct perf_event_header {
 };
 .EE
 .in
-.PP
+.P
 Below, we describe the
 .I perf_event_header
 fields in more detail.
@@ -2102,7 +2102,7 @@ Sample happened in the guest kernel.
 .\" commit 39447b386c846bbf1c56f6403c5282837486200f
 Sample happened in guest user code.
 .RE
-.PP
+.P
 .RS
 Since the following three statuses are generated by
 different record types, they alias to the same bit:
@@ -2131,7 +2131,7 @@ record is generated, this bit indicates that the
 context switch is away from the current process
 (instead of into the current process).
 .RE
-.PP
+.P
 .RS
 In addition, the following bits can be set:
 .TP
@@ -2524,10 +2524,10 @@ The branch was in an aborted transactional memory transaction.
 .\" commit 71ef3c6b9d4665ee7afbbe4c208a98917dcfc32f
 This reports the number of cycles elapsed since the
 previous branch stack update.
-.PP
+.P
 The entries are from most to least recent, so the first entry
 has the most recent branch.
-.PP
+.P
 Support for
 .IR mispred ,
 .IR predicted ,
@@ -2535,7 +2535,7 @@ and
 .I cycles
 is optional; if not supported, those
 values will be 0.
-.PP
+.P
 The type of branches recorded is specified by the
 .I branch_sample_type
 field.
@@ -3296,13 +3296,13 @@ and
 .B F_SETSIG
 operations in
 .BR fcntl (2).
-.PP
+.P
 Overflows are generated only by sampling events
 .RI ( sample_period
 must have a nonzero value).
-.PP
+.P
 There are two ways to generate overflow notifications.
-.PP
+.P
 The first is to set a
 .I wakeup_events
 or
@@ -3312,7 +3312,7 @@ or bytes have been written to the mmap ring buffer.
 In this case,
 .B POLL_IN
 is indicated.
-.PP
+.P
 The other way is by use of the
 .B PERF_EVENT_IOC_REFRESH
 ioctl.
@@ -3324,13 +3324,13 @@ once the counter reaches 0
 .B POLL_HUP
 is indicated and
 the underlying event is disabled.
-.PP
+.P
 Refreshing an event group leader refreshes all siblings and
 refreshing with a parameter of 0 currently enables infinite
 refreshes;
 these behaviors are unsupported and should not be relied on.
 .\" See https://lkml.org/lkml/2011/5/24/337
-.PP
+.P
 Starting with Linux 3.18,
 .\" commit 179033b3e064d2cd3f5f9945e76b0a0f0fbf4883
 .B POLL_HUP
@@ -3344,12 +3344,12 @@ instruction to get low-latency reads without having to enter the kernel.
 Note that using
 .I rdpmc
 is not necessarily faster than other methods for reading event values.
-.PP
+.P
 Support for this can be detected with the
 .I cap_usr_rdpmc
 field in the mmap page; documentation on how
 to calculate event values can be found in that section.
-.PP
+.P
 Originally, when rdpmc support was enabled, any process (not just ones
 with an active perf event) could use the rdpmc instruction to access
 the counters.
@@ -3609,10 +3609,10 @@ Maximum number of pages an unprivileged user can
 .BR mlock (2).
 The default is 516 (kB).
 .RE
-.PP
+.P
 Files in
 .I /sys/bus/event_source/devices/
-.PP
+.P
 .RS 4
 Since Linux 2.6.34, the kernel supports having multiple PMUs
 available for monitoring.
@@ -3873,7 +3873,7 @@ The official way of knowing if
 support is enabled is checking
 for the existence of the file
 .IR /proc/sys/kernel/perf_event_paranoid .
-.PP
+.P
 .B CAP_PERFMON
 capability (since Linux 5.8) provides secure approach to
 performance monitoring and observability operations in a system
@@ -3897,7 +3897,7 @@ option to
 is needed to properly get overflow signals in threads.
 This was introduced in Linux 2.6.32.
 .\" commit ba0a6c9f6fceed11c6a99e8326f0477fe383e6b5
-.PP
+.P
 Prior to Linux 2.6.33 (at least for x86),
 .\" commit b690081d4d3f6a23541493f1682835c3cd5c54a1
 the kernel did not check
@@ -3907,40 +3907,40 @@ This means to see if a given set of events works you have to
 .BR perf_event_open (),
 start, then read before you know for sure you
 can get valid measurements.
-.PP
+.P
 Prior to Linux 2.6.34,
 .\" FIXME . cannot find a kernel commit for this one
 event constraints were not enforced by the kernel.
 In that case, some events would silently return "0" if the kernel
 scheduled them in an improper counter slot.
-.PP
+.P
 Prior to Linux 2.6.34, there was a bug when multiplexing where the
 wrong results could be returned.
 .\" commit 45e16a6834b6af098702e5ea6c9a40de42ff77d8
-.PP
+.P
 Kernels from Linux 2.6.35 to Linux 2.6.39 can quickly crash the kernel if
 "inherit" is enabled and many threads are started.
 .\" commit 38b435b16c36b0d863efcf3f07b34a6fac9873fd
-.PP
+.P
 Prior to Linux 2.6.35,
 .\" commit 050735b08ca8a016bbace4445fa025b88fee770b
 .B PERF_FORMAT_GROUP
 did not work with attached processes.
-.PP
+.P
 There is a bug in the kernel code between
 Linux 2.6.36 and Linux 3.0 that ignores the
 "watermark" field and acts as if a wakeup_event
 was chosen if the union has a
 nonzero value in it.
 .\" commit 4ec8363dfc1451f8c8f86825731fe712798ada02
-.PP
+.P
 From Linux 2.6.31 to Linux 3.4, the
 .B PERF_IOC_FLAG_GROUP
 ioctl argument was broken and would repeatedly operate
 on the event specified rather than iterating across
 all sibling events in a group.
 .\" commit 724b6daa13e100067c30cfc4d1ad06629609dc4e
-.PP
+.P
 From Linux 3.4 to Linux 3.11, the mmap
 .\" commit fa7315871046b9a4c48627905691dbde57e51033
 .I cap_usr_rdpmc
@@ -3952,7 +3952,7 @@ Code should migrate to the new
 and
 .I cap_user_time
 fields instead.
-.PP
+.P
 Always double-check your results!
 Various generalized events have had wrong values.
 For example, retired branches measured
@@ -3962,7 +3962,7 @@ the wrong thing on AMD machines until Linux 2.6.35.
 The following is a short example that measures the total
 instruction count of a call to
 .BR printf (3).
-.PP
+.P
 .\" SRC BEGIN (perf_event_open.c)
 .EX
 #include <linux/perf_event.h>
@@ -4026,6 +4026,6 @@ main(void)
 .BR open (2),
 .BR prctl (2),
 .BR read (2)
-.PP
+.P
 .I Documentation/admin\-guide/perf\-security.rst
 in the kernel source tree

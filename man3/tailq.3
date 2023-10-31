@@ -38,15 +38,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/queue.h>
-.PP
+.P
 .B TAILQ_ENTRY(TYPE);
-.PP
+.P
 .B TAILQ_HEAD(HEADNAME, TYPE);
 .BI "TAILQ_HEAD TAILQ_HEAD_INITIALIZER(TAILQ_HEAD " head );
 .BI "void TAILQ_INIT(TAILQ_HEAD *" head );
-.PP
+.P
 .BI "int TAILQ_EMPTY(TAILQ_HEAD *" head );
-.PP
+.P
 .BI "void TAILQ_INSERT_HEAD(TAILQ_HEAD *" head ,
 .BI "                         struct TYPE *" elm ", TAILQ_ENTRY " NAME );
 .BI "void TAILQ_INSERT_TAIL(TAILQ_HEAD *" head ,
@@ -55,12 +55,12 @@ Standard C library
 .BI "                         struct TYPE *" elm ", TAILQ_ENTRY " NAME );
 .BI "void TAILQ_INSERT_AFTER(TAILQ_HEAD *" head ", struct TYPE *" listelm ,
 .BI "                         struct TYPE *" elm ", TAILQ_ENTRY " NAME );
-.PP
+.P
 .BI "struct TYPE *TAILQ_FIRST(TAILQ_HEAD *" head );
 .BI "struct TYPE *TAILQ_LAST(TAILQ_HEAD *" head ", HEADNAME);"
 .BI "struct TYPE *TAILQ_PREV(struct TYPE *" elm ", HEADNAME, TAILQ_ENTRY " NAME );
 .BI "struct TYPE *TAILQ_NEXT(struct TYPE *" elm ", TAILQ_ENTRY " NAME );
-.PP
+.P
 .BI "TAILQ_FOREACH(struct TYPE *" var ", TAILQ_HEAD *" head ,
 .BI "                         TAILQ_ENTRY " NAME );
 .\" .BI "TAILQ_FOREACH_FROM(struct TYPE *" var ", TAILQ_HEAD *" head ,
@@ -69,7 +69,7 @@ Standard C library
 .BI "                         TAILQ_ENTRY " NAME );
 .\" .BI "TAILQ_FOREACH_REVERSE_FROM(struct TYPE *" var ", TAILQ_HEAD *" head ", HEADNAME,"
 .\" .BI "                                TAILQ_ENTRY " NAME );
-.\" .PP
+.\" .P
 .\" .BI "TAILQ_FOREACH_SAFE(struct TYPE *" var ", TAILQ_HEAD *" head ,
 .\" .BI "                                TAILQ_ENTRY " NAME ,
 .\" .BI "                                struct TYPE *" temp_var );
@@ -82,10 +82,10 @@ Standard C library
 .\" .BI "TAILQ_FOREACH_REVERSE_FROM_SAFE(struct TYPE *" var ", TAILQ_HEAD *" head ,
 .\" .BI "                                HEADNAME, TAILQ_ENTRY " NAME ,
 .\" .BI "                                struct TYPE *" temp_var );
-.PP
+.P
 .BI "void TAILQ_REMOVE(TAILQ_HEAD *" head ", struct TYPE *" elm ,
 .BI "                         TAILQ_ENTRY " NAME );
-.PP
+.P
 .BI "void TAILQ_CONCAT(TAILQ_HEAD *" head1 ", TAILQ_HEAD *" head2 ,
 .BI "                         TAILQ_ENTRY " NAME );
 .\" .BI "void TAILQ_SWAP(TAILQ_HEAD *" head1 ", TAILQ_HEAD *" head2 ", TYPE,"
@@ -93,7 +93,7 @@ Standard C library
 .fi
 .SH DESCRIPTION
 These macros define and operate on doubly linked tail queues.
-.PP
+.P
 In the macro definitions,
 .I TYPE
 is the name of a user defined structure,
@@ -123,42 +123,42 @@ or at the end of the queue.
 A
 .I TAILQ_HEAD
 structure is declared as follows:
-.PP
+.P
 .in +4
 .EX
 TAILQ_HEAD(HEADNAME, TYPE) head;
 .EE
 .in
-.PP
+.P
 where
 .I struct HEADNAME
 is the structure to be defined, and
 .I struct TYPE
 is the type of the elements to be linked into the queue.
 A pointer to the head of the queue can later be declared as:
-.PP
+.P
 .in +4
 .EX
 struct HEADNAME *headp;
 .EE
 .in
-.PP
+.P
 (The names
 .I head
 and
 .I headp
 are user selectable.)
-.PP
+.P
 .BR TAILQ_ENTRY ()
 declares a structure that connects the elements in the queue.
-.PP
+.P
 .BR TAILQ_HEAD_INITIALIZER ()
 evaluates to an initializer for the queue
 .IR head .
-.PP
+.P
 .BR TAILQ_INIT ()
 initializes the queue referenced by
-.PP
+.P
 .BR TAILQ_EMPTY ()
 evaluates to true if there are no items on the queue.
 .IR head .
@@ -167,18 +167,18 @@ evaluates to true if there are no items on the queue.
 inserts the new element
 .I elm
 at the head of the queue.
-.PP
+.P
 .BR TAILQ_INSERT_TAIL ()
 inserts the new element
 .I elm
 at the end of the queue.
-.PP
+.P
 .BR TAILQ_INSERT_BEFORE ()
 inserts the new element
 .I elm
 before the element
 .IR listelm .
-.PP
+.P
 .BR TAILQ_INSERT_AFTER ()
 inserts the new element
 .I elm
@@ -187,17 +187,17 @@ after the element
 .SS Traversal
 .BR TAILQ_FIRST ()
 returns the first item on the queue, or NULL if the queue is empty.
-.PP
+.P
 .BR TAILQ_LAST ()
 returns the last item on the queue.
 If the queue is empty the return value is NULL.
-.PP
+.P
 .BR TAILQ_PREV ()
 returns the previous item on the queue, or NULL if this item is the first.
-.PP
+.P
 .BR TAILQ_NEXT ()
 returns the next item on the queue, or NULL if this item is the last.
-.PP
+.P
 .BR TAILQ_FOREACH ()
 traverses the queue referenced by
 .I head
@@ -207,7 +207,7 @@ assigning each element in turn to
 .I var
 is set to NULL if the loop completes normally,
 or if there were no elements.
-.\" .PP
+.\" .P
 .\" .BR TAILQ_FOREACH_FROM ()
 .\" behaves identically to
 .\" .BR TAILQ_FOREACH ()
@@ -219,14 +219,14 @@ or if there were no elements.
 .\" .I var
 .\" instead of the first element in the TAILQ referenced by
 .\" .IR head .
-.PP
+.P
 .BR TAILQ_FOREACH_REVERSE ()
 traverses the queue referenced by
 .I head
 in the reverse direction,
 assigning each element in turn to
 .IR var .
-.\" .PP
+.\" .P
 .\" .BR TAILQ_FOREACH_REVERSE_FROM ()
 .\" behaves identically to
 .\" .BR TAILQ_FOREACH_REVERSE ()
@@ -238,7 +238,7 @@ assigning each element in turn to
 .\" .I var
 .\" instead of the last element in the TAILQ referenced by
 .\" .IR head .
-.\" .PP
+.\" .P
 .\" .BR TAILQ_FOREACH_SAFE ()
 .\" and
 .\" .BR TAILQ_FOREACH_REVERSE_SAFE ()
@@ -255,7 +255,7 @@ assigning each element in turn to
 .\" .I var
 .\" as well as free it from within the loop safely without interfering with the
 .\" traversal.
-.\" .PP
+.\" .P
 .\" .BR TAILQ_FOREACH_FROM_SAFE ()
 .\" behaves identically to
 .\" .BR TAILQ_FOREACH_SAFE ()
@@ -267,7 +267,7 @@ assigning each element in turn to
 .\" .I var
 .\" instead of the first element in the TAILQ referenced by
 .\" .IR head .
-.\" .PP
+.\" .P
 .\" .BR TAILQ_FOREACH_REVERSE_FROM_SAFE ()
 .\" behaves identically to
 .\" .BR TAILQ_FOREACH_REVERSE_SAFE ()
@@ -290,7 +290,7 @@ from the queue.
 .\" .I head1
 .\" and
 .\" .IR head2 .
-.\" .PP
+.\" .P
 .BR TAILQ_CONCAT ()
 concatenates the queue headed by
 .I head2
@@ -301,7 +301,7 @@ removing all entries from the former.
 .BR TAILQ_EMPTY ()
 returns nonzero if the queue is empty,
 and zero if the queue contains at least one entry.
-.PP
+.P
 .BR TAILQ_FIRST (),
 .BR TAILQ_LAST (),
 .BR TAILQ_PREV (),
@@ -310,7 +310,7 @@ and
 return a pointer to the first, last, previous, or next
 .I TYPE
 structure, respectively.
-.PP
+.P
 .BR TAILQ_HEAD_INITIALIZER ()
 returns an initializer that can be assigned to the queue
 .IR head .

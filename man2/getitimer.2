@@ -19,7 +19,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/time.h>
-.PP
+.P
 .BI "int getitimer(int " which ", struct itimerval *" curr_value );
 .BI "int setitimer(int " which ", const struct itimerval *restrict " new_value ,
 .BI "              struct itimerval *_Nullable restrict " old_value );
@@ -31,7 +31,7 @@ and (optionally) at regular intervals after that.
 When a timer expires, a signal is generated for the calling process,
 and the timer is reset to the specified interval
 (if the interval is nonzero).
-.PP
+.P
 Three types of timers\[em]specified via the
 .I which
 argument\[em]are provided,
@@ -63,11 +63,11 @@ In conjunction with
 .BR ITIMER_VIRTUAL ,
 this timer can be used to profile user and system CPU time
 consumed by the process.
-.PP
+.P
 A process has only one of each of the three types of timers.
-.PP
+.P
 Timer values are defined by the following structures:
-.PP
+.P
 .in +4n
 .EX
 struct itimerval {
@@ -89,7 +89,7 @@ places the current value of the timer specified by
 .I which
 in the buffer pointed to by
 .IR curr_value .
-.PP
+.P
 The
 .I it_value
 substructure is populated with the amount of time remaining until
@@ -100,7 +100,7 @@ when the timer expires.
 If both fields of
 .I it_value
 are zero, then this timer is currently disarmed (inactive).
-.PP
+.P
 The
 .I it_interval
 substructure is populated with the timer interval.
@@ -120,7 +120,7 @@ is non-NULL,
 the buffer it points to is used to return the previous value of the timer
 (i.e., the same information that is returned by
 .BR getitimer ()).
-.PP
+.P
 If either field in
 .I new_value.it_value
 is nonzero,
@@ -128,7 +128,7 @@ then the timer is armed to initially expire at the specified time.
 If both fields in
 .I new_value.it_value
 are zero, then the timer is disarmed.
-.PP
+.P
 The
 .I new_value.it_interval
 field specifies the new interval for the timer;
@@ -161,22 +161,22 @@ fields in the structure pointed to by
 contains a value outside the range [0, 999999].
 .SH VERSIONS
 The standards are silent on the meaning of the call:
-.PP
+.P
 .in +4n
 .EX
 setitimer(which, NULL, &old_value);
 .EE
 .in
-.PP
+.P
 Many systems (Solaris, the BSDs, and perhaps others)
 treat this as equivalent to:
-.PP
+.P
 .in +4n
 .EX
 getitimer(which, &old_value);
 .EE
 .in
-.PP
+.P
 In Linux, this is treated as being equivalent to a call in which the
 .I new_value
 fields are zero; that is, the timer is disabled.
@@ -203,13 +203,13 @@ on the system timer resolution and on the system load; see
 If the timer expires while the process is active (always true for
 .BR ITIMER_VIRTUAL ),
 the signal will be delivered immediately when generated.
-.PP
+.P
 A child created via
 .BR fork (2)
 does not inherit its parent's interval timers.
 Interval timers are preserved across an
 .BR execve (2).
-.PP
+.P
 POSIX.1 leaves the
 interaction between
 .BR setitimer ()
@@ -228,7 +228,7 @@ Under very heavy loading, an
 timer may expire before the signal from a previous expiration
 has been delivered.
 The second signal in such an event will be lost.
-.PP
+.P
 Before Linux 2.6.16, timer values are represented in jiffies.
 If a request is made set a timer with a value whose jiffies
 representation exceeds
@@ -243,14 +243,14 @@ approximately 99.42 days.
 Since Linux 2.6.16,
 the kernel uses a different internal representation for times,
 and this ceiling is removed.
-.PP
+.P
 On certain systems (including i386),
 Linux kernels before Linux 2.6.12 have a bug which will produce
 premature timer expirations of up to one jiffy under some circumstances.
 This bug is fixed in Linux 2.6.12.
 .\" 4 Jul 2005: It looks like this bug may remain in Linux 2.4.x.
 .\"	http://lkml.org/lkml/2005/7/1/165
-.PP
+.P
 POSIX.1-2001 says that
 .BR setitimer ()
 should fail if a

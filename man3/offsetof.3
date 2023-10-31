@@ -34,7 +34,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stddef.h>
-.PP
+.P
 .BI "size_t offsetof(" type ", " member );
 .fi
 .SH DESCRIPTION
@@ -44,14 +44,14 @@ returns the offset of the field
 .I member
 from the start of the structure
 .IR type .
-.PP
+.P
 This macro is useful because the sizes of the fields that compose
 a structure can vary across implementations,
 and compilers may insert different numbers of padding
 bytes between fields.
 Consequently, an element's offset is not necessarily
 given by the sum of the sizes of the previous elements.
-.PP
+.P
 A compiler error will result if
 .I member
 is not aligned to a byte boundary
@@ -71,7 +71,7 @@ POSIX.1-2001, C89.
 On a Linux/i386 system, when compiled using the default
 .BR gcc (1)
 options, the program below produces the following output:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out"

@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/timex.h>
-.PP
+.P
 .BI "int ntp_gettime(struct ntptimeval *" ntv );
 .BI "int ntp_gettimex(struct ntptimeval *" ntv );
 .fi
@@ -20,7 +20,7 @@ Standard C library
 Both of these APIs return information to the caller via the
 .I ntv
 argument, a structure of the following type:
-.PP
+.P
 .in +4n
 .EX
 struct ntptimeval {
@@ -33,7 +33,7 @@ struct ntptimeval {
 };
 .EE
 .in
-.PP
+.P
 The fields of this structure are as follows:
 .TP
 .I time
@@ -69,7 +69,7 @@ This value is not used inside the kernel.
 .TP
 .I tai
 TAI (Atomic International Time) offset.
-.PP
+.P
 .BR ntp_gettime ()
 returns an
 .I ntptimeval
@@ -79,7 +79,7 @@ structure in which the
 and
 .I esterror
 fields are filled in.
-.PP
+.P
 .BR ntp_gettimex ()
 performs the same task as
 .BR ntp_gettime (),
@@ -128,7 +128,7 @@ glibc 2.12.
 .BR adjtimex (2),
 .BR ntp_adjtime (3),
 .BR time (7)
-.PP
+.P
 .ad l
 .UR http://www.slac.stanford.edu/comp/unix/\:package/\:rtems/\:src/\:ssrlApps/\:ntpNanoclock/\:api.htm
 NTP "Kernel Application Program Interface"

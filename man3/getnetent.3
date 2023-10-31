@@ -18,12 +18,12 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <netdb.h>
-.PP
+.P
 .B struct netent *getnetent(void);
-.PP
+.P
 .BI "struct netent *getnetbyname(const char *" name );
 .BI "struct netent *getnetbyaddr(uint32_t " net ", int " type );
-.PP
+.P
 .BI "void setnetent(int " stayopen );
 .B void endnetent(void);
 .fi
@@ -36,7 +36,7 @@ and returns a
 structure containing
 the broken-out fields from the entry.
 A connection is opened to the database if necessary.
-.PP
+.P
 The
 .BR getnetbyname ()
 function returns a
@@ -45,7 +45,7 @@ structure
 for the entry from the database
 that matches the network
 .IR name .
-.PP
+.P
 The
 .BR getnetbyaddr ()
 function returns a
@@ -59,7 +59,7 @@ of type
 The
 .I net
 argument must be in host byte order.
-.PP
+.P
 The
 .BR setnetent ()
 function opens a connection to the database,
@@ -71,17 +71,17 @@ then the connection to the database
 will not be closed between calls to one of the
 .BR getnet* ()
 functions.
-.PP
+.P
 The
 .BR endnetent ()
 function closes the connection to the database.
-.PP
+.P
 The
 .I netent
 structure is defined in
 .I <netdb.h>
 as follows:
-.PP
+.P
 .in +4n
 .EX
 struct netent {
@@ -92,7 +92,7 @@ struct netent {
 }
 .EE
 .in
-.PP
+.P
 The members of the
 .I netent
 structure are:
@@ -174,7 +174,7 @@ MT-Unsafe race:netent env
 locale
 T}
 .TE
-.PP
+.P
 In the above table,
 .I netent
 in
@@ -190,7 +190,7 @@ then data races could occur.
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, 4.3BSD.
-.PP
+.P
 Before glibc 2.2, the
 .I net
 argument of

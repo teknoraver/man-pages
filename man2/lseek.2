@@ -24,7 +24,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "off_t lseek(int " fd ", off_t " offset ", int " whence );
 .fi
 .SH DESCRIPTION
@@ -52,7 +52,7 @@ bytes.
 The file offset is set to the size of the file plus
 .I offset
 bytes.
-.PP
+.P
 .BR lseek ()
 allows the file offset to be set beyond the end
 of the file (but this does not change the size of the file).
@@ -87,19 +87,19 @@ If there is no hole past
 .IR offset ,
 then the file offset is adjusted to the end of the file
 (i.e., there is an implicit hole at the end of any file).
-.PP
+.P
 In both of the above cases,
 .BR lseek ()
 fails if
 .I offset
 points past the end of the file.
-.PP
+.P
 These operations allow applications to map holes in a sparsely
 allocated file.
 This can be useful for applications such as file backup tools,
 which can save space when creating backups and preserve holes,
 if they have a mechanism for discovering holes.
-.PP
+.P
 For the purposes of these operations, a hole is a sequence of zeros that
 (normally) has not been allocated in the underlying file storage.
 However, a filesystem is not obliged to report holes,
@@ -122,7 +122,7 @@ it can be considered to consist of data that is a sequence of zeros).
 .\" https://lkml.org/lkml/2011/4/22/79
 .\" http://lwn.net/Articles/440255/
 .\" http://blogs.oracle.com/bonwick/entry/seek_hole_and_seek_data
-.PP
+.P
 The
 .B _GNU_SOURCE
 feature test macro must be defined in order to obtain the definitions of
@@ -131,7 +131,7 @@ and
 .B SEEK_HOLE
 from
 .IR <unistd.h> .
-.PP
+.P
 The
 .B SEEK_HOLE
 and
@@ -216,7 +216,7 @@ on a terminal device fails with the error
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, SVr4, 4.3BSD.
-.PP
+.P
 .B SEEK_DATA
 and
 .B SEEK_HOLE
@@ -229,7 +229,7 @@ See
 .BR open (2)
 for a discussion of the relationship between file descriptors,
 open file descriptions, and files.
-.PP
+.P
 If the
 .B O_APPEND
 file status flag is set on the open file description,
@@ -238,7 +238,7 @@ then a
 .I always
 moves the file offset to the end of the file, regardless of the use of
 .BR lseek ().
-.PP
+.P
 Some devices are incapable of seeking and POSIX does not specify which
 devices must support
 .BR lseek ().

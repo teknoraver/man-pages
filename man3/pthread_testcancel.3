@@ -13,7 +13,7 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .B void pthread_testcancel(void);
 .fi
 .SH DESCRIPTION
@@ -22,7 +22,7 @@ Calling
 creates a cancelation point within the calling thread,
 so that a thread that is otherwise executing code that contains
 no cancelation points will respond to a cancelation request.
-.PP
+.P
 If cancelability is disabled (using
 .BR pthread_setcancelstate (3)),
 or no cancelation request is pending,

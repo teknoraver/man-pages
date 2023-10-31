@@ -22,14 +22,14 @@ ustpcpy, ustr2stp
 .nf
 // Chain-copy a string.
 .BI "char *stpcpy(char *restrict " dst ", const char *restrict " src );
-.PP
+.P
 // Copy/catenate a string.
 .BI "char *strcpy(char *restrict " dst ", const char *restrict " src );
 .BI "char *strcat(char *restrict " dst ", const char *restrict " src );
-.PP
+.P
 // Chain-copy a string with truncation.
 .BI "char *stpecpy(char *" dst ", char " end "[0], const char *restrict " src );
-.PP
+.P
 // Copy/catenate a string with truncation.
 .BI "size_t strlcpy(char " dst "[restrict ." sz "], \
 const char *restrict " src ,
@@ -46,23 +46,23 @@ const char *restrict " src ,
 .BI "char *stpncpy(char " dst "[restrict ." sz "], \
 const char *restrict " src ,
 .BI "               size_t " sz );
-.PP
+.P
 // Zero a fixed-width buffer, and
 // copy a string into a character sequence with truncation.
 .BI "char *strncpy(char " dst "[restrict ." sz "], \
 const char *restrict " src ,
 .BI "               size_t " sz );
-.PP
+.P
 // Chain-copy a null-padded character sequence into a character sequence.
 .BI "char *zustr2ustp(char *restrict " dst ", \
 const char " src "[restrict ." sz ],
 .BI "               size_t " sz );
-.PP
+.P
 // Chain-copy a null-padded character sequence into a string.
 .BI "char *zustr2stp(char *restrict " dst ", \
 const char " src "[restrict ." sz ],
 .BI "               size_t " sz );
-.PP
+.P
 // Catenate a null-padded character sequence into a string.
 .BI "char *strncat(char *restrict " dst ", const char " src "[restrict ." sz ],
 .BI "               size_t " sz );
@@ -74,7 +74,7 @@ const char " src "[restrict ." sz ],
 .BI "char *ustpcpy(char *restrict " dst ", \
 const char " src "[restrict ." len ],
 .BI "               size_t " len );
-.PP
+.P
 // Chain-copy a measured character sequence into a string.
 .BI "char *ustr2stp(char *restrict " dst ", \
 const char " src "[restrict ." len ],
@@ -177,7 +177,7 @@ the terminating null byte of the existing string.
 However, functions that catenate have a much simpler use,
 so if performance is not important,
 it can make sense to use them for improving readability.
-.PP
+.P
 The pointer returned by functions that allow chaining
 is a byproduct of the copy operation,
 so it has no performance costs.
@@ -187,7 +187,7 @@ have names of the form
 .RB * stp *(),
 since it's common to name the pointer just
 .IR p .
-.PP
+.P
 Chain-copying functions that truncate
 should accept a pointer to the end of the destination buffer,
 and have names of the form
@@ -198,14 +198,14 @@ This allows not having to recalculate the remaining size after each call.
 The first thing to note is that programmers should be careful with buffers,
 so they always have the correct size,
 and truncation is not necessary.
-.PP
+.P
 In most cases,
 truncation is not desired,
 and it is simpler to just do the copy.
 Simpler code is safer code.
 Programming against programming mistakes by adding more code
 just adds more points where mistakes can be made.
-.PP
+.P
 Nowadays,
 compilers can detect most programmer errors with features like
 compiler warnings,
@@ -215,12 +215,12 @@ static analyzers, and
 .BR ftm (7)).
 Keeping the code simple
 helps these overflow-detection features be more precise.
-.PP
+.P
 When validating user input,
 however,
 it makes sense to truncate.
 Remember to check the return value of such function calls.
-.PP
+.P
 Functions that truncate:
 .IP \[bu] 3
 .BR stpecpy (3)
@@ -246,17 +246,17 @@ such as
 use null-padded character sequences in fixed-width buffers.
 To interface with them,
 specialized functions need to be used.
-.PP
+.P
 To copy strings into them, use
 .BR stpncpy (3).
-.PP
+.P
 To copy from an unterminated string within a fixed-width buffer into a string,
 ignoring any trailing null bytes in the source fixed-width buffer,
 you should use
 .BR zustr2stp (3)
 or
 .BR strncat (3).
-.PP
+.P
 To copy from an unterminated string within a fixed-width buffer
 into a character sequence,
 ignoring any trailing null bytes in the source fixed-width buffer,
@@ -274,7 +274,7 @@ and can do the minimal copies and length measurements.
 .BR mempcpy (3)
 copies character sequences,
 so you need to explicitly set the terminating null byte if you need a string.
-.PP
+.P
 However,
 for keeping type safety,
 it's good to add a wrapper that uses
@@ -282,26 +282,26 @@ it's good to add a wrapper that uses
 instead of
 .IR void\~* :
 .BR ustpcpy (3).
-.PP
+.P
 In programs that make considerable use of strings or character sequences,
 and need the best performance,
 using overlapping character sequences can make a big difference.
 It allows holding subsequences of a larger character sequence,
 while not duplicating memory
 nor using time to do a copy.
-.PP
+.P
 However, this is delicate,
 since it requires using character sequences.
 C library APIs use strings,
 so programs that use character sequences
 will have to take care of differentiating strings from character sequences.
-.PP
+.P
 To copy a measured character sequence, use
 .BR ustpcpy (3).
-.PP
+.P
 To copy a measured character sequence into a string, use
 .BR ustr2stp (3).
-.PP
+.P
 Because these functions ask for the length,
 and a string is by nature composed of a character sequence of the same length
 plus a terminating null byte,
@@ -331,7 +331,7 @@ List of functions:
 .BR strlcpy (3bsd),
 .BR strlcat (3bsd)
 .PD
-.PP
+.P
 Other functions require an input string,
 but create a character sequence as output.
 These functions have confusing names,
@@ -343,7 +343,7 @@ List of functions:
 .IP \[bu]
 .BR strncpy (3)
 .PD
-.PP
+.P
 Other functions operate on an input character sequence,
 and create an output string.
 Functions that catenate
@@ -361,7 +361,7 @@ List of functions:
 .IP \[bu]
 .BR ustr2stp (3)
 .PD
-.PP
+.P
 Other functions operate on an input character sequence
 to create an output character sequence.
 List of functions:
@@ -517,7 +517,7 @@ a pointer to the terminating null byte in the destination string.
 .IP \[bu]
 .BR zustr2stp (3)
 .PD
-.PP
+.P
 The following function returns
 a pointer to the terminating null byte in the destination string,
 except when truncation occurs;
@@ -525,7 +525,7 @@ if truncation occurs,
 it returns a pointer to the end of the destination buffer.
 .IP \[bu] 3
 .BR stpecpy (3)
-.PP
+.P
 The following function returns
 a pointer to one after the last character
 in the destination character sequence;
@@ -534,7 +534,7 @@ that pointer is equivalent to
 a pointer to the end of the destination buffer.
 .IP \[bu] 3
 .BR stpncpy (3)
-.PP
+.P
 The following functions return
 a pointer to one after the last character
 in the destination character sequence.
@@ -544,14 +544,14 @@ in the destination character sequence.
 .IP \[bu]
 .BR ustpcpy (3)
 .PD
-.PP
+.P
 The following functions return
 the length of the total string that they tried to create
 (as if truncation didn't occur).
 .IP \[bu] 3
 .BR strlcpy (3bsd),
 .BR strlcat (3bsd)
-.PP
+.P
 The following functions return the
 .I dst
 pointer,
@@ -746,7 +746,7 @@ puts(buf);
 .\" ----- EXAMPLES :: Implementations :: ------------------------------/
 .SS Implementations
 Here are reference implementations for functions not provided by libc.
-.PP
+.P
 .in +4n
 .EX
 /* This code is in the public domain. */

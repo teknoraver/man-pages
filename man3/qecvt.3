@@ -15,19 +15,19 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "[[deprecated]] char *qecvt(long double " number ", int " ndigits ,
 .BI "                           int *restrict " decpt ", int *restrict " sign );
 .BI "[[deprecated]] char *qfcvt(long double " number ", int " ndigits ,
 .BI "                           int *restrict " decpt ", int *restrict " sign );
 .BI "[[deprecated]] char *qgcvt(long double " number ", int " ndigit ", char *" buf );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR qecvt (),
 .BR qfcvt (),
 .BR qgcvt ():
@@ -98,7 +98,7 @@ None.
 .SH HISTORY
 SVr4, SunOS, GNU.
 .\" Not supported by libc4 and libc5.
-.PP
+.P
 These functions are obsolete.
 Instead,
 .BR snprintf (3)

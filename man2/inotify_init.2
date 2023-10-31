@@ -16,18 +16,18 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/inotify.h>
-.PP
+.P
 .B "int inotify_init(void);"
 .BI "int inotify_init1(int " flags );
 .fi
 .SH DESCRIPTION
 For an overview of the inotify API, see
 .BR inotify (7).
-.PP
+.P
 .BR inotify_init ()
 initializes a new inotify instance and returns a file descriptor associated
 with a new inotify event queue.
-.PP
+.P
 If
 .I flags
 is 0, then

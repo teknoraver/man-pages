@@ -20,29 +20,29 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <time.h>
-.PP
+.P
 .B void tzset(void);
-.PP
+.P
 .BI "extern char *" tzname [2];
 .BI "extern long " timezone ;
 .BI "extern int " daylight ;
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR tzset ():
 .nf
     _POSIX_C_SOURCE
 .fi
-.PP
+.P
 .IR tzname :
 .nf
     _POSIX_C_SOURCE
 .fi
-.PP
+.P
 .IR timezone ,
 .IR daylight :
 .nf
@@ -62,7 +62,7 @@ In a System-V-like environment, it will also set the variables \fItimezone\fP
 (seconds West of UTC) and \fIdaylight\fP (to 0 if this timezone does not
 have any daylight saving time rules, or to nonzero if there is a time,
 past, present, or future when daylight saving time applies).
-.PP
+.P
 If the
 .B TZ
 variable does not appear in the environment, the system timezone is used.
@@ -72,25 +72,25 @@ format to
 .IR /etc/localtime .
 A timezone database of these files may be located in the system
 timezone directory (see the \fBFILES\fP section below).
-.PP
+.P
 If the
 .B TZ
 variable does appear in the environment, but its value is empty,
 or its value cannot be interpreted using any of the formats specified
 below, then Coordinated Universal Time (UTC) is used.
-.PP
+.P
 The value of
 .B TZ
 can be one of two formats.
 The first format is a string of characters that directly represent the
 timezone to be used:
-.PP
+.P
 .in +4n
 .EX
 .IR "std offset" [ dst [ offset ][, start [ /time ], end [ /time ]]]
 .EE
 .in
-.PP
+.P
 There are no spaces in the specification.
 The \fIstd\fP string specifies an abbreviation for the timezone and must be
 three or more alphabetic characters.
@@ -104,18 +104,18 @@ The \fIoffset\fP is positive
 if the local timezone is west of the Prime Meridian and negative if it is
 east.
 The hour must be between 0 and 24, and the minutes and seconds 00 and 59:
-.PP
+.P
 .in +4n
 .EX
 .RI [ + | \- ] hh [ :mm [ :ss ]]
 .EE
 .in
-.PP
+.P
 The \fIdst\fP string and \fIoffset\fP specify the name and offset for the
 corresponding daylight saving timezone.
 If the offset is omitted,
 it defaults to one hour ahead of standard time.
-.PP
+.P
 The \fIstart\fP field specifies when daylight saving time goes into
 effect and the \fIend\fP field specifies when the change is made back to
 standard time.
@@ -138,32 +138,32 @@ Week 1 is
 the first week in which day \fId\fP occurs and week 5 is the last week
 in which day \fId\fP occurs.
 Day 0 is a Sunday.
-.PP
+.P
 The \fItime\fP fields specify when, in the local time currently in effect,
 the change to the other time occurs.
 If omitted, the default is 02:00:00.
-.PP
+.P
 Here is an example for New Zealand,
 where the standard time (NZST) is 12 hours ahead of UTC,
 and daylight saving time (NZDT), 13 hours ahead of UTC,
 runs from the first Sunday in October to the third Sunday in March,
 and the changeovers happen at the default time of 02:00:00:
-.PP
+.P
 .in +4n
 .EX
 TZ="NZST\-12:00:00NZDT\-13:00:00,M10.1.0,M3.3.0"
 .EE
 .in
-.PP
+.P
 The second format specifies that the timezone information should be read
 from a file:
-.PP
+.P
 .in +4n
 .EX
 :[filespec]
 .EE
 .in
-.PP
+.P
 If the file specification \fIfilespec\fP is omitted, or its value cannot
 be interpreted, then Coordinated Universal Time (UTC) is used.
 If \fIfilespec\fP is given, it specifies another
@@ -173,9 +173,9 @@ If \fIfilespec\fP does not begin with a \[aq]/\[aq], the file specification is
 relative to the system timezone directory.
 If the colon is omitted each
 of the above \fBTZ\fP formats will be tried.
-.PP
+.P
 Here's an example, once more for New Zealand:
-.PP
+.P
 .in +4n
 .EX
 TZ=":Pacific/Auckland"
@@ -206,7 +206,7 @@ It is in the
 format.
 By default, the zoneinfo Makefile hard links it to the
 .IR America/New_York " tzfile."
-.PP
+.P
 Above are the current standard file locations, but they are
 configurable when glibc is compiled.
 .SH ATTRIBUTES
@@ -227,7 +227,7 @@ T}	Thread safety	MT-Safe env locale
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, SVr4, 4.3BSD.
-.PP
+.P
 4.3BSD had a function
 .BI "char *timezone(" zone ", " dst )
 that returned the

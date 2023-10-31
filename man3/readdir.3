@@ -23,7 +23,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <dirent.h>
-.PP
+.P
 .BI "struct dirent *readdir(DIR *" dirp );
 .fi
 .SH DESCRIPTION
@@ -34,11 +34,11 @@ representing the next directory entry in the directory stream pointed
 to by \fIdirp\fP.
 It returns NULL on reaching the end of the directory stream or if
 an error occurred.
-.PP
+.P
 In the glibc implementation, the
 .I dirent
 structure is defined as follows:
-.PP
+.P
 .in +4n
 .EX
 struct dirent {
@@ -51,7 +51,7 @@ struct dirent {
 };
 .EE
 .in
-.PP
+.P
 The only fields in the
 .I dirent
 structure that are mandated by POSIX.1 are
@@ -60,7 +60,7 @@ and
 .IR d_ino .
 The other fields are unstandardized, and not present on all systems;
 see NOTES below for some further details.
-.PP
+.P
 The fields of the
 .I dirent
 structure are as follows:
@@ -139,7 +139,7 @@ All applications must properly handle a return of
 .I d_name
 This field contains the null terminated filename.
 .IR "See NOTES" .
-.PP
+.P
 The data returned by
 .BR readdir ()
 may be overwritten by subsequent calls to
@@ -154,7 +154,7 @@ structure.
 (This structure may be statically allocated; do not attempt to
 .BR free (3)
 it.)
-.PP
+.P
 If the end of the directory stream is reached, NULL is returned and
 .I errno
 is not changed.
@@ -186,7 +186,7 @@ T{
 .BR readdir ()
 T}	Thread safety	MT-Unsafe race:dirstream
 .TE
-.PP
+.P
 In the current POSIX.1 specification (POSIX.1-2008),
 .BR readdir ()
 is not required to be thread-safe.
@@ -234,7 +234,7 @@ structure definition shown above is taken from the glibc headers,
 and shows the
 .I d_name
 field with a fixed size.
-.PP
+.P
 .IR Warning :
 applications should avoid any dependence on the size of the
 .I d_name
@@ -244,7 +244,7 @@ POSIX defines it as
 a character array of unspecified size, with at most
 .B NAME_MAX
 characters preceding the terminating null byte (\[aq]\e0\[aq]).
-.PP
+.P
 POSIX.1 explicitly notes that this field should not be used as an lvalue.
 The standard also notes that the use of
 .I sizeof(d_name)
@@ -258,15 +258,15 @@ By implication, the use
 to capture the size of the record including the size of
 .I d_name
 is also incorrect.
-.PP
+.P
 Note that while the call
-.PP
+.P
 .in +4n
 .EX
 fpathconf(fd, _PC_NAME_MAX)
 .EE
 .in
-.PP
+.P
 returns the value 255 for most filesystems,
 on some filesystems (e.g., CIFS, Windows SMB servers),
 the null-terminated filename that is (correctly) returned in
@@ -284,7 +284,7 @@ POSIX.1-2001, SVr4, 4.3BSD.
 .SH NOTES
 A directory stream is opened using
 .BR opendir (3).
-.PP
+.P
 The order in which filenames are read by successive calls to
 .BR readdir ()
 depends on the filesystem implementation;

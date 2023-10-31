@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <syslog.h>
-.PP
+.P
 .BI "int setlogmask(int " mask );
 .fi
 .SH DESCRIPTION
@@ -24,13 +24,13 @@ Logging is enabled for the priorities that have the corresponding
 bit set in
 .IR mask .
 The initial mask is such that logging is enabled for all priorities.
-.PP
+.P
 The
 .BR setlogmask ()
 function sets this logmask for the calling process,
 and returns the previous mask.
 If the mask argument is 0, the current logmask is not modified.
-.PP
+.P
 The eight priorities are
 .BR LOG_EMERG ,
 .BR LOG_ALERT ,
@@ -75,7 +75,7 @@ POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
 .\" Note that the description in POSIX.1-2001 is flawed.
-.PP
+.P
 .BR LOG_UPTO ()
 will be included in the next release of the POSIX specification (Issue 8).
 .\" FIXME . https://www.austingroupbugs.net/view.php?id=1033

@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .EX
 .B #include <aio.h>
-.PP
+.P
 .B struct aiocb {
 .BR "    int             aio_fildes;" "     /* File descriptor */"
 .BR "    off_t           aio_offset;" "     /* File offset */"

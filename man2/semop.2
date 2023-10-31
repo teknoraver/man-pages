@@ -21,17 +21,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/sem.h>
-.PP
+.P
 .BI "int semop(int " semid ", struct sembuf *" sops ", size_t " nsops );
 .BI "int semtimedop(int " semid ", struct sembuf *" sops ", size_t " nsops ,
 .BI "               const struct timespec *_Nullable " timeout );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR semtimedop ():
 .nf
     _GNU_SOURCE
@@ -39,7 +39,7 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 Each semaphore in a System\ V semaphore set
 has the following associated values:
-.PP
+.P
 .in +4n
 .EX
 unsigned short  semval;   /* semaphore value */
@@ -49,7 +49,7 @@ pid_t           sempid;   /* PID of process that last
                              modified the semaphore value */
 .EE
 .in
-.PP
+.P
 .BR semop ()
 performs operations on selected semaphores in the set indicated by
 .IR semid .
@@ -62,7 +62,7 @@ specifies an operation to be performed on a single semaphore.
 The elements of this structure are of type
 .IR "struct sembuf" ,
 containing the following members:
-.PP
+.P
 .in +4n
 .EX
 unsigned short sem_num;  /* semaphore number */
@@ -70,7 +70,7 @@ short          sem_op;   /* semaphore operation */
 short          sem_flg;  /* operation flags */
 .EE
 .in
-.PP
+.P
 Flags recognized in
 .I sem_flg
 are
@@ -80,7 +80,7 @@ and
 If an operation specifies
 .BR SEM_UNDO ,
 it will be automatically undone when the process terminates.
-.PP
+.P
 The set of operations contained in
 .I sops
 is performed in
@@ -95,14 +95,14 @@ performed immediately depends on the presence of the
 flag in the individual
 .I sem_flg
 fields, as noted below.
-.PP
+.P
 Each operation is performed on the
 .IR sem_num \-th
 semaphore of the semaphore set, where the first semaphore of the set
 is numbered 0.
 There are three types of operation, distinguished by the value of
 .IR sem_op .
-.PP
+.P
 If
 .I sem_op
 is a positive integer, the operation adds this value to
@@ -117,7 +117,7 @@ from the semaphore adjustment
 value for this semaphore.
 This operation can always proceed\[em]it never forces a thread to wait.
 The calling process must have alter permission on the semaphore set.
-.PP
+.P
 If
 .I sem_op
 is zero, the process must have read permission on the semaphore
@@ -165,7 +165,7 @@ fails, with
 .I errno
 set to
 .BR EINTR .
-.PP
+.P
 If
 .I sem_op
 is less than zero, the process must have alter permission on the
@@ -229,7 +229,7 @@ fails, with
 .I errno
 set to
 .BR EINTR .
-.PP
+.P
 On successful completion, the
 .I sempid
 value for each semaphore specified in the array pointed to by
@@ -270,7 +270,7 @@ then
 .BR semtimedop ()
 behaves exactly like
 .BR semop ().
-.PP
+.P
 Note that if
 .BR semtimedop ()
 is interrupted by a signal, causing the call to fail with the error
@@ -370,13 +370,13 @@ structures of a process aren't inherited by the child produced by
 but they are inherited across an
 .BR execve (2)
 system call.
-.PP
+.P
 .BR semop ()
 is never automatically restarted after being interrupted by a signal handler,
 regardless of the setting of the
 .B SA_RESTART
 flag when establishing a signal handler.
-.PP
+.P
 A semaphore adjustment
 .RI ( semadj )
 value is a per-process, per-semaphore integer that is the negated sum
@@ -409,7 +409,7 @@ flag allows more than one process to share a
 list; see
 .BR clone (2)
 for details.
-.PP
+.P
 The \fIsemval\fP, \fIsempid\fP, \fIsemzcnt\fP, and \fIsemnct\fP values
 for a semaphore can all be retrieved using appropriate
 .BR semctl (2)
@@ -443,7 +443,7 @@ array.
 Maximum allowable value for
 .IR semval :
 implementation dependent (32767).
-.PP
+.P
 The implementation has no intrinsic limits for
 the adjust on exit maximum value
 .RB ( SEMAEM ),
@@ -471,7 +471,7 @@ is specified for a semaphore operation).
 Linux adopts a third approach: decreasing the semaphore value
 as far as possible (i.e., to zero) and allowing process
 termination to proceed immediately.
-.PP
+.P
 In Linux 2.6.x, x <= 10, there is a bug that in some circumstances
 prevents a thread that is waiting for a semaphore value to become
 zero from being woken up when the value does actually become zero.
@@ -485,7 +485,7 @@ The following code segment uses
 .BR semop ()
 to atomically wait for the value of semaphore 0 to become zero,
 and then increment the semaphore value by one.
-.PP
+.P
 .in +4n
 .EX
 struct sembuf sops[2];
@@ -507,7 +507,7 @@ if (semop(semid, sops, 2) == \-1) {
 }
 .EE
 .in
-.PP
+.P
 A further example of the use of
 .BR semop ()
 can be found in

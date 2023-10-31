@@ -18,17 +18,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "wchar_t *wcpncpy(wchar_t " dest "[restrict ." n ],
 .BI "                 const wchar_t " src "[restrict ." n ],
 .BI "                 size_t " n );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR wcpncpy ():
 .nf
     Since glibc 2.10:
@@ -73,9 +73,9 @@ the string pointed to by
 .I dest
 will
 not be L\[aq]\e0\[aq] terminated.
-.PP
+.P
 The strings may not overlap.
-.PP
+.P
 The programmer must ensure that there is room for at least
 .I n
 wide

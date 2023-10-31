@@ -24,7 +24,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/shm.h>
-.PP
+.P
 .BI "int shmget(key_t " key ", size_t " size ", int " shmflg );
 .fi
 .SH DESCRIPTION
@@ -40,7 +40,7 @@ is zero and
 does not have the value
 .BR IPC_PRIVATE ),
 or to create a new set.
-.PP
+.P
 A new shared memory segment, with size equal to the value of
 .I size
 rounded up to a multiple of
@@ -59,7 +59,7 @@ exists, and
 .B IPC_CREAT
 is specified in
 .IR shmflg .
-.PP
+.P
 If
 .I shmflg
 specifies both
@@ -78,7 +78,7 @@ set to
 .B O_CREAT | O_EXCL
 for
 .BR open (2).)
-.PP
+.P
 The value
 .I shmflg
 is composed of:
@@ -145,7 +145,7 @@ in
 .BR proc (5).
 .\" As at 2.6.17-rc2, this flag has no effect if SHM_HUGETLB was also
 .\" specified.
-.PP
+.P
 In addition to the above flags, the least significant 9 bits of
 .I shmflg
 specify the permissions granted to the owner, group, and others.
@@ -155,7 +155,7 @@ meaning, as the
 argument of
 .BR open (2).
 Presently, execute permissions are not used by the system.
-.PP
+.P
 When a new shared memory segment is created,
 its contents are initialized to zero values, and
 its associated data structure,
@@ -192,7 +192,7 @@ are set to 0.
 .IP \[bu]
 .I shm_ctime
 is set to the current time.
-.PP
+.P
 If the shared memory segment already exists, the permissions are
 verified, and a check is made to see if it is marked for destruction.
 .SH RETURN VALUE
@@ -265,7 +265,7 @@ in
 .BR proc (5).
 .SH STANDARDS
 POSIX.1-2008.
-.PP
+.P
 .B SHM_HUGETLB
 and
 .B SHM_NORESERVE
@@ -382,7 +382,7 @@ On Linux, this limit can be read and modified via
 .\" Kernels between Linux 2.4.x and Linux 2.6.8 had an off-by-one error
 .\" that meant that we could create one more segment than SHMMNI -- MTK
 .\" This /proc file is not available in Linux 2.2 and earlier -- MTK
-.PP
+.P
 The implementation has no specific limits for the per-process maximum
 number of shared memory segments
 .RB ( SHMSEG ).

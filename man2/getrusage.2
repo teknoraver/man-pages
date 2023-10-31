@@ -26,7 +26,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/resource.h>
-.PP
+.P
 .BI "int getrusage(int " who ", struct rusage *" usage );
 .fi
 .SH DESCRIPTION
@@ -55,11 +55,11 @@ feature test macro must be defined (before including
 header file)
 in order to obtain the definition of this constant from
 .IR <sys/resource.h> .
-.PP
+.P
 The resource usages are returned in the structure pointed to by
 .IR usage ,
 which has the following form:
-.PP
+.P
 .in +4n
 .EX
 struct rusage {
@@ -82,7 +82,7 @@ struct rusage {
 };
 .EE
 .in
-.PP
+.P
 Not all fields are completed;
 unmaintained fields are set to zero by the kernel.
 (The unmaintained fields are provided for compatibility with other systems,
@@ -197,19 +197,19 @@ T}	Thread safety	MT-Safe
 .TE
 .SH STANDARDS
 POSIX.1-2008.
-.PP
+.P
 POSIX.1 specifies
 .BR getrusage (),
 but specifies only the fields
 .I ru_utime
 and
 .IR ru_stime .
-.PP
+.P
 .B RUSAGE_THREAD
 is Linux-specific.
 .SH HISTORY
 POSIX.1-2001, SVr4, 4.3BSD.
-.PP
+.P
 Before Linux 2.6.9, if the disposition of
 .B SIGCHLD
 is set to
@@ -221,10 +221,10 @@ although POSIX.1-2001 explicitly prohibits this.
 This nonconformance is rectified in Linux 2.6.9 and later.
 .\" See the description of getrusage() in XSH.
 .\" A similar statement was also in SUSv2.
-.PP
+.P
 The structure definition shown at the start of this page
 was taken from 4.3BSD Reno.
-.PP
+.P
 Ancient systems provided a
 .BR vtimes ()
 function with a similar purpose to
@@ -239,7 +239,7 @@ implementation.)
 .SH NOTES
 Resource usage metrics are preserved across an
 .BR execve (2).
-.PP
+.P
 See also the description of
 .IR /proc/ pid /stat
 in

@@ -17,7 +17,7 @@ System utilities library
 .SH SYNOPSIS
 .nf
 .B #include <utmp.h>
-.PP
+.P
 .BI "void updwtmp(const char *" wtmp_file ", const struct utmp *" ut );
 .BI "void logwtmp(const char *" line ", const char *" name \
 ", const char *" host );
@@ -27,7 +27,7 @@ System utilities library
 appends the utmp structure
 .I ut
 to the wtmp file.
-.PP
+.P
 .BR logwtmp ()
 constructs a utmp structure using
 .IR line ", " name ", " host ,
@@ -58,7 +58,7 @@ T}	Thread safety	MT-Unsafe sig:ALRM timer
 For consistency with the other "utmpx" functions (see
 .BR getutxent (3)),
 glibc provides (since glibc 2.1):
-.PP
+.P
 .in +4n
 .EX
 .BR "#define _GNU_SOURCE          " "/* See feature_test_macros(7) */"
@@ -66,7 +66,7 @@ glibc provides (since glibc 2.1):
 .BI "void updwtmpx (const char *" wtmpx_file ", const struct utmpx *" utx );
 .EE
 .in
-.PP
+.P
 This function performs the same task as
 .BR updwtmp (),
 but differs in that it takes a

@@ -16,12 +16,12 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "[[deprecated]] char *gets(char *" "s" );
 .fi
 .SH DESCRIPTION
 .IR "Never use this function" .
-.PP
+.P
 .BR gets ()
 reads a line from
 .I stdin
@@ -57,7 +57,7 @@ T}	Thread safety	MT-Safe
 POSIX.1-2008.
 .SH HISTORY
 C89, POSIX.1-2001.
-.PP
+.P
 LSB deprecates
 .BR gets ().
 POSIX.1-2008 marks
@@ -83,7 +83,7 @@ It has been used to break computer security.
 Use
 .BR fgets ()
 instead.
-.PP
+.P
 For more information, see CWE-242 (aka "Use of Inherently Dangerous
 Function") at
 http://cwe.mitre.org/data/definitions/242.html

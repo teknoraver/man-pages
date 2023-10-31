@@ -12,7 +12,7 @@ Real-time library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B "#include <aio.h>"
-.PP
+.P
 .BI "void aio_init(const struct aioinit *" init );
 .fi
 .SH DESCRIPTION
@@ -22,11 +22,11 @@ function allows the caller to provide tuning hints to the
 glibc POSIX AIO implementation.
 Use of this function is optional, but to be effective,
 it must be called before employing any other functions in the POSIX AIO API.
-.PP
+.P
 The tuning information is provided in the buffer pointed to by the argument
 .IR init .
 This buffer is a structure of the following form:
-.PP
+.P
 .in +4n
 .EX
 struct aioinit {
@@ -43,7 +43,7 @@ struct aioinit {
 };
 .EE
 .in
-.PP
+.P
 The following fields are used in the
 .I aioinit
 structure:

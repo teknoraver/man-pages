@@ -12,17 +12,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B "#include <wordexp.h>"
-.PP
+.P
 .BI "int wordexp(const char *restrict " s ", wordexp_t *restrict " p \
 ", int " flags );
 .BI "void wordfree(wordexp_t *" p );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR wordexp (),
 .BR wordfree ():
 .nf
@@ -62,7 +62,7 @@ is sometimes (depending on
 see below) used to indicate the number of initial elements in the
 .I we_wordv
 array that should be filled with NULLs.
-.PP
+.P
 The function
 .BR wordfree ()
 frees the allocated memory again.
@@ -80,7 +80,7 @@ parameters.
 In particular, there must not be any unescaped
 newline or |, &, ;, <, >, (, ), {, } characters
 outside a command substitution or parameter substitution context.
-.PP
+.P
 If the argument
 .I s
 contains a word that starts with an unquoted comment character #,
@@ -93,10 +93,10 @@ variable substitution (replacing $FOO by the value of the environment
 variable FOO), command substitution (replacing $(command) or \`command\`
 by the output of command), arithmetic expansion, field splitting,
 wildcard expansion, quote removal.
-.PP
+.P
 The result of expansion of special parameters
 ($@, $*, $#, $?, $\-, $$, $!, $0) is unspecified.
-.PP
+.P
 Field splitting is done using the environment variable $IFS.
 If it is not set, the field separators are space, tab, and newline.
 .SS The output array
@@ -195,7 +195,7 @@ T{
 .BR wordfree ()
 T}	Thread safety	MT-Safe
 .TE
-.PP
+.P
 In the above table,
 .I utent
 in
@@ -218,7 +218,7 @@ glibc 2.1.
 .SH EXAMPLES
 The output of the following example program
 is approximately that of "ls [a-c]*.c".
-.PP
+.P
 .\" SRC BEGIN (wordexp.c)
 .EX
 #include <stdio.h>

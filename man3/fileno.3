@@ -21,15 +21,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "int fileno(FILE *" stream );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR fileno ():
 .nf
     _POSIX_C_SOURCE
@@ -48,7 +48,7 @@ is called.
 Duplicate the file descriptor with
 .BR dup (2)
 before passing it to code that might close it.
-.PP
+.P
 For the nonlocking counterpart, see
 .BR unlocked_stdio (3).
 .SH RETURN VALUE

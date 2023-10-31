@@ -16,7 +16,7 @@ NUMA (Non-Uniform Memory Access) policy library
 .SH SYNOPSIS
 .nf
 .B "#include <numaif.h>"
-.PP
+.P
 .BI "long set_mempolicy(int " mode ", const unsigned long *" nodemask ,
 .BI "                   unsigned long " maxnode );
 .fi
@@ -30,12 +30,12 @@ to the values specified by the
 and
 .I maxnode
 arguments.
-.PP
+.P
 A NUMA machine has different
 memory controllers with different distances to specific CPUs.
 The memory policy defines from which node memory is allocated for
 the thread.
-.PP
+.P
 This system call defines the default policy for the thread.
 The thread policy governs allocation of pages in the process's
 address space outside of memory ranges
@@ -56,7 +56,7 @@ The policy is applied only when a new page is allocated
 for the thread.
 For anonymous memory this is when the page is first
 touched by the thread.
-.PP
+.P
 The
 .I mode
 argument must specify one of
@@ -73,7 +73,7 @@ require the caller to specify the node or nodes to which the mode applies,
 via the
 .I nodemask
 argument.
-.PP
+.P
 The
 .I mode
 argument may also include an optional
@@ -113,7 +113,7 @@ Linux will not remap the
 when the process moves to a different cpuset context,
 nor when the set of nodes allowed by the process's
 current cpuset context changes.
-.PP
+.P
 .I nodemask
 points to a bit mask of node IDs that contains up to
 .I maxnode
@@ -133,7 +133,7 @@ is zero,
 the
 .I nodemask
 argument is ignored.
-.PP
+.P
 Where a
 .I nodemask
 is required, it must contain at least one node that is on-line,
@@ -154,7 +154,7 @@ the memory policy reverts to
 This effectively overrides the specified policy until the process's
 cpuset context includes one or more of the nodes specified by
 .IR nodemask .
-.PP
+.P
 The
 .I mode
 argument must include one of the following values:
@@ -234,7 +234,7 @@ If the "local node" is not allowed by the process's current cpuset context,
 the kernel will try to allocate memory from other nodes.
 The kernel will allocate memory from the "local node" whenever
 it becomes allowed by the process's current cpuset context.
-.PP
+.P
 The thread memory policy is preserved across an
 .BR execve (2),
 and is inherited by child threads created using
@@ -311,7 +311,7 @@ Memory policy is not remembered if the page is swapped out.
 When such a page is paged back in, it will use the policy of
 the thread or memory range that is in effect at the time the
 page is allocated.
-.PP
+.P
 For information on library support, see
 .BR numa (7).
 .SH SEE ALSO

@@ -29,30 +29,30 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int access(const char *" pathname ", int " mode );
-.PP
+.P
 .BR "#include <fcntl.h>" "            /* Definition of " AT_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int faccessat(int " dirfd ", const char *" pathname ", int " \
 mode ", int " flags );
                 /* But see C library/kernel differences, below */
-.PP
+.P
 .BR "#include <fcntl.h>" "            /* Definition of " AT_* " constants */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .B int syscall(SYS_faccessat2,
 .BI "            int " dirfd ", const char *" pathname ", int " mode \
 ", int " flags );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR faccessat ():
 .nf
     Since glibc 2.10:
@@ -67,7 +67,7 @@ checks whether the calling process can access the file
 If
 .I pathname
 is a symbolic link, it is dereferenced.
-.PP
+.P
 The
 .I mode
 specifies the accessibility check(s) to be performed,
@@ -81,7 +81,7 @@ tests for the existence of the file.
 .BR R_OK ", " W_OK ", and " X_OK
 test whether the file exists and grants read, write, and
 execute permissions, respectively.
-.PP
+.P
 The check is done using the calling process's
 .I real
 UID and GID, rather than the effective IDs as is done when
@@ -92,7 +92,7 @@ Similarly, for the root user, the check uses the set of
 permitted capabilities rather than the set of effective
 capabilities; and for non-root users, the check uses an empty set
 of capabilities.
-.PP
+.P
 This allows set-user-ID programs and capability-endowed programs
 to easily determine the invoking user's authority.
 In other words,
@@ -105,7 +105,7 @@ read/write/execute this file?",
 which gives set-user-ID programs the possibility to
 prevent malicious users from causing them to read files
 which users shouldn't be able to read.
-.PP
+.P
 If the calling process is privileged (i.e., its real UID is zero),
 then an
 .B X_OK
@@ -116,7 +116,7 @@ is enabled for any of the file owner, group, or other.
 operates in exactly the same way as
 .BR access (),
 except for the differences described here.
-.PP
+.P
 If the pathname given in
 .I pathname
 is relative, then it is interpreted relative to the directory
@@ -126,7 +126,7 @@ referred to by the file descriptor
 the calling process, as is done by
 .BR access ()
 for a relative pathname).
-.PP
+.P
 If
 .I pathname
 is relative and
@@ -138,13 +138,13 @@ then
 is interpreted relative to the current working
 directory of the calling process (like
 .BR access ()).
-.PP
+.P
 If
 .I pathname
 is absolute, then
 .I dirfd
 is ignored.
-.PP
+.P
 .I flags
 is constructed by ORing together zero or more of the following values:
 .TP
@@ -160,7 +160,7 @@ If
 .I pathname
 is a symbolic link, do not dereference it:
 instead return information about the link itself.
-.PP
+.P
 See
 .BR openat (2)
 for an explanation of the need for
@@ -346,20 +346,20 @@ interval between checking and opening the file to manipulate it.
 a safer alternative would be to temporarily switch the process's
 effective user ID to the real ID and then call
 .BR open (2).)
-.PP
+.P
 .BR access ()
 always dereferences symbolic links.
 If you need to check the permissions on a symbolic link, use
 .BR faccessat ()
 with the flag
 .BR AT_SYMLINK_NOFOLLOW .
-.PP
+.P
 These calls return an error if any of the access types in
 .I mode
 is denied, even if some of the other access types in
 .I mode
 are permitted.
-.PP
+.P
 A file is accessible only if the permissions on each of the
 directories in the path prefix of
 .I pathname
@@ -367,7 +367,7 @@ grant search (i.e., execute) access.
 If any directory is inaccessible, then the
 .BR access ()
 call fails, regardless of the permissions on the file itself.
-.PP
+.P
 Only access bits are checked, not the file type or contents.
 Therefore, if a directory is found to be writable,
 it probably means that files can be created in the directory,
@@ -375,7 +375,7 @@ and not that the directory can be written as a file.
 Similarly, a DOS file may be reported as executable, but the
 .BR execve (2)
 call will still fail.
-.PP
+.P
 These calls
 may not work correctly on NFSv2 filesystems with UID mapping enabled,
 because UID mapping is done on the server and hidden from the client,
@@ -401,7 +401,7 @@ Starting with glibc 2.33, the wrapper function avoids this bug
 by making use of the
 .BR faccessat2 ()
 system call where it is provided by the underlying kernel.
-.PP
+.P
 In Linux 2.4 (and earlier) there is some strangeness in the handling of
 .B X_OK
 tests for superuser.
@@ -424,7 +424,7 @@ returns 0 for such files.
 .\" This behavior appears to have been an implementation accident.
 Early Linux 2.6 (up to and including Linux 2.6.3)
 also behaved in the same way as Linux 2.4.
-.PP
+.P
 Before Linux 2.6.20,
 these calls ignored the effect of the
 .B MS_NOEXEC

@@ -14,17 +14,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double round(double " x );
 .BI "float roundf(float " x );
 .BI "long double roundl(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR round (),
 .BR roundf (),
 .BR roundl ():
@@ -40,7 +40,7 @@ direction, see
 .BR fenv (3)),
 instead of to the nearest even integer like
 .BR rint (3).
-.PP
+.P
 For example,
 .I round(0.5)
 is 1.0, and
@@ -48,7 +48,7 @@ is 1.0, and
 is \-1.0.
 .SH RETURN VALUE
 These functions return the rounded integer value.
-.PP
+.P
 If
 .I x
 is integral, +0, \-0, NaN, or infinite,
@@ -96,7 +96,7 @@ the maximum value of the exponent is 127 (respectively, 1023),
 and the number of mantissa bits
 including the implicit bit
 is 24 (respectively, 53).)
-.PP
+.P
 If you want to store the rounded value in an integer type,
 you probably want to use one of the functions described in
 .BR lround (3)

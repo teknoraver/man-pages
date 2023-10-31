@@ -12,10 +12,10 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B "#include <ttyent.h>"
-.PP
+.P
 .B "struct ttyent *getttyent(void);"
 .BI "struct ttyent *getttynam(const char *" name );
-.PP
+.P
 .B "int setttyent(void);"
 .B "int endttyent(void);"
 .fi
@@ -24,22 +24,22 @@ These functions provide an interface to the file
 .B _PATH_TTYS
 (e.g.,
 .IR /etc/ttys ).
-.PP
+.P
 The function
 .BR setttyent ()
 opens the file or rewinds it if already open.
-.PP
+.P
 The function
 .BR endttyent ()
 closes the file.
-.PP
+.P
 The function
 .BR getttynam ()
 searches for a given terminal name in the file.
 It returns a pointer to a
 .I ttyent
 structure (description below).
-.PP
+.P
 The function
 .BR getttyent ()
 opens the file
@@ -49,7 +49,7 @@ If the file is already open, the next entry.
 The
 .I ttyent
 structure has the form:
-.PP
+.P
 .in +4n
 .EX
 struct ttyent {
@@ -62,10 +62,10 @@ struct ttyent {
 };
 .EE
 .in
-.PP
+.P
 .I ty_status
 can be:
-.PP
+.P
 .in +4n
 .EX
 #define TTY_ON     0x01  /* enable logins (start ty_getty program) */

@@ -19,7 +19,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "size_t mbrtowc(wchar_t *restrict " pwc ", const char " s "[restrict ." n ],
 .BI "               size_t " n ", mbstate_t *restrict " ps );
 .fi
@@ -50,7 +50,7 @@ If the converted wide character is L\[aq]\e0\[aq], it resets the shift
 state
 .I *ps
 to the initial state and returns 0.
-.PP
+.P
 If the
 .I n
 bytes starting at
@@ -66,7 +66,7 @@ This can happen even if
 .IR MB_CUR_MAX ,
 if the multibyte string contains redundant shift
 sequences.
-.PP
+.P
 If the multibyte string starting at
 .I s
 contains an invalid multibyte
@@ -82,7 +82,7 @@ In this case,
 the effects on
 .I *ps
 are undefined.
-.PP
+.P
 A different case is when
 .I s
 is not NULL but
@@ -92,7 +92,7 @@ In this case, the
 .BR mbrtowc ()
 function behaves as above, except that it does not
 store the converted wide character in memory.
-.PP
+.P
 A third case is when
 .I s
 is NULL.
@@ -124,7 +124,7 @@ function
 puts
 .I *ps
 in the initial state and returns 0.
-.PP
+.P
 In all of the above cases, if
 .I ps
 is NULL, a static anonymous
@@ -142,7 +142,7 @@ object
 .I a
 can be initialized to the initial state
 by zeroing it, for example using
-.PP
+.P
 .in +4n
 .EX
 memset(&a, 0, sizeof(a));

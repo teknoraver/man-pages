@@ -13,7 +13,7 @@ Standard C library
 .nf
 .B #define _GNU_SOURCE
 .B #include <unistd.h>
-.PP
+.P
 .B pid_t gettid(void);
 .fi
 .SH DESCRIPTION
@@ -41,7 +41,7 @@ glibc 2.30.
 The thread ID returned by this call is not the same thing as a
 POSIX thread ID (i.e., the opaque value returned by
 .BR pthread_self (3)).
-.PP
+.P
 In a new thread group created by a
 .BR clone (2)
 call that does not specify the

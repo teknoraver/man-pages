@@ -18,11 +18,11 @@ Standard C library
 .BR "#include <linux/ioprio.h>    " "/* Definition of " IOPRIO_* " constants */"
 .BR "#include <sys/syscall.h>     " "/* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_ioprio_get, int " which ", int " who );
 .BI "int syscall(SYS_ioprio_set, int " which ", int " who ", int " ioprio );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrappers for these system calls,
 necessitating the use of
@@ -34,7 +34,7 @@ and
 .BR ioprio_set ()
 system calls get and set the I/O scheduling class and
 priority of one or more threads.
-.PP
+.P
 The
 .I which
 and
@@ -67,7 +67,7 @@ is a user ID identifying all of the processes that
 have a matching real UID.
 .\" FIXME . Need to document the behavior when 'who" is specified as 0
 .\" See http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=652443
-.PP
+.P
 If
 .I which
 is specified as
@@ -90,7 +90,7 @@ is the lowest)
 or if it belongs to the same priority class as the other process but
 has a higher priority level (a lower priority number means a
 higher priority level).
-.PP
+.P
 The
 .I ioprio
 argument given to
@@ -130,13 +130,13 @@ Given
 value), this macro returns its priority
 .RI ( data )
 component.
-.PP
+.P
 See the NOTES section for more
 information on scheduling classes and priorities,
 as well as the meaning of specifying
 .I ioprio
 as 0.
-.PP
+.P
 I/O priorities are supported for reads and for synchronous
 .RB ( O_DIRECT ,
 .BR O_SYNC )
@@ -157,7 +157,7 @@ and
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 On success,
 .BR ioprio_set ()
 returns 0.
@@ -211,12 +211,12 @@ is the one that is returned by
 .BR gettid (2)
 or
 .BR clone (2).
-.PP
+.P
 These system calls have an effect only when used
 in conjunction with an I/O scheduler that supports I/O priorities.
 As at kernel 2.6.17 the only such scheduler is the Completely Fair Queuing
 (CFQ) I/O scheduler.
-.PP
+.P
 If no I/O scheduler has been set for a thread,
 then by default the I/O priority will follow the CPU nice value
 .RB ( setpriority (2)).
@@ -233,20 +233,20 @@ as 0 can be used to reset to the default I/O scheduling behavior.
 I/O schedulers are selected on a per-device basis via the special
 file
 .IR /sys/block/ device /queue/scheduler .
-.PP
+.P
 One can view the current I/O scheduler via the
 .I /sys
 filesystem.
 For example, the following command
 displays a list of all schedulers currently loaded in the kernel:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " cat /sys/block/sda/queue/scheduler"
 noop anticipatory deadline [cfq]
 .EE
 .in
-.PP
+.P
 The scheduler surrounded by brackets is the one actually
 in use for the device
 .RI ( sda
@@ -258,7 +258,7 @@ scheduler for the
 .I sda
 device to
 .IR cfq :
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " su"
@@ -310,7 +310,7 @@ The idle class has no class data.
 Attention is required when assigning this priority class to a process,
 since it may become starved if higher priority processes are
 constantly accessing the disk.
-.PP
+.P
 Refer to the kernel source file
 .I Documentation/block/ioprio.txt
 for more information on the CFQ I/O Scheduler and an example program.
@@ -337,7 +337,7 @@ Up to Linux 2.6.24 also required
 to set a very low priority
 .RB ( IOPRIO_CLASS_IDLE ),
 but since Linux 2.6.25, this is no longer required.
-.PP
+.P
 A call to
 .BR ioprio_set ()
 must follow both rules, or the call will fail with the error
@@ -357,6 +357,6 @@ Suitable definitions can be found in
 .BR open (2),
 .BR capabilities (7),
 .BR cgroups (7)
-.PP
+.P
 .I Documentation/block/ioprio.txt
 in the Linux kernel source tree

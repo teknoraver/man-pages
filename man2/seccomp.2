@@ -23,11 +23,11 @@ Standard C library
 .\"                  need <sys/ptrace.h>
 .BR "#include <sys/syscall.h>" "    /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_seccomp, unsigned int " operation ", unsigned int " flags ,
 .BI "            void *" args );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR seccomp (),
@@ -38,7 +38,7 @@ The
 .BR seccomp ()
 system call operates on the Secure Computing (seccomp) state of the
 calling process.
-.PP
+.P
 Currently, Linux supports the following
 .I operation
 values:
@@ -290,7 +290,7 @@ When adding filters via
 .BR SECCOMP_SET_MODE_FILTER ,
 .I args
 points to a filter program:
-.PP
+.P
 .in +4n
 .EX
 struct sock_fprog {
@@ -300,9 +300,9 @@ struct sock_fprog {
 };
 .EE
 .in
-.PP
+.P
 Each program must contain one or more BPF instructions:
-.PP
+.P
 .in +4n
 .EX
 struct sock_filter {            /* Filter block */
@@ -313,7 +313,7 @@ struct sock_filter {            /* Filter block */
 };
 .EE
 .in
-.PP
+.P
 When executing the instructions, the BPF program operates on the
 system call information made available (i.e., use the
 .B BPF_ABS
@@ -324,7 +324,7 @@ addressing mode) as a (read-only)
 .\"     that would need to use ptrace to catch the call and directly
 .\"     modify the registers before continuing with the call.
 buffer of the following form:
-.PP
+.P
 .in +4n
 .EX
 struct seccomp_data {
@@ -336,7 +336,7 @@ struct seccomp_data {
 };
 .EE
 .in
-.PP
+.P
 Because numbering of system calls varies between architectures and
 some architectures (e.g., x86-64) allow user-space code to use
 the calling conventions of multiple architectures
@@ -346,7 +346,7 @@ to execute binaries that employ the different conventions),
 it is usually necessary to verify the value of the
 .I arch
 field.
-.PP
+.P
 It is strongly recommended to use an allow-list approach whenever
 possible because such an approach is more robust and simple.
 A deny-list will have to be updated whenever a potentially
@@ -357,7 +357,7 @@ a deny-list bypass.
 See also
 .I Caveats
 below.
-.PP
+.P
 The
 .I arch
 field is not unique for all calling conventions.
@@ -379,7 +379,7 @@ is used on the system call number to tell the two ABIs apart.
 .\"     will have a value that is not all-ones, and this will trigger
 .\"     an extra instruction in system_call to mask off the extra bit,
 .\"     so that the syscall table indexing still works.
-.PP
+.P
 This means that a policy must either deny all syscalls with
 .B __X32_SYSCALL_BIT
 or it must recognize syscalls with and without
@@ -393,7 +393,7 @@ values with
 .B __X32_SYSCALL_BIT
 set can be bypassed by a malicious program that sets
 .BR __X32_SYSCALL_BIT .
-.PP
+.P
 Additionally, kernels prior to Linux 5.4 incorrectly permitted
 .I nr
 in the ranges 512-547 as well as the corresponding non-x32 syscalls ORed
@@ -415,7 +415,7 @@ On Linux 5.4 and newer,
 such system calls will fail with the error
 .BR ENOSYS ,
 without doing anything.
-.PP
+.P
 The
 .I instruction_pointer
 field provides the address of the machine-language instruction that
@@ -429,7 +429,7 @@ made the system call.
 and
 .BR mprotect (2)
 system calls to prevent the program from subverting such checks.)
-.PP
+.P
 When checking values from
 .IR args ,
 keep in mind that arguments are often
@@ -443,7 +443,7 @@ a system call that takes an argument of type
 .IR int ,
 the more-significant half of the argument register is ignored by
 the system call, but visible in the seccomp data.
-.PP
+.P
 A seccomp filter returns a 32-bit value consisting of two parts:
 the most significant 16 bits
 (corresponding to the mask defined by the constant
@@ -452,7 +452,7 @@ contain one of the "action" values listed below;
 the least significant 16-bits (defined by the constant
 .BR SECCOMP_RET_DATA )
 are "data" to be associated with this return value.
-.PP
+.P
 If multiple filters exist, they are \fIall\fP executed,
 in reverse order of their addition to the filter tree\[em]that is,
 the most recently installed filter is executed first.
@@ -476,7 +476,7 @@ avoiding a check for this uncommon case.)
 The return value for the evaluation of a given system call is the first-seen
 action value of highest precedence (along with its accompanying data)
 returned by execution of all of the filters.
-.PP
+.P
 In decreasing order of precedence,
 the action values that may be returned by a seccomp filter are:
 .TP
@@ -680,7 +680,7 @@ file.
 .TP
 .B SECCOMP_RET_ALLOW
 This value results in the system call being executed.
-.PP
+.P
 If an action value other than one of the above is specified,
 then the filter action is treated as either
 .B SECCOMP_RET_KILL_PROCESS
@@ -871,21 +871,21 @@ Rather than hand-coding seccomp filters as shown in the example below,
 you may prefer to employ the
 .I libseccomp
 library, which provides a front-end for generating seccomp filters.
-.PP
+.P
 The
 .I Seccomp
 field of the
 .IR /proc/ pid /status
 file provides a method of viewing the seccomp mode of a process; see
 .BR proc (5).
-.PP
+.P
 .BR seccomp ()
 provides a superset of the functionality provided by the
 .BR prctl (2)
 .B PR_SET_SECCOMP
 operation (which does not support
 .IR flags ).
-.PP
+.P
 Since Linux 4.4, the
 .BR ptrace (2)
 .B PTRACE_SECCOMP_GET_FILTER
@@ -966,14 +966,14 @@ but starting in glibc 2.26, the implementation switched to calling
 .BR openat (2)
 on all architectures.
 .RE
-.PP
+.P
 The consequence of the above points is that it may be necessary
 to filter for a system call other than might be expected.
 Various manual pages in Section 2 provide helpful details
 about the differences between wrapper functions and
 the underlying system calls in subsections entitled
 .IR "C library/kernel differences" .
-.PP
+.P
 Furthermore, note that the application of seccomp filters
 even risks causing bugs in an application,
 when the filters cause unexpected failures for legitimate operations
@@ -1019,7 +1019,7 @@ If the program attempts to execute the system call with the specified number,
 the BPF filter causes the system call to fail, with
 .I errno
 being set to the specified error number.
-.PP
+.P
 The remaining command-line arguments specify
 the pathname and additional arguments of a program
 that the example program should attempt to execute using
@@ -1028,11 +1028,11 @@ that the example program should attempt to execute using
 .BR execve (2)
 system call).
 Some example runs of the program are shown below.
-.PP
+.P
 First, we display the architecture that we are running on (x86-64)
 and then construct a shell function that looks up system call
 numbers on this architecture:
-.PP
+.P
 .in +4n
 .EX
 $ \fBuname \-m\fP
@@ -1043,25 +1043,25 @@ $ \fBsyscall_nr() {
 }\fP
 .EE
 .in
-.PP
+.P
 When the BPF filter rejects a system call (case [2] above),
 it causes the system call to fail with the error number
 specified on the command line.
 In the experiments shown here, we'll use error number 99:
-.PP
+.P
 .in +4n
 .EX
 $ \fBerrno 99\fP
 EADDRNOTAVAIL 99 Cannot assign requested address
 .EE
 .in
-.PP
+.P
 In the following example, we attempt to run the command
 .BR whoami (1),
 but the BPF filter rejects the
 .BR execve (2)
 system call, so that the command is not even executed:
-.PP
+.P
 .in +4n
 .EX
 $ \fBsyscall_nr execve\fP
@@ -1074,13 +1074,13 @@ $ \fB./a.out 59 0xC000003E 99 /bin/whoami\fP
 execv: Cannot assign requested address
 .EE
 .in
-.PP
+.P
 In the next example, the BPF filter rejects the
 .BR write (2)
 system call, so that, although it is successfully started, the
 .BR whoami (1)
 command is not able to write output:
-.PP
+.P
 .in +4n
 .EX
 $ \fBsyscall_nr write\fP
@@ -1088,12 +1088,12 @@ $ \fBsyscall_nr write\fP
 $ \fB./a.out 1 0xC000003E 99 /bin/whoami\fP
 .EE
 .in
-.PP
+.P
 In the final example,
 the BPF filter rejects a system call that is not used by the
 .BR whoami (1)
 command, so it is able to successfully execute and produce output:
-.PP
+.P
 .in +4n
 .EX
 $ \fBsyscall_nr preadv\fP
@@ -1218,7 +1218,7 @@ main(int argc, char *argv[])
 .BR proc (5),
 .BR signal (7),
 .BR socket (7)
-.PP
+.P
 Various pages from the
 .I libseccomp
 library, including:
@@ -1228,7 +1228,7 @@ library, including:
 .BR seccomp_load (3),
 and
 .BR seccomp_rule_add (3).
-.PP
+.P
 The kernel source files
 .I Documentation/networking/filter.txt
 and
@@ -1237,7 +1237,7 @@ and
 (or
 .I Documentation/prctl/seccomp_filter.txt
 before Linux 4.13).
-.PP
+.P
 McCanne, S.\& and Jacobson, V.\& (1992)
 .IR "The BSD Packet Filter: A New Architecture for User-level Packet Capture" ,
 Proceedings of the USENIX Winter 1993 Conference

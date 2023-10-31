@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stddef.h>
-.PP
+.P
 .B "#define NULL  ((void *) 0)"
 .fi
 .SH DESCRIPTION
@@ -36,12 +36,12 @@ and
 .SH CAVEATS
 It is undefined behavior to dereference a null pointer,
 and that usually causes a segmentation fault in practice.
-.PP
+.P
 It is also undefined behavior to perform pointer arithmetic on it.
-.PP
+.P
 .I NULL \- NULL
 is undefined behavior, according to ISO C, but is defined to be 0 in C++.
-.PP
+.P
 To avoid confusing human readers of the code,
 do not compare pointer variables to
 .BR 0 ,
@@ -50,7 +50,7 @@ and do not assign
 to them.
 Instead, always use
 .BR NULL .
-.PP
+.P
 .B NULL
 shouldn't be confused with
 .BR NUL ,

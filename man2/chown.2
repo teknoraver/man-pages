@@ -24,23 +24,23 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int chown(const char *" pathname ", uid_t " owner ", gid_t " group );
 .BI "int fchown(int " fd ", uid_t " owner ", gid_t " group );
 .BI "int lchown(const char *" pathname ", uid_t " owner ", gid_t " group );
-.PP
+.P
 .BR "#include <fcntl.h>           " "/* Definition of AT_* constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int fchownat(int " dirfd ", const char *" pathname ,
 .BI "             uid_t " owner ", gid_t " group ", int " flags );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR fchown (),
 .BR lchown ():
 .nf
@@ -49,7 +49,7 @@ Feature Test Macro Requirements for glibc (see
 .\"    || _XOPEN_SOURCE && _XOPEN_SOURCE_EXTENDED
         || /* glibc <= 2.19: */ _BSD_SOURCE
 .fi
-.PP
+.P
 .BR fchownat ():
 .nf
     Since glibc 2.10:
@@ -79,7 +79,7 @@ changes the ownership of the file referred to by the open file descriptor
 is like
 .BR chown (),
 but does not dereference symbolic links.
-.PP
+.P
 Only a privileged process (Linux: one with the
 .B CAP_CHOWN
 capability) may change the owner of a file.
@@ -88,13 +88,13 @@ to any group of which that owner is a member.
 A privileged process (Linux: with
 .BR CAP_CHOWN )
 may change the group arbitrarily.
-.PP
+.P
 If the
 .I owner
 or
 .I group
 is specified as \-1, then that ID is not changed.
-.PP
+.P
 When the owner or group of an executable file is
 changed by an unprivileged user, the
 .B S_ISUID
@@ -115,7 +115,7 @@ bit is not set) the
 .B S_ISGID
 bit indicates mandatory locking, and is not cleared by a
 .BR chown ().
-.PP
+.P
 When the owner or group of an executable file is changed (by any user),
 all capability sets for the file are cleared.
 .\"
@@ -125,7 +125,7 @@ The
 system call operates in exactly the same way as
 .BR chown (),
 except for the differences described here.
-.PP
+.P
 If the pathname given in
 .I pathname
 is relative, then it is interpreted relative to the directory
@@ -135,7 +135,7 @@ referred to by the file descriptor
 the calling process, as is done by
 .BR chown ()
 for a relative pathname).
-.PP
+.P
 If
 .I pathname
 is relative and
@@ -147,13 +147,13 @@ then
 is interpreted relative to the current working
 directory of the calling process (like
 .BR chown ()).
-.PP
+.P
 If
 .I pathname
 is absolute, then
 .I dirfd
 is ignored.
-.PP
+.P
 The
 .I flags
 argument is a bit mask created by ORing together
@@ -192,7 +192,7 @@ instead operate on the link itself, like
 .BR fchownat ()
 dereferences symbolic links, like
 .BR chown ().)
-.PP
+.P
 See
 .BR openat (2)
 for an explanation of the need for
@@ -205,7 +205,7 @@ is set to indicate the error.
 .SH ERRORS
 Depending on the filesystem,
 errors other than those listed below can be returned.
-.PP
+.P
 The more general errors for
 .BR chown ()
 are listed below.
@@ -341,7 +341,7 @@ If the filesystem is mounted with
 and the set-group-ID bit is enabled on the parent directory,
 then the group of a new file is made
 the same as that of the parent directory.
-.PP
+.P
 As at Linux 4.12,
 the
 .B \-o\ grpid
@@ -398,7 +398,7 @@ The glibc
 and
 .BR lchown ()
 wrapper functions transparently deal with the variations across kernel versions.
-.PP
+.P
 Before Linux 2.1.81 (except 2.1.46),
 .BR chown ()
 did not follow symbolic links.

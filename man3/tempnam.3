@@ -12,15 +12,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "char *tempnam(const char *" dir ", const char *" pfx );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR tempnam ():
 .nf
     Since glibc 2.19:
@@ -35,7 +35,7 @@ Use
 or
 .BR tmpfile (3)
 instead.
-.PP
+.P
 The
 .BR tempnam ()
 function returns a pointer to a string that is a valid filename,
@@ -49,7 +49,7 @@ in case
 is a non-NULL string of at most five bytes.
 The directory prefix part of the pathname generated is required to
 be "appropriate" (often that at least implies writable).
-.PP
+.P
 Attempts to find an appropriate directory go through the following
 steps:
 .TP 3
@@ -73,7 +73,7 @@ is used when appropriate.
 .TP
 d)
 Finally an implementation-defined directory may be used.
-.PP
+.P
 The string returned by
 .BR tempnam ()
 is allocated using
@@ -129,7 +129,7 @@ Or better yet, use
 .BR mkstemp (3)
 or
 .BR tmpfile (3).
-.PP
+.P
 SUSv2 does not mention the use of
 .BR TMPDIR ;
 glibc will use it only
@@ -137,12 +137,12 @@ when the program is not set-user-ID.
 On SVr4, the directory used under \fBd)\fP is
 .I /tmp
 (and this is what glibc does).
-.PP
+.P
 Because it dynamically allocates memory used to return the pathname,
 .BR tempnam ()
 is reentrant, and thus thread safe, unlike
 .BR tmpnam (3).
-.PP
+.P
 The
 .BR tempnam ()
 function generates a different string each time it is called,
@@ -155,11 +155,11 @@ If it is called more than
 .B TMP_MAX
 times,
 the behavior is implementation defined.
-.PP
+.P
 .BR tempnam ()
 uses at most the first five bytes from
 .IR pfx .
-.PP
+.P
 The glibc implementation of
 .BR tempnam ()
 fails with the error

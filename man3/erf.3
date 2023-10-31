@@ -22,24 +22,24 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double erf(double " x );
 .BI "float erff(float " x );
 .BI "long double erfl(long double " x );
-.PP
+.P
 .fi
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR erf ():
 .nf
     _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE
         || /* Since glibc 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR erff (),
 .BR erfl ():
 .nf
@@ -51,7 +51,7 @@ Feature Test Macro Requirements for glibc (see
 These functions return the error function of
 .IR x ,
 defined as
-.PP
+.P
 .in +4n
 .EX
 erf(x) = 2/sqrt(pi) * integral from 0 to x of exp(\-t*t) dt
@@ -61,20 +61,20 @@ erf(x) = 2/sqrt(pi) * integral from 0 to x of exp(\-t*t) dt
 On success, these functions return the value of the error function of
 .IR x ,
 a value in the range [\-1,\ 1].
-.PP
+.P
 If
 .I x
 is a NaN, a NaN is returned.
-.PP
+.P
 If
 .I x
 is +0 (\-0), +0 (\-0) is returned.
-.PP
+.P
 If
 .I x
 is positive infinity (negative infinity),
 +1 (\-1) is returned.
-.PP
+.P
 If
 .I x
 is subnormal,
@@ -85,7 +85,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Range error: result underflow (\fIx\fP is subnormal)
@@ -95,7 +95,7 @@ Range error: result underflow (\fIx\fP is subnormal)
 An underflow floating-point exception
 .RB ( FE_UNDERFLOW )
 is raised.
-.PP
+.P
 These functions do not set
 .IR errno .
 .\" It is intentional that these functions do not set errno for this case
@@ -120,7 +120,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to

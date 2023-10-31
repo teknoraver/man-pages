@@ -21,21 +21,21 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int abs(int " j );
 .BI "long labs(long " j );
 .BI "long long llabs(long long " j );
-.PP
+.P
 .B #include <inttypes.h>
-.PP
+.P
 .BI "intmax_t imaxabs(intmax_t " j );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR llabs ():
 .nf
     _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L
@@ -79,7 +79,7 @@ POSIX.1-2001, C99, SVr4, 4.3BSD.
 .\" POSIX.1 (1996 edition) requires only the
 .\" .BR abs ()
 .\" function.
-.PP
+.P
 C89 only
 includes the
 .BR abs ()
@@ -93,20 +93,20 @@ were added in C99.
 .SH NOTES
 Trying to take the absolute value of the most negative integer
 is not defined.
-.PP
+.P
 The
 .BR llabs ()
 function is included since glibc 2.0.
 The
 .BR imaxabs ()
 function is included since glibc 2.1.1.
-.PP
+.P
 For
 .BR llabs ()
 to be declared, it may be necessary to define
 \fB_ISOC99_SOURCE\fP or \fB_ISOC9X_SOURCE\fP (depending on the
 version of glibc) before including any standard headers.
-.PP
+.P
 By default,
 GCC handles
 .BR abs (),

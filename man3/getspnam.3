@@ -16,31 +16,31 @@ Standard C library
 .nf
 /* General shadow password file API */
 .B #include <shadow.h>
-.PP
+.P
 .BI "struct spwd *getspnam(const char *" name );
 .B struct spwd *getspent(void);
-.PP
+.P
 .B void setspent(void);
 .B void endspent(void);
-.PP
+.P
 .BI "struct spwd *fgetspent(FILE *" stream );
 .BI "struct spwd *sgetspent(const char *" s );
-.PP
+.P
 .BI "int putspent(const struct spwd *" p ", FILE *" stream );
-.PP
+.P
 .B int lckpwdf(void);
 .B int ulckpwdf(void);
-.PP
+.P
 /* GNU extension */
 .B #include <shadow.h>
-.PP
+.P
 .BI "int getspent_r(struct spwd *" spbuf ,
 .BI "               char " buf [. buflen "], size_t " buflen ", \
 struct spwd **" spbufp );
 .BI "int getspnam_r(const char *" name ", struct spwd *" spbuf ,
 .BI "               char " buf [. buflen "], size_t " buflen ", \
 struct spwd **" spbufp );
-.PP
+.P
 .BI "int fgetspent_r(FILE *" stream ", struct spwd *" spbuf ,
 .BI "               char " buf [. buflen "], size_t " buflen ", \
 struct spwd **" spbufp );
@@ -48,12 +48,12 @@ struct spwd **" spbufp );
 .BI "               char " buf [. buflen "], size_t " buflen ", \
 struct spwd **" spbufp );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getspent_r (),
 .BR getspnam_r (),
 .BR fgetspent_r (),
@@ -76,7 +76,7 @@ the shadow password database
 .IR /etc/shadow ,
 NIS, and LDAP),
 readable only by root.
-.PP
+.P
 The functions described below resemble those for
 the traditional password database
 (e.g., see
@@ -93,14 +93,14 @@ and
 .\" (pluggable authentication modules), and the file
 .\" .I /etc/nsswitch.conf
 .\" now describes the sources to be used.
-.PP
+.P
 The
 .BR getspnam ()
 function returns a pointer to a structure containing
 the broken-out fields of the record in the shadow password database
 that matches the username
 .IR name .
-.PP
+.P
 The
 .BR getspent ()
 function returns a pointer to the next entry in the shadow password
@@ -112,21 +112,21 @@ When done reading, the program may call
 so that resources can be deallocated.
 .\" some systems require a call of setspent() before the first getspent()
 .\" glibc does not
-.PP
+.P
 The
 .BR fgetspent ()
 function is similar to
 .BR getspent ()
 but uses the supplied stream instead of the one implicitly opened by
 .BR setspent ().
-.PP
+.P
 The
 .BR sgetspent ()
 function parses the supplied string
 .I s
 into a struct
 .IR spwd .
-.PP
+.P
 The
 .BR putspent ()
 function writes the contents of the supplied struct
@@ -136,7 +136,7 @@ as a text line in the shadow password file format to
 .IR stream .
 String entries with value NULL and numerical entries with value \-1
 are written as an empty string.
-.PP
+.P
 The
 .BR lckpwdf ()
 function is intended to protect against multiple simultaneous accesses
@@ -151,7 +151,7 @@ password file.
 Only programs that use
 .BR lckpwdf ()
 will notice the lock.
-.PP
+.P
 These were the functions that formed the original shadow API.
 They are widely available.
 .\" Also in libc5
@@ -173,20 +173,20 @@ of size
 A pointer to the result (in case of success) or NULL (in case no entry
 was found or an error occurred) is stored in
 .IR *spbufp .
-.PP
+.P
 The functions
 .BR getspent_r (),
 .BR fgetspent_r (),
 and
 .BR sgetspent_r ()
 are similarly analogous to their nonreentrant counterparts.
-.PP
+.P
 Some non-glibc systems also have functions with these names,
 often with different prototypes.
 .\" SUN doesn't have sgetspent_r()
 .SS Structure
 The shadow password structure is defined in \fI<shadow.h>\fP as follows:
-.PP
+.P
 .in +4n
 .EX
 struct spwd {
@@ -215,10 +215,10 @@ The functions which have \fIint\fP as the return value return 0 for
 success and \-1 for failure, with
 .I errno
 set to indicate the error.
-.PP
+.P
 For the nonreentrant functions, the return value may point to static area,
 and may be overwritten by subsequent calls to these functions.
-.PP
+.P
 The reentrant functions return zero on success.
 In case of error, an error number is returned.
 .SH ERRORS
@@ -235,7 +235,7 @@ local shadow password database file
 .TP
 .I /etc/.pwd.lock
 lock file
-.PP
+.P
 The include file
 .I <paths.h>
 defines the constant
@@ -320,7 +320,7 @@ T}	Thread safety	T{
 MT-Safe
 T}
 .TE
-.PP
+.P
 In the above table,
 .I getspent
 in

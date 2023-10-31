@@ -20,7 +20,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <iconv.h>
-.PP
+.P
 .BI "iconv_t iconv_open(const char *" tocode ", const char *" fromcode );
 .fi
 .SH DESCRIPTION
@@ -32,7 +32,7 @@ for converting byte sequences from character encoding
 to
 character encoding
 .IR tocode .
-.PP
+.P
 The values permitted for
 .I fromcode
 and
@@ -61,13 +61,13 @@ When the string "//IGNORE" is appended to
 .IR tocode ,
 characters that
 cannot be represented in the target character set will be silently discarded.
-.PP
+.P
 The resulting conversion descriptor can be used with
 .BR iconv (3)
 any number of times.
 It remains valid until deallocated using
 .BR iconv_close (3).
-.PP
+.P
 A conversion descriptor contains a conversion state.
 After creation using
 .BR iconv_open (),

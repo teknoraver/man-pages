@@ -13,17 +13,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdint.h>
-.PP
+.P
 .BR typedef " /* ... */ " intmax_t;
 .BR typedef " /* ... */ " uintmax_t;
-.PP
+.P
 .BR "#define INTMAX_WIDTH  " "/* ... */"
 .B "#define UINTMAX_WIDTH INTMAX_WIDTH"
-.PP
+.P
 .BR "#define INTMAX_MAX    " "/*  2**(INTMAX_WIDTH - 1) - 1  */"
 .BR "#define INTMAX_MIN    " "/*  - 2**(INTMAX_WIDTH - 1)    */"
 .BR "#define UINTMAX_MAX   " "/*  2**UINTMAX_WIDTH - 1       */"
-.PP
+.P
 .BI "#define INTMAX_C(" c ) "   c " ## " \fR/* ... */\fP"
 .BI "#define UINTMAX_C(" c ) "  c " ## " \fR/* ... */\fP"
 .fi
@@ -35,7 +35,7 @@ supported by the implementation.
 It is capable of storing values in the range
 .RB [ INTMAX_MIN ,
 .BR INTMAX_MAX ].
-.PP
+.P
 .I uintmax_t
 is an unsigned integer type
 capable of representing any value of any basic unsigned integer type
@@ -43,26 +43,26 @@ supported by the implementation.
 It is capable of storing values in the range
 .RB [ 0 ,
 .BR UINTMAX_MAX ].
-.PP
+.P
 The macros
 .RB [ U ] INTMAX_WIDTH
 expand to the width in bits of these types.
-.PP
+.P
 The macros
 .RB [ U ] INTMAX_MAX
 expand to the maximum value that these types can hold.
-.PP
+.P
 The macro
 .B INTMAX_MIN
 expands to the minimum value that
 .I intmax_t
 can hold.
-.PP
+.P
 The macros
 .RB [ U ] INTMAX_C ()
 expand their argument to an integer constant of type
 .RI [ u ] intmax_t .
-.PP
+.P
 The length modifier for
 .RI [ u ] intmax_t
 for the

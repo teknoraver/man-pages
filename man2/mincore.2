@@ -20,15 +20,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/mman.h>
-.PP
+.P
 .BI "int mincore(void " addr [. length "], size_t " length ", unsigned char *" vec );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR mincore ():
 .nf
     Since glibc 2.19:
@@ -47,7 +47,7 @@ starting at the address
 and continuing for
 .I length
 bytes.
-.PP
+.P
 The
 .I addr
 argument must be a multiple of the system page size.
@@ -61,7 +61,7 @@ One may obtain the page size
 .RB ( PAGE_SIZE )
 using
 .IR sysconf(_SC_PAGESIZE) .
-.PP
+.P
 The
 .I vec
 argument must point to an array containing at least
@@ -122,9 +122,9 @@ None.
 .SH HISTORY
 Linux 2.3.99pre1,
 glibc 2.2.
-.PP
+.P
 First appeared in 4.4BSD.
-.PP
+.P
 NetBSD, FreeBSD, OpenBSD, Solaris 8,
 AIX 5.1, SunOS 4.1.
 .SH BUGS

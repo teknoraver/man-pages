@@ -18,23 +18,23 @@ Standard C library
 .nf
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "long syscall(SYS_getdents, unsigned int " fd \
 ", struct linux_dirent *" dirp ,
 .BI "             unsigned int " count );
-.PP
+.P
 .BR "#define _GNU_SOURCE" "           /* See feature_test_macros(7) */"
 .B #include <dirent.h>
-.PP
+.P
 .BI "ssize_t getdents64(int " fd ", void " dirp [. count "], size_t " count );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR getdents (),
 necessitating the use of
 .BR syscall (2).
-.PP
+.P
 .IR Note :
 There is no definition of
 .I struct linux_dirent
@@ -58,11 +58,11 @@ into the buffer pointed to by
 The argument
 .I count
 specifies the size of that buffer.
-.PP
+.P
 The
 .I linux_dirent
 structure is declared as follows:
-.PP
+.P
 .in +4n
 .EX
 struct linux_dirent {
@@ -80,7 +80,7 @@ struct linux_dirent {
 }
 .EE
 .in
-.PP
+.P
 .I d_ino
 is an inode number.
 .I d_off
@@ -91,7 +91,7 @@ is the size of this entire
 .IR linux_dirent .
 .I d_name
 is a null-terminated filename.
-.PP
+.P
 .I d_type
 is a byte at the end of the structure that indicates the file type.
 It contains one of the following values (defined in
@@ -120,7 +120,7 @@ This is a UNIX domain socket.
 .TP
 .B DT_UNKNOWN
 The file type is unknown.
-.PP
+.P
 The
 .I d_type
 field is implemented since Linux 2.6.4.
@@ -130,7 +130,7 @@ structure.
 Thus, on kernels up to and including Linux 2.6.3,
 attempting to access this field always provides the value 0
 .RB ( DT_UNKNOWN ).
-.PP
+.P
 Currently,
 .\" kernel 2.6.27
 .\" The same sentence is in readdir.2
@@ -155,14 +155,14 @@ In addition,
 supports an explicit
 .I d_type
 field.
-.PP
+.P
 The
 .BR getdents64 ()
 system call is like
 .BR getdents (),
 except that its second argument is a pointer to a buffer containing
 structures of the following type:
-.PP
+.P
 .in +4n
 .EX
 struct linux_dirent64 {
@@ -217,11 +217,11 @@ In that case you will need to define the
 or
 .I linux_dirent64
 structure yourself.
-.PP
+.P
 Probably, you want to use
 .BR readdir (3)
 instead of these system calls.
-.PP
+.P
 These calls supersede
 .BR readdir (2).
 .SH EXAMPLES
@@ -231,7 +231,7 @@ The program below demonstrates the use of
 .BR getdents ().
 The following output shows an example of what we see when running this
 program on an ext2 directory:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out /testfs/"

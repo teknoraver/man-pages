@@ -12,9 +12,9 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <search.h>
-.PP
+.P
 .B typedef enum { preorder, postorder, endorder, leaf } VISIT;
-.PP
+.P
 .BI "void *tsearch(const void *" key ", void **" rootp ,
 .BI "                int (*" compar ")(const void *, const void *));"
 .BI "void *tfind(const void *" key ", void *const *" rootp ,
@@ -24,10 +24,10 @@ Standard C library
 .BI "void twalk(const void *" root ,
 .BI "                void (*" action ")(const void *" nodep ", VISIT " which ,
 .BI "                               int " depth ));
-.PP
+.P
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <search.h>
-.PP
+.P
 .BI "void twalk_r(const void *" root ,
 .BI "                void (*" action ")(const void *" nodep ", VISIT " which ,
 .BI "                               void *" closure ),
@@ -52,7 +52,7 @@ pointers to two items.
 It should return an integer which is negative,
 zero, or positive, depending on whether the first item is less than,
 equal to, or greater than the second.
-.PP
+.P
 .BR tsearch ()
 searches the tree for an item.
 .I key
@@ -74,7 +74,7 @@ If the item is not found, then
 .BR tsearch ()
 adds it, and returns a
 pointer to the corresponding tree node.
-.PP
+.P
 .BR tfind ()
 is like
 .BR tsearch (),
@@ -82,12 +82,12 @@ except that if the item is not
 found, then
 .BR tfind ()
 returns NULL.
-.PP
+.P
 .BR tdelete ()
 deletes an item from the tree.
 Its arguments are the same as for
 .BR tsearch ().
-.PP
+.P
 .BR twalk ()
 performs depth-first, left-to-right traversal of a binary
 tree.
@@ -122,7 +122,7 @@ if this is the single visit to a leaf node.
 .IR <search.h> .)
 The third argument is the depth of the node;
 the root node has depth zero.
-.PP
+.P
 (More commonly,
 .BR preorder ,
 .BR postorder ,
@@ -138,7 +138,7 @@ and after visiting the children.
 Thus, the choice of name
 .B post\%order
 is rather confusing.)
-.PP
+.P
 .BR twalk_r ()
 is similar to
 .BR twalk (),
@@ -151,7 +151,7 @@ unchanged.
 This pointer can be used to pass information to and from
 the callback function in a thread-safe fashion, without resorting
 to global variables.
-.PP
+.P
 .BR tdestroy ()
 removes the whole tree pointed to by
 .IR root ,
@@ -176,14 +176,14 @@ returns a pointer to the node, or
 NULL if no match is found.
 If there are multiple items that match the key,
 the item whose node is returned is unspecified.
-.PP
+.P
 .BR tdelete ()
 returns a pointer to the parent of the node deleted, or
 NULL if the item was not found.
 If the deleted node was the root node,
 .BR tdelete ()
 returns a dangling pointer that must not be accessed.
-.PP
+.P
 .BR tsearch (),
 .BR tfind (),
 and
@@ -255,12 +255,12 @@ glibc 2.30.
 .BR twalk ()
 takes a pointer to the root, while the other functions
 take a pointer to a variable which points to the root.
-.PP
+.P
 .BR tdelete ()
 frees the memory required for the node in the tree.
 The user is responsible for freeing the memory for the corresponding
 data.
-.PP
+.P
 The example program depends on the fact that
 .BR twalk ()
 makes no
@@ -272,7 +272,7 @@ implementation, but is not in the System V documentation.
 The following program inserts twelve random numbers into a binary
 tree, where duplicate numbers are collapsed, then prints the numbers
 in order.
-.PP
+.P
 .\" SRC BEGIN (tsearch.c)
 .EX
 #define _GNU_SOURCE     /* Expose declaration of tdestroy() */

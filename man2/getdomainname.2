@@ -15,16 +15,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int getdomainname(char *" name ", size_t " len );
 .BI "int setdomainname(const char *" name ", size_t " len );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getdomainname (),
 .BR setdomainname ():
 .nf
@@ -41,7 +41,7 @@ These functions are used to access or to change the NIS domain name of the
 host system.
 More precisely, they operate on the NIS domain name associated with the calling
 process's UTS namespace.
-.PP
+.P
 .BR setdomainname ()
 sets the domain name to the value given in the character array
 .IR name .
@@ -52,7 +52,7 @@ argument specifies the number of bytes in
 (Thus,
 .I name
 does not require a terminating null byte.)
-.PP
+.P
 .BR getdomainname ()
 returns the null-terminated domain name in the character array
 .IR name ,
@@ -84,7 +84,7 @@ The caller did not have the
 .B CAP_SYS_ADMIN
 capability in the user namespace associated with its UTS namespace (see
 .BR namespaces (7)).
-.PP
+.P
 .BR getdomainname ()
 can fail with the following errors:
 .TP

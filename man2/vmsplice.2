@@ -13,7 +13,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <fcntl.h>
-.PP
+.P
 .BI "ssize_t vmsplice(int " fd ", const struct iovec *" iov ,
 .BI "                 size_t " nr_segs ", unsigned int " flags );
 .fi
@@ -50,14 +50,14 @@ from a pipe.
 The file descriptor
 .I fd
 must refer to a pipe.
-.PP
+.P
 The pointer
 .I iov
 points to an array of
 .I iovec
 structures as described in
 .BR iovec (3type).
-.PP
+.P
 The
 .I flags
 argument is a bit mask that is composed by ORing together
@@ -148,7 +148,7 @@ as defined in
 Currently,
 .\" UIO_MAXIOV in kernel source
 this limit is 1024.
-.PP
+.P
 .\" commit 6a14b90bb6bc7cd83e2a444bf457a2ea645cbfe7
 .BR vmsplice ()
 really supports true splicing only from user memory to a pipe.

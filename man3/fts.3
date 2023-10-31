@@ -22,16 +22,16 @@ Standard C library
 .B #include <sys/types.h>
 .B #include <sys/stat.h>
 .B #include <fts.h>
-.PP
+.P
 .BI "FTS *fts_open(char *const *" path_argv ", int " options ,
 .BI "              int (*_Nullable " compar ")(const FTSENT **, const FTSENT **));"
-.PP
+.P
 .BI "FTSENT *fts_read(FTS *" ftsp );
-.PP
+.P
 .BI "FTSENT *fts_children(FTS *" ftsp ", int " instr );
-.PP
+.P
 .BI "int fts_set(FTS *" ftsp ", FTSENT *" f ", int " instr );
-.PP
+.P
 .BI "int fts_close(FTS *" ftsp );
 .fi
 .SH DESCRIPTION
@@ -53,7 +53,7 @@ The function
 .BR fts_children ()
 returns a pointer to a linked list of structures, each of which describes
 one of the files contained in a directory in the hierarchy.
-.PP
+.P
 In general, directories are visited two distinguishable times; in preorder
 (before any of their descendants are visited) and in postorder (after all
 of their descendants have been visited).
@@ -63,7 +63,7 @@ symbolic links point to)
 or physically (visiting the symbolic links themselves),
 order the walk of the hierarchy or
 prune and/or revisit portions of the hierarchy.
-.PP
+.P
 Two structures (and associated types) are defined in the include file
 .IR <fts.h> .
 The first type is
@@ -80,14 +80,14 @@ hierarchy.
 In this manual page, "file" and
 "FTSENT structure"
 are generally interchangeable.
-.PP
+.P
 The
 .I FTSENT
 structure contains fields describing a file.
 The structure contains at least the following fields
 (there are additional fields that
 should be considered private to the implementation):
-.PP
+.P
 .in +4n
 .EX
 typedef struct _ftsent {
@@ -115,7 +115,7 @@ typedef struct _ftsent {
 } FTSENT;
 .EE
 .in
-.PP
+.P
 These fields are defined as follows:
 .\" .Bl -tag -width "fts_namelen"
 .TP
@@ -332,7 +332,7 @@ A pointer to
 .RB [ l ] stat (2)
 information for the file.
 .\" .El
-.PP
+.P
 A single buffer is used for all of the paths of all of the files in the
 file hierarchy.
 Therefore, the
@@ -366,7 +366,7 @@ function takes a pointer to an array of character pointers naming one
 or more paths which make up a logical file hierarchy to be traversed.
 The array must be terminated by a
 null pointer.
-.PP
+.P
 There are
 a number of options, at least one of which (either
 .B FTS_LOGICAL
@@ -464,7 +464,7 @@ This option prevents
 fts from descending into directories that have a different device number
 than the file from which the descent began.
 .\" .El
-.PP
+.P
 The argument
 .BR compar ()
 specifies a user-defined function which may be used to order the traversal
@@ -516,7 +516,7 @@ All other files are visited at least once.
 (Hard links between directories that do not cause cycles or symbolic
 links to symbolic links may cause files to be visited more than once,
 or directories more than twice.)
-.PP
+.P
 If all the members of the hierarchy have been returned,
 .BR fts_read ()
 returns NULL and sets
@@ -535,7 +535,7 @@ structure is returned, and
 .I errno
 may or may not have been set (see
 .IR fts_info ).
-.PP
+.P
 The
 .I FTSENT
 structures returned by
@@ -570,7 +570,7 @@ structure, and is ordered by the user-specified comparison function, if any.
 Repeated calls to
 .BR fts_children ()
 will re-create this linked list.
-.PP
+.P
 As a special case, if
 .BR fts_read ()
 has not yet been called for a hierarchy,
@@ -598,7 +598,7 @@ NULL
 and sets
 .I errno
 to indicate the error.
-.PP
+.P
 The
 .I FTSENT
 structures returned by
@@ -609,7 +609,7 @@ may be overwritten after a call to
 or
 .BR fts_read ()
 on the same file hierarchy stream.
-.PP
+.P
 The
 .I instr
 argument is either zero or the following value:
@@ -636,7 +636,7 @@ The
 .BR fts_set ()
 function
 returns 0 on success, and \-1 if an error occurs.
-.PP
+.P
 The
 .I instr
 argument is either 0 (meaning "do nothing") or one of the following values:
@@ -721,7 +721,7 @@ for any of the errors specified for
 .BR open (2)
 and
 .BR malloc (3).
-.PP
+.P
 In addition,
 .BR fts_open ()
 may fail and set
@@ -732,7 +732,7 @@ as follows:
 Any element of
 .I path_argv
 was an empty string.
-.PP
+.P
 The function
 .BR fts_close ()
 may fail and set
@@ -741,7 +741,7 @@ for any of the errors specified for
 .BR chdir (2)
 and
 .BR close (2).
-.PP
+.P
 The functions
 .BR fts_read ()
 and
@@ -755,7 +755,7 @@ for any of the errors specified for
 .BR readdir (3),
 and
 .RB [ l ] stat (2).
-.PP
+.P
 In addition,
 .BR fts_children (),
 .BR fts_open (),

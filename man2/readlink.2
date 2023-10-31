@@ -22,29 +22,29 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "ssize_t readlink(const char *restrict " pathname ", char *restrict " buf ,
 .BI "                 size_t " bufsiz );
-.PP
+.P
 .BR "#include <fcntl.h>            " "/* Definition of " AT_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "ssize_t readlinkat(int " dirfd ", const char *restrict " pathname ,
 .BI "                 char *restrict " buf ", size_t " bufsiz );
-.PP
+.P
 .fi
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR readlink ():
 .nf
     _XOPEN_SOURCE >= 500 || _POSIX_C_SOURCE >= 200112L
 .\"    || _XOPEN_SOURCE && _XOPEN_SOURCE_EXTENDED
         || /* glibc <= 2.19: */ _BSD_SOURCE
 .fi
-.PP
+.P
 .BR readlinkat ():
 .nf
     Since glibc 2.10:
@@ -72,7 +72,7 @@ The
 system call operates in exactly the same way as
 .BR readlink (),
 except for the differences described here.
-.PP
+.P
 If the pathname given in
 .I pathname
 is relative, then it is interpreted relative to the directory
@@ -82,7 +82,7 @@ referred to by the file descriptor
 the calling process, as is done by
 .BR readlink ()
 for a relative pathname).
-.PP
+.P
 If
 .I pathname
 is relative and
@@ -94,13 +94,13 @@ then
 is interpreted relative to the current working
 directory of the calling process (like
 .BR readlink ()).
-.PP
+.P
 If
 .I pathname
 is absolute, then
 .I dirfd
 is ignored.
-.PP
+.P
 Since Linux 2.6.39,
 .\" commit 65cfc6722361570bfe255698d9cd4dccaf47570d
 .I pathname
@@ -114,7 +114,7 @@ with the
 and
 .B O_NOFOLLOW
 flags).
-.PP
+.P
 See
 .BR openat (2)
 for an explanation of the need for
@@ -199,7 +199,7 @@ POSIX.1-2001, POSIX.1-2008.
 POSIX.1-2008.
 Linux 2.6.16,
 glibc 2.4.
-.PP
+.P
 Up to and including glibc 2.4, the return type of
 .BR readlink ()
 was declared as
@@ -253,7 +253,7 @@ falling back to a buffer of size
 in cases where
 .BR lstat (2)
 reports a size of zero.
-.PP
+.P
 .\" SRC BEGIN (readlink.c)
 .EX
 #include <limits.h>

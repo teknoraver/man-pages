@@ -12,16 +12,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "int fseeko(FILE *" stream ", off_t " offset ", int " whence );
 .BI "off_t ftello(FILE *" stream );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR fseeko (),
 .BR ftello ():
 .nf
@@ -48,7 +48,7 @@ is of type
 .I off_t
 instead of
 .IR long .
-.PP
+.P
 On some architectures, both
 .I off_t
 and

@@ -15,16 +15,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int seteuid(uid_t " euid );
 .BI "int setegid(gid_t " egid );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR seteuid (),
 .BR setegid ():
 .nf
@@ -36,7 +36,7 @@ Feature Test Macro Requirements for glibc (see
 sets the effective user ID of the calling process.
 Unprivileged processes may only set the effective user ID to the
 real user ID, the effective user ID or the saved set-user-ID.
-.PP
+.P
 Precisely the same holds for
 .BR setegid ()
 with "group" instead of "user".
@@ -50,7 +50,7 @@ On success, zero is returned.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 .IR Note :
 there are cases where
 .BR seteuid ()
@@ -86,7 +86,7 @@ saved set-user-ID (saved set-group-ID) is
 possible since Linux 1.1.37 (1.1.38).
 On an arbitrary system one should check
 .BR _POSIX_SAVED_IDS .
-.PP
+.P
 Under glibc 2.0,
 .BI seteuid( euid )
 is equivalent to
@@ -102,7 +102,7 @@ with the difference that the change in implementation from
 to
 .BI setresgid(\-1, " egid" ", \-1)"
 occurred in glibc 2.2 or 2.3 (depending on the hardware architecture).
-.PP
+.P
 According to POSIX.1,
 .BR seteuid ()
 .RB ( setegid ())

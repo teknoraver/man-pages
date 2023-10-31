@@ -14,10 +14,10 @@ Standard C library
 .BR "#include <asm/runtime_instr.h>" " /* Definition of " S390_* " constants */"
 .BR "#include <sys/syscall.h>" "       /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_s390_runtime_instr, int " command ", int " signum );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR s390_runtime_instr (),
@@ -28,7 +28,7 @@ The
 .BR s390_runtime_instr ()
 system call starts or stops CPU run-time instrumentation for the
 calling thread.
-.PP
+.P
 The
 .I command
 argument controls whether run-time instrumentation is started
@@ -36,7 +36,7 @@ argument controls whether run-time instrumentation is started
 1) or stopped
 .RB ( S390_RUNTIME_INSTR_STOP ,
 2) for the calling thread.
-.PP
+.P
 The
 .I signum
 argument specifies the number of a real-time signal.
@@ -90,7 +90,7 @@ The
 header file is available
 .\" commit df2f815a7df7edb5335a3bdeee6a8f9f6f9c35c4
 since Linux 4.16.
-.PP
+.P
 Starting with Linux 4.4,
 support for signalling was removed, as was the check whether
 .I signum

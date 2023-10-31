@@ -19,25 +19,25 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <string.h>
-.PP
+.P
 .BI "char *strsignal(int " sig );
 .BI "const char *sigdescr_np(int " sig );
 .BI "const char *sigabbrev_np(int " sig );
-.PP
+.P
 .BI "[[deprecated]] extern const char *const " sys_siglist [];
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR sigabbrev_np (),
 .BR sigdescr_np ():
 .nf
     _GNU_SOURCE
 .fi
-.PP
+.P
 .BR strsignal ():
 .nf
     From glibc 2.10 to glibc 2.31:
@@ -45,7 +45,7 @@ Feature Test Macro Requirements for glibc (see
     Before glibc 2.10:
         _GNU_SOURCE
 .fi
-.PP
+.P
 .IR sys_siglist :
 .nf
     Since glibc 2.19:
@@ -66,7 +66,7 @@ The string returned by
 is localized according to the
 .B LC_MESSAGES
 category in the current locale.
-.PP
+.P
 The
 .BR sigdescr_np ()
 function returns a string describing the signal
@@ -75,7 +75,7 @@ number passed in the argument
 Unlike
 .BR strsignal ()
 this string is not influenced by the current locale.
-.PP
+.P
 The
 .BR sigabbrev_np ()
 function returns the abbreviated name of the signal,
@@ -83,7 +83,7 @@ function returns the abbreviated name of the signal,
 For example, given the value
 .BR SIGINT ,
 it returns the string "INT".
-.PP
+.P
 The (deprecated) array
 .I sys_siglist
 holds the signal description strings
@@ -100,7 +100,7 @@ function returns the appropriate description
 string, or an unknown signal message if the signal number is invalid.
 On some systems (but not on Linux), NULL may instead be
 returned for an invalid signal number.
-.PP
+.P
 The
 .BR sigdescr_np ()
 and

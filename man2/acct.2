@@ -18,15 +18,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int acct(const char *_Nullable " filename );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR acct ():
 .nf
     Since glibc 2.21:
@@ -129,7 +129,7 @@ SVr4, 4.3BSD.
 .SH NOTES
 No accounting is produced for programs running when a system crash occurs.
 In particular, nonterminating processes are never accounted for.
-.PP
+.P
 The structure of the records written to the accounting file is described in
 .BR acct (5).
 .SH SEE ALSO

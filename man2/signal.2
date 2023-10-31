@@ -22,9 +22,9 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .B typedef void (*sighandler_t)(int);
-.PP
+.P
 .BI "sighandler_t signal(int " signum ", sighandler_t " handler );
 .fi
 .SH DESCRIPTION
@@ -37,7 +37,7 @@ and has also varied historically across different versions of Linux.
 .BR sigaction (2)
 instead.
 See \fIPortability\fP below.
-.PP
+.P
 .BR signal ()
 sets the disposition of the signal
 .I signum
@@ -47,7 +47,7 @@ which is either
 .BR SIG_IGN ,
 .BR SIG_DFL ,
 or the address of a programmer-defined function (a "signal handler").
-.PP
+.P
 If the signal
 .I signum
 is delivered to the process, then one of the following happens:
@@ -74,7 +74,7 @@ is called with argument
 .IR signum .
 If invocation of the handler caused the signal to be blocked,
 then the signal is unblocked upon return from the handler.
-.PP
+.P
 The signals
 .B SIGKILL
 and
@@ -113,7 +113,7 @@ is defined.
 Without use of such a type, the declaration of
 .BR signal ()
 is the somewhat harder to read:
-.PP
+.P
 .in +4n
 .EX
 .BI "void ( *" signal "(int " signum ", void (*" handler ")(int)) ) (int);"
@@ -131,7 +131,7 @@ The semantics when using
 to establish a signal handler vary across systems
 (and POSIX.1 explicitly permits this variation);
 .B do not use it for this purpose.
-.PP
+.P
 POSIX.1 solved the portability mess by specifying
 .BR sigaction (2),
 which provides explicit control of the semantics when a
@@ -141,7 +141,7 @@ signal handler is invoked; use that interface instead of
 C11, POSIX.1-2008.
 .SH HISTORY
 C89, POSIX.1-2001.
-.PP
+.P
 In the original UNIX systems, when a handler that was established using
 .BR signal ()
 was invoked by the delivery of a signal,
@@ -151,20 +151,20 @@ and the system did not block delivery of further instances of the signal.
 This is equivalent to calling
 .BR sigaction (2)
 with the following flags:
-.PP
+.P
 .in +4n
 .EX
 sa.sa_flags = SA_RESETHAND | SA_NODEFER;
 .EE
 .in
-.PP
+.P
 System\ V also provides these semantics for
 .BR signal ().
 This was bad because the signal might be delivered again
 before the handler had a chance to reestablish itself.
 Furthermore, rapid deliveries of the same signal could
 result in recursive invocations of the handler.
-.PP
+.P
 BSD improved on this situation, but unfortunately also
 changed the semantics of the existing
 .BR signal ()
@@ -179,13 +179,13 @@ restarted if interrupted by a signal handler (see
 The BSD semantics are equivalent to calling
 .BR sigaction (2)
 with the following flags:
-.PP
+.P
 .in +4n
 .EX
 sa.sa_flags = SA_RESTART;
 .EE
 .in
-.PP
+.P
 The situation on Linux is as follows:
 .IP \[bu] 3
 The kernel's
@@ -229,7 +229,7 @@ provides System\ V semantics.
 The effects of
 .BR signal ()
 in a multithreaded process are unspecified.
-.PP
+.P
 According to POSIX, the behavior of a process is undefined after it
 ignores a
 .BR SIGFPE ,
@@ -247,14 +247,14 @@ signal.
 (Also dividing the most negative integer by \-1 may generate
 .BR SIGFPE .)
 Ignoring this signal might lead to an endless loop.
-.PP
+.P
 See
 .BR sigaction (2)
 for details on what happens when the disposition
 .B SIGCHLD
 is set to
 .BR SIG_IGN .
-.PP
+.P
 See
 .BR signal\-safety (7)
 for a list of the async-signal-safe functions that can be

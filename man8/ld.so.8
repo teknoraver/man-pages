@@ -15,7 +15,7 @@ to the dynamic linker can be passed and, in the ELF case, the dynamic linker
 which is stored in the
 .B .interp
 section of the program is executed) or directly by running:
-.PP
+.P
 .I /lib/ld\-linux.so.*
 [OPTIONS] [PROGRAM [ARGUMENTS]]
 .SH DESCRIPTION
@@ -25,14 +25,14 @@ and
 .B ld\-linux.so*
 find and load the shared objects (shared libraries) needed by a program,
 prepare the program to run, and then run it.
-.PP
+.P
 Linux binaries require dynamic linking (linking at run time)
 unless the
 .B \-static
 option was given to
 .BR ld (1)
 during compilation.
-.PP
+.P
 The program
 .B ld.so
 handles a.out binaries, a binary format used long ago.
@@ -46,7 +46,7 @@ support files and programs
 .BR ldconfig (8),
 and
 .IR /etc/ld.so.conf ).
-.PP
+.P
 When resolving shared object dependencies,
 the dynamic linker first inspects each dependency
 string to see if it contains a slash (this can occur if
@@ -54,7 +54,7 @@ a shared object pathname containing slashes was specified at link time).
 If a slash is found, then the dependency string is interpreted as
 a (relative or absolute) pathname,
 and the shared object is loaded using that pathname.
-.PP
+.P
 If a shared object dependency does not contain a slash,
 then it is searched for in the following order:
 .IP (1) 5
@@ -132,7 +132,7 @@ in the filename arguments to the
 and
 .BR dlmopen (3)
 functions.
-.PP
+.P
 The substituted tokens are as follows:
 .TP
 .IR $ORIGIN " (or equivalently " ${ORIGIN} )
@@ -187,7 +187,7 @@ value in the auxiliary vector (see
 .\"
 .\" ld.so lets names be abbreviated, so $O will work for $ORIGIN;
 .\" Don't do this!!
-.PP
+.P
 Note that the dynamic string tokens have to be quoted properly when
 set from a shell,
 to prevent their expansion as shell or environment variables.
@@ -310,7 +310,7 @@ Other environment variables treated in this way include:
 .BR TMPDIR ,
 and
 .BR TZDIR .
-.PP
+.P
 A binary is executed in secure-execution mode if the
 .B AT_SECURE
 entry in the auxiliary vector (see
@@ -478,7 +478,7 @@ If set (to any value), causes the program to list its dynamic
 dependencies, as if run by
 .BR ldd (1),
 instead of running normally.
-.PP
+.P
 Then there are lots of more or less obscure variables,
 many obsolete or only for internal use.
 .TP

@@ -14,7 +14,7 @@ POSIX threads library
 .nf
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_getattr_default_np(pthread_attr_t *" attr );
 .BI "int pthread_setattr_default_np(const pthread_attr_t *" attr );
 .fi
@@ -39,7 +39,7 @@ attribute must not be set in the object.
 Setting the
 .I stack size
 attribute to zero means leave the default stack size unchanged.
-.PP
+.P
 The
 .BR pthread_getattr_default_np ()
 function initializes the thread attributes object referred to by
@@ -84,7 +84,7 @@ The program below uses
 to fetch the default thread-creation attributes and then displays
 various settings from the returned thread attributes object.
 When running the program, we see the following output:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out\fP

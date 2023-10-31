@@ -12,19 +12,19 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_rwlockattr_setkind_np(pthread_rwlockattr_t *" attr ,
 .BI "                       int " pref );
 .B int pthread_rwlockattr_getkind_np(
 .BI "                       const pthread_rwlockattr_t *restrict " attr ,
 .BI "                       int *restrict " pref );
-.PP
+.P
 .fi
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR pthread_rwlockattr_setkind_np (),
 .BR pthread_rwlockattr_getkind_np ():
 .nf
@@ -89,7 +89,7 @@ read locks thus avoiding deadlocks.
 Setting the lock kind to this
 avoids writer starvation as long as any read locking is not done in a
 recursive fashion.
-.PP
+.P
 The
 .BR pthread_rwlockattr_getkind_np ()
 function returns the value of the lock kind attribute of the

@@ -22,7 +22,7 @@ A
 .I cgroup
 is a collection of processes that are bound to a set of
 limits or parameters defined via the cgroup filesystem.
-.PP
+.P
 A
 .I subsystem
 is a kernel component that modifies the behavior of
@@ -34,7 +34,7 @@ and freezing and resuming execution of the processes in a cgroup.
 Subsystems are sometimes also known as
 .I resource controllers
 (or simply, controllers).
-.PP
+.P
 The cgroups for a controller are arranged in a
 .IR hierarchy .
 This hierarchy is defined by creating, removing, and
@@ -60,7 +60,7 @@ source file
 (or
 .I Documentation/cgroup\-v2.txt
 in Linux 4.17 and earlier).
-.PP
+.P
 Because of the problems with the initial cgroups implementation
 (cgroups version 1),
 starting in Linux 3.10, work began on a new,
@@ -74,7 +74,7 @@ The file
 .IR cgroup.sane_behavior ,
 present in cgroups v1, is a relic of this mount option.
 The file always reports "0" and is only retained for backward compatibility.
-.PP
+.P
 Although cgroups v2 is intended as a replacement for cgroups v1,
 the older system continues to exist
 (and for compatibility reasons is unlikely to be removed).
@@ -96,7 +96,7 @@ processes on the system.
 It is also possible to comount multiple (or even all) cgroups v1 controllers
 against the same cgroup filesystem, meaning that the comounted controllers
 manage the same hierarchical organization of processes.
-.PP
+.P
 For each mounted hierarchy,
 the directory tree mirrors the control group hierarchy.
 Each control group is represented by a directory, with each of its child
@@ -123,7 +123,7 @@ In this view, a process can consist of multiple tasks
 and called such in the remainder of this man page).
 In cgroups v1, it is possible to independently manipulate
 the cgroup memberships of the threads in a process.
-.PP
+.P
 The cgroups v1 ability to split threads across different cgroups
 caused problems in some cases.
 For example, it made no sense for the
@@ -142,7 +142,7 @@ The use of cgroups requires a kernel built with the
 option.
 In addition, each of the v1 controllers has an associated
 configuration option that must be set in order to employ that controller.
-.PP
+.P
 In order to use a v1 controller,
 it must be mounted against a cgroup filesystem.
 The usual place for such mounts is under a
@@ -152,26 +152,26 @@ filesystem mounted at
 Thus, one might mount the
 .I cpu
 controller as follows:
-.PP
+.P
 .in +4n
 .EX
 mount \-t cgroup \-o cpu none /sys/fs/cgroup/cpu
 .EE
 .in
-.PP
+.P
 It is possible to comount multiple controllers against the same hierarchy.
 For example, here the
 .I cpu
 and
 .I cpuacct
 controllers are comounted against a single hierarchy:
-.PP
+.P
 .in +4n
 .EX
 mount \-t cgroup \-o cpu,cpuacct none /sys/fs/cgroup/cpu,cpuacct
 .EE
 .in
-.PP
+.P
 Comounting controllers has the effect that a process is in the same cgroup for
 all of the comounted controllers.
 Separately mounting controllers allows a process to
@@ -180,19 +180,19 @@ be in cgroup
 for one controller while being in
 .I /foo2/foo3
 for another.
-.PP
+.P
 It is possible to comount all v1 controllers against the same hierarchy:
-.PP
+.P
 .in +4n
 .EX
 mount \-t cgroup \-o all cgroup /sys/fs/cgroup
 .EE
 .in
-.PP
+.P
 (One can achieve the same result by omitting
 .IR "\-o all" ,
 since it is the default if no controllers are explicitly specified.)
-.PP
+.P
 It is not possible to mount the same controller
 against multiple cgroup hierarchies.
 For example, it is not possible to mount both the
@@ -206,7 +206,7 @@ It is possible to create multiple mount with exactly
 the same set of comounted controllers.
 However, in this case all that results is multiple mount points
 providing a view of the same hierarchy.
-.PP
+.P
 Note that on many systems, the v1 controllers are automatically mounted under
 .IR /sys/fs/cgroup ;
 in particular,
@@ -217,13 +217,13 @@ automatically creates such mounts.
 A mounted cgroup filesystem can be unmounted using the
 .BR umount (8)
 command, as in the following example:
-.PP
+.P
 .in +4n
 .EX
 umount /sys/fs/cgroup/pids
 .EE
 .in
-.PP
+.P
 .IR "But note well" :
 a cgroup filesystem is unmounted only if it is not busy,
 that is, it has no child cgroups.
@@ -409,41 +409,41 @@ in Linux 5.2 and earlier).
 A cgroup filesystem initially contains a single root cgroup, '/',
 which all processes belong to.
 A new cgroup is created by creating a directory in the cgroup filesystem:
-.PP
+.P
 .in +4n
 .EX
 mkdir /sys/fs/cgroup/cpu/cg1
 .EE
 .in
-.PP
+.P
 This creates a new empty cgroup.
-.PP
+.P
 A process may be moved to this cgroup by writing its PID into the cgroup's
 .I cgroup.procs
 file:
-.PP
+.P
 .in +4n
 .EX
 echo $$ > /sys/fs/cgroup/cpu/cg1/cgroup.procs
 .EE
 .in
-.PP
+.P
 Only one PID at a time should be written to this file.
-.PP
+.P
 Writing the value 0 to a
 .I cgroup.procs
 file causes the writing process to be moved to the corresponding cgroup.
-.PP
+.P
 When writing a PID into the
 .IR cgroup.procs ,
 all threads in the process are moved into the new cgroup at once.
-.PP
+.P
 Within a hierarchy, a process can be a member of exactly one cgroup.
 Writing a process's PID to a
 .I cgroup.procs
 file automatically removes it from the cgroup of
 which it was previously a member.
-.PP
+.P
 The
 .I cgroup.procs
 file can be read to obtain a list of the processes that are
@@ -451,7 +451,7 @@ members of a cgroup.
 The returned list of PIDs is not guaranteed to be in order.
 Nor is it guaranteed to be free of duplicates.
 (For example, a PID may be recycled while reading from the list.)
-.PP
+.P
 In cgroups v1, an individual thread can be moved to
 another cgroup by writing its thread ID
 (i.e., the kernel thread ID returned by
@@ -477,7 +477,7 @@ Two files can be used to determine whether the kernel provides
 notifications when a cgroup becomes empty.
 A cgroup is considered to be empty when it contains no child
 cgroups and no member processes.
-.PP
+.P
 A special file in the root directory of each cgroup hierarchy,
 .IR release_agent ,
 can be used to register the pathname of a program that may be invoked when
@@ -490,22 +490,22 @@ The
 .I release_agent
 program might remove the cgroup directory,
 or perhaps repopulate it with a process.
-.PP
+.P
 The default value of the
 .I release_agent
 file is empty, meaning that no release agent is invoked.
-.PP
+.P
 The content of the
 .I release_agent
 file can also be specified via a mount option when the
 cgroup filesystem is mounted:
-.PP
+.P
 .in +4n
 .EX
 mount \-o release_agent=pathname ...
 .EE
 .in
-.PP
+.P
 Whether or not the
 .I release_agent
 program is invoked when a particular cgroup becomes empty is determined
@@ -526,13 +526,13 @@ in the parent cgroup.
 .SS Cgroup v1 named hierarchies
 In cgroups v1,
 it is possible to mount a cgroup hierarchy that has no attached controllers:
-.PP
+.P
 .in +4n
 .EX
 mount \-t cgroup \-o none,name=somename none /some/mount/point
 .EE
 .in
-.PP
+.P
 Multiple instances of such hierarchies can be mounted;
 each hierarchy must have a unique name.
 The only purpose of such hierarchies is to track processes.
@@ -542,7 +542,7 @@ An example of this is the
 cgroup hierarchy that is used by
 .BR systemd (1)
 to track services and user sessions.
-.PP
+.P
 Since Linux 5.0, the
 .I cgroup_no_v1
 kernel boot option (described below) can be used to disable cgroup v1
@@ -556,7 +556,7 @@ While (different) controllers may be simultaneously
 mounted under the v1 and v2 hierarchies,
 it is not possible to mount the same controller simultaneously
 under both the v1 and the v2 hierarchies.
-.PP
+.P
 The new behaviors in cgroups v2 are summarized here,
 and in some cases elaborated in the following subsections.
 .IP \[bu] 3
@@ -585,7 +585,7 @@ controller has been removed.
 An improved mechanism for notification of empty cgroups is provided by the
 .I cgroup.events
 file.
-.PP
+.P
 For more changes, see the
 .I Documentation/admin\-guide/cgroup\-v2.rst
 file in the kernel source
@@ -593,7 +593,7 @@ file in the kernel source
 .I Documentation/cgroup\-v2.txt
 in Linux 4.17 and earlier).
 .
-.PP
+.P
 Some of the new behaviors listed above saw subsequent modification with
 the addition in Linux 4.14 of "thread mode" (described below).
 .\"
@@ -609,13 +609,13 @@ all available controllers are mounted against a single hierarchy.
 The available controllers are automatically mounted,
 meaning that it is not necessary (or possible) to specify the controllers
 when mounting the cgroup v2 filesystem using a command such as the following:
-.PP
+.P
 .in +4n
 .EX
 mount \-t cgroup2 none /mnt/cgroup2
 .EE
 .in
-.PP
+.P
 A cgroup v2 controller is available only if it is not currently in use
 via a mount against a cgroup v1 hierarchy.
 Or, to put things another way, it is not possible to employ
@@ -638,7 +638,7 @@ to disable all v1 controllers.
 (This situation is correctly handled by
 .BR systemd (1),
 which falls back to operating without the specified controllers.)
-.PP
+.P
 Note that on many modern systems,
 .BR systemd (1)
 automatically mounts the
@@ -726,7 +726,7 @@ controller.
 This is the same as the version 1
 .I rdma
 controller.
-.PP
+.P
 There is no direct equivalent of the
 .I net_cls
 and
@@ -736,7 +736,7 @@ Instead, support has been added to
 .BR iptables (8)
 to allow eBPF filters that hook on cgroup v2 pathnames to make decisions
 about network traffic on a per-cgroup basis.
-.PP
+.P
 The v2
 .I devices
 controller provides no interface files;
@@ -782,14 +782,14 @@ leads to an
 error when writing to the
 .I cgroup.subtree_control
 file.
-.PP
+.P
 Because the list of controllers in
 .I cgroup.subtree_control
 is a subset of those
 .IR cgroup.controllers ,
 a controller that has been disabled in one cgroup in the hierarchy
 can never be re-enabled in the subtree below that cgroup.
-.PP
+.P
 A cgroup's
 .I cgroup.subtree_control
 file determines the set of controllers that are exercised in the
@@ -812,7 +812,7 @@ with the exception of the root cgroup, processes may reside
 only in leaf nodes (cgroups that do not themselves contain child cgroups).
 This avoids the need to decide how to partition resources between
 processes which are members of cgroup A and processes in child cgroups of A.
-.PP
+.P
 For instance, if cgroup
 .I /cg1/cg2
 exists, then a process may reside in
@@ -836,7 +836,7 @@ the relationship between processes in
 and
 .IR /cg1 's
 other children.
-.PP
+.P
 The "no internal processes" rule is in fact more subtle than stated above.
 More precisely, the rule is that a (nonroot) cgroup can't both
 (1) have member processes, and
@@ -849,7 +849,7 @@ possible for a cgroup to have both member processes and child cgroups,
 but before controllers can be enabled for that cgroup,
 the member processes must be moved out of the cgroup
 (e.g., perhaps into the child cgroups).
-.PP
+.P
 With the Linux 4.14 addition of "thread mode" (described below),
 the "no internal processes" rule has been relaxed in some cases.
 .\"
@@ -859,7 +859,7 @@ Each nonroot cgroup in the v2 hierarchy contains a read-only file,
 whose contents are key-value pairs
 (delimited by newline characters, with the key and value separated by spaces)
 providing state information about the cgroup:
-.PP
+.P
 .in +4n
 .EX
 $ \fBcat mygrp/cgroup.events\fP
@@ -867,7 +867,7 @@ populated 1
 frozen 0
 .EE
 .in
-.PP
+.P
 The following keys may appear in this file:
 .TP
 .I populated
@@ -879,7 +879,7 @@ or otherwise 0.
 .\" commit 76f969e8948d82e78e1bc4beb6b9465908e7487
 The value of this key is 1 if this cgroup is currently frozen,
 or 0 if it is not.
-.PP
+.P
 The
 .I cgroup.events
 file can be monitored, in order to receive notification when the value of
@@ -915,7 +915,7 @@ meaning that the cgroup (and its descendants)
 contain no (nonzombie) member processes,
 or 1, meaning that the cgroup (or one of its descendants)
 contains member processes.
-.PP
+.P
 The cgroups v2 release-notification mechanism
 offers the following advantages over the cgroups v1
 .I release_agent
@@ -1004,7 +1004,7 @@ in the cgroup hierarchy but with less strict containment rules than v2
 Cgroups v2 supports delegation with containment by explicit design.
 The focus of the discussion in this section is on delegation in cgroups v2,
 with some differences for cgroups v1 noted along the way.
-.PP
+.P
 Some terminology is required in order to describe delegation.
 A
 .I delegater
@@ -1015,7 +1015,7 @@ is a nonprivileged user who will be granted the permissions needed
 to manage some subhierarchy under that parent cgroup,
 known as the
 .IR "delegated subtree" .
-.PP
+.P
 To perform delegation,
 the delegater makes certain directories and files writable by the delegatee,
 typically by changing the ownership of the objects to be the user ID
@@ -1056,7 +1056,7 @@ file.)
 In cgroups v1, the corresponding file that should instead be delegated is the
 .I tasks
 file.
-.PP
+.P
 The delegater should
 .I not
 change the ownership of any of the controller interfaces files (e.g.,
@@ -1068,11 +1068,11 @@ Those files are used from the next level above the delegated subtree
 in order to distribute resources into the subtree,
 and the delegatee should not have permission to change
 the resources that are distributed into the delegated subtree.
-.PP
+.P
 See also the discussion of the
 .I /sys/kernel/cgroup/delegate
 file in NOTES for information about further delegatable files in cgroups v2.
-.PP
+.P
 After the aforementioned steps have been performed,
 the delegatee can create child cgroups within the delegated subtree
 (the cgroup subdirectories and the files they contain
@@ -1095,7 +1095,7 @@ For example, if the cgroup v2 filesystem has already been mounted,
 we can remount it with the
 .I nsdelegate
 option as follows:
-.PP
+.P
 .in +4n
 .EX
 mount \-t cgroup2 \-o remount,nsdelegate \e
@@ -1109,7 +1109,7 @@ mount \-t cgroup2 \-o remount,nsdelegate \e
 .\"
 .\" The effect of the latter option is to prevent systemd from employing
 .\" its "hybrid" cgroup mode, where it tries to make use of cgroups v2.
-.PP
+.P
 The effect of this mount option is to cause cgroup namespaces
 to automatically become delegation boundaries.
 More specifically,
@@ -1133,7 +1133,7 @@ Processes inside the cgroup namespace can still
 move processes between cgroups
 .I within
 the subhierarchy under the namespace root.
-.PP
+.P
 The ability to define cgroup namespaces as delegation boundaries
 makes cgroup namespaces more useful.
 To understand why, suppose that we already have one cgroup hierarchy
@@ -1163,17 +1163,17 @@ a process inside the child cgroup should not be allowed to modify them.)
 A process inside the inferior hierarchy could move processes
 into and out of the inferior hierarchy if the cgroups in the
 superior hierarchy were somehow visible.
-.PP
+.P
 Employing the
 .I nsdelegate
 mount option prevents both of these possibilities.
-.PP
+.P
 The
 .I nsdelegate
 mount option only has an effect when performed in
 the initial mount namespace;
 in other mount namespaces, the option is silently ignored.
-.PP
+.P
 .IR Note :
 On some systems,
 .BR systemd (1)
@@ -1182,13 +1182,13 @@ In order to experiment with the
 .I nsdelegate
 operation, it may be useful to boot the kernel with
 the following command-line options:
-.PP
+.P
 .in +4n
 .EX
 cgroup_no_v1=all systemd.legacy_systemd_cgroup_controller
 .EE
 .in
-.PP
+.P
 These options cause the kernel to boot with the cgroups v1 controllers
 disabled (meaning that the controllers are available in the v2 hierarchy),
 and tells
@@ -1237,7 +1237,7 @@ this requirement also applied in cgroups v2
 (This was a historical requirement inherited from cgroups v1
 that was later deemed unnecessary,
 since the other rules suffice for containment in cgroups v2.)
-.PP
+.P
 .IR Note :
 one consequence of these delegation containment rules is that the
 unprivileged delegatee can't place the first process into
@@ -1255,7 +1255,7 @@ all of the threads of a process must be in the same cgroup.
 .IR "No internal processes" :
 a cgroup can't both have member processes and
 exercise controllers on child cgroups.
-.PP
+.P
 Both of these restrictions were added because
 the lack of these restrictions had caused problems
 in cgroups v1.
@@ -1267,7 +1267,7 @@ controller: since threads share an address space,
 it made no sense to split threads across different
 .I memory
 cgroups.)
-.PP
+.P
 Notwithstanding the initial design decision in cgroups v2,
 there were use cases for certain controllers, notably the
 .I cpu
@@ -1276,7 +1276,7 @@ for which thread-level granularity of control was meaningful and useful.
 To accommodate such use cases, Linux 4.14 added
 .I "thread mode"
 for cgroups v2.
-.PP
+.P
 Thread mode allows the following:
 .IP \[bu] 3
 The creation of
@@ -1293,7 +1293,7 @@ A relaxation of the "no internal processes rule",
 so that, within a threaded subtree,
 a cgroup can both contain member threads and
 exercise resource control over child cgroups.
-.PP
+.P
 With the addition of thread mode,
 each nonroot cgroup now contains a new file,
 .IR cgroup.type ,
@@ -1421,7 +1421,7 @@ The requirement to write
 .I """threaded"""
 to each of these cgroups is somewhat cumbersome,
 but allows for possible future extensions to the thread-mode model.
-.PP
+.P
 The second way of creating a threaded subtree is as follows:
 .IP (1) 5
 In an existing cgroup,
@@ -1456,7 +1456,7 @@ cgroups under
 .IR y ,
 in order to convert them to the type
 .IR threaded .
-.PP
+.P
 One of the consequences of the above pathways to creating a threaded subtree
 is that the threaded root cgroup can be a parent only to
 .I threaded
@@ -1478,7 +1478,7 @@ in each subgroup whose type has been changed to
 .IR threaded ;
 upon doing so, the corresponding controller interface files
 appear in the children of that cgroup.
-.PP
+.P
 A process can be moved into a threaded subtree by writing its PID to the
 .I cgroup.procs
 file in one of the cgroups inside the tree.
@@ -1492,7 +1492,7 @@ to the
 .I cgroup.threads
 files in different cgroups inside the subtree.
 The threads of a process must all reside in the same threaded subtree.
-.PP
+.P
 As with writing to
 .IR cgroup.procs ,
 some containment rules apply when writing to the
@@ -1517,7 +1517,7 @@ file in a different
 .I domain
 cgroup fails with the error
 .BR EOPNOTSUPP .)
-.PP
+.P
 The
 .I cgroup.threads
 file is present in each cgroup (including
@@ -1526,7 +1526,7 @@ cgroups) and can be read in order to discover the set of threads
 that is present in the cgroup.
 The set of thread IDs obtained when reading this file
 is not guaranteed to be ordered or free of duplicates.
-.PP
+.P
 The
 .I cgroup.procs
 file in the threaded root shows the PIDs of all processes
@@ -1534,7 +1534,7 @@ that are members of the threaded subtree.
 The
 .I cgroup.procs
 files in the other cgroups in the subtree are not readable.
-.PP
+.P
 Domain controllers can't be enabled in a threaded subtree;
 no controller-interface files appear inside the cgroups underneath the
 threaded root.
@@ -1542,7 +1542,7 @@ From the point of view of a domain controller,
 threaded subtrees are invisible:
 a multithreaded process inside a threaded subtree appears to a domain
 controller as a process that resides in the threaded root cgroup.
-.PP
+.P
 Within a threaded subtree, the "no internal processes" rule does not apply:
 a cgroup can both contain member processes (or thread)
 and exercise controllers on child cgroups.
@@ -1590,7 +1590,7 @@ file if the parent's type is
 In other words, the cgroups of a threaded subtree must be converted to the
 .I threaded
 state in a top-down manner.
-.PP
+.P
 There are also some constraints that must be satisfied
 in order to create a threaded subtree rooted at the cgroup
 .IR x :
@@ -1605,7 +1605,7 @@ No domain controllers may be enabled in
 .IR x 's
 .I cgroup.subtree_control
 file.
-.PP
+.P
 If any of the above constraints is violated, then an attempt to write
 .I """threaded"""
 to a
@@ -1625,7 +1625,7 @@ is written to a child cgroup.
 .IP \[bu]
 A threaded controller is enabled inside the cgroup and
 a process is made a member of the cgroup.
-.PP
+.P
 A
 .I domain threaded
 cgroup,
@@ -1640,7 +1640,7 @@ are removed and either
 .I x
 no longer has threaded controllers enabled or
 no longer has member processes.
-.PP
+.P
 When a
 .I domain threaded
 cgroup
@@ -1677,13 +1677,13 @@ The type of that cgroup becomes
 The type of any descendants of that cgroup that
 are not part of lower-level threaded subtrees changes to
 .IR "domain invalid" .
-.PP
+.P
 Note that in this case, there is no cgroup whose type becomes
 .IR "domain threaded" .
 (Notionally, the root cgroup can be considered as the threaded root
 for the cgroup whose type was changed to
 .IR threaded .)
-.PP
+.P
 The aim of this exceptional treatment for the root cgroup is to
 allow a threaded cgroup that employs the
 .I cpu
@@ -1713,7 +1713,7 @@ to the
 .I cgroup.subtree_control
 file fails with the error
 .BR EINVAL .)
-.PP
+.P
 On some systems,
 .BR systemd (1)
 places certain realtime threads in nonroot cgroups in the v2 hierarchy.
@@ -1737,7 +1737,7 @@ A child process created via
 inherits its parent's cgroup memberships.
 A process's cgroup memberships are preserved across
 .BR execve (2).
-.PP
+.P
 The
 .BR clone3 (2)
 .B CLONE_INTO_CGROUP
@@ -1909,6 +1909,6 @@ mount option.
 .BR namespaces (7),
 .BR sched (7),
 .BR user_namespaces (7)
-.PP
+.P
 The kernel source file
 .IR Documentation/admin\-guide/cgroup\-v2.rst .

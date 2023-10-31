@@ -33,7 +33,7 @@ optionally, calls to
 and
 .BR munmap (2)
 can also be intercepted.
-.PP
+.P
 .B memusage
 can output the collected data in textual form, or it can use
 .BR memusagestat (1)
@@ -86,7 +86,7 @@ After each function call, the actual stack pointer address is read and
 the difference from the base stack pointer computed.
 The maximum of these differences is then the stack peak.
 .RE
-.PP
+.P
 Immediately following this summary line, a table shows the number calls,
 total memory allocated or deallocated,
 and number of failed calls for each intercepted function.
@@ -102,7 +102,7 @@ For
 .BR realloc (3),
 the additional field "free" shows reallocations that
 caused a block to be freed (i.e., the reallocated size was 0).
-.PP
+.P
 The "realloc/total memory" of the table output by
 .B memusage
 does not reflect cases where
@@ -193,7 +193,7 @@ reallocating the memory in smaller blocks that return to zero.
 After compiling the program and running the following commands,
 a graph of the memory usage of the program can be found in the file
 .IR memusage.png :
-.PP
+.P
 .in +4n
 .EX
 $ \fBmemusage \-\-data=memusage.dat ./a.out\fP

@@ -13,7 +13,7 @@ Math library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <complex.h>
-.PP
+.P
 .BI "double complex clog10(double complex " z );
 .BI "float complex clog10f(float complex " z );
 .BI "long double complex clog10l(long double complex " z );
@@ -22,26 +22,26 @@ Math library
 The call
 .I clog10(z)
 is equivalent to:
-.PP
+.P
 .in +4n
 .EX
 clog(z)/log(10)
 .EE
 .in
-.PP
+.P
 or equally:
-.PP
+.P
 .in +4n
 .EX
 log10(cabs(c)) + I * carg(c) / log(10)
 .EE
 .in
-.PP
+.P
 The other functions perform the same task for
 .I float
 and
 .IR "long double" .
-.PP
+.P
 Note that
 .I z
 close to zero will cause an overflow.
@@ -65,7 +65,7 @@ T}	Thread safety	MT-Safe
 GNU.
 .SH HISTORY
 glibc 2.1.
-.PP
+.P
 The identifiers are reserved for future use in C99 and C11.
 .SH SEE ALSO
 .BR cabs (3),

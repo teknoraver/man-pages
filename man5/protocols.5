@@ -18,24 +18,24 @@ consulted instead of using the numbers in the ARPA include files, or,
 even worse, just guessing them.
 These numbers will occur in the
 protocol field of any IP header.
-.PP
+.P
 Keep this file untouched since changes would result in incorrect IP
 packages.
 Protocol numbers and names are specified by the IANA
 (Internet Assigned Numbers Authority).
 .\" .. by the DDN Network Information Center.
-.PP
+.P
 Each line is of the following format:
-.PP
+.P
 .RS
 .I protocol number aliases ...
 .RE
-.PP
+.P
 where the fields are delimited by spaces or tabs.
 Empty lines are ignored.
 If a line contains a hash mark (#), the hash mark and the part
 of the line following it are ignored.
-.PP
+.P
 The field descriptions are:
 .TP
 .I protocol
@@ -52,7 +52,7 @@ header.
 .TP
 .I aliases
 optional aliases for the protocol.
-.PP
+.P
 This file might be distributed over a network using a network-wide
 naming service like Yellow Pages/NIS or BIND/Hesiod.
 .SH FILES
@@ -61,6 +61,6 @@ naming service like Yellow Pages/NIS or BIND/Hesiod.
 The protocols definition file.
 .SH SEE ALSO
 .BR getprotoent (3)
-.PP
+.P
 .UR http://www.iana.org\:/assignments\:/protocol\-numbers
 .UE

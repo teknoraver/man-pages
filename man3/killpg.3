@@ -20,15 +20,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .BI "int killpg(int " pgrp ", int " sig );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR killpg ():
 .nf
     _XOPEN_SOURCE >= 500
@@ -45,7 +45,7 @@ to the process group
 See
 .BR signal (7)
 for a list of signals.
-.PP
+.P
 If
 .I pgrp
 is 0,
@@ -54,7 +54,7 @@ sends the signal to the calling process's process group.
 (POSIX says: if
 .I pgrp
 is less than or equal to 1, the behavior is undefined.)
-.PP
+.P
 For the permissions required to send a signal to another process, see
 .BR kill (2).
 .SH RETURN VALUE

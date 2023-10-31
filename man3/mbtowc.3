@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int mbtowc(wchar_t *restrict " pwc ", const char " s "[restrict ." n "], \
 size_t " n );
 .fi
@@ -47,7 +47,7 @@ does not point to a null byte (\[aq]\e0\[aq]), it returns the number
 of bytes that were consumed from
 .IR s ,
 otherwise it returns 0.
-.PP
+.P
 If the
 .I n
 bytes starting at
@@ -61,7 +61,7 @@ This can happen even if
 >=
 .IR MB_CUR_MAX ,
 if the multibyte string contains redundant shift sequences.
-.PP
+.P
 A different case is when
 .I s
 is not NULL but
@@ -71,7 +71,7 @@ In this case, the
 .BR mbtowc ()
 function behaves as above, except that it does not
 store the converted wide character in memory.
-.PP
+.P
 A third case is when
 .I s
 is NULL.
@@ -102,7 +102,7 @@ or 0 if
 .I s
 points to a null byte,
 or \-1 upon failure.
-.PP
+.P
 If
 .I s
 is NULL, the

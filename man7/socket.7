@@ -53,7 +53,7 @@ socket \- Linux socket interface
 .SH SYNOPSIS
 .nf
 .B #include <sys/socket.h>
-.PP
+.P
 .IB sockfd " = socket(int " socket_family ", int " socket_type ", int " protocol );
 .fi
 .SH DESCRIPTION
@@ -79,7 +79,7 @@ for more information on families and types.
 These functions are used by the user process to send or receive packets
 and to do other socket operations.
 For more information, see their respective manual pages.
-.PP
+.P
 .BR socket (2)
 creates a socket,
 .BR connect (2)
@@ -95,7 +95,7 @@ is used to get a new socket with a new incoming connection.
 returns two connected anonymous sockets (implemented only for a few
 local families like
 .BR AF_UNIX )
-.PP
+.P
 .BR send (2),
 .BR sendto (2),
 and
@@ -117,7 +117,7 @@ In addition, the standard I/O operations like
 and
 .BR readv (2)
 can be used to read and write data.
-.PP
+.P
 .BR getsockname (2)
 returns the local socket address and
 .BR getpeername (2)
@@ -128,18 +128,18 @@ and
 are used to set or get socket layer or protocol options.
 .BR ioctl (2)
 can be used to set or read some other options.
-.PP
+.P
 .BR close (2)
 is used to close a socket.
 .BR shutdown (2)
 closes parts of a full-duplex socket connection.
-.PP
+.P
 Seeking, or calling
 .BR pread (2)
 or
 .BR pwrite (2)
 with a nonzero position is not supported on sockets.
-.PP
+.P
 It is possible to do nonblocking I/O on sockets by setting the
 .B O_NONBLOCK
 flag on a socket file descriptor using
@@ -208,7 +208,7 @@ T}
 .\" or
 .\" .BR close (2).
 .TE
-.PP
+.P
 An alternative to
 .BR poll (2)
 and
@@ -244,7 +244,7 @@ the various system calls (e.g.,
 .BR getpeername (2)),
 which are generic to all socket domains,
 to determine the domain of a particular socket address.
-.PP
+.P
 To allow any type of socket address to be passed to
 interfaces in the sockets API,
 the type
@@ -254,7 +254,7 @@ The purpose of this type is purely to allow casting of
 domain-specific socket address types to a "generic" type,
 so as to avoid compiler warnings about type mismatches in
 calls to the sockets API.
-.PP
+.P
 In addition, the sockets API provides the data type
 .IR "struct sockaddr_storage".
 This type
@@ -264,13 +264,13 @@ address structures; it is large enough and is aligned properly.
 IPv6 socket addresses.)
 The structure includes the following field, which can be used to identify
 the type of socket address actually stored in the structure:
-.PP
+.P
 .in +4n
 .EX
     sa_family_t ss_family;
 .EE
 .in
-.PP
+.P
 The
 .I sockaddr_storage
 structure is useful in programs that must handle socket addresses
@@ -1060,7 +1060,7 @@ The signal is not sent when the write call
 specified the
 .B MSG_NOSIGNAL
 flag.
-.PP
+.P
 When requested with the
 .B FIOSETOWN
 .BR fcntl (2)
@@ -1085,7 +1085,7 @@ field of its
 See
 .BR fcntl (2)
 for more information.
-.PP
+.P
 Under some circumstances (e.g., multiple processes accessing a
 single socket), the condition that caused the
 .B SIGIO
@@ -1130,7 +1130,7 @@ per socket.
 .SS Ioctls
 These operations can be accessed using
 .BR ioctl (2):
-.PP
+.P
 .in +4n
 .EX
 .IB error " = ioctl(" ip_socket ", " ioctl_type ", " &value_result ");"
@@ -1204,7 +1204,7 @@ or
 signals,
 or 0
 when none is set.
-.PP
+.P
 Valid
 .BR fcntl (2)
 operations:
@@ -1237,7 +1237,7 @@ Linux assumes that half of the send/receive buffer is used for internal
 kernel structures; thus the values in the corresponding
 .I /proc
 files are twice what can be observed on the wire.
-.PP
+.P
 Linux will allow port reuse only with the
 .B SO_REUSEADDR
 option

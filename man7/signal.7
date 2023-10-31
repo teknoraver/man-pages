@@ -34,7 +34,7 @@ Each signal has a current
 .IR disposition ,
 which determines how the process behaves when it is delivered
 the signal.
-.PP
+.P
 The entries in the "Action" column of the table below specify
 the default disposition for each signal, as follows:
 .TP
@@ -53,7 +53,7 @@ Default action is to stop the process.
 .TP
 Cont
 Default action is to continue the process if it is currently stopped.
-.PP
+.P
 A process can change the disposition of a signal using
 .BR sigaction (2)
 or
@@ -69,18 +69,18 @@ or catch the signal with a
 .IR "signal handler" ,
 a programmer-defined function that is automatically invoked
 when the signal is delivered.
-.PP
+.P
 By default, a signal handler is invoked on the
 normal process stack.
 It is possible to arrange that the signal handler
 uses an alternate stack; see
 .BR sigaltstack (2)
 for a discussion of how to do this and when it might be useful.
-.PP
+.P
 The signal disposition is a per-process attribute:
 in a multithreaded application, the disposition of a
 particular signal is the same for all threads.
-.PP
+.P
 A child created via
 .BR fork (2)
 inherits a copy of its parent's signal dispositions.
@@ -164,7 +164,7 @@ which means that it will not be delivered until it is later unblocked.
 Between the time when it is generated and when it is delivered
 a signal is said to be
 .IR pending .
-.PP
+.P
 Each thread in a process has an independent
 .IR "signal mask" ,
 which indicates the set of signals that the thread is currently blocking.
@@ -173,13 +173,13 @@ A thread can manipulate its signal mask using
 In a traditional single-threaded application,
 .BR sigprocmask (2)
 can be used to manipulate the signal mask.
-.PP
+.P
 A child created via
 .BR fork (2)
 inherits a copy of its parent's signal mask;
 the signal mask is preserved across
 .BR execve (2).
-.PP
+.P
 A signal may be process-directed or thread-directed.
 A process-directed signal is one that is targeted at (and thus pending for)
 the process as a whole.
@@ -202,7 +202,7 @@ interfaces such as
 .BR tgkill (2)
 or
 .BR pthread_kill (3).
-.PP
+.P
 A process-directed signal may be delivered to any one of the
 threads that does not currently have the signal blocked.
 .\" Joseph C. Sible notes:
@@ -225,14 +225,14 @@ threads that does not currently have the signal blocked.
 .\"
 If more than one of the threads has the signal unblocked, then the
 kernel chooses an arbitrary thread to which to deliver the signal.
-.PP
+.P
 A thread can obtain the set of signals that it currently has pending
 using
 .BR sigpending (2).
 This set will consist of the union of the set of pending
 process-directed signals and the set of signals pending for
 the calling thread.
-.PP
+.P
 A child created via
 .BR fork (2)
 initially has an empty pending signal set;
@@ -320,7 +320,7 @@ Upon completion of the call to
 the kernel transfers control back to user space,
 and the thread recommences execution at the point where it was
 interrupted by the signal handler.
-.PP
+.P
 Note that if the signal handler does not return
 (e.g., control is transferred out of the handler using
 .BR siglongjmp (3),
@@ -338,7 +338,7 @@ may or may not restore the signal mask, depending on the
 .I savesigs
 value that was specified in the corresponding call to
 .BR sigsetjmp (3).)
-.PP
+.P
 From the kernel's point of view,
 execution of the signal handler code is exactly the same as the execution
 of any other user-space code.
@@ -405,13 +405,13 @@ SIGXFSZ	P2001	Core	File size limit exceeded (4.2BSD);
 			see \fBsetrlimit\fP(2)
 SIGWINCH	\-	Ign	Window resize signal (4.3BSD, Sun)
 .TE
-.PP
+.P
 The signals
 .B SIGKILL
 and
 .B SIGSTOP
 cannot be caught, blocked, or ignored.
-.PP
+.P
 Up to and including Linux 2.2, the default behavior for
 .BR SIGSYS ", " SIGXCPU ", " SIGXFSZ ,
 and (on architectures other than SPARC and MIPS)
@@ -422,17 +422,17 @@ was to terminate the process (without a core dump).
 is to terminate the process without a core dump.)
 Linux 2.4 conforms to the POSIX.1-2001 requirements for these signals,
 terminating the process with a core dump.
-.PP
+.P
 .B SIGEMT
 is not specified in POSIX.1-2001, but nevertheless appears
 on most other UNIX systems,
 where its default action is typically to terminate
 the process with a core dump.
-.PP
+.P
 .B SIGPWR
 (which is not specified in POSIX.1-2001) is typically ignored
 by default on those other UNIX systems where it appears.
-.PP
+.P
 .B SIGIO
 (which is not specified in POSIX.1-2001) is ignored by default
 on several other UNIX systems.
@@ -440,7 +440,7 @@ on several other UNIX systems.
 .SS Queueing and delivery semantics for standard signals
 If multiple standard signals are pending for a process,
 the order in which the signals are delivered is unspecified.
-.PP
+.P
 Standard signals do not queue.
 If multiple instances of a standard signal are generated while
 that signal is blocked,
@@ -510,7 +510,7 @@ SIGLOST	\-	\-/29	\-	\-
 SIGSYS	31	12	12	31
 SIGUNUSED	31	\-	\-	31
 .TE
-.PP
+.P
 Note the following:
 .IP \[bu] 3
 Where defined,
@@ -538,7 +538,7 @@ and
 POSIX.1-2001 requires that an implementation support at least
 .B _POSIX_RTSIG_MAX
 (8) real-time signals.
-.PP
+.P
 The Linux kernel supports a range of 33 different real-time
 signals, numbered 32 to 64.
 However, the glibc POSIX threads implementation internally uses
@@ -560,14 +560,14 @@ and include suitable (run-time) checks that
 .BR SIGRTMIN +n
 does not exceed
 .BR SIGRTMAX .
-.PP
+.P
 Unlike standard signals, real-time signals have no predefined meanings:
 the entire set of real-time signals can be used for application-defined
 purposes.
-.PP
+.P
 The default action for an unhandled real-time signal is to terminate the
 receiving process.
-.PP
+.P
 Real-time signals are distinguished by the following:
 .IP \[bu] 3
 Multiple instances of real-time signals can be queued.
@@ -602,12 +602,12 @@ starting with the lowest-numbered signal.
 (I.e., low-numbered signals have highest priority.)
 By contrast, if multiple standard signals are pending for a process,
 the order in which they are delivered is unspecified.
-.PP
+.P
 If both standard and real-time signals are pending for a process,
 POSIX leaves it unspecified which is delivered first.
 Linux, like many other implementations, gives priority
 to standard signals in this case.
-.PP
+.P
 According to POSIX, an implementation should permit at least
 .B _POSIX_SIGQUEUE_MAX
 (32) real-time signals to be queued to
@@ -630,7 +630,7 @@ resource limit, which specifies a per-user limit for queued
 signals; see
 .BR setrlimit (2)
 for further details.
-.PP
+.P
 The addition of real-time signals required the widening
 of the signal set structure
 .RI ( sigset_t )
@@ -658,7 +658,7 @@ the call is automatically restarted after the signal handler returns; or
 .IP \[bu]
 the call fails with the error
 .BR EINTR .
-.PP
+.P
 Which of these two behaviors occurs depends on the interface and
 whether or not the signal handler was established using the
 .B SA_RESTART
@@ -666,7 +666,7 @@ flag (see
 .BR sigaction (2)).
 The details vary across UNIX systems;
 below, the details for Linux.
-.PP
+.P
 If a blocked call to one of the following interfaces is interrupted
 by a signal handler, then the call is automatically restarted
 after the signal handler returns if the
@@ -771,7 +771,7 @@ file descriptor
 .\" commit 1ca39ab9d21ac93f94b9e3eb364ea9a5cf2aba06
 beforehand, always failed with
 .BR EINTR ).
-.PP
+.P
 The following interfaces are never restarted after
 being interrupted by a signal handler,
 regardless of the use of
@@ -838,12 +838,12 @@ and
 .BR usleep (3).
 .IP \[bu]
 .BR io_getevents (2).
-.PP
+.P
 The
 .BR sleep (3)
 function is also never restarted if interrupted by a handler,
 but gives a success return: the number of seconds remaining to sleep.
-.PP
+.P
 In certain circumstances, the
 .BR seccomp (2)
 user-space notification feature can lead to restarting of system calls
@@ -861,7 +861,7 @@ and then resumed via
 .BR SIGCONT .
 This behavior is not sanctioned by POSIX.1, and doesn't occur
 on other systems.
-.PP
+.P
 The Linux interfaces that display this behavior are:
 .IP \[bu] 3
 "Input" socket interfaces, when a timeout
@@ -925,7 +925,7 @@ POSIX.1, except as noted.
 .SH NOTES
 For a discussion of async-signal-safe functions, see
 .BR signal\-safety (7).
-.PP
+.P
 The
 .IR /proc/ pid /task/ tid /status
 file contains various fields that show the signals
@@ -961,13 +961,13 @@ and
 Which of these signals is delivered,
 for any given hardware exception,
 is not documented and does not always make sense.
-.PP
+.P
 For example, an invalid memory access that causes delivery of
 .B SIGSEGV
 on one CPU architecture may cause delivery of
 .B SIGBUS
 on another architecture, or vice versa.
-.PP
+.P
 For another example, using the x86
 .I int
 instruction with a forbidden argument

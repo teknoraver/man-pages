@@ -20,16 +20,16 @@ or TAB characters.
 A \[aq]#\[aq] (number sign) indicates the beginning of a
 comment; following characters, up to the end of the line,
 are not interpreted by nscd.
-.PP
+.P
 Valid services are \fIpasswd\fP, \fIgroup\fP, \fIhosts\fP, \fIservices\fP,
 or \fInetgroup\fP.
-.PP
+.P
 .B logfile
 .I debug-file-name
 .RS
 Specifies name of the file to which debug info should be written.
 .RE
-.PP
+.P
 .B debug\-level
 .I value
 .RS
@@ -40,7 +40,7 @@ Sets the desired debug level.
 3 (and above) shows all debug info.
 The default is 0.
 .RE
-.PP
+.P
 .B threads
 .I number
 .RS
@@ -52,14 +52,14 @@ The number of threads may increase dynamically up to
 in response to demand from clients,
 but never decreases.
 .RE
-.PP
+.P
 .B max\-threads
 .I number
 .RS
 Specifies the maximum number of threads.
 The default is 32.
 .RE
-.PP
+.P
 .B server\-user
 .I user
 .RS
@@ -67,13 +67,13 @@ If this option is set, nscd will run as this user and not as root.
 If a separate cache for every user is used (\-S parameter), this
 option is ignored.
 .RE
-.PP
+.P
 .B stat\-user
 .I user
 .RS
 Specifies the user who is allowed to request statistics.
 .RE
-.PP
+.P
 .B reload\-count
 unlimited |
 .I number
@@ -93,14 +93,14 @@ The default limit is 5.
 A limit of 0 turns off the reloading feature.
 See NOTES below for further discussion of reloading.
 .RE
-.PP
+.P
 .B paranoia
 .I <yes|no>
 .RS
 Enabling paranoia mode causes nscd to restart itself periodically.
 The default is no.
 .RE
-.PP
+.P
 .B restart\-interval
 .I time
 .RS
@@ -112,7 +112,7 @@ if periodic restart is enabled by enabling
 mode.
 The default is 3600.
 .RE
-.PP
+.P
 .B enable\-cache
 .I service
 .I <yes|no>
@@ -122,7 +122,7 @@ Enables or disables the specified
 cache.
 The default is no.
 .RE
-.PP
+.P
 .B positive\-time\-to\-live
 .I service
 .I value
@@ -138,7 +138,7 @@ Note that for some name services (including specifically DNS)
 the TTL returned from the name service is used and
 this attribute is ignored.
 .RE
-.PP
+.P
 .B negative\-time\-to\-live
 .I service
 .I value
@@ -153,7 +153,7 @@ are several files owned by UIDs (user IDs) not in system databases (for
 example untarring the Linux kernel sources as root); should be kept small
 to reduce cache coherency problems.
 .RE
-.PP
+.P
 .B suggested\-size
 .I service
 .I value
@@ -163,7 +163,7 @@ This is the internal hash table size,
 should remain a prime number for optimum efficiency.
 The default is 211.
 .RE
-.PP
+.P
 .B check\-files
 .I service
 .I <yes|no>
@@ -181,7 +181,7 @@ and
 .IR /etc/netgroup .
 The default is yes.
 .RE
-.PP
+.P
 .B persistent
 .I service
 .I <yes|no>
@@ -193,7 +193,7 @@ over server restarts; useful when
 mode is set.
 The default is no.
 .RE
-.PP
+.P
 .B shared
 .I service
 .I <yes|no>
@@ -207,7 +207,7 @@ The default is no.
 Note that a cache miss will still result in
 asking the daemon over the socket.
 .RE
-.PP
+.P
 .B max\-db\-size
 .I service
 .I bytes
@@ -216,7 +216,7 @@ The maximum allowable size, in bytes, of the database files for the
 .IR service .
 The default is 33554432.
 .RE
-.PP
+.P
 .B auto\-propagate
 .I service
 .I <yes|no>
@@ -252,13 +252,13 @@ your distribution might differ.
 .BR nscd (8)
 has a feature called reloading,
 whose behavior can be surprising.
-.PP
+.P
 Reloading is enabled when the
 .B reload-count
 attribute has a non-zero value.
 The default value in the source code enables reloading,
 although your distribution may differ.
-.PP
+.P
 When reloading is enabled,
 positive cached entries (the results of successful queries)
 do not simply expire when their TTL is up.
@@ -282,7 +282,7 @@ reset the reload counter on the entry.
 Purging the cache using
 .I nscd\~-i
 overrides the reload logic and removes the entry.
-.PP
+.P
 Reloading has the effect of extending cache entry TTLs
 without compromising on cache coherency,
 at the cost of additional load on the backing name service.
@@ -297,7 +297,7 @@ the effective TTL is the value returned from the name service and
 the value of the
 .B positive\-time\-to\-live
 attribute.
-.PP
+.P
 Please consider the following advice carefully:
 .IP \[bu] 3
 If your application will make a second request for the same name,
@@ -325,7 +325,7 @@ to
 is almost never a good idea,
 as it will result in a cache that never expires entries
 and puts never-ending additional load on the backing name service.
-.PP
+.P
 Some distributions have an init script for
 .BR nscd (8)
 with a

@@ -10,14 +10,14 @@ pid_namespaces \- overview of Linux PID namespaces
 .SH DESCRIPTION
 For an overview of namespaces, see
 .BR namespaces (7).
-.PP
+.P
 PID namespaces isolate the process ID number space,
 meaning that processes in different PID namespaces can have the same PID.
 PID namespaces allow containers to provide functionality
 such as suspending/resuming the set of processes in the container and
 migrating the container to a new host
 while the processes inside the container maintain the same PIDs.
-.PP
+.P
 PIDs in a new PID namespace start at 1,
 somewhat like a standalone system, and calls to
 .BR fork (2),
@@ -25,7 +25,7 @@ somewhat like a standalone system, and calls to
 or
 .BR clone (2)
 will produce processes with PIDs that are unique within the namespace.
-.PP
+.P
 Use of PID namespaces requires a kernel that is configured with the
 .B CONFIG_PID_NS
 option.
@@ -47,7 +47,7 @@ flag) has the PID 1, and is the "init" process for the namespace (see
 This process becomes the parent of any child processes that are orphaned
 because a process that resides in this PID namespace terminated
 (see below for further details).
-.PP
+.P
 If the "init" process of a PID namespace terminates,
 the kernel terminates all of the processes in the namespace via a
 .B SIGKILL
@@ -74,13 +74,13 @@ terminates, then subsequent calls to
 .BR fork (2)
 fail with
 .BR ENOMEM .
-.PP
+.P
 Only signals for which the "init" process has established a signal handler
 can be sent to the "init" process by other members of the PID namespace.
 This restriction applies even to privileged processes,
 and prevents other members of the PID namespace from
 accidentally killing the "init" process.
-.PP
+.P
 Likewise, a process in an ancestor namespace
 can\[em]subject to the usual permission checks described in
 .BR kill (2)\[em]send
@@ -100,7 +100,7 @@ these signals are forcibly delivered when sent from an ancestor PID namespace.
 Neither of these signals can be caught by the "init" process,
 and so will result in the usual actions associated with those signals
 (respectively, terminating and stopping the process).
-.PP
+.P
 Starting with Linux 3.4, the
 .BR reboot (2)
 system call causes a signal to be sent to the namespace "init" process.
@@ -125,7 +125,7 @@ Since Linux 3.7,
 .\" commit f2302505775fd13ba93f034206f1e2a587017929
 .\" The kernel constant MAX_PID_NS_LEVEL
 the kernel limits the maximum nesting depth for PID namespaces to 32.
-.PP
+.P
 A process is visible to other processes in its PID namespace,
 and to the processes in each direct ancestor PID namespace
 going back to the root PID namespace.
@@ -140,7 +140,7 @@ set nice values with
 .BR setpriority (2),
 etc.) only processes contained in its own PID namespace
 and in descendants of that namespace.
-.PP
+.P
 A process has one process ID in each of the layers of the PID
 namespace hierarchy in which is visible,
 and walking back though each direct ancestor namespace
@@ -152,7 +152,7 @@ A call to
 .BR getpid (2)
 always returns the PID associated with the namespace in which
 the process was created.
-.PP
+.P
 Some processes in a PID namespace may have parents
 that are outside of the namespace.
 For example, the parent of the initial process in the namespace
@@ -167,7 +167,7 @@ PID namespace from the caller of
 Calls to
 .BR getppid (2)
 for such processes return 0.
-.PP
+.P
 While processes may freely descend into child PID namespaces
 (e.g., using
 .BR setns (2)
@@ -176,7 +176,7 @@ they may not move in the other direction.
 That is to say, processes may not enter any ancestor namespaces
 (parent, grandparent, etc.).
 Changing PID namespaces is a one-way operation.
-.PP
+.P
 The
 .B NS_GET_PARENT
 .BR ioctl (2)
@@ -206,7 +206,7 @@ because doing so would change the caller's idea of its own PID
 (as reported by
 .BR getpid ()),
 which would break many applications and libraries.
-.PP
+.P
 To put things another way:
 a process's PID namespace membership is determined when the process is created
 and cannot be changed thereafter.
@@ -214,7 +214,7 @@ Among other things, this means that the parental relationship
 between processes mirrors the parental relationship between PID namespaces:
 the parent of a process is either in the same namespace
 or resides in the immediate parent PID namespace.
-.PP
+.P
 A process may call
 .BR unshare (2)
 with the
@@ -268,7 +268,7 @@ type in
 Since this is computed when a signal is enqueued,
 a signal queue shared by processes in multiple PID namespaces
 would defeat that.
-.PP
+.P
 .\" Note these restrictions were all introduced in
 .\" 8382fcac1b813ad0a4e68a838fc7ae93fa39eda0
 .\" when CLONE_NEWPID|CLONE_VM was disallowed
@@ -297,7 +297,7 @@ directories) only processes visible in the PID namespace
 of the process that performed the mount, even if the
 .I /proc
 filesystem is viewed from processes in other namespaces.
-.PP
+.P
 After creating a new PID namespace,
 it is useful for the child to change its root directory
 and mount a new procfs instance at
@@ -316,17 +316,17 @@ or
 then it isn't necessary to change the root directory:
 a new procfs instance can be mounted directly over
 .IR /proc .
-.PP
+.P
 From a shell, the command to mount
 .I /proc
 is:
-.PP
+.P
 .in +4n
 .EX
 $ mount \-t proc proc /proc
 .EE
 .in
-.PP
+.P
 Calling
 .BR readlink (2)
 on the path

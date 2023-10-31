@@ -20,12 +20,12 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <string.h>
-.PP
+.P
 .BI "char *strstr(const char *" haystack ", const char *" needle );
-.PP
+.P
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <string.h>
-.PP
+.P
 .BI "char *strcasestr(const char *" haystack ", const char *" needle );
 .fi
 .SH DESCRIPTION
@@ -36,7 +36,7 @@ function finds the first occurrence of the substring
 in the string
 .IR haystack .
 The terminating null bytes (\[aq]\e0\[aq]) are not compared.
-.PP
+.P
 The
 .BR strcasestr ()
 function is like
@@ -45,7 +45,7 @@ but ignores the case of both arguments.
 .SH RETURN VALUE
 These functions return a pointer to the beginning of the
 located substring, or NULL if the substring is not found.
-.PP
+.P
 If
 .I needle
 is the empty string,

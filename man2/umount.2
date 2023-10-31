@@ -16,7 +16,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B "#include <sys/mount.h>"
-.PP
+.P
 .BI "int umount(const char *" target );
 .BI "int umount2(const char *" target ", int " flags );
 .fi
@@ -29,11 +29,11 @@ remove the attachment of the (topmost) filesystem mounted on
 .\" Note: the kernel naming differs from the glibc naming
 .\" umount2 is the glibc name for what the kernel now calls umount
 .\" and umount is the glibc name for oldumount
-.PP
+.P
 Appropriate privilege (Linux: the
 .B CAP_SYS_ADMIN
 capability) is required to unmount filesystems.
-.PP
+.P
 Linux 2.1.116 added the
 .BR umount2 ()
 system call, which, like
@@ -162,7 +162,7 @@ and
 .B MNT_EXPIRE
 .\" http://sourceware.org/bugzilla/show_bug.cgi?id=10092
 are available since glibc 2.11.
-.PP
+.P
 The original
 .BR umount ()
 function was called as \fIumount(device)\fP and would return
@@ -183,7 +183,7 @@ This means that
 .BR umount ()
 of any peer in a set of shared mounts will cause all of its
 peers to be unmounted and all of their slaves to be unmounted as well.
-.PP
+.P
 This propagation of unmount activity can be particularly surprising
 on systems where every mount is shared by default.
 On such systems,
@@ -191,7 +191,7 @@ recursively bind mounting the root directory of the filesystem
 onto a subdirectory and then later unmounting that subdirectory with
 .B MNT_DETACH
 will cause every mount in the mount namespace to be lazily unmounted.
-.PP
+.P
 To ensure
 .BR umount ()
 does not propagate in this fashion,

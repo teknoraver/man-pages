@@ -15,16 +15,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int profil(unsigned short *" buf ", size_t " bufsiz ,
 .BI "           size_t " offset ", unsigned int " scale );
-.PP
+.P
 .fi
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR profil ():
 .nf
     Since glibc 2.21:
@@ -83,7 +83,7 @@ cannot be used on a program that also uses
 .B ITIMER_PROF
 interval timers (see
 .BR setitimer (2)).
-.PP
+.P
 True kernel profiling provides more accurate results.
 .\" Libc 4.4 contained a kernel patch providing a system call profil.
 .SH SEE ALSO

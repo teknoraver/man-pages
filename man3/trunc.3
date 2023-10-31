@@ -12,17 +12,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double trunc(double " x );
 .BI "float truncf(float " x );
 .BI "long double truncl(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR trunc (),
 .BR truncf (),
 .BR truncl ():
@@ -36,7 +36,7 @@ to the nearest integer value that is not larger in magnitude than
 .IR x .
 .SH RETURN VALUE
 These functions return the rounded integer value, in floating format.
-.PP
+.P
 If
 .I x
 is integral, infinite, or NaN,

@@ -15,28 +15,28 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double nearbyint(double " x );
 .BI "float nearbyintf(float " x );
 .BI "long double nearbyintl(long double " x );
-.PP
+.P
 .BI "double rint(double " x );
 .BI "float rintf(float " x );
 .BI "long double rintl(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR nearbyint (),
 .BR nearbyintf (),
 .BR nearbyintl ():
 .nf
     _POSIX_C_SOURCE >= 200112L || _ISOC99_SOURCE
 .fi
-.PP
+.P
 .BR rint ():
 .nf
     _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L
@@ -45,7 +45,7 @@ Feature Test Macro Requirements for glibc (see
         || /* Since glibc 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR rintf (),
 .BR rintl ():
 .nf
@@ -68,7 +68,7 @@ exception.
 When the current rounding direction is to nearest, these
 functions round halfway cases to the even integer in accordance with
 IEEE-754.
-.PP
+.P
 The
 .BR rint (),
 .BR rintf (),
@@ -83,7 +83,7 @@ checkable via
 when the result differs in value from the argument.
 .SH RETURN VALUE
 These functions return the rounded integer value.
-.PP
+.P
 If
 .I x
 is integral, +0, \-0, NaN, or infinite,
@@ -132,7 +132,7 @@ the maximum value of the exponent is 127 (respectively, 1023),
 and the number of mantissa bits
 including the implicit bit
 is 24 (respectively, 53).)
-.PP
+.P
 If you want to store the rounded value in an integer type,
 you probably want to use one of the functions described in
 .BR lrint (3)

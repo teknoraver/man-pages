@@ -20,7 +20,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/socket.h>
-.PP
+.P
 .BI "int socketpair(int " domain ", int " type ", int " protocol \
 ", int " sv [2]);
 .fi
@@ -35,7 +35,7 @@ and using the optionally specified
 .IR protocol .
 For further details of these arguments, see
 .BR socket (2).
-.PP
+.P
 The file descriptors used in referencing the new sockets are returned in
 .I sv[0]
 and
@@ -48,7 +48,7 @@ On error, \-1 is returned,
 is set to indicate the error, and
 .I sv
 is left unchanged
-.PP
+.P
 On Linux (and other systems),
 .BR socketpair ()
 does not modify
@@ -90,13 +90,13 @@ and
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, 4.4BSD.
-.PP
+.P
 .BR socketpair ()
 first appeared in 4.2BSD.
 It is generally portable to/from
 non-BSD systems supporting clones of the BSD socket layer (including
 System\ V variants).
-.PP
+.P
 Since Linux 2.6.27,
 .BR socketpair ()
 supports the

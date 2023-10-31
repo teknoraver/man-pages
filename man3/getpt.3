@@ -15,7 +15,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <stdlib.h>
-.PP
+.P
 .B "int getpt(void);"
 .fi
 .SH DESCRIPTION
@@ -23,13 +23,13 @@ Standard C library
 opens a new pseudoterminal device and returns a file descriptor
 that refers to that device.
 It is equivalent to opening the pseudoterminal multiplexor device
-.PP
+.P
 .in +4n
 .EX
 open("/dev/ptmx", O_RDWR);
 .EE
 .in
-.PP
+.P
 on Linux systems, though the pseudoterminal multiplexor device is located
 elsewhere on some systems that use the GNU C library.
 .SH RETURN VALUE

@@ -22,7 +22,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <alloca.h>
-.PP
+.P
 .BI "void *alloca(size_t " size );
 .fi
 .SH DESCRIPTION
@@ -72,7 +72,7 @@ it can also simplify memory deallocation in applications that use
 or
 .BR siglongjmp (3).
 Otherwise, its use is discouraged.
-.PP
+.P
 Because the space allocated by
 .BR alloca ()
 is allocated within the stack frame,
@@ -81,19 +81,19 @@ is jumped over by a call to
 .BR longjmp (3)
 or
 .BR siglongjmp (3).
-.PP
+.P
 The space allocated by
 .BR alloca ()
 is
 .I not
 automatically deallocated if the pointer that refers to it
 simply goes out of scope.
-.PP
+.P
 Do not attempt to
 .BR free (3)
 space allocated by
 .BR alloca ()!
-.PP
+.P
 By necessity,
 .BR alloca ()
 is a compiler built-in, also known as
@@ -106,12 +106,12 @@ into the built-in, but this is forbidden if standards conformance is requested
 in which case
 .I <alloca.h>
 is required, lest a symbol dependency be emitted.
-.PP
+.P
 The fact that
 .BR alloca ()
 is a built-in means it is impossible to take its address
 or to change its behavior by linking with a different library.
-.PP
+.P
 Variable length arrays (VLAs) are part of the C99 standard,
 optional since C11, and can be used for a similar purpose.
 However, they do not port to standard C++, and, being variables,
@@ -124,7 +124,7 @@ would overflow the space available, and, hence, neither is indicating an error.
 (However, the program is likely to receive a
 .B SIGSEGV
 signal if it attempts to access unavailable space.)
-.PP
+.P
 On many systems
 .BR alloca ()
 cannot be used inside the list of arguments of a function call, because

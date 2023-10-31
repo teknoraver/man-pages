@@ -23,17 +23,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double cosh(double " x );
 .BI "float coshf(float " x );
 .BI "long double coshl(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR coshf (),
 .BR coshl ():
 .nf
@@ -45,7 +45,7 @@ Feature Test Macro Requirements for glibc (see
 These functions return the hyperbolic cosine of
 .IR x ,
 which is defined mathematically as:
-.PP
+.P
 .in +4n
 .EX
 cosh(x) = (exp(x) + exp(\-x)) / 2
@@ -54,20 +54,20 @@ cosh(x) = (exp(x) + exp(\-x)) / 2
 .SH RETURN VALUE
 On success, these functions return the hyperbolic cosine of
 .IR x .
-.PP
+.P
 If
 .I x
 is a NaN, a NaN is returned.
-.PP
+.P
 If
 .I x
 is +0 or \-0, 1 is returned.
-.PP
+.P
 If
 .I x
 is positive infinity or negative infinity,
 positive infinity is returned.
-.PP
+.P
 If the result overflows,
 a range error occurs,
 and the functions return
@@ -81,7 +81,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Range error: result overflow
@@ -111,7 +111,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to

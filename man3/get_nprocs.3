@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/sysinfo.h>
-.PP
+.P
 .B int get_nprocs(void);
 .B int get_nprocs_conf(void);
 .fi
@@ -21,7 +21,7 @@ Standard C library
 The function
 .BR get_nprocs_conf ()
 returns the number of processors configured by the operating system.
-.PP
+.P
 The function
 .BR get_nprocs ()
 returns the number of processors currently available in the system.
@@ -54,12 +54,12 @@ implementation of these functions is rather expensive,
 since they open and parse files in the
 .I /sys
 filesystem each time they are called.
-.PP
+.P
 The following
 .BR sysconf (3)
 calls make use of the functions documented on this page
 to return the same information.
-.PP
+.P
 .in +4n
 .EX
 np = sysconf(_SC_NPROCESSORS_CONF);     /* processors configured */
@@ -72,7 +72,7 @@ The following example shows how
 and
 .BR get_nprocs_conf ()
 can be used.
-.PP
+.P
 .\" SRC BEGIN (get_nprocs_conf.c)
 .EX
 #include <stdio.h>

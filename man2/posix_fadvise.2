@@ -15,17 +15,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <fcntl.h>
-.PP
+.P
 .BI "int posix_fadvise(int " fd ", off_t " offset ", off_t " len \
 ", int " advice ");"
 .fi
-.PP
+.P
 .ad l
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR posix_fadvise ():
 .nf
     _POSIX_C_SOURCE >= 200112L
@@ -36,14 +36,14 @@ Programs can use
 to announce an intention to access
 file data in a specific pattern in the future, thus allowing the kernel
 to perform appropriate optimizations.
-.PP
+.P
 The \fIadvice\fP applies to a (not necessarily existent) region starting
 at \fIoffset\fP and extending for \fIlen\fP bytes (or until the end of
 the file if \fIlen\fP is 0) within the file referred to by \fIfd\fP.
 The \fIadvice\fP is not binding;
 it merely constitutes an expectation on behalf of
 the application.
-.PP
+.P
 Permissible values for \fIadvice\fP include:
 .TP
 .B POSIX_FADV_NORMAL
@@ -159,16 +159,16 @@ Therefore, these architectures define a version of the
 system call that orders the arguments suitably,
 but is otherwise exactly the same as
 .BR posix_fadvise ().
-.PP
+.P
 For example, since Linux 2.6.14, ARM has the following system call:
-.PP
+.P
 .in +4n
 .EX
 .BI "long arm_fadvise64_64(int " fd ", int " advice ,
 .BI "                      loff_t " offset ", loff_t " len );
 .EE
 .in
-.PP
+.P
 These architecture-specific details are generally
 hidden from applications by the glibc
 .BR posix_fadvise ()
@@ -178,7 +178,7 @@ which invokes the appropriate architecture-specific system call.
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
-.PP
+.P
 Kernel support first appeared in Linux 2.5.60;
 the underlying system call is called
 .BR fadvise64 ().
@@ -186,14 +186,14 @@ the underlying system call is called
 Library support has been provided since glibc 2.2,
 via the wrapper function
 .BR posix_fadvise ().
-.PP
+.P
 Since Linux 3.18,
 .\" commit d3ac21cacc24790eb45d735769f35753f5b56ceb
 support for the underlying system call is optional,
 depending on the setting of the
 .B CONFIG_ADVISE_SYSCALLS
 configuration option.
-.PP
+.P
 The type of the
 .I len
 argument was changed from
@@ -206,7 +206,7 @@ The contents of the kernel buffer cache can be cleared via the
 .I /proc/sys/vm/drop_caches
 interface described in
 .BR proc (5).
-.PP
+.P
 One can obtain a snapshot of which pages of a file are resident
 in the buffer cache by opening a file, mapping it with
 .BR mmap (2),

@@ -24,7 +24,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/times.h>
-.PP
+.P
 .BI "clock_t times(struct tms *" buf );
 .fi
 .SH DESCRIPTION
@@ -38,7 +38,7 @@ The
 .I struct tms
 is as defined in
 .IR <sys/times.h> :
-.PP
+.P
 .in +4n
 .EX
 struct tms {
@@ -49,7 +49,7 @@ struct tms {
 };
 .EE
 .in
-.PP
+.P
 The
 .I tms_utime
 field contains the CPU time spent executing instructions
@@ -58,7 +58,7 @@ The
 .I tms_stime
 field contains the CPU time spent executing inside the kernel
 while performing tasks on behalf of the calling process.
-.PP
+.P
 The
 .I tms_cutime
 field contains the sum of the
@@ -73,7 +73,7 @@ field contains the sum of the
 and
 .I tms_cstime
 values for all waited-for terminated children.
-.PP
+.P
 Times for terminated children (and their descendants)
 are added in at the moment
 .BR wait (2)
@@ -83,7 +83,7 @@ returns their process ID.
 In particular,
 times of grandchildren
 that the children did not wait for are never seen.
-.PP
+.P
 All times reported are in clock ticks.
 .SH RETURN VALUE
 .BR times ()
@@ -120,12 +120,12 @@ POSIX.1-2008.
 POSIX.1-2001,
 SVr4,
 4.3BSD.
-.PP
+.P
 In POSIX.1-1996 the symbol \fBCLK_TCK\fP (defined in
 .IR <time.h> )
 is mentioned as obsolescent.
 It is obsolete now.
-.PP
+.P
 Before Linux 2.6.9,
 if the disposition of
 .B SIGCHLD
@@ -145,7 +145,7 @@ This nonconformance is rectified in Linux 2.6.9 and later.
 .\" See the description of times() in XSH, which says:
 .\"	The times of a terminated child process are included... when wait()
 .\"	or waitpid() returns the process ID of this terminated child.
-.PP
+.P
 On Linux,
 the \[lq]arbitrary point in the past\[rq]
 from which the return value of
@@ -164,10 +164,10 @@ To measure changes in elapsed time,
 use
 .BR clock_gettime (2)
 instead.
-.\" .PP
+.\" .P
 .\" On older systems the number of clock ticks per second is given
 .\" by the variable HZ.
-.PP
+.P
 SVr1-3 returns
 .I long
 and the struct members are of type
@@ -182,13 +182,13 @@ because it had no type
 yet.
 .SH NOTES
 The number of clock ticks per second can be obtained using:
-.PP
+.P
 .in +4n
 .EX
 sysconf(_SC_CLK_TCK);
 .EE
 .in
-.PP
+.P
 Note that
 .BR clock (3)
 also returns a value of type

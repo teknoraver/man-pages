@@ -12,16 +12,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/time.h>
-.PP
+.P
 .BI "int futimes(int " fd ", const struct timeval " tv [2]);
 .BI "int lutimes(const char *" filename ", const struct timeval " tv [2]);
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR futimes (),
 .BR lutimes ():
 .nf
@@ -38,7 +38,7 @@ with the difference that the file whose timestamps are to be changed
 is specified via a file descriptor,
 .IR fd ,
 rather than via a pathname.
-.PP
+.P
 .BR lutimes ()
 changes the access and modification times of a file in the same way as
 .BR utimes (2),
@@ -65,7 +65,7 @@ is not a valid file descriptor.
 The
 .I /proc
 filesystem could not be accessed.
-.PP
+.P
 The following additional error may occur for
 .BR lutimes ():
 .TP

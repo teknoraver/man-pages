@@ -17,16 +17,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .BI "void psignal(int " sig ", const char *" s );
 .BI "void psiginfo(const siginfo_t *" pinfo ", const char *" s );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR psignal ():
 .nf
     Since glibc 2.19:
@@ -34,7 +34,7 @@ Feature Test Macro Requirements for glibc (see
     glibc 2.19 and earlier:
         _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR psiginfo ():
 .nf
     _POSIX_C_SOURCE >= 200809L
@@ -48,7 +48,7 @@ describing the signal number \fIsig\fP, and a trailing newline.
 If the string \fIs\fP is NULL or empty, the colon and space are omitted.
 If \fIsig\fP is invalid,
 the message displayed will indicate an unknown signal.
-.PP
+.P
 The
 .BR psiginfo ()
 function is like

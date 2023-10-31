@@ -34,22 +34,22 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .BI "int sigaction(int " signum ,
 .BI "              const struct sigaction *_Nullable restrict " act ,
 .BI "              struct sigaction *_Nullable restrict " oldact );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR sigaction ():
 .nf
     _POSIX_C_SOURCE
 .fi
-.PP
+.P
 .IR siginfo_t :
 .nf
     _POSIX_C_SOURCE >= 199309L
@@ -62,13 +62,13 @@ receipt of a specific signal.
 (See
 .BR signal (7)
 for an overview of signals.)
-.PP
+.P
 .I signum
 specifies the signal and can be any valid signal except
 .B SIGKILL
 and
 .BR SIGSTOP .
-.PP
+.P
 If
 .I act
 is non-NULL, the new action for signal
@@ -79,11 +79,11 @@ If
 .I oldact
 is non-NULL, the previous action is saved in
 .IR oldact .
-.PP
+.P
 The
 .I sigaction
 structure is defined as something like:
-.PP
+.P
 .in +4n
 .EX
 struct sigaction {
@@ -95,12 +95,12 @@ struct sigaction {
 };
 .EE
 .in
-.PP
+.P
 On some architectures a union is involved: do not assign to both
 .I sa_handler
 and
 .IR sa_sigaction .
-.PP
+.P
 The
 .I sa_restorer
 field is not intended for application use.
@@ -109,7 +109,7 @@ field is not intended for application use.
 field.)
 Some further details of the purpose of this field can be found in
 .BR sigreturn (2).
-.PP
+.P
 .I sa_handler
 specifies the action to be associated with
 .I signum
@@ -123,7 +123,7 @@ to ignore this signal.
 .IP \[bu]
 A pointer to a signal handling function.
 This function receives the signal number as its only argument.
-.PP
+.P
 If
 .B SA_SIGINFO
 is specified in
@@ -135,7 +135,7 @@ then
 specifies the signal-handling function for
 .IR signum .
 This function receives three arguments, as described below.
-.PP
+.P
 .I sa_mask
 specifies a mask of signals which should be blocked
 (i.e., added to the signal mask of the thread in which
@@ -145,7 +145,7 @@ In addition, the signal which triggered the handler
 will be blocked, unless the
 .B SA_NODEFER
 flag is used.
-.PP
+.P
 .I sa_flags
 specifies a set of flags which modify the behavior of the signal.
 It is formed by the bitwise OR of zero or more of the following:
@@ -292,7 +292,7 @@ the signal handler address is passed via the
 .I act.sa_sigaction
 field.
 This handler takes three arguments, as follows:
-.PP
+.P
 .in +4n
 .EX
 void
@@ -302,7 +302,7 @@ handler(int sig, siginfo_t *info, void *ucontext)
 }
 .EE
 .in
-.PP
+.P
 These three arguments are as follows
 .TP
 .I sig
@@ -329,11 +329,11 @@ structure can be found in
 and
 .BR signal (7).
 Commonly, the handler function doesn't make any use of the third argument.
-.PP
+.P
 The
 .I siginfo_t
 data type is a structure with the following fields:
-.PP
+.P
 .in +4n
 .EX
 siginfo_t {
@@ -380,7 +380,7 @@ siginfo_t {
 }
 .EE
 .in
-.PP
+.P
 .IR si_signo ", " si_errno " and " si_code
 are defined for all signals.
 .RI ( si_errno
@@ -595,13 +595,13 @@ event,
 will contain
 .B SIGTRAP
 and have the ptrace event in the high byte:
-.PP
+.P
 .in +4n
 .EX
 (SIGTRAP | PTRACE_EVENT_foo << 8).
 .EE
 .in
-.PP
+.P
 For a
 .RB non- ptrace (2)
 event, the values that can appear in
@@ -624,12 +624,12 @@ or
 .IP \[bu]
 .B _POSIX_C_SOURCE
 with the value 200809L or greater.
-.PP
+.P
 For the
 .B TRAP_*
 constants, the symbol definitions are provided only in the first two cases.
 Before glibc 2.20, no feature test macros were required to obtain these symbols.
-.PP
+.P
 For a regular signal, the following list shows the values which can be
 placed in
 .I si_code
@@ -672,7 +672,7 @@ or
 .\" It appears to have been an idea that was tried during 2.5.6
 .\" through to Linux 2.5.24 and then was backed out.
 .RE
-.PP
+.P
 The following values can be placed in
 .I si_code
 for a
@@ -704,7 +704,7 @@ Coprocessor error.
 .B ILL_BADSTK
 Internal stack error.
 .RE
-.PP
+.P
 The following values can be placed in
 .I si_code
 for a
@@ -736,7 +736,7 @@ Floating-point invalid operation.
 .B FPE_FLTSUB
 Subscript out of range.
 .RE
-.PP
+.P
 The following values can be placed in
 .I si_code
 for a
@@ -762,7 +762,7 @@ See
 The protection key which applied to this access is available via
 .IR si_pkey .
 .RE
-.PP
+.P
 The following values can be placed in
 .I si_code
 for a
@@ -785,7 +785,7 @@ Hardware memory error consumed on a machine check; action required.
 .BR BUS_MCEERR_AO " (since Linux 2.6.32)"
 Hardware memory error detected in process but not consumed; action optional.
 .RE
-.PP
+.P
 The following values can be placed in
 .I si_code
 for a
@@ -805,7 +805,7 @@ Process taken branch trap.
 .BR TRAP_HWBKPT " (since Linux 2.4, IA64 only)"
 Hardware breakpoint/watchpoint.
 .RE
-.PP
+.P
 The following values can be placed in
 .I si_code
 for a
@@ -831,7 +831,7 @@ Child has stopped.
 .BR CLD_CONTINUED " (since Linux 2.6.9)"
 Stopped child has continued.
 .RE
-.PP
+.P
 The following values can be placed in
 .I si_code
 for a
@@ -857,7 +857,7 @@ High priority input available.
 .B POLL_HUP
 Device disconnected.
 .RE
-.PP
+.P
 The following value can be placed in
 .I si_code
 for a
@@ -884,7 +884,7 @@ However, historically, a second
 .BR sigaction ()
 call would typically leave those bits set in
 .IR oldact\->sa_flags .
-.PP
+.P
 This means that support for new flags cannot be detected
 simply by testing for a flag in
 .IR sa_flags ,
@@ -892,7 +892,7 @@ and a program must test that
 .B SA_UNSUPPORTED
 has been cleared before relying on the contents of
 .IR sa_flags .
-.PP
+.P
 Since the behavior of the signal handler cannot be guaranteed
 unless the check passes,
 it is wise to either block the affected signal
@@ -901,12 +901,12 @@ or where this is not possible,
 for example if the signal is synchronous, to issue the second
 .BR sigaction ()
 in the signal handler itself.
-.PP
+.P
 In kernels that do not support a specific flag,
 the kernel's behavior is as if the flag was not set,
 even if the flag was set in
 .IR act\->sa_flags .
-.PP
+.P
 The flags
 .BR SA_NOCLDSTOP ,
 .BR SA_NOCLDWAIT ,
@@ -922,7 +922,7 @@ because they were introduced before Linux 5.11.
 However, in general, programs may assume that these flags are supported,
 since they have all been supported since Linux 2.6,
 which was released in the year 2003.
-.PP
+.P
 See EXAMPLES below for a demonstration of the use of
 .BR SA_UNSUPPORTED .
 .SH RETURN VALUE
@@ -953,7 +953,7 @@ used internally by the NPTL threading implementation.
 See
 .BR nptl (7)
 for details.
-.PP
+.P
 On architectures where the signal trampoline resides in the C library,
 the glibc wrapper function for
 .BR sigaction ()
@@ -966,7 +966,7 @@ flag in the
 field.
 See
 .BR sigreturn (2).
-.PP
+.P
 The original Linux system call was named
 .BR sigaction ().
 However, with the addition of real-time signals in Linux 2.2,
@@ -999,7 +999,7 @@ POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, SVr4.
 .\" SVr4 does not document the EINTR condition.
-.PP
+.P
 POSIX.1-1990 disallowed setting the action for
 .B SIGCHLD
 to
@@ -1016,7 +1016,7 @@ terminated children do not become zombies is to catch the
 signal and perform a
 .BR wait (2)
 or similar.
-.PP
+.P
 POSIX.1-1990 specified only
 .BR SA_NOCLDSTOP .
 POSIX.1-2001 added
@@ -1032,11 +1032,11 @@ Use of these latter values in
 .I sa_flags
 may be less portable in applications intended for older
 UNIX implementations.
-.PP
+.P
 The
 .B SA_RESETHAND
 flag is compatible with the SVr4 flag of the same name.
-.PP
+.P
 The
 .B SA_NODEFER
 flag is compatible with the SVr4 flag of the same name under kernels
@@ -1054,7 +1054,7 @@ During an
 .BR execve (2),
 the dispositions of handled signals are reset to the default;
 the dispositions of ignored signals are left unchanged.
-.PP
+.P
 According to POSIX, the behavior of a process is undefined after it
 ignores a
 .BR SIGFPE ,
@@ -1072,23 +1072,23 @@ signal.
 (Also dividing the most negative integer by \-1 may generate
 .BR SIGFPE .)
 Ignoring this signal might lead to an endless loop.
-.PP
+.P
 .BR sigaction ()
 can be called with a NULL second argument to query the current signal
 handler.
 It can also be used to check whether a given signal is valid for
 the current machine by calling it with NULL second and third arguments.
-.PP
+.P
 It is not possible to block
 .BR SIGKILL " or " SIGSTOP
 (by specifying them in
 .IR sa_mask ).
 Attempts to do so are silently ignored.
-.PP
+.P
 See
 .BR sigsetops (3)
 for details on manipulating signal sets.
-.PP
+.P
 See
 .BR signal\-safety (7)
 for a list of the async-signal-safe functions that can be
@@ -1119,7 +1119,7 @@ the kernel does not always provide meaningful values
 for all of the fields of the
 .I siginfo_t
 that are relevant for that signal.
-.PP
+.P
 Up to and including Linux 2.6.13, specifying
 .B SA_NODEFER
 in
@@ -1140,7 +1140,7 @@ if
 is determined to be supported, and
 .B EXIT_FAILURE
 otherwise.
-.PP
+.P
 .\" SRC BEGIN (sigaction.c)
 .EX
 #include <signal.h>

@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B "#include <sys/sysinfo.h>"
-.PP
+.P
 .B long get_phys_pages(void);
 .B long get_avphys_pages(void);
 .fi
@@ -20,7 +20,7 @@ Standard C library
 The function
 .BR get_phys_pages ()
 returns the total number of physical pages of memory available on the system.
-.PP
+.P
 The function
 .BR get_avphys_pages ()
 returns the number of currently available physical pages of memory on the
@@ -56,7 +56,7 @@ The following
 .BR sysconf (3)
 calls provide a portable means of obtaining the same information as the
 functions described on this page.
-.PP
+.P
 .in +4n
 .EX
 total_pages = sysconf(_SC_PHYS_PAGES);    /* total pages */
@@ -69,7 +69,7 @@ The following example shows how
 and
 .BR get_avphys_pages ()
 can be used.
-.PP
+.P
 .\" SRC BEGIN (get_phys_pages.c)
 .EX
 #include <stdio.h>

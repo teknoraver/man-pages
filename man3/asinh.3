@@ -22,17 +22,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double asinh(double " x );
 .BI "float asinhf(float " x );
 .BI "long double asinhl(long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR asinh ():
 .nf
     _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L
@@ -41,7 +41,7 @@ Feature Test Macro Requirements for glibc (see
         || /* Since glibc 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _BSD_SOURCE || _SVID_SOURCE
 .fi
-.PP
+.P
 .BR asinhf (),
 .BR asinhl ():
 .nf
@@ -57,15 +57,15 @@ that is the value whose hyperbolic sine is
 .SH RETURN VALUE
 On success, these functions return the inverse hyperbolic sine of
 .IR x .
-.PP
+.P
 If
 .I x
 is a NaN, a NaN is returned.
-.PP
+.P
 If
 .I x
 is +0 (\-0), +0 (\-0) is returned.
-.PP
+.P
 If
 .I x
 is positive infinity (negative infinity),
@@ -95,7 +95,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
-.PP
+.P
 The variant returning
 .I double
 also conforms to

@@ -20,19 +20,19 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .B long random(void);
 .BI "void srandom(unsigned int " seed );
-.PP
+.P
 .BI "char *initstate(unsigned int " seed ", char " state [. n "], size_t " n );
 .BI "char *setstate(char *" state );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR random (),
 .BR srandom (),
 .BR initstate (),
@@ -52,7 +52,7 @@ return successive pseudo-random numbers in
 the range from 0 to 2\[ha]31\ \-\ 1.
 The period of this random number generator is very large, approximately
 .IR "16\ *\ ((2\[ha]31)\ \-\ 1)" .
-.PP
+.P
 The
 .BR srandom ()
 function sets its argument as the seed for a new
@@ -66,7 +66,7 @@ If no seed value is provided, the
 .BR random ()
 function
 is automatically seeded with a value of 1.
-.PP
+.P
 The
 .BR initstate ()
 function allows a state array \fIstate\fP to
@@ -85,7 +85,7 @@ Using less than 8 bytes results in an error.
 \fIseed\fP is the seed for the
 initialization, which specifies a starting point for the random number
 sequence, and provides for restarting at the same point.
-.PP
+.P
 The
 .BR setstate ()
 function changes the state array used by the
@@ -109,14 +109,14 @@ function returns a value between 0 and
 The
 .BR srandom ()
 function returns no value.
-.PP
+.P
 The
 .BR initstate ()
 function returns a pointer to the previous state array.
 On failure, it returns NULL, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 On success,
 .BR setstate ()
 returns a pointer to the previous state array.
@@ -163,7 +163,7 @@ Random-number generation is a complex topic.
 William T.\& Vetterling; New York: Cambridge University Press, 2007, 3rd ed.)
 provides an excellent discussion of practical random-number generation
 issues in Chapter 7 (Random Numbers).
-.PP
+.P
 For a more theoretical discussion which also covers many practical issues
 in depth, see Chapter 3 (Random Numbers) in Donald E.\& Knuth's
 .IR "The Art of Computer Programming" ,

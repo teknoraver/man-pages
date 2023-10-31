@@ -12,16 +12,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <fcntl.h>
-.PP
+.P
 .BI "int posix_fallocate(int " fd ", off_t " offset ", off_t " len );
 .fi
-.PP
+.P
 .ad l
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR posix_fallocate ():
 .nf
     _POSIX_C_SOURCE >= 200112L
@@ -41,7 +41,7 @@ After a successful call to
 .BR posix_fallocate (),
 subsequent writes to bytes in the specified range are
 guaranteed not to fail because of lack of disk space.
-.PP
+.P
 If the size of the file is less than
 .IR offset + len ,
 then the file is increased to this size;
@@ -114,7 +114,7 @@ POSIX.1-2008.
 .SH HISTORY
 glibc 2.1.94.
 POSIX.1-2001
-.PP
+.P
 POSIX.1-2008 says that an implementation
 .I shall
 give the
@@ -164,7 +164,7 @@ or
 .B O_WRONLY
 flags, the function fails with the error
 .BR EBADF .
-.PP
+.P
 In general, the emulation is not MT-safe.
 On Linux, applications may use
 .BR fallocate (2)

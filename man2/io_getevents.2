@@ -8,7 +8,7 @@ io_getevents \- read asynchronous I/O events from the completion queue
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
-.PP
+.P
 Alternatively, Asynchronous I/O library
 .RI ( libaio ", " \-laio );
 see VERSIONS.
@@ -17,12 +17,12 @@ see VERSIONS.
 .BR "#include <linux/aio_abi.h>" "    /* Definition of " *io_* " types */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_io_getevents, aio_context_t " ctx_id ,
 .BI "            long " min_nr ", long " nr ", struct io_event *" events ,
 .BI "            struct timespec *" timeout );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR io_getevents (),
@@ -37,22 +37,22 @@ uses a different type for the
 .I ctx_id
 argument.
 See VERSIONS.
-.PP
+.P
 The
 .BR io_getevents ()
 system call
 attempts to read at least \fImin_nr\fP events and
 up to \fInr\fP events from the completion queue of the AIO context
 specified by \fIctx_id\fP.
-.PP
+.P
 The \fItimeout\fP argument specifies the amount of time to wait for events,
 and is specified as a relative timeout in a
 .BR timespec (3)
 structure.
-.PP
+.P
 The specified time will be rounded up to the system clock granularity
 and is guaranteed not to expire early.
-.PP
+.P
 Specifying
 .I timeout
 as NULL means block indefinitely until at least
@@ -70,7 +70,7 @@ expired.
 It may also be a nonzero value less than
 .IR min_nr ,
 if the call was interrupted by a signal handler.
-.PP
+.P
 For the failure return, see VERSIONS.
 .SH ERRORS
 .TP
@@ -95,7 +95,7 @@ You probably want to use the
 wrapper function provided by
 .\" http://git.fedorahosted.org/git/?p=libaio.git
 .IR libaio .
-.PP
+.P
 Note that the
 .I libaio
 wrapper function uses a different type

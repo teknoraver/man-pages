@@ -12,18 +12,18 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <semaphore.h>
-.PP
+.P
 .BI "int sem_wait(sem_t *" sem );
 .BI "int sem_trywait(sem_t *" sem );
 .BI "int sem_timedwait(sem_t *restrict " sem ,
 .BI "                  const struct timespec *restrict " abs_timeout );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR sem_timedwait ():
 .nf
     _POSIX_C_SOURCE >= 200112L
@@ -38,7 +38,7 @@ If the semaphore currently has the value zero,
 then the call blocks until either it becomes possible to perform
 the decrement (i.e., the semaphore value rises above zero),
 or a signal handler interrupts the call.
-.PP
+.P
 .BR sem_trywait ()
 is the same as
 .BR sem_wait (),
@@ -48,7 +48,7 @@ then call returns an error
 set to
 .BR EAGAIN )
 instead of blocking.
-.PP
+.P
 .BR sem_timedwait ()
 is the same as
 .BR sem_wait (),
@@ -62,7 +62,7 @@ argument points to a
 .BR timespec (3)
 structure that specifies an absolute timeout
 in seconds and nanoseconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).
-.PP
+.P
 If the timeout has already expired by the time of the call,
 and the semaphore could not be locked immediately,
 then
@@ -71,7 +71,7 @@ fails with a timeout error
 .RI ( errno
 set to
 .BR ETIMEDOUT ).
-.PP
+.P
 If the operation can be performed immediately, then
 .BR sem_timedwait ()
 never fails with a timeout error, regardless of the value of
@@ -149,7 +149,7 @@ The second command-line argument specifies the length
 of the timeout, in seconds, for
 .BR sem_timedwait ().
 The following shows what happens on two different runs of the program:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out 2 3"

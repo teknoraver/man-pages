@@ -14,7 +14,7 @@ Standard C library
 .nf
 .BR "#include <linux/landlock.h>" "  /* Definition of " LANDLOCK_* " constants */"
 .BR "#include <sys/syscall.h>" "     /* Definition of " SYS_* " constants */"
-.PP
+.P
 .B int syscall(SYS_landlock_create_ruleset,
 .BI "            const struct landlock_ruleset_attr *" attr ,
 .BI "            size_t " size " , uint32_t " flags );
@@ -31,7 +31,7 @@ and
 See
 .BR landlock (7)
 for a global overview.
-.PP
+.P
 .I attr
 specifies the properties of the new ruleset.
 It points to the following structure:
@@ -53,12 +53,12 @@ in
 .BR landlock (7)).
 This enables simply restricting ambient rights
 (e.g., global filesystem access) and is needed for compatibility reasons.
-.PP
+.P
 .I size
 must be specified as
 .I sizeof(struct landlock_ruleset_attr)
 for compatibility reasons.
-.PP
+.P
 .I flags
 must be 0 if
 .I attr

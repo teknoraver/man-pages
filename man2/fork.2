@@ -25,7 +25,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .B pid_t fork(void);
 .fi
 .SH DESCRIPTION
@@ -37,7 +37,7 @@ process.
 The calling process is referred to as the
 .I parent
 process.
-.PP
+.P
 The child process and the parent process run in separate memory spaces.
 At the time of
 .BR fork ()
@@ -47,7 +47,7 @@ Memory writes, file mappings
 and unmappings
 .RB ( munmap (2))
 performed by one of the processes do not affect the other.
-.PP
+.P
 The child process is an exact duplicate of the parent
 process except for the following points:
 .IP \[bu] 3
@@ -93,7 +93,7 @@ from its parent
 .BR aio_write (3)),
 nor does it inherit any asynchronous I/O contexts from its parent (see
 .BR io_setup (2)).
-.PP
+.P
 The process attributes in the preceding list are all specified
 in POSIX.1.
 The parent and child also differ with respect to the following
@@ -144,7 +144,7 @@ The port access permission bits set by
 are not inherited by the child;
 the child must turn on any bits that it requires using
 .BR ioperm (2).
-.PP
+.P
 Note the following further points:
 .IP \[bu] 3
 The child process is created with a single thread\[em]the
@@ -300,7 +300,7 @@ See
 and
 .BR wait (2)
 for more examples.
-.PP
+.P
 .\" SRC BEGIN (fork.c)
 .EX
 #include <signal.h>

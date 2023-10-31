@@ -12,22 +12,22 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .BI "[[deprecated]] int sigvec(int " sig ", const struct sigvec *" vec ,
 .BI "                          struct sigvec *" ovec );
-.PP
+.P
 .BI "[[deprecated]] int sigmask(int " signum );
-.PP
+.P
 .BI "[[deprecated]] int sigblock(int " mask );
 .BI "[[deprecated]] int sigsetmask(int " mask );
 .B [[deprecated]] int siggetmask(void);
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 All functions shown above:
 .nf
     Since glibc 2.19:
@@ -42,7 +42,7 @@ This API is obsolete: new applications should use the POSIX signal API
 .RB ( sigaction (2),
 .BR sigprocmask (2),
 etc.).
-.PP
+.P
 The
 .BR sigvec ()
 function sets and/or gets the disposition of the signal
@@ -67,17 +67,17 @@ without changing it, specify NULL for
 .IR vec ,
 and a non-null pointer for
 .IR ovec .
-.PP
+.P
 The dispositions for
 .B SIGKILL
 and
 .B SIGSTOP
 cannot be changed.
-.PP
+.P
 The
 .I sigvec
 structure has the following form:
-.PP
+.P
 .in +4n
 .EX
 struct sigvec {
@@ -87,7 +87,7 @@ struct sigvec {
 };
 .EE
 .in
-.PP
+.P
 The
 .I sv_handler
 field specifies the disposition of the signal, and is either:
@@ -96,7 +96,7 @@ the address of a signal handler function;
 meaning the default disposition applies for the signal; or
 .BR SIG_IGN ,
 meaning that the signal is ignored.
-.PP
+.P
 If
 .I sv_handler
 specifies the address of a signal handler, then
@@ -110,7 +110,7 @@ Attempts to block
 or
 .B SIGSTOP
 are silently ignored.
-.PP
+.P
 If
 .I sv_handler
 specifies the address of a signal handler, then the
@@ -141,7 +141,7 @@ Handle the signal on the alternate signal stack
 .BR sigstack ()
 function; the POSIX replacement is
 .BR sigaltstack (2)).
-.PP
+.P
 The
 .BR sigmask ()
 macro constructs and returns a "signal mask" for
@@ -151,7 +151,7 @@ For example, we can initialize the
 field given to
 .BR sigvec ()
 using code such as the following:
-.PP
+.P
 .in +4n
 .EX
 vec.sv_mask = sigmask(SIGQUIT) | sigmask(SIGABRT);
@@ -159,7 +159,7 @@ vec.sv_mask = sigmask(SIGQUIT) | sigmask(SIGABRT);
                handler execution */
 .EE
 .in
-.PP
+.P
 The
 .BR sigblock ()
 function adds the signals in
@@ -173,7 +173,7 @@ Attempts to block
 or
 .B SIGSTOP
 are silently ignored.
-.PP
+.P
 The
 .BR sigsetmask ()
 function sets the process's signal mask to the value given in
@@ -181,7 +181,7 @@ function sets the process's signal mask to the value given in
 (like POSIX
 .IR sigprocmask(SIG_SETMASK) ),
 and returns the process's previous signal mask.
-.PP
+.P
 The
 .BR siggetmask ()
 function returns the process's current signal mask.
@@ -193,13 +193,13 @@ The
 function returns 0 on success; on error, it returns \-1 and sets
 .I errno
 to indicate the error.
-.PP
+.P
 The
 .BR sigblock ()
 and
 .BR sigsetmask ()
 functions return the previous signal mask.
-.PP
+.P
 The
 .BR sigmask ()
 macro returns the signal mask for
@@ -262,7 +262,7 @@ unspecified.
 See
 .BR signal (2)
 for further details.
-.PP
+.P
 In order to wait for a signal,
 BSD and System V both provided a function named
 .BR sigpause (3),

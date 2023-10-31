@@ -15,21 +15,21 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/io.h>
-.PP
+.P
 .BI "unsigned char inb(unsigned short " port );
 .BI "unsigned char inb_p(unsigned short " port );
 .BI "unsigned short inw(unsigned short " port );
 .BI "unsigned short inw_p(unsigned short " port );
 .BI "unsigned int inl(unsigned short " port );
 .BI "unsigned int inl_p(unsigned short " port );
-.PP
+.P
 .BI "void outb(unsigned char " value ", unsigned short " port );
 .BI "void outb_p(unsigned char " value ", unsigned short " port );
 .BI "void outw(unsigned short " value ", unsigned short " port );
 .BI "void outw_p(unsigned short " value ", unsigned short " port );
 .BI "void outl(unsigned int " value ", unsigned short " port );
 .BI "void outl_p(unsigned int " value ", unsigned short " port );
-.PP
+.P
 .BI "void insb(unsigned short " port ", void " addr [. count ],
 .BI "           unsigned long " count );
 .BI "void insw(unsigned short " port ", void " addr [. count ],
@@ -48,18 +48,18 @@ This family of functions is used to do low-level port input and output.
 The out* functions do port output, the in* functions do port input;
 the b-suffix functions are byte-width and the w-suffix functions
 word-width; the _p-suffix functions pause until the I/O completes.
-.PP
+.P
 They are primarily designed for internal kernel use,
 but can be used from user space.
 .\" , given the following information
 .\" in addition to that given in
 .\" .BR outb (9).
-.PP
+.P
 You must compile with \fB\-O\fP or \fB\-O2\fP or similar.
 The functions
 are defined as inline macros, and will not be substituted in without
 optimization enabled, causing unresolved references at link time.
-.PP
+.P
 You use
 .BR ioperm (2)
 or alternatively

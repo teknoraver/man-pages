@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/socket.h>
-.PP
+.P
 .BI "struct cmsghdr *CMSG_FIRSTHDR(struct msghdr *" msgh );
 .BI "struct cmsghdr *CMSG_NXTHDR(struct msghdr *" msgh ,
 .BR "                            struct cmsghdr *" cmsg );
@@ -35,7 +35,7 @@ Ancillary data is sent by calling
 and received by calling
 .BR recvmsg (2).
 See their manual pages for more information.
-.PP
+.P
 Ancillary data is a sequence of
 .I cmsghdr
 structures with appended data.
@@ -44,11 +44,11 @@ The maximum ancillary buffer size allowed per socket can be set using
 .IR /proc/sys/net/core/optmem_max ;
 see
 .BR socket (7).
-.PP
+.P
 The
 .I cmsghdr
 structure is defined as follows:
-.PP
+.P
 .in +4n
 .EX
 struct cmsghdr {
@@ -61,7 +61,7 @@ struct cmsghdr {
 };
 .EE
 .in
-.PP
+.P
 The sequence of
 .I cmsghdr
 structures should never be accessed directly.
@@ -122,7 +122,7 @@ alignment.
 It takes the data length as an argument.
 This is a constant
 expression.
-.PP
+.P
 To create ancillary data, first initialize the
 .I msg_controllen
 member of the
@@ -158,7 +158,7 @@ see
 .SH VERSIONS
 For portability, ancillary data should be accessed using only the macros
 described here.
-.PP
+.P
 In Linux,
 .BR CMSG_LEN (),
 .BR CMSG_DATA (),
@@ -185,7 +185,7 @@ Linux.
 .SH HISTORY
 This ancillary data model conforms to the POSIX.1g draft, 4.4BSD-Lite,
 the IPv6 advanced API described in RFC\ 2292 and SUSv2.
-.PP
+.P
 .BR CMSG_SPACE ()
 and
 .BR CMSG_LEN ()
@@ -195,7 +195,7 @@ will be included in the next POSIX release (Issue 8).
 This code looks for the
 .B IP_TTL
 option in a received ancillary buffer:
-.PP
+.P
 .in +4n
 .EX
 struct msghdr msgh;
@@ -218,11 +218,11 @@ if (cmsg == NULL) {
 }
 .EE
 .in
-.PP
+.P
 The code below passes an array of file descriptors over a
 UNIX domain socket using
 .BR SCM_RIGHTS :
-.PP
+.P
 .in +4n
 .EX
 struct msghdr msg = { 0 };
@@ -250,12 +250,12 @@ cmsg\->cmsg_len = CMSG_LEN(sizeof(myfds));
 memcpy(CMSG_DATA(cmsg), myfds, sizeof(myfds));
 .EE
 .in
-.PP
+.P
 For a complete code example that shows passing of file descriptors
 over a UNIX domain socket, see
 .BR seccomp_unotify (2).
 .SH SEE ALSO
 .BR recvmsg (2),
 .BR sendmsg (2)
-.PP
+.P
 RFC\ 2292

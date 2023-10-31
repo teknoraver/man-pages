@@ -20,7 +20,7 @@ One of these signals is used to support thread cancelation and POSIX timers
 the other is used as part of a mechanism that ensures all threads in
 a process always have the same UIDs and GIDs, as required by POSIX.
 These signals cannot be used in applications.
-.PP
+.P
 To prevent accidental use of these signals in applications,
 which might interfere with the operation of the NPTL implementation,
 various glibc library functions and system call wrapper functions
@@ -66,7 +66,7 @@ the NPTL implementation wraps all of the system calls that
 change process credentials with functions that,
 in addition to invoking the underlying system call,
 arrange for all other threads in the process to also change their credentials.
-.PP
+.P
 The implementation of each of these system calls involves the use of
 a real-time signal that is sent (using
 .BR tgkill (2))
@@ -76,7 +76,7 @@ saves the new credential(s) and records the system call being employed
 in a global buffer.
 A signal handler in the receiving thread(s) fetches this information and
 then uses the same system call to change its credentials.
-.PP
+.P
 Wrapper functions employing this technique are provided for
 .BR setgid (2),
 .BR setuid (2),

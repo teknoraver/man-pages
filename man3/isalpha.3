@@ -22,7 +22,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <ctype.h>
-.PP
+.P
 .BI "int isalnum(int " c );
 .BI "int isalpha(int " c );
 .BI "int iscntrl(int " c );
@@ -34,10 +34,10 @@ Standard C library
 .BI "int isspace(int " c );
 .BI "int isupper(int " c );
 .BI "int isxdigit(int " c );
-.PP
+.P
 .BI "int isascii(int " c );
 .BI "int isblank(int " c );
-.PP
+.P
 .BI "int isalnum_l(int " c ", locale_t " locale );
 .BI "int isalpha_l(int " c ", locale_t " locale );
 .BI "int isblank_l(int " c ", locale_t " locale );
@@ -50,28 +50,28 @@ Standard C library
 .BI "int isspace_l(int " c ", locale_t " locale );
 .BI "int isupper_l(int " c ", locale_t " locale );
 .BI "int isxdigit_l(int " c ", locale_t " locale );
-.PP
+.P
 .BI "int isascii_l(int " c ", locale_t " locale );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
 .ad l
-.PP
+.P
 .BR isascii ():
 .nf
     _XOPEN_SOURCE
         || /* glibc >= 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _SVID_SOURCE
 .fi
-.PP
+.P
 .BR isblank ():
 .nf
     _ISOC99_SOURCE || _POSIX_C_SOURCE >= 200112L
 .fi
-.PP
+.P
 .BR \%salnum_l (),
 .BR \%salpha_l (),
 .BR \%sblank_l (),
@@ -90,7 +90,7 @@ Feature Test Macro Requirements for glibc (see
     Before glibc 2.10:
         _GNU_SOURCE
 .fi
-.PP
+.P
 .BR isascii_l ():
 .nf
     Since glibc 2.10:
@@ -109,7 +109,7 @@ or
 falls into a certain character class according to the specified locale.
 The functions without the
 "_l" suffix perform the check based on the current locale.
-.PP
+.P
 The functions with the "_l" suffix perform the check
 based on the locale specified by the locale object
 .IR locale .
@@ -120,7 +120,7 @@ is the special locale object
 (see
 .BR duplocale (3))
 or is not a valid locale object handle.
-.PP
+.P
 The list below explains the operation of the functions without
 the "_l" suffix;
 the functions with the "_l" suffix differ only in using the locale object
@@ -356,7 +356,7 @@ is of type
 it must be cast to
 .IR "unsigned char" ,
 as in the following example:
-.PP
+.P
 .in +4n
 .EX
 char c;
@@ -364,7 +364,7 @@ char c;
 res = toupper((unsigned char) c);
 .EE
 .in
-.PP
+.P
 This is necessary because
 .I char
 may be the equivalent of
@@ -374,7 +374,7 @@ converting to
 .IR int ,
 yielding a value that is outside the range of
 .IR "unsigned char" .
-.PP
+.P
 The details of what characters belong to which class depend on the
 locale.
 For example,

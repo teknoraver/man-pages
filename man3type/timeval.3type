@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .EX
 .B #include <sys/time.h>
-.PP
+.P
 .B struct timeval {
 .BR "    time_t       tv_sec;" "   /* Seconds */"
 .BR "    suseconds_t  tv_usec;" "  /* Microseconds */"

@@ -14,7 +14,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/inotify.h>
-.PP
+.P
 .BI "int inotify_rm_watch(int " fd ", int " wd );
 .\" Before glibc 2.10, the second argument was types as uint32_t.
 .\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=7040
@@ -25,7 +25,7 @@ removes the watch associated with the watch descriptor
 .I wd
 from the inotify instance associated with the file descriptor
 .IR fd .
-.PP
+.P
 Removing a watch causes an
 .B IN_IGNORED
 event to be generated for this watch descriptor.

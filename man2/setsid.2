@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .B pid_t setsid(void);
 .fi
 .SH DESCRIPTION
@@ -30,10 +30,10 @@ The calling process is the leader of the new session
 The calling process also becomes
 the process group leader of a new process group in the session
 (i.e., its process group ID is made the same as its process ID).
-.PP
+.P
 The calling process will be the only process in
 the new process group and in the new session.
-.PP
+.P
 Initially, the new session has no controlling terminal.
 For details of how a session acquires a controlling terminal, see
 .BR credentials (7).
@@ -61,7 +61,7 @@ A child created via
 inherits its parent's session ID.
 The session ID is preserved across an
 .BR execve (2).
-.PP
+.P
 A process group leader is a process whose process group ID equals its PID.
 Disallowing a process group leader from calling
 .BR setsid ()
@@ -78,14 +78,14 @@ and have the parent
 .BR _exit (2),
 while the child (which by definition can't be a process group leader) calls
 .BR setsid ().
-.PP
+.P
 If a session has a controlling terminal, and the
 .B CLOCAL
 flag for that terminal is not set,
 and a terminal hangup occurs, then the session leader is sent a
 .B SIGHUP
 signal.
-.PP
+.P
 If a process that is a session leader terminates, then a
 .B SIGHUP
 signal is sent to each process in the foreground

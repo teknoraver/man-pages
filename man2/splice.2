@@ -14,7 +14,7 @@ Standard C library
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #define _FILE_OFFSET_BITS  64
 .B #include <fcntl.h>
-.PP
+.P
 .BI "ssize_t splice(int " fd_in ", off_t *_Nullable " off_in ,
 .BI "               int " fd_out ", off_t *_Nullable " off_out ,
 .BI "               size_t " len ", unsigned int " flags );
@@ -31,7 +31,7 @@ bytes of data from the file descriptor
 to the file descriptor
 .IR fd_out ,
 where one of the file descriptors must refer to a pipe.
-.PP
+.P
 The following semantics apply for
 .I fd_in
 and
@@ -64,12 +64,12 @@ offset from which bytes will be read from
 in this case, the file offset of
 .I fd_in
 is not changed.
-.PP
+.P
 Analogous statements apply for
 .I fd_out
 and
 .IR off_out .
-.PP
+.P
 The
 .I flags
 argument is a bit mask that is composed by ORing together
@@ -121,14 +121,14 @@ Upon successful completion,
 .BR splice ()
 returns the number of bytes
 spliced to or from the pipe.
-.PP
+.P
 A return value of 0 means end of input.
 If
 .I fd_in
 refers to a pipe, then this means that there was no data to transfer,
 and it would not make sense to block because there are no writers
 connected to the write end of the pipe.
-.PP
+.P
 On error,
 .BR splice ()
 returns \-1 and
@@ -182,7 +182,7 @@ Linux.
 .SH HISTORY
 Linux 2.6.17,
 glibc 2.5.
-.PP
+.P
 In Linux 2.6.30 and earlier,
 exactly one of
 .I fd_in
@@ -212,7 +212,7 @@ or from one buffer to another.
 .TP
 .BR vmsplice (2)
 "copies" data from user space into the buffer.
-.PP
+.P
 Though we talk of copying, actual copies are generally avoided.
 The kernel does this by implementing a pipe buffer as a set
 of reference-counted pointers to pages of kernel memory.
@@ -243,7 +243,7 @@ only pointers are copied, not the pages of the buffer.
 .\" the data and choose to forward it to two or more different
 .\" users - for things like logging etc.).
 .\"
-.PP
+.P
 .B _FILE_OFFSET_BITS
 should be defined to be 64 in code that uses non-null
 .I off_in

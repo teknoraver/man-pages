@@ -16,7 +16,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .BI "int raise(int " sig );
 .fi
 .SH DESCRIPTION
@@ -24,21 +24,21 @@ The
 .BR raise ()
 function sends a signal to the calling process or thread.
 In a single-threaded program it is equivalent to
-.PP
+.P
 .in +4n
 .EX
 kill(getpid(), sig);
 .EE
 .in
-.PP
+.P
 In a multithreaded program it is equivalent to
-.PP
+.P
 .in +4n
 .EX
 pthread_kill(pthread_self(), sig);
 .EE
 .in
-.PP
+.P
 If the signal causes a handler to be called,
 .BR raise ()
 will return only after the signal handler has returned.
@@ -63,7 +63,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, C89.
-.PP
+.P
 Since glibc 2.3.3,
 .BR raise ()
 is implemented by calling

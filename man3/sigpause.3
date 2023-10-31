@@ -12,9 +12,9 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .BI "[[deprecated]] int sigpause(int " sigmask ");  /* BSD (but see NOTES) */"
-.PP
+.P
 .BI "[[deprecated]] int sigpause(int " sig ");      /* POSIX.1 / SysV / UNIX 95 */"
 .fi
 .SH DESCRIPTION
@@ -22,7 +22,7 @@ Don't use this function.
 Use
 .BR sigsuspend (2)
 instead.
-.PP
+.P
 The function
 .BR sigpause ()
 is designed to wait for some signal.
@@ -62,7 +62,7 @@ T}	Thread safety	MT-Safe
 .SH VERSIONS
 On Linux, this routine is a system call only on the Sparc (sparc64)
 architecture.
-.PP
+.P
 .\" Libc4 and libc5 know only about the BSD version.
 .\"
 glibc uses the BSD version if the
@@ -83,7 +83,7 @@ _XOPEN_SOURCE >= 500
 .\" || (_XOPEN_SOURCE && _XOPEN_SOURCE_EXTENDED)
 .IP \[bu]
 glibc 2.25 and earlier: _XOPEN_SOURCE
-.PP
+.P
 Since glibc 2.19, only the System V version is exposed by
 .IR <signal.h> ;
 applications that formerly used the BSD
@@ -99,7 +99,7 @@ POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
 Obsoleted in POSIX.1-2008.
-.PP
+.P
 The classical BSD version of this function appeared in 4.2BSD.
 It sets the process's signal mask to
 .IR sigmask .

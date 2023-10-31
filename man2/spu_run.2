@@ -20,11 +20,11 @@ Standard C library
 .BR "#include <sys/spu.h>" "          /* Definition of " SPU_* " constants */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_spu_run, int " fd ", uint32_t *" npc \
 ", uint32_t *" event );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR spu_run (),
@@ -44,7 +44,7 @@ that refers to a specific SPU context.
 When the context gets scheduled to a physical SPU,
 it starts execution at the instruction pointer passed in
 .IR npc .
-.PP
+.P
 Execution of SPU code happens synchronously, meaning that
 .BR spu_run ()
 blocks while the SPU is still running.
@@ -53,7 +53,7 @@ to execute SPU code in parallel with other code on either the
 main CPU or other SPUs, a new thread of execution must be created
 first (e.g., using
 .BR pthread_create (3)).
-.PP
+.P
 When
 .BR spu_run ()
 returns, the current value of the SPU program counter is written to
@@ -63,7 +63,7 @@ so successive calls to
 can use the same
 .I npc
 pointer.
-.PP
+.P
 The
 .I event
 argument provides a buffer for an extended status code.
@@ -73,7 +73,7 @@ context was created with the
 flag, then this buffer is populated by the Linux kernel before
 .BR spu_run ()
 returns.
-.PP
+.P
 The status code may be one (or more) of the following constants:
 .TP
 .B SPE_EVENT_DMA_ALIGNMENT
@@ -89,7 +89,7 @@ A DMA storage error occurred.
 .TP
 .B SPE_EVENT_SPE_ERROR
 An illegal instruction was executed.
-.PP
+.P
 NULL
 is a valid value for the
 .I event
@@ -104,7 +104,7 @@ register.
 On failure, it returns \-1 and sets
 .I errno
 is set to indicate the error.
-.PP
+.P
 The
 .I spu_status
 register value is a bit mask of status codes and
@@ -141,7 +141,7 @@ The bits masked with this value contain the code returned from a
 .B stop-and-signal
 instruction.
 These bits are valid only if the 0x02 bit is set.
-.PP
+.P
 If
 .BR spu_run ()
 has not returned an error, one or more bits among the lower eight
@@ -198,7 +198,7 @@ The following is an example of running a simple, one-instruction SPU
 program with the
 .BR spu_run ()
 system call.
-.PP
+.P
 .\" SRC BEGIN (spu_run.c)
 .EX
 #include <err.h>

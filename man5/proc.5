@@ -16,13 +16,13 @@ It is commonly mounted at
 .IR /proc .
 Typically, it is mounted automatically by the system,
 but it can also be mounted manually using a command such as:
-.PP
+.P
 .in +4n
 .EX
 mount \-t proc proc /proc
 .EE
 .in
-.PP
+.P
 Most of the files in the
 .B proc
 filesystem are read-only,
@@ -175,7 +175,7 @@ directory.
 Various other files and subdirectories under
 .I /proc
 expose system-wide information.
-.PP
+.P
 All of the above are described in more detail below.
 .\"
 .\" .SH FILES
@@ -210,7 +210,7 @@ that are in the internal format,
 with subfields terminated by null bytes (\[aq]\e0\[aq]).
 When inspecting such files, you may find that the results are more readable
 if you use a command of the following form to display them:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " cat \fIfile\fP | tr \[aq]\e000\[aq] \[aq]\en\[aq]"
@@ -249,7 +249,7 @@ if you use a command of the following form to display them:
 .BR procinfo (8),
 .BR route (8),
 .BR sysctl (8)
-.PP
+.P
 The Linux kernel source files:
 .IR Documentation/filesystems/proc.rst ,
 .IR Documentation/admin\-guide/sysctl/fs.rst ,

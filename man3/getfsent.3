@@ -14,11 +14,11 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <fstab.h>
-.PP
+.P
 .B "int setfsent(void);"
 .B "struct fstab *getfsent(void);"
 .B "void endfsent(void);"
-.PP
+.P
 .BI "struct fstab *getfsfile(const char *" mount_point );
 .BI "struct fstab *getfsspec(const char *" special_file );
 .fi
@@ -28,7 +28,7 @@ These functions read from the file
 The
 .I struct fstab
 is defined by:
-.PP
+.P
 .in +4n
 .EX
 struct fstab {
@@ -42,26 +42,26 @@ struct fstab {
 };
 .EE
 .in
-.PP
+.P
 Here the field
 .I fs_type
 contains (on a *BSD system)
 one of the five strings "rw", "rq", "ro", "sw", "xx"
 (read-write, read-write with quota, read-only, swap, ignore).
-.PP
+.P
 The function
 .BR setfsent ()
 opens the file when required and positions it at the first line.
-.PP
+.P
 The function
 .BR getfsent ()
 parses the next line from the file.
 (After opening it when required.)
-.PP
+.P
 The function
 .BR endfsent ()
 closes the file when required.
-.PP
+.P
 The function
 .BR getfsspec ()
 searches the file from the start and returns the first entry found
@@ -70,7 +70,7 @@ for which the
 field matches the
 .I special_file
 argument.
-.PP
+.P
 The function
 .BR getfsfile ()
 searches the file from the start and returns the first entry found
@@ -140,7 +140,7 @@ The
 function appeared in 4.0BSD; the other four functions appeared in 4.3BSD.
 .SH NOTES
 These functions are not thread-safe.
-.PP
+.P
 Since Linux allows mounting a block special device in several places,
 and since several devices can have the same mount point, where the
 last device with a given mount point is the interesting one,

@@ -19,7 +19,7 @@ unix \- sockets for local interprocess communication
 .nf
 .B #include <sys/socket.h>
 .B #include <sys/un.h>
-.PP
+.P
 .IB unix_socket " = socket(AF_UNIX, type, 0);"
 .IB error " = socketpair(AF_UNIX, type, 0, int *" sv ");"
 .fi
@@ -34,7 +34,7 @@ Traditionally, UNIX domain sockets can be either unnamed,
 or bound to a filesystem pathname (marked as being of type socket).
 Linux also supports an abstract namespace which is independent of the
 filesystem.
-.PP
+.P
 Valid socket types in the UNIX domain are:
 .BR SOCK_STREAM ,
 for a stream-oriented socket;
@@ -47,12 +47,12 @@ and (since Linux 2.6.4)
 for a sequenced-packet socket that is connection-oriented,
 preserves message boundaries,
 and delivers messages in the order that they were sent.
-.PP
+.P
 UNIX domain sockets support passing file descriptors or process credentials
 to other processes using ancillary data.
 .SS Address format
 A UNIX domain socket address is represented in the following structure:
-.PP
+.P
 .in +4n
 .EX
 .\" #define UNIX_PATH_MAX    108
@@ -63,7 +63,7 @@ struct sockaddr_un {
 };
 .EE
 .in
-.PP
+.P
 The
 .I sun_family
 field always contains
@@ -71,7 +71,7 @@ field always contains
 On Linux,
 .I sun_path
 is 108 bytes in size; see also BUGS, below.
-.PP
+.P
 Various systems calls (for example,
 .BR bind (2),
 .BR connect (2),
@@ -87,7 +87,7 @@ Some other system calls (for example,
 and
 .BR accept (2))
 return an argument of this type.
-.PP
+.P
 Three types of address are distinguished in the
 .I sockaddr_un
 structure:
@@ -186,7 +186,7 @@ or, more simply,
 .I addrlen
 can be specified as
 .IR "sizeof(struct sockaddr_un)" .
-.PP
+.P
 There is some variation in how implementations handle UNIX domain
 socket addresses that do not follow the above rules.
 For example, some (but not all) implementations
@@ -194,7 +194,7 @@ For example, some (but not all) implementations
 .\" is 108 bytes
 append a null terminator if none is present in the supplied
 .IR sun_path .
-.PP
+.P
 When coding portable applications,
 keep in mind that some implementations
 .\" HP-UX
@@ -203,7 +203,7 @@ have
 as short as 92 bytes.
 .\" Modern BSDs generally have 104, Tru64 and AIX have 104,
 .\" Solaris and Irix have 108
-.PP
+.P
 Various system calls
 .RB ( accept (2),
 .BR recvfrom (2),
@@ -227,7 +227,7 @@ In the Linux implementation,
 pathname sockets honor the permissions of the directory they are in.
 Creation of a new socket fails if the process does not have write and
 search (execute) permission on the directory in which the socket is created.
-.PP
+.P
 On Linux,
 connecting to a stream socket object requires write permission on that socket;
 sending a datagram to a datagram socket likewise
@@ -237,13 +237,13 @@ on a socket file, and on some systems (e.g., older BSDs),
 the socket permissions are ignored.
 Portable programs should not rely on
 this feature for security.
-.PP
+.P
 When creating a new socket, the owner and group of the socket file
 are set according to the usual rules.
 The socket file has all permissions enabled,
 other than those that are turned off by the process
 .BR umask (2).
-.PP
+.P
 The owner, group, and permissions of a pathname socket can be changed (using
 .BR chown (2)
 and
@@ -260,10 +260,10 @@ and changing the ownership and permissions of the object (via
 and
 .BR fchmod (2))
 has no effect on the accessibility of the socket.
-.PP
+.P
 Abstract sockets automatically disappear when all open references
 to the socket are closed.
-.PP
+.P
 The abstract socket namespace is a nonportable Linux extension.
 .\"
 .SS Socket options
@@ -418,7 +418,7 @@ The change to 5 bytes came in Linux 2.3.15.)
 .SS Sockets API
 The following paragraphs describe domain-specific details and
 unsupported features of the sockets API for UNIX domain sockets on Linux.
-.PP
+.P
 UNIX domain sockets do not support the transmission of
 out-of-band data (the
 .B MSG_OOB
@@ -426,12 +426,12 @@ flag for
 .BR send (2)
 and
 .BR recv (2)).
-.PP
+.P
 The
 .BR send (2)
 .B MSG_MORE
 flag is not supported by UNIX domain sockets.
-.PP
+.P
 Before Linux 3.4,
 .\" commit 9f6f9af7694ede6314bed281eec74d588ba9474f
 the use of
@@ -441,7 +441,7 @@ in the
 argument of
 .BR recv (2)
 was not supported by UNIX domain sockets.
-.PP
+.P
 The
 .B SO_SNDBUF
 socket option does have an effect for UNIX domain sockets, but the
@@ -573,11 +573,11 @@ bytes in the data portion of the ancillary message for this data.
 To receive the security context, the
 .B SO_PASSSEC
 option must be enabled on the socket (see above).
-.PP
+.P
 When sending ancillary data with
 .BR sendmsg (2),
 only one item of each of the above types may be included in the sent message.
-.PP
+.P
 At least one byte of real data should be sent when sending ancillary data.
 On Linux, this is required to successfully send ancillary data over
 a UNIX domain stream socket.
@@ -585,11 +585,11 @@ When sending ancillary data over a UNIX domain datagram socket,
 it is not necessary on Linux to send any accompanying real data.
 However, portable applications should also include at least one byte
 of real data when sending ancillary data over a datagram socket.
-.PP
+.P
 When receiving from a stream socket,
 ancillary data forms a kind of barrier for the received data.
 For example, suppose that the sender transmits as follows:
-.PP
+.P
 .RS
 .PD 0
 .IP (1) 5
@@ -603,7 +603,7 @@ of one byte, with ancillary data.
 of four bytes, with no ancillary data.
 .PD
 .RE
-.PP
+.P
 Suppose that the receiver now performs
 .BR recvmsg (2)
 calls each with a buffer size of 20 bytes.
@@ -612,7 +612,7 @@ along with the ancillary data sent by the second
 .BR sendmsg (2)
 call.
 The next call will receive the remaining four bytes of data.
-.PP
+.P
 If the space allocated for receiving incoming ancillary data is too small
 then the ancillary data is truncated to the number of headers
 that will fit in the supplied buffer (or, in the case of an
@@ -639,14 +639,14 @@ The following
 calls return information in
 .IR value .
 The correct syntax is:
-.PP
+.P
 .RS
 .nf
 .BI int " value";
 .IB error " = ioctl(" unix_socket ", " ioctl_type ", &" value ");"
 .fi
 .RE
-.PP
+.P
 .I ioctl_type
 can be:
 .TP
@@ -800,7 +800,7 @@ by sending each file descriptor with
 and then closing the file descriptor so that it was not accounted against the
 .B RLIMIT_NOFILE
 resource limit.
-.PP
+.P
 Other errors can be generated by the generic socket layer or
 by the filesystem while generating a filesystem socket object.
 See the appropriate manual pages for more information.
@@ -818,7 +818,7 @@ longer needed (using
 The usual UNIX close-behind semantics apply; the socket can be unlinked
 at any time and will be finally removed from the filesystem when the last
 reference to it is closed.
-.PP
+.P
 To pass file descriptors or credentials over a
 .B SOCK_STREAM
 socket, you must
@@ -827,7 +827,7 @@ send or receive at least one byte of nonancillary data in the same
 or
 .BR recvmsg (2)
 call.
-.PP
+.P
 UNIX domain stream sockets do not support the notion of out-of-band data.
 .\"
 .SH BUGS
@@ -855,7 +855,7 @@ then the returned address structure
 .I won't
 have a null terminator in
 .IR sun_path .
-.PP
+.P
 In addition, some implementations
 .\" i.e., traditional BSD
 don't require a null terminator when binding a socket (the
@@ -865,12 +865,12 @@ argument is used to determine the length of
 and when the socket address is retrieved on these implementations,
 there is no null terminator in
 .IR sun_path .
-.PP
+.P
 Applications that retrieve socket addresses can (portably) code
 to handle the possibility that there is no null terminator in
 .I sun_path
 by respecting the fact that the number of valid bytes in the pathname is:
-.PP
+.P
 .in +4n
 .EX
 strnlen(addr.sun_path, addrlen \- offsetof(sockaddr_un, sun_path))
@@ -886,7 +886,7 @@ strnlen(addr.sun_path, addrlen \- offsetof(sockaddr_un, sun_path))
 .\" 2012-04-18
 .\"
 .\" FIXME . Track http://austingroupbugs.net/view.php?id=561
-.PP
+.P
 Alternatively, an application can retrieve
 the socket address by allocating a buffer of size
 .I "sizeof(struct sockaddr_un)+1"
@@ -898,7 +898,7 @@ as
 and the extra zero byte ensures that there will be
 a null terminator for the string returned in
 .IR sun_path :
-.PP
+.P
 .in +4n
 .EX
 void *addrp;
@@ -915,7 +915,7 @@ if (getsockname(sfd, (struct sockaddr *) addrp, &addrlen)) == \-1)
 printf("sun_path = %s\en", ((struct sockaddr_un *) addrp)\->sun_path);
 .EE
 .in
-.PP
+.P
 This sort of messiness can be avoided if it is guaranteed
 that the applications that
 .I create
@@ -933,7 +933,7 @@ The server sends back a message containing the sum of the client's integers.
 The client prints the sum and exits.
 The server waits for the next client to connect.
 To stop the server, the client is called with the command-line argument "DOWN".
-.PP
+.P
 The following output was recorded while running the server in the background
 and repeatedly executing the client.
 Execution of the server program ends when it receives the "DOWN" command.
@@ -1186,7 +1186,7 @@ main(int argc, char *argv[])
     exit(EXIT_SUCCESS);
 }
 .EE
-.PP
+.P
 For examples of the use of
 .BR SCM_RIGHTS ,
 see

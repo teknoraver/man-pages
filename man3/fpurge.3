@@ -13,13 +13,13 @@ Standard C library
 .nf
 /* unsupported */
 .B #include <stdio.h>
-.PP
+.P
 .BI "int fpurge(FILE *" stream );
-.PP
+.P
 /* supported */
 .B #include <stdio.h>
 .B #include <stdio_ext.h>
-.PP
+.P
 .BI "void  __fpurge(FILE *" stream );
 .fi
 .SH DESCRIPTION
@@ -34,7 +34,7 @@ this includes any text pushed back via
 .BR ungetc (3).
 See also
 .BR fflush (3).
-.PP
+.P
 The function
 .BR __fpurge ()
 does precisely the same, but without returning a value.

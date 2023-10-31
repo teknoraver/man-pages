@@ -19,17 +19,17 @@ Password hashing library
 .nf
 .BR "#define _XOPEN_SOURCE" "       /* See feature_test_macros(7) */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "[[deprecated]] void encrypt(char " block "[64], int " edflag );
-.PP
+.P
 .BR "#define _XOPEN_SOURCE" "       /* See feature_test_macros(7) */"
 .B #include <stdlib.h>
-.PP
+.P
 .BI "[[deprecated]] void setkey(const char *" key );
-.PP
+.P
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <crypt.h>
-.PP
+.P
 .BI "[[deprecated]] void setkey_r(const char *" key ", struct crypt_data *" data );
 .BI "[[deprecated]] void encrypt_r(char *" block ", int " edflag ,
 .BI "                              struct crypt_data *" data );
@@ -46,7 +46,7 @@ argument used here is an array of 64 bytes, each of which has
 numerical value 1 or 0.
 The bytes key[n] where n=8*i-1 are ignored,
 so that the effective key length is 56 bits.
-.PP
+.P
 The
 .BR encrypt ()
 function modifies the passed buffer, encoding if
@@ -58,7 +58,7 @@ argument, also
 .I block
 is a bit vector representation of the actual value that is encoded.
 The result is returned in that same vector.
-.PP
+.P
 These two functions are not reentrant, that is, the key data is
 kept in static storage.
 The functions
@@ -68,7 +68,7 @@ and
 are the reentrant versions.
 They use the following
 structure to hold the key data:
-.PP
+.P
 .in +4n
 .EX
 struct crypt_data {
@@ -85,7 +85,7 @@ struct crypt_data {
 };
 .EE
 .in
-.PP
+.P
 Before calling
 .BR setkey_r ()
 set
@@ -138,7 +138,7 @@ POSIX.1-2008.
 None.
 .SH HISTORY
 Removed in glibc 2.28.
-.PP
+.P
 Because they employ the DES block cipher,
 which is no longer considered secure,
 these functions were removed from glibc.

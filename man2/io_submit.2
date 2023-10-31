@@ -9,18 +9,18 @@ io_submit \- submit asynchronous I/O blocks for processing
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
-.PP
+.P
 Alternatively, Asynchronous I/O library
 .RI ( libaio ", " \-laio );
 see VERSIONS.
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/aio_abi.h>" "          /* Defines needed types */"
-.PP
+.P
 .BI "int io_submit(aio_context_t " ctx_id ", long " nr \
 ", struct iocb **" iocbpp );
 .fi
-.PP
+.P
 .IR Note :
 There is no glibc wrapper for this system call; see VERSIONS.
 .SH DESCRIPTION
@@ -32,7 +32,7 @@ uses a different type for the
 .I ctx_id
 argument.
 See VERSIONS.
-.PP
+.P
 The
 .BR io_submit ()
 system call
@@ -42,13 +42,13 @@ The
 .I iocbpp
 argument should be an array of \fInr\fP AIO control blocks,
 which will be submitted to context \fIctx_id\fP.
-.PP
+.P
 The
 .I iocb
 (I/O control block) structure defined in
 .I linux/aio_abi.h
 defines the parameters that control the I/O operation.
-.PP
+.P
 .in +4n
 .EX
 #include <linux/aio_abi.h>
@@ -68,7 +68,7 @@ struct iocb {
 };
 .EE
 .in
-.PP
+.P
 The fields of this structure are as follows:
 .TP
 .I aio_data
@@ -254,7 +254,7 @@ But instead, you probably want to use the
 wrapper function provided by
 .\" http://git.fedorahosted.org/git/?p=libaio.git
 .IR libaio .
-.PP
+.P
 Note that the
 .I libaio
 wrapper function uses a different type

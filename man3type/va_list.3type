@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdarg.h>
-.PP
+.P
 .BR typedef " /* ... */  " va_list;
 .fi
 .SH DESCRIPTION

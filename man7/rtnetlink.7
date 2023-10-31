@@ -16,7 +16,7 @@ rtnetlink \- Linux routing socket
 .B #include <linux/netlink.h>
 .B #include <linux/rtnetlink.h>
 .B #include <sys/socket.h>
-.PP
+.P
 .BI "rtnetlink_socket = socket(AF_NETLINK, int " socket_type ", NETLINK_ROUTE);"
 .fi
 .SH DESCRIPTION
@@ -35,7 +35,7 @@ for more information.
 .\" FIXME . ? all these macros could be moved to rtnetlink(3)
 .SS Routing attributes
 Some rtnetlink messages have optional attributes after the initial header:
-.PP
+.P
 .in +4n
 .EX
 struct rtattr {
@@ -45,7 +45,7 @@ struct rtattr {
 };
 .EE
 .in
-.PP
+.P
 These attributes should be manipulated using only the RTA_* macros
 or libnetlink, see
 .BR rtnetlink (3).

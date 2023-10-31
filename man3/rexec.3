@@ -20,19 +20,19 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <netdb.h>
-.PP
+.P
 .B [[deprecated]]
 .BI "int rexec(char **restrict " ahost ", int " inport ,
 .BI "          const char *restrict " user ", const char *restrict " passwd ,
 .BI "          const char *restrict " cmd ", int *restrict " fd2p );
-.PP
+.P
 .B [[deprecated]]
 .BI "int rexec_af(char **restrict " ahost ", int " inport ,
 .BI "          const char *restrict " user ", const char *restrict " passwd ,
 .BI "          const char *restrict " cmd ", int *restrict " fd2p ,
 .BI "          sa_family_t " af  );
 .fi
-.PP
+.P
 .BR rexec (),
 .BR rexec_af ():
 .nf
@@ -44,7 +44,7 @@ Standard C library
 .SH DESCRIPTION
 This interface is obsoleted by
 .BR rcmd (3).
-.PP
+.P
 The
 .BR rexec ()
 function
@@ -63,7 +63,7 @@ the environment and then the
 file in user's
 home directory are searched for appropriate information.
 If all this fails, the user is prompted for the information.
-.PP
+.P
 The port
 .I inport
 specifies which well-known DARPA Internet port to use for
@@ -74,7 +74,7 @@ the connection; the call
 will return a pointer to a structure that contains the necessary port.
 The protocol for connection is described in detail in
 .BR rexecd (8).
-.PP
+.P
 If the connection succeeds,
 a socket in the Internet domain of type
 .B SOCK_STREAM
@@ -151,7 +151,7 @@ glibc 2.2.
 The
 .BR rexec ()
 function sends the unencrypted password across the network.
-.PP
+.P
 The underlying service is considered a big security hole and therefore
 not enabled on many sites; see
 .BR rexecd (8)

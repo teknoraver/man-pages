@@ -19,7 +19,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BI "extern FILE *" stdin ;
 .BI "extern FILE *" stdout ;
 .BI "extern FILE *" stderr ;
@@ -35,7 +35,7 @@ but might instead refer to files or other devices, depending on what
 the parent process chose to set up.
 (See also the "Redirection" section of
 .BR sh (1).)
-.PP
+.P
 The input stream is referred to as "standard input"; the output stream is
 referred to as "standard output"; and the error stream is referred to
 as "standard error".
@@ -45,7 +45,7 @@ used to refer to these files, namely
 .IR stdout ,
 and
 .IR stderr .
-.PP
+.P
 Each of these symbols is a
 .BR stdio (3)
 macro of type pointer to
@@ -54,7 +54,7 @@ and can be used with functions like
 .BR fprintf (3)
 or
 .BR fread (3).
-.PP
+.P
 Since
 .IR FILE s
 are a buffering wrapper around UNIX file descriptors, the
@@ -63,7 +63,7 @@ interface, that is, the functions like
 .BR read (2)
 and
 .BR lseek (2).
-.PP
+.P
 On program startup, the integer file descriptors
 associated with the streams
 .IR stdin ,
@@ -82,7 +82,7 @@ are defined with these values in
 .BR freopen (3)
 to one of these streams can change the file descriptor number
 associated with the stream.)
-.PP
+.P
 Note that mixing use of
 .IR FILE s
 and raw file descriptors can produce
@@ -95,7 +95,7 @@ This means for example, that after an
 .BR exec (3),
 the child inherits all open file descriptors, but all old streams
 have become inaccessible.
-.PP
+.P
 Since the symbols
 .IR stdin ,
 .IR stdout ,
@@ -115,7 +115,7 @@ The standard streams are closed by a call to
 and by normal program termination.
 .SH STANDARDS
 C11, POSIX.1-2008.
-.PP
+.P
 The standards also stipulate that these three
 streams shall be open at program startup.
 .SH HISTORY

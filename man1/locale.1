@@ -17,7 +17,7 @@ The
 .B locale
 command displays information about the current locale, or all locales,
 on standard output.
-.PP
+.P
 When invoked without arguments,
 .B locale
 displays the current locale settings for each locale category (see
@@ -27,7 +27,7 @@ based on the settings of the environment variables that control the locale
 .BR locale (7)).
 Values for variables set in the environment are printed without double
 quotes, implied values are printed with double quotes.
-.PP
+.P
 If either the
 .B \-a
 or the
@@ -51,7 +51,7 @@ metadata about each locale to be included in the output.
 Display the available charmaps (character set description files).
 To display the current character set for the locale, use
 \fBlocale \-c charmap\fR.
-.PP
+.P
 The
 .B locale
 command can also be provided with one or more arguments,
@@ -71,7 +71,7 @@ For a locale keyword, the value of that keyword to be displayed.
 .IP \[bu]
 For a locale category,
 the values of all keywords in that category are displayed.
-.PP
+.P
 When arguments are supplied, the following options are meaningful:
 .TP
 .B \-\-category\-name
@@ -102,7 +102,7 @@ so that the output has the format:
 .IR keyword =\[dq] value \[dq]
 .EE
 .in
-.PP
+.P
 The
 .B locale
 command also knows about the following options:
@@ -153,24 +153,24 @@ LC_TELEPHONE="en_US.UTF\-8"
 LC_MEASUREMENT="en_US.UTF\-8"
 LC_IDENTIFICATION="en_US.UTF\-8"
 LC_ALL=
-.PP
+.P
 $ \fBlocale date_fmt\fP
 %a %b %e %H:%M:%S %Z %Y
-.PP
+.P
 $ \fBlocale \-k date_fmt\fP
 date_fmt="%a %b %e %H:%M:%S %Z %Y"
-.PP
+.P
 $ \fBlocale \-ck date_fmt\fP
 LC_TIME
 date_fmt="%a %b %e %H:%M:%S %Z %Y"
-.PP
+.P
 $ \fBlocale LC_TELEPHONE\fP
 +%c (%a) %l
 (%a) %l
 11
 1
 UTF\-8
-.PP
+.P
 $ \fBlocale \-k LC_TELEPHONE\fP
 tel_int_fmt="+%c (%a) %l"
 tel_dom_fmt="(%a) %l"
@@ -178,7 +178,7 @@ int_select="11"
 int_prefix="1"
 telephone\-codeset="UTF\-8"
 .EE
-.PP
+.P
 The following example compiles a custom locale from the
 .I ./wrk
 directory with the
@@ -193,7 +193,7 @@ and
 .B LANG
 in the shell profile file so that the custom locale will be used in the
 subsequent user sessions:
-.PP
+.P
 .EX
 $ \fBmkdir \-p $HOME/.locale\fP
 $ \fBI18NPATH=./wrk/ localedef \-f UTF\-8 \-i fi_SE $HOME/.locale/fi_SE.UTF\-8\fP

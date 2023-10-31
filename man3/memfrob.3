@@ -18,7 +18,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <string.h>
-.PP
+.P
 .BI "void *memfrob(void " s [. n "], size_t " n );
 .fi
 .SH DESCRIPTION
@@ -31,7 +31,7 @@ The effect can be reversed by using
 .BR memfrob ()
 on the
 obfuscated memory area.
-.PP
+.P
 Note that this function is not a proper encryption routine as the XOR
 constant is fixed, and is suitable only for hiding strings.
 .SH RETURN VALUE

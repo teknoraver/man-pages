@@ -18,7 +18,7 @@ The default configuration file,
 determines the behavior of the cache daemon.
 See
 .BR nscd.conf (5).
-.PP
+.P
 .B nscd
 provides caching for accesses of the
 .BR passwd (5),
@@ -34,7 +34,7 @@ databases through standard libc interfaces, such as
 .BR getgrgid (3),
 .BR gethostbyname (3),
 and others.
-.PP
+.P
 There are two caches for each database:
 a positive one for items found, and a negative one
 for items not found.
@@ -70,7 +70,7 @@ In that case, you need to run the following command
 after changing the configuration file of the database so that
 .B nscd
 invalidates its cache:
-.PP
+.P
 .in +4n
 .EX
 $ \fBnscd \-i\fP \fI<database>\fP

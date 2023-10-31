@@ -25,25 +25,25 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/stat.h>
-.PP
+.P
 .BI "int stat(const char *restrict " pathname ,
 .BI "         struct stat *restrict " statbuf );
 .BI "int fstat(int " fd ", struct stat *" statbuf );
 .BI "int lstat(const char *restrict " pathname ,
 .BI "         struct stat *restrict " statbuf );
-.PP
+.P
 .BR "#include <fcntl.h>           " "/* Definition of " AT_* " constants */"
 .B #include <sys/stat.h>
-.PP
+.P
 .BI "int fstatat(int " dirfd ", const char *restrict " pathname ,
 .BI "         struct stat *restrict " statbuf ", int " flags );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR lstat ():
 .nf
     /* Since glibc 2.20 */ _DEFAULT_SOURCE
@@ -52,7 +52,7 @@ Feature Test Macro Requirements for glibc (see
         || /* Since glibc 2.10: */ _POSIX_C_SOURCE >= 200112L
         || /* glibc 2.19 and earlier */ _BSD_SOURCE
 .fi
-.PP
+.P
 .BR fstatat ():
 .nf
     Since glibc 2.10:
@@ -71,7 +71,7 @@ and
 (search) permission is required on all of the directories in
 .I pathname
 that lead to the file.
-.PP
+.P
 .BR stat ()
 and
 .BR fstatat ()
@@ -80,7 +80,7 @@ retrieve information about the file pointed to by
 the differences for
 .BR fstatat ()
 are described below.
-.PP
+.P
 .BR lstat ()
 is identical to
 .BR stat (),
@@ -88,7 +88,7 @@ except that if
 .I pathname
 is a symbolic link, then it returns information about the link itself,
 not the file that the link refers to.
-.PP
+.P
 .BR fstat ()
 is identical to
 .BR stat (),
@@ -101,7 +101,7 @@ All of these system calls return a
 .I stat
 structure (see
 .BR stat (3type)).
-.PP
+.P
 .\" Background: inode attributes are modified with i_mutex held, but
 .\" read by stat() without taking the mutex.
 .IR Note :
@@ -135,7 +135,7 @@ which can still provide exactly the behavior of each of
 .BR lstat (),
 and
 .BR fstat ().
-.PP
+.P
 If the pathname given in
 .I pathname
 is relative, then it is interpreted relative to the directory
@@ -147,7 +147,7 @@ the calling process, as is done by
 and
 .BR lstat ()
 for a relative pathname).
-.PP
+.P
 If
 .I pathname
 is relative and
@@ -161,13 +161,13 @@ directory of the calling process (like
 .BR stat ()
 and
 .BR lstat ()).
-.PP
+.P
 If
 .I pathname
 is absolute, then
 .I dirfd
 is ignored.
-.PP
+.P
 .I flags
 can either be 0, or include one or more of the following flags ORed:
 .TP
@@ -214,7 +214,7 @@ instead return information about the link itself, like
 .BR fstatat ()
 dereferences symbolic links, like
 .BR stat ().)
-.PP
+.P
 See
 .BR openat (2)
 for an explanation of the need for
@@ -329,7 +329,7 @@ SVr4, 4.3BSD, POSIX.1-2001.
 POSIX.1-2008.
 Linux 2.6.16,
 glibc 2.4.
-.PP
+.P
 According to POSIX.1-2001,
 .BR lstat ()
 on a symbolic link need return valid information only in the
@@ -343,7 +343,7 @@ POSIX.1-2008 tightens the specification, requiring
 .BR lstat ()
 to return valid information in all fields except the mode bits in
 .IR st_mode .
-.PP
+.P
 Use of the
 .I st_blocks
 and
@@ -377,7 +377,7 @@ Similar remarks apply for
 .BR fstat ()
 and
 .BR lstat ().
-.PP
+.P
 The kernel-internal versions of the
 .I stat
 structure dealt with by the different versions are, respectively:
@@ -404,7 +404,7 @@ and various other enlarged fields and further padding in the structure.
 (Various padding bytes were eventually consumed in Linux 2.6,
 with the advent of 32-bit device IDs and nanosecond components
 for the timestamp fields.)
-.PP
+.P
 The glibc
 .BR stat ()
 wrapper function hides these details from applications,
@@ -438,13 +438,13 @@ and repacking the returned information if required for old binaries.
 .\" interface, rather than the libc-kernel interface.
 .\"
 .\" (Note that the details depend on gcc being used as c compiler.)
-.PP
+.P
 On modern 64-bit systems, life is simpler: there is a single
 .BR stat ()
 system call and the kernel deals with a
 .I stat
 structure that contains fields of a sufficient size.
-.PP
+.P
 The underlying system call employed by the glibc
 .BR fstatat ()
 wrapper function is actually called
@@ -458,7 +458,7 @@ The following program calls
 and displays selected fields in the returned
 .I stat
 structure.
-.PP
+.P
 .\" SRC BEGIN (stat.c)
 .EX
 #include <stdint.h>

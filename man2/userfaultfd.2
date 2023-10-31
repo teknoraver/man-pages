@@ -16,10 +16,10 @@ Standard C library
 .BR "#include <sys/syscall.h>" "       /* Definition of " SYS_* " constants */"
 .BR "#include <linux/userfaultfd.h>" " /* Definition of " UFFD_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_userfaultfd, int " flags );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR userfaultfd (),
@@ -32,7 +32,7 @@ handling to a user-space application,
 and returns a file descriptor that refers to the new object.
 The new userfaultfd object is configured using
 .BR ioctl (2).
-.PP
+.P
 Once the userfaultfd object is configured, the application can use
 .BR read (2)
 to receive userfaultfd notifications.
@@ -41,7 +41,7 @@ depending on the value of
 .I flags
 used for the creation of the userfaultfd or subsequent calls to
 .BR fcntl (2).
-.PP
+.P
 The following values may be bitwise ORed in
 .I flags
 to change the behavior of
@@ -69,12 +69,12 @@ When a kernel-originated fault was triggered
 on the registered range with this userfaultfd, a
 .B SIGBUS
 signal will be delivered.
-.PP
+.P
 When the last file descriptor referring to a userfaultfd object is closed,
 all memory ranges that were registered with the object are unregistered
 and unread events are flushed.
 .\"
-.PP
+.P
 Userfaultfd supports three modes of registration:
 .TP
 .BR UFFDIO_REGISTER_MODE_MISSING " (since Linux 4.10)"
@@ -111,9 +111,9 @@ The faulted thread will be stopped from execution
 until user-space write-unprotects the page using an
 .B UFFDIO_WRITEPROTECT
 ioctl.
-.PP
+.P
 Multiple modes can be enabled at the same time for the same memory range.
-.PP
+.P
 Since Linux 4.14, a userfaultfd page-fault notification can selectively embed
 faulting thread ID information into the notification.
 One needs to enable this feature explicitly using the
@@ -132,7 +132,7 @@ them using the operations described in
 .BR ioctl_userfaultfd (2).
 When servicing the page fault events,
 the fault-handling thread can trigger a wake-up for the sleeping thread.
-.PP
+.P
 It is possible for the faulting threads and the fault-handling threads
 to run in the context of different processes.
 In this case, these threads may belong to different programs,
@@ -142,7 +142,7 @@ In such non-cooperative mode,
 the process that monitors userfaultfd and handles page faults
 needs to be aware of the changes in the virtual memory layout
 of the faulting process to avoid memory corruption.
-.PP
+.P
 Since Linux 4.11,
 userfaultfd can also notify the fault-handling threads about changes
 in the virtual memory layout of the faulting process.
@@ -166,7 +166,7 @@ soon as the userfaultfd manager executes
 The userfaultfd manager should carefully synchronize calls to
 .B UFFDIO_COPY
 with the processing of events.
-.PP
+.P
 The current asynchronous model of the event delivery is optimal for
 single threaded non-cooperative userfaultfd manager implementations.
 .\" Regarding the preceding sentence, Mike Rapoport says:
@@ -174,13 +174,13 @@ single threaded non-cooperative userfaultfd manager implementations.
 .\"     problematic for multi-threaded monitor. I even suspect that it would be
 .\"     impossible to ensure synchronization between page faults and non-page
 .\"     fault events in multi-threaded monitor.
-.\" .PP
+.\" .P
 .\" FIXME elaborate about non-cooperating mode, describe its limitations
 .\" for kernels before Linux 4.11, features added in Linux 4.11
 .\" and limitations remaining in Linux 4.11
 .\" Maybe it's worth adding a dedicated sub-section...
 .\"
-.PP
+.P
 Since Linux 5.7, userfaultfd is able to do
 synchronous page dirty tracking using the new write-protect register mode.
 One should check against the feature bit
@@ -208,7 +208,7 @@ This operation must be performed before any of the other
 operations described below (or those operations fail with the
 .B EINVAL
 error).
-.PP
+.P
 After a successful
 .B UFFDIO_API
 operation,
@@ -229,7 +229,7 @@ or
 .BR UFFDIO_CONTINUE )
 .BR ioctl (2)
 operations to resolve the page fault.
-.PP
+.P
 Since Linux 4.14, if the application sets the
 .B UFFD_FEATURE_SIGBUS
 feature bit using the
@@ -248,23 +248,23 @@ accesses.
 For example, this feature can be useful for applications that
 want to prevent the kernel from automatically allocating pages and filling
 holes in sparse files when the hole is accessed through a memory mapping.
-.PP
+.P
 The
 .B UFFD_FEATURE_SIGBUS
 feature is implicitly inherited through
 .BR fork (2)
 if used in combination with
 .BR UFFD_FEATURE_FORK .
-.PP
+.P
 Details of the various
 .BR ioctl (2)
 operations can be found in
 .BR ioctl_userfaultfd (2).
-.PP
+.P
 Since Linux 4.11, events other than page-fault may enabled during
 .B UFFDIO_API
 operation.
-.PP
+.P
 Up to Linux 4.11,
 userfaultfd can be used only with anonymous private memory mappings.
 Since Linux 4.11,
@@ -277,13 +277,13 @@ The user needs to first check availability of this feature using
 ioctl against the feature bit
 .B UFFD_FEATURE_PAGEFAULT_FLAG_WP
 before using this feature.
-.PP
+.P
 Since Linux 5.19,
 the write-protection mode was also supported on
 shmem and hugetlbfs memory types.
 It can be detected with the feature bit
 .BR UFFD_FEATURE_WP_HUGETLBFS_SHMEM .
-.PP
+.P
 To register with userfaultfd write-protect mode, the user needs to initiate the
 .B UFFDIO_REGISTER
 ioctl with mode
@@ -301,7 +301,7 @@ registered, user-space will
 receive any notification when a missing page is written.
 Instead, user-space will receive a write-protect page-fault notification
 only when an existing but write-protected page got written.
-.PP
+.P
 After the
 .B UFFDIO_REGISTER
 ioctl completed with
@@ -313,7 +313,7 @@ where
 .I uffdio_writeprotect.mode
 should be set to
 .BR UFFDIO_WRITEPROTECT_MODE_WP .
-.PP
+.P
 When a write-protect event happens,
 user-space will receive a page-fault notification whose
 .I uffd_msg.pagefault.flags
@@ -326,7 +326,7 @@ write-protect notifications will always have the
 bit set along with the
 .B UFFD_PAGEFAULT_FLAG_WP
 bit.
-.PP
+.P
 To resolve a write-protection page fault, the user should initiate another
 .B UFFDIO_WRITEPROTECT
 ioctl, whose
@@ -352,14 +352,14 @@ since Linux 5.13,
 or
 .B UFFD_FEATURE_MINOR_SHMEM
 since Linux 5.14.
-.PP
+.P
 To register with userfaultfd minor fault mode,
 the user needs to initiate the
 .B UFFDIO_REGISTER
 ioctl with mode
 .B UFFD_REGISTER_MODE_MINOR
 set.
-.PP
+.P
 When a minor fault occurs,
 user-space will receive a page-fault notification
 whose
@@ -367,7 +367,7 @@ whose
 will have the
 .B UFFD_PAGEFAULT_FLAG_MINOR
 flag set.
-.PP
+.P
 To resolve a minor page fault,
 the handler should decide whether or not
 the existing page contents need to be modified first.
@@ -383,7 +383,7 @@ ioctl,
 which installs the page table entries and
 (by default)
 wakes up the faulting thread(s).
-.PP
+.P
 Minor fault mode supports only hugetlbfs-backed (since Linux 5.13)
 and shmem-backed (since Linux 5.14) memory.
 .\"
@@ -394,7 +394,7 @@ from the userfaultfd file descriptor returns one or more
 .I uffd_msg
 structures, each of which describes a page-fault event
 or an event required for the non-cooperative userfaultfd usage:
-.PP
+.P
 .in +4n
 .EX
 struct uffd_msg {
@@ -431,7 +431,7 @@ struct uffd_msg {
 } __packed;
 .EE
 .in
-.PP
+.P
 If multiple events are available and the supplied buffer is large enough,
 .BR read (2)
 returns as many events as will fit in the supplied buffer.
@@ -443,7 +443,7 @@ structure, the
 .BR read (2)
 fails with the error
 .BR EINVAL .
-.PP
+.P
 The fields set in the
 .I uffd_msg
 structure are as follows:
@@ -533,7 +533,7 @@ If this flag is set, then the fault was a minor fault.
 .TP
 .B UFFD_PAGEFAULT_FLAG_WRITE
 If this flag is set, then the fault was a write fault.
-.PP
+.P
 If neither
 .B UFFD_PAGEFAULT_FLAG_WP
 nor
@@ -570,7 +570,7 @@ or unmapped
 The end address of the memory range that was freed using
 .BR madvise (2)
 or unmapped
-.PP
+.P
 A
 .BR read (2)
 on a userfaultfd file descriptor can fail with the following errors:
@@ -580,7 +580,7 @@ The userfaultfd object has not yet been enabled using the
 .B UFFDIO_API
 .BR ioctl (2)
 operation
-.PP
+.P
 If the
 .B O_NONBLOCK
 flag is enabled in the associated open file description,
@@ -637,7 +637,7 @@ has the value 0.
 Linux.
 .SH HISTORY
 Linux 4.3.
-.PP
+.P
 Support for hugetlbfs and shared memory areas and
 non-page-fault events was added in Linux 4.11
 .SH NOTES
@@ -667,7 +667,7 @@ The program creates two threads, one of which acts as the
 page-fault handler for the process, for the pages in a demand-page zero
 region created using
 .BR mmap (2).
-.PP
+.P
 The program takes one command-line argument,
 which is the number of pages that will be created in a mapping
 whose page faults will be handled via userfaultfd.
@@ -679,13 +679,13 @@ and registers the address range of that mapping using the
 operation.
 The program then creates a second thread that will perform the
 task of handling page faults.
-.PP
+.P
 The main thread then walks through the pages of the mapping fetching
 bytes from successive pages.
 Because the pages have not yet been accessed,
 the first access of a byte in each page will trigger a page-fault event
 on the userfaultfd file descriptor.
-.PP
+.P
 Each of the page-fault events is handled by the second thread,
 which sits in a loop processing input from the userfaultfd file descriptor.
 In each loop iteration, the second thread first calls
@@ -700,9 +700,9 @@ the faulting region using the
 .B UFFDIO_COPY
 .BR ioctl (2)
 operation.
-.PP
+.P
 The following is an example of what we see when running the program:
-.PP
+.P
 .in +4n
 .EX
 $ \fB./userfaultfd_demo 3\fP
@@ -946,6 +946,6 @@ main(int argc, char *argv[])
 .BR ioctl_userfaultfd (2),
 .BR madvise (2),
 .BR mmap (2)
-.PP
+.P
 .I Documentation/admin\-guide/mm/userfaultfd.rst
 in the Linux kernel source tree

@@ -25,10 +25,10 @@ Standard C library
 .nf
 .B #include <sys/types.h>
 .B #include <pwd.h>
-.PP
+.P
 .BI "struct passwd *getpwnam(const char *" name );
 .BI "struct passwd *getpwuid(uid_t " uid );
-.PP
+.P
 .BI "int getpwnam_r(const char *restrict " name ", \
 struct passwd *restrict " pwd ,
 .BI "               char " buf "[restrict ." buflen "], size_t " buflen ,
@@ -37,12 +37,12 @@ struct passwd *restrict " pwd ,
 .BI "               char " buf "[restrict ." buflen "], size_t " buflen ,
 .BI "               struct passwd **restrict " result );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getpwnam_r (),
 .BR getpwuid_r ():
 .nf
@@ -59,16 +59,16 @@ the broken-out fields of the record in the password database
 NIS, and LDAP)
 that matches the username
 .IR name .
-.PP
+.P
 The
 .BR getpwuid ()
 function returns a pointer to a structure containing
 the broken-out fields of the record in the password database
 that matches the user ID
 .IR uid .
-.PP
+.P
 The \fIpasswd\fP structure is defined in \fI<pwd.h>\fP as follows:
-.PP
+.P
 .in +4n
 .EX
 struct passwd {
@@ -82,11 +82,11 @@ struct passwd {
 };
 .EE
 .in
-.PP
+.P
 See
 .BR passwd (5)
 for more information about these fields.
-.PP
+.P
 The
 .BR getpwnam_r ()
 and
@@ -108,15 +108,15 @@ of size
 A pointer to the result (in case of success) or NULL (in case no entry
 was found or an error occurred) is stored in
 .IR *result .
-.PP
+.P
 The call
-.PP
+.P
 .in +4n
 .EX
 sysconf(_SC_GETPW_R_SIZE_MAX)
 .EE
 .in
-.PP
+.P
 returns either \-1, without changing
 .IR errno ,
 or an initial suggested size for
@@ -140,7 +140,7 @@ is set to indicate the error.
 If one wants to check
 .I errno
 after the call, it should be set to zero before the call.
-.PP
+.P
 The return value may point to a static area, and may be overwritten
 by subsequent calls to
 .BR getpwent (3),
@@ -149,7 +149,7 @@ or
 .BR getpwuid ().
 (Do not pass the returned pointer to
 .BR free (3).)
-.PP
+.P
 On success,
 .BR getpwnam_r ()
 and
@@ -264,7 +264,7 @@ situation: 0, ENOENT, EBADF, ESRCH, EWOULDBLOCK, EPERM, and probably others.
 .\" FreeBSD 4.8, OpenBSD 3.2, NetBSD 1.6 - give EPERM
 .\" SunOS 5.8 - gives EBADF
 .\" Tru64 5.1b, HP-UX-11i, SunOS 5.7 - give 0
-.PP
+.P
 The
 .I pw_dir
 field contains the name of the initial working directory of the user.
@@ -287,7 +287,7 @@ The program below demonstrates the use of
 .BR getpwnam_r ()
 to find the full username and user ID for the username
 supplied as a command-line argument.
-.PP
+.P
 .\" SRC BEGIN (getpwnam.c)
 .EX
 #include <errno.h>

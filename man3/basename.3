@@ -14,7 +14,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <libgen.h>
-.PP
+.P
 .BI "char *dirname(char *" path );
 .BI "char *basename(char *" path );
 .fi
@@ -22,7 +22,7 @@ Standard C library
 Warning: there are two different functions
 .BR basename ();
 see below.
-.PP
+.P
 The functions
 .BR dirname ()
 and
@@ -35,7 +35,7 @@ returns the string up to, but not including, the final \[aq]/\[aq], and
 .BR basename ()
 returns the component following the final \[aq]/\[aq].
 Trailing \[aq]/\[aq] characters are not counted as part of the pathname.
-.PP
+.P
 If
 .I path
 does not contain a slash,
@@ -58,13 +58,13 @@ is a null pointer or points to an empty string, then both
 and
 .BR basename ()
 return the string ".".
-.PP
+.P
 Concatenating the string returned by
 .BR dirname (),
 a "/", and the string returned by
 .BR basename ()
 yields a complete pathname.
-.PP
+.P
 Both
 .BR dirname ()
 and
@@ -73,7 +73,7 @@ may modify the contents of
 .IR path ,
 so it may be desirable to pass a copy when calling one of
 these functions.
-.PP
+.P
 These functions may return pointers to statically allocated memory
 which may be overwritten by subsequent calls.
 Alternatively, they may return a pointer to some part of
@@ -82,7 +82,7 @@ so that the string referred to by
 .I path
 should not be modified or freed until the pointer returned by
 the function is no longer required.
-.PP
+.P
 The following list of examples (taken from SUSv2)
 shows the strings returned by
 .BR dirname ()
@@ -130,21 +130,21 @@ There are two different versions of
 .BR basename ()
 - the POSIX version described above, and the GNU version, which one gets
 after
-.PP
+.P
 .in +4n
 .EX
 .BR "    #define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B "    #include <string.h>"
 .EE
 .in
-.PP
+.P
 The GNU version never modifies its argument, and returns the
 empty string when
 .I path
 has a trailing slash, and in particular also when it is "/".
 There is no GNU version of
 .BR dirname ().
-.PP
+.P
 With glibc, one gets the POSIX version of
 .BR basename ()
 when
@@ -160,7 +160,7 @@ the POSIX versions of these functions modify the
 .I path
 argument, and segfault when called with a static string
 such as "/usr/".
-.PP
+.P
 Before glibc 2.2.1, the glibc version of
 .BR dirname ()
 did not correctly handle pathnames with trailing \[aq]/\[aq] characters,

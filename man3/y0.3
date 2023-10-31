@@ -24,25 +24,25 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double y0(double " x );
 .BI "double y1(double " x );
 .BI "double yn(int " n ", double " x );
-.PP
+.P
 .BI "float y0f(float " x );
 .BI "float y1f(float " x );
 .BI "float ynf(int " n ", float " x );
-.PP
+.P
 .BI "long double y0l(long double " x );
 .BI "long double y1l(long double " x );
 .BI "long double ynl(int " n ", long double " x );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR y0 (),
 .BR y1 (),
 .BR yn ():
@@ -51,7 +51,7 @@ Feature Test Macro Requirements for glibc (see
         || /* Since glibc 2.19: */ _DEFAULT_SOURCE
         || /* glibc <= 2.19: */ _SVID_SOURCE || _BSD_SOURCE
 .fi
-.PP
+.P
 .BR y0f (),
 .BR y0l (),
 .BR y1f (),
@@ -79,11 +79,11 @@ returns the Bessel function of
 .I x
 of the second kind of order
 .IR n .
-.PP
+.P
 The value of
 .I x
 must be positive.
-.PP
+.P
 The
 .BR y0f (),
 .BR y1f (),
@@ -104,11 +104,11 @@ values.
 On success, these functions return the appropriate
 Bessel value of the second kind for
 .IR x .
-.PP
+.P
 If
 .I x
 is a NaN, a NaN is returned.
-.PP
+.P
 If
 .I x
 is negative,
@@ -120,7 +120,7 @@ or
 .RB \- HUGE_VALL ,
 respectively.
 (POSIX.1-2001 also allows a NaN return for this case.)
-.PP
+.P
 If
 .I x
 is 0.0,
@@ -131,11 +131,11 @@ and the functions return
 or
 .RB \- HUGE_VALL ,
 respectively.
-.PP
+.P
 If the result underflows,
 a range error occurs,
 and the functions return 0.0
-.PP
+.P
 If the result overflows,
 a range error occurs,
 and the functions return
@@ -150,7 +150,7 @@ See
 .BR math_error (7)
 for information on how to determine whether an error has occurred
 when calling these functions.
-.PP
+.P
 The following errors can occur:
 .TP
 Domain error: \fIx\fP is negative
@@ -259,13 +259,13 @@ instead of
 and no
 .B FE_DIVBYZERO
 exception was raised.
-.PP
+.P
 Before glibc 2.17,
 .\" https://www.sourceware.org/bugzilla/show_bug.cgi?id=6808
 did not set
 .I errno
 for "range error: result underflow".
-.PP
+.P
 In glibc 2.3.2 and earlier,
 .\" Actually, 2.3.2 is the earliest test result I have; so yet
 .\" to confirm if this error occurs only in glibc 2.3.2.

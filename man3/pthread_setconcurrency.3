@@ -13,7 +13,7 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_setconcurrency(int " new_level );
 .BI "int pthread_getconcurrency(" void );
 .fi
@@ -27,12 +27,12 @@ The implementation takes this only as a hint:
 POSIX.1 does not specify the level of concurrency that
 should be provided as a result of calling
 .BR pthread_setconcurrency ().
-.PP
+.P
 Specifying
 .I new_level
 as 0 instructs the implementation to manage the concurrency level
 as it deems appropriate.
-.PP
+.P
 .BR pthread_getconcurrency ()
 returns the current value of the concurrency level for this process.
 .SH RETURN VALUE
@@ -40,7 +40,7 @@ On success,
 .BR pthread_setconcurrency ()
 returns 0;
 on error, it returns a nonzero error number.
-.PP
+.P
 .BR pthread_getconcurrency ()
 always succeeds, returning the concurrency level set by a previous call to
 .BR pthread_setconcurrency (),
@@ -54,7 +54,7 @@ can fail with the following error:
 .B EINVAL
 .I new_level
 is negative.
-.PP
+.P
 POSIX.1 also documents an
 .B EAGAIN
 error ("the value specified by
@@ -82,14 +82,14 @@ glibc 2.1.
 POSIX.1-2001.
 .SH NOTES
 The default concurrency level is 0.
-.PP
+.P
 Concurrency levels are meaningful only for M:N threading implementations,
 where at any moment a subset of a process's set of user-level threads
 may be bound to a smaller number of kernel-scheduling entities.
 Setting the concurrency level allows the application to
 give the system a hint as to the number of kernel-scheduling entities
 that should be provided for efficient execution of the application.
-.PP
+.P
 Both LinuxThreads and NPTL are 1:1 threading implementations,
 so setting the concurrency level has no meaning.
 In other words,

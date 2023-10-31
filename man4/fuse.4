@@ -21,7 +21,7 @@ Those implementing a FUSE filesystem may wish to make use of
 a user-space library such as
 .I libfuse
 that abstracts away the low-level interface.
-.PP
+.P
 At its core, FUSE is a simple client-server protocol, in which the Linux
 kernel is the client and the daemon is the server.
 After obtaining a file descriptor for this device, the daemon may
@@ -38,7 +38,7 @@ through the first file descriptor (and vice versa).
 .SS The basic protocol
 Every message that is read by the daemon begins with a header described by
 the following structure:
-.PP
+.P
 .in +4n
 .EX
 struct fuse_in_header {
@@ -55,19 +55,19 @@ struct fuse_in_header {
 };
 .EE
 .in
-.PP
+.P
 The header is followed by a variable-length data portion
 (which may be empty) specific to the requested operation
 (the requested operation is indicated by
 .IR opcode ).
-.PP
+.P
 The daemon should then process the request and if applicable send
 a reply (almost all operations require a reply; if they do not,
 this is documented below), by performing a
 .BR write (2)
 to the file descriptor.
 All replies must start with the following header:
-.PP
+.P
 .in +4n
 .EX
 struct fuse_out_header {
@@ -79,7 +79,7 @@ struct fuse_out_header {
 };
 .EE
 .in
-.PP
+.P
 This header is also followed by (potentially empty) variable-sized
 data depending on the executed request.
 However, if the reply is an error reply (i.e.,
@@ -494,7 +494,7 @@ file descriptor that has not been mounted.
 Linux.
 .SH NOTES
 The following messages are not yet documented in this manual page:
-.PP
+.P
 .\" FIXME: Document the following.
 .in +4n
 .EX

@@ -19,7 +19,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "size_t mbstowcs(wchar_t " dest "[restrict ." n "], \
 const char *restrict " src ,
 .BI "                size_t " n );
@@ -62,13 +62,13 @@ terminating null character (\[aq]\e0\[aq]).
 In this case, the number of wide characters written to
 .IR dest ,
 excluding the terminating null wide character, is returned.
-.PP
+.P
 The programmer must ensure that there is room for at least
 .I n
 wide
 characters at
 .IR dest .
-.PP
+.P
 If
 .I dest
 is NULL,
@@ -76,7 +76,7 @@ is NULL,
 is ignored, and the conversion proceeds as
 above, except that the converted wide characters are not written out to memory,
 and that no length limit exists.
-.PP
+.P
 In order to avoid the case 2 above, the programmer should make sure
 .I n
 is
@@ -127,7 +127,7 @@ The program below illustrates the use of
 .BR mbstowcs (),
 as well as some of the wide character classification functions.
 An example run is the following:
-.PP
+.P
 .in +4n
 .EX
 $ ./t_mbstowcs de_DE.UTF\-8 Grüße!

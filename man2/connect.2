@@ -25,7 +25,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/socket.h>
-.PP
+.P
 .BI "int connect(int " sockfd ", const struct sockaddr *" addr ,
 .BI "            socklen_t " addrlen );
 .fi
@@ -47,7 +47,7 @@ is determined by the address space of the socket
 see
 .BR socket (2)
 for further details.
-.PP
+.P
 If the socket
 .I sockfd
 is of type
@@ -63,18 +63,18 @@ or
 this call attempts to make a connection to the socket that is bound
 to the address specified by
 .IR addr .
-.PP
+.P
 Some protocol sockets (e.g., UNIX domain stream sockets)
 may successfully
 .BR connect ()
 only once.
-.PP
+.P
 Some protocol sockets
 (e.g., datagram sockets in the UNIX and Internet domains)
 may use
 .BR connect ()
 multiple times to change their association.
-.PP
+.P
 Some protocol sockets
 (e.g., TCP sockets as well as datagram sockets in the UNIX and
 Internet domains)

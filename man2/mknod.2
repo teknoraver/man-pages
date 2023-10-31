@@ -18,21 +18,21 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/stat.h>
-.PP
+.P
 .BI "int mknod(const char *" pathname ", mode_t " mode ", dev_t " dev );
-.PP
+.P
 .BR "#include <fcntl.h>           " "/* Definition of AT_* constants */"
 .B #include <sys/stat.h>
-.PP
+.P
 .BI "int mknodat(int " dirfd ", const char *" pathname ", mode_t " mode \
 ", dev_t " dev );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR mknod ():
 .nf
     _XOPEN_SOURCE >= 500
@@ -50,7 +50,7 @@ with attributes specified by
 .I mode
 and
 .IR dev .
-.PP
+.P
 The
 .I mode
 argument specifies both the file mode to use and the type of node
@@ -58,13 +58,13 @@ to be created.
 It should be a combination (using bitwise OR) of one of the file types
 listed below and zero or more of the file mode bits listed in
 .BR inode (7).
-.PP
+.P
 The file mode is modified by the process's
 .I umask
 in the usual way: in the absence of a default ACL, the permissions of the
 created node are
 .RI ( mode " & \[ti]" umask ).
-.PP
+.P
 The file type must be one of
 .BR S_IFREG ,
 .BR S_IFCHR ,
@@ -78,7 +78,7 @@ special file, block special file, FIFO (named pipe), or UNIX domain socket,
 respectively.
 (Zero file type is equivalent to type
 .BR S_IFREG .)
-.PP
+.P
 If the file type is
 .B S_IFCHR
 or
@@ -91,13 +91,13 @@ special file
 may be useful to build the value for
 .IR dev );
 otherwise it is ignored.
-.PP
+.P
 If
 .I pathname
 already exists, or is a symbolic link, this call fails with an
 .B EEXIST
 error.
-.PP
+.P
 The newly created node will be owned by the effective user ID of the
 process.
 If the directory containing the node has the set-group-ID
@@ -112,7 +112,7 @@ The
 system call operates in exactly the same way as
 .BR mknod (),
 except for the differences described here.
-.PP
+.P
 If the pathname given in
 .I pathname
 is relative, then it is interpreted relative to the directory
@@ -122,7 +122,7 @@ referred to by the file descriptor
 the calling process, as is done by
 .BR mknod ()
 for a relative pathname).
-.PP
+.P
 If
 .I pathname
 is relative and
@@ -134,13 +134,13 @@ then
 is interpreted relative to the current working
 directory of the calling process (like
 .BR mknod ()).
-.PP
+.P
 If
 .I pathname
 is absolute, then
 .I dirfd
 is ignored.
-.PP
+.P
 See
 .BR openat (2)
 for an explanation of the need for
@@ -258,7 +258,7 @@ However, nowadays one should never use
 for this purpose; one should use
 .BR mkfifo (3),
 a function especially defined for this purpose.
-.PP
+.P
 Under Linux,
 .BR mknod ()
 cannot be used to create directories.

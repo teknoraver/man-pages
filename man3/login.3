@@ -13,7 +13,7 @@ System utilities library
 .SH SYNOPSIS
 .nf
 .B #include <utmp.h>
-.PP
+.P
 .BI "void login(const struct utmp *" ut );
 .BI "int logout(const char *" ut_line );
 .fi
@@ -22,14 +22,14 @@ The utmp file records who is currently using the system.
 The wtmp file records all logins and logouts.
 See
 .BR utmp (5).
-.PP
+.P
 The function
 .BR login ()
 takes the supplied
 .IR "struct utmp" ,
 .IR ut ,
 and writes it to both the utmp and the wtmp file.
-.PP
+.P
 The function
 .BR logout ()
 clears the entry in the utmp file again.
@@ -59,7 +59,7 @@ On the other hand,
 if no terminal name was found, this field is filled with "???"
 and the struct is not written to the utmp file.
 After this, the struct is written to the wtmp file.
-.PP
+.P
 The
 .BR logout ()
 function searches the utmp file for an entry matching the
@@ -113,7 +113,7 @@ MT-Unsafe race:utent
 sig:ALRM timer
 T}
 .TE
-.PP
+.P
 In the above table,
 .I utent
 in

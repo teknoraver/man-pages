@@ -29,7 +29,7 @@ as the name of the system call that it invokes.
 For example, glibc contains a function
 .BR chdir ()
 which invokes the underlying "chdir" system call.
-.PP
+.P
 Often the glibc wrapper function is quite thin, doing little work
 other than copying arguments to the right registers
 before invoking the system call,
@@ -49,7 +49,7 @@ the wrapper function negates the returned error number
 (to make it positive), copies it to
 .IR errno ,
 and returns \-1 to the caller of the wrapper.
-.PP
+.P
 Sometimes, however, the wrapper function does some extra work
 before invoking the system call.
 For example, nowadays there are (for reasons described below) two
@@ -129,7 +129,7 @@ For example some system calls that appeared in Linux 2.6.x were also backported
 into a Linux 2.4.x release after Linux 2.4.15.
 When this is so, the version where the system call appeared
 in both of the major kernel series is listed.
-.PP
+.P
 The list of system calls that are available as at Linux 5.14
 (or in a few cases only on older kernels) is as follows:
 .\"
@@ -832,13 +832,13 @@ T}
 .\" 5a0015d62668e64c8b6e02e360fbbea121bfd5e6
 \fBxtensa\fP(2)	2.6.13	Xtensa only
 .TE
-.PP
+.P
 On many platforms, including x86-32, socket calls are all multiplexed
 (via glibc wrapper functions) through
 .BR socketcall (2)
 and similarly System\ V IPC calls are multiplexed through
 .BR ipc (2).
-.PP
+.P
 Although slots are reserved for them in the system call table,
 the following system calls are not implemented in the standard kernel:
 .BR afs_syscall (2), \" __NR_afs_syscall is 53 on Linux 2.6.22/i386
@@ -883,7 +883,7 @@ and
 .BR putpmsg (2)
 calls are for kernels patched to support STREAMS,
 and may never be in the standard kernel.
-.PP
+.P
 There was briefly
 .BR set_zone_reclaim (2),
 added in Linux 2.6.13, and removed in Linux 2.6.16;
@@ -967,7 +967,7 @@ proprietary operating-system emulation,
 such as sparc, sparc64, and alpha,
 there are many additional system calls; mips64 also contains a full
 set of 32-bit system calls.
-.PP
+.P
 Over time, changes to the interfaces of some system calls have been
 necessary.
 One reason for such changes was the need to increase the size of
@@ -1111,7 +1111,7 @@ and similarly
 .IR __NR_mmap2 .
 s390x is the only 64-bit architecture that has
 .IR old_mmap ().
-.\" .PP
+.\" .P
 .\" Two system call numbers,
 .\" .IR __NR__llseek
 .\" and

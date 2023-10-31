@@ -16,16 +16,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <grp.h>
-.PP
+.P
 .BI "int getgrouplist(const char *" user ", gid_t " group ,
 .BI "                 gid_t *" groups ", int *" ngroups );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getgrouplist ():
 .nf
     Since glibc 2.19:
@@ -45,7 +45,7 @@ Up to
 .I *ngroups
 of these groups are returned in the array
 .IR groups .
-.PP
+.P
 If it was not among the groups defined for
 .I user
 in the group database, then
@@ -55,7 +55,7 @@ is included in the list of groups returned by
 typically this argument is specified as the group ID from
 the password record for
 .IR user .
-.PP
+.P
 The
 .I ngroups
 argument is a value-result argument:
@@ -73,7 +73,7 @@ is a member is less than or equal to
 then the value
 .I *ngroups
 is returned.
-.PP
+.P
 If the user is a member of more than
 .I *ngroups
 groups, then
@@ -118,7 +118,7 @@ The second command-line argument specifies the
 value to be supplied to
 .BR getgrouplist ().
 The following shell session shows examples of the use of this program:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out cecilia 0"

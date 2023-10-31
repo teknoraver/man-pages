@@ -16,7 +16,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "unsigned int alarm(unsigned int " seconds );
 .fi
 .SH DESCRIPTION
@@ -26,11 +26,11 @@ arranges for a
 signal to be delivered to the calling process in
 .I seconds
 seconds.
-.PP
+.P
 If
 .I seconds
 is zero, any pending alarm is canceled.
-.PP
+.P
 In any event any previously set
 .BR alarm ()
 is canceled.
@@ -49,14 +49,14 @@ and
 .BR setitimer (2)
 share the same timer; calls to one will interfere with use of the
 other.
-.PP
+.P
 Alarms created by
 .BR alarm ()
 are preserved across
 .BR execve (2)
 and are not inherited by children created via
 .BR fork (2).
-.PP
+.P
 .BR sleep (3)
 may be implemented using
 .BR SIGALRM ;
@@ -65,7 +65,7 @@ mixing calls to
 and
 .BR sleep (3)
 is a bad idea.
-.PP
+.P
 Scheduling delays can, as ever, cause the execution of the process to
 be delayed by an arbitrary amount of time.
 .SH SEE ALSO

@@ -13,7 +13,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <fcntl.h>
-.PP
+.P
 .BI "ssize_t tee(int " fd_in ", int " fd_out ", size_t " len \
 ", unsigned int " flags );
 .fi
@@ -36,7 +36,7 @@ It does not consume the data that is duplicated from
 .IR fd_in ;
 therefore, that data can be copied by a subsequent
 .BR splice (2).
-.PP
+.P
 .I flags
 is a bit mask that is composed by ORing together
 zero or more of the following values:
@@ -72,7 +72,7 @@ A return value of 0 means that there was no data to transfer,
 and it would not make sense to block, because there are no
 writers connected to the write end of the pipe referred to by
 .IR fd_in .
-.PP
+.P
 On error,
 .BR tee ()
 returns \-1 and
@@ -121,7 +121,7 @@ program using the
 .BR tee ()
 system call.
 Here is an example of its use:
-.PP
+.P
 .in +4n
 .EX
 $ \fBdate | ./a.out out.log | cat\fP

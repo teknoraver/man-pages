@@ -29,7 +29,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/sem.h>
-.PP
+.P
 .BI "int semctl(int " semid ", int " semnum ", int " cmd ", ...);"
 .fi
 .SH DESCRIPTION
@@ -42,13 +42,13 @@ or on the
 .IR semnum -th
 semaphore of that set.
 (The semaphores in a set are numbered starting at 0.)
-.PP
+.P
 This function has three or four arguments, depending on
 .IR cmd .
 When there are four, the fourth has the type
 .IR "union semun" .
 The \fIcalling program\fP must define this union as follows:
-.PP
+.P
 .in +4n
 .EX
 union semun {
@@ -60,11 +60,11 @@ union semun {
 };
 .EE
 .in
-.PP
+.P
 The
 .I semid_ds
 data structure is defined in \fI<sys/sem.h>\fP as follows:
-.PP
+.P
 .in +4n
 .EX
 struct semid_ds {
@@ -76,7 +76,7 @@ struct semid_ds {
 };
 .EE
 .in
-.PP
+.P
 The fields of the
 .I semid_ds
 structure are as follows:
@@ -108,13 +108,13 @@ ranging from
 .B 0
 to
 .IR sem_nsems\-1 .
-.PP
+.P
 The
 .I ipc_perm
 structure is defined as follows
 (the highlighted fields are settable using
 .BR IPC_SET ):
-.PP
+.P
 .in +4n
 .EX
 struct ipc_perm {
@@ -128,7 +128,7 @@ struct ipc_perm {
 };
 .EE
 .in
-.PP
+.P
 The least significant 9 bits of the
 .I mode
 field of the
@@ -144,10 +144,10 @@ l l.
 0004	Read by others
 0002	Write by others
 .TE
-.PP
+.P
 In effect, "write" means "alter" for a semaphore set.
 Bits 0100, 0010, and 0001 (the execute bits) are unused by the system.
-.PP
+.P
 Valid values for
 .I cmd
 are:
@@ -420,11 +420,11 @@ the identifier of the semaphore set whose index was given in
 .B SEM_STAT_ANY
 as for
 .BR SEM_STAT .
-.PP
+.P
 All other
 .I cmd
 values return 0 on success.
-.PP
+.P
 On failure,
 .BR semctl ()
 returns \-1 and sets
@@ -525,7 +525,7 @@ and explicitly notes that this value is set by a successful
 call, with the implication that no other interface affects the
 .I sempid
 value.
-.PP
+.P
 While some implementations conform to the behavior specified in POSIX.1,
 others do not.
 (The fault here probably lies with POSIX.1 inasmuch as it likely failed
@@ -543,7 +543,7 @@ on process termination as a consequence of the use of the
 .B SEM_UNDO
 flag (see
 .BR semop (2)).
-.PP
+.P
 Linux also updates
 .I sempid
 for
@@ -563,7 +563,7 @@ POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, SVr4.
 .\" SVr4 documents more error conditions EINVAL and EOVERFLOW.
-.PP
+.P
 Various fields in a \fIstruct semid_ds\fP were typed as
 .I short
 under Linux 2.2
@@ -576,7 +576,7 @@ a recompilation under glibc-2.1.91 or later should suffice.
 .B IPC_64
 flag in
 .IR cmd .)
-.PP
+.P
 In some earlier versions of glibc, the
 .I semun
 union was defined in \fI<sys/sem.h>\fP, but POSIX.1 requires
@@ -598,7 +598,7 @@ program to provide information on allocated resources.
 In the future these may modified or moved to a
 .I /proc
 filesystem interface.
-.PP
+.P
 The following system limit on semaphore sets affects a
 .BR semctl ()
 call:
@@ -607,7 +607,7 @@ call:
 Maximum value for
 .BR semval :
 implementation dependent (32767).
-.PP
+.P
 For greater portability, it is best to always call
 .BR semctl ()
 with four arguments.

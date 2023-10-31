@@ -19,7 +19,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/io.h>
-.PP
+.P
 .BI "[[deprecated]] int iopl(int " level );
 .fi
 .SH DESCRIPTION
@@ -27,10 +27,10 @@ Standard C library
 changes the I/O privilege level of the calling thread,
 as specified by the two least significant bits in
 .IR level .
-.PP
+.P
 The I/O privilege level for a normal thread is 0.
 Permissions are inherited from parents to children.
-.PP
+.P
 This call is deprecated, is significantly slower than
 .BR ioperm (2),
 and is only provided for older X servers which require
@@ -76,7 +76,7 @@ Prior to Linux 5.5
 allowed the thread to disable interrupts while running
 at a higher I/O privilege level.
 This will probably crash the system, and is not recommended.
-.PP
+.P
 Prior to Linux 3.7,
 on some architectures (such as i386), permissions
 .I were

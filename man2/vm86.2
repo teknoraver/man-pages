@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/vm86.h>
-.PP
+.P
 .BI "int vm86old(struct vm86_struct *" info );
 .BI "int vm86(unsigned long " fn ", struct vm86plus_struct *" v86 );
 .fi
@@ -29,11 +29,11 @@ The definition of
 .I struct vm86_struct
 was changed
 in 1.1.8 and 1.1.9.
-.PP
+.P
 These calls cause the process to enter VM86 mode (virtual-8086 in Intel
 literature), and are used by
 .BR dosemu .
-.PP
+.P
 VM86 mode is an emulation of real mode within a protected mode task.
 .SH RETURN VALUE
 On success, zero is returned.

@@ -17,7 +17,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/statvfs.h>
-.PP
+.P
 .BI "int statvfs(const char *restrict " path \
 ", struct statvfs *restrict " buf );
 .BI "int fstatvfs(int " fd ", struct statvfs *" buf );
@@ -32,7 +32,7 @@ is the pathname of any file within the mounted filesystem.
 is a pointer to a
 .I statvfs
 structure defined approximately as follows:
-.PP
+.P
 .in +4n
 .EX
 struct statvfs {
@@ -52,7 +52,7 @@ struct statvfs {
 };
 .EE
 .in
-.PP
+.P
 Here the types
 .I fsblkcnt_t
 and
@@ -61,7 +61,7 @@ are defined in
 .IR <sys/types.h> .
 Both used to be
 .IR "unsigned long" .
-.PP
+.P
 The field
 .I f_flag
 is a bit mask indicating various options that were employed
@@ -104,10 +104,10 @@ Writes are synched to the filesystem immediately (see the description of
 .B O_SYNC
 in
 .BR open (2)).
-.PP
+.P
 It is unspecified whether all members of the returned struct
 have meaningful values on all filesystems.
-.PP
+.P
 .BR fstatvfs ()
 returns the same information about an open file referenced by descriptor
 .IR fd .
@@ -204,9 +204,9 @@ The Linux kernel has system calls
 and
 .BR fstatfs (2)
 to support this library call.
-.PP
+.P
 The glibc implementations of
-.PP
+.P
 .in +4n
 .EX
 pathconf(path, _PC_REC_XFER_ALIGN);
@@ -214,7 +214,7 @@ pathconf(path, _PC_ALLOC_SIZE_MIN);
 pathconf(path, _PC_REC_MIN_XFER_SIZE);
 .EE
 .in
-.PP
+.P
 respectively use the
 .IR f_frsize ,
 .IR f_frsize ,
@@ -224,7 +224,7 @@ fields returned by a call to
 .BR statvfs ()
 with the argument
 .IR path .
-.PP
+.P
 Under Linux,
 .I f_favail
 is always the same as
@@ -236,7 +236,7 @@ since no filesystems with an inode root reservation exist.
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
-.PP
+.P
 Before glibc 2.13,
 .\" glibc commit 3cdaa6adb113a088fdfb87aa6d7747557eccc58d
 .BR statvfs ()

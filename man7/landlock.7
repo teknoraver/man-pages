@@ -18,7 +18,7 @@ the existing system-wide access-controls.
 This kind of sandbox is expected to help mitigate
 the security impact of bugs,
 and unexpected or malicious behaviors in applications.
-.PP
+.P
 A Landlock security policy is a set of access rights
 (e.g., open a file in read-only, make a directory, etc.)
 tied to a file hierarchy.
@@ -33,7 +33,7 @@ adds a new rule to a ruleset;
 .IP \[bu]
 .BR landlock_restrict_self (2)
 enforces a ruleset on the calling thread.
-.PP
+.P
 To be able to use these system calls,
 the running kernel must support Landlock and
 it must be enabled at boot time.
@@ -57,7 +57,7 @@ See
 and
 .BR landlock_create_ruleset (2)
 for more context.
-.PP
+.P
 A file can only receive these access rights:
 .TP
 .B LANDLOCK_ACCESS_FS_EXECUTE
@@ -98,14 +98,14 @@ using
 and
 .BR LANDLOCK_ACCESS_FS_WRITE_FILE .
 This access right is available since the third version of the Landlock ABI.
-.PP
+.P
 A directory can receive access rights related to files or directories.
 The following access right is applied to the directory itself,
 and the directories beneath it:
 .TP
 .B LANDLOCK_ACCESS_FS_READ_DIR
 Open a directory or list its content.
-.PP
+.P
 However,
 the following access rights only apply to the content of a directory,
 not the directory itself:
@@ -194,7 +194,7 @@ Indeed, this complementary policy is composed with the
 potentially other rulesets already restricting this thread.
 A sandboxed thread can then safely add more constraints to itself with a
 new enforced ruleset.
-.PP
+.P
 One policy layer grants access to a file path
 if at least one of its rules encountered on the path grants the access.
 A sandboxed thread can only access a file path
@@ -208,7 +208,7 @@ which means that these access rights can be propagated with bind mounts
 (cf.
 .BR mount_namespaces (7))
 but not with OverlayFS.
-.PP
+.P
 A bind mount mirrors a source file hierarchy to a destination.
 The destination hierarchy is then composed of the exact same files,
 on which Landlock rules can be tied,
@@ -217,7 +217,7 @@ These rules restrict access when they are encountered on a path,
 which means that they can restrict access to
 multiple file hierarchies at the same time,
 whether these hierarchies are the result of bind mounts or not.
-.PP
+.P
 An OverlayFS mount point consists of upper and lower layers.
 These layers are combined in a merge directory, result of the mount point.
 This merge hierarchy may include files from the upper and lower layers,
@@ -244,7 +244,7 @@ For instance, one process's thread may apply Landlock rules to itself,
 but they will not be automatically applied to other sibling threads
 (unlike POSIX thread credential changes, cf.
 .BR nptl (7)).
-.PP
+.P
 When a thread sandboxes itself,
 we have the guarantee that the related security policy
 will stay enforced on all this thread's descendants.
@@ -271,14 +271,14 @@ and
 both change the contents of a file and sometimes overlap in
 non-intuitive ways.
 It is recommended to always specify both of these together.
-.PP
+.P
 A particularly surprising example is
 .BR creat (2).
 The name suggests that this system call requires
 the rights to create and write files.
 However, it also requires the truncate right
 if an existing file under the same name is already present.
-.PP
+.P
 It should also be noted that truncating files does not require the
 .B LANDLOCK_ACCESS_FS_WRITE_FILE
 right.
@@ -288,7 +288,7 @@ system call, this can also be done through
 .BR open (2)
 with the flags
 .IR "O_RDONLY\ |\ O_TRUNC" .
-.PP
+.P
 When opening a file, the availability of the
 .B LANDLOCK_ACCESS_FS_TRUNCATE
 right is associated with the newly created file descriptor
@@ -302,7 +302,7 @@ but not during the subsequent
 and
 .BR write (2)
 calls.
-.PP
+.P
 As a consequence,
 it is possible to have multiple open file descriptors for the same file,
 where one grants the right to truncate the file and the other does not.
@@ -311,7 +311,7 @@ keeping their Landlock properties,
 even when these processes do not have an enforced Landlock ruleset.
 .SH VERSIONS
 Landlock was introduced in Linux 5.13.
-.PP
+.P
 To determine which Landlock features are available,
 users should query the Landlock ABI version:
 .TS
@@ -338,19 +338,19 @@ _	_	_
 _	_	_
 3	6.2	LANDLOCK_ACCESS_FS_TRUNCATE
 .TE
-.PP
+.P
 Users should use the Landlock ABI version rather than the kernel version
 to determine which features are available.
 The mainline kernel versions listed here are only included for orientation.
 Kernels from other sources may contain backported features,
 and their version numbers may not match.
-.PP
+.P
 To query the running kernel's Landlock ABI version,
 programs may pass the
 .B LANDLOCK_CREATE_RULESET_VERSION
 flag to
 .BR landlock_create_ruleset (2).
-.PP
+.P
 When building fallback mechanisms for compatibility with older kernels,
 users are advised to consider the special semantics of the
 .B LANDLOCK_ACCESS_FS_REFER
@@ -393,7 +393,7 @@ accessible through these system call families:
 Future Landlock evolutions will enable to restrict them.
 .SH EXAMPLES
 We first need to create the ruleset that will contain our rules.
-.PP
+.P
 For this example,
 the ruleset will contain rules that only allow read actions,
 but write actions will be denied.
@@ -401,7 +401,7 @@ The ruleset then needs to handle both of these kinds of actions.
 See the
 .B DESCRIPTION
 section for the description of filesystem actions.
-.PP
+.P
 .in +4n
 .EX
 struct landlock_ruleset_attr attr = {0};
@@ -425,11 +425,11 @@ attr.handled_access_fs =
         LANDLOCK_ACCESS_FS_TRUNCATE;
 .EE
 .in
-.PP
+.P
 To be compatible with older Linux versions,
 we detect the available Landlock ABI version,
 and only use the available subset of access rights:
-.PP
+.P
 .in +4n
 .EX
 /*
@@ -458,11 +458,11 @@ abi = MIN(abi, 3);
 attr.handled_access_fs &= landlock_fs_access_rights[abi \- 1];
 .EE
 .in
-.PP
+.P
 The available access rights for each ABI version are listed in the
 .B VERSIONS
 section.
-.PP
+.P
 If our program needed to create hard links
 or rename files between different directories
 .RB ( LANDLOCK_ACCESS_FS_REFER ),
@@ -473,13 +473,13 @@ Therefore,
 if the program needed to do file reparenting,
 and if only Landlock ABI version 1 was available,
 we could not restrict the process.
-.PP
+.P
 Now that the ruleset attributes are determined,
 we create the Landlock ruleset
 and acquire a file descriptor as a handle to it,
 using
 .BR landlock_create_ruleset (2):
-.PP
+.P
 .in +4n
 .EX
 ruleset_fd = landlock_create_ruleset(&attr, sizeof(attr), 0);
@@ -489,13 +489,13 @@ if (ruleset_fd == \-1) {
 }
 .EE
 .in
-.PP
+.P
 We can now add a new rule to the ruleset through the ruleset's file descriptor.
 The requested access rights must be a subset of the access rights
 which were specified in
 .I attr.handled_access_fs
 at ruleset creation time.
-.PP
+.P
 In this example, the rule will only allow reading the file hierarchy
 .IR /usr .
 Without another rule, write actions would then be denied by the ruleset.
@@ -506,7 +506,7 @@ to the ruleset, we open it with the
 flag and fill the
 .I struct landlock_path_beneath_attr
 with this file descriptor.
-.PP
+.P
 .in +4n
 .EX
 struct landlock_path_beneath_attr path_beneath = {0};
@@ -533,14 +533,14 @@ if (err) {
 }
 .EE
 .in
-.PP
+.P
 We now have a ruleset with one rule allowing read access to
 .I /usr
 while denying all other handled accesses for the filesystem.
 The next step is to restrict the current thread from gaining more
 privileges
 (e.g., thanks to a set-user-ID binary).
-.PP
+.P
 .in +4n
 .EX
 if (prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0)) {
@@ -550,9 +550,9 @@ if (prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0)) {
 }
 .EE
 .in
-.PP
+.P
 The current thread is now ready to sandbox itself with the ruleset.
-.PP
+.P
 .in +4n
 .EX
 if (landlock_restrict_self(ruleset_fd, 0)) {
@@ -563,7 +563,7 @@ if (landlock_restrict_self(ruleset_fd, 0)) {
 close(ruleset_fd);
 .EE
 .in
-.PP
+.P
 If the
 .BR landlock_restrict_self (2)
 system call succeeds, the current thread is now restricted and
@@ -572,7 +572,7 @@ Once a thread is landlocked, there is no way to remove its security policy;
 only adding more restrictions is allowed.
 These threads are now in a new Landlock domain,
 merge of their parent one (if any) with the new ruleset.
-.PP
+.P
 Full working code can be found in
 .UR https://git.kernel.org/\:pub/\:scm/\:linux/\:kernel/\:git/\:stable/\:linux.git/\:tree/\:samples/\:landlock/\:sandboxer.c
 .UE
@@ -580,6 +580,6 @@ Full working code can be found in
 .BR landlock_create_ruleset (2),
 .BR landlock_add_rule (2),
 .BR landlock_restrict_self (2)
-.PP
+.P
 .UR https://landlock.io/
 .UE

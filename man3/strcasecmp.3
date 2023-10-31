@@ -17,7 +17,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <strings.h>
-.PP
+.P
 .BI "int strcasecmp(const char *" s1 ", const char *" s2 );
 .BI "int strncasecmp(const char " s1 [. n "], const char " s2 [. n "], \
 size_t " n );
@@ -36,7 +36,7 @@ less than, equal to, or greater than zero if
 is found,
 respectively, to be less than, to match, or be greater than
 .IR s2 .
-.PP
+.P
 The
 .BR strncasecmp ()
 function is similar, except that it compares
@@ -77,7 +77,7 @@ T}	Thread safety	MT-Safe locale
 POSIX.1-2008.
 .SH HISTORY
 4.4BSD, POSIX.1-2001.
-.PP
+.P
 The
 .BR strcasecmp ()
 and
@@ -91,9 +91,9 @@ header file also declares these functions, if the
 (or, in glibc 2.19 and earlier,
 .BR _BSD_SOURCE )
 feature test macro is defined.
-.PP
+.P
 The POSIX.1-2008 standard says of these functions:
-.PP
+.P
 .RS
 When the
 .B LC_CTYPE

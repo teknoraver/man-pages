@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wctype.h>
-.PP
+.P
 .BI "int iswalnum(wint_t " wc );
 .fi
 .SH DESCRIPTION
@@ -31,26 +31,26 @@ It tests whether
 .I wc
 is a wide character
 belonging to the wide-character class "alnum".
-.PP
+.P
 The wide-character class "alnum" is a subclass of the wide-character class
 "graph", and therefore also a subclass of the wide-character class "print".
-.PP
+.P
 Being a subclass of the wide-character class "print",
 the wide-character class
 "alnum" is disjoint from the wide-character class "cntrl".
-.PP
+.P
 Being a subclass of the wide-character class "graph",
 the wide-character class "alnum" is disjoint from
 the wide-character class "space" and its subclass "blank".
-.PP
+.P
 The wide-character class "alnum" is disjoint from the wide-character class
 "punct".
-.PP
+.P
 The wide-character class "alnum" is the union of the wide-character classes
 "alpha" and "digit".
 As such, it also contains the wide-character class
 "xdigit".
-.PP
+.P
 The wide-character class "alnum"
 always contains at least the letters
 \[aq]A\[aq] to \[aq]Z\[aq],

@@ -13,17 +13,17 @@ Real-time library
 .nf
 .BR "#include <signal.h>" "           /* Definition of " SIGEV_* " constants */"
 .B  #include <time.h>
-.PP
+.P
 .BI "int timer_create(clockid_t " clockid ,
 .BI "                 struct sigevent *_Nullable restrict " sevp ,
 .BI "                 timer_t *restrict " timerid );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR timer_create ():
 .nf
     _POSIX_C_SOURCE >= 199309L
@@ -36,7 +36,7 @@ The ID of the new timer is returned in the buffer pointed to by
 which must be a non-null pointer.
 This ID is unique within the process, until the timer is deleted.
 The new timer is initially disarmed.
-.PP
+.P
 The
 .I clockid
 argument specifies the clock that the new timer uses to measure time.
@@ -97,11 +97,11 @@ capability in order to set a timer against this clock.
 .TP
 .BR CLOCK_TAI " (since Linux 3.10)"
 A system-wide clock derived from wall-clock time but ignoring leap seconds.
-.PP
+.P
 See
 .BR clock_getres (2)
 for some further details on the above clocks.
-.PP
+.P
 As well as the above values,
 .I clockid
 can be specified as the
@@ -110,7 +110,7 @@ returned by a call to
 .BR clock_getcpuclockid (3)
 or
 .BR pthread_getcpuclockid (3).
-.PP
+.P
 The
 .I sevp
 argument points to a
@@ -119,7 +119,7 @@ structure that specifies how the caller
 should be notified when the timer expires.
 For the definition and general details of this structure, see
 .BR sigevent (3type).
-.PP
+.P
 The
 .I sevp.sigev_notify
 field can have the following values:
@@ -168,7 +168,7 @@ field specifies a kernel thread ID, that is, the value returned by
 or
 .BR gettid (2).
 This flag is intended only for use by threading libraries.
-.PP
+.P
 Specifying
 .I sevp
 as NULL is equivalent to specifying a pointer to a
@@ -258,7 +258,7 @@ POSIX.1-2008.
 .SH HISTORY
 Linux 2.6.
 POSIX.1-2001.
-.PP
+.P
 Prior to Linux 2.6,
 glibc provided an incomplete user-space implementation
 .RB ( CLOCK_REALTIME
@@ -270,12 +270,12 @@ running kernels older than Linux 2.6.
 .SH NOTES
 A program may create multiple interval timers using
 .BR timer_create ().
-.PP
+.P
 Timers are not inherited by the child of a
 .BR fork (2),
 and are disarmed and deleted during an
 .BR execve (2).
-.PP
+.P
 The kernel preallocates a "queued real-time signal"
 for each timer created using
 .BR timer_create ().
@@ -283,7 +283,7 @@ Consequently, the number of timers is limited by the
 .B RLIMIT_SIGPENDING
 resource limit (see
 .BR setrlimit (2)).
-.PP
+.P
 The timers created by
 .BR timer_create ()
 are commonly known as "POSIX (interval) timers".
@@ -304,7 +304,7 @@ Return the overrun count for the last timer expiration.
 .TP
 .BR timer_delete (2)
 Disarm and delete a timer.
-.PP
+.P
 Since Linux 3.10, the
 .IR /proc/ pid /timers
 file can be used to list the POSIX timers for the process with PID
@@ -312,7 +312,7 @@ file can be used to list the POSIX timers for the process with PID
 See
 .BR proc (5)
 for further information.
-.PP
+.P
 Since Linux 4.10,
 .\" baa73d9e478ff32d62f3f9422822b59dd9a95a21
 support for POSIX timers is a configurable option that is enabled by default.
@@ -331,12 +331,12 @@ Assuming that the timer expired at least once while the program slept,
 the signal handler will be invoked,
 and the handler displays some information about the timer notification.
 The program terminates after one invocation of the signal handler.
-.PP
+.P
 In the following example run, the program sleeps for 1 second,
 after creating a timer that has a frequency of 100 nanoseconds.
 By the time the signal is unblocked and delivered,
 there have been around ten million overruns.
-.PP
+.P
 .in +4n
 .EX
 $ \fB./a.out 1 100\fP

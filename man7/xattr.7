@@ -15,7 +15,7 @@ files and directories, similar to the environment strings associated
 with a process.
 An attribute may be defined or undefined.
 If it is defined, its value may be empty or non-empty.
-.PP
+.P
 Extended attributes are extensions to the normal attributes which are
 associated with all inodes in the system (i.e., the
 .BR stat (2)
@@ -23,11 +23,11 @@ data).
 They are often used to provide additional functionality
 to a filesystem\[em]for example, additional security features such as
 Access Control Lists (ACLs) may be implemented using extended attributes.
-.PP
+.P
 Users with search access to a file or directory may use
 .BR listxattr (2)
 to retrieve a list of attribute names defined for that file or directory.
-.PP
+.P
 Extended attributes are accessed as atomic objects.
 Reading
 .RB ( getxattr (2))
@@ -35,7 +35,7 @@ retrieves the whole value of an attribute and stores it in a buffer.
 Writing
 .RB ( setxattr (2))
 replaces any previous value with the new value.
-.PP
+.P
 Space consumed for extended attributes may be counted towards the disk quotas
 of the file owner and file group.
 .SS Extended attribute namespaces
@@ -48,14 +48,14 @@ form, for example,
 .IR system.posix_acl_access ,
 or
 .IR security.selinux .
-.PP
+.P
 The namespace mechanism is used to define different classes of extended
 attributes.
 These different classes exist for several reasons;
 for example, the permissions
 and capabilities required for manipulating extended attributes of one
 namespace may differ to another.
-.PP
+.P
 Currently, the
 .IR security ,
 .IR system ,
@@ -97,7 +97,7 @@ The access permissions for user
 attributes are defined by the file permission bits:
 read permission is required to retrieve the attribute value,
 and writer permission is required to change it.
-.PP
+.P
 The file permission bits of regular files and directories are
 interpreted differently from the file permission bits of special files
 and symbolic links.
@@ -108,7 +108,7 @@ The file permissions of symbolic links are not used in access checks.
 These differences would allow users to consume filesystem resources in
 a way not controllable by disk quotas for group or world writable
 special files and directories.
-.PP
+.P
 For this reason,
 user extended attributes are allowed only for regular files and directories,
 and access to user extended attributes is restricted to the
@@ -125,26 +125,26 @@ The list of attribute names that
 can be returned is also limited to 64\ kB
 (see BUGS in
 .BR listxattr (2)).
-.PP
+.P
 Some filesystems, such as Reiserfs (and, historically, ext2 and ext3),
 require the filesystem to be mounted with the
 .B user_xattr
 mount option in order for user extended attributes to be used.
-.PP
+.P
 In the current ext2, ext3, and ext4 filesystem implementations,
 the total bytes used by the names and values of all of a file's
 extended attributes must fit in a single filesystem block (1024, 2048
 or 4096 bytes, depending on the block size specified when the
 filesystem was created).
-.PP
+.P
 In the Btrfs, XFS, and Reiserfs filesystem implementations, there is no
 practical limit on the number of extended attributes
 associated with a file, and the algorithms used to store extended
 attribute information on disk are scalable.
-.PP
+.P
 In the JFS, XFS, and Reiserfs filesystem implementations,
 the limit on bytes used in an EA value is the ceiling imposed by the VFS.
-.PP
+.P
 In the Btrfs filesystem implementation,
 the total bytes used for the name, value, and implementation overhead bytes
 is limited to the filesystem
@@ -158,7 +158,7 @@ Since the filesystems on which extended attributes are stored might also
 be used on architectures with a different byte order and machine word
 size, care should be taken to store attribute values in an
 architecture-independent format.
-.PP
+.P
 This page was formerly named
 .BR attr (5).
 .\" .SH AUTHORS

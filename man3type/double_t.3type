@@ -14,7 +14,7 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BR typedef " /* ... */ " float_t;
 .BR typedef " /* ... */ " double_t;
 .fi
@@ -28,7 +28,7 @@ Their type depends on the value of the macro
 .B FLT_EVAL_METHOD
 (defined in
 .IR <float.h> ):
-.PP
+.P
 .TS
 lB rI rI.
 FLT_EVAL_METHOD	float_t	double_t
@@ -39,7 +39,7 @@ _
 1	double	double
 2	long double	long double
 .TE
-.PP
+.P
 For other values of
 .BR FLT_EVAL_METHOD ,
 the types of

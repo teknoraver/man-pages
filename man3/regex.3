@@ -19,7 +19,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <regex.h>
-.PP
+.P
 .BI "int regcomp(regex_t *restrict " preg ", const char *restrict " regex ,
 .BI "            int " cflags );
 .BI "int regexec(const regex_t *restrict " preg \
@@ -27,21 +27,21 @@ Standard C library
 .BI "            size_t " nmatch ", \
 regmatch_t " pmatch "[_Nullable restrict ." nmatch ],
 .BI "            int " eflags );
-.PP
+.P
 .BI "size_t regerror(int " errcode ", const regex_t *_Nullable restrict " preg ,
 .BI "            char " errbuf "[_Nullable restrict ." errbuf_size ],
 .BI "            size_t " errbuf_size );
 .BI "void regfree(regex_t *" preg );
-.PP
+.P
 .B typedef struct {
 .B "    size_t    re_nsub;"
 .B } regex_t;
-.PP
+.P
 .B typedef struct {
 .B "    regoff_t  rm_so;"
 .B "    regoff_t  rm_eo;"
 .B } regmatch_t;
-.PP
+.P
 .BR typedef " /* ... */  " regoff_t;
 .fi
 .SH DESCRIPTION
@@ -51,7 +51,7 @@ is used to compile a regular expression into a form that is suitable
 for subsequent
 .BR regexec ()
 searches.
-.PP
+.P
 On success, the pattern buffer at
 .I *preg
 is initialized.
@@ -59,7 +59,7 @@ is initialized.
 is a null-terminated string.
 The locale must be the same when running
 .BR regexec ().
-.PP
+.P
 After
 .BR regcomp ()
 succeeds,
@@ -74,7 +74,7 @@ passed as
 to
 .BR regexec ()
 is sufficient to capture all matches.
-.PP
+.P
 .I cflags
 is the
 bitwise OR
@@ -205,12 +205,12 @@ unused elements of
 .I pmatch
 are filled with
 .BR \-1 s.
-.PP
+.P
 Each returned valid
 .RB (non- \-1 )
 match corresponds to the range
 .RI [ "string + rm_so" , " string + rm_eo" ).
-.PP
+.P
 .I regoff_t
 is a signed integer type
 capable of storing the largest value that can be stored in either an
@@ -225,14 +225,14 @@ is used to turn the error codes that can be returned by both
 and
 .BR regexec ()
 into error message strings.
-.PP
+.P
 If
 .I preg
 isn't a null pointer,
 .I errcode
 must be the latest error returned from an operation on
 .IR preg .
-.PP
+.P
 If
 .I errbuf_size
 isn't 0, up to
@@ -251,12 +251,12 @@ must have been initialized via
 .SH RETURN VALUE
 .BR regcomp ()
 returns zero for a successful compilation or an error code for failure.
-.PP
+.P
 .BR regexec ()
 returns zero for a successful match or
 .B REG_NOMATCH
 for failure.
-.PP
+.P
 .BR regerror ()
 returns the size of the buffer required to hold the string.
 .SH ERRORS
@@ -337,7 +337,7 @@ T}	Thread safety	MT-Safe
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001.
-.PP
+.P
 Prior to POSIX.1-2008,
 .I regoff_t
 was required to be
@@ -352,7 +352,7 @@ is only required to be initialized if
 .B REG_NOSUB
 wasn't specified, but all known implementations initialize it regardless.
 .\" glibc, musl, 4.4BSD, illumos
-.PP
+.P
 Both
 .I regex_t
 and
@@ -406,6 +406,6 @@ int main(void)
 .SH SEE ALSO
 .BR grep (1),
 .BR regex (7)
-.PP
+.P
 The glibc manual section,
 .I "Regular Expressions"

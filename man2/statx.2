@@ -19,7 +19,7 @@ Standard C library
 .BR "#define _GNU_SOURCE          " "/* See feature_test_macros(7) */"
 .BR "#include <fcntl.h>           " "/* Definition of " AT_* " constants */"
 .B #include <sys/stat.h>
-.PP
+.P
 .BI "int statx(int " dirfd ", const char *restrict " pathname ", int " flags ,
 .BI "          unsigned int " mask ", struct statx *restrict " statxbuf );
 .fi
@@ -28,7 +28,7 @@ This function returns information about a file, storing it in the buffer
 pointed to by
 .IR statxbuf .
 The returned buffer is a structure of the following type:
-.PP
+.P
 .in +4n
 .EX
 struct statx {
@@ -71,9 +71,9 @@ struct statx {
 };
 .EE
 .in
-.PP
+.P
 The file timestamps are structures of the following type:
-.PP
+.P
 .in +4n
 .EX
 struct statx_timestamp {
@@ -82,7 +82,7 @@ struct statx_timestamp {
 };
 .EE
 .in
-.PP
+.P
 (Note that reserved space and padding is omitted.)
 .SS
 Invoking \fBstatx\fR():
@@ -93,7 +93,7 @@ with a pathname,
 execute (search) permission is required on all of the directories in
 .I pathname
 that lead to the file.
-.PP
+.P
 .BR statx ()
 uses
 .IR pathname ,
@@ -147,7 +147,7 @@ flag is specified in
 (see below),
 then the target file is the one referred to by the file descriptor
 .IR dirfd .
-.PP
+.P
 .I flags
 can be used to influence a pathname-based lookup.
 A value for
@@ -202,7 +202,7 @@ If
 is a symbolic link, do not dereference it:
 instead return information about the link itself, like
 .BR lstat (2).
-.PP
+.P
 .I flags
 can also be used to control what sort of synchronization the kernel will do
 when querying a file on a remote filesystem.
@@ -225,7 +225,7 @@ the system has cached if possible.
 This may mean that the information returned is approximate, but,
 on a network filesystem, it may not involve a round trip to the server - even
 if no lease is held.
-.PP
+.P
 The
 .I mask
 argument to
@@ -233,7 +233,7 @@ argument to
 is used to tell the kernel which fields the caller is interested in.
 .I mask
 is an ORed combination of the following constants:
-.PP
+.P
 .in +4n
 .TS
 lB l.
@@ -257,7 +257,7 @@ STATX_DIOALIGN	Want stx_dio_mem_align and stx_dio_offset_align
 	(since Linux 6.1; support varies by filesystem)
 .TE
 .in
-.PP
+.P
 Note that, in general, the kernel does
 .I not
 reject values in
@@ -293,7 +293,7 @@ has the same format as the
 .I mask
 argument and bits are set in it to indicate
 which fields have been filled in.
-.PP
+.P
 It should be noted that the kernel may return fields that weren't
 requested and may fail to return fields that were requested,
 depending on what the backing filesystem supports.
@@ -302,7 +302,7 @@ In either case,
 .I stx_mask
 will not be equal
 .IR mask .
-.PP
+.P
 If a filesystem does not support a field or if it has
 an unrepresentable value (for instance, a file with an exotic type),
 then the mask bit corresponding to that field will be cleared in
@@ -310,12 +310,12 @@ then the mask bit corresponding to that field will be cleared in
 even if the user asked for it and a dummy value will be filled in for
 compatibility purposes if one is available (e.g., a dummy UID and GID may be
 specified to mount under some circumstances).
-.PP
+.P
 A filesystem may also fill in fields that the caller didn't ask for if it has
 values for them available and the information is available at no extra cost.
 If this happens, the corresponding bits will be set in
 .IR stx_mask .
-.PP
+.P
 .\" Background: inode attributes are modified with i_mutex held, but
 .\" read by stat() without taking the mutex.
 .IR Note :
@@ -340,7 +340,7 @@ or the old
 .I stx_uid
 together with the new
 .IR stx_mode .
-.PP
+.P
 Apart from
 .I stx_mask
 (which is described above), the fields in the
@@ -439,7 +439,7 @@ or 0 if direct I/O is not supported on this file.
 This will only be nonzero if
 .I stx_dio_mem_align
 is nonzero, and vice versa.
-.PP
+.P
 For further information on the above fields, see
 .BR inode (7).
 .\"
@@ -455,7 +455,7 @@ The bits in
 .I stx_attributes_mask
 correspond bit-by-bit to
 .IR stx_attributes .
-.PP
+.P
 The flags are as follows:
 .TP
 .B STATX_ATTR_COMPRESSED

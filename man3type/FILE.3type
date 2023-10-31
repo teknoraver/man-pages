@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdio.h>
-.PP
+.P
 .BR typedef " /* ... */  " FILE;
 .fi
 .SH DESCRIPTION

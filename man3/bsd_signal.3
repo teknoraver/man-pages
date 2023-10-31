@@ -12,17 +12,17 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .B typedef void (*sighandler_t)(int);
-.PP
+.P
 .BI "sighandler_t bsd_signal(int " signum ", sighandler_t " handler );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR bsd_signal ():
 .nf
     Since glibc 2.26:
@@ -37,7 +37,7 @@ The
 .BR bsd_signal ()
 function takes the same arguments, and performs the same task, as
 .BR signal (2).
-.PP
+.P
 The difference between the two is that
 .BR bsd_signal ()
 is guaranteed to provide reliable signal semantics, that is:
@@ -79,7 +79,7 @@ Use of
 should be avoided; use
 .BR sigaction (2)
 instead.
-.PP
+.P
 On modern Linux systems,
 .BR bsd_signal ()
 and
@@ -90,7 +90,7 @@ But on older systems,
 provided unreliable signal semantics; see
 .BR signal (2)
 for details.
-.PP
+.P
 The use of
 .I sighandler_t
 is a GNU extension;

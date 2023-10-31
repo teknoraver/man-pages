@@ -14,7 +14,7 @@ POSIX threads library
 .BR "#include <fcntl.h>" "           /* For O_* constants */"
 .BR "#include <sys/stat.h>" "        /* For mode constants */"
 .B #include <semaphore.h>
-.PP
+.P
 .BI "sem_t *sem_open(const char *" name ", int " oflag );
 .BI "sem_t *sem_open(const char *" name ", int " oflag ,
 .BI "                mode_t " mode ", unsigned int " value );
@@ -28,7 +28,7 @@ For details of the construction of
 .IR name ,
 see
 .BR sem_overview (7).
-.PP
+.P
 The
 .I oflag
 argument specifies flags that control the operation of the call.
@@ -54,7 +54,7 @@ are specified in
 then an error is returned if a semaphore with the given
 .I name
 already exists.
-.PP
+.P
 If
 .B O_CREAT
 is specified in

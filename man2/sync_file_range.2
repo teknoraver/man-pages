@@ -18,7 +18,7 @@ Standard C library
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #define _FILE_OFFSET_BITS 64
 .B #include <fcntl.h>
-.PP
+.P
 .BI "int sync_file_range(int " fd ", off_t " offset ", off_t " nbytes ,
 .BI "                    unsigned int " flags );
 .fi
@@ -28,7 +28,7 @@ permits fine control when synchronizing the open file referred to by the
 file descriptor
 .I fd
 with disk.
-.PP
+.P
 .I offset
 is the starting byte of the file range to be synchronized.
 .I nbytes
@@ -42,7 +42,7 @@ Synchronization is in units of the system page size:
 is rounded down to a page boundary;
 .I (offset+nbytes\-1)
 is rounded up to a page boundary.
-.PP
+.P
 The
 .I flags
 bit-mask argument can include any of the following values:
@@ -61,7 +61,7 @@ write more than request queue size.
 .B SYNC_FILE_RANGE_WAIT_AFTER
 Wait upon write-out of all pages in the range
 after performing any write.
-.PP
+.P
 Specifying
 .I flags
 as 0 is permitted, as a no-op.
@@ -89,7 +89,7 @@ will detect any
 I/O errors or
 .B ENOSPC
 conditions and will return these to the caller.
-.PP
+.P
 Useful combinations of the
 .I flags
 bits are:
@@ -173,14 +173,14 @@ arguments.
 for details.)
 Therefore, these architectures define a different
 system call that orders the arguments suitably:
-.PP
+.P
 .in +4n
 .EX
 .BI "int sync_file_range2(int " fd ", unsigned int " flags ,
 .BI "                     off_t " offset ", off_t " nbytes );
 .EE
 .in
-.PP
+.P
 The behavior of this system call is otherwise exactly the same as
 .BR sync_file_range ().
 .SH STANDARDS

@@ -21,7 +21,7 @@ and
 Changes made to these identifiers are visible to all other
 processes in the same UTS namespace,
 but are not visible to processes in other UTS namespaces.
-.PP
+.P
 When a process creates a new UTS namespace using
 .BR clone (2)
 or
@@ -30,7 +30,7 @@ with the
 .B CLONE_NEWUTS
 flag, the hostname and domain name of the new UTS namespace are copied
 from the corresponding values in the caller's UTS namespace.
-.PP
+.P
 Use of UTS namespaces requires a kernel that is configured with the
 .B CONFIG_UTS_NS
 option.

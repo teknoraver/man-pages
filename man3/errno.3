@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <errno.h>
-.\".PP
+.\".P
 .\".BI "extern int " errno ;
 .fi
 .SH DESCRIPTION
@@ -43,7 +43,7 @@ allowed to change
 The value of
 .I errno
 is never set to zero by any system call or library function.
-.PP
+.P
 For some system calls and library functions (e.g.,
 .BR getpriority (2)),
 \-1 is a valid return on success.
@@ -55,7 +55,7 @@ if the call returns a status that indicates that an error
 may have occurred, checking to see if
 .I errno
 has a nonzero value.
-.PP
+.P
 .I errno
 is defined by the ISO C standard to be a modifiable lvalue
 of type
@@ -74,7 +74,7 @@ The
 header file defines symbolic names for each
 of the possible error numbers that may appear in
 .IR errno .
-.PP
+.P
 All the error names specified by POSIX.1
 must have distinct values, with the exception of
 .B EAGAIN
@@ -82,7 +82,7 @@ and
 .BR EWOULDBLOCK ,
 which may be the same.
 On Linux, these two have the same value on all architectures.
-.PP
+.P
 The error numbers that correspond to each symbolic name
 vary across UNIX systems,
 and even across different architectures on Linux.
@@ -94,7 +94,7 @@ and
 .BR strerror (3)
 functions can be used to convert these names to
 corresponding textual error messages.
-.PP
+.P
 On any particular Linux system,
 one can obtain a list of all symbolic error names and
 the corresponding error numbers using the
@@ -102,7 +102,7 @@ the corresponding error numbers using the
 command (part of the
 .I moreutils
 package):
-.PP
+.P
 .in +4n
 .EX
 $ \fBerrno \-l\fP
@@ -114,13 +114,13 @@ EIO 5 Input/output error
 \&...
 .EE
 .in
-.PP
+.P
 The
 .BR errno (1)
 command can also be used to look up individual error numbers and names,
 and to search for errors using strings from the error description,
 as in the following examples:
-.PP
+.P
 .in +4n
 .EX
 $ \fBerrno 2\fP
@@ -131,7 +131,7 @@ $ \fBerrno \-s permission\fP
 EACCES 13 Permission denied
 .EE
 .in
-.\".PP
+.\".P
 .\" POSIX.1 (2001 edition) lists the following symbolic error names.  Of
 .\" these, \fBEDOM\fP and \fBERANGE\fP are in the ISO C standard.  ISO C
 .\" Amendment 1 defines the additional error number \fBEILSEQ\fP for
@@ -151,7 +151,7 @@ but was not present in earlier POSIX.1 standards.
 .TP
 .I C99
 The name is defined by C99.
-.PP
+.P
 Below is a list of the symbolic error names that are defined on Linux:
 .TP 16
 .B E2BIG
@@ -595,7 +595,7 @@ Invalid cross-device link (POSIX.1-2001).
 Exchange full.
 .SH NOTES
 A common mistake is to do
-.PP
+.P
 .in +4n
 .EX
 if (somecall() == \-1) {
@@ -604,7 +604,7 @@ if (somecall() == \-1) {
 }
 .EE
 .in
-.PP
+.P
 where
 .I errno
 no longer needs to have the value it had upon return from
@@ -614,7 +614,7 @@ no longer needs to have the value it had upon return from
 If the value of
 .I errno
 should be preserved across a library call, it must be saved:
-.PP
+.P
 .in +4n
 .EX
 if (somecall() == \-1) {
@@ -624,7 +624,7 @@ if (somecall() == \-1) {
 }
 .EE
 .in
-.PP
+.P
 Note that the POSIX threads APIs do
 .I not
 set
@@ -634,7 +634,7 @@ Instead, on failure they return an error number as the function result.
 These error numbers have the same meanings as the error numbers returned in
 .I errno
 by other APIs.
-.PP
+.P
 On some ancient systems,
 .I <errno.h>
 was not present or did not declare

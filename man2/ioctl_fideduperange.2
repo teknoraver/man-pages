@@ -12,7 +12,7 @@ Standard C library
 .BR "#include <linux/fs.h>" "      /* Definition of " FIDEDUPERANGE " and"
 .BR "                              FILE_DEDUPE_* " constants */
 .B #include <sys/ioctl.h>
-.PP
+.P
 .BI "int ioctl(int " src_fd ", FIDEDUPERANGE, struct file_dedupe_range *" arg );
 .fi
 .SH DESCRIPTION
@@ -32,7 +32,7 @@ If a file write should occur to a shared
 region, the filesystem must ensure that the changes remain private to the file
 being written.
 This behavior is commonly referred to as "copy on write".
-.PP
+.P
 This ioctl performs the "compare and share if identical" operation on up to
 .I src_length
 bytes from file descriptor
@@ -40,7 +40,7 @@ bytes from file descriptor
 at offset
 .IR src_offset .
 This information is conveyed in a structure of the following form:
-.PP
+.P
 .in +4n
 .EX
 struct file_dedupe_range {
@@ -53,20 +53,20 @@ struct file_dedupe_range {
 };
 .EE
 .in
-.PP
+.P
 Deduplication is atomic with regards to concurrent writes, so no locks need to
 be taken to obtain a consistent deduplicated copy.
-.PP
+.P
 The fields
 .IR reserved1 " and " reserved2
 must be zero.
-.PP
+.P
 Destinations for the deduplication operation are conveyed in the array at the
 end of the structure.
 The number of destinations is given in
 .IR dest_count ,
 and the destination information is conveyed in the following form:
-.PP
+.P
 .in +4n
 .EX
 struct file_dedupe_range_info {
@@ -78,7 +78,7 @@ struct file_dedupe_range_info {
 };
 .EE
 .in
-.PP
+.P
 Each deduplication operation targets
 .I src_length
 bytes in file descriptor
@@ -109,7 +109,7 @@ is mapped into
 and the previous contents in
 .I dest_fd
 are freed.
-.PP
+.P
 Upon successful completion of this ioctl, the number of bytes successfully
 deduplicated is returned in
 .I bytes_deduped
@@ -187,7 +187,7 @@ single call.
 Linux.
 .SH HISTORY
 Linux 4.5.
-.PP
+.P
 It was previously known as
 .B BTRFS_IOC_FILE_EXTENT_SAME
 and was private to Btrfs.

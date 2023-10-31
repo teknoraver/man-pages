@@ -11,7 +11,7 @@ sock_diag \- obtaining information about sockets
 .B #include <linux/sock_diag.h>
 .BR "#include <linux/unix_diag.h>" " /* for UNIX domain sockets */"
 .BR "#include <linux/inet_diag.h>" " /* for IPv4 and IPv6 sockets */"
-.PP
+.P
 .BI "diag_socket = socket(AF_NETLINK, " socket_type ", NETLINK_SOCK_DIAG);"
 .fi
 .SH DESCRIPTION
@@ -19,16 +19,16 @@ The sock_diag netlink subsystem provides a mechanism for obtaining
 information about sockets of various address families from the kernel.
 This subsystem can be used to obtain information about individual
 sockets or request a list of sockets.
-.PP
+.P
 In the request, the caller can specify additional information it would
 like to obtain about the socket, for example, memory information or
 information specific to the address family.
-.PP
+.P
 When requesting a list of sockets, the caller can specify filters that
 would be applied by the kernel to select a subset of sockets to report.
 For now, there is only the ability to filter sockets by state (connected,
 listening, and so on.)
-.PP
+.P
 Note that sock_diag reports only those sockets that have a name;
 that is, either sockets bound explicitly with
 .BR bind (2)
@@ -51,7 +51,7 @@ field set to
 .BR SOCK_DIAG_BY_FAMILY .
 It is followed by a header specific to the address family that starts with
 a common part shared by all address families:
-.PP
+.P
 .in +4n
 .EX
 struct sock_diag_req {
@@ -60,7 +60,7 @@ struct sock_diag_req {
 };
 .EE
 .in
-.PP
+.P
 The fields of this structure are as follows:
 .TP
 .I sdiag_family
@@ -79,7 +79,7 @@ constant for
 and
 .BR AF_INET6 ,
 and to 0 otherwise.
-.PP
+.P
 If the
 .I nlmsg_flags
 field of the
@@ -98,7 +98,7 @@ The array is to be accessed with the standard
 macros from the
 .BR netlink (3)
 API.
-.PP
+.P
 Each object is the NLA (netlink attributes) list that is to be accessed
 with the
 .B RTA_*
@@ -108,7 +108,7 @@ API.
 .\"
 .SS UNIX domain sockets
 For UNIX domain sockets the request is represented in the following structure:
-.PP
+.P
 .in +4n
 .EX
 struct unix_diag_req {
@@ -122,13 +122,13 @@ struct unix_diag_req {
 };
 .EE
 .in
-.PP
+.P
 The fields of this structure are as follows:
 .TP
 .I sdiag_family
 The address family; it should be set to
 .BR AF_UNIX .
-.PP
+.P
 .I sdiag_protocol
 .PD 0
 .TP
@@ -141,11 +141,11 @@ This is a bit mask that defines a filter of sockets states.
 Only those sockets whose states are in this mask will be reported.
 Ignored when querying for an individual socket.
 Supported values are:
-.PP
+.P
 .RS 12
 1 <<
 .B TCP_ESTABLISHED
-.PP
+.P
 1 <<
 .B TCP_LISTEN
 .RE
@@ -253,7 +253,7 @@ The attribute reported in answer to this request is
 .BR UNIX_DIAG_MEMINFO .
 The payload associated with this attribute is an array of __u32 values
 described below in the subsection "Socket memory information".
-.PP
+.P
 The following attributes are reported back without any specific request:
 .TP
 .B UNIX_DIAG_SHUTDOWN
@@ -269,9 +269,9 @@ This is an array of opaque identifiers that could be used along with
 to specify an individual socket.
 It is ignored when querying for a list
 of sockets, as well as when all its elements are set to \-1.
-.PP
+.P
 The response to a query for UNIX domain sockets is represented as an array of
-.PP
+.P
 .in +4n
 .EX
 struct unix_diag_msg {
@@ -284,9 +284,9 @@ struct unix_diag_msg {
 };
 .EE
 .in
-.PP
+.P
 followed by netlink attributes.
-.PP
+.P
 The fields of this structure are as follows:
 .TP
 .I udiag_family
@@ -319,7 +319,7 @@ queries.
 .SS IPv4 and IPv6 sockets
 For IPv4 and IPv6 sockets,
 the request is represented in the following structure:
-.PP
+.P
 .in +4n
 .EX
 struct inet_diag_req_v2 {
@@ -332,11 +332,11 @@ struct inet_diag_req_v2 {
 };
 .EE
 .in
-.PP
+.P
 where
 .I "struct inet_diag_sockid"
 is defined as follows:
-.PP
+.P
 .in +4n
 .EX
 struct inet_diag_sockid {
@@ -349,7 +349,7 @@ struct inet_diag_sockid {
 };
 .EE
 .in
-.PP
+.P
 The fields of
 .I "struct inet_diag_req_v2"
 are as follows:
@@ -447,7 +447,7 @@ about individual sockets, and is reported back in each response.
 Unlike UNIX domain sockets, IPv4 and IPv6 sockets are identified
 using addresses and ports.
 All values are in network byte order.
-.PP
+.P
 The fields of
 .I "struct inet_diag_sockid"
 are as follows:
@@ -472,9 +472,9 @@ This is an array of opaque identifiers that could be used along with
 other fields of this structure to specify an individual socket.
 It is ignored when querying for a list of sockets, as well as
 when all its elements are set to \-1.
-.PP
+.P
 The response to a query for IPv4 or IPv6 sockets is represented as an array of
-.PP
+.P
 .in +4n
 .EX
 struct inet_diag_msg {
@@ -493,9 +493,9 @@ struct inet_diag_msg {
 };
 .EE
 .in
-.PP
+.P
 followed by netlink attributes.
-.PP
+.P
 The fields of this structure are as follows:
 .TP
 .I idiag_family
@@ -611,7 +611,7 @@ In Linux 3.3, it was renamed to
 and extended to support
 .B AF_UNIX
 sockets.
-.PP
+.P
 .B UNIX_DIAG_MEMINFO
 and
 .B INET_DIAG_SKMEMINFO
@@ -621,7 +621,7 @@ Linux.
 .SH EXAMPLES
 The following example program prints inode number, peer's inode number,
 and name of all UNIX domain sockets in the current namespace.
-.PP
+.P
 .EX
 #include <errno.h>
 #include <stdio.h>

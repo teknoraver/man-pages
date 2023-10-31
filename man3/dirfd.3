@@ -13,15 +13,15 @@ Standard C library
 .nf
 .B #include <sys/types.h>
 .B #include <dirent.h>
-.PP
+.P
 .BI "int dirfd(DIR *" dirp );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR dirfd ():
 .nf
     /* Since glibc 2.10: */ _POSIX_C_SOURCE >= 200809L
@@ -32,7 +32,7 @@ The function
 .BR dirfd ()
 returns the file descriptor associated with the directory stream
 .IR dirp .
-.PP
+.P
 This file descriptor is the one used internally by the directory stream.
 As a result, it is useful only for functions which do not depend on
 or alter the file position, such as

@@ -13,13 +13,13 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdint.h>
-.PP
+.P
 .BR typedef " /* ... */ " intptr_t;
 .BR typedef " /* ... */ " uintptr_t;
-.PP
+.P
 .BR "#define INTPTR_WIDTH" "  /* ... */"
 .B #define UINTPTR_WIDTH INTPTR_WIDTH
-.PP
+.P
 .BR "#define INTPTR_MAX" "    /*  2**(INTPTR_WIDTH \- 1) \- 1  */"
 .BR "#define INTPTR_MIN" "    /*  \- 2**(INTPTR_WIDTH \- 1)    */"
 .BR "#define UINTPTR_MAX" "   /*  2**UINTPTR_WIDTH \- 1       */"
@@ -33,7 +33,7 @@ value can be converted to this type and then converted back.
 It is capable of storing values in the range
 .RB [ INTPTR_MIN ,
 .BR INTPTR_MAX ].
-.PP
+.P
 .I uintptr_t
 is an unsigned integer type
 such that any valid
@@ -42,21 +42,21 @@ value can be converted to this type and then converted back.
 It is capable of storing values in the range
 .RB [ 0 ,
 .BR INTPTR_MAX ].
-.PP
+.P
 The macros
 .RB [ U ] INTPTR_WIDTH
 expand to the width in bits of these types.
-.PP
+.P
 The macros
 .RB [ U ] INTPTR_MAX
 expand to the maximum value that these types can hold.
-.PP
+.P
 The macro
 .B INTPTR_MIN
 expands to the minimum value that
 .I intptr_t
 can hold.
-.PP
+.P
 The length modifiers for the
 .RI [ u ] intptr_t
 types

@@ -27,14 +27,14 @@ with mode 0400 (read access by root only).
 If the Linux system does not have
 .I /dev/initrd
 already created, it can be created with the following commands:
-.PP
+.P
 .in +4n
 .EX
 mknod \-m 400 /dev/initrd b 1 250
 chown root:disk /dev/initrd
 .EE
 .in
-.PP
+.P
 Also, support for both "RAM disk" and "Initial RAM disk"
 (e.g.,
 .B CONFIG_BLK_DEV_RAM=y
@@ -57,7 +57,7 @@ by the boot loader before the kernel is started.
 The kernel then can use
 .IR /dev/initrd "'s"
 contents for a two-phase system boot-up.
-.PP
+.P
 In the first boot-up phase, the kernel starts up
 and mounts an initial root filesystem from the contents of
 .I /dev/initrd
@@ -233,7 +233,7 @@ For more information on setting the root filesystem see also the
 and
 .B LOADLIN
 documentation.
-.PP
+.P
 It is also possible for the
 .I /linuxrc
 executable to change the normal root device.
@@ -265,19 +265,19 @@ and then writing 0xff (e.g., the pseudo-NFS-device number) into file
 For example, the following shell command line would change
 the normal root device to
 .IR /dev/hdb1 :
-.PP
+.P
 .in +4n
 .EX
 echo 0x365 >/proc/sys/kernel/real\-root\-dev
 .EE
 .in
-.PP
+.P
 For an NFS example, the following shell command lines would change the
 normal root device to the NFS directory
 .I /var/nfsroot
 on a local networked NFS server with IP number 193.8.232.7 for a system with
 IP number 193.8.232.2 and named "idefix":
-.PP
+.P
 .in +4n
 .EX
 echo /var/nfsroot >/proc/sys/kernel/nfs\-root\-name
@@ -286,7 +286,7 @@ echo 193.8.232.2:193.8.232.7::255.255.255.0:idefix \e
 echo 255 >/proc/sys/kernel/real\-root\-dev
 .EE
 .in
-.PP
+.P
 .BR Note :
 The use of
 .I /proc/sys/kernel/real\-root\-dev
@@ -310,7 +310,7 @@ for information on the modern method of changing the root filesystem.
 The main motivation for implementing
 .B initrd
 was to allow for modular kernel configuration at system installation.
-.PP
+.P
 A possible system installation scenario is as follows:
 .IP (1) 5
 The loader program boots from floppy or other media with a minimal kernel
@@ -364,13 +364,13 @@ to a file.)
 .IP (9)
 The system is now bootable and additional installation tasks can be
 performed.
-.PP
+.P
 The key role of
 .I /dev/initrd
 in the above is to reuse the configuration data during normal system operation
 without requiring initial kernel selection, a large generic kernel or,
 recompiling the kernel.
-.PP
+.P
 A second scenario is for installations where Linux runs on systems with
 different hardware configurations in a single administrative network.
 In such cases, it may be desirable to use only a small set of kernels
@@ -383,14 +383,14 @@ Then, only the
 file or a file executed by
 .I /linuxrc
 would be different.
-.PP
+.P
 A third scenario is more convenient recovery disks.
 Because information like the location of the root filesystem
 partition is not needed at boot time, the system loaded from
 .I /dev/initrd
 can use a dialog and/or auto-detection followed by a
 possible sanity check.
-.PP
+.P
 Last but not least, Linux distributions on CD-ROM may use
 .B initrd
 for easy installation from the CD-ROM.
@@ -469,7 +469,7 @@ The behavior may change in future versions of the Linux kernel.
 .BR ram (4),
 .BR freeramdisk (8),
 .BR rdev (8)
-.PP
+.P
 .I Documentation/admin\-guide/initrd.rst
 .\" commit 9d85025b0418163fae079c9ba8f8445212de8568
 (or

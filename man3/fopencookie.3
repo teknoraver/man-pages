@@ -15,7 +15,7 @@ Standard C library
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #define _FILE_OFFSET_BITS 64
 .B #include <stdio.h>
-.PP
+.P
 .BI "FILE *fopencookie(void *restrict " cookie ", const char *restrict " mode ,
 .BI "                  cookie_io_functions_t " io_funcs );
 .fi
@@ -31,7 +31,7 @@ is used to implement
 .BR fmemopen (3),
 which provides a stream interface to data that is stored in a
 buffer in memory.
-.PP
+.P
 In order to create a custom stream the programmer must:
 .IP \[bu] 3
 Implement four "hook" functions that are used internally by the
@@ -52,7 +52,7 @@ Call
 .BR fopencookie ()
 to open a new stream and associate the cookie and hook functions
 with that stream.
-.PP
+.P
 The
 .BR fopencookie ()
 function serves a purpose similar to
@@ -60,14 +60,14 @@ function serves a purpose similar to
 it opens a new stream and returns a pointer to a
 .I FILE
 object that is used to operate on that stream.
-.PP
+.P
 The
 .I cookie
 argument is a pointer to the caller's cookie structure
 that is to be associated with the new stream.
 This pointer is supplied as the first argument when the standard I/O
 library invokes any of the hook functions described below.
-.PP
+.P
 The
 .I mode
 argument serves the same purpose as for
@@ -83,13 +83,13 @@ and
 See
 .BR fopen (3)
 for details.
-.PP
+.P
 The
 .I io_funcs
 argument is a structure that contains four fields pointing to the
 programmer-defined hook functions that are used to implement this stream.
 The structure is defined as follows
-.PP
+.P
 .in +4n
 .EX
 typedef struct {
@@ -100,7 +100,7 @@ typedef struct {
 } cookie_io_functions_t;
 .EE
 .in
-.PP
+.P
 The four fields are as follows:
 .TP
 .I cookie_read_function_t *read
@@ -268,7 +268,7 @@ The program writes its command-line arguments to the stream,
 and then seeks through the stream reading two out of every
 five characters and writing them to standard output.
 The following shell session demonstrates the use of the program:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out \[aq]hello world\[aq]"
@@ -278,7 +278,7 @@ The following shell session demonstrates the use of the program:
 Reached end of file
 .EE
 .in
-.PP
+.P
 Note that a more general version of the program below
 could be improved to more robustly handle various error situations
 (e.g., opening a stream with a cookie that already has an open stream;

@@ -20,25 +20,25 @@ Standard C library
 .nf
 .B #include <stdio.h>
 .B #include <wchar.h>
-.PP
+.P
 .BI "int wprintf(const wchar_t *restrict " format ", ...);"
 .BI "int fwprintf(FILE *restrict " stream ,
 .BI "             const wchar_t *restrict " format ", ...);"
 .BI "int swprintf(wchar_t " wcs "[restrict ." maxlen "], size_t " maxlen ,
 .BI "             const wchar_t *restrict " format ", ...);"
-.PP
+.P
 .BI "int vwprintf(const wchar_t *restrict " format ", va_list " args );
 .BI "int vfwprintf(FILE *restrict " stream ,
 .BI "             const wchar_t *restrict " format ", va_list " args );
 .BI "int vswprintf(wchar_t " wcs "[restrict ." maxlen "], size_t " maxlen ,
 .BI "             const wchar_t *restrict " format ", va_list " args );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 All functions shown above:
 .\" .BR wprintf (),
 .\" .BR fwprintf (),
@@ -59,7 +59,7 @@ the wide-character equivalent of the
 family of functions.
 It performs formatted output of wide
 characters.
-.PP
+.P
 The
 .BR wprintf ()
 and
@@ -71,7 +71,7 @@ perform wide-character output to
 must not be byte oriented; see
 .BR fwide (3)
 for more information.
-.PP
+.P
 The
 .BR fwprintf ()
 and
@@ -83,7 +83,7 @@ perform wide-character output to
 must not be byte oriented; see
 .BR fwide (3)
 for more information.
-.PP
+.P
 The
 .BR swprintf ()
 and
@@ -97,7 +97,7 @@ room for at least
 wide
 characters at
 .IR wcs .
-.PP
+.P
 These functions are like
 the
 .BR printf (3),
@@ -135,7 +135,7 @@ take a
 .I maxlen
 argument, but these functions do not return \-1 upon
 buffer overflow on Linux.)
-.PP
+.P
 The treatment of the conversion characters
 .B c
 and
@@ -234,7 +234,7 @@ on the
 .B LC_CTYPE
 category of the
 current locale.
-.PP
+.P
 If the
 .I format
 string contains non-ASCII wide characters, the program

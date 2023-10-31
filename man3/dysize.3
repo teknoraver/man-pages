@@ -13,15 +13,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B "#include <time.h>"
-.PP
+.P
 .BI "int dysize(int " year );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR dysize ():
 .nf
     Since glibc 2.19:
@@ -32,13 +32,13 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 The function returns 365 for a normal year and 366 for a leap year.
 The calculation for leap year is based on:
-.PP
+.P
 .in +4n
 .EX
 (year) %4 == 0 && ((year) %100 != 0 || (year) %400 == 0)
 .EE
 .in
-.PP
+.P
 The formula is defined in the macro
 .I __isleap(year)
 also found in
@@ -61,7 +61,7 @@ T}	Thread safety	MT-Safe
 None.
 .SH HISTORY
 SunOS 4.x.
-.PP
+.P
 This is a compatibility function only.
 Don't use it in new programs.
 .\" The SCO version of this function had a year-2000 problem.

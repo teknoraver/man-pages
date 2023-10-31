@@ -9,7 +9,7 @@ bpf \- perform a command on an extended BPF map or program
 .SH SYNOPSIS
 .nf
 .B #include <linux/bpf.h>
-.PP
+.P
 .BI "int bpf(int " cmd ", union bpf_attr *" attr ", unsigned int " size );
 .fi
 .SH DESCRIPTION
@@ -22,7 +22,7 @@ the original ("classic") BPF (cBPF) used to filter network packets.
 For both cBPF and eBPF programs,
 the kernel statically analyzes the programs before loading them,
 in order to ensure that they cannot harm the running system.
-.PP
+.P
 eBPF extends cBPF in multiple ways, including the ability to call
 a fixed set of in-kernel helper functions
 .\" See 'enum bpf_func_id' in include/uapi/linux/bpf.h
@@ -36,13 +36,13 @@ eBPF maps are a generic data structure for storage of different data types.
 Data types are generally treated as binary blobs, so a user just specifies
 the size of the key and the size of the value at map-creation time.
 In other words, a key/value for a given map can have an arbitrary structure.
-.PP
+.P
 A user process can create multiple maps (with key/value-pairs being
 opaque bytes of data) and access them via file descriptors.
 Different eBPF programs can access the same maps in parallel.
 It's up to the user process and eBPF program to decide what they store
 inside maps.
-.PP
+.P
 There's one special map type, called a program array.
 This type of map stores file descriptors referring to other eBPF programs.
 When a lookup in the map is performed, the program flow is
@@ -60,7 +60,7 @@ If a map lookup fails, the current program continues its execution.
 See
 .B BPF_MAP_TYPE_PROG_ARRAY
 below for further details.
-.PP
+.P
 Generally, eBPF programs are loaded by the user process and automatically
 unloaded when the process exits.
 In some cases, for example,
@@ -74,7 +74,7 @@ Thus, whether a specific program continues to live inside the kernel
 depends on how it is further attached to a given kernel subsystem
 after it was loaded via
 .BR bpf ().
-.PP
+.P
 Each eBPF program is a set of instructions that is safe to run until
 its completion.
 An in-kernel verifier statically determines that the eBPF program
@@ -82,7 +82,7 @@ terminates and is safe to execute.
 During verification, the kernel increments reference counts for each of
 the maps that the eBPF program uses,
 so that the attached maps can't be removed until the program is unloaded.
-.PP
+.P
 eBPF programs can be attached to different events.
 These events can be the arrival of network packets, tracing
 events, classification events by network queueing  disciplines
@@ -93,10 +93,10 @@ A new event triggers execution of the eBPF program, which
 may store information about the event in eBPF maps.
 Beyond storing data, eBPF programs may call a fixed set of
 in-kernel helper functions.
-.PP
+.P
 The same eBPF program can be attached to multiple events and different
 eBPF programs can access the same map:
-.PP
+.P
 .in +4n
 .EX
 tracing     tracing    tracing    packet      packet     packet
@@ -128,7 +128,7 @@ The
 .I size
 argument is the size of the union pointed to by
 .IR attr .
-.PP
+.P
 The value provided in
 .I cmd
 is one of the following:
@@ -164,7 +164,7 @@ The
 union consists of various anonymous structures that are used by different
 .BR bpf ()
 commands:
-.PP
+.P
 .in +4n
 .EX
 union bpf_attr {
@@ -209,7 +209,7 @@ union bpf_attr {
 Maps are a generic data structure for storage of different types of data.
 They allow sharing of data between eBPF kernel programs,
 and also between kernel and user-space applications.
-.PP
+.P
 Each map type has the following attributes:
 .IP \[bu] 3
 type
@@ -219,7 +219,7 @@ maximum number of elements
 key size in bytes
 .IP \[bu]
 value size in bytes
-.PP
+.P
 The following wrapper functions demonstrate how various
 .BR bpf ()
 commands can be used to access the maps.
@@ -710,7 +710,7 @@ The
 command is used to load an eBPF program into the kernel.
 The return value for this command is a new file descriptor associated
 with this eBPF program.
-.PP
+.P
 .in +4n
 .EX
 char bpf_log_buf[LOG_BUF_SIZE];
@@ -734,7 +734,7 @@ bpf_prog_load(enum bpf_prog_type type,
 }
 .EE
 .in
-.PP
+.P
 .I prog_type
 is one of the available program types:
 .IP
@@ -769,9 +769,9 @@ enum bpf_prog_type {
 };
 .EE
 .in
-.PP
+.P
 For further details of eBPF program types, see below.
-.PP
+.P
 The remaining fields of
 .I bpf_attr
 are set as follows:
@@ -817,13 +817,13 @@ in this case,
 must be a NULL pointer, and
 .I log_size
 must be zero.
-.PP
+.P
 Applying
 .BR close (2)
 to the file descriptor returned by
 .B BPF_PROG_LOAD
 will unload the eBPF program (but see NOTES).
-.PP
+.P
 Maps are accessible from eBPF programs and are used to exchange data between
 eBPF programs and between eBPF programs and user-space programs.
 For example,
@@ -849,17 +849,17 @@ format of
 .\" Somewhere in this page we need a general introduction to the
 .\" bpf_context. For example, how does a BPF program access the
 .\" context?
-.PP
+.P
 For example, a tracing program does not have the exact same
 subset of helper functions as a socket filter program
 (though they may have some helpers in common).
 Similarly,
 the input (context) for a tracing program is a set of register values,
 while for a socket filter it is a network packet.
-.PP
+.P
 The set of functions available to eBPF programs of a given type may increase
 in the future.
-.PP
+.P
 The following program types are supported:
 .TP
 .BR BPF_PROG_TYPE_SOCKET_FILTER " (since Linux 3.19)"
@@ -918,7 +918,7 @@ argument is a pointer to a
 .SS Events
 Once a program is loaded, it can be attached to an event.
 Various kernel subsystems have different ways to do so.
-.PP
+.P
 Since Linux 3.19,
 .\" commit 89aa075832b0da4402acebd698d0411dcc82d03e
 the following call will attach the program
@@ -927,14 +927,14 @@ to the socket
 .IR sockfd ,
 which was created by an earlier call to
 .BR socket (2):
-.PP
+.P
 .in +4n
 .EX
 setsockopt(sockfd, SOL_SOCKET, SO_ATTACH_BPF,
            &prog_fd, sizeof(prog_fd));
 .EE
 .in
-.PP
+.P
 Since Linux 4.1,
 .\" commit 2541517c32be2531e0da59dfd7efc1ce844644f5
 the following call may be used to attach
@@ -944,7 +944,7 @@ to a perf event file descriptor,
 .IR event_fd ,
 that was created by a previous call to
 .BR perf_event_open (2):
-.PP
+.P
 .in +4n
 .EX
 ioctl(event_fd, PERF_EVENT_IOC_SET_BPF, prog_fd);
@@ -963,7 +963,7 @@ The new file descriptor associated with the eBPF program.
 .TP
 All other commands
 Zero.
-.PP
+.P
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
@@ -1091,10 +1091,10 @@ tail_call
 .IP \[bu]
 ktime_get_ns
 .PD
-.PP
+.P
 Unprivileged access may be blocked by writing the value 1 to the file
 .IR /proc/sys/kernel/unprivileged_bpf_disabled .
-.PP
+.P
 eBPF objects (maps and programs) can be shared between processes.
 For example, after
 .BR fork (2),
@@ -1107,7 +1107,7 @@ in the usual way, using
 and similar calls.
 An eBPF object is deallocated only after all file descriptors
 referring to the object have been closed.
-.PP
+.P
 eBPF programs can be written in a restricted C that is compiled (using the
 .B clang
 compiler) into eBPF bytecode.
@@ -1119,7 +1119,7 @@ Some examples can be found in the
 files in the kernel source tree.
 .\" There are also examples for the tc classifier, in the iproute2
 .\" project, in examples/bpf
-.PP
+.P
 The kernel contains a just-in-time (JIT) compiler that translates
 eBPF bytecode into native machine code for better performance.
 Before Linux 4.15,
@@ -1140,7 +1140,7 @@ The generated opcodes are dumped in hexadecimal into the kernel log.
 These opcodes can then be disassembled using the program
 .I tools/net/bpf_jit_disasm.c
 provided in the kernel source tree.
-.PP
+.P
 Since Linux 4.15,
 .\" commit 290af86629b25ffd1ed6232c4e9107da031705cb
 the kernel may configured with the
@@ -1151,7 +1151,7 @@ In this case, the JIT compiler is always enabled, and the
 is initialized to 1 and is immutable.
 (This kernel configuration option was provided as a mitigation for
 one of the Spectre attacks against the BPF interpreter.)
-.PP
+.P
 The JIT compiler for eBPF is currently
 .\" Last reviewed in Linux 4.18-rc by grepping for BPF_ALU64 in arch/
 .\" and by checking the documentation for bpf_jit_enable in
@@ -1258,7 +1258,7 @@ main(int argc, char *argv[])
 }
 .EE
 .\" SRC END
-.PP
+.P
 Some complete working code can be found in the
 .I samples/bpf
 directory in the kernel source tree.
@@ -1268,6 +1268,6 @@ directory in the kernel source tree.
 .BR socket (7),
 .BR tc (8),
 .BR tc\-bpf (8)
-.PP
+.P
 Both classic and extended BPF are explained in the kernel source file
 .IR Documentation/networking/filter.txt .

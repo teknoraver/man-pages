@@ -18,7 +18,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <sys/mman.h>
-.PP
+.P
 .BI "void *mremap(void " old_address [. old_size "], size_t " old_size ,
 .BI "             size_t " new_size ", int " flags ", ... /* void *" new_address " */);"
 .fi
@@ -27,7 +27,7 @@ Standard C library
 expands (or shrinks) an existing memory mapping, potentially
 moving it at the same time (controlled by the \fIflags\fP argument and
 the available virtual address space).
-.PP
+.P
 \fIold_address\fP is the old address of the virtual memory block that you
 want to expand (or shrink).
 Note that \fIold_address\fP has to be page
@@ -41,7 +41,7 @@ An optional fifth argument,
 may be provided; see the description of
 .B MREMAP_FIXED
 below.
-.PP
+.P
 If the value of \fIold_size\fP is zero, and \fIold_address\fP refers to
 a shareable mapping (see
 .BR mmap (2)
@@ -57,7 +57,7 @@ below.
 If a new mapping is requested via this method, then the
 .B MREMAP_MAYMOVE
 flag must also be specified.
-.PP
+.P
 The \fIflags\fP bit-mask argument may be 0, or include the following flags:
 .TP
 .B MREMAP_MAYMOVE
@@ -131,7 +131,7 @@ flag may be used to atomically move a mapping while leaving the source
 mapped.
 See NOTES for some possible applications of
 .BR MREMAP_DONTUNMAP .
-.PP
+.P
 If the memory segment specified by
 .I old_address
 and
@@ -248,7 +248,7 @@ Linux.
 .\" 4.2BSD had a (never actually implemented)
 .\" .BR mremap (2)
 .\" call with completely different semantics.
-.\" .PP
+.\" .P
 Prior to glibc 2.4, glibc did not expose the definition of
 .BR MREMAP_FIXED ,
 and the prototype for
@@ -262,7 +262,7 @@ changes the
 mapping between virtual addresses and memory pages.
 This can be used to implement a very efficient
 .BR realloc (3).
-.PP
+.P
 In Linux, memory is divided into pages.
 A process has (one or)
 several linear virtual memory segments.
@@ -276,7 +276,7 @@ if the memory is accessed incorrectly (e.g.,
 writing to a read-only segment).
 Accessing virtual memory outside of the
 segments will also cause a segmentation violation.
-.PP
+.P
 If
 .BR mremap ()
 is used to move or expand an area locked with
@@ -344,7 +344,7 @@ in this scenario.
 .BR sbrk (2),
 .BR malloc (3),
 .BR realloc (3)
-.PP
+.P
 Your favorite text book on operating systems
 for more information on paged memory
 (e.g., \fIModern Operating Systems\fP by Andrew S.\& Tanenbaum,

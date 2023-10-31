@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/xattr.h>
-.PP
+.P
 .BI "ssize_t listxattr(const char *" path ", char *_Nullable " list \
 ", size_t " size );
 .BI "ssize_t llistxattr(const char *" path ", char *_Nullable " list \
@@ -30,7 +30,7 @@ with all inodes in the system (i.e., the
 data).
 A complete overview of extended attributes concepts can be found in
 .BR xattr (7).
-.PP
+.P
 .BR listxattr ()
 retrieves the list
 of extended attribute names associated with the given
@@ -46,14 +46,14 @@ have access may be omitted from the list.
 The length of the attribute name
 .I list
 is returned.
-.PP
+.P
 .BR llistxattr ()
 is identical to
 .BR listxattr (),
 except in the case of a symbolic link, where the list of names of
 extended attributes associated with the link itself is retrieved,
 not the file that it refers to.
-.PP
+.P
 .BR flistxattr ()
 is identical to
 .BR listxattr (),
@@ -63,13 +63,13 @@ only the open file referred to by
 .BR open (2))
 is interrogated in place of
 .IR path .
-.PP
+.P
 A single extended attribute
 .I name
 is a null-terminated string.
 The name includes a namespace prefix; there may be several, disjoint
 namespaces associated with an individual inode.
-.PP
+.P
 If
 .I size
 is specified as zero, these calls return the current size of the
@@ -88,18 +88,18 @@ The
 of names is returned as an unordered array of null-terminated character strings
 (attribute names are separated by null bytes (\[aq]\e0\[aq])),
 like this:
-.PP
+.P
 .in +4n
 .EX
 user.name1\e0system.name1\e0user.name2\e0
 .EE
 .in
-.PP
+.P
 Filesystems that implement POSIX ACLs using
 extended attributes might return a
 .I list
 like this:
-.PP
+.P
 .in +4n
 .EX
 system.posix_acl_access\e0system.posix_acl_default\e0
@@ -129,7 +129,7 @@ The
 of the
 .I list
 buffer is too small to hold the result.
-.PP
+.P
 In addition, the errors documented in
 .BR stat (2)
 can also occur.
@@ -160,7 +160,7 @@ and
 .BR getxattr (2).
 For the file whose pathname is provided as a command-line argument,
 it lists all extended file attributes and their values.
-.PP
+.P
 To keep the code simple, the program assumes that attribute keys and
 values are constant during the execution of the program.
 A production program should expect and handle changes during
@@ -177,7 +177,7 @@ with a larger buffer each time it fails with the error
 Calls to
 .BR getxattr (2)
 could be handled similarly.
-.PP
+.P
 The following output was recorded by first creating a file, setting
 some extended file attributes,
 and then listing the attributes with the example program.

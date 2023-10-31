@@ -13,16 +13,16 @@ POSIX threads library
 .nf
 .B #include <signal.h>
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_sigqueue(pthread_t " thread ", int " sig ,
 .BI "                     const union sigval " value );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR pthread_sigqueue ():
 .nf
     _GNU_SOURCE
@@ -35,7 +35,7 @@ function performs a similar task to
 but, rather than sending a signal to a process,
 it sends a signal to a thread in the same process as the
 calling thread.
-.PP
+.P
 The
 .I thread
 argument is the ID of a thread in the same process as the caller.

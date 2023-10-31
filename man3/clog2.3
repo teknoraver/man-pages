@@ -11,7 +11,7 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <complex.h>
-.PP
+.P
 .BI "double complex clog2(double complex " z );
 .BI "float complex clog2f(float complex " z );
 .BI "long double complex clog2l(long double complex " z );
@@ -21,12 +21,12 @@ The call
 .I clog2(z)
 is equivalent to
 .IR clog(z)/log(2) .
-.PP
+.P
 The other functions perform the same task for
 .I float
 and
 .IR "long double" .
-.PP
+.P
 Note that
 .I z
 close to zero will cause an overflow.
@@ -34,7 +34,7 @@ close to zero will cause an overflow.
 None.
 .SH HISTORY
 These function names are reserved for future use in C99.
-.PP
+.P
 Not yet in glibc, as at glibc 2.19.
 .\" But reserved in NAMESPACE.
 .SH SEE ALSO

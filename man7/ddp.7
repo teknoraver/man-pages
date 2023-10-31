@@ -11,7 +11,7 @@ ddp \- Linux AppleTalk protocol implementation
 .nf
 .B #include <sys/socket.h>
 .B #include <netatalk/at.h>
-.PP
+.P
 .IB ddp_socket " = socket(AF_APPLETALK, SOCK_DGRAM, 0);"
 .IB raw_socket " = socket(AF_APPLETALK, SOCK_RAW, " protocol ");"
 .fi
@@ -26,12 +26,12 @@ protocol
 libraries.
 This page documents the interface for those who wish or need to
 use the DDP layer directly.
-.PP
+.P
 The communication between AppleTalk and the user program works using a
 BSD-compatible socket interface.
 For more information on sockets, see
 .BR socket (7).
-.PP
+.P
 An AppleTalk socket is created by calling the
 .BR socket (2)
 function with a
@@ -52,7 +52,7 @@ For
 .B SOCK_RAW
 you must specify
 .BR ATPROTO_DDP .
-.PP
+.P
 Raw sockets may be opened only by a process with effective user ID 0
 or when the process has the
 .B CAP_NET_RAW
@@ -60,7 +60,7 @@ capability.
 .SS Address format
 An AppleTalk socket address is defined as a combination of a network number,
 a node number, and a port number.
-.PP
+.P
 .in +4n
 .EX
 struct at_addr {
@@ -75,7 +75,7 @@ struct sockaddr_atalk {
 };
 .EE
 .in
-.PP
+.P
 .I sat_family
 is always set to
 .BR AF_APPLETALK .
@@ -133,7 +133,7 @@ dead.
 .TP
 .I aarp\-tick\-time
 The timer rate (in seconds) for the timer driving AARP.
-.PP
+.P
 The default values match the specification and should never need to be
 changed.
 .SS Ioctls
@@ -228,14 +228,14 @@ on BSD-derived systems.
 Many BSD systems fail to check
 .B SO_BROADCAST
 when sending broadcast frames; this can lead to compatibility problems.
-.PP
+.P
 The
 raw
 socket mode is unique to Linux and exists to support the alternative CAP
 package and AppleTalk monitoring tools more easily.
 .SH BUGS
 There are too many inconsistent error values.
-.PP
+.P
 The ioctls used to configure routing tables, devices,
 AARP tables, and other devices are not yet described.
 .SH SEE ALSO

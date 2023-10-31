@@ -25,7 +25,7 @@ is
 .B hdc
 and the slave is
 .BR hdd .
-.PP
+.P
 General IDE block device names have the form
 .BI hd X\c
 , or
@@ -49,15 +49,15 @@ Thus, the first logical partition will be
 \&.
 Both DOS-type partitioning and BSD-disklabel partitioning are supported.
 You can have at most 63 partitions on an IDE disk.
-.PP
+.P
 For example,
 .I /dev/hda
 refers to all of the first IDE drive in the system; and
 .I /dev/hdb3
 refers to the third DOS "primary" partition on the second one.
-.PP
+.P
 They are typically created by:
-.PP
+.P
 .in +4n
 .EX
 mknod \-m 660 /dev/hda b 3 0

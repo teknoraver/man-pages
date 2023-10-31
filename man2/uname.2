@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/utsname.h>
-.PP
+.P
 .BI "int uname(struct utsname *" buf );
 .fi
 .SH DESCRIPTION
@@ -24,7 +24,7 @@ The
 .I utsname
 struct is defined in
 .IR <sys/utsname.h> :
-.PP
+.P
 .in +4n
 .EX
 struct utsname {
@@ -41,7 +41,7 @@ struct utsname {
 };
 .EE
 .in
-.PP
+.P
 The length of the arrays in a
 .I struct utsname
 is unspecified (see NOTES);
@@ -60,7 +60,7 @@ is not valid.
 The
 .I domainname
 member (the NIS or YP domain name) is a GNU extension.
-.PP
+.P
 The length of the fields in the struct varies.
 Some operating systems
 or libraries use a hardcoded 9 or 33 or 65 or 257.
@@ -120,7 +120,7 @@ Similarly, the
 .I domainname
 field is set via
 .BR setdomainname (2).
-.PP
+.P
 Part of the utsname information is also accessible via
 .IR /proc/sys/kernel/ { ostype ,
 .IR hostname ,

@@ -15,13 +15,13 @@ Many functions are
 async-signal-safe.
 In particular,
 nonreentrant functions are generally unsafe to call from a signal handler.
-.PP
+.P
 The kinds of issues that render a function
 unsafe can be quickly understood when one considers
 the implementation of the
 .I stdio
 library, all of whose functions are not async-signal-safe.
-.PP
+.P
 When performing buffered I/O on a file, the
 .I stdio
 functions must maintain a statically allocated data buffer
@@ -38,7 +38,7 @@ the program is interrupted by a signal handler that also calls
 then the second call to
 .BR printf (3)
 will operate on inconsistent data, with unpredictable results.
-.PP
+.P
 To avoid problems with unsafe functions, there are two possible choices:
 .IP (a) 5
 Ensure that
@@ -50,26 +50,26 @@ with respect to global variables in the main program.
 Block signal delivery in the main program when calling functions
 that are unsafe or operating on global data that is also accessed
 by the signal handler.
-.PP
+.P
 Generally, the second choice is difficult in programs of any complexity,
 so the first choice is taken.
-.PP
+.P
 POSIX.1 specifies a set of functions that an implementation
 must make async-signal-safe.
 (An implementation may provide safe implementations of additional functions,
 but this is not required by the standard and other implementations
 may not provide the same guarantees.)
-.PP
+.P
 In general, a function is async-signal-safe either because it is reentrant
 or because it is atomic with respect to signals
 (i.e., its execution can't be interrupted by a signal handler).
-.PP
+.P
 The set of functions required to be async-signal-safe by POSIX.1
 is shown in the following table.
 The functions not otherwise noted were required to be async-signal-safe
 in POSIX.1-2001;
 the table details changes in the subsequent standards.
-.PP
+.P
 .TS
 lb lb
 l l.
@@ -272,7 +272,7 @@ T}
 \fBwmemset\fP(3)	Added in POSIX.1-2008 TC2
 \fBwrite\fP(2)
 .TE
-.PP
+.P
 Notes:
 .IP \[bu] 3
 POSIX.1-2001 and POSIX.1-2001 TC2 required the functions

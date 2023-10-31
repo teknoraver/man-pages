@@ -16,7 +16,7 @@ Standard C library
 .B #define _REGEX_RE_COMP
 .B #include <sys/types.h>
 .B #include <regex.h>
-.PP
+.P
 .BI "[[deprecated]] char *re_comp(const char *" regex );
 .BI "[[deprecated]] int re_exec(const char *" string );
 .fi
@@ -32,7 +32,7 @@ If
 is NULL,
 no operation is performed and the pattern buffer's contents are not
 altered.
-.PP
+.P
 .BR re_exec ()
 is used to assess whether the null-terminated string pointed to by
 .I string
@@ -43,7 +43,7 @@ matches the previously compiled
 returns NULL on successful compilation of
 .I regex
 otherwise it returns a pointer to an appropriate error message.
-.PP
+.P
 .BR re_exec ()
 returns 1 for a successful match, zero for failure.
 .SH ATTRIBUTES
@@ -65,7 +65,7 @@ T}	Thread safety	MT-Unsafe
 None.
 .SH HISTORY
 4.3BSD.
-.PP
+.P
 These functions are obsolete; the functions documented in
 .BR regcomp (3)
 should be used instead.

@@ -16,16 +16,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .B long gethostid(void);
 .BI "int sethostid(long " hostid );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR gethostid ():
 .nf
     Since glibc 2.20:
@@ -35,7 +35,7 @@ Feature Test Macro Requirements for glibc (see
         _BSD_SOURCE || _XOPEN_SOURCE >= 500
 .\"        || _XOPEN_SOURCE && _XOPEN_SOURCE_EXTENDED
 .fi
-.PP
+.P
 .BR sethostid ():
 .nf
     Since glibc 2.21:
@@ -57,7 +57,7 @@ This normally resembles the Internet address for the local
 machine, as returned by
 .BR gethostbyname (3),
 and thus usually never needs to be set.
-.PP
+.P
 The
 .BR sethostid ()
 call is restricted to the superuser.
@@ -65,7 +65,7 @@ call is restricted to the superuser.
 .BR gethostid ()
 returns the 32-bit identifier for the current host as set by
 .BR sethostid ().
-.PP
+.P
 On success,
 .BR sethostid ()
 returns 0; on error, \-1 is returned, and
@@ -118,7 +118,7 @@ is stored in the file
 .I /var/adm/hostid
 was used.)
 .\" libc5 used /etc/hostid; libc4 didn't have these functions
-.PP
+.P
 In the glibc implementation, if
 .BR gethostid ()
 cannot open the file containing the host ID,

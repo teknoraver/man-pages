@@ -14,7 +14,7 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_attr_setstacksize(pthread_attr_t *" attr \
 ", size_t " stacksize );
 .BI "int pthread_attr_getstacksize(const pthread_attr_t *restrict " attr ,
@@ -28,11 +28,11 @@ thread attributes object referred to by
 .I attr
 to the value specified in
 .IR stacksize .
-.PP
+.P
 The stack size attribute determines the minimum size (in bytes) that
 will be allocated for threads created using the thread attributes object
 .IR attr .
-.PP
+.P
 The
 .BR pthread_attr_getstacksize ()
 function returns the stack size attribute of the
@@ -51,7 +51,7 @@ can fail with the following error:
 The stack size is less than
 .B PTHREAD_STACK_MIN
 (16384) bytes.
-.PP
+.P
 On some systems,
 .\" e.g., MacOS
 .BR pthread_attr_setstacksize ()
@@ -82,10 +82,10 @@ POSIX.1-2001, POSIX.1-2008.
 .SH NOTES
 For details on the default stack size of new threads, see
 .BR pthread_create (3).
-.PP
+.P
 A thread's stack size is fixed at the time of thread creation.
 Only the main thread can dynamically grow its stack.
-.PP
+.P
 The
 .BR pthread_attr_setstack (3)
 function allows an application to set both the size and location

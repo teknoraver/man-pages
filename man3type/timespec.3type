@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .EX
 .B #include <time.h>
-.PP
+.P
 .B struct timespec {
 .BR "    time_t     tv_sec;" "   /* Seconds */"
 .RB "    /* ... */" "  tv_nsec;" \
@@ -22,7 +22,7 @@ Standard C library
 .EE
 .SH DESCRIPTION
 Describes times in seconds and nanoseconds.
-.PP
+.P
 .I tv_nsec
 is of an implementation-defined signed type
 capable of holding the specified range.

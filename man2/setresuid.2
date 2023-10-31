@@ -14,7 +14,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int setresuid(uid_t " ruid ", uid_t " euid ", uid_t " suid );
 .BI "int setresgid(gid_t " rgid ", gid_t " egid ", gid_t " sgid );
 .fi
@@ -22,22 +22,22 @@ Standard C library
 .BR setresuid ()
 sets the real user ID, the effective user ID, and the
 saved set-user-ID of the calling process.
-.PP
+.P
 An unprivileged process may change its real UID,
 effective UID, and saved set-user-ID, each to one of:
 the current real UID, the current effective UID, or the
 current saved set-user-ID.
-.PP
+.P
 A privileged process (on Linux, one having the \fBCAP_SETUID\fP capability)
 may set its real UID, effective UID, and
 saved set-user-ID to arbitrary values.
-.PP
+.P
 If one of the arguments equals \-1, the corresponding value is not changed.
-.PP
+.P
 Regardless of what changes are made to the real UID, effective UID,
 and saved set-user-ID, the filesystem UID is always set to the same
 value as the (possibly new) effective UID.
-.PP
+.P
 Completely analogously,
 .BR setresgid ()
 sets the real GID, effective GID, and saved set-group-ID
@@ -49,7 +49,7 @@ On success, zero is returned.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 .IR Note :
 there are cases where
 .BR setresuid ()
@@ -119,7 +119,7 @@ None.
 Linux 2.1.44,
 glibc 2.3.2.
 HP-UX, FreeBSD.
-.PP
+.P
 The original Linux
 .BR setresuid ()
 and

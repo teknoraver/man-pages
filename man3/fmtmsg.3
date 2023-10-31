@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <fmtmsg.h>
-.PP
+.P
 .BI "int fmtmsg(long " classification ", const char *" label ,
 .BI "           int " severity ", const char *" text ,
 .BI "           const char *" action ", const char *" tag );
@@ -33,23 +33,23 @@ For messages written to
 the format depends on the
 .B MSGVERB
 environment variable.
-.PP
+.P
 The
 .I label
 argument identifies the source of the message.
 The string must consist
 of two colon separated parts where the first part has not more
 than 10 and the second part not more than 14 characters.
-.PP
+.P
 The
 .I text
 argument describes the condition of the error.
-.PP
+.P
 The
 .I action
 argument describes possible steps to recover from the error.
 If it is printed, it is prefixed by "TO FIX: ".
-.PP
+.P
 The
 .I tag
 argument is a reference to the online documentation where more
@@ -80,7 +80,7 @@ is a synonym for
 The
 .I classification
 argument is the sum of values describing 4 types of information.
-.PP
+.P
 The first value defines the output channel.
 .TP 12n
 .B MM_PRINT
@@ -92,7 +92,7 @@ Output to the system console.
 .TP
 .B "MM_PRINT | MM_CONSOLE"
 Output to both.
-.PP
+.P
 The second value is the source of the error:
 .TP 12n
 .B MM_HARD
@@ -103,7 +103,7 @@ A firmware error occurred.
 .TP
 .B MM_SOFT
 A software error occurred.
-.PP
+.P
 The third value encodes the detector of the problem:
 .TP 12n
 .B MM_APPL
@@ -114,7 +114,7 @@ It is detected by a utility.
 .TP
 .B MM_OPSYS
 It is detected by the operating system.
-.PP
+.P
 The fourth value shows the severity of the incident:
 .TP 12n
 .B MM_RECOVER
@@ -141,7 +141,7 @@ This value is printed as WARNING.
 .TP
 .B MM_INFO
 This value is printed as INFO.
-.PP
+.P
 The numeric values are between 0 and 4.
 Using
 .BR addseverity (3)
@@ -174,7 +174,7 @@ When this variable is defined, is non-NULL, and is a colon-separated
 list of valid keywords, then only the parts of the message corresponding
 to these keywords is printed.
 Valid keywords are "label", "severity", "text", "action", and "tag".
-.PP
+.P
 The environment variable
 .B SEV_LEVEL
 can be used to introduce new severity levels.
@@ -186,25 +186,25 @@ print nothing.
 If the user puts
 .B SEV_LEVEL
 with a format like
-.PP
+.P
 .RS
 SEV_LEVEL=[description[:description[:...]]]
 .RE
-.PP
+.P
 in the environment of the process before the first call to
 .BR fmtmsg (),
 where each description is of the form
-.PP
+.P
 .RS
 severity-keyword,level,printstring
 .RE
-.PP
+.P
 then
 .BR fmtmsg ()
 will also accept the indicated values for the level (in addition to
 the standard levels 0\[en]4), and use the indicated printstring when
 such a level occurs.
-.PP
+.P
 The severity-keyword part is not used by
 .BR fmtmsg ()
 but it has to be present.
@@ -237,12 +237,12 @@ glibc\ >=\ 2.16: MT-Safe;
 glibc\ <\ 2.16: MT-Unsafe
 T}
 .TE
-.PP
+.P
 Before glibc 2.16, the
 .BR fmtmsg ()
 function uses a static variable that is not protected,
 so it is not thread-safe.
-.PP
+.P
 Since glibc 2.16,
 .\" Modified in commit 7724defcf8873116fe4efab256596861eef21a94
 the
@@ -267,7 +267,7 @@ POSIX.1-2001 and POSIX.1-2008.
 .TP
 .B SEV_LEVEL
 System V.
-.PP
+.P
 System V and UnixWare man pages tell us that these functions
 have been replaced by "pfmt() and addsev()" or by "pfmt(),
 vpfmt(), lfmt(), and vlfmt()", and will be removed later.
@@ -306,26 +306,26 @@ main(void)
 }
 .EE
 .\" SRC END
-.PP
+.P
 The output should be:
-.PP
+.P
 .in +4n
 .EX
 util\-linux:mount: ERROR: unknown mount option
 TO FIX: See mount(8).  util\-linux:mount:017
 .EE
 .in
-.PP
+.P
 and after
-.PP
+.P
 .in +4n
 .EX
 MSGVERB=text:action; export MSGVERB
 .EE
 .in
-.PP
+.P
 the output becomes:
-.PP
+.P
 .in +4n
 .EX
 unknown mount option

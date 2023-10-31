@@ -13,11 +13,11 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stddef.h>
-.PP
+.P
 .BR typedef " /* ... */  " size_t;
-.PP
+.P
 .B #include <sys/types.h>
-.PP
+.P
 .BR typedef " /* ... */  " ssize_t;
 .fi
 .SH DESCRIPTION
@@ -99,7 +99,7 @@ C89, POSIX.1-2001.
 .TP
 .I ssize_t
 POSIX.1-2001.
-.PP
+.P
 .IR <aio.h> ,
 .IR <glob.h> ,
 .IR <grp.h> ,
@@ -112,7 +112,7 @@ and
 define
 .I size_t
 since POSIX.1-2008.
-.PP
+.P
 .IR <aio.h> ,
 .IR <mqueue.h> ,
 and

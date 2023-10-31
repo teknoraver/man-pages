@@ -14,7 +14,7 @@ Standard C library
 .nf
 .BR "#include <linux/landlock.h>" "  /* Definition of " LANDLOCK_* " constants */"
 .BR "#include <sys/syscall.h>" "     /* Definition of " SYS_* " constants */"
-.PP
+.P
 .BI "int syscall(SYS_landlock_add_rule, int " ruleset_fd ,
 .BI "            enum landlock_rule_type " rule_type ,
 .BI "            const void *" rule_attr ", uint32_t " flags );
@@ -32,11 +32,11 @@ created with
 See
 .BR landlock (7)
 for a global overview.
-.PP
+.P
 .I ruleset_fd
 is a Landlock ruleset file descriptor obtained with
 .BR landlock_create_ruleset (2).
-.PP
+.P
 .I rule_type
 identifies the structure type pointed to by
 .IR rule_attr .
@@ -72,7 +72,7 @@ is an opened file descriptor, preferably with the
 flag,
 which identifies the parent directory of the file hierarchy or
 just a file.
-.PP
+.P
 .I flags
 must be 0.
 .SH RETURN VALUE

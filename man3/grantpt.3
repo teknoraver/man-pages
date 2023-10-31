@@ -12,15 +12,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int grantpt(int " fd ");"
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR grantpt ():
 .nf
     Since glibc 2.24:
@@ -39,7 +39,7 @@ The user ID of the slave is set to the real UID of the calling process.
 The group ID is set to an unspecified value (e.g.,
 .IR tty ).
 The mode of the slave is set to 0620 (crw\-\-w\-\-\-\-).
-.PP
+.P
 The behavior of
 .BR grantpt ()
 is unspecified if a signal handler is installed to catch
@@ -85,10 +85,10 @@ POSIX.1-2008.
 .SH HISTORY
 glibc 2.1.
 POSIX.1-2001.
-.PP
+.P
 This is part of the UNIX 98 pseudoterminal support, see
 .BR pts (4).
-.PP
+.P
 Historical systems implemented this function via a set-user-ID helper binary
 called "pt_chown".
 glibc on Linux before glibc 2.33 could do so as well,

@@ -14,7 +14,7 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_attr_setschedpolicy(pthread_attr_t *" attr ", int " policy );
 .BI "int pthread_attr_getschedpolicy(const pthread_attr_t *restrict " attr ,
 .BI "                                int *restrict " policy );
@@ -30,7 +30,7 @@ to the value specified in
 This attribute determines the scheduling policy of
 a thread created using the thread attributes object
 .IR attr .
-.PP
+.P
 The supported values for
 .I policy
 are
@@ -43,14 +43,14 @@ with the semantics described in
 .\" FIXME . pthread_setschedparam() places no restriction on the policy,
 .\" but pthread_attr_setschedpolicy() restricts policy to RR/FIFO/OTHER
 .\" http://sourceware.org/bugzilla/show_bug.cgi?id=7013
-.PP
+.P
 The
 .BR pthread_attr_getschedpolicy ()
 returns the scheduling policy attribute of the thread attributes object
 .I attr
 in the buffer pointed to by
 .IR policy .
-.PP
+.P
 In order for the policy setting made by
 .BR pthread_attr_setschedpolicy ()
 to have effect when calling
@@ -71,7 +71,7 @@ can fail with the following error:
 .B EINVAL
 Invalid value in
 .IR policy .
-.PP
+.P
 POSIX.1 also documents an optional
 .B ENOTSUP
 error ("attempt was made to set the attribute to an unsupported value") for

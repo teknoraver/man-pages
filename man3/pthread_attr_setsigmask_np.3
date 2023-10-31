@@ -15,7 +15,7 @@ POSIX threads library
 .nf
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_attr_setsigmask_np(pthread_attr_t *" attr ,
 .BI "                               const sigset_t *" sigmask );
 .BI "int pthread_attr_getsigmask_np(const pthread_attr_t *" attr ,
@@ -34,7 +34,7 @@ If
 is specified as NULL, then any existing signal mask attribute in
 .I attr
 is unset.
-.PP
+.P
 The
 .BR pthread_attr_getsigmask_np ()
 function returns the signal mask attribute of the thread attributes object
@@ -50,7 +50,7 @@ as its result.
 The
 .BR pthread_attr_setsigmask_np ()
 function returns 0 on success, or a nonzero error number on failure.
-.PP
+.P
 the
 .BR pthread_attr_getsigmask_np ()
 function returns either 0 or
@@ -61,7 +61,7 @@ A return value of
 .B PTHREAD_ATTR_NO_SIGMASK_NP
 indicates that the signal mask attribute is not set in
 .IR attr .
-.PP
+.P
 On error, these functions return a positive error number.
 .SH ERRORS
 .TP
@@ -95,13 +95,13 @@ a thread created using the thread attributes object
 If this attribute is not set, then a thread created using
 .I attr
 will inherit a copy of the creating thread's signal mask.
-.PP
+.P
 For more details on signal masks, see
 .BR sigprocmask (2).
 For a description of a set of macros
 that can be used to manipulate and inspect signal sets, see
 .BR sigsetops (3).
-.PP
+.P
 In the absence of
 .BR pthread_attr_setsigmask_np ()
 it is possible to create a thread with a desired signal mask as follows:
@@ -118,7 +118,7 @@ The new thread sets its signal mask to the desired value using
 .BR pthread_sigmask (3).
 .IP \[bu]
 The creating thread restores its signal mask to the original value.
-.PP
+.P
 Following the above steps,
 there is no possibility for the new thread to receive a signal
 before it has adjusted its signal mask to the desired value.

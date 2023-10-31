@@ -21,18 +21,18 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/sysinfo.h>
-.PP
+.P
 .BI "int sysinfo(struct sysinfo *" info );
 .fi
 .SH DESCRIPTION
 .BR sysinfo ()
 returns certain statistics on memory and swap usage,
 as well as the load average.
-.PP
+.P
 Until Linux 2.3.16,
 .BR sysinfo ()
 returned information in the following structure:
-.PP
+.P
 .in +4n
 .EX
 struct sysinfo {
@@ -49,13 +49,13 @@ struct sysinfo {
 };
 .EE
 .in
-.PP
+.P
 In the above structure, the sizes of the memory and swap fields
 are given in bytes.
-.PP
+.P
 Since Linux 2.3.23 (i386) and Linux 2.3.48
 (all architectures) the structure is:
-.PP
+.P
 .in +4n
 .EX
 struct sysinfo {
@@ -76,7 +76,7 @@ struct sysinfo {
 };
 .EE
 .in
-.PP
+.P
 In the above structure,
 sizes of the memory and swap fields are given as multiples of
 .I mem_unit

@@ -14,15 +14,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .B int getdtablesize(void);
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getdtablesize ():
 .nf
     Since glibc 2.20:
@@ -72,7 +72,7 @@ when that fails.
 .\" The libc4 and libc5 versions return
 .\" .B OPEN_MAX
 .\" (set to 256 since Linux 0.98.4).
-.PP
+.P
 Portable applications should employ
 .I sysconf(_SC_OPEN_MAX)
 instead of this call.

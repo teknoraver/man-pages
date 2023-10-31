@@ -17,7 +17,7 @@ spufs \- SPU filesystem
 The SPU filesystem is used on PowerPC machines that implement the
 Cell Broadband Engine Architecture in order to access Synergistic
 Processor Units (SPUs).
-.PP
+.P
 The filesystem provides a name space similar to POSIX shared
 memory or message queues.
 Users that have write permissions
@@ -26,7 +26,7 @@ on the filesystem can use
 to establish SPU contexts under the
 .B spufs
 root directory.
-.PP
+.P
 Every SPU context is represented by a directory containing
 a predefined set of files.
 These files can be
@@ -58,7 +58,7 @@ supported on regular filesystems.
 This list details the supported
 operations and the deviations from the standard behavior described
 in the respective man pages.
-.PP
+.P
 All files that support the
 .BR read (2)
 operation also support
@@ -80,7 +80,7 @@ structure that contain reliable information are
 .IR st_uid ,
 and
 .IR st_gid .
-.PP
+.P
 All files support the
 .BR chmod (2)/\c
 .BR fchmod (2)
@@ -91,7 +91,7 @@ operations, but will not be able to grant permissions that contradict
 the possible operations (e.g., read access on the
 .I wbox
 file).
-.PP
+.P
 The current set of files is:
 .TP
 .I /capabilities
@@ -105,7 +105,7 @@ This context may be scheduled.
 .TP
 .B step
 This context can be run in single-step mode, for debugging.
-.PP
+.P
 New capabilities flags may be added in the future.
 .RE
 .TP
@@ -800,5 +800,5 @@ none /spu spufs gid=spu 0 0
 .BR spu_create (2),
 .BR spu_run (2),
 .BR capabilities (7)
-.PP
+.P
 .I The Cell Broadband Engine Architecture (CBEA) specification

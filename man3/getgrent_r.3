@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <grp.h>
-.PP
+.P
 .BI "int getgrent_r(struct group *restrict " gbuf ,
 .BI "               char " buf "[restrict ." buflen "], size_t " buflen ,
 .BI "               struct group **restrict " gbufp );
@@ -20,18 +20,18 @@ Standard C library
 .BI "               char " buf "[restrict ." buflen "], size_t " buflen ,
 .BI "               struct group **restrict " gbufp );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR getgrent_r ():
 .nf
     _GNU_SOURCE
 .fi
 .\" FIXME . The FTM requirements seem inconsistent here.  File a glibc bug?
-.PP
+.P
 .BR fgetgrent_r ():
 .nf
     Since glibc 2.19:
@@ -52,11 +52,11 @@ The former reads the next group entry from the stream initialized by
 .BR setgrent (3).
 The latter reads the next group entry from
 .IR stream .
-.PP
+.P
 The \fIgroup\fP structure is defined in
 .I <grp.h>
 as follows:
-.PP
+.P
 .in +4n
 .EX
 struct group {
@@ -68,10 +68,10 @@ struct group {
 };
 .EE
 .in
-.PP
+.P
 For more information about the fields of this structure, see
 .BR group (5).
-.PP
+.P
 The nonreentrant functions return a pointer to static storage,
 where this static storage contains further pointers to group
 name, password, and members.
@@ -132,7 +132,7 @@ T}	Thread safety	T{
 MT-Safe
 T}
 .TE
-.PP
+.P
 In the above table,
 .I grent
 in
@@ -147,16 +147,16 @@ are used in parallel in different threads of a program,
 then data races could occur.
 .SH VERSIONS
 Other systems use the prototype
-.PP
+.P
 .in +4n
 .EX
 struct group *getgrent_r(struct group *grp, char *buf,
                          int buflen);
 .EE
 .in
-.PP
+.P
 or, better,
-.PP
+.P
 .in +4n
 .EX
 int getgrent_r(struct group *grp, char *buf, int buflen,

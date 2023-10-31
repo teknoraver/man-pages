@@ -12,7 +12,7 @@ Real-time library
 .SH SYNOPSIS
 .nf
 .B "#include <aio.h>"
-.PP
+.P
 .BI "int lio_listio(int " mode ,
 .BI "               struct aiocb *restrict const " aiocb_list [restrict],
 .BI "               int " nitems ", struct sigevent *restrict " sevp );
@@ -22,7 +22,7 @@ The
 .BR lio_listio ()
 function initiates the list of I/O operations described by the array
 .IR aiocb_list .
-.PP
+.P
 The
 .I mode
 operation has one of the following values:
@@ -44,7 +44,7 @@ for details.
 If
 .I sevp
 is NULL, no asynchronous notification occurs.
-.PP
+.P
 The
 .I aiocb_list
 argument is an array of pointers to
@@ -58,7 +58,7 @@ argument specifies the size of the array
 Null pointers in
 .I aiocb_list
 are ignored.
-.PP
+.P
 In each control block in
 .IR aiocb_list ,
 the
@@ -79,7 +79,7 @@ specifying this control block.
 .TP
 .B LIO_NOP
 Ignore this control block.
-.PP
+.P
 The remaining fields in each control block have the same meanings as for
 .BR aio_read (3)
 and
@@ -99,7 +99,7 @@ returns 0 if all I/O operations are successfully queued.
 Otherwise, \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 If
 .I mode
 is
@@ -109,7 +109,7 @@ returns 0 when all of the I/O operations have completed successfully.
 Otherwise, \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 The return status from
 .BR lio_listio ()
 provides information only about the call itself,
@@ -168,7 +168,7 @@ failed.
 .\" e.g., ioa_reqprio or aio_lio_opcode was invalid
 The application can check the status of each operation using
 .BR aio_return (3).
-.PP
+.P
 If
 .BR lio_listio ()
 fails with the error
@@ -210,7 +210,7 @@ The buffer areas being read into or written from
 .\" or the control block of the operation
 must not be accessed during the operations or undefined results may occur.
 The memory areas involved must remain valid.
-.PP
+.P
 Simultaneous I/O operations specifying the same
 .I aiocb
 structure produce undefined results.

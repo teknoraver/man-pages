@@ -13,25 +13,25 @@ udplite \- Lightweight User Datagram Protocol
 .\" FIXME . see #defines under `BUGS',
 .\"        when glibc supports this, add
 .\"        #include <netinet/udplite.h>
-.PP
+.P
 .B sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDPLITE);
 .fi
 .SH DESCRIPTION
 This is an implementation of the Lightweight User Datagram Protocol
 (UDP-Lite), as described in RFC\ 3828.
-.PP
+.P
 UDP-Lite is an extension of UDP (RFC\ 768) to support variable-length
 checksums.
 This has advantages for some types of multimedia transport that
 may be able to make use of slightly damaged datagrams,
 rather than having them discarded by lower-layer protocols.
-.PP
+.P
 The variable-length checksum coverage is set via a
 .BR setsockopt (2)
 option.
 If this option is not set, the only difference from UDP is
 in using a different IP protocol identifier (IANA number 136).
-.PP
+.P
 The UDP-Lite implementation is a full extension of
 .BR udp (7)\[em]that
 is, it shares the same API and API behavior, and in addition
@@ -58,7 +58,7 @@ socket options are valid on a UDP-Lite socket.
 See
 .BR udp (7)
 for more information.
-.PP
+.P
 The following two options are specific to UDP-Lite.
 .TP
 .B UDPLITE_SEND_CSCOV
@@ -93,7 +93,7 @@ exceeds the actual packet coverage, incoming packets are silently dropped,
 but may generate a warning message in the system log.
 .\" SO_NO_CHECK exists and is supported by UDPv4, but is
 .\" commented out in socket(7), hence also commented out here
-.\".PP
+.\".P
 .\"Since UDP-Lite mandates checksums, checksumming can not be disabled
 .\"via the
 .\".B SO_NO_CHECK
@@ -116,7 +116,7 @@ UDP-Litev4/v6 first appeared in Linux 2.6.20.
 .SH BUGS
 .\" FIXME . remove this section once glibc supports UDP-Lite
 Where glibc support is missing, the following definitions are needed:
-.PP
+.P
 .in +4n
 .EX
 #define IPPROTO_UDPLITE     136
@@ -130,8 +130,8 @@ Where glibc support is missing, the following definitions are needed:
 .BR ipv6 (7),
 .BR socket (7),
 .BR udp (7)
-.PP
+.P
 RFC\ 3828 for the Lightweight User Datagram Protocol (UDP-Lite).
-.PP
+.P
 .I Documentation/networking/udplite.txt
 in the Linux kernel source tree

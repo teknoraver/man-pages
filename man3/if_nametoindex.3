@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <net/if.h>
-.PP
+.P
 .BI "unsigned int if_nametoindex(const char *" "ifname" );
 .BI "char *if_indextoname(unsigned int ifindex, char *" ifname );
 .fi
@@ -23,7 +23,7 @@ The
 function returns the index of the network interface
 corresponding to the name
 .IR ifname .
-.PP
+.P
 The
 .BR if_indextoname ()
 function returns the name of the network interface
@@ -41,7 +41,7 @@ returns the index number of the network interface;
 on error, 0 is returned and
 .I errno
 is set to indicate the error.
-.PP
+.P
 On success,
 .BR if_indextoname ()
 returns
@@ -57,7 +57,7 @@ if:
 .TP
 .B ENODEV
 No interface found with given name.
-.PP
+.P
 .BR if_indextoname ()
 may fail and set
 .I errno
@@ -65,7 +65,7 @@ if:
 .TP
 .B ENXIO
 No interface found for the index.
-.PP
+.P
 .BR if_nametoindex ()
 and
 .BR if_indextoname ()

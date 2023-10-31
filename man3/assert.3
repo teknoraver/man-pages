@@ -15,14 +15,14 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <assert.h>
-.PP
+.P
 .BI "void assert(scalar " expression );
 .fi
 .SH DESCRIPTION
 This macro can help programmers find bugs in their programs,
 or handle exceptional cases
 via a crash that will produce limited debugging output.
-.PP
+.P
 If
 .I expression
 is false (i.e., compares equal to zero),
@@ -34,13 +34,13 @@ The error message includes the name of the file and function containing the
 .BR assert ()
 call, the source code line number of the call, and the text of the argument;
 something like:
-.PP
+.P
 .in +4n
 .EX
 prog: some_file.c:16: some_func: Assertion \`val == 0\[aq] failed.
 .EE
 .in
-.PP
+.P
 If the macro
 .B NDEBUG
 is defined at the moment
@@ -74,7 +74,7 @@ T}	Thread safety	MT-Safe
 C11, POSIX.1-2008.
 .SH HISTORY
 C89, C99, POSIX.1-2001.
-.PP
+.P
 In C89,
 .I expression
 is required to be of type

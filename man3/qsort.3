@@ -24,7 +24,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "void qsort(void " base [. size " * ." nmemb "], size_t " nmemb ", \
 size_t " size ,
 .BI "           int (*" compar ")(const void [." size "], \
@@ -35,12 +35,12 @@ size_t " size ,
 const void [." size "], void *),"
 .BI "           void *" arg ");"
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR qsort_r ():
 .nf
     _GNU_SOURCE
@@ -52,17 +52,17 @@ function sorts an array with \fInmemb\fP elements of
 size \fIsize\fP.
 The \fIbase\fP argument points to the start of the
 array.
-.PP
+.P
 The contents of the array are sorted in ascending order according to a
 comparison function pointed to by \fIcompar\fP, which is called with two
 arguments that point to the objects being compared.
-.PP
+.P
 The comparison function must return an integer less than, equal to, or
 greater than zero if the first argument is considered to be respectively
 less than, equal to, or greater than the second.
 If two members compare as equal,
 their order in the sorted array is undefined.
-.PP
+.P
 The
 .BR qsort_r ()
 function is identical to
@@ -114,10 +114,10 @@ as shown in the example below.
 .SH EXAMPLES
 For one example of use, see the example under
 .BR bsearch (3).
-.PP
+.P
 Another example is the following program,
 which sorts the strings given in its command-line arguments:
-.PP
+.P
 .\" SRC BEGIN (qsort.c)
 .EX
 #include <stdio.h>

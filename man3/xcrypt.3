@@ -18,9 +18,9 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B "#include <rpc/des_crypt.h>"
-.PP
+.P
 .BI "void passwd2des(char " *passwd ", char *" key ");"
-.PP
+.P
 .BI "int xencrypt(char *" secret ", char *" passwd ");"
 .BI "int xdecrypt(char *" secret ", char *" passwd ");"
 .fi
@@ -28,7 +28,7 @@ Standard C library
 .BR WARNING :
 Do not use these functions in new code.
 They do not achieve any type of acceptable cryptographic security guarantees.
-.PP
+.P
 The function
 .BR passwd2des ()
 takes a character string
@@ -44,7 +44,7 @@ Both other functions described here use this function to turn their
 argument
 .I passwd
 into a DES key.
-.PP
+.P
 The
 .BR xencrypt ()
 function takes the ASCII character string
@@ -61,7 +61,7 @@ and outputs the result again in
 as a hex string
 .\" (over the alphabet 0123456789abcdef)
 of the same length.
-.PP
+.P
 The
 .BR xdecrypt ()
 function performs the converse operation.

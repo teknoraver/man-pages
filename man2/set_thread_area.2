@@ -14,25 +14,25 @@ Standard C library
 .nf
 .BR "#include <sys/syscall.h>" "     /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .B #if defined __i386__ || defined __x86_64__
 .BR "# include <asm/ldt.h>" "        /* Definition of " "struct user_desc" " */"
-.PP
+.P
 .BI "int syscall(SYS_get_thread_area, struct user_desc *" u_info );
 .BI "int syscall(SYS_set_thread_area, struct user_desc *" u_info );
-.PP
+.P
 .B #elif defined __m68k__
-.PP
+.P
 .B "int syscall(SYS_get_thread_area);"
 .BI "int syscall(SYS_set_thread_area, unsigned long " tp );
-.PP
+.P
 .B #elif defined __mips__ || defined __csky__
-.PP
+.P
 .BI "int syscall(SYS_set_thread_area, unsigned long " addr );
-.PP
+.P
 .B #endif
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrappers for these system calls,
 necessitating the use of
@@ -45,7 +45,7 @@ At the moment,
 is available on m68k, MIPS, C-SKY, and x86 (both 32-bit and 64-bit variants);
 .BR get_thread_area ()
 is available on m68k and x86.
-.PP
+.P
 On m68k, MIPS and C-SKY,
 .BR set_thread_area ()
 allows storing an arbitrary pointer (provided in the
@@ -58,15 +58,15 @@ this pointer can later be retrieved using
 .BR get_thread_area ()
 (see also NOTES
 for information regarding obtaining the thread pointer on MIPS).
-.PP
+.P
 On x86, Linux dedicates three global descriptor table (GDT) entries for
 thread-local storage.
 For more information about the GDT, see the
 Intel Software Developer's Manual or the AMD Architecture Programming Manual.
-.PP
+.P
 Both of these system calls take an argument that is a pointer
 to a structure of the following type:
-.PP
+.P
 .in +4n
 .EX
 struct user_desc {
@@ -85,16 +85,16 @@ struct user_desc {
 };
 .EE
 .in
-.PP
+.P
 .BR get_thread_area ()
 reads the GDT entry indicated by
 .I u_info\->entry_number
 and fills in the rest of the fields in
 .IR u_info .
-.PP
+.P
 .BR set_thread_area ()
 sets a TLS entry in the GDT.
-.PP
+.P
 The TLS array entry set by
 .BR set_thread_area ()
 corresponds to the value of
@@ -105,7 +105,7 @@ If this value is in bounds,
 writes the TLS descriptor pointed to by
 .I u_info
 into the thread's TLS array.
-.PP
+.P
 When
 .BR set_thread_area ()
 is passed an
@@ -116,7 +116,7 @@ If
 finds a free TLS entry, the value of
 .I u_info\->entry_number
 is set upon return to show which entry was changed.
-.PP
+.P
 A
 .I user_desc
 is considered "empty" if
@@ -128,7 +128,7 @@ If an "empty" descriptor is passed to
 .BR set_thread_area (),
 the corresponding TLS entry will be cleared.
 See BUGS for additional details.
-.PP
+.P
 Since Linux 3.19,
 .BR set_thread_area ()
 cannot be used to write non-present segments, 16-bit segments, or code
@@ -138,7 +138,7 @@ On x86, these system calls
 return 0 on success, and \-1 on failure, with
 .I errno
 set to indicate the error.
-.PP
+.P
 On C-SKY, MIPS and m68k,
 .BR set_thread_area ()
 always returns 0.
@@ -175,7 +175,7 @@ Linux 2.5.29.
 Linux 2.5.32.
 .SH NOTES
 These system calls are generally intended for use only by threading libraries.
-.PP
+.P
 .BR arch_prctl (2)
 can interfere with
 .BR set_thread_area ()
@@ -186,16 +186,16 @@ for more details.
 This is not normally a problem, as
 .BR arch_prctl (2)
 is normally used only by 64-bit programs.
-.PP
+.P
 On MIPS, the current value of the thread area pointer can be obtained
 using the instruction:
-.PP
+.P
 .in +4n
 .EX
 rdhwr dest, $29
 .EE
 .in
-.PP
+.P
 This instruction traps and is handled by kernel.
 .SH BUGS
 On 64-bit kernels before Linux 3.19,
@@ -219,7 +219,7 @@ consisting entirely of zeros except for
 .I entry_number
 will also be interpreted as a request to clear a TLS entry, but this
 behaved differently on older kernels.
-.PP
+.P
 Prior to Linux 3.19, the DS and ES segment registers must not reference
 TLS entries.
 .SH SEE ALSO

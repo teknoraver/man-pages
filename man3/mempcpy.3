@@ -16,13 +16,13 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <string.h>
-.PP
+.P
 .BI "void *mempcpy(void " dest "[restrict ." n "], const void " src "[restrict ." n ],
 .BI "              size_t " n );
-.PP
+.P
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <wchar.h>
-.PP
+.P
 .BI "wchar_t *wmempcpy(wchar_t " dest "[restrict ." n ],
 .BI "              const wchar_t " src "[restrict ." n ],
 .BI "              size_t " n );
@@ -42,10 +42,10 @@ into the object pointed to by
 But instead of returning the value of
 .I dest
 it returns a pointer to the byte following the last written byte.
-.PP
+.P
 This function is useful in situations where a number of objects
 shall be copied to consecutive memory positions.
-.PP
+.P
 The
 .BR wmempcpy ()
 function is identical but takes

@@ -14,11 +14,11 @@ Standard C library
 .BR "#include <signal.h>" "           /* Definition of " SI_* " constants */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_pidfd_send_signal, int " pidfd ", int " sig ,
 .BI "            siginfo_t *_Nullable " info ", unsigned int " flags );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR pidfd_send_signal (),
@@ -34,14 +34,14 @@ to the target process referred to by
 a PID file descriptor that refers to a process.
 .\" See the very detailed commit message for kernel commit
 .\" 3eb39f47934f9d5a3027fe00d906a45fe3a15fad
-.PP
+.P
 If the
 .I info
 argument points to a
 .I siginfo_t
 buffer, that buffer should be populated as described in
 .BR rt_sigqueueinfo (2).
-.PP
+.P
 If the
 .I info
 argument is a NULL pointer,
@@ -50,7 +50,7 @@ this is equivalent to specifying a pointer to a
 buffer whose fields match the values that are
 implicitly supplied when a signal is sent using
 .BR kill (2):
-.PP
+.P
 .PD 0
 .IP \[bu] 3
 .I si_signo
@@ -69,12 +69,12 @@ is set to the caller's PID; and
 .I si_uid
 is set to the caller's real user ID.
 .PD
-.PP
+.P
 The calling process must either be in the same PID namespace as the
 process referred to by
 .IR pidfd ,
 or be in an ancestor of that namespace.
-.PP
+.P
 The
 .I flags
 argument is reserved for future use;
@@ -145,7 +145,7 @@ or
 that specifies the
 .B CLONE_PIDFD
 flag.
-.PP
+.P
 The
 .BR pidfd_send_signal ()
 system call allows the avoidance of race conditions that occur

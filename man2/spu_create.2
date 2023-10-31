@@ -19,12 +19,12 @@ Standard C library
 .BR "#include <sys/spu.h>" "          /* Definition of " SPU_* " constants */"
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_spu_create, const char *" pathname \
 ", unsigned int " flags ,
 .BI "            mode_t " mode ", int " neighbor_fd );
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR spu_create (),
@@ -49,7 +49,7 @@ is successful, a directory is created at
 .I pathname
 and it is populated with the files described in
 .BR spufs (7).
-.PP
+.P
 When a context is created,
 the returned file descriptor can only be passed to
 .BR spu_run (2),
@@ -68,7 +68,7 @@ directory) once the last reference to the context has gone;
 this usually occurs when the file descriptor returned by
 .BR spu_create ()
 is closed.
-.PP
+.P
 The
 .I mode
 argument (minus any bits set in the process's
@@ -80,13 +80,13 @@ See
 for a full list of the possible
 .I mode
 values.
-.PP
+.P
 The
 .I neighbor_fd
 is used only when the
 .B SPU_CREATE_AFFINITY_SPU
 flag is specified; see below.
-.PP
+.P
 The
 .I flags
 argument can be zero or any bitwise OR-ed
@@ -248,7 +248,7 @@ By convention, it gets mounted in
 Linux on PowerPC.
 .SH HISTORY
 Linux 2.6.16.
-.PP
+.P
 Prior to the addition of the
 .B SPU_CREATE_AFFINITY_SPU
 flag in Linux 2.6.23, the

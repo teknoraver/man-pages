@@ -24,11 +24,11 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <time.h>
-.PP
+.P
 .BI "size_t strftime(char " s "[restrict ." max "], size_t " max ,
 .BI "                const char *restrict " format ,
 .BI "                const struct tm *restrict " tm );
-.PP
+.P
 .BI "size_t strftime_l(char " s "[restrict ." max "], size_t " max ,
 .BI "                const char *restrict " format ,
 .BI "                const struct tm *restrict " tm ,
@@ -54,7 +54,7 @@ See also
 .BR ctime (3).
 .\" FIXME . POSIX says: Local timezone information is used as though
 .\" strftime() called tzset().  But this doesn't appear to be the case
-.PP
+.P
 The format specification is a null-terminated string and may contain
 special character sequences called
 .IR "conversion specifications",
@@ -63,7 +63,7 @@ some other character known as a
 .IR "conversion specifier character".
 All other character sequences are
 .IR "ordinary character sequences".
-.PP
+.P
 The characters of ordinary character sequences (including the null byte)
 are copied verbatim from
 .I format
@@ -431,7 +431,7 @@ format. (TZ)
 .TP
 .B %%
 A literal \[aq]%\[aq] character.
-.PP
+.P
 Some conversion specifications can be modified by preceding the
 conversion specifier character by the
 .B E
@@ -477,7 +477,7 @@ as an argument to a
 One example of such alternative forms is the Japanese era calendar scheme in the
 .B ja_JP
 glibc locale.
-.PP
+.P
 .BR strftime_l ()
 is equivalent to
 .BR strftime (),
@@ -508,7 +508,7 @@ returns 0, and the contents of the array are undefined.
 .\" would return
 .\" .I max
 .\" if the array was too small.)
-.PP
+.P
 Note that the return value 0 does not necessarily indicate an error.
 For example, in many locales
 .B %p
@@ -554,7 +554,7 @@ SVr4, C89.
 .TP
 .BR strftime_l ()
 POSIX.1-2008.
-.PP
+.P
 There are strict inclusions between the set of conversions
 given in ANSI C (unmarked), those given in the Single UNIX Specification
 (marked SU), those given in Olson's timezone package (marked TZ),
@@ -570,7 +570,7 @@ as well.
 The
 .B %F
 conversion is in C99 and POSIX.1-2001.
-.PP
+.P
 In SUSv2, the
 .B %S
 specifier allowed a range of 00 to 61,
@@ -621,7 +621,7 @@ may be specified.
 or
 .B O
 modifiers, if present.)
-.PP
+.P
 The following flag characters are permitted:
 .TP
 .B _
@@ -644,7 +644,7 @@ Swap the case of the result string.
 (This flag works only with certain conversion specifier characters,
 and of these, it is only really useful with
 .BR %Z .)
-.PP
+.P
 An optional decimal width specifier may follow the (possibly absent) flag.
 If the natural size of the field is smaller than this width,
 then the result string is padded (on the left) to the specified width.
@@ -666,7 +666,7 @@ specify any
 .I errno
 settings for
 .BR strftime ().
-.PP
+.P
 Some buggy versions of
 .BR gcc (1)
 complain about the use of
@@ -681,7 +681,7 @@ to circumvent this
 problem.
 A relatively clean one is to add an
 intermediate function
-.PP
+.P
 .in +4n
 .EX
 size_t
@@ -692,7 +692,7 @@ my_strftime(char *s, size_t max, const char *fmt,
 }
 .EE
 .in
-.PP
+.P
 Nowadays,
 .BR gcc (1)
 provides the
@@ -702,16 +702,16 @@ so that the above workaround is no longer required.
 .SH EXAMPLES
 .B RFC\~2822-compliant date format
 (with an English locale for %a and %b)
-.PP
+.P
 .in +4n
 .EX
 "%a,\ %d\ %b\ %Y\ %T\ %z"
 .EE
 .in
-.PP
+.P
 .B RFC\~822-compliant date format
 (with an English locale for %a and %b)
-.PP
+.P
 .in +4n
 .EX
 "%a,\ %d\ %b\ %y\ %T\ %z"
@@ -720,11 +720,11 @@ so that the above workaround is no longer required.
 .SS Example program
 The program below can be used to experiment with
 .BR strftime ().
-.PP
+.P
 Some examples of the result string produced by the glibc implementation of
 .BR strftime ()
 are as follows:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out \[aq]%m\[aq]"

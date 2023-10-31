@@ -7,7 +7,7 @@
 sem_overview \- overview of POSIX semaphores
 .SH DESCRIPTION
 POSIX semaphores allow processes and threads to synchronize their actions.
-.PP
+.P
 A semaphore is an integer whose value is never allowed to fall below zero.
 Two operations can be performed on semaphores:
 increment the semaphore value by one
@@ -17,7 +17,7 @@ and decrement the semaphore value by one
 If the value of a semaphore is currently zero, then a
 .BR sem_wait (3)
 operation will block until the value becomes greater than zero.
-.PP
+.P
 POSIX semaphores come in two forms: named semaphores and
 unnamed semaphores.
 .TP
@@ -81,7 +81,7 @@ When the semaphore is no longer required,
 and before the memory in which it is located is deallocated,
 the semaphore should be destroyed using
 .BR sem_destroy (3).
-.PP
+.P
 The remainder of this section describes some specific details
 of the Linux implementation of POSIX semaphores.
 .SS Versions
@@ -111,7 +111,7 @@ with names of the form
 rather than
 .B NAME_MAX
 characters.)
-.PP
+.P
 Since Linux 2.6.19, ACLs can be placed on files under this directory,
 to control object permissions on a per-user and per-group basis.
 .SH NOTES

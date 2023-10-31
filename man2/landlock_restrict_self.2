@@ -14,7 +14,7 @@ Standard C library
 .nf
 .BR "#include <linux/landlock.h>" "  /* Definition of " LANDLOCK_* " constants */"
 .BR "#include <sys/syscall.h>" "     /* Definition of " SYS_* " constants */"
-.PP
+.P
 .BI "int syscall(SYS_landlock_restrict_self, int " ruleset_fd ,
 .BI "            uint32_t " flags );
 .SH DESCRIPTION
@@ -24,7 +24,7 @@ system call enables enforcing this ruleset on the calling thread.
 See
 .BR landlock (7)
 for a global overview.
-.PP
+.P
 A thread can be restricted with multiple rulesets that are then
 composed together to form the thread's Landlock domain.
 This can be seen as a stack of rulesets but
@@ -43,7 +43,7 @@ composed rulesets limit.
 Instead, developers are encouraged to build a tailored ruleset thanks to
 multiple calls to
 .BR landlock_add_rule (2).
-.PP
+.P
 In order to enforce a ruleset, either the caller must have the
 .B CAP_SYS_ADMIN
 capability in its user namespace, or the thread must already have the
@@ -59,13 +59,13 @@ the thread must make the following call:
 .EX
 prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0);
 .EE
-.PP
+.P
 .I ruleset_fd
 is a Landlock ruleset file descriptor obtained with
 .BR landlock_create_ruleset (2)
 and fully populated with a set of calls to
 .BR landlock_add_rule (2).
-.PP
+.P
 .I flags
 must be 0.
 .SH RETURN VALUE

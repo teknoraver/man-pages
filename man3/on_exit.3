@@ -18,15 +18,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "int on_exit(void (*" function ")(int, void *), void *" arg );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR on_exit ():
 .nf
     Since glibc 2.19:
@@ -52,10 +52,10 @@ and the
 .I arg
 argument from
 .BR on_exit ().
-.PP
+.P
 The same function may be registered multiple times:
 it is called once for each registration.
-.PP
+.P
 When a child process is created via
 .BR fork (2),
 it inherits copies of its parent's registrations.

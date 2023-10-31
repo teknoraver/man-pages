@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <i386/fpu_control.h>
-.PP
+.P
 .BI "[[deprecated]] void __setfpucw(unsigned short " control_word );
 .fi
 .SH DESCRIPTION
@@ -44,7 +44,7 @@ and FPU exception handling, like
 .BR fesetexceptflag (3),
 and
 .BR fetestexcept (3).
-.PP
+.P
 If direct access to the FPU control word is still needed, the
 .B _FPU_GETCW
 and
@@ -54,7 +54,7 @@ macros from
 can be used.
 .SH EXAMPLES
 .B __setfpucw(0x1372)
-.PP
+.P
 Set FPU control word on the i386 architecture to
 .RS
 .PD 0
@@ -68,5 +68,5 @@ exceptions on overflow, zero divide and NaN
 .RE
 .SH SEE ALSO
 .BR feclearexcept (3)
-.PP
+.P
 .I <fpu_control.h>

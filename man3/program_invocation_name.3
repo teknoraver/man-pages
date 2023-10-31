@@ -32,7 +32,7 @@ Standard C library
 .nf
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <errno.h>
-.PP
+.P
 .BI "extern char *" program_invocation_name ;
 .BI "extern char *" program_invocation_short_name ;
 .fi
@@ -46,14 +46,14 @@ in
 with the difference that the scope of
 .I program_invocation_name
 is global.
-.PP
+.P
 .I program_invocation_short_name
 contains the basename component of name that was used to invoke
 the calling program.
 That is, it is the same value as
 .IR program_invocation_name ,
 with all text up to and including the final slash (/), if any, removed.
-.PP
+.P
 These variables are automatically initialized by the glibc run-time
 startup code.
 .SH VERSIONS

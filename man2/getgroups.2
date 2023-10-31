@@ -18,19 +18,19 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int getgroups(int " size ", gid_t " list []);
-.PP
+.P
 .B #include <grp.h>
-.PP
+.P
 .BI "int setgroups(size_t " size ", const gid_t *_Nullable " list );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR setgroups ():
 .nf
     Since glibc 2.19:
@@ -50,13 +50,13 @@ buffer pointed to by
 If the calling process is a member of more than
 .I size
 supplementary groups, then an error results.
-.PP
+.P
 It is unspecified whether the effective group ID of the calling process
 is included in the returned list.
 (Thus, an application should also call
 .BR getegid (2)
 and add or remove the resulting value.)
-.PP
+.P
 If
 .I size
 is zero,
@@ -67,7 +67,7 @@ This allows the caller to determine the size of a dynamically allocated
 .I list
 to be used in a further call to
 .BR getgroups ().
-.PP
+.P
 .BR setgroups ()
 sets the supplementary group IDs for the calling process.
 Appropriate privileges are required (see the description of the
@@ -79,7 +79,7 @@ argument specifies the number of supplementary group IDs
 in the buffer pointed to by
 .IR list .
 A process can drop all of its supplementary groups with the call:
-.PP
+.P
 .in +4n
 .EX
 setgroups(0, NULL);
@@ -92,7 +92,7 @@ returns the number of supplementary group IDs.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 On success,
 .BR setgroups ()
 returns 0.
@@ -104,14 +104,14 @@ is set to indicate the error.
 .B EFAULT
 .I list
 has an invalid address.
-.PP
+.P
 .BR getgroups ()
 can additionally fail with the following error:
 .TP
 .B EINVAL
 .I size
 is less than the number of supplementary group IDs, but is not zero.
-.PP
+.P
 .BR setgroups ()
 can additionally fail with the following errors:
 .TP
@@ -170,7 +170,7 @@ SVr4, 4.3BSD.
 Since
 .BR setgroups ()
 requires privilege, it is not covered by POSIX.1.
-.PP
+.P
 The original Linux
 .BR getgroups ()
 system call supported only 16-bit group IDs.
@@ -192,17 +192,17 @@ is defined in
 The set of supplementary group IDs
 is inherited from the parent process, and preserved across an
 .BR execve (2).
-.PP
+.P
 The maximum number of supplementary group IDs can be found at run time using
 .BR sysconf (3):
-.PP
+.P
 .in +4n
 .EX
 long ngroups_max;
 ngroups_max = sysconf(_SC_NGROUPS_MAX);
 .EE
 .in
-.PP
+.P
 The maximum return value of
 .BR getgroups ()
 cannot be larger than one more than this value.

@@ -12,19 +12,19 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <signal.h>
-.PP
+.P
 .BI "int sigwaitinfo(const sigset_t *restrict " set ,
 .BI "                siginfo_t *_Nullable restrict " info );
 .BI "int sigtimedwait(const sigset_t *restrict " set ,
 .BI "                siginfo_t *_Nullable restrict " info ,
 .BI "                const struct timespec *restrict " timeout );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR sigwaitinfo (),
 .BR sigtimedwait ():
 .nf
@@ -40,7 +40,7 @@ is pending
 is already pending for the calling thread,
 .BR sigwaitinfo ()
 will return immediately.)
-.PP
+.P
 .BR sigwaitinfo ()
 removes the signal from the set of pending
 signals and returns the signal number as its function result.
@@ -52,7 +52,7 @@ then the buffer that it points to is used to return a structure of type
 (see
 .BR sigaction (2))
 containing information about the signal.
-.PP
+.P
 If multiple signals in
 .I set
 are pending for the caller, the signal that is retrieved by
@@ -60,7 +60,7 @@ are pending for the caller, the signal that is retrieved by
 is determined according to the usual ordering rules; see
 .BR signal (7)
 for further details.
-.PP
+.P
 .BR sigtimedwait ()
 operates in exactly the same way as
 .BR sigwaitinfo ()
@@ -74,7 +74,7 @@ may overrun by a small amount.)
 This argument is a
 .BR timespec (3)
 structure.
-.PP
+.P
 If both fields of this structure are specified as 0, a poll is performed:
 .BR sigtimedwait ()
 returns immediately, either with information about a signal that
@@ -116,7 +116,7 @@ On Linux,
 .BR sigwaitinfo ()
 is a library function implemented on top of
 .BR sigtimedwait ().
-.PP
+.P
 The glibc wrapper functions for
 .BR sigwaitinfo ()
 and
@@ -126,7 +126,7 @@ are used internally by the NPTL threading implementation.
 See
 .BR nptl (7)
 for details.
-.PP
+.P
 The original Linux system call was named
 .BR sigtimedwait ().
 However, with the addition of real-time signals in Linux 2.2,
@@ -175,18 +175,18 @@ a thread other than the one calling
 .BR sigwaitinfo ()
 or
 .BR sigtimedwait ()).
-.PP
+.P
 The set of signals that is pending for a given thread is the
 union of the set of signals that is pending specifically for that thread
 and the set of signals that is pending for the process as a whole (see
 .BR signal (7)).
-.PP
+.P
 Attempts to wait for
 .B SIGKILL
 and
 .B SIGSTOP
 are silently ignored.
-.PP
+.P
 If multiple threads of a process are blocked
 waiting for the same signal(s) in
 .BR sigwaitinfo ()
@@ -195,7 +195,7 @@ or
 then exactly one of the threads will actually receive the
 signal if it becomes pending for the process as a whole;
 which of the threads receives the signal is indeterminate.
-.PP
+.P
 .BR sigwaitinfo ()
 or
 .BR sigtimedwait (),
@@ -207,7 +207,7 @@ or the
 .B SIGFPE
 signal that results from an arithmetic error.
 Such signals can be caught only via signal handler.
-.PP
+.P
 POSIX leaves the meaning of a NULL value for the
 .I timeout
 argument of

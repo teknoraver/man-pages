@@ -17,11 +17,11 @@ Standard C library
 .nf
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int syscall(SYS_readdir, unsigned int " fd ,
 .BI "            struct old_linux_dirent *" dirp ", unsigned int " count );
 .fi
-.PP
+.P
 .IR Note :
 There is no definition of
 .BR "struct old_linux_dirent" ;
@@ -34,7 +34,7 @@ for the POSIX conforming C library interface.
 This page documents the bare kernel system call interface,
 which is superseded by
 .BR getdents (2).
-.PP
+.P
 .BR readdir ()
 reads one
 .I old_linux_dirent
@@ -48,13 +48,13 @@ The argument
 is ignored; at most one
 .I old_linux_dirent
 structure is read.
-.PP
+.P
 The
 .I old_linux_dirent
 structure is declared (privately in Linux kernel file
 .BR fs/readdir.c )
 as follows:
-.PP
+.P
 .in +4n
 .EX
 struct old_linux_dirent {
@@ -65,7 +65,7 @@ struct old_linux_dirent {
 }
 .EE
 .in
-.PP
+.P
 .I d_ino
 is an inode number.
 .I d_offset
@@ -107,7 +107,7 @@ structure yourself.
 However, probably you should use
 .BR readdir (3)
 instead.
-.PP
+.P
 This system call does not exist on x86-64.
 .SH STANDARDS
 Linux.

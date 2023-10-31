@@ -13,7 +13,7 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_create(pthread_t *restrict " thread ,
 .BI "                   const pthread_attr_t *restrict " attr ,
 .BI "                   void *(*" start_routine ")(void *),"
@@ -28,7 +28,7 @@ The new thread starts execution by invoking
 .I arg
 is passed as the sole argument of
 .IR start_routine ().
-.PP
+.P
 The new thread terminates in one of the following ways:
 .IP \[bu] 3
 It calls
@@ -53,7 +53,7 @@ Any of the threads in the process calls
 or the main thread performs a return from
 .IR main ().
 This causes the termination of all threads in the process.
-.PP
+.P
 The
 .I attr
 argument points to a
@@ -67,14 +67,14 @@ If
 .I attr
 is NULL,
 then the thread is created with default attributes.
-.PP
+.P
 Before returning, a successful call to
 .BR pthread_create ()
 stores the ID of the new thread in the buffer pointed to by
 .IR thread ;
 this identifier is used to refer to the thread
 in subsequent calls to other pthreads functions.
-.PP
+.P
 The new thread inherits a copy of the creating thread's signal mask
 .RB ( pthread_sigmask (3)).
 The set of pending signals for the new thread is empty
@@ -82,10 +82,10 @@ The set of pending signals for the new thread is empty
 The new thread does not inherit the creating thread's
 alternate signal stack
 .RB ( sigaltstack (2)).
-.PP
+.P
 The new thread inherits the calling thread's floating-point environment
 .RB ( fenv (3)).
-.PP
+.P
 The initial value of the new thread's CPU-time clock is 0
 (see
 .BR pthread_getcpuclockid (3)).
@@ -164,7 +164,7 @@ after a call to
 .BR pthread_create (),
 it is indeterminate which thread\[em]the caller or the new thread\[em]will
 next execute.
-.PP
+.P
 A thread may either be
 .I joinable
 or
@@ -184,7 +184,7 @@ By default, a new thread is created in a joinable state, unless
 .I attr
 was set to create the thread in a detached state (using
 .BR pthread_attr_setdetachstate (3)).
-.PP
+.P
 Under the NPTL threading implementation, if the
 .B RLIMIT_STACK
 soft resource limit
@@ -227,12 +227,12 @@ and is the source of many other nonconformances to the standard; see
 The program below demonstrates the use of
 .BR pthread_create (),
 as well as a number of other functions in the pthreads API.
-.PP
+.P
 In the following run,
 on a system providing the NPTL threading implementation,
 the stack size defaults to the value given by the
 "stack size" resource limit:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ulimit \-s"
@@ -246,11 +246,11 @@ Joined with thread 2; returned value was SALUT
 Joined with thread 3; returned value was SERVUS
 .EE
 .in
-.PP
+.P
 In the next run, the program explicitly sets a stack size of 1\ MB (using
 .BR pthread_attr_setstacksize (3))
 for the created threads:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out \-s 0x100000 hola salut servus"

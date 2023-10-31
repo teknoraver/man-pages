@@ -13,15 +13,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .B "int clearenv(void);"
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR clearenv ():
 .nf
     /* glibc >= 2.19: */ _DEFAULT_SOURCE
@@ -74,7 +74,7 @@ POSIX.1-2001.
 .TP
 .BR clearenv ()
 glibc 2.0.
-.PP
+.P
 Various UNIX variants (DG/UX, HP-UX, QNX, ...).
 POSIX.9 (bindings for FORTRAN77).
 POSIX.1-1996 did not accept
@@ -92,15 +92,15 @@ and rejected
 On systems where
 .BR clearenv ()
 is unavailable, the assignment
-.PP
+.P
 .in +4n
 .EX
 environ = NULL;
 .EE
 .in
-.PP
+.P
 will probably do.
-.PP
+.P
 The
 .BR clearenv ()
 function may be useful in security-conscious applications that want to
@@ -109,14 +109,14 @@ executed using
 .BR exec (3).
 The application would do this by first clearing the environment
 and then adding select environment variables.
-.PP
+.P
 Note that the main effect of
 .BR clearenv ()
 is to adjust the value of the pointer
 .BR environ (7);
 this function does not erase the contents of the buffers
 containing the environment definitions.
-.PP
+.P
 The DG/UX and Tru64 man pages write: If
 .I environ
 has been modified by anything other than the
@@ -127,7 +127,7 @@ or
 functions, then
 .BR clearenv ()
 will return an error and the process environment will remain unchanged.
-.\" .LP
+.\" .P
 .\" HP-UX has a ENOMEM error return.
 .SH SEE ALSO
 .BR getenv (3),

@@ -12,7 +12,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/platform/ppc.h>
-.PP
+.P
 .B uint64_t __ppc_get_timebase(void);
 .B uint64_t __ppc_get_timebase_freq(void);
 .fi
@@ -22,7 +22,7 @@ reads the current value of the Time Base Register and returns its
 value, while
 .BR __ppc_get_timebase_freq ()
 returns the frequency in which the Time Base Register is updated.
-.PP
+.P
 The Time Base Register is a 64-bit register provided by Power Architecture
 processors.
 It stores a monotonically incremented value that is updated at a
@@ -32,7 +32,7 @@ frequency.
 .BR __ppc_get_timebase ()
 returns a 64-bit unsigned integer that represents the current value of the
 Time Base Register.
-.PP
+.P
 .BR __ppc_get_timebase_freq ()
 returns a 64-bit unsigned integer that represents the frequency at
 which the Time Base Register is updated.

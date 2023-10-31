@@ -24,16 +24,16 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int setreuid(uid_t " ruid ", uid_t " euid );
 .BI "int setregid(gid_t " rgid ", gid_t " egid );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR setreuid (),
 .BR setregid ():
 .nf
@@ -45,22 +45,22 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 .BR setreuid ()
 sets real and effective user IDs of the calling process.
-.PP
+.P
 Supplying a value of \-1 for either the real or effective user ID forces
 the system to leave that ID unchanged.
-.PP
+.P
 Unprivileged processes may only set the effective user ID to the real user ID,
 the effective user ID, or the saved set-user-ID.
-.PP
+.P
 Unprivileged users may only set the real user ID to
 the real user ID or the effective user ID.
-.PP
+.P
 If the real user ID is set (i.e.,
 .I ruid
 is not \-1) or the effective user ID is set to a value
 not equal to the previous real user ID,
 the saved set-user-ID will be set to the new effective user ID.
-.PP
+.P
 Completely analogously,
 .BR setregid ()
 sets real and effective group ID's of the calling process,
@@ -70,7 +70,7 @@ On success, zero is returned.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
-.PP
+.P
 .IR Note :
 there are cases where
 .BR setreuid ()
@@ -137,18 +137,18 @@ and the effective group ID can be changed to the value of
 the real group ID or the saved set-group-ID.
 The precise details of what ID changes are permitted vary
 across implementations.
-.PP
+.P
 POSIX.1 makes no specification about the effect of these calls
 on the saved set-user-ID and saved set-group-ID.
 .SH STANDARDS
 POSIX.1-2008.
 .SH HISTORY
 POSIX.1-2001, 4.3BSD (first appeared in 4.2BSD).
-.PP
+.P
 Setting the effective user (group) ID to the
 saved set-user-ID (saved set-group-ID) is
 possible since Linux 1.1.37 (1.1.38).
-.PP
+.P
 The original Linux
 .BR setreuid ()
 and

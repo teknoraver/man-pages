@@ -13,18 +13,18 @@ Real-time library
 .SH SYNOPSIS
 .nf
 .B  #include <time.h>
-.PP
+.P
 .BI "int timer_gettime(timer_t " timerid ", struct itimerspec *" curr_value );
 .BI "int timer_settime(timer_t " timerid ", int " flags ,
 .BI "                  const struct itimerspec *restrict " new_value ,
 .BI "                  struct itimerspec *_Nullable restrict " old_value );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR timer_settime (),
 .BR timer_gettime ():
 .nf
@@ -44,7 +44,7 @@ The
 .I itimerspec
 structure is described in
 .BR itimerspec (3type).
-.PP
+.P
 Each of the substructures of the
 .I itimerspec
 structure is a
@@ -54,7 +54,7 @@ in seconds and nanoseconds.
 These time values are measured according to the clock
 that was specified when the timer was created by
 .BR timer_create (2).
-.PP
+.P
 If
 .I new_value\->it_value
 specifies a nonzero value (i.e., either subfield is nonzero), then
@@ -68,7 +68,7 @@ If
 specifies a zero value
 (i.e., both subfields are zero),
 then the timer is disarmed.
-.PP
+.P
 The
 .I new_value\->it_interval
 field specifies the period of the timer, in seconds and nanoseconds.
@@ -80,7 +80,7 @@ If
 specifies a zero value,
 then the timer expires just once, at the time specified by
 .IR it_value .
-.PP
+.P
 By default, the initial expiration time specified in
 .I new_value\->it_value
 is interpreted relative to the current time on the timer's
@@ -101,7 +101,7 @@ and the overrun count (see
 .BR timer_getoverrun (2))
 will be set correctly.
 .\" By experiment: the overrun count is set correctly, for CLOCK_REALTIME.
-.PP
+.P
 If the value of the
 .B CLOCK_REALTIME
 clock is adjusted while an absolute timer based on that clock is armed,
@@ -111,7 +111,7 @@ Adjustments to the
 clock have no effect on relative timers based on that clock.
 .\" Similar remarks might apply with respect to process and thread CPU time
 .\" clocks, but these clocks are not currently (2.6.28) settable on Linux.
-.PP
+.P
 If
 .I old_value
 is not NULL, then it points to a buffer
@@ -120,7 +120,7 @@ that is used to return the previous interval of the timer (in
 and the amount of time until the timer
 would previously have next expired (in
 .IR old_value\->it_value ).
-.PP
+.P
 .BR timer_gettime ()
 returns the time until next expiration, and the interval,
 for the timer specified by
@@ -163,7 +163,7 @@ is not a valid pointer.
 .I timerid
 is invalid.
 .\" FIXME . eventually: invalid value in flags
-.PP
+.P
 .BR timer_settime ()
 may fail with the following errors:
 .TP

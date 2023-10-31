@@ -49,7 +49,7 @@ while
 and
 .I /usr/lib64
 are used for 64-bit libraries.
-.PP
+.P
 The cache is used by the run-time linker,
 .I ld.so
 or
@@ -63,7 +63,7 @@ determining which versions should have their links updated.
 .B \%ldconfig
 should normally be run by the superuser as it may require write
 permission on some root owned directories and files.
-.PP
+.P
 .B \%ldconfig
 will look only at files that are named
 .I lib*.so*
@@ -78,13 +78,13 @@ like this example,
 where the middle file
 .RB ( libfoo.so.1
 here) is the SONAME for the library:
-.PP
+.P
 .in +4n
 .EX
 libfoo.so \-> libfoo.so.1 \-> libfoo.so.1.12
 .EE
 .in
-.PP
+.P
 Failure to follow this pattern may result in compatibility issues
 after an upgrade.
 .SH OPTIONS

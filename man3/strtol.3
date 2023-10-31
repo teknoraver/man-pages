@@ -19,18 +19,18 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <stdlib.h>
-.PP
+.P
 .BI "long strtol(const char *restrict " nptr ,
 .BI "            char **restrict " endptr ", int " base );
 .BI "long long strtoll(const char *restrict " nptr ,
 .BI "            char **restrict " endptr ", int " base );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR strtoll ():
 .nf
     _ISOC99_SOURCE
@@ -45,7 +45,7 @@ in
 to a long integer value according to the given
 .IR base ,
 which must be between 2 and 36 inclusive, or be the special value 0.
-.PP
+.P
 The string may begin with an arbitrary amount of white space (as
 determined by
 .BR isspace (3))
@@ -58,7 +58,7 @@ zero
 .I base
 is taken as 10 (decimal) unless the next character
 is \[aq]0\[aq], in which case it is taken as 8 (octal).
-.PP
+.P
 The remainder of the string is converted to a
 .I long
 value
@@ -67,7 +67,7 @@ valid digit in the given base.
 (In bases above 10, the letter \[aq]A\[aq] in
 either uppercase or lowercase represents 10, \[aq]B\[aq] represents 11, and so
 forth, with \[aq]Z\[aq] representing 35.)
-.PP
+.P
 If
 .I endptr
 is not NULL,
@@ -88,7 +88,7 @@ In particular, if
 is not \[aq]\e0\[aq] but
 .I **endptr
 is \[aq]\e0\[aq] on return, the entire string is valid.
-.PP
+.P
 The
 .BR strtoll ()
 function works just like the
@@ -133,7 +133,7 @@ contains an unsupported value.
 .TP
 .B ERANGE
 The resulting value was out of range.
-.PP
+.P
 The implementation may also set
 .I errno
 to
@@ -183,20 +183,20 @@ to 0 before the call,
 and then determine if an error occurred by checking whether
 .I errno
 has a nonzero value after the call.
-.PP
+.P
 According to POSIX.1,
 in locales other than "C" and "POSIX",
 these functions may accept other,
 implementation-defined numeric strings.
-.PP
+.P
 BSD also has
-.PP
+.P
 .in +4n
 .EX
 .BI "quad_t strtoq(const char *" nptr ", char **" endptr ", int " base );
 .EE
 .in
-.PP
+.P
 with completely analogous definition.
 Depending on the wordsize of the current architecture, this
 may be equivalent to
@@ -217,7 +217,7 @@ a function that performs no error checking and
 has a simpler interface than
 .BR strtol ().)
 Some examples of the results produced by this program are the following:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out 123"

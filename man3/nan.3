@@ -16,17 +16,17 @@ Math library
 .SH SYNOPSIS
 .nf
 .B #include <math.h>
-.PP
+.P
 .BI "double nan(const char *" tagp );
 .BI "float nanf(const char *" tagp );
 .BI "long double nanl(const char *" tagp );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR nan (),
 .BR nanf (),
 .BR nanl ():
@@ -39,17 +39,17 @@ These functions return a representation (determined by
 of a quiet NaN.
 If the implementation does not support
 quiet NaNs, these functions return zero.
-.PP
+.P
 The call
 .I nan("char\-sequence")
 is equivalent to:
-.PP
+.P
 .in +4n
 .EX
 strtod("NAN(char\-sequence)", NULL);
 .EE
 .in
-.PP
+.P
 Similarly, calls to
 .BR nanf ()
 and
@@ -58,7 +58,7 @@ are equivalent to analogous calls to
 .BR strtof (3)
 and
 .BR strtold (3).
-.PP
+.P
 The argument
 .I tagp
 is used in an unspecified manner.
@@ -84,7 +84,7 @@ T}	Thread safety	MT-Safe locale
 .TE
 .SH STANDARDS
 C11, POSIX.1-2008.
-.PP
+.P
 See also IEC 559 and the appendix with
 recommended functions in IEEE 754/IEEE 854.
 .SH HISTORY

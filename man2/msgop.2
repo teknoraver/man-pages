@@ -26,10 +26,10 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/msg.h>
-.PP
+.P
 .BI "int msgsnd(int " msqid ", const void " msgp [. msgsz "], size_t " msgsz ,
 .BI "               int " msgflg );
-.PP
+.P
 .BI "ssize_t msgrcv(int " msqid ", void " msgp [. msgsz "], size_t " msgsz \
 ", long " msgtyp ,
 .BI "               int " msgflg );
@@ -43,12 +43,12 @@ system calls are used to send messages to,
 and receive messages from, a System\ V message queue.
 The calling process must have write permission on the message queue
 in order to send a message, and read permission to receive a message.
-.PP
+.P
 The
 .I msgp
 argument is a pointer to a caller-defined structure
 of the following general form:
-.PP
+.P
 .in +4n
 .EX
 struct msgbuf {
@@ -57,7 +57,7 @@ struct msgbuf {
 };
 .EE
 .in
-.PP
+.P
 The
 .I mtext
 field is an array (or other structure) whose size is specified by
@@ -82,7 +82,7 @@ system call appends a copy of the message pointed to by
 to the message queue whose identifier is specified
 by
 .IR msqid .
-.PP
+.P
 If sufficient space is available in the queue,
 .BR msgsnd ()
 succeeds immediately.
@@ -109,7 +109,7 @@ This check is necessary to prevent an unlimited number of zero-length
 messages being placed on the queue.
 Although such messages contain no data,
 they nevertheless consume (locked) kernel memory.
-.PP
+.P
 If insufficient space is available in the queue, then the default
 behavior of
 .BR msgsnd ()
@@ -120,7 +120,7 @@ is specified in
 .IR msgflg ,
 then the call instead fails with the error
 .BR EAGAIN .
-.PP
+.P
 A blocked
 .BR msgsnd ()
 call may also fail if:
@@ -143,7 +143,7 @@ is never automatically restarted after being interrupted by a
 signal handler, regardless of the setting of the
 .B SA_RESTART
 flag when establishing a signal handler.)
-.PP
+.P
 Upon successful completion the message queue data structure is updated
 as follows:
 .IP \[bu] 3
@@ -163,7 +163,7 @@ system call removes a message from the queue specified by
 and places it in the buffer
 pointed to by
 .IR msgp .
-.PP
+.P
 The argument
 .I msgsz
 specifies the maximum size in bytes for the member
@@ -189,7 +189,7 @@ the system call fails returning \-1 with
 .I errno
 set to
 .BR E2BIG .
-.PP
+.P
 Unless
 .B MSG_COPY
 is specified in
@@ -225,7 +225,7 @@ then the first message in the queue with the lowest type less than or
 equal to the absolute value of
 .I msgtyp
 will be read.
-.PP
+.P
 The
 .I msgflg
 argument is a bit mask constructed by ORing together zero or more
@@ -279,7 +279,7 @@ from
 To truncate the message text if longer than
 .I msgsz
 bytes.
-.PP
+.P
 If no message of the requested type is available and
 .B IPC_NOWAIT
 isn't specified in
@@ -304,7 +304,7 @@ is never automatically restarted after being interrupted by a
 signal handler, regardless of the setting of the
 .B SA_RESTART
 flag when establishing a signal handler.)
-.PP
+.P
 Upon successful completion the message queue data structure is updated
 as follows:
 .IP
@@ -372,7 +372,7 @@ value (less than 0 or greater than the system value
 The system does not have enough memory to make a copy of the
 message pointed to by
 .IR msgp .
-.PP
+.P
 .BR msgrcv ()
 can fail with the following errors:
 .TP
@@ -451,7 +451,7 @@ and this kernel was configured without
 .BR CONFIG_CHECKPOINT_RESTORE .
 .SH STANDARDS
 POSIX.1-2008.
-.PP
+.P
 The
 .B MSG_EXCEPT
 and
@@ -463,7 +463,7 @@ their definitions can be obtained by defining the
 feature test macro.
 .SH HISTORY
 POSIX.1-2001, SVr4.
-.PP
+.P
 The
 .I msgp
 argument is declared as \fIstruct msgbuf\ *\fP in
@@ -495,7 +495,7 @@ using the
 .BR msgctl (2)
 .B IPC_SET
 operation.
-.PP
+.P
 The implementation has no intrinsic system-wide limits on the
 number of message headers
 .RB ( MSGTQL )
@@ -521,7 +521,7 @@ of whether that message was at the ordinal position
 This bug is fixed
 .\" commit 4f87dac386cc43d5525da7a939d4b4e7edbea22c
 in Linux 3.14.
-.PP
+.P
 Specifying both
 .B MSG_COPY
 and
@@ -542,18 +542,18 @@ The program below demonstrates the use of
 .BR msgsnd ()
 and
 .BR msgrcv ().
-.PP
+.P
 The example program is first run with the \fB\-s\fP option to send a
 message and then run again with the \fB\-r\fP option to receive a
 message.
-.PP
+.P
 The following shell session shows a sample run of the program:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " ./a.out \-s"
 sent: a message at Wed Mar  4 16:25:45 2015
-.PP
+.P
 .RB "$" " ./a.out \-r"
 message received: a message at Wed Mar  4 16:25:45 2015
 .EE

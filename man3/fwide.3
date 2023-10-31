@@ -17,15 +17,15 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "int fwide(FILE *" stream ", int " mode );
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR fwide ():
 .nf
     _XOPEN_SOURCE >= 500 || _ISOC99_SOURCE
@@ -46,10 +46,10 @@ returns zero if \fIstream\fP has no orientation yet; in this case the next
 I/O operation might change the orientation (to byte oriented if it is a char
 I/O operation, or to wide-character oriented if it is a wide-character I/O
 operation).
-.PP
+.P
 Once a stream has an orientation, it cannot be changed and persists until
 the stream is closed.
-.PP
+.P
 When \fImode\fP is nonzero, the
 .BR fwide ()
 function first attempts to set
@@ -78,7 +78,7 @@ function with the
 and
 .B %ls
 directives.
-.PP
+.P
 Char oriented output to a wide-character oriented stream can be performed
 through the
 .BR fwprintf (3)

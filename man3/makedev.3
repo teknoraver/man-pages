@@ -13,9 +13,9 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/sysmacros.h>
-.PP
+.P
 .BI "dev_t makedev(unsigned int " maj ", unsigned int " min );
-.PP
+.P
 .BI "unsigned int major(dev_t " dev );
 .BI "unsigned int minor(dev_t " dev );
 .fi
@@ -25,14 +25,14 @@ a major ID, identifying the class of the device,
 and a minor ID, identifying a specific instance of a device in that class.
 A device ID is represented using the type
 .IR dev_t .
-.PP
+.P
 Given major and minor device IDs,
 .BR makedev ()
 combines these to produce a device ID, returned as the function result.
 This device ID can be given to
 .BR mknod (2),
 for example.
-.PP
+.P
 The
 .BR major ()
 and
@@ -67,7 +67,7 @@ None.
 BSD, HP-UX, Solaris, AIX, Irix.
 .\" The header location is inconsistent:
 .\" Could be sys/mkdev.h, sys/sysmacros.h, or sys/types.h.
-.PP
+.P
 These interfaces are defined as macros.
 Since glibc 2.3.3,
 they have been aliases for three GNU-specific functions:
@@ -76,7 +76,7 @@ they have been aliases for three GNU-specific functions:
 and
 .BR gnu_dev_minor ().
 The latter names are exported, but the traditional names are more portable.
-.PP
+.P
 Depending on the version,
 glibc also exposes definitions for these macros from
 .I <sys/types.h>

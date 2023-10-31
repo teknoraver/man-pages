@@ -14,24 +14,24 @@ Standard C library
 .SH SYNOPSIS
 .EX
 .B #include <stdlib.h>
-.PP
+.P
 .B typedef struct {
 .BR "    int quot;" " /* Quotient */"
 .BR "    int rem;" "  /* Remainder */"
 .B } div_t;
-.PP
+.P
 .B typedef struct {
 .BR "    long quot;" " /* Quotient */"
 .BR "    long rem;" "  /* Remainder */"
 .B } ldiv_t;
-.PP
+.P
 .B typedef struct {
 .BR "    long long quot;" " /* Quotient */"
 .BR "    long long rem;" "  /* Remainder */"
 .B } lldiv_t;
-.PP
+.P
 .B #include <inttypes.h>
-.PP
+.P
 .B typedef struct {
 .BR "    intmax_t quot;" " /* Quotient */"
 .BR "    intmax_t rem;" "  /* Remainder */"
@@ -42,7 +42,7 @@ Standard C library
 is the type of the value returned by the
 .RB [[ l ] l ] div (3)
 function.
-.PP
+.P
 .I imaxdiv_t
 is the type of the value returned by the
 .BR imaxdiv (3)

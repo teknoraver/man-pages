@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wchar.h>
-.PP
+.P
 .BI "wchar_t *wmemcpy(wchar_t " dest "[restrict ." n ],
 .BI "                 const wchar_t " src "[restrict ." n ],
 .BI "                 size_t " n );
@@ -35,12 +35,12 @@ wide characters from the array starting at
 .I src
 to the array starting at
 .IR dest .
-.PP
+.P
 The arrays may not overlap; use
 .BR wmemmove (3)
 to copy between overlapping
 arrays.
-.PP
+.P
 The programmer must ensure that there is room for at least
 .I n
 wide

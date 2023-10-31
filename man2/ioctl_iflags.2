@@ -13,7 +13,7 @@ that modify the semantics of files and directories.
 These flags can be retrieved and modified using two
 .BR ioctl (2)
 operations:
-.PP
+.P
 .in +4n
 .EX
 int attr;
@@ -26,14 +26,14 @@ ioctl(fd, FS_IOC_SETFLAGS, &attr);  /* Update flags for inode
                                        referred to by \[aq]fd\[aq] */
 .EE
 .in
-.PP
+.P
 The
 .BR lsattr (1)
 and
 .BR chattr (1)
 shell commands provide interfaces to these two operations,
 allowing a user to view and modify the inode flags associated with a file.
-.PP
+.P
 The following flags are supported
 (shown along with the corresponding letter used to indicate the flag by
 .BR lsattr (1)
@@ -160,7 +160,7 @@ has an effect only for ext2, ext3, and ext4.
 Allow the file to be undeleted if it is deleted.
 This feature is not implemented by any filesystem,
 since it is possible to implement file-recovery mechanisms outside the kernel.
-.PP
+.P
 In most cases,
 when any of the above flags is set on a directory,
 the flag is inherited by files and subdirectories
@@ -180,7 +180,7 @@ the effective user ID of the caller must match the owner of the file,
 or the caller must have the
 .B CAP_FOWNER
 capability.
-.PP
+.P
 The type of the argument given to the
 .B FS_IOC_GETFLAGS
 and

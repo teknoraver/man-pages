@@ -23,14 +23,14 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <unistd.h>
-.PP
+.P
 .BI "int dup(int " oldfd );
 .BI "int dup2(int " oldfd ", int " newfd );
-.PP
+.P
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .BR "#include <fcntl.h>" "              /* Definition of " O_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "int dup3(int " oldfd ", int " newfd ", int " flags );
 .fi
 .SH DESCRIPTION
@@ -43,7 +43,7 @@ open file description as the descriptor
 .BR open (2).)
 The new file descriptor number is guaranteed to be the lowest-numbered
 file descriptor that was unused in the calling process.
-.PP
+.P
 After a successful return,
 the old and new file descriptors may be used interchangeably.
 Since the two file descriptors refer to the same open file description,
@@ -52,7 +52,7 @@ for example, if the file offset is modified by using
 .BR lseek (2)
 on one of the file descriptors,
 the offset is also changed for the other file descriptor.
-.PP
+.P
 The two file descriptors do not share file descriptor flags
 (the close-on-exec flag).
 The close-on-exec flag
@@ -74,14 +74,14 @@ the file descriptor
 .I newfd
 is adjusted so that it now refers to the same open file description as
 .IR oldfd .
-.PP
+.P
 If the file descriptor
 .I newfd
 was previously open, it is closed before being reused;
 the close is performed silently
 (i.e., any errors during the close are not reported by
 .BR dup2 ()).
-.PP
+.P
 The steps of closing and reusing the file descriptor
 .I newfd
 are performed
@@ -97,7 +97,7 @@ might be reused between the two steps.
 Such reuse could happen because the main program is interrupted
 by a signal handler that allocates a file descriptor,
 or because a parallel thread allocates a file descriptor.
-.PP
+.P
 Note the following points:
 .IP \[bu] 3
 If
@@ -233,7 +233,7 @@ also sometimes returns
 .B EINVAL
 like
 .BR F_DUPFD .
-.PP
+.P
 If
 .I newfd
 was open, any errors that would have been reported at
@@ -249,7 +249,7 @@ before calling
 .BR dup2 (),
 because of the race condition described above.
 Instead, code something like the following could be used:
-.PP
+.P
 .in +4n
 .EX
 /* Obtain a duplicate of \[aq]newfd\[aq] that can subsequently

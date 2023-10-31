@@ -14,11 +14,11 @@ Math library
 .nf
 .BR "#define _GNU_SOURCE" "     /* See feature_test_macros(7) */"
 .B #include <math.h>
-.PP
+.P
 .BI "double nextup(double " x );
 .BI "float nextupf(float " x );
 .BI "long double nextupl(long double " x );
-.PP
+.P
 .BI "double nextdown(double " x );
 .BI "float nextdownf(float " x );
 .BI "long double nextdownl(long double " x );
@@ -31,7 +31,7 @@ and
 .BR nextupl ()
 functions return the next representable floating-point number greater than
 .IR x .
-.PP
+.P
 If
 .I x
 is the smallest representable negative number in the corresponding type,
@@ -40,7 +40,7 @@ If
 .I x
 is 0, the returned value is the smallest representable positive number
 of the corresponding type.
-.PP
+.P
 If
 .I x
 is positive infinity, the returned value is positive infinity.
@@ -49,12 +49,12 @@ If
 is negative infinity,
 the returned value is the largest representable finite negative number
 of the corresponding type.
-.PP
+.P
 If
 .I x
 is Nan,
 the returned value is NaN.
-.PP
+.P
 The value returned by
 .I nextdown(x)
 is

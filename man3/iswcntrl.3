@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <wctype.h>
-.PP
+.P
 .BI "int iswcntrl(wint_t " wc );
 .fi
 .SH DESCRIPTION
@@ -31,11 +31,11 @@ It tests whether
 .I wc
 is a wide character
 belonging to the wide-character class "cntrl".
-.PP
+.P
 The wide-character class "cntrl" is disjoint from the wide-character class
 "print" and therefore also disjoint from its subclasses "graph", "alpha",
 "upper", "lower", "digit", "xdigit", "punct".
-.PP
+.P
 For an unsigned char
 .IR c ,
 .I iscntrl(c)

@@ -12,15 +12,15 @@ POSIX threads library
 .SH SYNOPSIS
 .nf
 .B #include <pthread.h>
-.PP
+.P
 .BI "int pthread_mutex_consistent(pthread_mutex_t *" mutex ");"
 .fi
-.PP
+.P
 .RS -4
 Feature Test Macro Requirements for glibc (see
 .BR feature_test_macros (7)):
 .RE
-.PP
+.P
 .BR pthread_mutex_consistent ():
 .nf
     _POSIX_C_SOURCE >= 200809L
@@ -49,19 +49,19 @@ POSIX.1-2008.
 .SH HISTORY
 glibc 2.12.
 POSIX.1-2008.
-.PP
+.P
 Before the addition of
 .BR pthread_mutex_consistent ()
 to POSIX,
 glibc defined the following equivalent nonstandard function if
 .B _GNU_SOURCE
 was defined:
-.PP
+.P
 .nf
 .B [[deprecated]]
 .BI "int pthread_mutex_consistent_np(const pthread_mutex_t *" mutex );
 .fi
-.PP
+.P
 This GNU-specific API, which first appeared in glibc 2.4,
 is nowadays obsolete and should not be used in new programs;
 since glibc 2.34 it has been marked as deprecated.

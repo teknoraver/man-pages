@@ -19,7 +19,7 @@ It should have read permission allowed for all users (many utilities, like
 .BR ls (1)
 use it to map user IDs to usernames), but write access only for the
 superuser.
-.PP
+.P
 In the good old days there was no great problem with this general
 read permission.
 Everybody could read the encrypted passwords, but the
@@ -31,7 +31,7 @@ has an \[aq]x\[aq] character in the password field,
 and the encrypted passwords are in
 .IR /etc/shadow ,
 which is readable by the superuser only.
-.PP
+.P
 If the encrypted password, whether in
 .I /etc/passwd
 or in
@@ -44,32 +44,32 @@ or
 .RB \[dq] nonull \[dq]
 arguments to
 .BR pam_unix (8)).
-.PP
+.P
 If the encrypted password in
 .I /etc/passwd
 is "\fI*NP*\fP" (without the quotes),
 the shadow record should be obtained from an NIS+ server.
-.PP
+.P
 Regardless of whether shadow passwords are used, many system administrators
 use an asterisk (*) in the encrypted password field to make sure
 that this user can not authenticate themself using a
 password.
 (But see NOTES below.)
-.PP
+.P
 If you create a new login, first put an asterisk (*) in the password field,
 then use
 .BR passwd (1)
 to set it.
-.PP
+.P
 Each line of the file describes a single user,
 and contains seven colon-separated fields:
-.PP
+.P
 .in +4n
 .EX
 name:password:UID:GID:GECOS:directory:shell
 .EE
 .in
-.PP
+.P
 The field are as follows:
 .TP 12
 .I name
@@ -132,7 +132,7 @@ environment variable.
 If you want to create user groups, there must be an entry in
 .IR /etc/group ,
 or no group will exist.
-.PP
+.P
 If the encrypted password is set to an asterisk (*), the user will be unable
 to login using
 .BR login (1),

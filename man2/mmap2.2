@@ -17,7 +17,7 @@ Standard C library
 .BR "#include <sys/mman.h>" "    /* Definition of " MAP_* " and " PROT_* " constants */"
 .BR "#include <sys/syscall.h>" " /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "void *syscall(SYS_mmap2, unsigned long " addr ", unsigned long " length ,
 .BI "              unsigned long " prot ", unsigned long " flags ,
 .BI "              unsigned long " fd ", unsigned long " pgoffset );
@@ -26,7 +26,7 @@ Standard C library
 This is probably not the system call that you are interested in; instead, see
 .BR mmap (2),
 which describes the glibc wrapper function that invokes this system call.
-.PP
+.P
 The
 .BR mmap2 ()
 system call provides the same interface as
@@ -53,7 +53,7 @@ Problem with getting the data from user space.
 (Various platforms where the page size is not 4096 bytes.)
 .I "offset\ *\ 4096"
 is not a multiple of the system page size.
-.PP
+.P
 .BR mmap2 ()
 can also return any of the errors described in
 .BR mmap (2).
@@ -64,9 +64,9 @@ the glibc
 wrapper function invokes this system call rather than the
 .BR mmap (2)
 system call.
-.PP
+.P
 This system call does not exist on x86-64.
-.PP
+.P
 On ia64, the unit for
 .I offset
 is actually the system page size, rather than 4096 bytes.

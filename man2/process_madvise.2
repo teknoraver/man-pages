@@ -17,13 +17,13 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .BR "#include <sys/uio.h>" "       /* Definition of " "struct iovec" " type */"
 .B #include <unistd.h>
-.PP
+.P
 .BI "ssize_t syscall(SYS_process_madvise, int " pidfd ,
 .BI "                const struct iovec *" iovec ", size_t " vlen \
 ", int " advice ,
 .BI "                unsigned int " flags ");"
 .fi
-.PP
+.P
 .IR Note :
 glibc provides no wrapper for
 .BR process_madvise (),
@@ -40,20 +40,20 @@ It provides the advice for the address ranges described by
 and
 .IR vlen .
 The goal of such advice is to improve system or application performance.
-.PP
+.P
 The
 .I pidfd
 argument is a PID file descriptor (see
 .BR pidfd_open (2))
 that specifies the process to which the advice is to be applied.
-.PP
+.P
 The pointer
 .I iovec
 points to an array of
 .I iovec
 structures, described in
 .BR iovec (3type).
-.PP
+.P
 .I vlen
 specifies the number of elements in the array of
 .I iovec
@@ -64,7 +64,7 @@ This value must be less than or equal to
 .I <limits.h>
 or accessible via the call
 .IR sysconf(_SC_IOV_MAX) ).
-.PP
+.P
 The
 .I advice
 argument is one of the following values:
@@ -84,12 +84,12 @@ See
 .B MADV_WILLNEED
 See
 .BR madvise (2).
-.PP
+.P
 The
 .I flags
 argument is reserved for future use; currently, this argument must be
 specified as 0.
-.PP
+.P
 The
 .I vlen
 and
@@ -101,14 +101,14 @@ is too big, or
 .I iovec
 is invalid,
 then an error will be returned immediately and no advice will be applied.
-.PP
+.P
 The advice might be applied to only a part of
 .I iovec
 if one of its elements points to an invalid memory region in the
 remote process.
 No further elements will be processed beyond that point.
 (See the discussion regarding partial advice in RETURN VALUE.)
-.PP
+.P
 .\" commit 96cfe2c0fd23ea7c2368d14f769d287e7ae1082e
 Starting in Linux 5.12,
 permission to apply advice to another process is governed by
@@ -133,7 +133,7 @@ if an error occurred after some
 elements were already processed.
 The caller should check the return value to determine whether a partial
 advice occurred.
-.PP
+.P
 On error, \-1 is returned and
 .I errno
 is set to indicate the error.
@@ -177,7 +177,7 @@ The caller does not have permission to access the address space of the process
 .TP
 .B ESRCH
 The target process does not exist (i.e., it has terminated and been waited on).
-.PP
+.P
 See
 .BR madvise (2)
 for
@@ -188,12 +188,12 @@ Linux.
 .SH HISTORY
 Linux 5.10.
 .\" commit ecb8ac8b1f146915aa6b96449b66dd48984caacc
-.PP
+.P
 Support for this system call is optional,
 depending on the setting of the
 .B CONFIG_ADVISE_SYSCALLS
 configuration option.
-.PP
+.P
 When this system call first appeared in Linux 5.10,
 permission to apply advice to another process was entirely governed by
 ptrace access mode

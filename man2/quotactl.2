@@ -16,7 +16,7 @@ Standard C library
 .BR "#include <xfs/xqm.h>" " /* Definition of " Q_X* " and " XFS_QUOTA_* \
 " constants"
 .RB    "                        (or " <linux/dqblk_xfs.h> "; see NOTES) */"
-.PP
+.P
 .BI "int quotactl(int " cmd ", const char *_Nullable " special ", int " id ,
 .BI "             caddr_t " addr );
 .fi
@@ -30,7 +30,7 @@ The soft limit can be exceeded, but warnings will ensue.
 Moreover, the user can't exceed the soft limit for more than grace period
 duration (one week by default) at a time;
 after this, the soft limit counts as a hard limit.
-.PP
+.P
 The
 .BR quotactl ()
 call manipulates disk quotas.
@@ -57,12 +57,12 @@ for project quotas.
 The
 .I subcmd
 value is described below.
-.PP
+.P
 The
 .I special
 argument is a pointer to a null-terminated string containing the pathname
 of the (mounted) block special device for the filesystem being manipulated.
-.PP
+.P
 The
 .I addr
 argument is the address of an optional, command-specific, data structure
@@ -70,7 +70,7 @@ that is copied in or out of the system.
 The interpretation of
 .I addr
 is given with each operation below.
-.PP
+.P
 The
 .I subcmd
 value is one of the following operations:
@@ -380,7 +380,7 @@ This operation is obsolete and was removed in Linux 2.4.22.
 Files in
 .I /proc/sys/fs/quota/
 carry the information instead.
-.PP
+.P
 For XFS filesystems making use of the XFS Quota Manager (XQM),
 the above operations are bypassed and the following operations are used:
 .TP

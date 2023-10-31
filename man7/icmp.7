@@ -16,7 +16,7 @@ The user doesn't interact directly with this module;
 instead it communicates with the other protocols in the kernel
 and these pass the ICMP errors to the application layers.
 The kernel ICMP module also answers ICMP requests.
-.PP
+.P
 A user protocol may receive ICMP packets for all local sockets by opening
 a raw socket with the protocol
 .BR IPPROTO_ICMP .
@@ -28,7 +28,7 @@ The types of ICMP packets passed to the socket can be filtered using the
 socket option.
 ICMP packets are always processed by the kernel too, even
 when passed to a user socket.
-.PP
+.P
 Linux limits the rate of ICMP error packets to each destination.
 .B ICMP_REDIRECT
 and
@@ -143,7 +143,7 @@ H Address Mask Request
 I Address Mask Reply
 .TE
 .RE
-.PP
+.P
 The bits marked with an asterisk are rate limited by default
 (see the default mask above).
 .TP
@@ -163,7 +163,7 @@ means no group is allowed to create ICMP Echo sockets.
 Support for the
 .B ICMP_ADDRESS
 request was removed in Linux 2.2.
-.PP
+.P
 Support for
 .B ICMP_SOURCE_QUENCH
 was removed in Linux 2.2.
@@ -173,18 +173,18 @@ As many other implementations don't support
 raw sockets, this feature
 should not be relied on in portable programs.
 .\" not really true ATM
-.\" .PP
+.\" .P
 .\" Linux ICMP should be compliant to RFC 1122.
-.PP
+.P
 .B ICMP_REDIRECT
 packets are not sent when Linux is not acting as a router.
 They are also accepted only from the old gateway defined in the
 routing table and the redirect routes are expired after some time.
-.PP
+.P
 The 64-bit timestamp returned by
 .B ICMP_TIMESTAMP
 is in milliseconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).
-.PP
+.P
 Linux ICMP internally uses a raw socket to send ICMPs.
 This raw socket may appear in
 .BR netstat (8)
@@ -192,5 +192,5 @@ output with a zero inode.
 .SH SEE ALSO
 .BR ip (7),
 .BR rdisc (8)
-.PP
+.P
 RFC\ 792 for a description of the ICMP protocol.

@@ -13,7 +13,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/types.h>
-.PP
+.P
 .BR typedef " /* ... */ " pid_t;
 .BR typedef " /* ... */ " uid_t;
 .BR typedef " /* ... */ " gid_t;
@@ -23,15 +23,15 @@ Standard C library
 .I pid_t
 is a type used for storing process IDs, process group IDs, and session IDs.
 It is a signed integer type.
-.PP
+.P
 .I uid_t
 is a type used to hold user IDs.
 It is an integer type.
-.PP
+.P
 .I gid_t
 is a type used to hold group IDs.
 It is an integer type.
-.PP
+.P
 .I id_t
 is a type used to hold a general identifier.
 It is an integer type that can be used to contain a
@@ -59,7 +59,7 @@ The following headers also provide
 .IR <unistd.h> ,
 and
 .IR <utmpx.h> .
-.PP
+.P
 The following headers also provide
 .IR uid_t :
 .IR <pwd.h> ,
@@ -69,7 +69,7 @@ The following headers also provide
 .IR <sys/stat.h> ,
 and
 .IR <unistd.h> .
-.PP
+.P
 The following headers also provide
 .IR gid_t :
 .IR <grp.h> ,
@@ -80,7 +80,7 @@ The following headers also provide
 .IR <sys/stat.h> ,
 and
 .IR <unistd.h> .
-.PP
+.P
 The following header also provides
 .IR id_t :
 .IR <sys/resource.h> .

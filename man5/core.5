@@ -16,14 +16,14 @@ This image can be used in a debugger (e.g.,
 to inspect the state of the program at the time that it terminated.
 A list of the signals which cause a process to dump core can be found in
 .BR signal (7).
-.PP
+.P
 A process can set its soft
 .B RLIMIT_CORE
 resource limit to place an upper limit on the size of the core dump file
 that will be produced if it receives a "core dump" signal; see
 .BR getrlimit (2)
 for details.
-.PP
+.P
 There are various circumstances in which a core dump file is
 not produced:
 .IP \[bu] 3
@@ -115,13 +115,13 @@ option.
 The kernel was configured without the
 .B CONFIG_COREDUMP
 option.
-.PP
+.P
 In addition,
 a core dump may exclude part of the address space of the process if the
 .BR madvise (2)
 .B MADV_DONTDUMP
 flag was employed.
-.PP
+.P
 On systems that employ
 .BR systemd (1)
 as the
@@ -139,7 +139,7 @@ file (since Linux 2.6 and 2.4.21)
 can be set to define a template that is used to name core dump files.
 The template can contain % specifiers which are substituted
 by the following values when a core file is created:
-.PP
+.P
 .RS 4
 .PD 0
 .TP 4
@@ -211,7 +211,7 @@ Epoch, 1970-01-01 00:00:00 +0000 (UTC).
 Numeric real UID of dumped process.
 .PD
 .RE
-.PP
+.P
 A single % at the end of the template is dropped from the
 core filename, as is the combination of a % followed by any
 character other than those listed above.
@@ -230,7 +230,7 @@ and
 .I /proc/sys/kernel/core_uses_pid
 (see below)
 is nonzero, then .PID will be appended to the core filename.
-.PP
+.P
 Paths are interpreted according to the settings that are active for the
 crashing process.
 That means the crashing process's mount namespace (see
@@ -239,7 +239,7 @@ its current working directory (found via
 .BR getcwd (2)),
 and its root directory (see
 .BR chroot (2)).
-.PP
+.P
 Since Linux 2.4, Linux has also provided
 a more primitive method of controlling
 the name of the core dump file.
@@ -250,7 +250,7 @@ file contains the value 0, then a core dump file is simply named
 If this file contains a nonzero value, then the core dump file includes
 the process ID in a name of the form
 .IR core.PID .
-.PP
+.P
 Since Linux 3.6,
 .\" 9520628e8ceb69fa9a4aee6b57f22675d9e1b709
 if
@@ -264,7 +264,7 @@ file.
 If the first character of this file is a pipe symbol (\fB|\fP),
 then the remainder of the line is interpreted as the command-line for
 a user-space program (or script) that is to be executed.
-.PP
+.P
 Since Linux 5.3.0,
 .\" commit 315c69261dd3fa12dbc830d4fa00d1fad98d3b03
 the pipe template is split on spaces into an argument list
@@ -283,7 +283,7 @@ Executable names with multiple spaces in them are not correctly represented
 in earlier kernels,
 meaning that the core dump handler needs to use mechanisms to find
 the executable name.
-.PP
+.P
 Instead of being written to a file, the core dump is given as
 standard input to the program.
 Note the following points:
@@ -354,7 +354,7 @@ files prematurely.
 This in turn creates the
 possibility that a misbehaving collecting program can block
 the reaping of a crashed process by simply never exiting.
-.PP
+.P
 Since Linux 2.6.32,
 .\" commit a293980c2e261bd5b0d2a77340dd04f684caff58
 the
@@ -364,7 +364,7 @@ The value in this file defines how many concurrent crashing
 processes may be piped to user-space programs in parallel.
 If this value is exceeded, then those crashing processes above this value
 are noted in the kernel log and their core dumps are skipped.
-.PP
+.P
 A value of 0 in this file is special.
 It indicates that unlimited processes may be captured in parallel,
 but that no waiting will take place (i.e., the collecting
@@ -378,13 +378,13 @@ Since Linux 2.6.23, the Linux-specific
 file can be used to control which memory segments are written to the
 core dump file in the event that a core dump is performed for the
 process with the corresponding process ID.
-.PP
+.P
 The value in the file is a bit mask of memory mapping types (see
 .BR mmap (2)).
 If a bit is set in the mask, then memory mappings of the
 corresponding type are dumped; otherwise they are not dumped.
 The bits in this file have the following meanings:
-.PP
+.P
 .PD 0
 .RS 4
 .TP
@@ -420,24 +420,24 @@ bit 8 (since Linux 4.4)
 Dump shared DAX pages.
 .RE
 .PD
-.PP
+.P
 By default, the following bits are set: 0, 1, 4 (if the
 .B CONFIG_CORE_DUMP_DEFAULT_ELF_HEADERS
 kernel configuration option is enabled), and 5.
 This default can be modified at boot time using the
 .I coredump_filter
 boot option.
-.PP
+.P
 The value of this file is displayed in hexadecimal.
 (The default value is thus displayed as 33.)
-.PP
+.P
 Memory-mapped I/O pages such as frame buffer are never dumped, and
 virtual DSO
 .RB ( vdso (7))
 pages are always dumped, regardless of the
 .I coredump_filter
 value.
-.PP
+.P
 A child process created via
 .BR fork (2)
 inherits its parent's
@@ -447,18 +447,18 @@ the
 .I coredump_filter
 value is preserved across an
 .BR execve (2).
-.PP
+.P
 It can be useful to set
 .I coredump_filter
 in the parent shell before running a program, for example:
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " echo 0x7 > /proc/self/coredump_filter"
 .RB "$" " ./some_program"
 .EE
 .in
-.PP
+.P
 This file is provided only if the kernel was built with the
 .B CONFIG_ELF_CORE
 configuration option.
@@ -477,14 +477,14 @@ feature that allows piping core dumps to a program.
 One can verify this by checking whether core dumps are being piped to the
 .BR systemd\-coredump (8)
 program:
-.PP
+.P
 .in +4n
 .EX
 $ \fBcat /proc/sys/kernel/core_pattern\fP
 |/usr/lib/systemd/systemd\-coredump %P %u %g %s %t %c %e
 .EE
 .in
-.PP
+.P
 In this case, core dumps will be placed in the location configured for
 .BR systemd\-coredump (8),
 typically as
@@ -495,7 +495,7 @@ One can list the core dumps that have been recorded by
 .BR systemd\-coredump (8)
 using
 .BR coredumpctl (1):
-.PP
+.P
 .EX
 $ \fBcoredumpctl list | tail \-5\fP
 Wed 2017\-10\-11 22:25:30 CEST  2748 1000 1000 3 present  /usr/bin/sleep
@@ -504,7 +504,7 @@ Thu 2017\-10\-12 06:30:50 CEST  2767 1000 1000 3 present  /usr/bin/sleep
 Thu 2017\-10\-12 06:37:40 CEST  2918 1000 1000 3 present  /usr/bin/cat
 Thu 2017\-10\-12 08:13:07 CEST  2955 1000 1000 3 present  /usr/bin/cat
 .EE
-.PP
+.P
 The information shown for each core dump includes the date and time
 of the dump, the PID, UID, and GID  of the dumping process,
 the signal number that caused the core dump,
@@ -517,24 +517,24 @@ location into a specified file.
 For example, to extract the core dump for PID 2955 shown above to a file named
 .I core
 in the current directory, one could use:
-.PP
+.P
 .in +4n
 .EX
 $ \fBcoredumpctl dump 2955 \-o core\fP
 .EE
 .in
-.PP
+.P
 For more extensive details, see the
 .BR coredumpctl (1)
 manual page.
-.PP
+.P
 To (persistently) disable the
 .BR systemd (1)
 mechanism that archives core dumps, restoring to something more like
 traditional Linux behavior, one can set an override for the
 .BR systemd (1)
 mechanism, using something like:
-.PP
+.P
 .in +4n
 .EX
 # \fBecho "kernel.core_pattern=core.%p" > \e\fP
@@ -542,13 +542,13 @@ mechanism, using something like:
 # \fB/lib/systemd/systemd\-sysctl\fP
 .EE
 .in
-.PP
+.P
 It is also possible to temporarily (i.e., until the next reboot) change the
 .I core_pattern
 setting using a command such as the following
 (which causes the names of core dump files to include the executable name
 as well as the number of the signal which triggered the core dump):
-.PP
+.P
 .in +4n
 .EX
 # \fBsysctl \-w kernel.core_pattern="%e\-%s.core"\fP
@@ -560,7 +560,7 @@ The
 .BR gdb (1)
 .I gcore
 command can be used to obtain a core dump of a running process.
-.PP
+.P
 In Linux versions up to and including 2.6.27,
 .\" Changed with commit 6409324b385f3f63a03645b4422e3be67348d922
 if a multithreaded process (or, more precisely, a process that
@@ -593,7 +593,7 @@ file.
 The following shell session demonstrates the use of this program
 (compiled to create an executable named
 .IR core_pattern_pipe_test ):
-.PP
+.P
 .in +4n
 .EX
 .RB "$" " cc \-o core_pattern_pipe_test core_pattern_pipe_test.c"

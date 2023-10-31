@@ -11,7 +11,7 @@ Standard C library
 .nf
 .BR "#include <linux/fs.h>" "       /* Definition of " *FSLABEL* " constants */"
 .B #include <sys/ioctl.h>
-.PP
+.P
 .BI "int ioctl(int " fd ", FS_IOC_GETFSLABEL, char " label [FSLABEL_MAX]);
 .BI "int ioctl(int " fd ", FS_IOC_SETFSLABEL, char " label [FSLABEL_MAX]);
 .fi
@@ -50,7 +50,7 @@ The calling process does not have sufficient permissions to set the label.
 Linux.
 .SH HISTORY
 Linux 4.18.
-.PP
+.P
 They were previously known as
 .B BTRFS_IOC_GET_FSLABEL
 and

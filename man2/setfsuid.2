@@ -18,7 +18,7 @@ Standard C library
 .SH SYNOPSIS
 .nf
 .B #include <sys/fsuid.h>
-.PP
+.P
 .BI "[[deprecated]] int setfsuid(uid_t " fsuid );
 .fi
 .SH DESCRIPTION
@@ -28,7 +28,7 @@ for permissions checking when accessing filesystem objects,
 while the effective user ID is used for various other kinds
 of permissions checks (see
 .BR credentials (7)).
-.PP
+.P
 Normally, the value of the process's filesystem user ID
 is the same as the value of its effective user ID.
 This is so, because whenever a process's effective user ID is changed,
@@ -39,7 +39,7 @@ from its effective user ID by using
 .BR setfsuid ()
 to change its filesystem user ID to the value given in
 .IR fsuid .
-.PP
+.P
 Explicit calls to
 .BR setfsuid ()
 and
@@ -50,7 +50,7 @@ corresponding change in the real and effective user and group IDs.
 A change in the normal user IDs for a program such as the NFS server
 is (was) a security hole that can expose it to unwanted signals.
 (However, this issue is historical; see below.)
-.PP
+.P
 .BR setfsuid ()
 will succeed only if the caller is the superuser or if
 .I fsuid
@@ -65,7 +65,7 @@ Linux.
 Linux 1.2.
 .\" Linux 1.1.44
 .\" and in libc since libc 4.7.6.
-.PP
+.P
 At the time when this system call was introduced, one process
 could send a signal to another process with the same effective user ID.
 This meant that if a privileged process changed its effective user ID
@@ -84,7 +84,7 @@ Thus,
 is nowadays unneeded and should be avoided in new applications
 (likewise for
 .BR setfsgid (2)).
-.PP
+.P
 The original Linux
 .BR setfsuid ()
 system call supported only 16-bit user IDs.
