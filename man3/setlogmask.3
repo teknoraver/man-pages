@@ -29,7 +29,11 @@ The
 .BR setlogmask ()
 function sets this logmask for the calling process,
 and returns the previous mask.
-If the mask argument is 0, the current logmask is not modified.
+If the
+.I mask
+argument is
+.BR 0 ,
+the current logmask is not modified.
 .P
 The eight priorities are
 .BR LOG_EMERG ,
