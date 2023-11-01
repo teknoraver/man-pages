@@ -53,10 +53,10 @@ By convention, the first of these strings (i.e.,
 should contain the filename associated with the file being executed.
 The
 .I argv
-array must be terminated by a NULL pointer.
+array must be terminated by a null pointer.
 (Thus, in the new program,
 .I argv[argc]
-will be NULL.)
+will be a null pointer.)
 .P
 .I envp
 is an array of pointers to strings, conventionally of the form
@@ -64,7 +64,7 @@ is an array of pointers to strings, conventionally of the form
 which are passed as the environment of the new program.
 The
 .I envp
-array must be terminated by a NULL pointer.
+array must be terminated by a null pointer.
 .P
 This manual page describes the Linux system call in detail;
 for an overview of the nomenclature and the many, often preferable,
