@@ -307,7 +307,7 @@ main(int argc, char *argv[])
        null byte (\[aq]\e0\[aq]). */
     printf("\[aq]%s\[aq] points to \[aq]%.*s\[aq]\en", argv[1], (int) nbytes, buf);
 \&
-    /* If the return value was equal to the buffer size, then the
+    /* If the return value was equal to the buffer size, then
        the link target was larger than expected (perhaps because the
        target was changed between the call to lstat() and the call to
        readlink()). Warn the user that the returned target may have
