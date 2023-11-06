@@ -6,9 +6,8 @@
 .TH stpncpy 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
 stpncpy, strncpy
-\- zero a fixed-width buffer and
-copy a string into a character sequence with truncation
-and zero the rest of it
+\-
+fill a fixed-width null-padded buffer with bytes from a string
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
@@ -37,7 +36,7 @@ Feature Test Macro Requirements for glibc (see
         _GNU_SOURCE
 .fi
 .SH DESCRIPTION
-These functions copy the string pointed to by
+These functions copy bytes from the string pointed to by
 .I src
 into a null-padded character sequence at the fixed-width buffer pointed to by
 .IR dst .
@@ -110,6 +109,16 @@ The name of these functions is confusing.
 These functions produce a null-padded character sequence,
 not a string (see
 .BR string_copying (7)).
+For example:
+.P
+.in +4n
+.EX
+strncpy(buf, "1", 5);       // { \[aq]1\[aq],   0,   0,   0,   0 }
+strncpy(buf, "1234", 5);    // { \[aq]1\[aq], \[aq]2\[aq], \[aq]3\[aq], \[aq]4\[aq],   0 }
+strncpy(buf, "12345", 5);   // { \[aq]1\[aq], \[aq]2\[aq], \[aq]3\[aq], \[aq]4\[aq], \[aq]5\[aq] }
+strncpy(buf, "123456", 5);  // { \[aq]1\[aq], \[aq]2\[aq], \[aq]3\[aq], \[aq]4\[aq], \[aq]5\[aq] }
+.EE
+.in
 .P
 It's impossible to distinguish truncation by the result of the call,
 from a character sequence that just fits the destination buffer;

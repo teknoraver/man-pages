@@ -41,15 +41,11 @@ const char *restrict " src ,
 .\" ----- SYNOPSIS :: Null-padded character sequences --------/
 .SS Null-padded character sequences
 .nf
-// Zero a fixed-width buffer, and
-// copy a string into a character sequence with truncation.
-.BI "char *stpncpy(char " dst "[restrict ." sz "], \
+// Fill a fixed-width null-padded buffer with bytes from a string.
+.BI "char *strncpy(char " dst "[restrict ." sz "], \
 const char *restrict " src ,
 .BI "               size_t " sz );
-.P
-// Zero a fixed-width buffer, and
-// copy a string into a character sequence with truncation.
-.BI "char *strncpy(char " dst "[restrict ." sz "], \
+.BI "char *stpncpy(char " dst "[restrict ." sz "], \
 const char *restrict " src ,
 .BI "               size_t " sz );
 .P
@@ -240,14 +236,18 @@ but rather null-padded character sequences.
 .\" ----- DESCRIPTION :: Null-padded character sequences --------------/
 .SS Null-padded character sequences
 For historic reasons,
-some standard APIs,
+some standard APIs and file formats,
 such as
-.BR utmpx (5),
+.BR utmpx (5)
+and
+.BR tar (1),
 use null-padded character sequences in fixed-width buffers.
 To interface with them,
 specialized functions need to be used.
 .P
-To copy strings into them, use
+To copy bytes from strings into these buffers, use
+.BR strncpy (3)
+or
 .BR stpncpy (3).
 .P
 To copy from an unterminated string within a fixed-width buffer into a string,
