@@ -81,6 +81,8 @@ the width of
 .I time_t
 can be controlled with the feature test macro
 .BR _TIME_BITS .
+See
+.BR feature_test_macros (7).
 .P
 The following headers also provide
 .IR time_t :

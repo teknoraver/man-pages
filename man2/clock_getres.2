@@ -101,9 +101,17 @@ A settable system-wide clock that measures real (i.e., wall-clock) time.
 Setting this clock requires appropriate privileges.
 This clock is affected by discontinuous jumps in the system time
 (e.g., if the system administrator manually changes the clock),
-and by the incremental adjustments performed by
-.BR adjtime (3)
-and NTP.
+and by frequency adjustments performed by NTP and similar applications via
+.BR adjtime (3),
+.BR adjtimex (2),
+.BR clock_adjtime (2),
+and
+.BR ntp_adjtime (3).
+This clock normally counts the number of seconds since
+1970-01-01 00:00:00 Coordinated Universal Time (UTC)
+except that it ignores leap seconds;
+near a leap second it is typically adjusted by NTP
+to stay roughly in sync with UTC.
 .TP
 .BR CLOCK_REALTIME_ALARM " (since Linux 3.0; Linux-specific)"
 Like
@@ -126,9 +134,9 @@ and probably also architecture support for this flag in the
 .BR CLOCK_TAI " (since Linux 3.10; Linux-specific)"
 .\" commit 1ff3c9677bff7e468e0c487d0ffefe4e901d33f4
 A nonsettable system-wide clock derived from wall-clock time
-but ignoring leap seconds.
+but counting leap seconds.
 This clock does
-not experience discontinuities and backwards jumps caused by NTP
+not experience discontinuities or frequency adjustments caused by
 inserting leap seconds as
 .B CLOCK_REALTIME
 does.
@@ -146,9 +154,7 @@ The
 .B CLOCK_MONOTONIC
 clock is not affected by discontinuous jumps in the system time
 (e.g., if the system administrator manually changes the clock),
-but is affected by the incremental adjustments performed by
-.BR adjtime (3)
-and NTP.
+but is affected by frequency adjustments.
 This clock does not count time that the system is suspended.
 All
 .B CLOCK_MONOTONIC
@@ -170,9 +176,7 @@ and probably also architecture support for this flag in the
 Similar to
 .BR CLOCK_MONOTONIC ,
 but provides access to a raw hardware-based time
-that is not subject to NTP adjustments or
-the incremental adjustments performed by
-.BR adjtime (3).
+that is not subject to frequency adjustments.
 This clock does not count time that the system is suspended.
 .TP
 .BR CLOCK_BOOTTIME " (since Linux 2.6.39; Linux-specific)"
@@ -303,6 +307,17 @@ has disappeared after its character device was opened.
 .B ENOTSUP
 The operation is not supported by the dynamic POSIX clock device
 specified.
+.TP
+.B EOVERFLOW
+The timestamp would not fit in
+.I time_t
+range.
+This can happen if an executable with 32-bit
+.I time_t
+is run on a 64-bit kernel when the time is 2038-01-19 03:14:08 UTC or later.
+However, when the system time is out of
+.I time_t
+range in other situations, the behavior is undefined.
 .TP
 .B EPERM
 .BR clock_settime ()
