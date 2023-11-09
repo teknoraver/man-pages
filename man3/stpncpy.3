@@ -7,7 +7,8 @@
 .SH NAME
 stpncpy, strncpy
 \-
-fill a fixed-width null-padded buffer with bytes from a string
+fill a fixed-width buffer with characters from a string
+and pad with null bytes
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
@@ -36,10 +37,11 @@ Feature Test Macro Requirements for glibc (see
         _GNU_SOURCE
 .fi
 .SH DESCRIPTION
-These functions copy bytes from the string pointed to by
+These functions copy characters from the string pointed to by
 .I src
-into a null-padded character sequence at the fixed-width buffer pointed to by
-.IR dst .
+into a character sequence at the fixed-width buffer pointed to by
+.IR dst ,
+and pad with null bytes.
 If the destination buffer,
 limited by its size,
 isn't large enough to hold the copy,

@@ -41,7 +41,8 @@ const char *restrict " src ,
 .\" ----- SYNOPSIS :: Null-padded character sequences --------/
 .SS Null-padded character sequences
 .nf
-// Fill a fixed-width null-padded buffer with bytes from a string.
+// Fill a fixed-width buffer with characters from a string
+// and pad with null bytes.
 .BI "char *strncpy(char " dst "[restrict ." sz "], \
 const char *restrict " src ,
 .BI "               size_t " sz );

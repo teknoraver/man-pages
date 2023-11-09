@@ -179,21 +179,14 @@ to the current locale and copies the first
 .I n
 bytes to
 .IR dest .
-.SS Obsolete functions
 .TP
 .nf
 .BI "char *strncpy(char " dest "[restrict ." n "], \
 const char " src "[restrict ." n ],
 .BI "       size_t " n );
 .fi
-Copy at most
-.I n
-bytes from string
-.I src
-to
-.IR dest ,
-returning a pointer to the start of
-.IR dest .
+Fill a fixed‐width buffer with characters from a string
+and pad with null bytes.
 .SH DESCRIPTION
 The string functions perform operations on null-terminated
 strings.
