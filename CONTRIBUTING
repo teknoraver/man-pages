@@ -56,6 +56,29 @@ Description
 
                  help
 
+   Sign your emails with PGP
+        It is strongly encouraged that you sign all of your emails sent
+        to the mailing list, (especially) including the ones containing
+        patches, with your PGP key.  This helps establish trust between
+        you and other contributors of this project, and prevent others
+        impersonating you.  If you don't have a key, it's not mandatory
+        to sign your email, but you're encouraged to create and start
+        using a PGP key.
+
+        There are many ways you can sign your patches, and it depends on
+        your preferred tools.  You can use git-send-email(1) in
+        combination with mutt(1).  For that, do the following.
+
+        In <~/.gitconfig>, add the following section:
+
+            [sendemail]
+                sendmailcmd = mutt -H - && true
+
+        And then, patch mutt(1) to enable encryption in batch and mailx
+        modes, which is disabled in upstream mutt(1).  You can find a
+        patch here:
+        <https://gitlab.com/muttmua/mutt/-/merge_requests/173>.
+
    Patches
        If you know how to fix a problem in a manual page (if not, see
        "Reporting bugs" below), then send a patch in an email.
