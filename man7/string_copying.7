@@ -377,7 +377,7 @@ List of functions:
 .\" ----- DESCRIPTION :: Functions :: stpcpy(3) -----------------------/
 .TP
 .BR stpcpy (3)
-This function copies the input string into a destination string.
+Copy the input string into a destination string.
 The programmer is responsible for allocating a buffer large enough.
 It returns a pointer suitable for chaining.
 .\" ----- DESCRIPTION :: Functions :: strcpy(3), strcat(3) ------------/
@@ -385,7 +385,7 @@ It returns a pointer suitable for chaining.
 .BR strcpy (3)
 .TQ
 .BR strcat (3)
-These functions copy and catenate the input string into a destination string.
+Copy and catenate the input string into a destination string.
 The programmer is responsible for allocating a buffer large enough.
 The return value is useless.
 .IP
@@ -394,7 +394,7 @@ is a faster alternative to these functions.
 .\" ----- DESCRIPTION :: Functions :: stpecpy(3) ----------------------/
 .TP
 .BR stpecpy (3)
-This function copies the input string into a destination string.
+Copy the input string into a destination string.
 If the destination buffer,
 limited by a pointer to its end,
 isn't large enough to hold the copy,
@@ -410,7 +410,7 @@ see EXAMPLES for a reference implementation.
 .BR strlcpy (3bsd)
 .TQ
 .BR strlcat (3bsd)
-These functions copy and catenate the input string into a destination string.
+Copy and catenate the input string into a destination string.
 If the destination buffer,
 limited by its size,
 isn't large enough to hold the copy,
@@ -423,7 +423,7 @@ is a simpler alternative to these functions.
 .\" ----- DESCRIPTION :: Functions :: stpncpy(3) ----------------------/
 .TP
 .BR stpncpy (3)
-This function copies the input string into
+Copy the input string into
 a destination null-padded character sequence in a fixed-width buffer.
 If the destination buffer,
 limited by its size,
@@ -448,7 +448,7 @@ is a more useful alternative to this function.
 .\" ----- DESCRIPTION :: Functions :: zustr2ustp(3) --------------------/
 .TP
 .BR zustr2ustp (3)
-This function copies the input character sequence,
+Copy the input character sequence,
 contained in a null-padded fixed-width buffer,
 into a destination character sequence.
 The programmer is responsible for allocating a buffer large enough.
@@ -463,7 +463,7 @@ see EXAMPLES for a reference implementation.
 .\" ----- DESCRIPTION :: Functions :: zustr2stp(3) --------------------/
 .TP
 .BR zustr2stp (3)
-This function copies the input character sequence,
+Copy the input character sequence,
 contained in a null-padded fixed-width buffer,
 into a destination string.
 The programmer is responsible for allocating a buffer large enough.
@@ -478,22 +478,22 @@ see EXAMPLES for a reference implementation.
 .\" ----- DESCRIPTION :: Functions :: strncat(3) ----------------------/
 .TP
 .BR strncat (3)
-Do not confuse this function with
-.BR strncpy (3);
-they are not related at all.
-.IP
-This function catenates the input character sequence,
+Catenate the input character sequence,
 contained in a null-padded fixed-width buffer,
 into a destination string.
 The programmer is responsible for allocating a buffer large enough.
 The return value is useless.
+.IP
+Do not confuse this function with
+.BR strncpy (3);
+they are not related at all.
 .IP
 .BR zustr2stp (3)
 is a faster alternative to this function.
 .\" ----- DESCRIPTION :: Functions :: ustpcpy(3) ----------------------/
 .TP
 .BR ustpcpy (3)
-This function copies the input character sequence,
+Copy the input character sequence,
 limited by its length,
 into a destination character sequence.
 The programmer is responsible for allocating a buffer large enough.
@@ -501,7 +501,7 @@ It returns a pointer suitable for chaining.
 .\" ----- DESCRIPTION :: Functions :: ustr2stp(3) ---------------------/
 .TP
 .BR ustr2stp (3)
-This function copies the input character sequence,
+Copy the input character sequence,
 limited by its length,
 into a destination string.
 The programmer is responsible for allocating a buffer large enough.
@@ -574,7 +574,7 @@ which is similar to
 except that it can't be chained:
 .TP
 .BR strscpy (9)
-This function copies the input string into a destination string.
+Copy the input string into a destination string.
 If the destination buffer,
 limited by its size,
 isn't large enough to hold the copy,
