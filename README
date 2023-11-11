@@ -59,16 +59,13 @@ Files
        Default directory for files created by the build system.
 
 Versions
-   Tarballs
+   Distribution
        <https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/>
+       <https://www.alejandro-colomar.es/share/dist/man-pages/>
 
    Git
-       <git://git.kernel.org/pub/scm/docs/man-pages/man-pages.git>
        <https://git.kernel.org/pub/scm/docs/man-pages/man-pages.git/>
-
-       A secondary git(1) repository can be found at:
-       <git://www.alejandro-colomar.es/src/alx/linux/man-pages/man-pages.git>
-       <http://www.alejandro-colomar.es/src/alx/linux/man-pages/man-pages.git/>
+       <https://www.alejandro-colomar.es/src/alx/linux/man-pages/man-pages.git/>
 
    Online man-pages
        PDF
@@ -80,7 +77,7 @@ History
        <https://www.win.tue.nl/~aeb/ftpdocs/linux-local/manpages.archive/>
 
    Maintainers
-       Alejandro Colomar <alx@kernel.org> <http://www.alejandro-colomar.es/>
+       Alejandro Colomar <alx@kernel.org> <https://www.alejandro-colomar.es/>
              2020 - present (5.09 - HEAD)
        Michael Kerrisk <mtk.manpages@gmail.com> <https://man7.org/>
              2004 - 2021    (2.00 - 5.13)
@@ -104,7 +101,7 @@ See also
        man-pages(7)
 
    Website
-       <http://www.kernel.org/doc/man-pages/index.html>.
+       <https://www.kernel.org/doc/man-pages/index.html>.
 
    Downstream packages
        Arch man-pages
