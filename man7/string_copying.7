@@ -508,64 +508,50 @@ The programmer is responsible for allocating a buffer large enough.
 It returns a pointer suitable for chaining.
 .\" ----- RETURN VALUE :: ---------------------------------------------/
 .SH RETURN VALUE
-The following functions return
-a pointer to the terminating null byte in the destination string.
-.IP \[bu] 3
-.PD 0
+.TP
 .BR stpcpy (3)
-.IP \[bu]
+.TQ
 .BR ustr2stp (3)
-.IP \[bu]
+.TQ
 .BR zustr2stp (3)
-.PD
-.P
-The following function returns
-a pointer to the terminating null byte in the destination string,
+A pointer to the terminating null byte in the destination string.
+.TP
+.BR stpecpy (3)
+A pointer to the terminating null byte in the destination string,
 except when truncation occurs;
 if truncation occurs,
 it returns a pointer to the end of the destination buffer.
-.IP \[bu] 3
-.BR stpecpy (3)
-.P
-The following function returns
-a pointer to one after the last character
+.TP
+.BR stpncpy (3)
+A pointer to one after the last character
 in the destination character sequence;
 if truncation occurs,
 that pointer is equivalent to
 a pointer to the end of the destination buffer.
-.IP \[bu] 3
-.BR stpncpy (3)
-.P
-The following functions return
-a pointer to one after the last character
-in the destination character sequence.
-.IP \[bu] 3
-.PD 0
+.TP
 .BR zustr2ustp (3)
-.IP \[bu]
+.TQ
 .BR ustpcpy (3)
-.PD
-.P
-The following functions return
-the length of the total string that they tried to create
-(as if truncation didn't occur).
-.IP \[bu] 3
-.BR strlcpy (3bsd),
+A pointer to one after the last character
+in the destination character sequence.
+.TP
+.BR strlcpy (3bsd)
+.TQ
 .BR strlcat (3bsd)
-.P
-The following functions return the
+The length of the total string that they tried to create
+(as if truncation didn't occur).
+.TP
+.BR strcpy (3)
+.TQ
+.BR strcat (3)
+.TQ
+.BR strncpy (3)
+.TQ
+.BR strncat (3)
+The
 .I dst
 pointer,
 which is useless.
-.IP \[bu] 3
-.PD 0
-.BR strcpy (3),
-.BR strcat (3)
-.IP \[bu]
-.BR strncpy (3)
-.IP \[bu]
-.BR strncat (3)
-.PD
 .\" ----- NOTES :: strscpy(9) -----------------------------------------/
 .SH NOTES
 The Linux kernel has an internal function for copying strings,
