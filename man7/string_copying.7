@@ -32,41 +32,41 @@ ustpcpy, ustr2stp
 .BI "char *stpecpy(char *" dst ", char " end "[0], const char *restrict " src );
 .P
 // Copy/catenate a string with truncation.
-.BI "ssize_t strtcpy(char " dst "[restrict ." sz "], \
+.BI "ssize_t strtcpy(char " dst "[restrict ." dsize "], \
 const char *restrict " src ,
-.BI "               size_t " sz );
-.BI "size_t strlcpy(char " dst "[restrict ." sz "], \
+.BI "               size_t " dsize );
+.BI "size_t strlcpy(char " dst "[restrict ." dsize "], \
 const char *restrict " src ,
-.BI "               size_t " sz );
-.BI "size_t strlcat(char " dst "[restrict ." sz "], \
+.BI "               size_t " dsize );
+.BI "size_t strlcat(char " dst "[restrict ." dsize "], \
 const char *restrict " src ,
-.BI "               size_t " sz );
+.BI "               size_t " dsize );
 .fi
 .\" ----- SYNOPSIS :: Null-padded character sequences --------/
 .SS Null-padded character sequences
 .nf
 // Fill a fixed-width buffer with characters from a string
 // and pad with null bytes.
-.BI "char *strncpy(char " dst "[restrict ." sz "], \
+.BI "char *strncpy(char " dst "[restrict ." dsize "], \
 const char *restrict " src ,
-.BI "               size_t " sz );
-.BI "char *stpncpy(char " dst "[restrict ." sz "], \
+.BI "               size_t " dsize );
+.BI "char *stpncpy(char " dst "[restrict ." dsize "], \
 const char *restrict " src ,
-.BI "               size_t " sz );
+.BI "               size_t " dsize );
 .P
 // Chain-copy a null-padded character sequence into a character sequence.
 .BI "char *zustr2ustp(char *restrict " dst ", \
-const char " src "[restrict ." sz ],
-.BI "               size_t " sz );
+const char " src "[restrict ." ssize ],
+.BI "               size_t " ssize );
 .P
 // Chain-copy a null-padded character sequence into a string.
 .BI "char *zustr2stp(char *restrict " dst ", \
-const char " src "[restrict ." sz ],
-.BI "               size_t " sz );
+const char " src "[restrict ." ssize ],
+.BI "               size_t " ssize );
 .P
 // Catenate a null-padded character sequence into a string.
-.BI "char *strncat(char *restrict " dst ", const char " src "[restrict ." sz ],
-.BI "               size_t " sz );
+.BI "char *strncat(char *restrict " dst ", const char " src "[restrict ." ssize ],
+.BI "               size_t " ssize );
 .fi
 .\" ----- SYNOPSIS :: Measured character sequences --------------------/
 .SS Measured character sequences
@@ -124,10 +124,10 @@ is the number of non-null characters in a string or character sequence.
 It is the return value of
 .I strlen(str)
 and of
-.IR "strnlen(ustr, sz)" .
-.\" ----- DESCRIPTION :: Terms (and abbreviations) :: size (sz) -------/
+.IR "strnlen(ustr, size)" .
+.\" ----- DESCRIPTION :: Terms (and abbreviations) :: size ------------/
 .TP
-.IR "size " ( sz )
+.I size
 refers to the entire buffer
 where the string or character sequence is contained.
 .\" ----- DESCRIPTION :: Terms (and abbreviations) :: end -------------/
@@ -135,7 +135,7 @@ where the string or character sequence is contained.
 .I end
 is the name of a pointer to one past the last element of a buffer.
 It is equivalent to
-.IR &str[sz] .
+.IR &str[size] .
 It is used as a sentinel value,
 to be able to truncate strings or character sequences
 instead of overrunning the containing buffer.
@@ -786,7 +786,7 @@ Here are reference implementations for functions not provided by libc.
 \&
 .\" ----- EXAMPLES :: Implementations :: strtcpy(3) -------------------/
 ssize_t
-.IR strtcpy "(char *restrict dst, const char *restrict src, size_t sz)"
+.IR strtcpy "(char *restrict dst, const char *restrict src, size_t dsize)"
 {
     bool    trunc;
     char    *p;
@@ -827,18 +827,18 @@ char *
 \&
 .\" ----- EXAMPLES :: Implementations :: zustr2ustp(3) ----------------/
 char *
-.IR zustr2ustp "(char *restrict dst, const char *restrict src, size_t sz)"
+.IR zustr2ustp "(char *restrict dst, const char *restrict src, size_t ssize)"
 {
-    return ustpcpy(dst, src, strnlen(src, sz));
+    return ustpcpy(dst, src, strnlen(src, ssize));
 }
 \&
 .\" ----- EXAMPLES :: Implementations :: zustr2stp(3) -----------------/
 char *
-.IR zustr2stp "(char *restrict dst, const char *restrict src, size_t sz)"
+.IR zustr2stp "(char *restrict dst, const char *restrict src, size_t ssize)"
 {
     char  *p;
 \&
-    p = zustr2ustp(dst, src, sz);
+    p = zustr2ustp(dst, src, ssize);
     *p = \[aq]\e0\[aq];
 \&
     return p;
