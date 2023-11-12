@@ -227,7 +227,7 @@ It only requires to check for truncation once after all chained calls.
 .BR strlcpy (3bsd)
 and
 .BR strlcat (3bsd)
-are similar, but less efficient when chained.
+are similar, but have important performance problems; see BUGS.
 .IP \[bu]
 .BR stpncpy (3)
 and
@@ -418,6 +418,8 @@ the resulting string is truncated
 (but it is guaranteed to be null-terminated).
 They return the length of the total string they tried to create.
 .IP
+Check BUGS before using these functions.
+.IP
 .BR stpecpy (3)
 is a simpler alternative to these functions.
 .\" ----- DESCRIPTION :: Functions :: stpncpy(3) ----------------------/
@@ -599,6 +601,20 @@ into normal copy functions,
 since
 .I strlen(dst)
 is usually a byproduct of the previous copy.
+.P
+.BR strlcpy (3)
+and
+.BR strlcat (3)
+need to read the entire
+.I src
+string,
+even if the destination buffer is small.
+This makes them vulnerable to Denial of Service (DoS) attacks
+if an attacker can control the length of the
+.I src
+string.
+And if not,
+they're still unnecessarily slow.
 .\" ----- EXAMPLES :: -------------------------------------------------/
 .SH EXAMPLES
 The following are examples of correct use of each of these functions.
