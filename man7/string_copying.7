@@ -593,6 +593,12 @@ All catenation functions share the same performance problem:
 .UR https://www.joelonsoftware.com/\:2001/12/11/\:back\-to\-basics/
 Shlemiel the painter
 .UE .
+As a mitigation,
+compilers are able to transform some calls to catenation functions
+into normal copy functions,
+since
+.I strlen(dst)
+is usually a byproduct of the previous copy.
 .\" ----- EXAMPLES :: -------------------------------------------------/
 .SH EXAMPLES
 The following are examples of correct use of each of these functions.
