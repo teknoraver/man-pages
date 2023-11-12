@@ -218,9 +218,12 @@ Keeping the code simple
 helps these overflow-detection features be more precise.
 .P
 When validating user input,
+code should normally not truncate,
+but instead fail and prevent the copy at all.
+.P
+In some cases,
 however,
 it makes sense to truncate.
-Remember to check the return value of such function calls.
 .P
 Functions that truncate:
 .IP \[bu] 3
