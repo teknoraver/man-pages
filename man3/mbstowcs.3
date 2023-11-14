@@ -61,12 +61,6 @@ In this case, the number of wide characters written to
 .IR dest ,
 excluding the terminating null wide character, is returned.
 .P
-The programmer must ensure that there is room for at least
-.I dsize
-wide
-characters at
-.IR dest .
-.P
 If
 .I dest
 is NULL,
@@ -80,6 +74,12 @@ In order to avoid the case 2 above, the programmer should make sure
 is
 greater than or equal to
 .IR "mbstowcs(NULL,src,0)+1" .
+.P
+The programmer must ensure that there is room for at least
+.I dsize
+wide
+characters at
+.IR dest .
 .SH RETURN VALUE
 The number of wide characters that make
 up the converted part of the wide-character string, not including the
