@@ -11,7 +11,7 @@
 .\"
 .TH mbsrtowcs 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
-mbsrtowcs \- convert a multibyte string to a wide-character string
+mbsrtowcs \- convert a multibyte string to a wide-character string (restartable)
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
@@ -114,6 +114,9 @@ The programmer must ensure that there is room for at least
 wide
 characters at
 .IR dest .
+.P
+This function is a restartable version of
+.BR mbstowcs (3).
 .SH RETURN VALUE
 The number of wide characters that make
 up the converted part of the wide-character string, not including the
