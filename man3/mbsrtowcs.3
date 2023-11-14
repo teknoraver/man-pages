@@ -103,6 +103,12 @@ state known only to the
 .BR mbsrtowcs ()
 function is used instead.
 .P
+In order to avoid the case 2 above, the programmer should make sure
+.I dsize
+is
+greater than or equal to
+.IR "mbsrtowcs(NULL,src,0,ps)+1" .
+.P
 The programmer must ensure that there is room for at least
 .I dsize
 wide
