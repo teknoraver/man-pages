@@ -19,8 +19,8 @@ Standard C library
 .nf
 .B #include <wchar.h>
 .P
-.BI "size_t mbsrtowcs(wchar_t " dest "[restrict ." len "], const char **restrict " src ,
-.BI "                 size_t " len ", mbstate_t *restrict " ps );
+.BI "size_t mbsrtowcs(wchar_t " dest "[restrict ." dsize "], const char **restrict " src ,
+.BI "                 size_t " dsize ", mbstate_t *restrict " ps );
 .fi
 .SH DESCRIPTION
 If
@@ -33,7 +33,7 @@ multibyte string
 to a wide-character string starting at
 .IR dest .
 At most
-.I len
+.I dsize
 wide characters are written to
 .IR dest .
 The shift state
@@ -63,7 +63,7 @@ and
 is set to
 .BR EILSEQ .
 .IP \[bu]
-.I len
+.I dsize
 non-L\[aq]\e0\[aq] wide characters have been stored at
 .IR dest .
 In this case,
@@ -90,7 +90,7 @@ excluding the terminating null wide character, is returned.
 If
 .I dest
 is NULL,
-.I len
+.I dsize
 is ignored,
 and the conversion proceeds as above,
 except that the converted wide characters are not written out to memory,
@@ -105,7 +105,7 @@ state known only to the
 function is used instead.
 .P
 The programmer must ensure that there is room for at least
-.I len
+.I dsize
 wide
 characters at
 .IR dest .
