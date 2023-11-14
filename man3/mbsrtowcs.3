@@ -25,9 +25,8 @@ Standard C library
 .SH DESCRIPTION
 If
 .I dest
-is not NULL, the
-.BR mbsrtowcs ()
-function converts the
+is not NULL,
+convert the
 multibyte string
 .I *src
 to a wide-character string starting at
@@ -110,9 +109,7 @@ wide
 characters at
 .IR dest .
 .SH RETURN VALUE
-The
-.BR mbsrtowcs ()
-function returns the number of wide characters that make
+The number of wide characters that make
 up the converted part of the wide-character string, not including the
 terminating null wide character.
 If an invalid multibyte sequence was
