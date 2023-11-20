@@ -52,13 +52,6 @@ my $Section='';
 LoadAlias();
 BuildBook();
 
-my $cmdstring="-Tpdf -k -pet -M. -F. -mandoc -manmark -dpaper=a4 -P-pa4 -rC1 -rCHECKSTYLE=3";
-
-system("groff -Tpdf -ms LMBfront.t -Z > LMBfront.Z");
-system("groff -z -dPDF.EXPORT=1 -dLABEL.REFS=1 T $cmdstring 2>&1 | LC_ALL=C grep '^\\. *ds' | groff -Tpdf $cmdstring - T -Z > LinuxManBook.Z");
-system("gropdf -F. LMBfront.Z LinuxManBook.Z -pa4 > LinuxManBook.pdf");
-#unlink "LinuxManBook.Z","LMBfront.Z";  # If you want to clean up
-
 # Aliases are the man pages which .so another man page, so build a hash of them so
 # that when we are processing referenced man page we can add the target for the
 # bookmark.
@@ -101,9 +94,7 @@ sub LoadAlias
 
 sub BuildBook
 {
-    open(BK,">T");
-
-    print BK ".pdfpagenumbering D . 1\n";
+    print ".pdfpagenumbering D . 1\n";
 
     foreach my $fn (sort sortman glob("$dir/man*/*"))
     {
@@ -116,12 +107,12 @@ sub BuildBook
 
         if (exists($alias{$bkmark}))
         {
-            print BK ".eo\n.device ps:exec [/Dest /$alias{$bkmark}->[0] /Title ($title) /Level 2 /OUT pdfmark\n.ec\n";
-	    print BK ".if dPDF.EXPORT .tm .ds pdf:look($bkmark) $alias{$bkmark}->[1]($alias{$bkmark}->[2])\n";
+            print ".eo\n.device ps:exec [/Dest /$alias{$bkmark}->[0] /Title ($title) /Level 2 /OUT pdfmark\n.ec\n";
+	    print ".if dPDF.EXPORT .tm .ds pdf:look($bkmark) $alias{$bkmark}->[1]($alias{$bkmark}->[2])\n";
 	    next;
 	}
 
-	print BK ".\\\" >>>>>> $1($2) <<<<<<\n.lf 0 $bkmark\n";
+	print ".\\\" >>>>>> $1($2) <<<<<<\n.lf 0 $bkmark\n";
 
 	if (open(F,'<',$fn))
         {
@@ -129,7 +120,7 @@ sub BuildBook
             {
                 if (m/^\.\\"/)
                 {
-                    print BK $_;
+                    print $_;
                     next;
                 }
 
@@ -187,18 +178,18 @@ sub BuildBook
 
                     if ($sec ne $Section)
                     {
-			print BK ".nr PDFOUTLINE.FOLDLEVEL 1\n.fl\n";
-			print BK ".pdfbookmark 1 $Sections{$sec}\n";
-			print BK ".nr PDFOUTLINE.FOLDLEVEL 2\n";
+			print ".nr PDFOUTLINE.FOLDLEVEL 1\n.fl\n";
+			print ".pdfbookmark 1 $Sections{$sec}\n";
+			print ".nr PDFOUTLINE.FOLDLEVEL 2\n";
 			$Section=$sec;
                     }
 
-                    print BK "$_\n";
+                    print "$_\n";
 
 # Add a level two bookmark. We don't set it in the TH macro since the name passed
 # may be different from the filename, i.e. file = unimplemented.2, TH = UNIMPLEMENTED 2
 
-                    print BK ".pdfbookmark -T $bkmark 2 $1($2)\n";
+                    print ".pdfbookmark -T $bkmark 2 $1($2)\n";
 
 # If this page is referenced by an alias plant a destination label for the alias.
 
@@ -206,14 +197,14 @@ sub BuildBook
                     {
                         foreach my $targ (@{$target{$bkmark}})
 			{
-			    print BK ".pdf*href.set $targ\n";
+			    print ".pdf*href.set $targ\n";
 			}
 		    }
 
 		    next;
 		}
 
-		print BK "$_\n";
+		print "$_\n";
 
 	    }
 
@@ -221,8 +212,6 @@ sub BuildBook
 
 	}
     }
-
-    close(BK);
 }
 
 sub GetNmSec
