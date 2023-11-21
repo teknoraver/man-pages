@@ -5,7 +5,10 @@
 .\"
 .TH strncat 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
-strncat \- append a null-padded character sequence into a string
+strncat
+\-
+append non-null bytes from a source array to a string,
+and null-terminate the result
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
@@ -17,9 +20,11 @@ Standard C library
 .BI "              size_t " ssize );
 .fi
 .SH DESCRIPTION
-This function appends the input character sequence
-contained in a null-padded fixed-size buffer,
-into a string at the buffer pointed to by
+This function appends at most
+.I ssize
+non-null bytes from the array pointed to by
+.I src
+to the end of the string pointed to by
 .IR dst .
 .I dst
 must point to a string contained in a buffer that is large enough,
