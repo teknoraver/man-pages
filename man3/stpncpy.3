@@ -62,8 +62,10 @@ strncpy(char *restrict dst, const char *restrict src, size_t sz)
 char *
 stpncpy(char *restrict dst, const char *restrict src, size_t sz)
 {
-    bzero(dst, sz);
-    return mempcpy(dst, src, strnlen(src, sz));
+    size_t  dlen;
+
+    dlen = strnlen(src, sz);
+    return memset(mempcpy(dst, src, dlen), 0, sz \- dlen);
 }
 .EE
 .in
