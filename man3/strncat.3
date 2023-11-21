@@ -5,7 +5,7 @@
 .\"
 .TH strncat 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
-strncat \- concatenate a null-padded character sequence into a string
+strncat \- append a null-padded character sequence into a string
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
@@ -17,7 +17,7 @@ Standard C library
 .BI "               size_t " sz );
 .fi
 .SH DESCRIPTION
-This function catenates the input character sequence
+This function appends the input character sequence
 contained in a null-padded fixed-width buffer,
 into a string at the buffer pointed to by
 .IR dst .
