@@ -21,8 +21,9 @@ This function appends the input character sequence
 contained in a null-padded fixed-size buffer,
 into a string at the buffer pointed to by
 .IR dst .
-The programmer is responsible for allocating a destination buffer large enough,
-that is,
+.I dst
+must point to a string contained in a buffer that is large enough,
+that is, the buffer size must be at least
 .IR "strlen(dst) + strnlen(src, ssize) + 1" .
 .P
 An implementation of this function might be:
@@ -68,7 +69,8 @@ The name of this function is confusing.
 This function has no relation to
 .BR strncpy (3).
 .P
-If the destination buffer is not large enough,
+If the destination buffer does not already contain a string,
+or is not large enough,
 the behavior is undefined.
 See
 .B _FORTIFY_SOURCE
