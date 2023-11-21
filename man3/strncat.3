@@ -13,8 +13,8 @@ Standard C library
 .nf
 .B #include <string.h>
 .P
-.BI "char *strncat(char *restrict " dst ", const char " src "[restrict ." sz ],
-.BI "              size_t " sz );
+.BI "char *strncat(char *restrict " dst ", const char " src "[restrict ." ssize ],
+.BI "              size_t " ssize );
 .fi
 .SH DESCRIPTION
 This function appends the input character sequence
@@ -23,19 +23,19 @@ into a string at the buffer pointed to by
 .IR dst .
 The programmer is responsible for allocating a destination buffer large enough,
 that is,
-.IR "strlen(dst) + strnlen(src, sz) + 1" .
+.IR "strlen(dst) + strnlen(src, ssize) + 1" .
 .P
 An implementation of this function might be:
 .P
 .in +4n
 .EX
 char *
-strncat(char *restrict dst, const char *restrict src, size_t sz)
+strncat(char *restrict dst, const char *restrict src, size_t ssize)
 {
     char    *p;
     size_t  len;
 \&
-    len = strnlen(src, sz);
+    len = strnlen(src, ssize);
     p = dst + strlen(dst);
     p = mempcpy(p, src, len);
     *p = \[aq]\e0\[aq];
