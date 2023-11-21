@@ -18,7 +18,7 @@ Standard C library
 .fi
 .SH DESCRIPTION
 This function appends the input character sequence
-contained in a null-padded fixed-width buffer,
+contained in a null-padded fixed-size buffer,
 into a string at the buffer pointed to by
 .IR dst .
 The programmer is responsible for allocating a destination buffer large enough,
@@ -98,7 +98,7 @@ main(void)
 {
     size_t  maxsize;
 \&
-    // Null-padded fixed-width character sequences
+    // Null-padded fixed-size character sequences
     char    pre[4] = "pre.";
     char    new_post[50] = ".foo.bar";
 \&
