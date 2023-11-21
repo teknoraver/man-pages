@@ -156,7 +156,8 @@ main(void)
     len = strnlen(buf2, sizeof(buf2));
 \&
     printf("[len = %zu]: ", len);
-    printf("%.*s\en", (int) len, buf2);  // "Hello world!"
+    fwrite(buf2, 1, len, stdout);
+    putchar(\[aq]\en\[aq]);
 \&
     if (sizeof(buf1) < strlen("Hello world!"))
         warnx("stpncpy: truncating character sequence");
@@ -164,7 +165,8 @@ main(void)
     len = p \- buf1;
 \&
     printf("[len = %zu]: ", len);
-    printf("%.*s\en", (int) len, buf1);  // "Hello world!"
+    fwrite(buf1, 1, len, stdout);
+    putchar(\[aq]\en\[aq]);
 \&
     exit(EXIT_SUCCESS);
 }
