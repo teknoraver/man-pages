@@ -32,12 +32,9 @@ An implementation of this function might be:
 char *
 strncat(char *restrict dst, const char *restrict src, size_t ssize)
 {
-    char    *p;
-    size_t  len;
+    char  *p;
 \&
-    len = strnlen(src, ssize);
-    p = dst + strlen(dst);
-    p = mempcpy(p, src, len);
+    p = mempcpy(dst + strlen(dst), src, strnlen(src, ssize));
     *p = \[aq]\e0\[aq];
 \&
     return dst;
