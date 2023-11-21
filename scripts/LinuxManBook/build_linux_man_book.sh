@@ -1,4 +1,6 @@
 #!/bin/sh
+# Copyright 2023, Alejandro Colomar <alx@kernel.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 
 ./prepare_linux_man_book.pl "$@" >LMBpages.man;
