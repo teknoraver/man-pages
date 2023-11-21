@@ -93,7 +93,7 @@ Shlemiel the painter
 int
 main(void)
 {
-    size_t  maxsize;
+    size_t  n;
 \&
     // Null-padded fixed-size character sequences
     char    pre[4] = "pre.";
@@ -104,9 +104,8 @@ main(void)
     char    src[] = "some_long_body.post";
     char    *dest;
 \&
-    maxsize = nitems(pre) + strlen(src) \- strlen(post) +
-              nitems(new_post) + 1;
-    dest = malloc(sizeof(*dest) * maxsize);
+    n = nitems(pre) + strlen(src) \- strlen(post) + nitems(new_post) + 1;
+    dest = malloc(sizeof(*dest) * n);
     if (dest == NULL)
         err(EXIT_FAILURE, "malloc()");
 \&
