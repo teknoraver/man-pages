@@ -32,19 +32,19 @@ my $inBlock=0;
 
 my %Sections=
 (
-    "1"	=> "General Commands Manual",
-    "2"	=> "System Calls Manual",
-    "2type"	=> "System Calls Manual (types)",
-    "3"	=> "Library Functions Manual",
-    "3const"	=> "Library Functions Manual (constants)",
-    "3head"	=> "Library Functions Manual (headers)",
-    "3type"	=> "Library Functions Manual (types)",
-    "4"	=> "Kernel Interfaces Manual",
-    "5"	=> "File Formats Manual",
-    "6"	=> "Games Manual",
-    "7"	=> "Miscellaneous Information Manual",
-    "8"	=> "System Manager's Manual",
-    "9"	=> "Kernel Developer's Manual",
+	"1"	=> "General Commands Manual",
+	"2"	=> "System Calls Manual",
+	"2type"	=> "System Calls Manual (types)",
+	"3"	=> "Library Functions Manual",
+	"3const"	=> "Library Functions Manual (constants)",
+	"3head"	=> "Library Functions Manual (headers)",
+	"3type"	=> "Library Functions Manual (types)",
+	"4"	=> "Kernel Interfaces Manual",
+	"5"	=> "File Formats Manual",
+	"6"	=> "Games Manual",
+	"7"	=> "Miscellaneous Information Manual",
+	"8"	=> "System Manager's Manual",
+	"9"	=> "Kernel Developer's Manual",
 );
 
 my $Section='';
@@ -58,183 +58,153 @@ BuildBook();
 
 sub LoadAlias
 {
-    foreach my $fn (@aliases)
-    {
-	chomp($fn);
-	my (@pth)=split('/',$fn);
-	my $nm=pop(@pth);
-	my $bkmark="$1_$2" if $nm=~m/(.*)\.(\w+)/;
+	foreach my $fn (@aliases) {
+		chomp($fn);
+		my (@pth)=split('/',$fn);
+		my $nm=pop(@pth);
+		my $bkmark="$1_$2" if $nm=~m/(.*)\.(\w+)/;
 
-	if (open(F,"<$fn"))
-	{
-	    while (<F>)
-	    {
-		next if m/^\.\\"/;
+		if (open(F,"<$fn")) {
+			while (<F>) {
+				next if m/^\.\\"/;
 
-		if (m/^.so\s+(man\w+\/(.+)\.(.+?))$/)
-		{
-		    $alias{$bkmark}=["$2_$3",$2,$3];
-		    push(@{$target{"$2_$3"}},$bkmark);
-		    last;
+				if (m/^.so\s+(man\w+\/(.+)\.(.+?))$/) {
+					$alias{$bkmark}=["$2_$3",$2,$3];
+					push(@{$target{"$2_$3"}},$bkmark);
+					last;
+				} else {
+					print STDERR "Alias fail: $fn\n";
+				}
+			}
+
+			close(F);
+		} else {
+			print STDERR "Open fail: $fn\n";
 		}
-		else
-		{
-		    print STDERR "Alias fail: $fn\n";
-		}
-	    }
-
-	    close(F);
 	}
-	else
-	{
-	    print STDERR "Open fail: $fn\n";
-	}
-    }
 }
 
 sub BuildBook
 {
-    print ".pdfpagenumbering D . 1\n";
+	print ".pdfpagenumbering D . 1\n";
 
-    foreach my $fn (sort sortman glob("$dir/man*/*"))
-    {
-	my ($nm,$sec,$srt)=GetNmSec($fn);
+	foreach my $fn (sort sortman glob("$dir/man*/*")) {
+		my ($nm,$sec,$srt)=GetNmSec($fn);
 
-        my $bkmark="$1_$2" if $nm=~m/(.*)\.(\w+)/;
-        my $title= "$1\\($2\\)";
+		my $bkmark="$1_$2" if $nm=~m/(.*)\.(\w+)/;
+		my $title= "$1\\($2\\)";
 
-# If this is an alias, just add it to the outline panel.
+		# If this is an alias, just add it to the outline panel.
 
-        if (exists($alias{$bkmark}))
-        {
-            print ".eo\n.device ps:exec [/Dest /$alias{$bkmark}->[0] /Title ($title) /Level 2 /OUT pdfmark\n.ec\n";
-	    print ".if dPDF.EXPORT .tm .ds pdf:look($bkmark) $alias{$bkmark}->[1]($alias{$bkmark}->[2])\n";
-	    next;
-	}
-
-	print ".\\\" >>>>>> $1($2) <<<<<<\n.lf 0 $bkmark\n";
-
-	if (open(F,'<',$fn))
-        {
-            while (<F>)
-            {
-                if (m/^\.\\"/)
-                {
-                    print $_;
-                    next;
-                }
-
-                chomp;
-
-# This code is to determine whether we are within a tbl block and in a text block
-# T{ and T}. This is fudge code particularly for the syscalls(7) page.
-
-                $inTS=1 if m/\.TS/;
-                $inTS=0,$inBlock=0 if m/\.TE/;
-
-                s/\r$//;    # In case edited under windows i.e. CR/LF
-                s/\s+$//;
-                next if !$_;
-#               s/^\s+//;
-
-                if (m/^\.BR\s+([-\w\\.]+)\s+\((.+?)\)(.*)/)
-                {
-                    my $bkmark="$1";
-                    my $sec=$2;
-                    my $after=$3;
-                    my $dest=$bkmark;
-                    $dest=~s/\\-/-/g;
-                    $_=".MR \"$bkmark\" \"$sec\" \"$after\" \"$dest\"";
-                }
-
-                s/^\.BI \\fB/.BI /;
-		s/^\.BR\s+(\S+)\s*$/.B $1/;
-                s/^\.BI\s+(\S+)\s*$/.B $1/;
-                s/^\.IR\s+(\S+)\s*$/.I $1/;
-
-# Fiddling for syscalls(7) :-(
-
-                if ($inTS)
-                {
-                    my @cols=split(/\t/,$_);
-
-                    foreach my $c (@cols)
-                    {
-                        $inBlock+=()=$c=~m/T\{/g;
-                        $inBlock-=()=$c=~m/T\}/g;
-
-                        my $mtch=$c=~s/\s*\\fB([-\w.]+)\\fP\((\w+)\)/\n.MR $1 $2 \\c\n/g;
-                        $c="T{\n${c}\nT}" if $mtch and !$inBlock;
-                    }
-
-                    $_=join("\t",@cols);
-                    s/\n\n/\n/g;
-                }
-
-                if (m/^\.TH\s+([-\w\\.]+)\s+(\w+)/)
-                {
-
-                    # if new section add top level bookmark
-
-                    if ($sec ne $Section)
-                    {
-			print ".nr PDFOUTLINE.FOLDLEVEL 1\n.fl\n";
-			print ".pdfbookmark 1 $Sections{$sec}\n";
-			print ".nr PDFOUTLINE.FOLDLEVEL 2\n";
-			$Section=$sec;
-                    }
-
-                    print "$_\n";
-
-# Add a level two bookmark. We don't set it in the TH macro since the name passed
-# may be different from the filename, i.e. file = unimplemented.2, TH = UNIMPLEMENTED 2
-
-                    print ".pdfbookmark -T $bkmark 2 $1($2)\n";
-
-# If this page is referenced by an alias plant a destination label for the alias.
-
-                    if (exists($target{$bkmark}))
-                    {
-                        foreach my $targ (@{$target{$bkmark}})
-			{
-			    print ".pdf*href.set $targ\n";
-			}
-		    }
-
-		    next;
+		if (exists($alias{$bkmark})) {
+			print ".eo\n.device ps:exec [/Dest /$alias{$bkmark}->[0] /Title ($title) /Level 2 /OUT pdfmark\n.ec\n";
+			print ".if dPDF.EXPORT .tm .ds pdf:look($bkmark) $alias{$bkmark}->[1]($alias{$bkmark}->[2])\n";
+			next;
 		}
 
-		print "$_\n";
+		print ".\\\" >>>>>> $1($2) <<<<<<\n.lf 0 $bkmark\n";
 
-	    }
+		if (open(F,'<',$fn)) {
+			while (<F>) {
+				if (m/^\.\\"/) {
+					print $_;
+					next;
+				}
 
-	    close(F);
+				chomp;
 
+				# This code is to determine whether we are within a tbl block and in a text block
+				# T{ and T}. This is fudge code particularly for the syscalls(7) page.
+
+				$inTS=1 if m/\.TS/;
+				$inTS=0,$inBlock=0 if m/\.TE/;
+
+				s/\r$//;    # In case edited under windows i.e. CR/LF
+				s/\s+$//;
+				next if !$_;
+#				s/^\s+//;
+
+				if (m/^\.BR\s+([-\w\\.]+)\s+\((.+?)\)(.*)/) {
+					my $bkmark="$1";
+					my $sec=$2;
+					my $after=$3;
+					my $dest=$bkmark;
+					$dest=~s/\\-/-/g;
+					$_=".MR \"$bkmark\" \"$sec\" \"$after\" \"$dest\"";
+				}
+
+				s/^\.BI \\fB/.BI /;
+				s/^\.BR\s+(\S+)\s*$/.B $1/;
+				s/^\.BI\s+(\S+)\s*$/.B $1/;
+				s/^\.IR\s+(\S+)\s*$/.I $1/;
+
+				# Fiddling for syscalls(7) :-(
+
+				if ($inTS) {
+					my @cols=split(/\t/,$_);
+
+					foreach my $c (@cols) {
+						$inBlock+=()=$c=~m/T\{/g;
+						$inBlock-=()=$c=~m/T\}/g;
+
+						my $mtch=$c=~s/\s*\\fB([-\w.]+)\\fP\((\w+)\)/\n.MR $1 $2 \\c\n/g;
+						$c="T{\n${c}\nT}" if $mtch and !$inBlock;
+					}
+
+					$_=join("\t",@cols);
+					s/\n\n/\n/g;
+				}
+
+				if (m/^\.TH\s+([-\w\\.]+)\s+(\w+)/) {
+					# if new section add top level bookmark
+					if ($sec ne $Section) {
+						print ".nr PDFOUTLINE.FOLDLEVEL 1\n.fl\n";
+						print ".pdfbookmark 1 $Sections{$sec}\n";
+						print ".nr PDFOUTLINE.FOLDLEVEL 2\n";
+						$Section=$sec;
+					}
+					print "$_\n";
+
+					# Add a level two bookmark. We don't set it in the TH macro since the name passed
+					# may be different from the filename, i.e. file = unimplemented.2, TH = UNIMPLEMENTED 2
+					print ".pdfbookmark -T $bkmark 2 $1($2)\n";
+
+					# If this page is referenced by an alias plant a destination label for the alias.
+					if (exists($target{$bkmark})) {
+						foreach my $targ (@{$target{$bkmark}}) {
+							print ".pdf*href.set $targ\n";
+						}
+					}
+					next;
+				}
+				print "$_\n";
+			}
+			close(F);
+		}
 	}
-    }
 }
 
 sub GetNmSec
 {
-    my (@pth)=split('/',shift);
-    my $nm=pop(@pth);
-    my $sec=substr(pop(@pth),3);
-    my $srt=$nm;
-    $srt=~s/^_+//;
-    $srt="$sec/$srt";
-    return($nm,$sec,$srt);
+	my (@pth)=split('/',shift);
+	my $nm=pop(@pth);
+	my $sec=substr(pop(@pth),3);
+	my $srt=$nm;
+	$srt=~s/^_+//;
+	$srt="$sec/$srt";
+	return($nm,$sec,$srt);
 }
 
 sub sortman
 {
 # Sort - ignore case but frig it so that intro is the first entry.
 
-    my (undef,$s1,$c)=GetNmSec($a);
-    my (undef,$s2,$d)=GetNmSec($b);
+	my (undef,$s1,$c)=GetNmSec($a);
+	my (undef,$s2,$d)=GetNmSec($b);
 
-    my $cmp=$s1 cmp $s2;
-    return $cmp if $cmp;
-    return -1 if ($c=~m/\/intro/ and $d!~m/\/intro/);
-    return  1 if ($d=~m/\/intro/ and $c!~m/\/intro/);
-    return (lc($c) cmp lc($d));
+	my $cmp=$s1 cmp $s2;
+	return $cmp if $cmp;
+	return -1 if ($c=~m/\/intro/ and $d!~m/\/intro/);
+	return  1 if ($d=~m/\/intro/ and $c!~m/\/intro/);
+	return (lc($c) cmp lc($d));
 }
