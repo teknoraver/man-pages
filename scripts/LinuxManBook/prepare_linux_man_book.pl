@@ -89,98 +89,105 @@ sub BuildBook
 	print ".pdfpagenumbering D . 1\n";
 
 	foreach my $fn (sort sortman glob("$dir/man*/*")) {
-		my ($nm,$sec,$srt)=GetNmSec($fn);
+		BuildPage($fn);
+	}
+}
 
-		my $bkmark="$1_$2" if $nm=~m/(.*)\.(\w+)/;
-		my $title= "$1\\($2\\)";
+sub BuildPage
+{
+	my $page=shift;
 
-		# If this is an alias, just add it to the outline panel.
+	my ($nm,$sec,$srt)=GetNmSec($page);
 
-		if (exists($alias{$bkmark})) {
-			print ".eo\n.device ps:exec [/Dest /$alias{$bkmark}->[0] /Title ($title) /Level 2 /OUT pdfmark\n.ec\n";
-			print ".if dPDF.EXPORT .tm .ds pdf:look($bkmark) $alias{$bkmark}->[1]($alias{$bkmark}->[2])\n";
-			next;
-		}
+	my $bkmark="$1_$2" if $nm=~m/(.*)\.(\w+)/;
+	my $title= "$1\\($2\\)";
 
-		print ".\\\" >>>>>> $1($2) <<<<<<\n.lf 0 $bkmark\n";
+	# If this is an alias, just add it to the outline panel.
 
-		if (open(F,'<',$fn)) {
-			while (<F>) {
-				if (m/^\.\\"/) {
-					print $_;
-					next;
+	if (exists($alias{$bkmark})) {
+		print ".eo\n.device ps:exec [/Dest /$alias{$bkmark}->[0] /Title ($title) /Level 2 /OUT pdfmark\n.ec\n";
+		print ".if dPDF.EXPORT .tm .ds pdf:look($bkmark) $alias{$bkmark}->[1]($alias{$bkmark}->[2])\n";
+		return;
+	}
+
+	print ".\\\" >>>>>> $1($2) <<<<<<\n.lf 0 $bkmark\n";
+
+	if (open(F,'<',$page)) {
+		while (<F>) {
+			if (m/^\.\\"/) {
+				print $_;
+				next;
+			}
+
+			chomp;
+
+			# This code is to determine whether we are within a tbl block and in a text block
+			# T{ and T}. This is fudge code particularly for the syscalls(7) page.
+
+			$inTS=1 if m/\.TS/;
+			$inTS=0,$inBlock=0 if m/\.TE/;
+
+			s/\r$//;    # In case edited under windows i.e. CR/LF
+			s/\s+$//;
+			next if !$_;
+#			s/^\s+//;
+
+			if (m/^\.BR\s+([-\w\\.]+)\s+\((.+?)\)(.*)/) {
+				my $bkmark="$1";
+				my $sec=$2;
+				my $after=$3;
+				my $dest=$bkmark;
+				$dest=~s/\\-/-/g;
+				$_=".MR \"$bkmark\" \"$sec\" \"$after\" \"$dest\"";
+			}
+
+			s/^\.BI \\fB/.BI /;
+			s/^\.BR\s+(\S+)\s*$/.B $1/;
+			s/^\.BI\s+(\S+)\s*$/.B $1/;
+			s/^\.IR\s+(\S+)\s*$/.I $1/;
+
+			# Fiddling for syscalls(7) :-(
+
+			if ($inTS) {
+				my @cols=split(/\t/,$_);
+
+				foreach my $c (@cols) {
+					$inBlock+=()=$c=~m/T\{/g;
+					$inBlock-=()=$c=~m/T\}/g;
+
+					my $mtch=$c=~s/\s*\\fB([-\w.]+)\\fP\((\w+)\)/\n.MR $1 $2 \\c\n/g;
+					$c="T{\n${c}\nT}" if $mtch and !$inBlock;
 				}
 
-				chomp;
+				$_=join("\t",@cols);
+				s/\n\n/\n/g;
+			}
 
-				# This code is to determine whether we are within a tbl block and in a text block
-				# T{ and T}. This is fudge code particularly for the syscalls(7) page.
-
-				$inTS=1 if m/\.TS/;
-				$inTS=0,$inBlock=0 if m/\.TE/;
-
-				s/\r$//;    # In case edited under windows i.e. CR/LF
-				s/\s+$//;
-				next if !$_;
-#				s/^\s+//;
-
-				if (m/^\.BR\s+([-\w\\.]+)\s+\((.+?)\)(.*)/) {
-					my $bkmark="$1";
-					my $sec=$2;
-					my $after=$3;
-					my $dest=$bkmark;
-					$dest=~s/\\-/-/g;
-					$_=".MR \"$bkmark\" \"$sec\" \"$after\" \"$dest\"";
-				}
-
-				s/^\.BI \\fB/.BI /;
-				s/^\.BR\s+(\S+)\s*$/.B $1/;
-				s/^\.BI\s+(\S+)\s*$/.B $1/;
-				s/^\.IR\s+(\S+)\s*$/.I $1/;
-
-				# Fiddling for syscalls(7) :-(
-
-				if ($inTS) {
-					my @cols=split(/\t/,$_);
-
-					foreach my $c (@cols) {
-						$inBlock+=()=$c=~m/T\{/g;
-						$inBlock-=()=$c=~m/T\}/g;
-
-						my $mtch=$c=~s/\s*\\fB([-\w.]+)\\fP\((\w+)\)/\n.MR $1 $2 \\c\n/g;
-						$c="T{\n${c}\nT}" if $mtch and !$inBlock;
-					}
-
-					$_=join("\t",@cols);
-					s/\n\n/\n/g;
-				}
-
-				if (m/^\.TH\s+([-\w\\.]+)\s+(\w+)/) {
-					# if new section add top level bookmark
-					if ($sec ne $Section) {
-						print ".nr PDFOUTLINE.FOLDLEVEL 1\n.fl\n";
-						print ".pdfbookmark 1 $Sections{$sec}\n";
-						print ".nr PDFOUTLINE.FOLDLEVEL 2\n";
-						$Section=$sec;
-					}
-					print "$_\n";
-
-					# Add a level two bookmark. We don't set it in the TH macro since the name passed
-					# may be different from the filename, i.e. file = unimplemented.2, TH = UNIMPLEMENTED 2
-					print ".pdfbookmark -T $bkmark 2 $1($2)\n";
-
-					# If this page is referenced by an alias plant a destination label for the alias.
-					if (exists($target{$bkmark})) {
-						foreach my $targ (@{$target{$bkmark}}) {
-							print ".pdf*href.set $targ\n";
-						}
-					}
-					next;
+			if (m/^\.TH\s+([-\w\\.]+)\s+(\w+)/) {
+				# if new section add top level bookmark
+				if ($sec ne $Section) {
+					print ".nr PDFOUTLINE.FOLDLEVEL 1\n.fl\n";
+					print ".pdfbookmark 1 $Sections{$sec}\n";
+					print ".nr PDFOUTLINE.FOLDLEVEL 2\n";
+					$Section=$sec;
 				}
 				print "$_\n";
+
+				# Add a level two bookmark. We don't set it in the TH macro since the name passed
+				# may be different from the filename, i.e. file = unimplemented.2, TH = UNIMPLEMENTED 2
+				print ".pdfbookmark -T $bkmark 2 $1($2)\n";
+
+				# If this page is referenced by an alias plant a destination label for the alias.
+				if (exists($target{$bkmark})) {
+					foreach my $targ (@{$target{$bkmark}}) {
+						print ".pdf*href.set $targ\n";
+					}
+				}
+				next;
 			}
-			close(F);
+			print "$_\n";
 		}
+		close(F);
 	}
 }
 
