@@ -4,9 +4,13 @@
 
 (
 	"$(dirname "$0")"/prepare_linux_man_book.pl "$1" \
-	| groff -z -dPDF.EXPORT=1 -dLABEL.REFS=1 -dpaper=a4 -Tpdf -k -pet \
+	| pic \
+	| preconv \
+	| tbl \
+	| eqn -Tpdf \
+	| groff -z -dPDF.EXPORT=1 -dLABEL.REFS=1 -dpaper=a4 -Tpdf \
 		-M"$(dirname "$0")" -mandoc -manmark \
-		-F"$(dirname "$0")" -P-pa4 \-rC1 -rCHECKSTYLE=3 2>&1 \
+		-F"$(dirname "$0")" -P-pa4 -rC1 -rCHECKSTYLE=3 2>&1 \
 	| LC_ALL=C grep '^\. *ds ';
 
 	"$(dirname "$0")"/prepare_linux_man_book.pl "$1";
