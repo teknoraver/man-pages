@@ -57,13 +57,14 @@ Description
                  help
 
    Sign your emails with PGP
-        It is strongly encouraged that you sign all of your emails sent
-        to the mailing list, (especially) including the ones containing
+        We strongly encourage that you sign all of your emails sent to
+        the mailing list, (especially) including the ones containing
         patches, with your PGP key.  This helps establish trust between
         you and other contributors of this project, and prevent others
         impersonating you.  If you don't have a key, it's not mandatory
         to sign your email, but you're encouraged to create and start
-        using a PGP key.
+        using a PGP key.  See also:
+        <https://www.gnupg.org/faq/gnupg-faq.html#use_pgpmime>
 
         There are many ways you can sign your patches, and it depends on
         your preferred tools.  You can use git-send-email(1) in
