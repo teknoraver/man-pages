@@ -1,5 +1,5 @@
-STYLE: legacy man(7) date format: Dd 
-STYLE: lower case character in document title: Dt 
-STYLE: operating system explicitly specified: Os 
-STYLE: referenced manual not found: Xr 
-WARNING: cross reference to self: Xr 
+STYLE: legacy man(7) date format: Dd
+STYLE: lower case character in document title: Dt
+STYLE: operating system explicitly specified: Os
+STYLE: referenced manual not found: Xr
+WARNING: cross reference to self: Xr
