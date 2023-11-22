@@ -127,8 +127,6 @@ sub BuildPage
 			$inTS=1 if m/\.TS/;
 			$inTS=0,$inBlock=0 if m/\.TE/;
 
-			s/\r$//;    # In case edited under windows i.e. CR/LF
-			s/\s+$//;
 			next if !$_;
 #			s/^\s+//;
 
