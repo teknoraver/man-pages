@@ -16,12 +16,12 @@ Standard C library
 .nf
 .B #include <string.h>
 .P
-.BI "char *strncpy(char " dst "[restrict ." sz "], \
+.BI "char *strncpy(char " dst "[restrict ." dsize "], \
 const char *restrict " src ,
-.BI "              size_t " sz );
-.BI "char *stpncpy(char " dst "[restrict ." sz "], \
+.BI "              size_t " dsize );
+.BI "char *stpncpy(char " dst "[restrict ." dsize "], \
 const char *restrict " src ,
-.BI "              size_t " sz );
+.BI "              size_t " dsize );
 .fi
 .P
 .RS -4
@@ -54,19 +54,19 @@ An implementation of these functions might be:
 .in +4n
 .EX
 char *
-strncpy(char *restrict dst, const char *restrict src, size_t sz)
+strncpy(char *restrict dst, const char *restrict src, size_t dsize)
 {
-    stpncpy(dst, src, sz);
+    stpncpy(dst, src, dsize);
     return dst;
 }
 \&
 char *
-stpncpy(char *restrict dst, const char *restrict src, size_t sz)
+stpncpy(char *restrict dst, const char *restrict src, size_t dsize)
 {
     size_t  dlen;
 
-    dlen = strnlen(src, sz);
-    return memset(mempcpy(dst, src, dlen), 0, sz \- dlen);
+    dlen = strnlen(src, dsize);
+    return memset(mempcpy(dst, src, dlen), 0, dsize \- dlen);
 }
 .EE
 .in
