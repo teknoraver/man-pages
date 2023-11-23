@@ -4,8 +4,8 @@
 
 (
 	"$(dirname "$0")"/prepare_linux_man_book.pl "$1" \
-	| pic \
 	| preconv \
+	| pic \
 	| tbl \
 	| eqn -Tpdf \
 	| troff -Tpdf -dPDF.EXPORT=1 -dLABEL.REFS=1 -dpaper=a4 \
@@ -16,6 +16,7 @@
 	"$(dirname "$0")"/prepare_linux_man_book.pl "$1";
 ) \
 | preconv \
+| pic \
 | tbl \
 | eqn -Tpdf \
 | (
