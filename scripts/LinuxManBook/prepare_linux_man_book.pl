@@ -88,7 +88,16 @@ sub BuildBook
 {
 	print ".pdfpagenumbering D . 1\n";
 
-	foreach my $fn (sort sortman glob("$dir/man*/*")) {
+	foreach my $fn (sort glob("$dir/man*")) {
+		BuildSec($fn);
+	}
+}
+
+sub BuildSec
+{
+	my $manSdir=shift;
+
+	foreach my $fn (sort sortman glob("$manSdir/*")) {
 		BuildPage($fn);
 	}
 }
