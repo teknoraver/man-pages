@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 (
-	"$(dirname "$0")"/prepare_linux_man_book.pl "$1" \
+	"$(dirname "$0")"/prepare.pl "$1" \
 	| preconv \
 	| pic \
 	| tbl \
@@ -13,7 +13,7 @@
 		2>&1 >/dev/null \
 	| LC_ALL=C grep '^\. *ds ';
 
-	"$(dirname "$0")"/prepare_linux_man_book.pl "$1";
+	"$(dirname "$0")"/prepare.pl "$1";
 ) \
 | preconv \
 | pic \
