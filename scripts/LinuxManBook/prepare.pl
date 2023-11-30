@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 #
-#	BuildLinuxMan.pl	: Build Linux manpages book
-#	Deri James		: 15 Dec 2022
+#	BuildLinuxMan.pl		: Build Linux manpages book
+#	Deri James (& Brian Inglis)	: 15 Dec 2022
 #
 #	Params:-
 #
@@ -22,11 +22,8 @@
 #
 
 use strict;
+use File::Basename;
 
-my $dir=shift || '.';
-my @aliases=`egrep -l '^\\.so' $dir/man*/*`;
-my %alias;
-my %target;
 my $inTS=0;
 my $inBlock=0;
 
@@ -47,81 +44,66 @@ my %Sections=
 	"9"	=> "Kernel Developer's Manual",
 );
 
-my $Section='';
+my $dir=shift || '.';
+my $dir2=$dir;
+$dir2=~tr[.][_];
+my %files;
+my %aliases;
+my %target;
 
-LoadAlias();
-BuildBook();
-
-# Aliases are the man pages which .so another man page, so build a hash of them so
-# that when we are processing referenced man page we can add the target for the
-# bookmark.
-
-sub LoadAlias
+foreach my $al (`grep -E '^\\.so' $dir/man*/*`)
 {
-	foreach my $fn (@aliases) {
-		chomp($fn);
-		my (@pth)=split('/',$fn);
-		my $nm=pop(@pth);
-		my $bkmark="$1_$2" if $nm=~m/(.*)\.(\w+)/;
+	#$al=~tr[.][_];
+	$al=~m/^$dir\/man\d[a-z]*\/(.*):\.\s*so\s*man\d[a-z]*\/(.*)/o;
 
-		if (open(F,"<$fn")) {
-			while (<F>) {
-				next if m/^\.\\"/;
+	$aliases{$1}=$2;
+}
 
-				if (m/^.so\s+(man\w+\/(.+)\.(.+?))$/) {
-					$alias{$bkmark}=["$2_$3",$2,$3];
-					push(@{$target{"$2_$3"}},$bkmark);
-					last;
-				} else {
-					print STDERR "Alias fail: $fn\n";
-				}
-			}
-
-			close(F);
-		} else {
-			print STDERR "Open fail: $fn\n";
-		}
+foreach my ($k,$v) (%aliases)
+{
+	while (exists($aliases{$v})) {
+		$v=$aliases{$v};
 	}
 }
+
+foreach my $fn (glob "$dir/man*/*")
+{
+	my ($nm,$sec)=GetNmSec($fn,qr/\.\d[a-z]*/);
+	$files{"${nm}.$sec"}=[$fn,(exists($aliases{"${nm}.$sec"}))?$aliases{"${nm}.$sec"}:"${nm}.$sec"];
+}
+
+my $Section='';
+
+BuildBook();
 
 sub BuildBook
 {
-	print ".pdfpagenumbering D . 1\n";
+	print ".pdfpagenumbering D . 1\n.nr PDFOUTLINE.FOLDLEVEL 0\n.defcolor pdf:href.colour rgb 0.00 0.25 0.75\n.pdfinfo /Title \"The Linux man-pages Book\"\n.special TINOR S\n";
 
-	foreach my $fn (sort glob("$dir/man*")) {
-		BuildSec($fn);
-	}
-}
-
-sub BuildSec
-{
-	my $manSdir=shift;
-
-	foreach my $fn (sort sortman glob("$manSdir/*")) {
-		BuildPage($fn);
+	foreach my $bkmark (sort sortman keys %files) {
+		BuildPage($bkmark);
 	}
 }
 
 sub BuildPage
 {
-	my $page=shift;
+	my $bkmark=shift;
 
-	my ($nm,$sec,$srt)=GetNmSec($page);
+	my $fn=$files{$bkmark}->[0];
+	my ($nm,$sec,$srt)=GetNmSec($bkmark,qr/\.[\da-z]+/);
 
-	my $bkmark="$1_$2" if $nm=~m/(.*)\.(\w+)/;
-	my $title= "$1\\($2\\)";
+	my $title= "$nm\\($sec\\)";
+
+	print ".\\\" >>>>>> $nm($sec) <<<<<<\n.lf 0 $bkmark\n";
 
 	# If this is an alias, just add it to the outline panel.
 
-	if (exists($alias{$bkmark})) {
-		print ".eo\n.device ps:exec [/Dest /$alias{$bkmark}->[0] /Title ($title) /Level 2 /OUT pdfmark\n.ec\n";
-		print ".if dPDF.EXPORT .tm .ds pdf:look($bkmark) $alias{$bkmark}->[1]($alias{$bkmark}->[2])\n";
+	if (exists($aliases{$bkmark})) {
+		print ".eo\n.device ps:exec [/Dest /$aliases{$bkmark} /Title ($title) /Level 2 /OUT pdfmark\n.ec\n.fl\n";
 		return;
 	}
 
-	print ".\\\" >>>>>> $1($2) <<<<<<\n.lf 0 $bkmark\n";
-
-	if (open(F,'<',$page)) {
+	if (open(F,'<',$fn)) {
 		while (<F>) {
 			if (m/^\.\\"/) {
 				print $_;
@@ -139,13 +121,22 @@ sub BuildPage
 			next if !$_;
 #			s/^\s+//;
 
-			if (m/^\.BR\s+([-\w\\.]+)\s+\((.+?)\)(.*)/) {
+			s/\\-/-/g if /^\.[BM]R\s+/;
+
+			if (m/^\.BR\s+([-\w\\.]+)\s+\((.+?)\)(.*)/ or m/^\.MR\s+([-\w\\.]+)\s+(\w+)\s+(.*)/) {
 				my $bkmark="$1";
 				my $sec=$2;
 				my $after=$3;
+				$after=~s/\s\\".*//;
 				my $dest=$bkmark;
 				$dest=~s/\\-/-/g;
-				$_=".MR \"$bkmark\" \"$sec\" \"$after\" \"$dest\"";
+
+				if (exists($files{"${bkmark}.$sec"})) {
+					my $dest=$files{"${bkmark}.$sec"}->[1];
+					$_=".pdfhref L -D \"$dest\" -A \"$after\" -- \\fI$bkmark\\fP($sec)";
+				} else {
+					$_=".IR ".substr($_,4);
+				}
 			}
 
 			s/^\.BI \\fB/.BI /;
@@ -162,7 +153,7 @@ sub BuildPage
 					$inBlock+=()=$c=~m/T\{/g;
 					$inBlock-=()=$c=~m/T\}/g;
 
-					my $mtch=$c=~s/\s*\\fB([-\w.]+)\\fP\((\w+)\)/\n.MR $1 $2 \\c\n/g;
+					my $mtch=$c=~s/\s*\\fB([-\w.]+)\\fP\((\w+)\)/doMR($1,$2)/ge;
 					$c="T{\n${c}\nT}" if $mtch and !$inBlock;
 				}
 
@@ -171,25 +162,23 @@ sub BuildPage
 			}
 
 			if (m/^\.TH\s+([-\w\\.]+)\s+(\w+)/) {
+
 				# if new section add top level bookmark
+
 				if ($sec ne $Section) {
-					print ".nr PDFOUTLINE.FOLDLEVEL 1\n.fl\n";
+					print ".nr PDFOUTLINE.FOLDLEVEL 1\n";
 					print ".pdfbookmark 1 $Sections{$sec}\n";
 					print ".nr PDFOUTLINE.FOLDLEVEL 2\n";
 					$Section=$sec;
 				}
+
 				print "$_\n";
 
 				# Add a level two bookmark. We don't set it in the TH macro since the name passed
 				# may be different from the filename, i.e. file = unimplemented.2, TH = UNIMPLEMENTED 2
-				print ".pdfbookmark -T $bkmark 2 $1($2)\n";
 
-				# If this page is referenced by an alias plant a destination label for the alias.
-				if (exists($target{$bkmark})) {
-					foreach my $targ (@{$target{$bkmark}}) {
-						print ".pdf*href.set $targ\n";
-					}
-				}
+				print ".pdfbookmark -T $bkmark 2 $nm($sec)\n";
+
 				next;
 			}
 			print "$_\n";
@@ -198,27 +187,60 @@ sub BuildPage
 	}
 }
 
+sub doMR
+{
+	my $nm=shift;
+	my $sec=shift;
+
+	if (exists($files{"${nm}.$sec"})) {
+		return("\n.pdfhref L -D \"$files{\"${nm}.$sec\"}->[1]\" -A \"\\c\" -- \\fI$nm\\fP($sec)\n");
+	} else {
+		return("\\fI$nm\\fP($sec)");
+	}
+}
+
 sub GetNmSec
 {
-	my (@pth)=split('/',shift);
-	my $nm=pop(@pth);
-	my $sec=substr(pop(@pth),3);
+	my ($nm,$pth,$sec)=fileparse($_[0],$_[1]);
+	$sec=substr($sec,1);
 	my $srt=$nm;
+	$srt=~s/\..+?$//;
 	$srt=~s/^_+//;
-	$srt="$sec/$srt";
+	$srt=$1.sprintf("%04d",$2) if $srt=~m/^(.+)(\d+)$/;
+	#$srt="$sec/$srt";
 	return($nm,$sec,$srt);
 }
+
+# add rpmvercmp
+#use RPM::VersionSort;
+#use Sort::Versions;
 
 sub sortman
 {
 # Sort - ignore case but frig it so that intro is the first entry.
 
-	my (undef,$s1,$c)=GetNmSec($a);
-	my (undef,$s2,$d)=GetNmSec($b);
+	my (undef,$s1,$c)=GetNmSec($a,qr/\.\d[a-z]*/);
+	my (undef,$s2,$d)=GetNmSec($b,qr/\.\d[a-z]*/);
 
 	my $cmp=$s1 cmp $s2;
+
 	return $cmp if $cmp;
-	return -1 if ($c=~m/\/intro/ and $d!~m/\/intro/);
-	return  1 if ($d=~m/\/intro/ and $c!~m/\/intro/);
-	return (lc($c) cmp lc($d));
+	return -1 if ($c=~m/^intro/ and $d!~m/^intro/);
+	return  1 if ($d=~m/^intro/ and $c!~m/^intro/);
+	$c=~tr[-_(][!" ];
+	$d=~tr[-_(][!" ];
+	$cmp=lc($c) cmp lc($d);
+	return($c cmp $d) if $cmp == 0;
+	return($cmp);
+}
+
+sub strhex
+{
+	my $res='';
+
+	foreach my $c (split('',$_[0])) {
+		$res.=sprintf("%02X",ord($c));
+	}
+
+	return($res);
 }
