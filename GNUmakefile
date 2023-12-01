@@ -46,6 +46,8 @@ help:
 	$(info	)
 	$(info	build			Wrapper for build-* targets)
 	$(info	)
+	$(info	build-book		Build the Linux Man Book (PDF))
+	$(info	)
 	$(info	build-pre		Preprocess man pages; alias for "build-pre-tbl")
 	$(info	build-pre-preconv	Preprocess man pages with preconv(1))
 	$(info	build-pre-tbl		Preprocess man pages with tbl(1))
