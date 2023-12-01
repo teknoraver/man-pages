@@ -715,12 +715,20 @@ is 0 for character-by-character selection,
 or 2 for line-by-line selection.
 The indicated screen characters are highlighted and saved
 in a kernel buffer.
+.IP
+Since Linux 6.7, using this subcode requires the
+.B CAP_SYS_ADMIN
+capability.
 .TP
 .BR TIOCLINUX ", " subcode = TIOCL_PASTESEL
 Paste selection.
 The characters in the selection buffer are
 written to
 .IR fd .
+.IP
+Since Linux 6.7, using this subcode requires the
+.B CAP_SYS_ADMIN
+capability.
 .TP
 .BR TIOCLINUX ", " subcode = TIOCL_UNBLANKSCREEN
 Unblank the screen.
@@ -729,6 +737,10 @@ Unblank the screen.
 Sets contents of a 256-bit look up table defining characters in a "word",
 for word-by-word selection.
 (Since Linux 1.1.32.)
+.IP
+Since Linux 6.7, using this subcode requires the
+.B CAP_SYS_ADMIN
+capability.
 .TP
 .BR TIOCLINUX ", " subcode = TIOCL_GETSHIFTSTATE
 .I argp
