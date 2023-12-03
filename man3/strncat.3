@@ -38,9 +38,10 @@ An implementation of this function might be:
 char *
 strncat(char *restrict dst, const char *restrict src, size_t ssize)
 {
+    #define strnul(s)  (s + strlen(s))
     char  *p;
 \&
-    p = mempcpy(dst + strlen(dst), src, strnlen(src, ssize));
+    p = mempcpy(strnul(dst), src, strnlen(src, ssize));
     *p = \[aq]\e0\[aq];
 \&
     return dst;
