@@ -21,7 +21,8 @@ _LMB     := $(_MANDIR)/man-pages.pdf
 
 $(_LMB): $(MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
 	$(info	Build	$@)
-	$(BUILDLMB) $(MANDIR) >$@
+	$(BUILDLMB) $(MANDIR) \
+	| $(SPONGE) $@
 
 
 .PHONY: build-book
