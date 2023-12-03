@@ -12,7 +12,6 @@ stpecpy,
 strlcpy, strlcat,
 stpncpy,
 strncpy,
-zustr2stp,
 strncat
 \- copying strings and character sequences
 .\" ----- SYNOPSIS :: -------------------------------------------------/
@@ -57,9 +56,7 @@ const char *restrict " src ,
 .I mempcpy(dst, src, strnlen(src, NITEMS(src)));
 .P
 // Chain-copy a null-padded character sequence into a string.
-.BI "char *zustr2stp(char *restrict " dst ", \
-const char " src "[restrict ." ssize ],
-.BI "               size_t " ssize );
+.I stpcpy(mempcpy(dst, src, strnlen(src, NITEMS(src))), \[dq]\[dq]);
 .P
 // Catenate a null-padded character sequence into a string.
 .BI "char *strncat(char *restrict " dst ", const char " src "[restrict ." ssize ],
@@ -92,25 +89,21 @@ However, with appropriate care,
 a string can be used in the place of a character sequence.
 .RS
 .TP
-.IR "null-padded character sequence " ( zustr )
+.I null-padded character sequence
 Character sequences can be contained in fixed-width buffers,
 which contain padding null bytes after the character sequence,
 to fill the rest of the buffer
 without affecting the character sequence;
 however, those padding null bytes are not part of the character sequence.
-.I zustr
-stands for Zero-padded Unterminated STRing.
 Don't confuse zero-padded with null-terminated:
 zero-padded means 0 or more padding zeros (null characters),
 while null-terminated means exactly 1 terminating null character.
 .\" ----- DESCRIPTION :: Terms (and abbreviations) :: measured character sequence
 .TP
-.IR "measured character sequence " ( ustr )
+.I measured character sequence
 Character sequence delimited by its length.
 It may be a slice of a larger character sequence,
 or even of a string.
-.I ustr
-stands for Unterminated STRing.
 .RE
 .\" ----- DESCRIPTION :: Terms (and abbreviations) :: length (len) ----/
 .TP
@@ -119,7 +112,7 @@ is the number of non-null characters in a string or character sequence.
 It is the return value of
 .I strlen(str)
 and of
-.IR "strnlen(ustr, size)" .
+.IR "strnlen(buf, size)" .
 .\" ----- DESCRIPTION :: Terms (and abbreviations) :: size ------------/
 .TP
 .I size
@@ -256,7 +249,7 @@ or
 To copy from an unterminated string within a fixed-width buffer into a string,
 ignoring any trailing null bytes in the source fixed-width buffer,
 you should use
-.BR zustr2stp (3)
+.I \%stpcpy(mempcpy(dst,\ src,\ strnlen(src,\ NITEMS(src))),\ \[dq]\[dq])
 or
 .BR strncat (3).
 .P
@@ -351,11 +344,7 @@ holds a string before the call.
 has an even more misleading name than the functions above.
 List of functions:
 .IP \[bu] 3
-.PD 0
-.BR zustr2stp (3)
-.IP \[bu]
 .BR strncat (3)
-.PD
 .P
 Other functions operate on an input character sequence
 to create an output character sequence.
@@ -451,21 +440,6 @@ except for the useless return value.
 .IP
 .BR stpncpy (3)
 is a more useful alternative to this function.
-.\" ----- DESCRIPTION :: Functions :: zustr2stp(3) --------------------/
-.TP
-.BR zustr2stp (3)
-Copy the input character sequence,
-contained in a null-padded fixed-width buffer,
-into a destination string.
-The programmer is responsible for allocating a buffer large enough.
-It returns a pointer suitable for chaining.
-.IP
-A truncating version of this function doesn't exist,
-since the size of the original character sequence is always known,
-so it wouldn't be very useful.
-.IP
-This function is not provided by any library;
-see EXAMPLES for a reference implementation.
 .\" ----- DESCRIPTION :: Functions :: strncat(3) ----------------------/
 .TP
 .BR strncat (3)
@@ -479,7 +453,7 @@ Do not confuse this function with
 .BR strncpy (3);
 they are not related at all.
 .IP
-.BR zustr2stp (3)
+.I \%stpcpy(mempcpy(dst,\ src,\ strnlen(src,\ NITEMS(src))),\ \[dq]\[dq])
 is a faster alternative to this function.
 .\" ----- DESCRIPTION :: Functions :: mempcpy(3) ----------------------/
 .TP
@@ -493,8 +467,6 @@ It returns a pointer suitable for chaining.
 .SH RETURN VALUE
 .TP
 .BR stpcpy (3)
-.TQ
-.BR zustr2stp (3)
 A pointer to the terminating null byte in the destination string.
 .TP
 .BR stpecpy (3)
@@ -684,14 +656,16 @@ p = mempcpy(p, w, strnlen(w, NITEMS(w)));
 len = p \- buf;
 printf("%.*s\en", (int) len, buf);
 .EE
-.\" ----- EXAMPLES :: zustr2stp(3) ------------------------------------/
+.\" ----- EXAMPLES :: stpcpy(mempcpy(dst, src, strnlen(src, NITEMS(src))), "")
 .TP
-.BR zustr2stp (3)
+.I stpcpy(mempcpy(dst, src, strnlen(src, NITEMS(src))), \[dq]\[dq])
 .EX
+char  h[42] = "Hello ";
+char  w[6] = "world!";
 p = buf;
-p = zustr2stp(p, "Hello ", 6);
-p = zustr2stp(p, "world", 42);  // Padding null bytes ignored.
-p = zustr2stp(p, "!", 1);
+p = mempcpy(p, h, strnlen(h, NITEMS(h)));
+p = mempcpy(p, w, strnlen(w, NITEMS(w)));
+p = stpcpy(p, "");
 len = p \- buf;
 puts(buf);
 .EE
@@ -773,13 +747,6 @@ char *
 \&
     /* truncation detected */
     return stpcpy(end\-1, "");
-}
-\&
-.\" ----- EXAMPLES :: Implementations :: zustr2stp(3) -----------------/
-char *
-.IR zustr2stp "(char *restrict dst, const char *restrict src, size_t ssize)"
-{
-    return stpcpy(mempcpy(dst, src, strnlen(src, ssize)), "");
 }
 .\" ----- SEE ALSO :: -------------------------------------------------/
 .SH SEE ALSO
