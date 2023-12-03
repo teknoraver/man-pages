@@ -13,8 +13,7 @@ strlcpy, strlcat,
 stpncpy,
 strncpy,
 zustr2ustp, zustr2stp,
-strncat,
-ustpcpy, ustr2stp
+strncat
 \- copying strings and character sequences
 .\" ----- SYNOPSIS :: -------------------------------------------------/
 .SH SYNOPSIS
@@ -72,14 +71,12 @@ const char " src "[restrict ." ssize ],
 .SS Measured character sequences
 .nf
 // Chain-copy a measured character sequence.
-.BI "char *ustpcpy(char *restrict " dst ", \
-const char " src "[restrict ." len ],
-.BI "               size_t " len );
+.BI "void *mempcpy(void " dst "[restrict ." size "], \
+const void " src "[restrict ." size ],
+.BI "               size_t " size );
 .P
 // Chain-copy a measured character sequence into a string.
-.BI "char *ustr2stp(char *restrict " dst ", \
-const char " src "[restrict ." len ],
-.BI "               size_t " len );
+.I stpcpy(mempcpy(dst, src, ssize), \[dq]\[dq]);
 .fi
 .SH DESCRIPTION
 .\" ----- DESCRIPTION :: Terms (and abbreviations) :: -----------------/
@@ -283,14 +280,6 @@ and can do the minimal copies and length measurements.
 copies character sequences,
 so you need to explicitly set the terminating null byte if you need a string.
 .P
-However,
-for keeping type safety,
-it's good to add a wrapper that uses
-.I char\~*
-instead of
-.IR void\~* :
-.BR ustpcpy (3).
-.P
 In programs that make considerable use of strings or character sequences,
 and need the best performance,
 using overlapping character sequences can make a big difference.
@@ -305,10 +294,10 @@ so programs that use character sequences
 will have to take care of differentiating strings from character sequences.
 .P
 To copy a measured character sequence, use
-.BR ustpcpy (3).
+.BR mempcpy (3).
 .P
 To copy a measured character sequence into a string, use
-.BR ustr2stp (3).
+.IR "\%stpcpy(mempcpy(dst,\ src,\ ssize),\ \[dq]\[dq])" .
 .P
 A string is also accepted as input,
 because these functions ask for the length,
@@ -368,8 +357,6 @@ List of functions:
 .BR zustr2stp (3)
 .IP \[bu]
 .BR strncat (3)
-.IP \[bu]
-.BR ustr2stp (3)
 .PD
 .P
 Other functions operate on an input character sequence
@@ -377,7 +364,7 @@ to create an output character sequence.
 List of functions:
 .IP \[bu] 3
 .PD 0
-.BR ustpcpy (3)
+.BR mempcpy (3)
 .IP \[bu]
 .BR zustr2stp (3)
 .PD
@@ -515,34 +502,18 @@ they are not related at all.
 .IP
 .BR zustr2stp (3)
 is a faster alternative to this function.
-.\" ----- DESCRIPTION :: Functions :: ustpcpy(3) ----------------------/
+.\" ----- DESCRIPTION :: Functions :: mempcpy(3) ----------------------/
 .TP
-.BR ustpcpy (3)
+.BR mempcpy (3)
 Copy the input character sequence,
 limited by its length,
 into a destination character sequence.
 The programmer is responsible for allocating a buffer large enough.
 It returns a pointer suitable for chaining.
-.IP
-This function is not provided by any library;
-see EXAMPLES for a reference implementation.
-.\" ----- DESCRIPTION :: Functions :: ustr2stp(3) ---------------------/
-.TP
-.BR ustr2stp (3)
-Copy the input character sequence,
-limited by its length,
-into a destination string.
-The programmer is responsible for allocating a buffer large enough.
-It returns a pointer suitable for chaining.
-.IP
-This function is not provided by any library;
-see EXAMPLES for a reference implementation.
 .\" ----- RETURN VALUE :: ---------------------------------------------/
 .SH RETURN VALUE
 .TP
 .BR stpcpy (3)
-.TQ
-.BR ustr2stp (3)
 .TQ
 .BR zustr2stp (3)
 A pointer to the terminating null byte in the destination string.
@@ -562,7 +533,7 @@ a pointer to the end of the destination buffer.
 .TP
 .BR zustr2ustp (3)
 .TQ
-.BR ustpcpy (3)
+.BR mempcpy (3)
 A pointer to one after the last character
 in the destination character sequence.
 .TP
@@ -757,25 +728,26 @@ strncat(buf, "!", 1);
 len = strlen(buf);
 puts(buf);
 .EE
-.\" ----- EXAMPLES :: ustpcpy(3) --------------------------------------/
+.\" ----- EXAMPLES :: mempcpy(3) --------------------------------------/
 .TP
-.BR ustpcpy (3)
+.BR mempcpy (3)
 .EX
 p = buf;
-p = ustpcpy(p, "Hello ", 6);
-p = ustpcpy(p, "world", 5);
-p = ustpcpy(p, "!", 1);
+p = mempcpy(p, "Hello ", 6);
+p = mempcpy(p, "world", 5);
+p = mempcpy(p, "!", 1);
 len = p \- buf;
 printf("%.*s\en", (int) len, buf);
 .EE
-.\" ----- EXAMPLES :: ustr2stp(3) -------------------------------------/
+.\" ----- EXAMPLES :: stpcpy(mempcpy(), "") ---------------------------/
 .TP
-.BR ustr2stp (3)
+.I stpcpy(mempcpy(dst, src, ssize), \[dq]\[dq])
 .EX
 p = buf;
-p = ustr2stp(p, "Hello ", 6);
-p = ustr2stp(p, "world", 5);
-p = ustr2stp(p, "!", 1);
+p = mempcpy(p, "Hello ", 6);
+p = mempcpy(p, "world", 5);
+p = mempcpy(p, "!", 1), "");
+p = stpcpy(p, "");
 len = p \- buf;
 puts(buf);
 .EE
@@ -829,7 +801,7 @@ char *
 char *
 .IR zustr2ustp "(char *restrict dst, const char *restrict src, size_t ssize)"
 {
-    return ustpcpy(dst, src, strnlen(src, ssize));
+    return mempcpy(dst, src, strnlen(src, ssize));
 }
 \&
 .\" ----- EXAMPLES :: Implementations :: zustr2stp(3) -----------------/
@@ -838,22 +810,6 @@ char *
 {
     return stpcpy(zustr2ustp(dst, src, ssize), "");
 }
-\&
-.\" ----- EXAMPLES :: Implementations :: ustpcpy(3) -------------------/
-char *
-.IR ustpcpy "(char *restrict dst, const char *restrict src, size_t len)"
-{
-    return mempcpy(dst, src, len);
-}
-\&
-.\" ----- EXAMPLES :: Implementations :: ustr2stp(3) ------------------/
-char *
-.IR ustr2stp "(char *restrict dst, const char *restrict src, size_t len)"
-{
-    return stpcpy(ustpcpy(dst, src, len), "");
-}
-.EE
-.in
 .\" ----- SEE ALSO :: -------------------------------------------------/
 .SH SEE ALSO
 .BR bzero (3),
