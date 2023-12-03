@@ -12,7 +12,7 @@ stpecpy,
 strlcpy, strlcat,
 stpncpy,
 strncpy,
-zustr2ustp, zustr2stp,
+zustr2stp,
 strncat
 \- copying strings and character sequences
 .\" ----- SYNOPSIS :: -------------------------------------------------/
@@ -54,9 +54,7 @@ const char *restrict " src ,
 .BI "               size_t " dsize );
 .P
 // Chain-copy a null-padded character sequence into a character sequence.
-.BI "char *zustr2ustp(char *restrict " dst ", \
-const char " src "[restrict ." ssize ],
-.BI "               size_t " ssize );
+.I mempcpy(dst, src, strnlen(src, NITEMS(src)));
 .P
 // Chain-copy a null-padded character sequence into a string.
 .BI "char *zustr2stp(char *restrict " dst ", \
@@ -266,7 +264,7 @@ To copy from an unterminated string within a fixed-width buffer
 into a character sequence,
 ignoring any trailing null bytes in the source fixed-width buffer,
 you should use
-.BR zustr2ustp (3).
+.IR "\%mempcpy(dst,\ src,\ strnlen(src,\ NITEMS(src)))" .
 .\" ----- DESCRIPTION :: Measured character sequences -----------------/
 .SS Measured character sequences
 The simplest character sequence copying function is
@@ -363,11 +361,7 @@ Other functions operate on an input character sequence
 to create an output character sequence.
 List of functions:
 .IP \[bu] 3
-.PD 0
 .BR mempcpy (3)
-.IP \[bu]
-.BR zustr2stp (3)
-.PD
 .\" ----- DESCRIPTION :: Functions :: ---------------------------------/
 .SS Functions
 .\" ----- DESCRIPTION :: Functions :: stpcpy(3) -----------------------/
@@ -457,21 +451,6 @@ except for the useless return value.
 .IP
 .BR stpncpy (3)
 is a more useful alternative to this function.
-.\" ----- DESCRIPTION :: Functions :: zustr2ustp(3) --------------------/
-.TP
-.BR zustr2ustp (3)
-Copy the input character sequence,
-contained in a null-padded fixed-width buffer,
-into a destination character sequence.
-The programmer is responsible for allocating a buffer large enough.
-It returns a pointer suitable for chaining.
-.IP
-A truncating version of this function doesn't exist,
-since the size of the original character sequence is always known,
-so it wouldn't be very useful.
-.IP
-This function is not provided by any library;
-see EXAMPLES for a reference implementation.
 .\" ----- DESCRIPTION :: Functions :: zustr2stp(3) --------------------/
 .TP
 .BR zustr2stp (3)
@@ -531,8 +510,6 @@ if truncation occurs,
 that pointer is equivalent to
 a pointer to the end of the destination buffer.
 .TP
-.BR zustr2ustp (3)
-.TQ
 .BR mempcpy (3)
 A pointer to one after the last character
 in the destination character sequence.
@@ -695,14 +672,15 @@ len = strnlen(buf, sizeof(buf));
 for (size_t i = 0; i < sizeof(buf); i++)
     putchar(buf[i]);
 .EE
-.\" ----- EXAMPLES :: zustr2ustp(3) -----------------------------------/
+.\" ----- EXAMPLES :: mempcpy(dst, src, strnlen(src, NITEMS(src))) ----/
 .TP
-.BR zustr2ustp (3)
+.I mempcpy(dst, src, strnlen(src, NITEMS(src)))
 .EX
+char  h[42] = "Hello ";
+char  w[6] = "world!";
 p = buf;
-p = zustr2ustp(p, "Hello ", 6);
-p = zustr2ustp(p, "world", 42);  // Padding null bytes ignored.
-p = zustr2ustp(p, "!", 1);
+p = mempcpy(p, h, strnlen(h, NITEMS(h)));
+p = mempcpy(p, w, strnlen(w, NITEMS(w)));
 len = p \- buf;
 printf("%.*s\en", (int) len, buf);
 .EE
@@ -797,18 +775,11 @@ char *
     return stpcpy(end\-1, "");
 }
 \&
-.\" ----- EXAMPLES :: Implementations :: zustr2ustp(3) ----------------/
-char *
-.IR zustr2ustp "(char *restrict dst, const char *restrict src, size_t ssize)"
-{
-    return mempcpy(dst, src, strnlen(src, ssize));
-}
-\&
 .\" ----- EXAMPLES :: Implementations :: zustr2stp(3) -----------------/
 char *
 .IR zustr2stp "(char *restrict dst, const char *restrict src, size_t ssize)"
 {
-    return stpcpy(zustr2ustp(dst, src, ssize), "");
+    return stpcpy(mempcpy(dst, src, strnlen(src, ssize)), "");
 }
 .\" ----- SEE ALSO :: -------------------------------------------------/
 .SH SEE ALSO
