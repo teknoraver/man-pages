@@ -792,7 +792,6 @@ ssize_t
 .IR strtcpy "(char *restrict dst, const char *restrict src, size_t dsize)"
 {
     bool    trunc;
-    char    *p;
     size_t  dlen, slen;
 \&
     if (dsize == 0)
@@ -802,8 +801,7 @@ ssize_t
     trunc = (slen == dsize);
     dlen = slen \- trunc;
 \&
-    p = mempcpy(dst, src, dlen);
-    *p = \[aq]\e0\[aq];
+    stpcpy(mempcpy(dst, src, dlen), "");
 
     return trunc ? \-1 : slen;
 }
@@ -824,8 +822,7 @@ char *
         return p \- 1;
 \&
     /* truncation detected */
-    end[\-1] = \[aq]\e0\[aq];
-    return end;
+    return stpcpy(end\-1, "");
 }
 \&
 .\" ----- EXAMPLES :: Implementations :: zustr2ustp(3) ----------------/
@@ -839,12 +836,7 @@ char *
 char *
 .IR zustr2stp "(char *restrict dst, const char *restrict src, size_t ssize)"
 {
-    char  *p;
-\&
-    p = zustr2ustp(dst, src, ssize);
-    *p = \[aq]\e0\[aq];
-\&
-    return p;
+    return stpcpy(zustr2ustp(dst, src, ssize), "");
 }
 \&
 .\" ----- EXAMPLES :: Implementations :: ustpcpy(3) -------------------/
@@ -858,12 +850,7 @@ char *
 char *
 .IR ustr2stp "(char *restrict dst, const char *restrict src, size_t len)"
 {
-    char  *p;
-\&
-    p = ustpcpy(dst, src, len);
-    *p = \[aq]\e0\[aq];
-\&
-    return p;
+    return stpcpy(ustpcpy(dst, src, len), "");
 }
 .EE
 .in
