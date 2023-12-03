@@ -673,10 +673,11 @@ puts(buf);
 .TP
 .BR strncat (3)
 .EX
-buf[0] = \[aq]\e0\[aq];  // There's no 'cpy' function to this 'cat'.
-strncat(buf, "Hello ", 6);
-strncat(buf, "world", 42);  // Padding null bytes ignored.
-strncat(buf, "!", 1);
+char  h[42] = "Hello ";
+char  w[6] = "world!";
+strcpy(buf, "");
+strncat(buf, h, NITEMS(h));
+strncat(buf, w, NITEMS(w));
 len = strlen(buf);
 puts(buf);
 .EE
