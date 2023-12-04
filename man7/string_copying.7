@@ -246,18 +246,13 @@ To copy bytes from strings into these buffers, use
 or
 .BR stpncpy (3).
 .P
-To copy from an unterminated string within a fixed-size buffer into a string,
-ignoring any trailing null bytes in the source fixed-size buffer,
-you should use
-.I \%stpcpy(mempcpy(dst,\ src,\ strnlen(src,\ NITEMS(src))),\ \[dq]\[dq])
-or
-.BR strncat (3).
-.P
-To copy from an unterminated string within a fixed-size buffer
-into a character sequence,
-ignoring any trailing null bytes in the source fixed-size buffer,
-you should use
-.IR "\%mempcpy(dst,\ src,\ strnlen(src,\ NITEMS(src)))" .
+To read a null-padded character sequence,
+use
+.IR "strnlen(src,\ NITEMS(src))" ,
+and then you can treat it as a known-length character sequence;
+or use
+.BR strncat (3)
+directly.
 .\" ----- DESCRIPTION :: Known-length character sequences -----------------/
 .SS Known-length character sequences
 The simplest character sequence copying function is
