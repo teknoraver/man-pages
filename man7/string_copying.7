@@ -7,8 +7,8 @@
 .SH NAME
 stpcpy,
 strcpy, strcat,
-strtcpy,
 stpecpy,
+strtcpy,
 strlcpy, strlcat,
 stpncpy,
 strncpy,
@@ -314,9 +314,9 @@ List of functions:
 .BR strcpy (3),
 .BR strcat (3)
 .IP \[bu]
-.BR strtcpy ()
-.IP \[bu]
 .BR stpecpy ()
+.IP \[bu]
+.BR strtcpy ()
 .IP \[bu]
 .BR strlcpy (3bsd),
 .BR strlcat (3bsd)
@@ -370,18 +370,6 @@ The return value is useless.
 .IP
 .BR stpcpy (3)
 is a faster alternative to these functions.
-.\" ----- DESCRIPTION :: Functions :: strtcpy() -----------------------/
-.TP
-.BR strtcpy ()
-Copy the input string into a destination string.
-If the destination buffer isn't large enough to hold the copy,
-the resulting string is truncated
-(but it is guaranteed to be null-terminated).
-It returns the length of the string,
-or \-1 if it truncated.
-.IP
-This function is not provided by any library;
-see EXAMPLES for a reference implementation.
 .\" ----- DESCRIPTION :: Functions :: stpecpy() -----------------------/
 .TP
 .BR stpecpy ()
@@ -393,6 +381,18 @@ the resulting string is truncated
 (but it is guaranteed to be null-terminated).
 It returns a pointer suitable for chaining.
 Truncation needs to be detected only once after the last chained call.
+.IP
+This function is not provided by any library;
+see EXAMPLES for a reference implementation.
+.\" ----- DESCRIPTION :: Functions :: strtcpy() -----------------------/
+.TP
+.BR strtcpy ()
+Copy the input string into a destination string.
+If the destination buffer isn't large enough to hold the copy,
+the resulting string is truncated
+(but it is guaranteed to be null-terminated).
+It returns the length of the string,
+or \-1 if it truncated.
 .IP
 This function is not provided by any library;
 see EXAMPLES for a reference implementation.
@@ -582,15 +582,6 @@ strcat(buf, "!");
 len = strlen(buf);
 puts(buf);
 .EE
-.\" ----- EXAMPLES :: strtcpy() ---------------------------------------/
-.TP
-.BR strtcpy ()
-.EX
-len = strtcpy(buf, "Hello world!", sizeof(buf));
-if (len == \-1)
-    goto toolong;
-puts(buf);
-.EE
 .\" ----- EXAMPLES :: stpecpy() ---------------------------------------/
 .TP
 .BR stpecpy ()
@@ -605,6 +596,15 @@ if (p == end) {
     goto toolong;
 }
 len = p \- buf;
+puts(buf);
+.EE
+.\" ----- EXAMPLES :: strtcpy() ---------------------------------------/
+.TP
+.BR strtcpy ()
+.EX
+len = strtcpy(buf, "Hello world!", sizeof(buf));
+if (len == \-1)
+    goto toolong;
 puts(buf);
 .EE
 .\" ----- EXAMPLES :: strlcpy(3bsd), strlcat(3bsd) --------------------/
@@ -706,25 +706,6 @@ Here are reference implementations for functions not provided by libc.
 .EX
 /* This code is in the public domain. */
 \&
-.\" ----- EXAMPLES :: Implementations :: strtcpy() --------------------/
-ssize_t
-.IR strtcpy "(char *restrict dst, const char *restrict src, size_t dsize)"
-{
-    bool    trunc;
-    size_t  dlen, slen;
-\&
-    if (dsize == 0)
-        return \-1;
-\&
-    slen = strnlen(src, dsize);
-    trunc = (slen == dsize);
-    dlen = slen \- trunc;
-\&
-    stpcpy(mempcpy(dst, src, dlen), "");
-
-    return trunc ? \-1 : slen;
-}
-\&
 .\" ----- EXAMPLES :: Implementations :: stpecpy() --------------------/
 char *
 .IR stpecpy "(char *dst, char end[0], const char *restrict src)"
@@ -743,6 +724,25 @@ char *
     dlen = slen \- trunc;
 \&
     return stpcpy(mempcpy(dst, src, dlen), "") + trunc;
+}
+\&
+.\" ----- EXAMPLES :: Implementations :: strtcpy() --------------------/
+ssize_t
+.IR strtcpy "(char *restrict dst, const char *restrict src, size_t dsize)"
+{
+    bool    trunc;
+    size_t  dlen, slen;
+\&
+    if (dsize == 0)
+        return \-1;
+\&
+    slen = strnlen(src, dsize);
+    trunc = (slen == dsize);
+    dlen = slen \- trunc;
+\&
+    stpcpy(mempcpy(dst, src, dlen), "");
+
+    return trunc ? \-1 : slen;
 }
 .\" ----- SEE ALSO :: -------------------------------------------------/
 .SH SEE ALSO
