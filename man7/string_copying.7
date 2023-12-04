@@ -215,9 +215,9 @@ it makes sense to truncate.
 .P
 Functions that truncate:
 .IP \[bu] 3
-.BR stpecpy (3)
+.BR stpecpy ()
 .IP \[bu]
-.BR strtcpy (3)
+.BR strtcpy ()
 .IP \[bu]
 .BR strlcpy (3bsd)
 and
@@ -314,9 +314,9 @@ List of functions:
 .BR strcpy (3),
 .BR strcat (3)
 .IP \[bu]
-.BR strtcpy (3)
+.BR strtcpy ()
 .IP \[bu]
-.BR stpecpy (3)
+.BR stpecpy ()
 .IP \[bu]
 .BR strlcpy (3bsd),
 .BR strlcat (3bsd)
@@ -370,9 +370,9 @@ The return value is useless.
 .IP
 .BR stpcpy (3)
 is a faster alternative to these functions.
-.\" ----- DESCRIPTION :: Functions :: strtcpy(3) ----------------------/
+.\" ----- DESCRIPTION :: Functions :: strtcpy() -----------------------/
 .TP
-.BR strtcpy (3)
+.BR strtcpy ()
 Copy the input string into a destination string.
 If the destination buffer isn't large enough to hold the copy,
 the resulting string is truncated
@@ -382,9 +382,9 @@ or \-1 if it truncated.
 .IP
 This function is not provided by any library;
 see EXAMPLES for a reference implementation.
-.\" ----- DESCRIPTION :: Functions :: stpecpy(3) ----------------------/
+.\" ----- DESCRIPTION :: Functions :: stpecpy() -----------------------/
 .TP
-.BR stpecpy (3)
+.BR stpecpy ()
 Chain-copy the input string into a destination string.
 If the destination buffer,
 limited by a pointer to its end,
@@ -411,9 +411,9 @@ They return the length of the total string they tried to create.
 .IP
 Check BUGS before using these functions.
 .IP
-.BR strtcpy (3)
+.BR strtcpy ()
 and
-.BR stpecpy (3)
+.BR stpecpy ()
 are better alternatives to these functions.
 .\" ----- DESCRIPTION :: Functions :: stpncpy(3) ----------------------/
 .TP
@@ -469,7 +469,7 @@ It returns a pointer suitable for chaining.
 .BR stpcpy (3)
 A pointer to the terminating null byte in the destination string.
 .TP
-.BR stpecpy (3)
+.BR stpecpy ()
 A pointer to the terminating null byte in the destination string,
 except when truncation occurs;
 if truncation occurs,
@@ -486,7 +486,7 @@ a pointer to the end of the destination buffer.
 A pointer to one after the last character
 in the destination character sequence.
 .TP
-.BR strtcpy (3)
+.BR strtcpy ()
 The length of the string.
 When truncation occurs, it returns \-1.
 When
@@ -517,7 +517,7 @@ which is useless.
 The Linux kernel has an internal function for copying strings,
 .BR strscpy (9),
 which is identical to
-.BR strtcpy (3),
+.BR strtcpy (),
 except that it returns
 .B \-E2BIG
 instead of \-1.
@@ -582,18 +582,18 @@ strcat(buf, "!");
 len = strlen(buf);
 puts(buf);
 .EE
-.\" ----- EXAMPLES :: strtcpy(3) --------------------------------------/
+.\" ----- EXAMPLES :: strtcpy() ---------------------------------------/
 .TP
-.BR strtcpy (3)
+.BR strtcpy ()
 .EX
 len = strtcpy(buf, "Hello world!", sizeof(buf));
 if (len == \-1)
     goto toolong;
 puts(buf);
 .EE
-.\" ----- EXAMPLES :: stpecpy(3) --------------------------------------/
+.\" ----- EXAMPLES :: stpecpy() ---------------------------------------/
 .TP
-.BR stpecpy (3)
+.BR stpecpy ()
 .EX
 end = buf + sizeof(buf);
 p = buf;
@@ -706,7 +706,7 @@ Here are reference implementations for functions not provided by libc.
 .EX
 /* This code is in the public domain. */
 \&
-.\" ----- EXAMPLES :: Implementations :: strtcpy(3) -------------------/
+.\" ----- EXAMPLES :: Implementations :: strtcpy() --------------------/
 ssize_t
 .IR strtcpy "(char *restrict dst, const char *restrict src, size_t dsize)"
 {
@@ -725,7 +725,7 @@ ssize_t
     return trunc ? \-1 : slen;
 }
 \&
-.\" ----- EXAMPLES :: Implementations :: stpecpy(3) -------------------/
+.\" ----- EXAMPLES :: Implementations :: stpecpy() --------------------/
 char *
 .IR stpecpy "(char *dst, char end[0], const char *restrict src)"
 {
