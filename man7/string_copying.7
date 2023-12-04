@@ -652,7 +652,7 @@ char  buf[NITEMS(u->ut_user)];
 p = buf;
 p = mempcpy(p, u->ut_user, strnlen(u->ut_user, NITEMS(u->ut_user)));
 len = p \- buf;
-printf("%.*s\en", (int) len, buf);
+fwrite(buf, 1, len, stdout);
 .EE
 .\" ----- EXAMPLES :: stpcpy(mempcpy(dst, src, strnlen(src, NITEMS(src))), "")
 .TP
@@ -684,7 +684,7 @@ p = mempcpy(p, "Hello ", 6);
 p = mempcpy(p, "world", 5);
 p = mempcpy(p, "!", 1);
 len = p \- buf;
-printf("%.*s\en", (int) len, buf);
+fwrite(buf, 1, len, stdout);
 .EE
 .\" ----- EXAMPLES :: stpcpy(mempcpy(), "") ---------------------------/
 .TP
