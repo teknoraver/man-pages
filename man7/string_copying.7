@@ -626,33 +626,31 @@ puts(buf);
 .TP
 .BR stpncpy (3)
 .EX
-p = stpncpy(buf, "Hello world!", sizeof(buf));
-if (sizeof(buf) < strlen("Hello world!"))
+p = stpncpy(u->ut_user, "alx", sizeof(u->ut_user));
+if (sizeof(u->ut_user) < strlen("alx"))
     goto toolong;
-len = p \- buf;
-for (size_t i = 0; i < sizeof(buf); i++)
-    putchar(buf[i]);
+len = p \- u->ut_user;
+for (size_t i = 0; i < sizeof(u->ut_user); i++)
+    putchar(u->ut_user[i]);
 .EE
 .\" ----- EXAMPLES :: strncpy(3) --------------------------------------/
 .TP
 .BR strncpy (3)
 .EX
-strncpy(buf, "Hello world!", sizeof(buf));
-if (sizeof(buf) < strlen("Hello world!"))
+strncpy(u->ut_user, "alx", sizeof(u->ut_user));
+if (sizeof(u->ut_user) < strlen("alx"))
     goto toolong;
-len = strnlen(buf, sizeof(buf));
-for (size_t i = 0; i < sizeof(buf); i++)
-    putchar(buf[i]);
+len = strnlen(u->ut_user, sizeof(u->ut_user));
+for (size_t i = 0; i < sizeof(u->ut_user); i++)
+    putchar(u->ut_user[i]);
 .EE
 .\" ----- EXAMPLES :: mempcpy(dst, src, strnlen(src, NITEMS(src))) ----/
 .TP
 .I mempcpy(dst, src, strnlen(src, NITEMS(src)))
 .EX
-char  h[42] = "Hello ";
-char  w[6] = "world!";
+char  buf[NITEMS(u->ut_user)];
 p = buf;
-p = mempcpy(p, h, strnlen(h, NITEMS(h)));
-p = mempcpy(p, w, strnlen(w, NITEMS(w)));
+p = mempcpy(p, u->ut_user, strnlen(u->ut_user, NITEMS(u->ut_user)));
 len = p \- buf;
 printf("%.*s\en", (int) len, buf);
 .EE
@@ -660,11 +658,9 @@ printf("%.*s\en", (int) len, buf);
 .TP
 .I stpcpy(mempcpy(dst, src, strnlen(src, NITEMS(src))), \[dq]\[dq])
 .EX
-char  h[42] = "Hello ";
-char  w[6] = "world!";
+char  buf[NITEMS(u->ut_user) + 1];
 p = buf;
-p = mempcpy(p, h, strnlen(h, NITEMS(h)));
-p = mempcpy(p, w, strnlen(w, NITEMS(w)));
+p = mempcpy(p, u->ut_user, strnlen(u->ut_user, NITEMS(u->ut_user)));
 p = stpcpy(p, "");
 len = p \- buf;
 puts(buf);
@@ -673,11 +669,9 @@ puts(buf);
 .TP
 .BR strncat (3)
 .EX
-char  h[42] = "Hello ";
-char  w[6] = "world!";
+char  buf[NITEMS(u->ut_user) + 1];
 strcpy(buf, "");
-strncat(buf, h, NITEMS(h));
-strncat(buf, w, NITEMS(w));
+strncat(buf, u->ut_user, NITEMS(u->ut_user));
 len = strlen(buf);
 puts(buf);
 .EE
