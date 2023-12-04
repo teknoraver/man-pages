@@ -79,7 +79,7 @@ const void " src "[restrict ." len ],
 .\" ----- DESCRIPTION :: Terms (and abbreviations) :: string (str) ----/
 .TP
 .IR "string " ( str )
-is a sequence of zero or more non-null characters followed by a null byte.
+is a sequence of zero or more non-null characters followed by a null character.
 .\" ----- DESCRIPTION :: Terms (and abbreviations) :: null-padded character seq
 .TP
 .I character sequence
@@ -95,8 +95,8 @@ which contain padding null bytes after the character sequence,
 to fill the rest of the buffer
 without affecting the character sequence;
 however, those padding null bytes are not part of the character sequence.
-Don't confuse zero-padded with null-terminated:
-zero-padded means 0 or more padding zeros (null characters),
+Don't confuse null-padded with null-terminated:
+null-padded means 0 or more padding null bytes,
 while null-terminated means exactly 1 terminating null character.
 .\" ----- DESCRIPTION :: Terms (and abbreviations) :: known-length character sequence
 .TP
@@ -137,7 +137,7 @@ the writing starts at the first element pointed to by
 .TP
 .I catenate
 This term is used when
-a function first finds the terminating null byte in
+a function first finds the terminating null character in
 .IR dst ,
 and then starts writing at that position.
 .\" ----- DESCRIPTION :: Terms (and abbreviations) :: chain -----------/
@@ -145,12 +145,12 @@ and then starts writing at that position.
 .I chain
 This term is used when
 it's the programmer who provides
-a pointer to the terminating null byte in the string
+a pointer to the terminating null character in the string
 .I dst
 (or one after the last character in a character sequence),
 and the function starts writing at that location.
 The function returns
-a pointer to the new location of the terminating null byte
+a pointer to the new location of the terminating null character
 (or one after the last character in a character sequence)
 after the call,
 so that the programmer can use it to chain such calls.
@@ -162,7 +162,7 @@ However, newer functions that copy while allowing chaining
 cover both use cases with a single API.
 They are also algorithmically faster,
 since they don't need to search for
-the terminating null byte of the existing string.
+the terminating null character of the existing string.
 However, functions that catenate have a much simpler use,
 so if performance is not important,
 it can make sense to use them for improving readability.
@@ -269,7 +269,8 @@ since you always know the length of your character sequences,
 and can do the minimal copies and length measurements.
 .BR mempcpy (3)
 copies character sequences,
-so you need to explicitly set the terminating null byte if you need a string.
+so you need to explicitly set the terminating null character
+if you need a string.
 .P
 In programs that make considerable use of strings or character sequences,
 and need the best performance,
@@ -293,7 +294,7 @@ To copy a known-length character sequence into a string, use
 A string is also accepted as input,
 because these functions ask for the length,
 and a string is composed of a character sequence of the same length
-plus a terminating null byte.
+plus a terminating null character.
 .\" ----- DESCRIPTION :: String vs character sequence -----------------/
 .SS String vs character sequence
 Some functions only operate on strings.
@@ -425,7 +426,7 @@ limited by its size,
 isn't large enough to hold the copy,
 the resulting character sequence is truncated.
 Since it creates a character sequence,
-it doesn't need to write a terminating null byte.
+it doesn't need to write a terminating null character.
 It's impossible to distinguish truncation by the result of the call,
 from a character sequence that just fits the destination buffer;
 truncation should be detected by
@@ -467,10 +468,10 @@ It returns a pointer suitable for chaining.
 .SH RETURN VALUE
 .TP
 .BR stpcpy (3)
-A pointer to the terminating null byte in the destination string.
+A pointer to the terminating null character in the destination string.
 .TP
 .BR stpecpy ()
-A pointer to the terminating null byte in the destination string,
+A pointer to the terminating null character in the destination string,
 except when truncation occurs;
 if truncation occurs,
 it returns a pointer to the end of the destination buffer.
