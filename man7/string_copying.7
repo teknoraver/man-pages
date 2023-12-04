@@ -475,14 +475,9 @@ except when truncation occurs;
 if truncation occurs,
 it returns a pointer to the end of the destination buffer.
 .TP
-.BR stpncpy (3)
-A pointer to one after the last character
-in the destination character sequence;
-if truncation occurs,
-that pointer is equivalent to
-a pointer to the end of the destination buffer.
-.TP
 .BR mempcpy (3)
+.TQ
+.BR stpncpy (3)
 A pointer to one after the last character
 in the destination character sequence.
 .TP
