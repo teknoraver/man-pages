@@ -693,7 +693,7 @@ printf("%.*s\en", (int) len, buf);
 p = buf;
 p = mempcpy(p, "Hello ", 6);
 p = mempcpy(p, "world", 5);
-p = mempcpy(p, "!", 1), "");
+p = mempcpy(p, "!", 1);
 p = stpcpy(p, "");
 len = p \- buf;
 puts(buf);
