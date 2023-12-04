@@ -43,7 +43,7 @@ const char *restrict " src ,
 .\" ----- SYNOPSIS :: Null-padded character sequences --------/
 .SS Null-padded character sequences
 .nf
-// Fill a fixed-width buffer with characters from a string
+// Fill a fixed-size buffer with characters from a string
 // and pad with null bytes.
 .BI "char *strncpy(char " dst "[restrict ." dsize "], \
 const char *restrict " src ,
@@ -90,7 +90,7 @@ a string can be used in the place of a character sequence.
 .RS
 .TP
 .I null-padded character sequence
-Character sequences can be contained in fixed-width buffers,
+Character sequences can be contained in fixed-size buffers,
 which contain padding null bytes after the character sequence,
 to fill the rest of the buffer
 without affecting the character sequence;
@@ -237,7 +237,7 @@ such as
 .BR utmpx (5)
 and
 .BR tar (1),
-use null-padded character sequences in fixed-width buffers.
+use null-padded character sequences in fixed-size buffers.
 To interface with them,
 specialized functions need to be used.
 .P
@@ -246,16 +246,16 @@ To copy bytes from strings into these buffers, use
 or
 .BR stpncpy (3).
 .P
-To copy from an unterminated string within a fixed-width buffer into a string,
-ignoring any trailing null bytes in the source fixed-width buffer,
+To copy from an unterminated string within a fixed-size buffer into a string,
+ignoring any trailing null bytes in the source fixed-size buffer,
 you should use
 .I \%stpcpy(mempcpy(dst,\ src,\ strnlen(src,\ NITEMS(src))),\ \[dq]\[dq])
 or
 .BR strncat (3).
 .P
-To copy from an unterminated string within a fixed-width buffer
+To copy from an unterminated string within a fixed-size buffer
 into a character sequence,
-ignoring any trailing null bytes in the source fixed-width buffer,
+ignoring any trailing null bytes in the source fixed-size buffer,
 you should use
 .IR "\%mempcpy(dst,\ src,\ strnlen(src,\ NITEMS(src)))" .
 .\" ----- DESCRIPTION :: Measured character sequences -----------------/
@@ -419,7 +419,7 @@ are better alternatives to these functions.
 .TP
 .BR stpncpy (3)
 Copy the input string into
-a destination null-padded character sequence in a fixed-width buffer.
+a destination null-padded character sequence in a fixed-size buffer.
 If the destination buffer,
 limited by its size,
 isn't large enough to hold the copy,
@@ -444,7 +444,7 @@ is a more useful alternative to this function.
 .TP
 .BR strncat (3)
 Catenate the input character sequence,
-contained in a null-padded fixed-width buffer,
+contained in a null-padded fixed-size buffer,
 into a destination string.
 The programmer is responsible for allocating a buffer large enough.
 The return value is useless.
