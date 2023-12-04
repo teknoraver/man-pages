@@ -287,7 +287,9 @@ To copy a known-length character sequence into a string, use
 .IR "\%stpcpy(mempcpy(dst,\ src,\ len),\ \[dq]\[dq])" .
 .P
 A string is also accepted as input,
-because these functions ask for the length,
+because
+.BR mempcpy (3)
+asks for the length,
 and a string is composed of a character sequence of the same length
 plus a terminating null character.
 .\" ----- DESCRIPTION :: String vs character sequence -----------------/
