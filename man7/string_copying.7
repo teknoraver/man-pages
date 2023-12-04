@@ -62,15 +62,15 @@ const char *restrict " src ,
 .BI "char *strncat(char *restrict " dst ", const char " src "[restrict ." ssize ],
 .BI "               size_t " ssize );
 .fi
-.\" ----- SYNOPSIS :: Measured character sequences --------------------/
-.SS Measured character sequences
+.\" ----- SYNOPSIS :: Known-length character sequences --------------------/
+.SS Known-length character sequences
 .nf
-// Chain-copy a measured character sequence.
+// Chain-copy a known-length character sequence.
 .BI "void *mempcpy(void " dst "[restrict ." size "], \
 const void " src "[restrict ." size ],
 .BI "               size_t " size );
 .P
-// Chain-copy a measured character sequence into a string.
+// Chain-copy a known-length character sequence into a string.
 .I stpcpy(mempcpy(dst, src, ssize), \[dq]\[dq]);
 .fi
 .SH DESCRIPTION
@@ -98,9 +98,9 @@ however, those padding null bytes are not part of the character sequence.
 Don't confuse zero-padded with null-terminated:
 zero-padded means 0 or more padding zeros (null characters),
 while null-terminated means exactly 1 terminating null character.
-.\" ----- DESCRIPTION :: Terms (and abbreviations) :: measured character sequence
+.\" ----- DESCRIPTION :: Terms (and abbreviations) :: known-length character sequence
 .TP
-.I measured character sequence
+.I known-length character sequence
 Character sequence delimited by its length.
 It may be a slice of a larger character sequence,
 or even of a string.
@@ -258,8 +258,8 @@ into a character sequence,
 ignoring any trailing null bytes in the source fixed-size buffer,
 you should use
 .IR "\%mempcpy(dst,\ src,\ strnlen(src,\ NITEMS(src)))" .
-.\" ----- DESCRIPTION :: Measured character sequences -----------------/
-.SS Measured character sequences
+.\" ----- DESCRIPTION :: Known-length character sequences -----------------/
+.SS Known-length character sequences
 The simplest character sequence copying function is
 .BR mempcpy (3).
 It requires always knowing the length of your character sequences,
@@ -284,10 +284,10 @@ C library APIs use strings,
 so programs that use character sequences
 will have to take care of differentiating strings from character sequences.
 .P
-To copy a measured character sequence, use
+To copy a known-length character sequence, use
 .BR mempcpy (3).
 .P
-To copy a measured character sequence into a string, use
+To copy a known-length character sequence into a string, use
 .IR "\%stpcpy(mempcpy(dst,\ src,\ ssize),\ \[dq]\[dq])" .
 .P
 A string is also accepted as input,
