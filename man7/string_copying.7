@@ -66,12 +66,12 @@ const char *restrict " src ,
 .SS Known-length character sequences
 .nf
 // Chain-copy a known-length character sequence.
-.BI "void *mempcpy(void " dst "[restrict ." size "], \
-const void " src "[restrict ." size ],
-.BI "               size_t " size );
+.BI "void *mempcpy(void " dst "[restrict ." len "], \
+const void " src "[restrict ." len ],
+.BI "               size_t " len );
 .P
 // Chain-copy a known-length character sequence into a string.
-.I stpcpy(mempcpy(dst, src, ssize), \[dq]\[dq]);
+.I stpcpy(mempcpy(dst, src, len), \[dq]\[dq]);
 .fi
 .SH DESCRIPTION
 .\" ----- DESCRIPTION :: Terms (and abbreviations) :: -----------------/
@@ -288,7 +288,7 @@ To copy a known-length character sequence, use
 .BR mempcpy (3).
 .P
 To copy a known-length character sequence into a string, use
-.IR "\%stpcpy(mempcpy(dst,\ src,\ ssize),\ \[dq]\[dq])" .
+.IR "\%stpcpy(mempcpy(dst,\ src,\ len),\ \[dq]\[dq])" .
 .P
 A string is also accepted as input,
 because these functions ask for the length,
@@ -683,7 +683,7 @@ fwrite(buf, 1, len, stdout);
 .EE
 .\" ----- EXAMPLES :: stpcpy(mempcpy(), "") ---------------------------/
 .TP
-.I stpcpy(mempcpy(dst, src, ssize), \[dq]\[dq])
+.I stpcpy(mempcpy(dst, src, len), \[dq]\[dq])
 .EX
 p = buf;
 p = mempcpy(p, "Hello ", 6);
