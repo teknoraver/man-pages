@@ -124,6 +124,23 @@ The supported
 .I "mode flags"
 are:
 .TP
+.BR MPOL_F_NUMA_BALANCING " (since Linux 5.15)"
+.\" commit bda420b985054a3badafef23807c4b4fa38a3dff
+.\" commit 6d2aec9e123bb9c49cb5c7fc654f25f81e688e8c
+When
+.I mode
+is
+.BR MPOL_BIND ,
+enable the kernel NUMA balancing for the task if it is supported by the kernel.
+If the flag isn't supported by the kernel, or is used with
+.I mode
+other than
+.BR MPOL_BIND ,
+\-1 is returned and
+.I errno
+is set to
+.BR EINVAL .
+.TP
 .BR MPOL_F_STATIC_NODES " (since Linux-2.6.26)"
 A nonempty
 .I nodemask
