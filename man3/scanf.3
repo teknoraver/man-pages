@@ -141,6 +141,9 @@ These functions make it difficult to
 distinguish newlines from other white space,
 This is especially problematic with line-buffered input,
 like the standard input stream.
+.P
+These functions can't report errors after the last
+non-suppressed conversion specification.
 .SH SEE ALSO
 .BR fgets (3),
 .BR getline (3),
