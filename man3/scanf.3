@@ -136,6 +136,11 @@ T}	Thread safety	MT-Safe locale
 C11, POSIX.1-2008.
 .SH HISTORY
 C99, POSIX.1-2001.
+.SH CAVEATS
+These functions make it difficult to
+distinguish newlines from other white space,
+This is especially problematic with line-buffered input,
+like the standard input stream.
 .SH SEE ALSO
 .BR fgets (3),
 .BR getline (3),
