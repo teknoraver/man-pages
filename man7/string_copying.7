@@ -726,26 +726,13 @@ Here are reference implementations for functions not provided by libc.
 char *
 .IR stpecpy "(char *dst, char end[0], const char *restrict src)"
 {
-    bool    trunc;
-    char    *p;
-    size_t  dsize, dlen, slen;
+    size_t  dlen;
 \&
-    if (dst == end) {
-        errno = ENOBUFS;
-        return NULL;
-    }
     if (dst == NULL)
         return NULL;
 \&
-    dsize = end \- dst;
-    slen = strnlen(src, dsize);
-    trunc = (slen == dsize);
-    dlen = slen \- trunc;
-\&
-    p = stpcpy(mempcpy(dst, src, dlen), "");
-    if (trunc)
-        errno = E2BIG;
-    return trunc ? NULL : p;
+    dlen = strtcpy(dst, src, end \- dst);
+    return (dlen == \-1) ? NULL : dst + dlen;
 }
 \&
 .\" ----- EXAMPLES :: Implementations :: strtcpy() --------------------/
