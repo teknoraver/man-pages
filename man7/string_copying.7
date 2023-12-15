@@ -469,9 +469,12 @@ A pointer to the terminating null character in the destination string.
 .TP
 .BR stpecpy ()
 A pointer to the terminating null character in the destination string,
-except when truncation occurs;
-if truncation occurs,
-it returns a pointer to the end of the destination buffer.
+on success.
+On error,
+NULL is returned,
+and
+.I errno
+is set to indicate the error.
 .TP
 .BR mempcpy (3)
 .TQ
@@ -480,13 +483,13 @@ A pointer to one after the last character
 in the destination character sequence.
 .TP
 .BR strtcpy ()
-The length of the string.
-When truncation occurs, it returns \-1.
-When
-.I dsize
-is
-.BR 0 ,
-it also returns \-1.
+The length of the string,
+on success.
+On error,
+\-1 is returned,
+and
+.I errno
+is set to indicate the error.
 .TP
 .BR strlcpy (3bsd)
 .TQ
@@ -511,12 +514,7 @@ Most of these functions don't set
 .IR errno .
 .TP
 .BR stpecpy ()
-.RS
-.TP
-.B E2BIG
-The string has been truncated.
-.RE
-.TP
+.TQ
 .BR strtcpy ()
 .RS
 .TP
@@ -732,8 +730,10 @@ char *
     char    *p;
     size_t  dsize, dlen, slen;
 \&
-    if (dst == end)
-        return end;
+    if (dst == end) {
+        errno = ENOBUFS;
+        return NULL;
+    }
     if (dst == NULL)
         return NULL;
 \&
@@ -745,7 +745,7 @@ char *
     p = stpcpy(mempcpy(dst, src, dlen), "");
     if (trunc)
         errno = E2BIG;
-    return p + trunc;
+    return trunc ? NULL : p;
 }
 \&
 .\" ----- EXAMPLES :: Implementations :: strtcpy() --------------------/
