@@ -646,8 +646,7 @@ p = stpncpy(u->ut_user, "alx", NITEMS(u->ut_user));
 if (NITEMS(u->ut_user) < strlen("alx"))
     goto toolong;
 len = p \- u->ut_user;
-for (size_t i = 0; i < NITEMS(u->ut_user); i++)
-    putchar(u->ut_user[i]);
+fwrite(u->ut_user, 1, len, stdout);
 .EE
 .\" ----- EXAMPLES :: strncpy(3) --------------------------------------/
 .TP
@@ -657,8 +656,7 @@ strncpy(u->ut_user, "alx", NITEMS(u->ut_user));
 if (NITEMS(u->ut_user) < strlen("alx"))
     goto toolong;
 len = strnlen(u->ut_user, NITEMS(u->ut_user));
-for (size_t i = 0; i < NITEMS(u->ut_user); i++)
-    putchar(u->ut_user[i]);
+fwrite(u->ut_user, 1, len, stdout);
 .EE
 .\" ----- EXAMPLES :: mempcpy(dst, src, strnlen(src, NITEMS(src))) ----/
 .TP
