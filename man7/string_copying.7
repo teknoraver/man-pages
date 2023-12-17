@@ -607,8 +607,8 @@ p = buf;
 p = stpecpy(p, end, "Hello ");
 p = stpecpy(p, end, "world");
 p = stpecpy(p, end, "!");
-if (p == end) {
-    p\-\-;
+if (p == NULL) {
+    len = sizeof(buf) \- 1;
     goto toolong;
 }
 len = p \- buf;
