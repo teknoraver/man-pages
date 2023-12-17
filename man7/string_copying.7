@@ -602,13 +602,13 @@ puts(buf);
 .TP
 .BR stpecpy ()
 .EX
-end = buf + sizeof(buf);
+end = buf + NITEMS(buf);
 p = buf;
 p = stpecpy(p, end, "Hello ");
 p = stpecpy(p, end, "world");
 p = stpecpy(p, end, "!");
 if (p == NULL) {
-    len = sizeof(buf) \- 1;
+    len = NITEMS(buf) \- 1;
     goto toolong;
 }
 len = p \- buf;
@@ -618,7 +618,7 @@ puts(buf);
 .TP
 .BR strtcpy ()
 .EX
-len = strtcpy(buf, "Hello world!", sizeof(buf));
+len = strtcpy(buf, "Hello world!", NITEMS(buf));
 if (len == \-1)
     goto toolong;
 puts(buf);
@@ -629,12 +629,12 @@ puts(buf);
 .TQ
 .BR strlcat (3bsd)
 .EX
-if (strlcpy(buf, "Hello ", sizeof(buf)) >= sizeof(buf))
+if (strlcpy(buf, "Hello ", NITEMS(buf)) >= NITEMS(buf))
     goto toolong;
-if (strlcat(buf, "world", sizeof(buf)) >= sizeof(buf))
+if (strlcat(buf, "world", NITEMS(buf)) >= NITEMS(buf))
     goto toolong;
-len = strlcat(buf, "!", sizeof(buf));
-if (len >= sizeof(buf))
+len = strlcat(buf, "!", NITEMS(buf));
+if (len >= NITEMS(buf))
     goto toolong;
 puts(buf);
 .EE
@@ -642,22 +642,22 @@ puts(buf);
 .TP
 .BR stpncpy (3)
 .EX
-p = stpncpy(u->ut_user, "alx", sizeof(u->ut_user));
-if (sizeof(u->ut_user) < strlen("alx"))
+p = stpncpy(u->ut_user, "alx", NITEMS(u->ut_user));
+if (NITEMS(u->ut_user) < strlen("alx"))
     goto toolong;
 len = p \- u->ut_user;
-for (size_t i = 0; i < sizeof(u->ut_user); i++)
+for (size_t i = 0; i < NITEMS(u->ut_user); i++)
     putchar(u->ut_user[i]);
 .EE
 .\" ----- EXAMPLES :: strncpy(3) --------------------------------------/
 .TP
 .BR strncpy (3)
 .EX
-strncpy(u->ut_user, "alx", sizeof(u->ut_user));
-if (sizeof(u->ut_user) < strlen("alx"))
+strncpy(u->ut_user, "alx", NITEMS(u->ut_user));
+if (NITEMS(u->ut_user) < strlen("alx"))
     goto toolong;
-len = strnlen(u->ut_user, sizeof(u->ut_user));
-for (size_t i = 0; i < sizeof(u->ut_user); i++)
+len = strnlen(u->ut_user, NITEMS(u->ut_user));
+for (size_t i = 0; i < NITEMS(u->ut_user); i++)
     putchar(u->ut_user[i]);
 .EE
 .\" ----- EXAMPLES :: mempcpy(dst, src, strnlen(src, NITEMS(src))) ----/
