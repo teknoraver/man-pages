@@ -91,12 +91,21 @@ argument must correspond to a file which supports
 .BR mmap (2)-like
 operations
 (i.e., it cannot be a socket).
+Except since Linux 5.12
+.\" commit b964bf53e540262f2d12672b3cca10842c0172e7
+and if
+.I out_fd
+is a pipe, in which case
+.BR sendfile ()
+desugars to a
+.BR splice (2)
+and its restrictions apply.
 .P
 Before Linux 2.6.33,
 .I out_fd
 must refer to a socket.
 Since Linux 2.6.33 it can be any file.
-If it is a regular file, then
+If it's seekable, then
 .BR sendfile ()
 changes the file offset appropriately.
 .SH RETURN VALUE
