@@ -42,19 +42,9 @@ Description
 
        Subscription:
              It is not necessary to subscribe to the list to send an
-             email.  If you want to subscribe to the list, send an email
-             to <majordomo@vger.kernel.org> containing the following
-             body:
-
-                 subscribe linux-man
-
-             Unsubscribing:
-
-                 unsubscribe linux-man
-
-             Help:
-
-                 help
+             email.  For subscribing to the list, or information about
+             it, go to
+             <https://subspace.kernel.org/vger.kernel.org.html>.
 
    Sign your emails with PGP
         We strongly encourage that you sign all of your emails sent to
