@@ -128,9 +128,7 @@ Description
           -  from a mailing list or online forum?  Please provide a URL
              if possible.
 
-       -  Send patches in diff -u format, inline inside the email
-          message.  If you're worried about your mailer breaking the
-          patch, the send it both inline and as an attachment.  You may
+       -  Send patches in diff -u format in an email patch.  You may
           find it useful to employ git-send-email(1) and
           git-format-patch(1).
 
