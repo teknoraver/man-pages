@@ -69,7 +69,9 @@ $ modprobe cpuid
 There is no support for CPUID functions that require additional
 input registers.
 .P
-Very old x86 CPUs don't support CPUID.
+Early i486 CPUs do not support the CPUID instruction;
+.\" arch/x86/kernel/cpuid.c cpuid_open()
+opening this device for those CPUs fails with EIO.
 .SH SEE ALSO
 .BR cpuid (1)
 .P
