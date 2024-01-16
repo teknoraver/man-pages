@@ -614,7 +614,9 @@ Changing the mark can be used for mark-based
 routing without netfilter or for packet filtering.
 Setting this option requires the
 .B CAP_NET_ADMIN
-capability.
+or
+.B CAP_NET_RAW
+(since Linux 5.17) capability.
 .TP
 .B SO_OOBINLINE
 If this option is enabled,
