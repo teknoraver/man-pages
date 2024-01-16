@@ -40,7 +40,8 @@ Standard C library
 .SH DESCRIPTION
 .RI [[ l ] l ] div_t
 is the type of the value returned by the
-.RB [[ l ] l ] div (3)
+.RB [[ l ] l ]\c
+.BR div (3)
 function.
 .P
 .I imaxdiv_t

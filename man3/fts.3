@@ -187,7 +187,8 @@ A regular file.
 .TP
 .B FTS_NS
 A file for which no
-.RB [ l ] stat (2)
+.RB [ l ]\c
+.BR stat (2)
 information was available.
 The contents of the
 .I fts_statp
@@ -198,7 +199,8 @@ field will be set to indicate what caused the error.
 .TP
 .B FTS_NSOK
 A file for which no
-.RB [ l ] stat (2)
+.RB [ l ]\c
+.BR stat (2)
 information was requested.
 The contents of the
 .I fts_statp
@@ -329,7 +331,8 @@ field are undefined.
 .TP
 .I fts_statp
 A pointer to
-.RB [ l ] stat (2)
+.RB [ l ]\c
+.BR stat (2)
 information for the file.
 .\" .El
 .P
@@ -754,7 +757,8 @@ for any of the errors specified for
 .BR opendir (3),
 .BR readdir (3),
 and
-.RB [ l ] stat (2).
+.RB [ l ]\c
+.BR stat (2).
 .P
 In addition,
 .BR fts_children (),
