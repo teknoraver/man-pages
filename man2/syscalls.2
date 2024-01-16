@@ -133,16 +133,16 @@ in both of the major kernel series is listed.
 .P
 The list of system calls that are available as at Linux 5.14
 (or in a few cases only on older kernels) is as follows:
+.P
 .\"
 .\" Looking at scripts/checksyscalls.sh in the kernel source is
 .\" instructive about x86 specifics.
 .\"
 .TS
-l2 le l
----
-l l l.
-\fBSystem call\fP	\fBKernel\fP	\fBNotes\fP
-
+Lb Lb Lb
+L2 L  L.
+System call	Kernel	Notes
+_
 \fB_llseek\fP(2)	1.2
 \fB_newselect\fP(2)	2.0
 \fB_sysctl\fP(2)	2.0	Removed in 5.5
