@@ -43,9 +43,11 @@ may be provided; see the description of
 below.
 .P
 If the value of \fIold_size\fP is zero, and \fIold_address\fP refers to
-a shareable mapping (see
-.BR mmap (2)
-.BR MAP_SHARED ),
+a shareable mapping
+(see the description of
+.B MAP_SHARED
+in
+.BR mmap (2)),
 then
 .BR mremap ()
 will create a new mapping of the same pages.
@@ -321,7 +323,10 @@ if
 was zero and the mapping referred to by
 .I old_address
 was a private mapping
-.RB ( mmap "(2) " MAP_PRIVATE ),
+(see the description of
+.B MAP_PRIVATE
+in
+.BR mmap (2)),
 .BR mremap ()
 created a new private mapping unrelated to the original mapping.
 This behavior was unintended
