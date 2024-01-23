@@ -61,7 +61,7 @@ Files
 
 Versions
    Distribution
-       <https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/>
+       <https://kernel.org/pub/linux/docs/man-pages/>
        <https://www.alejandro-colomar.es/share/dist/man-pages/>
 
    Git
@@ -70,7 +70,7 @@ Versions
 
    Online man-pages
        PDF
-             <https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/book/>
+             <https://kernel.org/pub/linux/docs/man-pages/book/>
              <https://www.alejandro-colomar.es/share/dist/man-pages/>
        HTML
              <https://man7.org/linux/man-pages/index.html>
