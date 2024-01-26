@@ -57,18 +57,12 @@ Description
         <https://www.gnupg.org/faq/gnupg-faq.html#use_pgpmime>
 
         There are many ways you can sign your patches, and it depends on
-        your preferred tools.  You can use git-send-email(1) in
-        combination with mutt(1).  For that, do the following.
-
-        In <~/.gitconfig>, add the following section:
+        your preferred tools.  You can use neomutt(1) (>= 20240201) as a
+        driver for git-send-email(1).  In <~/.gitconfig>, add the
+        following section:
 
             [sendemail]
-                sendmailcmd = mutt -H - && true
-
-        And then, patch mutt(1) to enable encryption in batch and mailx
-        modes, which is disabled in upstream mutt(1).  You can find a
-        patch here:
-        <https://gitlab.com/muttmua/mutt/-/merge_requests/173>.
+                sendmailcmd = neomutt -C -H - && true
 
    Patches
        If you know how to fix a problem in a manual page (if not, see
