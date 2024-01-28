@@ -191,7 +191,7 @@ Synonym:
 .B LEFTCODE \fIcolor-sequence\fR
 Specifies the
 .I "left code"
-for non-ISO\ 6429 terminals (see below).
+for non-ISO/IEC\~6429 terminals (see below).
 .IP
 Synonym:
 .BR LEFT .
@@ -199,7 +199,7 @@ Synonym:
 .B RIGHTCODE \fIcolor-sequence\fR
 Specifies the
 .I "right code"
-for non-ISO\ 6429 terminals (see below).
+for non-ISO/IEC\~6429 terminals (see below).
 .IP
 Synonym:
 .BR RIGHT .
@@ -207,7 +207,7 @@ Synonym:
 .B ENDCODE \fIcolor-sequence\fR
 Specifies the
 .I "end code"
-for non-ISO\ 6429 terminals (see below).
+for non-ISO/IEC\~6429 terminals (see below).
 .IP
 Synonym:
 .BR END .
@@ -227,16 +227,16 @@ for
 .B emacs
 backup files.
 This form should be considered obsolete.
-.SS ISO 6429 (ANSI) color sequences
-Most color-capable ASCII terminals today use ISO 6429 (ANSI) color sequences,
+.SS ISO/IEC\~6429 (ANSI) color sequences
+Most color-capable ASCII terminals today use ISO/IEC\~6429 (ANSI) color sequences,
 and many common terminals without color capability, including
 .B xterm
-and the widely used and cloned DEC VT100, will recognize ISO 6429 color
+and the widely used and cloned DEC VT100, will recognize ISO/IEC\~6429 color
 codes and harmlessly eliminate them from the output or emulate them.
 .B ls
-uses ISO 6429 codes by default, assuming colorization is enabled.
+uses ISO/IEC\~6429 codes by default, assuming colorization is enabled.
 .P
-ISO 6429 color sequences are composed of sequences of numbers
+ISO/IEC\~6429 color sequences are composed of sequences of numbers
 separated by semicolons.
 The most common codes are:
 .RS
@@ -387,7 +387,7 @@ The default
 .B LEFTCODE
 and
 .B RIGHTCODE
-definitions, which are used by ISO 6429 terminals are:
+definitions, which are used by ISO/IEC\~6429 terminals are:
 .RS
 .TS
 lb l.
