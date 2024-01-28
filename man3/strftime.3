@@ -168,10 +168,10 @@ Modifier: use alternative ("era-based") format, see below. (SU)
 .B %F
 Equivalent to
 .B %Y\-%m\-%d
-(the ISO\ 8601 date format). (C99)
+(the ISO\~8601 date format). (C99)
 .TP
 .B %G
-The ISO\ 8601 week-based year (see NOTES) with century as a decimal number.
+The ISO\~8601 week-based year (see NOTES) with century as a decimal number.
 The 4-digit year corresponding to the ISO week number (see
 .BR %V ).
 This has the same format and value as
@@ -330,7 +330,7 @@ and
 .IR tm_wday .)
 .TP
 .B %V
-The ISO\ 8601 week number (see NOTES) of the current year as a decimal number,
+The ISO\~8601 week number (see NOTES) of the current year as a decimal number,
 range 01 to 53, where week 1 is the first week that has at least
 4 days in the new year.
 See also
@@ -578,13 +578,13 @@ to allow for the theoretical possibility of a minute that
 included a double leap second
 (there never has been such a minute).
 .SH NOTES
-.SS ISO 8601 week dates
+.SS ISO\~8601 week dates
 .BR %G ,
 .BR %g ,
 and
 .B %V
 yield values calculated from the week-based year defined by the
-ISO\ 8601 standard.
+ISO\~8601 standard.
 In this system, weeks start on a Monday, and are numbered from 01,
 for the first week, up to 52 or 53, for the last week.
 Week 1 is the first week where four or more days fall within the
@@ -593,16 +593,16 @@ the first week of the year that contains a Thursday;
 or, the week that has 4 January in it).
 When three or fewer days of the first calendar week of the new year fall
 within that year,
-then the ISO 8601 week-based system counts those days as part of week 52
+then the ISO\~8601 week-based system counts those days as part of week 52
 or 53 of the preceding year.
 For example, 1 January 2010 is a Friday,
 meaning that just three days of that calendar week fall in 2010.
-Thus, the ISO\ 8601 week-based system considers these days to be part of
+Thus, the ISO\~8601 week-based system considers these days to be part of
 week 53
 .RB ( %V )
 of the year 2009
 .RB ( %G );
-week 01 of ISO\ 8601 year 2010 starts on Monday, 4 January 2010.
+week 01 of ISO\~8601 year 2010 starts on Monday, 4 January 2010.
 Similarly, the first two days of January 2011 are considered to be part
 of week 52 of the year 2010.
 .SS glibc notes
