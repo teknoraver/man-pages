@@ -2,7 +2,7 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.TH printf.h 3head 2022-09-18 "Linux man-pages (unreleased)"
+.TH printf.h 3head (date) "Linux man-pages (unreleased)"
 .SH NAME
 printf.h,
 \%register_printf_specifier,
