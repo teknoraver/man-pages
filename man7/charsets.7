@@ -142,7 +142,7 @@ The lower half is ASCII;
 the upper is a Cyrillic character set somewhat better designed than
 ISO 8859-5.
 KOI8-U, based on KOI8-R, has better support for Ukrainian.
-Neither of these sets are ISO-2022 compatible,
+Neither of these sets are ISO/IEC\~2022 compatible,
 unlike the ISO 8859 series.
 .P
 Console support for KOI8-R is available under Linux through user-mode
@@ -165,7 +165,7 @@ It is a superset of ASCII.
 Non-ASCII characters are expressed in two bytes.
 Bytes 0xa1\[en]0xfe are used as leading bytes for two-byte characters.
 Big5 and its extension were widely used in Taiwan and Hong Kong.
-It is not ISO 2022 compliant.
+It is not ISO/IEC\~2022 compliant.
 .\" Thanks to Tomohiro KUBOTA for the following sections about
 .\" national standards.
 .SS JIS X 0208
@@ -179,7 +179,7 @@ This means that JIS X 0208
 itself is not used for expressing text data.
 JIS X 0208 is used
 as a component to construct encodings such as EUC-JP, Shift_JIS,
-and ISO-2022-JP.
+and ISO/IEC\~2022-JP.
 EUC-JP is the most important encoding for Linux
 and includes ASCII and JIS X 0208.
 In EUC-JP, JIS X 0208
@@ -190,17 +190,17 @@ KS X 1001 is a Korean national standard character set.
 Just as
 JIS X 0208, characters are mapped into a 94x94 two-byte matrix.
 KS X 1001 is used like JIS X 0208, as a component
-to construct encodings such as EUC-KR, Johab, and ISO-2022-KR.
+to construct encodings such as EUC-KR, Johab, and ISO/IEC\~2022-KR.
 EUC-KR is the most important encoding for Linux and includes
 ASCII and KS X 1001.
 KS C 5601 is an older name for KS X 1001.
-.SS ISO 2022 and ISO/IEC\~4873
-The ISO 2022 and ISO/IEC\~4873 standards describe a font-control model
+.SS ISO/IEC\~2022 and ISO/IEC\~4873
+The ISO/IEC\~2022 and ISO/IEC\~4873 standards describe a font-control model
 based on VT100 practice.
 This model is (partially) supported
 by the Linux kernel and by
 .BR xterm (1).
-Several ISO 2022-based character encodings have been defined,
+Several ISO/IEC\~2022-based character encodings have been defined,
 especially for Japanese.
 .P
 There are 4 graphic character sets, called G0, G1, G2, and G3,
