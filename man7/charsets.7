@@ -194,8 +194,8 @@ to construct encodings such as EUC-KR, Johab, and ISO-2022-KR.
 EUC-KR is the most important encoding for Linux and includes
 ASCII and KS X 1001.
 KS C 5601 is an older name for KS X 1001.
-.SS ISO 2022 and ISO 4873
-The ISO 2022 and 4873 standards describe a font-control model
+.SS ISO 2022 and ISO/IEC\~4873
+The ISO 2022 and ISO/IEC\~4873 standards describe a font-control model
 based on VT100 practice.
 This model is (partially) supported
 by the Linux kernel and by
@@ -248,7 +248,7 @@ For example, ESC $ ( C selects the Korean character set for G0.
 The Japanese character set selected by ESC $ B has a more
 recent version selected by ESC & @ ESC $ B.
 .P
-ISO 4873 stipulates a narrower use of character sets, where G0
+ISO/IEC\~4873 stipulates a narrower use of character sets, where G0
 is fixed (always ASCII), so that G1, G2, and G3
 can be invoked only for codes with the high order bit set.
 In particular, \fB\[ha]N\fP and \fB\[ha]O\fP are not used anymore, ESC ( xx
