@@ -131,8 +131,7 @@ main(int argc, char *argv[])
     x = strtod(argv[1], NULL);
     r = frexp(x, &exp);
 \&
-    printf("frexp(%g, &e) = %g: %g * %d\[ha]%d = %g\en",
-           x, r, r, FLT_RADIX, exp, x);
+    printf("frexp(%g, &e) = %g: %g * %d\[ha]%d = %g\en", x, r, r, 2, exp, x);
     exit(EXIT_SUCCESS);
 }
 .EE
