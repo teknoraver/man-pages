@@ -17,6 +17,7 @@ Description
 
 Files
    CONTRIBUTING
+   CONTRIBUTING.d/*
        Instructions for reporting bugs and contributing.
 
    INSTALL
