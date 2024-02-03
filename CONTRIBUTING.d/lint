@@ -1,0 +1,40 @@
+Name
+       Lint - instructions for linting manual pages
+
+Description
+       If you plan to patch a manual page, consider running the linters
+       and checks configured in the build system, to make sure your
+       change doesn't add new warnings.  However, you might still get
+       warnings that are not your fault.  To minimize that, do the
+       following steps:
+
+       (1)  First use make(1)'s -t option, so that make(1) knows that it
+            only needs to lint & check again pages that you will touch.
+
+                $ make -t lint check >/dev/null
+
+       (2)  Run make(1) again, asking it to imagine that the page wou'll
+            modify has been touched, to see which warnings you'll still
+            see from that page that are not your fault.
+
+                $ # replace 'man2/membarrier.2' by the page you'll modify
+                $ make -W man2/membarrier.2 -k lint check
+
+       (3)  Apply your changes, and then run make(1) again.  You can
+            ignore warnings that you saw in step (2), but if you see any
+            new ones, please fix them if you know how, or at least note
+            them in your patch email.
+
+                $ vi man2/membarrier.2  # do your work
+                $ make -k lint check
+
+       See <INSTALL> for a list of dependencies that this feature
+       requires.  If you can't meet them all, don't worry; it will still
+       run the linters and checks that you have available.
+
+See also
+       CONTRIBUTING
+       CONTRIBUTING.d/*
+       INSTALL
+
+       $ make help
