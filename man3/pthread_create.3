@@ -200,23 +200,8 @@ in order to obtain a stack size other than the default.
 If the
 .B RLIMIT_STACK
 resource limit is set to "unlimited",
-a per-architecture value is used for the stack size.
-Here is the value for a few architectures:
-.RS
-.TS
-allbox;
-lb lb
-l r.
-Architecture	Default stack size
-i386	2 MB
-IA-64	32 MB
-PowerPC	4 MB
-S/390	2 MB
-Sparc-32	2 MB
-Sparc-64	4 MB
-x86_64	2 MB
-.TE
-.RE
+a per-architecture value is used for the stack size:
+2 MB on most architectures; 4 MB on POWER and Sparc-64.
 .SH BUGS
 In the obsolete LinuxThreads implementation,
 each of the threads in a process has a different process ID.
