@@ -72,7 +72,7 @@ On Linux,
 .I sun_path
 is 108 bytes in size; see also BUGS, below.
 .P
-Various systems calls (for example,
+Various system calls (for example,
 .BR bind (2),
 .BR connect (2),
 and
@@ -833,7 +833,7 @@ UNIX domain stream sockets do not support the notion of out-of-band data.
 .\"
 .SH BUGS
 When binding a socket to an address,
-Linux is one of the implementations that appends a null terminator
+Linux is one of the implementations that append a null terminator
 if none is supplied in
 .IR sun_path .
 In most cases this is unproblematic:
