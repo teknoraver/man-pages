@@ -11,10 +11,14 @@ Standard C library
 .RI ( libc ", " \-lc )
 .SH SYNOPSIS
 .nf
-.B #include <linux/close_range.h>
+.BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
+.B #include <unistd.h>
 .P
-.BI "int close_range(unsigned int " first ", unsigned int " last ,
-.BI "                unsigned int " flags );
+.BR "#include <linux/close_range.h>" " /* Definition of " CLOSE_RANGE_* "
+.BR "" "                                  constants */"
+.P
+.BI "int close_range(unsigned int " first ", unsigned int " last \
+", int " flags );
 .fi
 .SH DESCRIPTION
 The
@@ -205,7 +209,6 @@ result from the calls to
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/syscall.h>
 #include <unistd.h>
 \&
 /* Show the contents of the symbolic links in /proc/self/fd */
@@ -259,7 +262,7 @@ main(int argc, char *argv[])
 \&
     printf("========= About to call close_range() =======\en");
 \&
-    if (syscall(SYS_close_range, 3, \[ti]0U, 0) == \-1) {
+    if (close_range(3, \[ti]0U, 0) == \-1) {
         perror("close_range");
         exit(EXIT_FAILURE);
     }
