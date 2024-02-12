@@ -64,7 +64,7 @@ char *
 stpncpy(char *restrict dst, const char *restrict src, size_t dsize)
 {
     size_t  dlen;
-
+\&
     dlen = strnlen(src, dsize);
     return memset(mempcpy(dst, src, dlen), 0, dsize \- dlen);
 }
