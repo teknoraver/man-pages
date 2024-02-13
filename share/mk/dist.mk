@@ -9,23 +9,21 @@ MAKEFILE_DIST_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/cmd.mk
-include $(MAKEFILEDIR)/compress.mk
+include $(MAKEFILEDIR)/configure/build-depends/bzip2.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/findutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/git.mk
+include $(MAKEFILEDIR)/configure/build-depends/gzip.mk
+include $(MAKEFILEDIR)/configure/build-depends/lzip.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed.mk
+include $(MAKEFILEDIR)/configure/build-depends/tar.mk
+include $(MAKEFILEDIR)/configure/build-depends/xz-utils.mk
 include $(MAKEFILEDIR)/install/_.mk
 include $(MAKEFILEDIR)/version.mk
 include $(MAKEFILEDIR)/verbose.mk
 
 
 _DISTDIR := $(builddir)/dist
-
-
-DEFAULT_TARFLAGS := \
-	--sort=name \
-	--owner=root:0 \
-	--group=root:0 \
-	--mtime='$(DISTDATE)'
-EXTRA_TARFLAGS   :=
-TARFLAGS         := $(DEFAULT_TARFLAGS) $(EXTRA_TARFLAGS)
 
 
 DISTFILES   := $(shell $(GIT) ls-files $(HIDE_ERR) \
@@ -68,7 +66,7 @@ define DISTFILE_z_rule
 $(DISTFILE).$(2): %.$(2): % $(MK) | $$$$(@D)/
 	$$(info	$(1)	$$@)
 	$($(1)) $($(1)FLAGS) -kf $$<
-	touch $$@
+	$(TOUCH) $$@
 endef
 
 $(eval $(call DISTFILE_z_rule,BZIP2,bz2))

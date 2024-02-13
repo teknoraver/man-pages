@@ -9,6 +9,7 @@ MAKEFILE_INSTALL_HTML_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/html.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 include $(MAKEFILEDIR)/install/_.mk
 
 

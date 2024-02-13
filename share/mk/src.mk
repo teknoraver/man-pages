@@ -1,17 +1,20 @@
-########################################################################
-# Copyright 2021-2023, Alejandro Colomar <alx@kernel.org>
-# SPDX-License-Identifier: GPL-3.0-or-later
-########################################################################
+# Copyright 2021-2024, Alejandro Colomar <alx@kernel.org>
+# SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
 ifndef MAKEFILE_SRC_INCLUDED
 MAKEFILE_SRC_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/build-depends/findutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed.mk
+include $(MAKEFILEDIR)/configure/build-depends/sortman.mk
 
 
-MANDIR := $(srcdir)
+SYSCONFDIR := $(srcdir)/etc
+MANDIR     := $(srcdir)
+
 MANEXT := \(\.[[:digit:]]\([[:alpha:]][[:alnum:]]*\)\?\>\|\.man\)\+\(\.man\|\.in\)*$
 
 

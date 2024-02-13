@@ -9,52 +9,17 @@ MAKEFILE_BUILD_SRC_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/build-depends/cc.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/cpp.mk
+include $(MAKEFILEDIR)/configure/build-depends/findutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/ld.mk
+include $(MAKEFILEDIR)/configure/build-depends/mandoc.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed.mk
+include $(MAKEFILEDIR)/configure/build-depends/sortman.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/verbose.mk
-
-
-PKGCONF_LIBS := libbsd-overlay
-
-
-DEFAULT_CPPFLAGS := $(shell $(PKGCONF) --cflags $(PKGCONF_LIBS) $(HIDE_ERR))
-EXTRA_CPPFLAGS   :=
-CPPFLAGS         := $(DEFAULT_CPPFLAGS) $(EXTRA_CPPFLAGS)
-
-DEFAULT_CFLAGS := \
-	-std=gnu17 \
-	-Wall \
-	-Wextra \
-	-Wstrict-prototypes \
-	-Wdeclaration-after-statement \
-	-Werror \
-	-Wno-error=unused-parameter \
-	-Wno-error=sign-compare \
-	-Wno-error=format \
-	-Wno-error=uninitialized
-	#-Wno-error=declaration-after-statement
-EXTRA_CFLAGS   :=
-CFLAGS         := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
-
-DEFAULT_LDFLAGS := \
-	-Wl,--as-needed \
-	-Wl,--no-allow-shlib-undefined \
-	-Wl,--no-copy-dt-needed-entries \
-	-Wl,--no-undefined \
-	$(shell $(PKGCONF) --libs-only-L $(PKGCONF_LIBS) $(HIDE_ERR)) \
-	$(shell $(PKGCONF) --libs-only-other $(PKGCONF_LIBS) $(HIDE_ERR))
-EXTRA_LDFLAGS   :=
-LDFLAGS         := $(DEFAULT_LDFLAGS) $(EXTRA_LDFLAGS)
-
-DEFAULT_LDLIBS := \
-	-lc \
-	$(shell $(PKGCONF) --libs-only-l $(PKGCONF_LIBS) $(HIDE_ERR))
-EXTRA_LDLIBS   :=
-LDLIBS         := $(DEFAULT_LDLIBS) $(EXTRA_LDLIBS)
-
-
-CC  := cc
-LD  := $(CC) $(CFLAGS)
 
 
 _SRCPAGEDIRS   := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.d/,$(NONSO_MAN))
@@ -76,7 +41,7 @@ _UNITS_src_bin := $(patsubst %.c,%,$(_UNITS_src_c))
 $(_SRCPAGEDIRS): $(_MANDIR)/%.d/: $(MANDIR)/%
 	+$(info MKDIR	$@)
 	+$(MKDIR) $@
-	+touch $@
+	+$(TOUCH) $@
 
 $(_UNITS_src_src): $$(patsubst $(_MANDIR)/%.d,$(MANDIR)/%,$$(@D)) $(MK) | $$(@D)/
 $(_UNITS_src_c):   $$(filter $$(@D)/%.h,$(_UNITS_src_h))

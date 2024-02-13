@@ -8,10 +8,11 @@ ifndef MAKEFILE_LINT_MAN_MAN_INCLUDED
 MAKEFILE_LINT_MAN_MAN_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/mandoc.mk
 include $(MAKEFILEDIR)/lint/_.mk
-include $(MAKEFILEDIR)/lint/man/_.mk
 include $(MAKEFILEDIR)/src.mk
 
 
@@ -34,7 +35,7 @@ $(_LINT_man_mandoc): $(_MANDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% $(mandoc_ma
 	   ||:; \
 	) \
 	| $(GREP) ^ >&2
-	touch $@
+	$(TOUCH) $@
 
 $(_LINT_man_tbl): $(_MANDIR)/%.lint-man.tbl.touch: $(MANDIR)/% $(MK) | $$(@D)/
 	$(info LINT (tbl comment)	$@)
@@ -56,7 +57,7 @@ $(_LINT_man_tbl): $(_MANDIR)/%.lint-man.tbl.touch: $(MANDIR)/% $(MK) | $$(@D)/
 		>&2 $(GREP) -n '\\" t$$' $< /dev/null; \
 		exit 1; \
 	fi
-	touch $@
+	$(TOUCH) $@
 
 
 $(foreach l, $(linters_man),                                                  \

@@ -67,55 +67,17 @@ Description
 
    Dependencies
        -  Build-depends:
-          -  Generic:
-             -  echo(1)
-             -  expr(1)
-             -  find(1)
-             -  grep(1)
-             -  locale(1)
-             -  make(1) - GNU Make is required.
-             -  sed(1)
-             -  sort(1)
-             -  xargs(1)
 
-          -  For installing:
-             -  gzip(1)
-             -  install(1)
-             -  ln(1)
-             -  sponge(1)
-             -  test(1)
+          To learn the build dependencies of the project, run
 
-          -  For uninstalling / cleaning:
-             -  rm(1)
-             -  rmdir(1)
-
-          -  For linting/building/checking man(7) source:
-             -  eqn(1)
-             -  grotty(1)
-             -  head(1)
-             -  mkdir(1)
-             -  tail(1)
-             -  tbl(1)
-             -  troff(1) >= 1.23.0 - GNU troff is required.
-
-          -  For linting/building C source:
-             -  cc(1) - GCC or Clang
-             -  clang-tidy(1)
-             -  cpplint(1)
-             -  iwyu(1)
-             -  mandoc(1)
-             -  mkdir(1)
-             -  pkg-config(1)
-             -  tac(1)
-             -  libbsd-dev
-
-             And one that isn't packaged, but can be extracted from the
-             Linux kernel source tree in <scripts/checkpatch.pl>:
-
-             -  checkpatch(1)
-
-          -  For building HTML pages:
-             -  man2html(1)
+              $ find share/mk/ -type f \
+              | xargs grep include.*configure/build-depends/ \
+              | sed 's,share/mk/,,' \
+              | sed 's,/.*:,:,' \
+              | sed 's,include $.*/, ,' \
+              | sed 's,\.mk,,g' \
+              | sort \
+              | uniq;
 
        -  Depends:
           -  man(1)

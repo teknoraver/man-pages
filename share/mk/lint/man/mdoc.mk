@@ -8,10 +8,11 @@ ifndef MAKEFILE_LINT_MAN_MDOC_INCLUDED
 MAKEFILE_LINT_MAN_MDOC_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/mandoc.mk
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/lint/_.mk
-include $(MAKEFILEDIR)/lint/man/_.mk
 include $(MAKEFILEDIR)/src.mk
 
 
@@ -34,7 +35,7 @@ $(_LINT_mdoc_mandoc): $(_MANDIR)/%.lint-mdoc.mandoc.touch: $(MANDIR)/% $(mandoc_
 	   ||:; \
 	) \
 	| $(GREP) ^ >&2
-	touch $@
+	$(TOUCH) $@
 
 
 $(foreach l, $(linters_mdoc),                                                 \

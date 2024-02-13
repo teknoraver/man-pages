@@ -9,15 +9,9 @@ MAKEFILE_BUILD_PS_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/build/groff.mk
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
 include $(MAKEFILEDIR)/src.mk
-
-
-DEFAULT_GROPSFLAGS :=
-EXTRA_GROPSFLAGS   :=
-GROPSFLAGS         := $(DEFAULT_GROPSFLAGS) $(EXTRA_GROPSFLAGS)
-GROPS              := grops
 
 
 _PSMAN_troff   := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.ps.troff,$(NONSO_MAN) $(NONSO_MDOC))
@@ -33,12 +27,12 @@ $(_PSMAN_troff): %.ps.troff: %.eqn $(MK) | $$(@D)/
 
 $(_PSMAN_MAN_set): %.ps.set: %.ps.troff $(MK) | $$(@D)/
 	$(info	TROFF	$@)
-	! ($(TROFF) -Tps $(TROFFFLAGS_MAN) <$< 2>&1 >$@) \
+	! ($(TROFF) -man -Tps $(TROFFFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
 $(_PSMAN_MDOC_set): %.ps.set: %.ps.troff $(MK) | $$(@D)/
 	$(info	TROFF	$@)
-	! ($(TROFF) -Tps $(TROFFFLAGS_MDOC) <$< 2>&1 >$@) \
+	! ($(TROFF) -mdoc -Tps $(TROFFFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
 $(_PSMAN): %.ps: %.ps.set $(MK) | $$(@D)/

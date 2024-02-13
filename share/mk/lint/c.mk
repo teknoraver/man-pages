@@ -9,46 +9,17 @@ MAKEFILE_LINT_C_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/src.mk
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/build-depends/checkpatch.mk
+include $(MAKEFILEDIR)/configure/build-depends/clang.mk
+include $(MAKEFILEDIR)/configure/build-depends/clang-tidy.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/cpp.mk
+include $(MAKEFILEDIR)/configure/build-depends/cppcheck.mk
+include $(MAKEFILEDIR)/configure/build-depends/cpplint.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/iwyu.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed.mk
 include $(MAKEFILEDIR)/lint/_.mk
-
-
-DEFAULT_CHECKPATCHFLAGS :=
-EXTRA_CHECKPATCHFLAGS   :=
-CHECKPATCHFLAGS         := $(DEFAULT_CHECKPATCHFLAGS) $(EXTRA_CHECKPATCHFLAGS)
-CHECKPATCH              := checkpatch
-
-clang-tidy_config       := $(SYSCONFDIR)/clang-tidy/config.yaml
-DEFAULT_CLANG-TIDYFLAGS := \
-	--config-file=$(clang-tidy_config) \
-	--quiet \
-	--use-color
-EXTRA_CLANG-TIDYFLAGS   :=
-CLANG-TIDYFLAGS         := $(DEFAULT_CLANG-TIDYFLAGS) $(EXTRA_CLANG-TIDYFLAGS)
-CLANG-TIDY              := clang-tidy
-
-CPPCHECK_SUPPRESS     := $(SYSCONFDIR)/cppcheck/cppcheck.suppress
-DEFAULT_CPPCHECKFLAGS := \
-	--enable=all \
-	--error-exitcode=2 \
-	--inconclusive \
-	--quiet \
-	--suppressions-list=$(CPPCHECK_SUPPRESS)
-EXTRA_CPPCHECKFLAGS   :=
-CPPCHECKFLAGS         := $(DEFAULT_CPPCHECKFLAGS) $(EXTRA_CPPCHECKFLAGS)
-CPPCHECK              := cppcheck
-
-DEFAULT_CPPLINTFLAGS :=
-EXTRA_CPPLINTFLAGS   :=
-CPPLINTFLAGS         := $(DEFAULT_CPPLINTFLAGS) $(EXTRA_CPPLINTFLAGS)
-CPPLINT              := cpplint
-
-DEFAULT_IWYUFLAGS := \
-	-Xiwyu --no_fwd_decls \
-	-Xiwyu --error
-EXTRA_IWYUFLAGS   :=
-IWYUFLAGS         := $(DEFAULT_IWYUFLAGS) $(EXTRA_IWYUFLAGS)
-IWYU              := iwyu
 
 
 linters_c := checkpatch clang-tidy cppcheck cpplint iwyu
@@ -63,27 +34,27 @@ $(foreach l, $(linters_c),                                                    \
 $(_LINT_c_checkpatch): %.lint-c.checkpatch.touch: %.c $(MK)
 	$(info LINT (checkpatch)	$@)
 	$(CHECKPATCH) $(CHECKPATCHFLAGS) -f $< >&2
-	touch $@
+	$(TOUCH) $@
 
 $(_LINT_c_clang-tidy): %.lint-c.clang-tidy.touch: %.c $(MK)
 	$(info LINT (clang-tidy)	$@)
-	$(CLANG-TIDY) $(CLANG-TIDYFLAGS) $< -- $(CPPFLAGS) $(CFLAGS) 2>&1 \
+	$(CLANG_TIDY) $(CLANG_TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGFLAGS) 2>&1 \
 	| $(SED) '/generated\.$$/d' >&2
-	touch $@
+	$(TOUCH) $@
 
 $(_LINT_c_cppcheck): %.lint-c.cppcheck.touch: %.c $(MK)
 	$(info LINT (cppcheck)	$@)
 	$(CPPCHECK) $(CPPCHECKFLAGS) $<
-	touch $@
+	$(TOUCH) $@
 
 $(_LINT_c_cpplint): %.lint-c.cpplint.touch: %.c $(MK)
 	$(info LINT (cpplint)	$@)
 	$(CPPLINT) $(CPPLINTFLAGS) $< >/dev/null
-	touch $@
+	$(TOUCH) $@
 
 $(_LINT_c_iwyu): %.lint-c.iwyu.touch: %.c $(MK)
 	$(info LINT (iwyu)	$@)
-	! ($(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CFLAGS) $< 2>&1 \
+	! ($(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CLANGFLAGS) $< 2>&1 \
 	   | $(SED) -n '/should add these lines:/,$$p' \
 	   | $(TAC) \
 	   | $(SED) '/correct/{N;d}' \
@@ -91,7 +62,7 @@ $(_LINT_c_iwyu): %.lint-c.iwyu.touch: %.c $(MK)
 	   ||:; \
 	) \
 	| $(GREP) ^ >&2
-	touch $@
+	$(TOUCH) $@
 
 
 $(foreach l, $(linters_c),                                                    \

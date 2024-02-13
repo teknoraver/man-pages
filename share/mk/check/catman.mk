@@ -8,20 +8,15 @@ ifndef MAKEFILE_CHECK_CATMAN_INCLUDED
 MAKEFILE_CHECK_CATMAN_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/catman.mk
 include $(MAKEFILEDIR)/check/_.mk
+include $(MAKEFILEDIR)/configure/build-depends/bsdextrautils.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep.mk
 include $(MAKEFILEDIR)/src.mk
 
 
-DEFAULT_COLFLAGS := \
-	-b \
-	-p \
-	-x
-EXTRA_COLFLAGS   :=
-COLFLAGS         := $(DEFAULT_COLFLAGS) $(EXTRA_COLFLAGS)
-COL              := col
 
 
 _CHECK_catman_grep := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.grep,$(NONSO_MAN) $(NONSO_MDOC))
@@ -35,7 +30,7 @@ $(_CHECK_catman_grep): %.grep: % $(MK) | $$(@D)/
 $(_CHECK_catman): %.check-catman.touch: %.cat.grep $(MK) | $$(@D)/
 	$(info	GREP	$@)
 	! $(GREP) -n '.\{$(MANWIDTH)\}.' $< /dev/null >&2
-	touch $@
+	$(TOUCH) $@
 
 
 .PHONY: check-catman-col

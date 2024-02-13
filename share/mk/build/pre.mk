@@ -9,16 +9,8 @@ MAKEFILE_BUILD_PRE_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
 include $(MAKEFILEDIR)/src.mk
-
-
-DEFAULT_PRECONVFLAGS :=
-EXTRA_PRECONVFLAGS   :=
-PRECONVFLAGS         := $(DEFAULT_PRECONVFLAGS) $(EXTRA_PRECONVFLAGS)
-PRECONV              := preconv
-
-TBL := tbl
 
 
 _MAN_tbl := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.tbl,$(NONSO_MAN) $(NONSO_MDOC))

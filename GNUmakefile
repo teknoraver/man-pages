@@ -200,6 +200,7 @@ help-variables:
 	$(info	CC		{EXTRA_,}CFLAGS)
 	$(info	LD		{EXTRA_,}LDFLAGS	{EXTRA_,}LDLIBS)
 	$(info	)
+	$(info	-		{EXTRA_,}CLANGFLAGS)
 	$(info	CHECKPATCH	{EXTRA_,}CHECKPATCHFLAGS)
 	$(info	CLANG-TIDY	{EXTRA_,}CLANG-TIDYFLAGS)
 	$(info	CPPCHECK	{EXTRA_,}CPPCHECKFLAGS)

@@ -8,8 +8,16 @@ ifndef MAKEFILE_INSTALL_MAN_INCLUDED
 MAKEFILE_INSTALL_MAN_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/compress.mk
+include $(MAKEFILEDIR)/configure/build-depends/bzip2.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/findutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/gzip.mk
+include $(MAKEFILEDIR)/configure/build-depends/lzip.mk
+include $(MAKEFILEDIR)/configure/build-depends/moreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed.mk
+include $(MAKEFILEDIR)/configure/build-depends/xz-utils.mk
 include $(MAKEFILEDIR)/install/_.mk
 include $(MAKEFILEDIR)/src.mk
 

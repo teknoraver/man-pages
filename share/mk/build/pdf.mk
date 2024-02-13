@@ -9,15 +9,10 @@ MAKEFILE_BUILD_PDF_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/build/groff.mk
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff.mk
 include $(MAKEFILEDIR)/src.mk
-
-
-DEFAULT_GROPDFFLAGS :=
-EXTRA_GROPDFFLAGS   :=
-GROPDFFLAGS         := $(DEFAULT_GROPDFFLAGS) $(EXTRA_GROPDFFLAGS)
-GROPDF              := gropdf
 
 
 _PDFMAN_troff   := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.pdf.troff,$(NONSO_MAN) $(NONSO_MDOC))
@@ -33,12 +28,12 @@ $(_PDFMAN_troff): %.pdf.troff: %.eqn $(MK) | $$(@D)/
 
 $(_PDFMAN_MAN_set): %.pdf.set: %.pdf.troff $(MK) | $$(@D)/
 	$(info	TROFF	$@)
-	! ($(TROFF) -Tpdf $(TROFFFLAGS_MAN) <$< 2>&1 >$@) \
+	! ($(TROFF) -man -Tpdf $(TROFFFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
 $(_PDFMAN_MDOC_set): %.pdf.set: %.pdf.troff $(MK) | $$(@D)/
 	$(info	TROFF	$@)
-	! ($(TROFF) -Tpdf $(TROFFFLAGS_MDOC) <$< 2>&1 >$@) \
+	! ($(TROFF) -mdoc -Tpdf $(TROFFFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
 $(_PDFMAN): %.pdf: %.pdf.set $(MK) | $$(@D)/

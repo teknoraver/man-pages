@@ -20,21 +20,4 @@ $(error Valid values for "Z": ["", ".bz2", ".gz", ".lz", ".xz"])
 endif
 
 
-DEFAULT_BZIP2FLAGS :=
-EXTRA_BZIP2FLAGS   :=
-BZIP2FLAGS         := $(DEFAULT_BZIP2FLAGS) $(EXTRA_BZIP2FLAGS)
-
-DEFAULT_GZIPFLAGS  := -n
-EXTRA_GZIPFLAGS    :=
-GZIPFLAGS          := $(DEFAULT_GZIPFLAGS) $(EXTRA_GZIPFLAGS)
-
-DEFAULT_LZIPFLAGS  :=
-EXTRA_LZIPFLAGS    :=
-LZIPFLAGS          := $(DEFAULT_LZIPFLAGS) $(EXTRA_LZIPFLAGS)
-
-DEFAULT_XZFLAGS    :=
-EXTRA_XZFLAGS      :=
-XZFLAGS            := $(DEFAULT_XZFLAGS) $(EXTRA_XZFLAGS)
-
-
 endif  # include guard

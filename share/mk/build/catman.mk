@@ -9,33 +9,13 @@ MAKEFILE_BUILD_CATMAN_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/build/groff.mk
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
 include $(MAKEFILEDIR)/src.mk
 
 
 groff_man_ignore_grep := $(DATAROOTDIR)/lint/groff/man.ignore.grep
-
-MANWIDTH             ?= 80
-TROFF_CHECKSTYLE_LVL := 3
-NROFF_LINE_LENGTH    := $(shell $(EXPR) $(MANWIDTH) - 2)
-NROFF_OUT_DEVICE     := $(shell $(LOCALE) charmap \
-                                | $(GREP) -i 'utf-*8' >/dev/null \
-                                    && $(ECHO) utf8 \
-                                    || $(ECHO) ascii)
-
-DEFAULT_NROFFFLAGS := \
-	-T$(NROFF_OUT_DEVICE) \
-	-rLL=$(NROFF_LINE_LENGTH)n \
-	-rCHECKSTYLE=$(TROFF_CHECKSTYLE_LVL) \
-	-ww
-EXTRA_NROFFFLAGS   :=
-NROFFFLAGS         := $(DEFAULT_NROFFFLAGS) $(EXTRA_NROFFFLAGS)
-
-DEFAULT_GROTTYFLAGS := -c
-EXTRA_GROTTYFLAGS   :=
-GROTTYFLAGS         := $(DEFAULT_GROTTYFLAGS) $(EXTRA_GROTTYFLAGS)
-GROTTY              := grotty
 
 
 _CATMAN_troff   := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.troff,$(NONSO_MAN) $(NONSO_MDOC))
@@ -51,7 +31,7 @@ $(_CATMAN_troff): %.cat.troff: %.eqn $(MK) | $$(@D)/
 
 $(_CATMAN_MAN_set): %.cat.set: %.cat.troff $(groff_man_ignore_grep) $(MK) | $$(@D)/
 	$(info	TROFF	$@)
-	! ($(TROFF) $(TROFFFLAGS_MAN) $(NROFFFLAGS) <$< 2>&1 >$@ \
+	! ($(TROFF) -man $(TROFFFLAGS) $(NROFFFLAGS) <$< 2>&1 >$@ \
 	   | $(GREP) -v -f '$(groff_man_ignore_grep)' \
 	   ||:; \
 	) \
@@ -59,7 +39,7 @@ $(_CATMAN_MAN_set): %.cat.set: %.cat.troff $(groff_man_ignore_grep) $(MK) | $$(@
 
 $(_CATMAN_MDOC_set): %.cat.set: %.cat.troff $(MK) | $$(@D)/
 	$(info	TROFF	$@)
-	! ($(TROFF) $(TROFFFLAGS_MDOC) $(NROFFFLAGS) <$< 2>&1 >$@) \
+	! ($(TROFF) -mdoc $(TROFFFLAGS) $(NROFFFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
 $(_CATMAN): %.cat: %.cat.set $(MK) | $$(@D)/

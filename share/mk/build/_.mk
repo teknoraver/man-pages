@@ -8,19 +8,17 @@ ifndef MAKEFILE_BUILD_INCLUDED
 MAKEFILE_BUILD_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/findutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed.mk
+include $(MAKEFILEDIR)/configure/build-depends/sortman.mk
 include $(MAKEFILEDIR)/src.mk
 
 
 builddir := .tmp
 
-SYSCONFDIR := $(srcdir)/etc
-
 _MANDIR := $(builddir)/man
-
-
-MKDIR := mkdir -p
-RM    := rm
 
 
 NONSO_MAN := $(shell $(FIND) $(MANDIR)/* -type f \
@@ -33,11 +31,6 @@ NONSO_MDOC := $(shell $(FIND) $(MANDIR)/* -type f \
 		| $(XARGS) $(GREP) -l '^\.Dt ' \
 		| $(SORTMAN) \
 		| $(SED) 's,:,\\:,g')
-
-
-$(builddir)/%/:
-	+$(info MKDIR	$@)
-	+$(MKDIR) $@
 
 
 .PHONY: build
