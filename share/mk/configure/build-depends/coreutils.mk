@@ -20,6 +20,7 @@ TAC     := tac
 TAIL    := tail
 TEST    := test
 TOUCH   := touch
+TRUE    := true
 
 
 INSTALL_DATA    := $(INSTALL) -m 644

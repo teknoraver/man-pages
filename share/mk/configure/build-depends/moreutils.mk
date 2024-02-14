@@ -7,6 +7,7 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_MOREUTILS_INCLUDED := 1
 
 
 SPONGE := sponge
+TS     := ts
 
 
 endif  # include guard
