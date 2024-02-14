@@ -11,12 +11,6 @@ MAKEFILE_INSTALL_INCLUDED := 1
 include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 
 
-DESTDIR     :=
-prefix      := /usr/local
-datarootdir := $(prefix)/share
-docdir      := $(datarootdir)/doc
-
-
 %/:
 	+$(info	MKDIR	$@)
 	+$(INSTALL_DIR) $@

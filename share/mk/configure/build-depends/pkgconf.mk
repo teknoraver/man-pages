@@ -7,7 +7,7 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_PKGCONF_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/src.mk
-include $(MAKEFILEDIR)/version.mk
+include $(MAKEFILEDIR)/configure/version.mk
 
 
 # Compat

@@ -13,9 +13,7 @@ include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 include $(MAKEFILEDIR)/install/_.mk
 
 
-htmldir  := $(docdir)
-htmldir_ := $(htmldir)/man
-_htmldir := $(DESTDIR)$(htmldir_)
+_htmldir := $(DESTDIR)$(htmldir)
 
 
 _htmlpages      := $(patsubst $(_HTMLDIR)/%,$(_htmldir)/%,$(_HTMLPAGES))

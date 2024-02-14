@@ -17,9 +17,8 @@ include $(MAKEFILEDIR)/configure/build-depends/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/ld.mk
 include $(MAKEFILEDIR)/configure/build-depends/mandoc.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed.mk
-include $(MAKEFILEDIR)/configure/build-depends/sortman.mk
+include $(MAKEFILEDIR)/configure/verbose.mk
 include $(MAKEFILEDIR)/src.mk
-include $(MAKEFILEDIR)/verbose.mk
 
 
 _SRCPAGEDIRS   := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.d/,$(NONSO_MAN))

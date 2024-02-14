@@ -4,8 +4,8 @@
 ########################################################################
 
 
-ifndef MAKEFILE_COMPRESS_INCLUDED
-MAKEFILE_COMPRESS_INCLUDED := 1
+ifndef MAKEFILE_CONFIGURE_Z_INCLUDED
+MAKEFILE_CONFIGURE_Z_INCLUDED := 1
 
 
 Z :=

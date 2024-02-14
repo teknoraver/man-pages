@@ -18,9 +18,10 @@ include $(MAKEFILEDIR)/configure/build-depends/lzip.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed.mk
 include $(MAKEFILEDIR)/configure/build-depends/tar.mk
 include $(MAKEFILEDIR)/configure/build-depends/xz-utils.mk
+include $(MAKEFILEDIR)/configure/directory_variables.mk
+include $(MAKEFILEDIR)/configure/verbose.mk
+include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/install/_.mk
-include $(MAKEFILEDIR)/version.mk
-include $(MAKEFILEDIR)/verbose.mk
 
 
 _DISTDIR := $(builddir)/dist

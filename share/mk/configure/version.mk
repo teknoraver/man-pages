@@ -4,12 +4,12 @@
 ########################################################################
 
 
-ifndef MAKEFILE_VERSION_INCLUDED
-MAKEFILE_VERSION_INCLUDED := 1
+ifndef MAKEFILE_CONFIGURE_VERSION_INCLUDED
+MAKEFILE_CONFIGURE_VERSION_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/git.mk
-include $(MAKEFILEDIR)/verbose.mk
+include $(MAKEFILEDIR)/configure/verbose.mk
 
 
 DISTNAME    := $(shell $(GIT) describe $(HIDE_ERR))

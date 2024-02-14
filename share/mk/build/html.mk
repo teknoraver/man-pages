@@ -8,13 +8,13 @@ ifndef MAKEFILE_BUILD_HTML_INCLUDED
 MAKEFILE_BUILD_HTML_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/configure/build-depends/man2html.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed.mk
+include $(MAKEFILEDIR)/configure/directory_variables.mk
+include $(MAKEFILEDIR)/configure/src.mk
 include $(MAKEFILEDIR)/src.mk
 
 
-htmlext  := .html
 _HTMLDIR := $(builddir)/html
 
 

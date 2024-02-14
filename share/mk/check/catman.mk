@@ -17,8 +17,6 @@ include $(MAKEFILEDIR)/configure/build-depends/grep.mk
 include $(MAKEFILEDIR)/src.mk
 
 
-
-
 _CHECK_catman_grep := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.grep,$(NONSO_MAN) $(NONSO_MDOC))
 _CHECK_catman := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.check-catman.touch,$(NONSO_MAN) $(NONSO_MDOC))
 

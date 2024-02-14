@@ -9,7 +9,7 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_LD_INCLUDED := 1
 include $(MAKEFILEDIR)/configure/build-depends/cc.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 include $(MAKEFILEDIR)/configure/build-depends/pkgconf.mk
-include $(MAKEFILEDIR)/verbose.mk
+include $(MAKEFILEDIR)/configure/verbose.mk
 
 
 LD := $(CC) $(CFLAGS)

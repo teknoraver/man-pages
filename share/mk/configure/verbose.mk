@@ -4,8 +4,8 @@
 ########################################################################
 
 
-ifndef MAKEFILE_VERBOSE_INCLUDED
-MAKEFILE_VERBOSE_INCLUDED := 1
+ifndef MAKEFILE_CONFIGURE_VERBOSE_INCLUDED
+MAKEFILE_CONFIGURE_VERBOSE_INCLUDED := 1
 
 
 HIDE_ERR := 2>/dev/null

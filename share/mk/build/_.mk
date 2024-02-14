@@ -9,28 +9,10 @@ MAKEFILE_BUILD_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/findutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/grep.mk
-include $(MAKEFILEDIR)/configure/build-depends/sed.mk
-include $(MAKEFILEDIR)/configure/build-depends/sortman.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/configure/directory_variables.mk
 
-
-builddir := .tmp
 
 _MANDIR := $(builddir)/man
-
-
-NONSO_MAN := $(shell $(FIND) $(MANDIR)/* -type f \
-		| $(GREP) '$(MANEXT)' \
-		| $(XARGS) $(GREP) -l '^\.TH ' \
-		| $(SORTMAN) \
-		| $(SED) 's,:,\\:,g')
-NONSO_MDOC := $(shell $(FIND) $(MANDIR)/* -type f \
-		| $(GREP) '$(MANEXT)' \
-		| $(XARGS) $(GREP) -l '^\.Dt ' \
-		| $(SORTMAN) \
-		| $(SED) 's,:,\\:,g')
 
 
 .PHONY: build
