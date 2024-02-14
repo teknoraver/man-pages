@@ -8,11 +8,8 @@ ifndef MAKEFILE_CHECK_INCLUDED
 MAKEFILE_CHECK_INCLUDED := 1
 
 
-check := check-catman
-
-
 .PHONY: check
-check: $(check);
+check: check-catman;
 
 
 endif  # include guard

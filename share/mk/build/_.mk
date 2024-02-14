@@ -16,7 +16,7 @@ _MANDIR := $(builddir)/man
 
 
 .PHONY: build
-build: build-book build-catman build-html build-pdf build-ps build-src;
+build: build-book build-catman build-html build-pdf build-ps build-ex;
 
 .PHONY: clean
 clean:

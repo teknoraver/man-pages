@@ -10,6 +10,7 @@ MAKEFILE_INSTALL_HTML_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/html.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/directory_variables.mk
 include $(MAKEFILEDIR)/install/_.mk
 
 
@@ -21,7 +22,7 @@ _htmlpages_rm   := $(addsuffix -rm,$(wildcard $(_htmlpages)))
 
 
 $(_htmlpages): $(_htmldir)/%: $(_HTMLDIR)/% $(MK) | $$(@D)/
-	$(info INSTALL	$@)
+	$(info	INSTALL	$@)
 	$(INSTALL_DATA) -T $< $@
 
 

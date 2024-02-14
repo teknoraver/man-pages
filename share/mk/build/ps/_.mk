@@ -2,12 +2,12 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-ifndef MAKEFILE_LINT_INCLUDED
-MAKEFILE_LINT_INCLUDED := 1
+ifndef MAKEFILE_BUILD_PS_INCLUDED
+MAKEFILE_BUILD_PS_INCLUDED := 1
 
 
-.PHONY: lint
-lint: lint-c lint-man lint-mdoc;
+.PHONY: build-ps
+build-ps: build-ps-grops;
 
 
 endif  # include guard

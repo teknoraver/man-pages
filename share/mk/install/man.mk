@@ -17,6 +17,7 @@ include $(MAKEFILEDIR)/configure/build-depends/lzip.mk
 include $(MAKEFILEDIR)/configure/build-depends/moreutils.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed.mk
 include $(MAKEFILEDIR)/configure/build-depends/xz-utils.mk
+include $(MAKEFILEDIR)/configure/directory_variables.mk
 include $(MAKEFILEDIR)/configure/z.mk
 include $(MAKEFILEDIR)/install/_.mk
 include $(MAKEFILEDIR)/src.mk
