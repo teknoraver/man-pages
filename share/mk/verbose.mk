@@ -11,7 +11,4 @@ MAKEFILE_VERBOSE_INCLUDED := 1
 HIDE_ERR := 2>/dev/null
 
 
-.SILENT:
-
-
 endif  # include guard
