@@ -14,23 +14,38 @@ include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/dist/_.mk
 
 
-DISTFILES   := $(shell $(GIT) ls-files $(HIDE_ERR) \
-			| $(SED) 's,^,$(srcdir)/,' \
-			| $(SED) 's,:,\\:,g')
+DISTFILESCMD := \
+	$(FIND) $(srcdir) -not -type d \
+	| $(GREP) -v "^.git$$" \
+	| $(GREP) -v "^$(srcdir)/.tmp/" \
+	| $(GREP) -v "^$(srcdir)/.checkpatch-camelcase." \
+	| $(SORT)
+
+
+DISTFILES   := $(shell $(DISTFILESCMD) | $(SED) 's,:,\\:,g')
 _DISTFILES  := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))
 _DISTPAGES  := $(filter     $(_DISTDIR)/man%,$(_DISTFILES))
-_DISTOTHERS := $(filter-out $(_DISTDIR)/man%,$(_DISTFILES))
+_DISTVERSION:= $(_DISTDIR)/share/mk/configure/version.mk
+_DISTOTHERS := $(filter-out $(_DISTPAGES) $(_DISTVERSION), $(_DISTFILES))
 
 
 $(_DISTPAGES): $(_DISTDIR)/man%: $(srcdir)/man% $(MK) | $$(@D)/
-	$(info	INSTALL	$@)
+	$(info	INSTALL		$@)
 	<$< \
-	$(SED) "/^.TH/s/(date)/$$(git log --format=%cs -1 -- $< $(HIDE_ERR))/" \
+	$(SED) "/^.TH/s/(date)/$$($(GIT) log --format=%cs -1 -- $< $(HIDE_ERR))/" \
 	| $(SED) '/^.TH/s/(unreleased)/$(DISTVERSION)/' \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 
+$(_DISTVERSION): $(MAKEFILEDIR)/configure/version.mk $(DISTFILES) | $$(@D)/
+	$(info	SED		$@)
+	<$< \
+	$(SED) 's/^DISTVERSION *:=.*/DISTVERSION := $(DISTVERSION)/' \
+	| $(SED) 's/^DISTNAME *:=.*/DISTNAME := $(DISTNAME)/' \
+	| $(SED) 's/^DISTDATE *:=.*/DISTDATE := $(DISTDATE)/' \
+	| $(INSTALL_DATA) -T /dev/stdin $@
+
 $(_DISTOTHERS): $(_DISTDIR)/%: $(srcdir)/% $(MK) | $$(@D)/
-	$(info	CP	$@)
+	$(info	CP		$@)
 	$(CP) -T $< $@
 
 
