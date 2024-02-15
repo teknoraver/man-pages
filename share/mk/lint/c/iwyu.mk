@@ -22,7 +22,7 @@ $(_LINT_c_iwyu): %.lint-c.iwyu.touch: %.c $(MK)
 	   | $(TAC) \
 	   | $(SED) '/correct/{N;d}' \
 	   | $(TAC) \
-	   ||:; \
+	   || $(TRUE); \
 	) \
 	| $(GREP) ^ >&2
 	$(TOUCH) $@

@@ -23,7 +23,7 @@ $(_LINT_mdoc_mandoc): $(_MANDIR)/%.lint-mdoc.mandoc.touch: $(MANDIR)/% $(mandoc_
 	$(info LINT (mandoc)	$@)
 	! ($(MANDOC) -mdoc $(MANDOCFLAGS) $< 2>&1 \
 	   | $(GREP) -v -f '$(mandoc_mdoc_ignore_grep)' \
-	   ||:; \
+	   || $(TRUE); \
 	) \
 	| $(GREP) ^ >&2
 	$(TOUCH) $@

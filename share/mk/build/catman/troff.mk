@@ -7,6 +7,7 @@ MAKEFILE_BUILD_CATMAN_TROFF_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
 include $(MAKEFILEDIR)/configure/src.mk
@@ -24,7 +25,7 @@ $(_CATMAN_MAN_set): %.cat.set: %.cat.troff $(groff_man_ignore_grep) $(MK) | $$(@
 	$(info	TROFF	$@)
 	! ($(TROFF) -man $(TROFFFLAGS) $(NROFFFLAGS) <$< 2>&1 >$@ \
 	   | $(GREP) -v -f '$(groff_man_ignore_grep)' \
-	   ||:; \
+	   || $(TRUE); \
 	) \
 	| $(GREP) ^ >&2
 
