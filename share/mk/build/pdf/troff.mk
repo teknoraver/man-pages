@@ -18,12 +18,12 @@ _PDFMAN_MDOC_set := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.pdf.set,$(NONSO_MDOC))
 
 
 $(_PDFMAN_MAN_set): %.pdf.set: %.pdf.troff $(MK) | $$(@D)/
-	$(info	TROFF	$@)
+	$(info	TROFF		$@)
 	! ($(TROFF) -man -Tpdf $(TROFFFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
 $(_PDFMAN_MDOC_set): %.pdf.set: %.pdf.troff $(MK) | $$(@D)/
-	$(info	TROFF	$@)
+	$(info	TROFF		$@)
 	! ($(TROFF) -mdoc -Tpdf $(TROFFFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 

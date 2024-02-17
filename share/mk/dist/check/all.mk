@@ -7,7 +7,7 @@ MAKEFILE_DIST_CHECK_ALL_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/moreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed.mk
 include $(MAKEFILEDIR)/configure/directory_variables.mk
 include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/dist/check/tar.mk
@@ -24,7 +24,7 @@ $(builddir)/distcheck.all.touch: \
 $(builddir)/distcheck.all.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
 	#$(info	MAKE		all)
 	#$(MAKE) -C $< all \
-	#| $(TS) 'MAKE all:'
+	#| $(SED)   's,^,MAKE all:		,'
 	$(TOUCH) $@
 
 

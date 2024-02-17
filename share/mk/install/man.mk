@@ -52,7 +52,7 @@ $(foreach s, $(MANSECTIONS),                                                  \
 
 
 $(_manpages):
-	$(info INSTALL	$@)
+	$(info	INSTALL		$@)
 	<$< \
 	$(SED) $(foreach s, $(MANSECTIONS), \
 		-e '/^\.so /s, man$(s)/\(.*\)\.$(s)$$, $(notdir $(man$(s)dir))/\1$(man$(s)ext)$(Z),') \

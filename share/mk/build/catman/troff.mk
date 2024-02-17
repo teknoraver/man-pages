@@ -22,7 +22,7 @@ _CATMAN_MDOC_set := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.set,$(NONSO_MDOC))
 
 
 $(_CATMAN_MAN_set): %.cat.set: %.cat.troff $(groff_man_ignore_grep) $(MK) | $$(@D)/
-	$(info	TROFF	$@)
+	$(info	TROFF		$@)
 	! ($(TROFF) -man $(TROFFFLAGS) $(NROFFFLAGS) <$< 2>&1 >$@ \
 	   | $(GREP) -v -f '$(groff_man_ignore_grep)' \
 	   || $(TRUE); \
@@ -30,7 +30,7 @@ $(_CATMAN_MAN_set): %.cat.set: %.cat.troff $(groff_man_ignore_grep) $(MK) | $$(@
 	| $(GREP) ^ >&2
 
 $(_CATMAN_MDOC_set): %.cat.set: %.cat.troff $(MK) | $$(@D)/
-	$(info	TROFF	$@)
+	$(info	TROFF		$@)
 	! ($(TROFF) -mdoc $(TROFFFLAGS) $(NROFFFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 

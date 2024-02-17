@@ -20,7 +20,7 @@ build: build-book build-catman build-html build-pdf build-ps build-ex;
 
 .PHONY: clean
 clean:
-	$(info RM -rf	$(builddir))
+	$(info	RM -rf		$(builddir))
 	$(RM) -rf $(builddir)
 
 

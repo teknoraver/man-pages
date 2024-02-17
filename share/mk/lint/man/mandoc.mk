@@ -18,7 +18,7 @@ mandoc_man_ignore_grep := $(DATAROOTDIR)/lint/mandoc/man.ignore.grep
 
 
 $(_LINT_man_mandoc): $(_MANDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% $(mandoc_man_ignore_grep) $(MK) | $$(@D)/
-	$(info LINT (mandoc)	$@)
+	$(info	MANDOC		$@)
 	! ($(MANDOC) -man $(MANDOCFLAGS) $< 2>&1 \
 	   | $(GREP) -v -f '$(mandoc_man_ignore_grep)' \
 	   || $(TRUE); \

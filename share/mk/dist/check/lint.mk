@@ -8,7 +8,7 @@ MAKEFILE_DIST_CHECK_LINT_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/moreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed.mk
 include $(MAKEFILEDIR)/configure/directory_variables.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 include $(MAKEFILEDIR)/configure/version.mk
@@ -28,18 +28,18 @@ DISTCHECK_IGNORE_LINT_MAN := \
 $(builddir)/distcheck.lint-man.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
 	$(info	MAKE		lint-man)
 	$(MAKE) -C $< -k lint-man $(HIDE_ERR) \
-	| $(TS) 'MAKE lint-man (-k $(HIDE_ERR)):' \
+	| $(SED)   's,^,MAKE lint-man -k:	,' \
 	|| $(TRUE)
 	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_LINT_MAN) $(HIDE_ERR) \
-	| $(TS) 'MAKE lint-man (-i $(HIDE_ERR)):'
+	| $(SED)   's,^,MAKE lint-man -i:	,'
 	$(MAKE) -C $< lint-man \
-	| $(TS) 'MAKE lint-man:'
+	| $(SED)   's,^,MAKE lint-man:		,'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.lint-mdoc.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
 	$(info	MAKE		lint-mdoc)
 	$(MAKE) -C $< lint-mdoc \
-	| $(TS) 'MAKE lint-mdoc:'
+	| $(SED)   's,^,MAKE lint-mdoc:		,'
 	$(TOUCH) $@
 
 

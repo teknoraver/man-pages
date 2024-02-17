@@ -7,7 +7,7 @@ MAKEFILE_DIST_CHECK_CHECK_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/moreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed.mk
 include $(MAKEFILEDIR)/configure/build-depends/tar.mk
 include $(MAKEFILEDIR)/configure/directory_variables.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
@@ -89,12 +89,12 @@ $(builddir)/distcheck.check-catman.touch: \
 $(builddir)/distcheck.check-catman.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
 	$(info	MAKE		check-catman)
 	$(MAKE) -C $< -k check-catman $(HIDE_ERR) \
-	| $(TS) 'MAKE check-catman (-k $(HIDE_ERR)):' \
+	| $(SED)   's,^,MAKE check-catman -k:	,' \
 	|| $(TRUE)
 	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_CHECK_CATMAN) $(HIDE_ERR) \
-	| $(TS) 'MAKE check-catman (-i $(HIDE_ERR)):'
+	| $(SED)   's,^,MAKE check-catman -i:	,'
 	$(MAKE) -C $< check-catman \
-	| $(TS) 'MAKE check-catman:'
+	| $(SED)   's,^,MAKE check-catman:	,'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.check.touch: \
@@ -102,7 +102,7 @@ $(builddir)/distcheck.check.touch: \
 $(builddir)/distcheck.check.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
 	$(info	MAKE		check)
 	$(MAKE) -C $< check \
-	| $(TS) 'MAKE check:'
+	| $(SED)   's,^,MAKE check:		,'
 	$(TOUCH) $@
 
 

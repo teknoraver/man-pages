@@ -8,7 +8,7 @@ MAKEFILE_DIST_CHECK_BUILD_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/moreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed.mk
 include $(MAKEFILEDIR)/configure/directory_variables.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 include $(MAKEFILEDIR)/configure/version.mk
@@ -174,58 +174,58 @@ DISTCHECK_IGNORE_BUILD_PDF := \
 $(builddir)/distcheck.build-pre.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
 	$(info	MAKE		build-pre)
 	$(MAKE) -C $< build-pre \
-	| $(TS) 'MAKE build-pre:'
+	| $(SED)   's,^,MAKE build-pre:		,'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.build-catman.touch: $(builddir)/distcheck.build-pre.touch
 $(builddir)/distcheck.build-catman.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
 	$(info	MAKE		build-catman)
 	$(MAKE) -C $< -k build-catman $(HIDE_ERR) \
-	| $(TS) 'MAKE build-catman (-k $(HIDE_ERR)):' \
+	| $(SED)   's,^,MAKE build-catman -k:	,' \
 	|| $(TRUE)
 	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_BUILD_CATMAN) $(HIDE_ERR) \
-	| $(TS) 'MAKE build-catman (-i $(HIDE_ERR)):'
+	| $(SED)   's,^,MAKE build-catman -i:	,'
 	$(MAKE) -C $< build-catman \
-	| $(TS) 'MAKE build-catman:'
+	| $(SED)   's,^,MAKE build-catman:	,'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.build-ps.touch: $(builddir)/distcheck.build-pre.touch
 $(builddir)/distcheck.build-ps.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
 	$(info	MAKE		build-ps)
 	$(MAKE) -C $< -k build-ps $(HIDE_ERR) \
-	| $(TS) 'MAKE build-ps (-k $(HIDE_ERR)):' \
+	| $(SED)   's,^,MAKE build-ps -k:	,' \
 	|| $(TRUE)
 	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_BUILD_PS) $(HIDE_ERR) \
-	| $(TS) 'MAKE build-ps (-i $(HIDE_ERR)):'
+	| $(SED)   's,^,MAKE build-ps -i:	,'
 	$(MAKE) -C $< build-ps \
-	| $(TS) 'MAKE build-ps:'
+	| $(SED)   's,^,MAKE build-ps:		,'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.build-pdf.touch: $(builddir)/distcheck.build-pre.touch
 $(builddir)/distcheck.build-pdf.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
 	$(info	MAKE		build-pdf)
 	$(MAKE) -C $< -k build-pdf $(HIDE_ERR) \
-	| $(TS) 'MAKE build-pdf (-k $(HIDE_ERR)):' \
+	| $(SED)   's,^,MAKE build-pdf -k:	,' \
 	|| $(TRUE)
 	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_BUILD_PDF) $(HIDE_ERR) \
-	| $(TS) 'MAKE build-pdf (-i $(HIDE_ERR)):'
+	| $(SED)   's,^,MAKE build-pdf -i:	,'
 	$(MAKE) -C $< build-pdf \
-	| $(TS) 'MAKE build-pdf:'
+	| $(SED)   's,^,MAKE build-pdf:		,'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.build-html.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
 	$(info	MAKE		build-html)
 	$(MAKE) -C $< build-html \
-	| $(TS) 'MAKE build-html:'
+	| $(SED)   's,^,MAKE build-html:	,'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.build-book.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
 	$(info	MAKE		build-book)
 	$(MAKE) -C $< -k build-book $(HIDE_ERR) \
-	| $(TS) 'MAKE build-book ($(HIDE_ERR)):' \
+	| $(SED)   's,^,MAKE build-book:	,' \
 	|| $(TRUE)
 	$(MAKE) -C $< build-book \
-	| $(TS) 'MAKE build-book:'
+	| $(SED)   's,^,MAKE build-book:	,'
 	$(TOUCH) $@
 
 

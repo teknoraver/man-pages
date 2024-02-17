@@ -14,7 +14,7 @@ _CATMAN := $(patsubst %.cat.set,%.cat,$(_CATMAN_MAN_set) $(_CATMAN_MDOC_set))
 
 
 $(_CATMAN): %.cat: %.cat.set $(MK) | $$(@D)/
-	$(info	GROTTY	$@)
+	$(info	GROTTY		$@)
 	$(GROTTY) $(GROTTYFLAGS) <$< >$@
 
 

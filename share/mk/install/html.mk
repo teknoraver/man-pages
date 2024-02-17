@@ -22,7 +22,7 @@ _htmlpages_rm   := $(addsuffix -rm,$(wildcard $(_htmlpages)))
 
 
 $(_htmlpages): $(_htmldir)/%: $(_HTMLDIR)/% $(MK) | $$(@D)/
-	$(info	INSTALL	$@)
+	$(info	INSTALL		$@)
 	$(INSTALL_DATA) -T $< $@
 
 

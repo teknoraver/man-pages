@@ -12,11 +12,11 @@ include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 
 
 %/:
-	+$(info	MKDIR	$@)
+	+$(info	MKDIR		$@)
 	+$(INSTALL_DIR) $@
 
 %-rm:
-	$(info	RM	$*)
+	$(info	RM		$*)
 	$(RM) $*
 
 

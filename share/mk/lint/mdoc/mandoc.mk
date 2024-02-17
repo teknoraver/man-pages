@@ -20,7 +20,7 @@ mandoc_mdoc_ignore_grep := $(DATAROOTDIR)/lint/mandoc/mdoc.ignore.grep
 
 
 $(_LINT_mdoc_mandoc): $(_MANDIR)/%.lint-mdoc.mandoc.touch: $(MANDIR)/% $(mandoc_mdoc_ignore_grep) | $$(@D)/
-	$(info LINT (mandoc)	$@)
+	$(info	MANDOC		$@)
 	! ($(MANDOC) -mdoc $(MANDOCFLAGS) $< 2>&1 \
 	   | $(GREP) -v -f '$(mandoc_mdoc_ignore_grep)' \
 	   || $(TRUE); \
