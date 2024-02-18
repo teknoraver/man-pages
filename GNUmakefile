@@ -113,6 +113,7 @@ help:
 	$(info	dist-z-gz		Create a compressed tarball (.tar.gz))
 	$(info	dist-z-lz		Create a compressed tarball (.tar.lz))
 	$(info	dist-z-xz		Create a compressed tarball (.tar.xz))
+	$(info	distcheck		Check the distribution tarball)
 	$(info	)
 	$(info	help			Print this help)
 	$(info	help-variables		Print all variables available, and their default values)
