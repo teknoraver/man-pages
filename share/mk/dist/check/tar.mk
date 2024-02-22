@@ -19,6 +19,7 @@ $(_DISTCHECKDIR)/$(DISTNAME).tar: $(DISTFILE) $(MK) | $$(@D)/
 
 $(_DISTCHECKSRCDIR): %: %.tar $(MK) | $$(@D)/
 	$(info	$(INFO_)TAR xf		$<)
+	$(RM) -rf $@
 	cd $(dir $<) \
 	&& $(TAR) xf $(notdir $<)
 	$(TOUCH) $@
