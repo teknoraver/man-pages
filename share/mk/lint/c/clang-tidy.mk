@@ -15,7 +15,7 @@ include $(MAKEFILEDIR)/lint/_.mk
 
 
 $(_LINT_c_clang-tidy): %.lint-c.clang-tidy.touch: %.c $(MK)
-	$(info	CLANG_TIDY	$@)
+	$(info	$(INFO_)CLANG_TIDY	$@)
 	$(CLANG_TIDY) $(CLANG_TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGFLAGS) 2>&1 \
 	| $(SED) '/generated\.$$/d' >&2
 	$(TOUCH) $@

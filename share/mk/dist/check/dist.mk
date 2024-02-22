@@ -15,9 +15,9 @@ REDIST  := $(TMPDIR1)/$(DISTNAME)/.tmp/$(DISTNAME).tar
 
 
 $(REDIST): %/.tmp/$(DISTNAME).tar: % | $$(@D)/
-	$(info	MAKE		dist)
+	$(info	$(INFO_)MAKE		dist)
 	$(MAKE) -C $< dist \
-	| $(SED)   's,^,MAKE dist:		,'
+		'INFO_= dist:			'
 
 
 endif  # include guard

@@ -15,7 +15,7 @@ _CHECK_catman := $(patsubst %.cat.grep,%.check-catman.touch,$(_CHECK_catman_grep
 
 
 $(_CHECK_catman): %.check-catman.touch: %.cat.grep $(MK) | $$(@D)/
-	$(info	GREP		$@)
+	$(info	$(INFO_)GREP		$@)
 	! $(GREP) -n '.\{$(MANWIDTH)\}.' $< /dev/null >&2
 	$(TOUCH) $@
 

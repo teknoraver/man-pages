@@ -15,7 +15,7 @@ _UNITS_ex_o := $(patsubst %.c,%.o,$(_UNITS_ex_c))
 
 
 $(_UNITS_ex_o): %.o: %.c $(MK)
-	$(info	CC		$@)
+	$(info	$(INFO_)CC		$@)
 	$(CC) -c $(CPPFLAGS) $(CFLAGS) -o $@ $<
 
 

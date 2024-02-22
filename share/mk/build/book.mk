@@ -22,7 +22,7 @@ _LMB     := $(_MANDIR)/man-pages.pdf
 
 
 $(_LMB): $(MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
-	$(info	Build		$@)
+	$(info	$(INFO_)Build		$@)
 	$(BUILDLMB) $(MANDIR) \
 	| $(SPONGE) $@
 

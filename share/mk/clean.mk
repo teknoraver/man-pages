@@ -13,11 +13,11 @@ include $(MAKEFILEDIR)/dist/check/tar.mk
 
 .PHONY: clean
 clean:
-	$(info	RM -rf		$(builddir))
+	$(info	$(INFO_)RM -rf		$(builddir))
 	$(RM) -rf $(builddir)
-	$(info	RM -rf		$(TMPDIR1))
+	$(info	$(INFO_)RM -rf		$(TMPDIR1))
 	$(RM) -rf $(TMPDIR1)
-	$(info	RM -rf		$(TMPDIR2))
+	$(info	$(INFO_)RM -rf		$(TMPDIR2))
 	$(RM) -rf $(TMPDIR2)
 
 

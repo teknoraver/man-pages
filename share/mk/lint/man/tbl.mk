@@ -14,7 +14,7 @@ include $(MAKEFILEDIR)/lint/man/_.mk
 
 
 $(_LINT_man_tbl): $(_MANDIR)/%.lint-man.tbl.touch: $(MANDIR)/% $(MK) | $$(@D)/
-	$(info	GREP		$@)
+	$(info	$(INFO_)GREP		$@)
 	if $(GREP) -q '^\.TS$$' $< && ! $(HEAD) -n1 $< | $(GREP) -q '\\" t$$'; \
 	then \
 		>&2 $(ECHO) "$<:1: missing '\\\" t' comment:"; \

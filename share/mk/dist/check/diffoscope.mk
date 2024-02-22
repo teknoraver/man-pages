@@ -14,7 +14,7 @@ include $(MAKEFILEDIR)/dist/tar.mk
 
 
 $(builddir)/distcheck.diffoscope.touch: $(DISTFILE) $(REDIST) | $$(@D)/
-	$(info	DIFFOSCOPE	$^)
+	$(info	$(INFO_)DIFFOSCOPE	$^)
 	$(DIFFOSCOPE) $^
 	$(TOUCH) $@
 

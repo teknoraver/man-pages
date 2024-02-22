@@ -30,14 +30,14 @@ _DISTOTHERS := $(filter-out $(_DISTPAGES) $(_DISTVERSION), $(_DISTFILES))
 
 
 $(_DISTPAGES): $(_DISTDIR)/man%: $(srcdir)/man% $(MK) | $$(@D)/
-	$(info	INSTALL		$@)
+	$(info	$(INFO_)INSTALL		$@)
 	<$< \
 	$(SED) "/^.TH/s/(date)/$$($(GIT) log --format=%cs -1 -- $< $(HIDE_ERR))/" \
 	| $(SED) '/^.TH/s/(unreleased)/$(DISTVERSION)/' \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 
 $(_DISTVERSION): $(MAKEFILEDIR)/configure/version.mk $(DISTFILES) | $$(@D)/
-	$(info	SED		$@)
+	$(info	$(INFO_)SED		$@)
 	<$< \
 	$(SED) 's/^DISTVERSION *:=.*/DISTVERSION := $(DISTVERSION)/' \
 	| $(SED) 's/^DISTNAME *:=.*/DISTNAME := $(DISTNAME)/' \
@@ -45,7 +45,7 @@ $(_DISTVERSION): $(MAKEFILEDIR)/configure/version.mk $(DISTFILES) | $$(@D)/
 	| $(INSTALL_DATA) -T /dev/stdin $@
 
 $(_DISTOTHERS): $(_DISTDIR)/%: $(srcdir)/% $(MK) | $$(@D)/
-	$(info	CP		$@)
+	$(info	$(INFO_)CP		$@)
 	$(CP) -T $< $@
 
 

@@ -12,7 +12,7 @@ include $(MAKEFILEDIR)/lint/_.mk
 
 
 $(_LINT_c_cppcheck): %.lint-c.cppcheck.touch: %.c $(MK)
-	$(info	CPPCHECK	$@)
+	$(info	$(INFO_)CPPCHECK	$@)
 	$(CPPCHECK) $(CPPCHECKFLAGS) $<
 	$(TOUCH) $@
 

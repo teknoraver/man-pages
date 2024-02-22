@@ -14,7 +14,7 @@ _MAN_eqn := $(patsubst %.tbl,%.eqn,$(_MAN_tbl))
 
 
 $(_MAN_eqn): %.eqn: %.tbl $(MK) | $$(@D)/
-	$(info	TBL		$@)
+	$(info	$(INFO_)TBL		$@)
 	$(TBL) <$< >$@
 
 

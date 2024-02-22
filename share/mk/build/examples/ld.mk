@@ -14,7 +14,7 @@ _UNITS_ex_bin := $(patsubst %.o,%,$(_UNITS_ex_o))
 
 
 $(_UNITS_ex_bin): %: %.o $(MK)
-	$(info	LD		$@)
+	$(info	$(INFO_)LD		$@)
 	$(LD) $(LDFLAGS) -o $@ $< $(LDLIBS)
 
 

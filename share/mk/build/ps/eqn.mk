@@ -15,7 +15,7 @@ _PSMAN_troff := $(patsubst %.eqn,%.ps.troff,$(_MAN_eqn))
 
 
 $(_PSMAN_troff): %.ps.troff: %.eqn $(MK) | $$(@D)/
-	$(info	EQN		$@)
+	$(info	$(INFO_)EQN		$@)
 	! ($(EQN) -Tps $(EQNFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 

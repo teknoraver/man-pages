@@ -17,11 +17,11 @@ TMPDIR2 := $(shell $(MKTEMP) -d)
 
 
 $(TMPDIR1)/$(DISTNAME).tar: $(DISTFILE) | $$(@D)/
-	$(info	CP		$@)
+	$(info	$(INFO_)CP		$@)
 	$(CP) $< $@
 
 $(TMPDIR1)/$(DISTNAME): %: %.tar | $$(@D)/
-	$(info	TAR xf		$<)
+	$(info	$(INFO_)TAR xf		$<)
 	cd $(dir $<) \
 	&& $(TAR) xf $<
 	$(TOUCH) $@

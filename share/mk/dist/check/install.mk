@@ -14,9 +14,9 @@ include $(MAKEFILEDIR)/dist/check/tar.mk
 
 
 $(builddir)/distcheck.install.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
-	$(info	MAKE		install)
+	$(info	$(INFO_)MAKE		install)
 	$(MAKE) -C $< install DESTDIR=$(TMPDIR2) \
-	| $(SED)   's,^,MAKE install:		,'
+		'INFO_= install:		'
 	$(TOUCH) $@
 
 

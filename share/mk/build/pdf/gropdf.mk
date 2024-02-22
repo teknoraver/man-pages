@@ -14,7 +14,7 @@ _PDFMAN := $(patsubst %.pdf.set,%.pdf,$(_PDFMAN_MAN_set) $(_PDFMAN_MDOC_set))
 
 
 $(_PDFMAN): %.pdf: %.pdf.set $(MK) | $$(@D)/
-	$(info	GROPDF		$@)
+	$(info	$(INFO_)GROPDF		$@)
 	$(GROPDF) $(GROPDFFLAGS) <$< >$@
 
 

@@ -12,7 +12,7 @@ include $(MAKEFILEDIR)/lint/_.mk
 
 
 $(_LINT_c_cpplint): %.lint-c.cpplint.touch: %.c $(MK)
-	$(info	CPPLINT		$@)
+	$(info	$(INFO_)CPPLINT		$@)
 	$(CPPLINT) $(CPPLINTFLAGS) $< >/dev/null
 	$(TOUCH) $@
 

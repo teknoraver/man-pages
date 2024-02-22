@@ -26,20 +26,20 @@ DISTCHECK_IGNORE_LINT_MAN := \
 
 
 $(builddir)/distcheck.lint-man.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
-	$(info	MAKE		lint-man)
-	$(MAKE) -C $< -k lint-man $(HIDE_ERR) \
-	| $(SED)   's,^,MAKE lint-man -k:	,' \
+	$(info	$(INFO_)MAKE		lint-man)
+	$(MAKE) -C $< -k lint-man \
+		'INFO_= lint-man -k:		' $(HIDE_ERR) \
 	|| $(TRUE)
-	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_LINT_MAN) $(HIDE_ERR) \
-	| $(SED)   's,^,MAKE lint-man -i:	,'
+	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_LINT_MAN) \
+		'INFO_= lint-man -i:		' $(HIDE_ERR)
 	$(MAKE) -C $< lint-man \
-	| $(SED)   's,^,MAKE lint-man:		,'
+		'INFO_= lint-man:		'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.lint-mdoc.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
-	$(info	MAKE		lint-mdoc)
+	$(info	$(INFO_)MAKE		lint-mdoc)
 	$(MAKE) -C $< lint-mdoc \
-	| $(SED)   's,^,MAKE lint-mdoc:		,'
+		'INFO_= lint-mdoc:		'
 	$(TOUCH) $@
 
 

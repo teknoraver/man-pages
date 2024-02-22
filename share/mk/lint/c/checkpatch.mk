@@ -12,7 +12,7 @@ include $(MAKEFILEDIR)/lint/_.mk
 
 
 $(_LINT_c_checkpatch): %.lint-c.checkpatch.touch: %.c $(MK)
-	$(info	CHECKPATCH	$@)
+	$(info	$(INFO_)CHECKPATCH	$@)
 	$(CHECKPATCH) $(CHECKPATCHFLAGS) -f $< >&2
 	$(TOUCH) $@
 

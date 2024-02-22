@@ -16,7 +16,7 @@ _MAN_tbl := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.tbl,$(NONSO_MAN) $(NONSO_MDOC))
 
 
 $(_MAN_tbl): $(_MANDIR)/%.tbl: $(MANDIR)/% $(MK) | $$(@D)/
-	$(info	PRECONV		$@)
+	$(info	$(INFO_)PRECONV		$@)
 	$(PRECONV) $(PRECONVFLAGS) $< >$@
 
 

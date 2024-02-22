@@ -14,7 +14,7 @@ _DISTDIR := $(builddir)/dist
 
 
 $(builddir)/dist/%/:
-	+$(info	MKDIR		$@)
+	+$(info	$(INFO_)MKDIR		$@)
 	+$(INSTALL_DIR) $@
 
 

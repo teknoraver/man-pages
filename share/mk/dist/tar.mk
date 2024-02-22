@@ -19,7 +19,7 @@ DISTFILE := $(builddir)/$(DISTNAME).tar
 
 
 $(DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
-	$(info	TAR		$@)
+	$(info	$(INFO_)TAR		$@)
 	$(TAR) $(TARFLAGS) -cf $@ -T /dev/null
 	$(DISTFILESCMD) \
 	| $(SED) 's,^$(srcdir)/,$(_DISTDIR)/,' \

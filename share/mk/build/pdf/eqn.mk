@@ -15,7 +15,7 @@ _PDFMAN_troff := $(patsubst %.eqn,%.pdf.troff,$(_MAN_eqn))
 
 
 $(_PDFMAN_troff): %.pdf.troff: %.eqn $(MK) | $$(@D)/
-	$(info	EQN		$@)
+	$(info	$(INFO_)EQN		$@)
 	! ($(EQN) -Tpdf $(EQNFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 

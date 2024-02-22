@@ -15,7 +15,7 @@ _CATMAN_troff := $(patsubst %.eqn,%.cat.troff,$(_MAN_eqn))
 
 
 $(_CATMAN_troff): %.cat.troff: %.eqn $(MK) | $$(@D)/
-	$(info	EQN		$@)
+	$(info	$(INFO_)EQN		$@)
 	! ($(EQN) -T$(NROFF_OUT_DEVICE) $(EQNFLAGS) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 

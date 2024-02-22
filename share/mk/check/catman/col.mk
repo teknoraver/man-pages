@@ -14,7 +14,7 @@ _CHECK_catman_grep := $(patsubst %.cat,%.cat.grep,$(_CATMAN))
 
 
 $(_CHECK_catman_grep): %.grep: % $(MK) | $$(@D)/
-	$(info	COL		$@)
+	$(info	$(INFO_)COL		$@)
 	$(COL) $(COLFLAGS) <$< >$@
 
 

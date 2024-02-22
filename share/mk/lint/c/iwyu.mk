@@ -16,7 +16,7 @@ include $(MAKEFILEDIR)/lint/_.mk
 
 
 $(_LINT_c_iwyu): %.lint-c.iwyu.touch: %.c $(MK)
-	$(info	IWYU		$@)
+	$(info	$(INFO_)IWYU		$@)
 	! ($(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CLANGFLAGS) $< 2>&1 \
 	   | $(SED) -n '/should add these lines:/,$$p' \
 	   | $(TAC) \

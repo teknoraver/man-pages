@@ -14,7 +14,7 @@ _PSMAN := $(patsubst %.ps.set,%.ps,$(_PSMAN_MAN_set) $(_PSMAN_MDOC_set))
 
 
 $(_PSMAN): %.ps: %.ps.set $(MK) | $$(@D)/
-	$(info	GROPS		$@)
+	$(info	$(INFO_)GROPS		$@)
 	$(GROPS) $(GROPSFLAGS) <$< >$@
 
 

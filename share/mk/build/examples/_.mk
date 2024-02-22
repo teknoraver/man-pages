@@ -16,7 +16,7 @@ _PAGEEXDIRS := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.d/,$(NONSO_MAN))
 
 
 $(_PAGEEXDIRS):
-	+$(info	MKDIR		$@)
+	+$(info	$(INFO_)MKDIR		$@)
 	+$(MKDIR) -p $@
 	+$(TOUCH) $@
 
