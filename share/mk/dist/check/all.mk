@@ -20,7 +20,7 @@ $(builddir)/distcheck.all.touch: \
 	$(builddir)/distcheck.build-book.touch \
 	$(builddir)/distcheck.lint-man.touch \
 	$(builddir)/distcheck.lint-mdoc.touch
-$(builddir)/distcheck.all.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.all.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	#$(info	$(INFO_)MAKE		all)
 	#$(MAKE) -C $< all \
 	#	'INFO_= all:			' builddir=$(_DISTCHECKBUILDDIR)

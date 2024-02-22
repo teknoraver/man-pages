@@ -25,7 +25,7 @@ DISTCHECK_IGNORE_LINT_MAN := \
 	$(_DISTCHECK_MANDIR)/man8/zic.8.lint-man.mandoc.touch
 
 
-$(builddir)/distcheck.lint-man.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.lint-man.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		lint-man)
 	$(MAKE) -C $< -k lint-man \
 		'INFO_= lint-man -k:		' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR) \
@@ -36,7 +36,7 @@ $(builddir)/distcheck.lint-man.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
 		'INFO_= lint-man:		' builddir=$(_DISTCHECKBUILDDIR)
 	$(TOUCH) $@
 
-$(builddir)/distcheck.lint-mdoc.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.lint-mdoc.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		lint-mdoc)
 	$(MAKE) -C $< lint-mdoc \
 		'INFO_= lint-mdoc:		' builddir=$(_DISTCHECKBUILDDIR)

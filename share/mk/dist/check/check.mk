@@ -85,7 +85,7 @@ DISTCHECK_IGNORE_CHECK_CATMAN := \
 
 $(builddir)/distcheck.check-catman.touch: \
 	$(builddir)/distcheck.build-catman.touch
-$(builddir)/distcheck.check-catman.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.check-catman.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		check-catman)
 	$(MAKE) -C $< -k check-catman \
 		'INFO_= check-catman -k:	' builddir=$(_DISTCHECKBUILDDIR) $(HIDE_ERR) \
@@ -98,7 +98,7 @@ $(builddir)/distcheck.check-catman.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
 
 $(builddir)/distcheck.check.touch: \
 	$(builddir)/distcheck.check-catman.touch
-$(builddir)/distcheck.check.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.check.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		check)
 	$(MAKE) -C $< check \
 		'INFO_= check:			' builddir=$(_DISTCHECKBUILDDIR)

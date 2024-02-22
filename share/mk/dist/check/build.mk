@@ -170,14 +170,14 @@ DISTCHECK_IGNORE_BUILD_PDF := \
 	$(_DISTCHECK_MANDIR)/man7/vdso.7.pdf.set
 
 
-$(builddir)/distcheck.build-pre.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.build-pre.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		build-pre)
 	$(MAKE) -C $< build-pre \
 		'INFO_= build-pre:		' builddir=$(_DISTCHECKBUILDDIR)
 	$(TOUCH) $@
 
 $(builddir)/distcheck.build-catman.touch: $(builddir)/distcheck.build-pre.touch
-$(builddir)/distcheck.build-catman.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.build-catman.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		build-catman)
 	$(MAKE) -C $< -k build-catman \
 		'INFO_= build-catman -k:	' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR) \
@@ -189,7 +189,7 @@ $(builddir)/distcheck.build-catman.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
 	$(TOUCH) $@
 
 $(builddir)/distcheck.build-ps.touch: $(builddir)/distcheck.build-pre.touch
-$(builddir)/distcheck.build-ps.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.build-ps.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		build-ps)
 	$(MAKE) -C $< -k build-ps \
 		'INFO_= build-ps -k:		' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR) \
@@ -201,7 +201,7 @@ $(builddir)/distcheck.build-ps.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
 	$(TOUCH) $@
 
 $(builddir)/distcheck.build-pdf.touch: $(builddir)/distcheck.build-pre.touch
-$(builddir)/distcheck.build-pdf.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.build-pdf.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		build-pdf)
 	$(MAKE) -C $< -k build-pdf \
 		'INFO_= build-pdf -k:		' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR) \
@@ -212,13 +212,13 @@ $(builddir)/distcheck.build-pdf.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
 		'INFO_= build-pdf:		' builddir=$(_DISTCHECKBUILDDIR)
 	$(TOUCH) $@
 
-$(builddir)/distcheck.build-html.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.build-html.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		build-html)
 	$(MAKE) -C $< build-html \
 		'INFO_= build-html:		' builddir=$(_DISTCHECKBUILDDIR)
 	$(TOUCH) $@
 
-$(builddir)/distcheck.build-book.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.build-book.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		build-book)
 	$(MAKE) -C $< -k build-book \
 		'INFO_= build-book -k:		' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR) \

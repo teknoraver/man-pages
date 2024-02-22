@@ -13,7 +13,7 @@ include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/dist/check/_.mk
 
 
-$(builddir)/distcheck.install.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.install.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		install)
 	$(MAKE) -C $< install 'DESTDIR=$(_DISTCHECKDESTDIR)' \
 		'INFO_= install:		' builddir=$(_DISTCHECKBUILDDIR)

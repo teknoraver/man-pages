@@ -13,11 +13,11 @@ include $(MAKEFILEDIR)/dist/check/_.mk
 include $(MAKEFILEDIR)/dist/tar.mk
 
 
-$(_DISTCHECKDIR)/$(DISTNAME).tar: $(DISTFILE) | $$(@D)/
+$(_DISTCHECKDIR)/$(DISTNAME).tar: $(DISTFILE) $(MK) | $$(@D)/
 	$(info	$(INFO_)CP		$@)
 	$(CP) $< $@
 
-$(_DISTCHECKSRCDIR): %: %.tar | $$(@D)/
+$(_DISTCHECKSRCDIR): %: %.tar $(MK) | $$(@D)/
 	$(info	$(INFO_)TAR xf		$<)
 	cd $(dir $<) \
 	&& $(TAR) xf $(notdir $<)

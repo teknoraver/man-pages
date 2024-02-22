@@ -15,7 +15,7 @@ include $(MAKEFILEDIR)/dist/check/tar.mk
 REDIST := $(_DISTCHECKBUILDDIR)/$(DISTNAME).tar
 
 
-$(REDIST): $(_DISTCHECKSRCDIR) | $$(@D)/
+$(REDIST): $(_DISTCHECKSRCDIR) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		dist)
 	$(MAKE) -C $< dist \
 		'INFO_= dist:			' builddir=$(_DISTCHECKBUILDDIR)
