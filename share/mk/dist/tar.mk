@@ -24,7 +24,7 @@ $(DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
 	$(DISTFILESCMD) \
 	| $(SED) 's,^$(srcdir)/,$(_DISTDIR)/,' \
 	| $(XARGS) $(TAR) $(TARFLAGS) -rf $@ -C $(srcdir) \
-		--transform 's,^$(_DISTDIR),$(DISTNAME),'
+		--transform 's,^$(patsubst /%,%,$(_DISTDIR)),$(DISTNAME),'
 
 
 .PHONY: dist-tar

@@ -9,15 +9,16 @@ MAKEFILE_DIST_CHECK_DIST_INCLUDED := 1
 include $(MAKEFILEDIR)/configure/build-depends/sed.mk
 include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/dist/check/_.mk
+include $(MAKEFILEDIR)/dist/check/tar.mk
 
 
-REDIST := $(_DISTCHECKDIR)/$(DISTNAME)/.tmp/$(DISTNAME).tar
+REDIST := $(_DISTCHECKBUILDDIR)/$(DISTNAME).tar
 
 
-$(REDIST): %/.tmp/$(DISTNAME).tar: % | $$(@D)/
+$(REDIST): $(_DISTCHECKSRCDIR) | $$(@D)/
 	$(info	$(INFO_)MAKE		dist)
 	$(MAKE) -C $< dist \
-		'INFO_= dist:			'
+		'INFO_= dist:			' builddir=$(_DISTCHECKBUILDDIR)
 
 
 endif  # include guard

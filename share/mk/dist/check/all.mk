@@ -23,7 +23,7 @@ $(builddir)/distcheck.all.touch: \
 $(builddir)/distcheck.all.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
 	#$(info	$(INFO_)MAKE		all)
 	#$(MAKE) -C $< all \
-	#	'INFO_= all:			'
+	#	'INFO_= all:			' builddir=$(_DISTCHECKBUILDDIR)
 	$(TOUCH) $@
 
 

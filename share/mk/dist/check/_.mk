@@ -6,10 +6,15 @@ ifndef MAKEFILE_DIST_CHECK_INCLUDED
 MAKEFILE_DIST_CHECK_INCLUDED := 1
 
 
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 include $(MAKEFILEDIR)/configure/directory_variables.mk
 
 
-_DISTCHECKDIR := $(builddir)/distcheck
+_DISTCHECKDIR      := $(shell $(REALPATH) -m $(builddir)/distcheck)
+_DISTCHECKSRCDIR   := $(_DISTCHECKDIR)/$(DISTNAME)
+_DISTCHECKBUILDDIR := $(_DISTCHECKDIR)/$(DISTNAME)_builddir
+_DISTCHECKDESTDIR  := $(_DISTCHECKDIR)/$(DISTNAME)_destdir
+_DISTCHECK_MANDIR  := $(_DISTCHECKBUILDDIR)/man
 
 
 .PHONY: distcheck

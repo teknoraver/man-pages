@@ -6,20 +6,21 @@ ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_COREUTILS_INCLUDED
 MAKEFILE_CONFIGURE_BUILD_DEPENDS_COREUTILS_INCLUDED := 1
 
 
-CP      := cp
-ECHO    := echo
-EXPR    := expr
-HEAD    := head
-INSTALL := install
-LN      := ln
-MKDIR   := mkdir
-RM      := rm
-SORT    := sort
-TAC     := tac
-TAIL    := tail
-TEST    := test
-TOUCH   := touch
-TRUE    := true
+CP       := cp
+ECHO     := echo
+EXPR     := expr
+HEAD     := head
+INSTALL  := install
+LN       := ln
+MKDIR    := mkdir
+REALPATH := realpath
+RM       := rm
+SORT     := sort
+TAC      := tac
+TAIL     := tail
+TEST     := test
+TOUCH    := touch
+TRUE     := true
 
 
 INSTALL_DATA    := $(INSTALL) -m 644

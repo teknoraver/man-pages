@@ -17,7 +17,7 @@ $(_DISTCHECKDIR)/$(DISTNAME).tar: $(DISTFILE) | $$(@D)/
 	$(info	$(INFO_)CP		$@)
 	$(CP) $< $@
 
-$(_DISTCHECKDIR)/$(DISTNAME): %: %.tar | $$(@D)/
+$(_DISTCHECKSRCDIR): %: %.tar | $$(@D)/
 	$(info	$(INFO_)TAR xf		$<)
 	cd $(dir $<) \
 	&& $(TAR) xf $(notdir $<)
