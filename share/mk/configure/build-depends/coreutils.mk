@@ -13,7 +13,6 @@ HEAD    := head
 INSTALL := install
 LN      := ln
 MKDIR   := mkdir
-MKTEMP  := mktemp
 RM      := rm
 SORT    := sort
 TAC     := tac

@@ -9,6 +9,9 @@ MAKEFILE_DIST_CHECK_INCLUDED := 1
 include $(MAKEFILEDIR)/configure/directory_variables.mk
 
 
+_DISTCHECKDIR := $(builddir)/distcheck
+
+
 .PHONY: distcheck
 distcheck: \
 	$(builddir)/distcheck.all.touch \

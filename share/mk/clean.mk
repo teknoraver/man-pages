@@ -8,17 +8,12 @@ MAKEFILE_CLEAN_INCLUDED := 1
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 include $(MAKEFILEDIR)/configure/directory_variables.mk
-include $(MAKEFILEDIR)/dist/check/tar.mk
 
 
 .PHONY: clean
 clean:
 	$(info	$(INFO_)RM -rf		$(builddir))
 	$(RM) -rf $(builddir)
-	$(info	$(INFO_)RM -rf		$(TMPDIR1))
-	$(RM) -rf $(TMPDIR1)
-	$(info	$(INFO_)RM -rf		$(TMPDIR2))
-	$(RM) -rf $(TMPDIR2)
 
 
 endif  # include guard

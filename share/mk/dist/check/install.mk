@@ -10,12 +10,15 @@ include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed.mk
 include $(MAKEFILEDIR)/configure/directory_variables.mk
 include $(MAKEFILEDIR)/configure/version.mk
-include $(MAKEFILEDIR)/dist/check/tar.mk
+include $(MAKEFILEDIR)/dist/check/_.mk
 
 
-$(builddir)/distcheck.install.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
+_DESTDIR := $(builddir)/destdir
+
+
+$(builddir)/distcheck.install.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
 	$(info	$(INFO_)MAKE		install)
-	$(MAKE) -C $< install DESTDIR=$(TMPDIR2) \
+	$(MAKE) -C $< install DESTDIR=$(_DESTDIR) \
 		'INFO_= install:		'
 	$(TOUCH) $@
 

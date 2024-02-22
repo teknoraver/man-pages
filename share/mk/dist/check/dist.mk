@@ -8,10 +8,10 @@ MAKEFILE_DIST_CHECK_DIST_INCLUDED := 1
 
 include $(MAKEFILEDIR)/configure/build-depends/sed.mk
 include $(MAKEFILEDIR)/configure/version.mk
-include $(MAKEFILEDIR)/dist/check/tar.mk
+include $(MAKEFILEDIR)/dist/check/_.mk
 
 
-REDIST  := $(TMPDIR1)/$(DISTNAME)/.tmp/$(DISTNAME).tar
+REDIST := $(_DISTCHECKDIR)/$(DISTNAME)/.tmp/$(DISTNAME).tar
 
 
 $(REDIST): %/.tmp/$(DISTNAME).tar: % | $$(@D)/

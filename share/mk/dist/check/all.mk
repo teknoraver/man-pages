@@ -9,7 +9,7 @@ MAKEFILE_DIST_CHECK_ALL_INCLUDED := 1
 include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 include $(MAKEFILEDIR)/configure/directory_variables.mk
 include $(MAKEFILEDIR)/configure/version.mk
-include $(MAKEFILEDIR)/dist/check/tar.mk
+include $(MAKEFILEDIR)/dist/check/_.mk
 
 
 $(builddir)/distcheck.all.touch: \
@@ -20,7 +20,7 @@ $(builddir)/distcheck.all.touch: \
 	$(builddir)/distcheck.build-book.touch \
 	$(builddir)/distcheck.lint-man.touch \
 	$(builddir)/distcheck.lint-mdoc.touch
-$(builddir)/distcheck.all.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.all.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
 	#$(info	$(INFO_)MAKE		all)
 	#$(MAKE) -C $< all \
 	#	'INFO_= all:			'

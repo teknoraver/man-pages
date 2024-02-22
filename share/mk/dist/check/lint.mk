@@ -12,7 +12,7 @@ include $(MAKEFILEDIR)/configure/build-depends/sed.mk
 include $(MAKEFILEDIR)/configure/directory_variables.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 include $(MAKEFILEDIR)/configure/version.mk
-include $(MAKEFILEDIR)/dist/check/tar.mk
+include $(MAKEFILEDIR)/dist/check/_.mk
 
 
 DISTCHECK_IGNORE_LINT_MAN := \
@@ -25,7 +25,7 @@ DISTCHECK_IGNORE_LINT_MAN := \
 	$(_MANDIR)/man8/zic.8.lint-man.mandoc.touch
 
 
-$(builddir)/distcheck.lint-man.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.lint-man.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
 	$(info	$(INFO_)MAKE		lint-man)
 	$(MAKE) -C $< -k lint-man \
 		'INFO_= lint-man -k:		' $(HIDE_ERR) \
@@ -36,7 +36,7 @@ $(builddir)/distcheck.lint-man.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
 		'INFO_= lint-man:		'
 	$(TOUCH) $@
 
-$(builddir)/distcheck.lint-mdoc.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.lint-mdoc.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
 	$(info	$(INFO_)MAKE		lint-mdoc)
 	$(MAKE) -C $< lint-mdoc \
 		'INFO_= lint-mdoc:		'

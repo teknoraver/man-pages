@@ -11,7 +11,7 @@ include $(MAKEFILEDIR)/configure/build-depends/tar.mk
 include $(MAKEFILEDIR)/configure/directory_variables.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 include $(MAKEFILEDIR)/configure/version.mk
-include $(MAKEFILEDIR)/dist/check/tar.mk
+include $(MAKEFILEDIR)/dist/check/_.mk
 
 
 DISTCHECK_IGNORE_CHECK_CATMAN := \
@@ -85,12 +85,12 @@ DISTCHECK_IGNORE_CHECK_CATMAN := \
 
 $(builddir)/distcheck.check-catman.touch: \
 	$(builddir)/distcheck.build-catman.touch
-$(builddir)/distcheck.check-catman.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.check-catman.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
 	$(info	$(INFO_)MAKE		check-catman)
-	$(MAKE) -C $< -k check-catman $(HIDE_ERR) \
+	$(MAKE) -C $< -k check-catman \
 		'INFO_= check-catman -k:	' $(HIDE_ERR) \
 	|| $(TRUE)
-	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_CHECK_CATMAN) $(HIDE_ERR) \
+	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_CHECK_CATMAN) \
 		'INFO_= check-catman -i:	' $(HIDE_ERR)
 	$(MAKE) -C $< check-catman \
 		'INFO_= check-catman:		'
@@ -98,7 +98,7 @@ $(builddir)/distcheck.check-catman.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
 
 $(builddir)/distcheck.check.touch: \
 	$(builddir)/distcheck.check-catman.touch
-$(builddir)/distcheck.check.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
+$(builddir)/distcheck.check.touch: $(_DISTCHECKDIR)/$(DISTNAME) | $$(@D)/
 	$(info	$(INFO_)MAKE		check)
 	$(MAKE) -C $< check \
 		'INFO_= check:			'
