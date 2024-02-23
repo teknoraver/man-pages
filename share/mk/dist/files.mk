@@ -46,7 +46,7 @@ $(_DISTVERSION): $(MAKEFILEDIR)/configure/version.mk $(DISTFILES) | $$(@D)/
 
 $(_DISTOTHERS): $(_DISTDIR)/%: $(srcdir)/% $(MK) | $$(@D)/
 	$(info	$(INFO_)CP		$@)
-	$(CP) -T $< $@
+	$(CP) -dT $< $@
 
 
 endif  # include guard
