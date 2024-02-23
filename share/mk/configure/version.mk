@@ -12,7 +12,7 @@ include $(MAKEFILEDIR)/configure/build-depends/git.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 
 
-DISTNAME    := $(shell $(GIT) describe $(HIDE_ERR))
+DISTNAME    := $(shell $(GIT) describe)
 DISTVERSION := $(patsubst man-pages-%,%,$(DISTNAME))
 DISTDATE    := $(shell $(GIT) log -1 --format='%aD')
 
