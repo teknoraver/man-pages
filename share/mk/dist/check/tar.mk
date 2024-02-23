@@ -15,7 +15,7 @@ include $(MAKEFILEDIR)/dist/tar.mk
 
 $(_DISTCHECKDIR)/$(DISTNAME).tar: $(DISTFILE) $(MK) | $$(@D)/
 	$(info	$(INFO_)CP		$@)
-	$(CP) $< $@
+	$(CP) -T $< $@
 
 $(_DISTCHECKSRCDIR): %: %.tar $(MK) | $$(@D)/
 	$(info	$(INFO_)TAR xf		$<)
