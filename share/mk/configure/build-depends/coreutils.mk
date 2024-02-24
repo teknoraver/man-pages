@@ -16,6 +16,7 @@ MKDIR    := mkdir
 REALPATH := realpath
 RM       := rm
 SORT     := sort
+STAT     := stat
 TAC      := tac
 TAIL     := tail
 TEST     := test

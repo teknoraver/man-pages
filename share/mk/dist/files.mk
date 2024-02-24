@@ -14,14 +14,6 @@ include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/dist/_.mk
 
 
-DISTFILESCMD := \
-	$(FIND) $(srcdir) -not -type d \
-	| $(GREP) -v "^$(srcdir)/.git$$" \
-	| $(GREP) -v "^$(srcdir)/.tmp/" \
-	| $(GREP) -v "^$(srcdir)/.checkpatch-camelcase." \
-	| $(SORT)
-
-
 DISTFILES   := $(shell $(DISTFILESCMD) | $(SED) 's,:,\\:,g')
 _DISTFILES  := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))
 _DISTPAGES  := $(filter     $(_DISTDIR)/man%,$(_DISTFILES))
