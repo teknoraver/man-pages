@@ -21,6 +21,22 @@ _DISTVERSION:= $(_DISTDIR)/share/mk/configure/version.mk
 _DISTOTHERS := $(filter-out $(_DISTPAGES) $(_DISTVERSION), $(_DISTFILES))
 
 
+FORCE_DISTVERSION := \
+	$(shell \
+		if $(TEST) -f $(_DISTVERSION); then \
+			<$(_DISTVERSION) \
+			$(GREP) \
+				-e '^DISTVERSION :=' \
+				-e '^DISTNAME :=' \
+				-e '^DISTDATE :=' \
+			| $(GREP) -v '^DISTVERSION := $(DISTVERSION)$$' \
+			| $(GREP) -v '^DISTNAME := $(DISTNAME)$$' \
+			| $(GREP) -v '^DISTDATE := $(DISTDATE)$$' $(HIDE_ERR) >&2 \
+			&& $(ECHO) FORCE; \
+		fi; \
+	)
+
+
 $(_DISTPAGES): $(_DISTDIR)/man%: $(srcdir)/man% $(MK) | $$(@D)/
 	$(info	$(INFO_)INSTALL		$@)
 	<$< \
@@ -28,7 +44,7 @@ $(_DISTPAGES): $(_DISTDIR)/man%: $(srcdir)/man% $(MK) | $$(@D)/
 	| $(SED) '/^.TH/s/(unreleased)/$(DISTVERSION)/' \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 
-$(_DISTVERSION): $(MAKEFILEDIR)/configure/version.mk $(DISTFILES) | $$(@D)/
+$(_DISTVERSION): $(MAKEFILEDIR)/configure/version.mk $(MK) $(FORCE_DISTVERSION) | $$(@D)/
 	$(info	$(INFO_)SED		$@)
 	<$< \
 	$(SED) 's/^DISTVERSION *:=.*/DISTVERSION := $(DISTVERSION)/' \
