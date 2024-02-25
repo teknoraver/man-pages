@@ -1026,7 +1026,15 @@ POSIX.1-2001 added
 .BR SA_RESETHAND ,
 .BR SA_RESTART ,
 and
-.BR SA_SIGINFO .
+.B SA_SIGINFO
+as XSI extensions.
+POSIX.1-2008 moved
+.BR SA_NODEFER ,
+.BR SA_RESETHAND ,
+.BR SA_RESTART ,
+and
+.B SA_SIGINFO
+to the base specifications.
 Use of these latter values in
 .I sa_flags
 may be less portable in applications intended for older
