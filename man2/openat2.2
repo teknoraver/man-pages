@@ -374,7 +374,7 @@ in the kernel's lookup cache.
 If any kind of revalidation or I/O is needed to satisfy the lookup,
 .BR openat2 ()
 fails with the error
-.B EAGAIN .
+.BR EAGAIN .
 This is useful in providing a fast-path open that can be performed without
 resorting to thread offload, or other mechanisms that an application might
 use to offload slower operations.
@@ -421,7 +421,7 @@ information.
 The caller should retry without
 .B RESOLVE_CACHED
 set in
-.I how.resolve .
+.IR how.resolve .
 .TP
 .B EINVAL
 An unknown flag or invalid value was specified in
