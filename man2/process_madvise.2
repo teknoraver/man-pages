@@ -15,8 +15,8 @@ Standard C library
 .nf
 .B #include <sys/mman.h>
 .P
-.BI "ssize_t process_madvise(int " pidfd ", const struct iovec *" iovec ,
-.BI "                        size_t " vlen ", int " advice \
+.BI "ssize_t process_madvise(int " pidfd ", const struct iovec " iovec [. n ],
+.BI "                        size_t " n ", int " advice \
 ", unsigned int " flags );
 .fi
 .SH DESCRIPTION
@@ -27,7 +27,7 @@ address ranges of another process or of the calling process.
 It provides the advice for the address ranges described by
 .I iovec
 and
-.IR vlen .
+.IR n .
 The goal of such advice is to improve system or application performance.
 .P
 The
@@ -43,7 +43,7 @@ points to an array of
 structures, described in
 .BR iovec (3type).
 .P
-.I vlen
+.I n
 specifies the number of elements in the array of
 .I iovec
 structures.
@@ -80,12 +80,12 @@ argument is reserved for future use; currently, this argument must be
 specified as 0.
 .P
 The
-.I vlen
+.I n
 and
 .I iovec
 arguments are checked before applying any advice.
 If
-.I vlen
+.I n
 is too big, or
 .I iovec
 is invalid,
@@ -152,7 +152,7 @@ overflows a
 value.
 .TP
 .B EINVAL
-.I vlen
+.I n
 is too large.
 .TP
 .B ENOMEM
