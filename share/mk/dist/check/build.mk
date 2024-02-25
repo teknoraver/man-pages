@@ -16,6 +16,8 @@ include $(MAKEFILEDIR)/dist/tar.mk
 
 
 DISTCHECK_IGNORE_BUILD_CATMAN := \
+	$(_DISTCHECK_MANDIR)/man2/fanotify_init.2.cat \
+	$(_DISTCHECK_MANDIR)/man2/fanotify_init.2.cat.set \
 	$(_DISTCHECK_MANDIR)/man3/unlocked_stdio.3.cat \
 	$(_DISTCHECK_MANDIR)/man3/unlocked_stdio.3.cat.set \
 	$(_DISTCHECK_MANDIR)/man4/console_codes.4.cat \
@@ -72,6 +74,8 @@ DISTCHECK_IGNORE_BUILD_CATMAN := \
 DISTCHECK_IGNORE_BUILD_PS := \
 	$(_DISTCHECK_MANDIR)/man1/iconv.1.ps \
 	$(_DISTCHECK_MANDIR)/man1/iconv.1.ps.set \
+	$(_DISTCHECK_MANDIR)/man2/fanotify_init.2.ps \
+	$(_DISTCHECK_MANDIR)/man2/fanotify_init.2.ps.set \
 	$(_DISTCHECK_MANDIR)/man2/syscall.2.ps \
 	$(_DISTCHECK_MANDIR)/man2/syscall.2.ps.set \
 	$(_DISTCHECK_MANDIR)/man3/newlocale.3.ps \
@@ -122,6 +126,8 @@ DISTCHECK_IGNORE_BUILD_PS := \
 DISTCHECK_IGNORE_BUILD_PDF := \
 	$(_DISTCHECK_MANDIR)/man1/iconv.1.pdf \
 	$(_DISTCHECK_MANDIR)/man1/iconv.1.pdf.set \
+	$(_DISTCHECK_MANDIR)/man2/fanotify_init.2.pdf \
+	$(_DISTCHECK_MANDIR)/man2/fanotify_init.2.pdf.set \
 	$(_DISTCHECK_MANDIR)/man2/syscall.2.pdf \
 	$(_DISTCHECK_MANDIR)/man2/syscall.2.pdf.set \
 	$(_DISTCHECK_MANDIR)/man3/newlocale.3.pdf \
