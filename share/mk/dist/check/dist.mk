@@ -21,4 +21,8 @@ $(REDIST): $(_DISTCHECKSRCDIR) $(MK) | $$(@D)/
 		'INFO_= dist:			'
 
 
+.PHONY: distcheck-dist
+distcheck-dist: $(REDIST);
+
+
 endif  # include guard

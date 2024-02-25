@@ -107,4 +107,8 @@ $(builddir)/distcheck.check.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(TOUCH) $@
 
 
+.PHONY: distcheck-check
+distcheck-check: $(builddir)/distcheck.check.touch;
+
+
 endif  # include guard

@@ -24,10 +24,7 @@ _MAKE_OPTS = \
 
 
 .PHONY: distcheck
-distcheck: \
-	$(builddir)/distcheck.all.touch \
-	$(builddir)/distcheck.install.touch \
-	$(builddir)/distcheck.diffoscope.touch
+distcheck: distcheck-all distcheck-install distcheck-diffoscope;
 
 
 endif  # include guard

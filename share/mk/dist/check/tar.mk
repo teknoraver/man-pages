@@ -25,4 +25,8 @@ $(_DISTCHECKSRCDIR): %: %.tar $(MK) | $$(@D)/
 	$(TOUCH) $@
 
 
+.PHONY: distcheck-tar
+distcheck-tar: $(_DISTCHECKSRCDIR);
+
+
 endif  # include guard

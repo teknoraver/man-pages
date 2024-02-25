@@ -235,4 +235,33 @@ $(builddir)/distcheck.build-book.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(
 	$(TOUCH) $@
 
 
+.PHONY: distcheck-build-pre
+distcheck-build-pre: $(builddir)/distcheck.build-pre.touch;
+
+.PHONY: distcheck-build-catman
+distcheck-build-catman: $(builddir)/distcheck.build-catman.touch;
+
+.PHONY: distcheck-build-ps
+distcheck-build-ps: $(builddir)/distcheck.build-ps.touch;
+
+.PHONY: distcheck-build-pdf
+distcheck-build-pdf: $(builddir)/distcheck.build-pdf.touch;
+
+.PHONY: distcheck-build-html
+distcheck-build-html: $(builddir)/distcheck.build-html.touch;
+
+.PHONY: distcheck-build-book
+distcheck-build-book: $(builddir)/distcheck.build-book.touch;
+
+
+.PHONY: distcheck-build
+distcheck-build: \
+	distcheck-build-pre \
+	distcheck-build-catman \
+	distcheck-build-ps \
+	distcheck-build-pdf \
+	distcheck-build-html \
+	distcheck-build-book;
+
+
 endif  # include guard

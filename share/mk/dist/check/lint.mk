@@ -45,4 +45,15 @@ $(builddir)/distcheck.lint-mdoc.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@
 	$(TOUCH) $@
 
 
+.PHONY: distcheck-lint-man
+distcheck-lint-man: $(builddir)/distcheck.lint-man.touch;
+
+.PHONY: distcheck-lint-mdoc
+distcheck-lint-mdoc: $(builddir)/distcheck.lint-mdoc.touch;
+
+
+.PHONY: distcheck-lint
+distcheck-lint: distcheck-lint-man distcheck-lint-mdoc;
+
+
 endif  # include guard

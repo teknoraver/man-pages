@@ -20,4 +20,8 @@ $(builddir)/distcheck.install.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)
 	$(TOUCH) $@
 
 
+.PHONY: distcheck-install
+distcheck-install: $(builddir)/distcheck.install.touch;
+
+
 endif  # include guard

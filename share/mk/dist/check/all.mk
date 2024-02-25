@@ -27,4 +27,8 @@ $(builddir)/distcheck.all.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(TOUCH) $@
 
 
+.PHONY: distcheck-all
+distcheck-all: $(builddir)/distcheck.all.touch;
+
+
 endif  # include guard

@@ -19,4 +19,8 @@ $(builddir)/distcheck.diffoscope.touch: $(DISTFILE) $(REDIST) | $$(@D)/
 	$(TOUCH) $@
 
 
+.PHONY: distcheck-diffoscope
+distcheck-diffoscope: $(builddir)/distcheck.diffoscope.touch;
+
+
 endif  # include guard
