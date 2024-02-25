@@ -17,8 +17,8 @@ REDIST := $(_DISTCHECKBUILDDIR)/$(DISTNAME).tar
 
 $(REDIST): $(_DISTCHECKSRCDIR) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		dist)
-	$(MAKE) -C $< dist \
-		'INFO_= dist:			' builddir=$(_DISTCHECKBUILDDIR)
+	$(MAKE) $(_MAKE_OPTS) dist \
+		'INFO_= dist:			'
 
 
 endif  # include guard

@@ -17,6 +17,12 @@ _DISTCHECKDESTDIR  := $(_DISTCHECKDIR)/$(DISTNAME)_destdir
 _DISTCHECK_MANDIR  := $(_DISTCHECKBUILDDIR)/man
 
 
+_MAKE_OPTS = \
+	-C $< \
+	'builddir=$(_DISTCHECKBUILDDIR)' \
+	'DESTDIR=$(_DISTCHECKDESTDIR)'
+
+
 .PHONY: distcheck
 distcheck: \
 	$(builddir)/distcheck.all.touch \

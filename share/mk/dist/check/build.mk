@@ -172,59 +172,66 @@ DISTCHECK_IGNORE_BUILD_PDF := \
 
 $(builddir)/distcheck.build-pre.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		build-pre)
-	$(MAKE) -C $< build-pre \
-		'INFO_= build-pre:		' builddir=$(_DISTCHECKBUILDDIR)
+	$(MAKE) $(_MAKE_OPTS) build-pre \
+		'INFO_= build-pre:		'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.build-catman.touch: $(builddir)/distcheck.build-pre.touch
 $(builddir)/distcheck.build-catman.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		build-catman)
-	$(MAKE) -C $< -k build-catman \
-		'INFO_= build-catman -k:	' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR) \
+	$(MAKE) $(_MAKE_OPTS) -k build-catman \
+		'INFO_= build-catman -k:	' \
+		$(HIDE_ERR) \
 	|| $(TRUE)
-	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_BUILD_CATMAN) \
-		'INFO_= build-catman -i:	' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR)
-	$(MAKE) -C $< build-catman \
-		'INFO_= build-catman:		' builddir=$(_DISTCHECKBUILDDIR)
+	$(MAKE) $(_MAKE_OPTS) -i nothing $(DISTCHECK_IGNORE_BUILD_CATMAN) \
+		'INFO_= build-catman -i:	' \
+		$(HIDE_ERR)
+	$(MAKE) $(_MAKE_OPTS) build-catman \
+		'INFO_= build-catman:		'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.build-ps.touch: $(builddir)/distcheck.build-pre.touch
 $(builddir)/distcheck.build-ps.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		build-ps)
-	$(MAKE) -C $< -k build-ps \
-		'INFO_= build-ps -k:		' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR) \
+	$(MAKE) $(_MAKE_OPTS) -k build-ps \
+		'INFO_= build-ps -k:		' \
+		$(HIDE_ERR) \
 	|| $(TRUE)
-	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_BUILD_PS) \
-		'INFO_= build-ps -i:		' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR)
-	$(MAKE) -C $< build-ps \
-		'INFO_= build-ps:		' builddir=$(_DISTCHECKBUILDDIR)
+	$(MAKE) $(_MAKE_OPTS) -i nothing $(DISTCHECK_IGNORE_BUILD_PS) \
+		'INFO_= build-ps -i:		' \
+		$(HIDE_ERR)
+	$(MAKE) $(_MAKE_OPTS) build-ps \
+		'INFO_= build-ps:		'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.build-pdf.touch: $(builddir)/distcheck.build-pre.touch
 $(builddir)/distcheck.build-pdf.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		build-pdf)
-	$(MAKE) -C $< -k build-pdf \
-		'INFO_= build-pdf -k:		' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR) \
+	$(MAKE) $(_MAKE_OPTS) -k build-pdf \
+		'INFO_= build-pdf -k:		' \
+		$(HIDE_ERR) \
 	|| $(TRUE)
-	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_BUILD_PDF) \
-		'INFO_= build-pdf -i:		' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR)
-	$(MAKE) -C $< build-pdf \
-		'INFO_= build-pdf:		' builddir=$(_DISTCHECKBUILDDIR)
+	$(MAKE) $(_MAKE_OPTS) -i nothing $(DISTCHECK_IGNORE_BUILD_PDF) \
+		'INFO_= build-pdf -i:		' \
+		$(HIDE_ERR)
+	$(MAKE) $(_MAKE_OPTS) build-pdf \
+		'INFO_= build-pdf:		'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.build-html.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		build-html)
-	$(MAKE) -C $< build-html \
-		'INFO_= build-html:		' builddir=$(_DISTCHECKBUILDDIR)
+	$(MAKE) $(_MAKE_OPTS) build-html \
+		'INFO_= build-html:		'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.build-book.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		build-book)
-	$(MAKE) -C $< -k build-book \
-		'INFO_= build-book -k:		' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR) \
+	$(MAKE) $(_MAKE_OPTS) -k build-book \
+		'INFO_= build-book -k:		' \
+		$(HIDE_ERR) \
 	|| $(TRUE)
-	$(MAKE) -C $< build-book \
-		'INFO_= build-book:		' builddir=$(_DISTCHECKBUILDDIR)
+	$(MAKE) $(_MAKE_OPTS) build-book \
+		'INFO_= build-book:		'
 	$(TOUCH) $@
 
 

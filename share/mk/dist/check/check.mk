@@ -87,21 +87,23 @@ $(builddir)/distcheck.check-catman.touch: \
 	$(builddir)/distcheck.build-catman.touch
 $(builddir)/distcheck.check-catman.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		check-catman)
-	$(MAKE) -C $< -k check-catman \
-		'INFO_= check-catman -k:	' builddir=$(_DISTCHECKBUILDDIR) $(HIDE_ERR) \
+	$(MAKE) $(_MAKE_OPTS) -k check-catman \
+		'INFO_= check-catman -k:	' \
+		$(HIDE_ERR) \
 	|| $(TRUE)
-	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_CHECK_CATMAN) \
-		'INFO_= check-catman -i:	' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR)
-	$(MAKE) -C $< check-catman \
-		'INFO_= check-catman:		' builddir=$(_DISTCHECKBUILDDIR)
+	$(MAKE) $(_MAKE_OPTS) -i nothing $(DISTCHECK_IGNORE_CHECK_CATMAN) \
+		'INFO_= check-catman -i:	' \
+		$(HIDE_ERR)
+	$(MAKE) $(_MAKE_OPTS) check-catman \
+		'INFO_= check-catman:		'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.check.touch: \
 	$(builddir)/distcheck.check-catman.touch
 $(builddir)/distcheck.check.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		check)
-	$(MAKE) -C $< check \
-		'INFO_= check:			' builddir=$(_DISTCHECKBUILDDIR)
+	$(MAKE) $(_MAKE_OPTS) check \
+		'INFO_= check:			'
 	$(TOUCH) $@
 
 

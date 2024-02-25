@@ -27,19 +27,21 @@ DISTCHECK_IGNORE_LINT_MAN := \
 
 $(builddir)/distcheck.lint-man.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		lint-man)
-	$(MAKE) -C $< -k lint-man \
-		'INFO_= lint-man -k:		' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR) \
+	$(MAKE) $(_MAKE_OPTS) -k lint-man \
+		'INFO_= lint-man -k:		' \
+		$(HIDE_ERR) \
 	|| $(TRUE)
-	$(MAKE) -C $< -i nothing $(DISTCHECK_IGNORE_LINT_MAN) \
-		'INFO_= lint-man -i:		' builddir=$(_DISTCHECKBUILDDIR)  $(HIDE_ERR)
-	$(MAKE) -C $< lint-man \
-		'INFO_= lint-man:		' builddir=$(_DISTCHECKBUILDDIR)
+	$(MAKE) $(_MAKE_OPTS) -i nothing $(DISTCHECK_IGNORE_LINT_MAN) \
+		'INFO_= lint-man -i:		' \
+		$(HIDE_ERR)
+	$(MAKE) $(_MAKE_OPTS) lint-man \
+		'INFO_= lint-man:		'
 	$(TOUCH) $@
 
 $(builddir)/distcheck.lint-mdoc.touch: $(_DISTCHECKDIR)/$(DISTNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)MAKE		lint-mdoc)
-	$(MAKE) -C $< lint-mdoc \
-		'INFO_= lint-mdoc:		' builddir=$(_DISTCHECKBUILDDIR)
+	$(MAKE) $(_MAKE_OPTS) lint-mdoc \
+		'INFO_= lint-mdoc:		'
 	$(TOUCH) $@
 
 
