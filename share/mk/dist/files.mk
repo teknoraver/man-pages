@@ -29,9 +29,10 @@ FORCE_DISTVERSION := \
 				-e '^DISTVERSION :=' \
 				-e '^DISTNAME :=' \
 				-e '^DISTDATE :=' \
-			| $(GREP) -v '^DISTVERSION := $(DISTVERSION)$$' \
-			| $(GREP) -v '^DISTNAME := $(DISTNAME)$$' \
-			| $(GREP) -v '^DISTDATE := $(DISTDATE)$$' $(HIDE_ERR) >&2 \
+			| $(SED) '/^DISTVERSION := $(DISTVERSION)$$/d' \
+			| $(SED) '/^DISTNAME := $(DISTNAME)$$/d' \
+			| $(SED) '/^DISTDATE := $(DISTDATE)$$/d' \
+			| $(GREP) ^ $(HIDE_ERR) >&2 \
 			&& $(ECHO) FORCE; \
 		fi; \
 	)
