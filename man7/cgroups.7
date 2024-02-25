@@ -805,7 +805,7 @@ then the corresponding controller-interface files (e.g.,
 are automatically created in the children of that cgroup
 and can be used to exert resource control in the child cgroups.
 .\"
-.SS Cgroups v2 """no internal processes""" rule
+.SS Cgroups v2 \[dq]no internal processes\[dq] rule
 Cgroups v2 enforces a so-called "no internal processes" rule.
 Roughly speaking, this rule means that,
 with the exception of the root cgroup, processes may reside
@@ -974,10 +974,10 @@ fails with the error
 .BR EAGAIN ).
 .IP
 Writing the string
-.I """max"""
+.I \[dq]max\[dq]
 to this file means that no limit is imposed.
 The default value in this file is
-.IR """max""" .
+.IR \[dq]max\[dq] .
 .TP
 .IR cgroup.max.descendants " (since Linux 4.14)"
 .\" commit 1a926e0bbab83bae8207d05a533173425e0496d1
@@ -989,10 +989,10 @@ fails with the error
 .BR EAGAIN ).
 .IP
 Writing the string
-.I """max"""
+.I \[dq]max\[dq]
 to this file means that no limit is imposed.
 The default value in this file is
-.IR """max""" .
+.IR \[dq]max\[dq] .
 .\"
 .SH CGROUPS DELEGATION: DELEGATING A HIERARCHY TO A LESS PRIVILEGED USER
 In the context of cgroups,
@@ -1327,7 +1327,7 @@ The only thing that can be done with this cgroup (other than deleting it)
 is to convert it to a
 .I threaded
 cgroup by writing the string
-.I """threaded"""
+.I \[dq]threaded\[dq]
 to the
 .I cgroup.type
 file.
@@ -1369,7 +1369,7 @@ There are two pathways that lead to the creation of a threaded subtree.
 The first pathway proceeds as follows:
 .IP (1) 5
 We write the string
-.I """threaded"""
+.I \[dq]threaded\[dq]
 to the
 .I cgroup.type
 file of a cgroup
@@ -1406,7 +1406,7 @@ will also have the type
 .RE
 .IP (2)
 We write the string
-.I """threaded"""
+.I \[dq]threaded\[dq]
 to each of the
 .I domain invalid
 cgroups under
@@ -1418,7 +1418,7 @@ now have the type
 .I threaded
 and the threaded subtree is now fully usable.
 The requirement to write
-.I """threaded"""
+.I \[dq]threaded\[dq]
 to each of these cgroups is somewhat cumbersome,
 but allows for possible future extensions to the thread-mode model.
 .P
@@ -1449,7 +1449,7 @@ are converted to type
 .RE
 .IP (2)
 As before, we make the threaded subtree usable by writing the string
-.I """threaded"""
+.I \[dq]threaded\[dq]
 to each of the
 .I domain invalid
 cgroups under
@@ -1553,7 +1553,7 @@ A number of rules apply when writing to the
 file:
 .IP \[bu] 3
 Only the string
-.I """threaded"""
+.I \[dq]threaded\[dq]
 may be written.
 In other words, the only explicit transition that is possible is to convert a
 .I domain
@@ -1561,7 +1561,7 @@ cgroup to type
 .IR threaded .
 .IP \[bu]
 The effect of writing
-.I """threaded"""
+.I \[dq]threaded\[dq]
 depends on the current value in
 .IR cgroup.type ,
 as follows:
@@ -1607,20 +1607,20 @@ No domain controllers may be enabled in
 file.
 .P
 If any of the above constraints is violated, then an attempt to write
-.I """threaded"""
+.I \[dq]threaded\[dq]
 to a
 .I cgroup.type
 file fails with the error
 .BR ENOTSUP .
 .\"
-.SS The """domain threaded""" cgroup type
+.SS The \[dq]domain threaded\[dq] cgroup type
 According to the pathways described above,
 the type of a cgroup can change to
 .I domain threaded
 in either of the following cases:
 .IP \[bu] 3
 The string
-.I """threaded"""
+.I \[dq]threaded\[dq]
 is written to a child cgroup.
 .IP \[bu]
 A threaded controller is enabled inside the cgroup and
@@ -1666,7 +1666,7 @@ and
 .I threaded
 cgroups.
 If the string
-.I """threaded"""
+.I \[dq]threaded\[dq]
 is written to the
 .I cgroup.type
 file of one of the children of the root cgroup, then
@@ -1690,7 +1690,7 @@ allow a threaded cgroup that employs the
 controller to be placed as high as possible in the hierarchy,
 so as to minimize the (small) cost of traversing the cgroup hierarchy.
 .\"
-.SS The cgroups v2 """cpu""" controller and realtime threads
+.SS The cgroups v2 \[dq]cpu\[dq] controller and realtime threads
 As at Linux 4.19, the cgroups v2
 .I cpu
 controller does not support control of realtime threads
@@ -1708,7 +1708,7 @@ if all realtime threads are in the root cgroup.
 (If there are realtime threads in nonroot cgroups, then a
 .BR write (2)
 of the string
-.I """+cpu"""
+.I \[dq]+cpu\[dq]
 to the
 .I cgroup.subtree_control
 file fails with the error

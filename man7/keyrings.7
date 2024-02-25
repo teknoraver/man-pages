@@ -98,7 +98,7 @@ the key is scheduled for garbage collection.
 .SS Key types
 The kernel provides several basic types of key:
 .TP
-.I """keyring"""
+.I \[dq]keyring\[dq]
 .\" Note that keyrings use different fields in struct key in order to store
 .\" their data - index_key instead of type/description and name_link/keys
 .\" instead of payload.
@@ -111,7 +111,7 @@ being garbage collected because nothing refers to them.
 Keyrings with descriptions (names)
 that begin with a period (\[aq].\[aq]) are reserved to the implementation.
 .TP
-.I """user"""
+.I \[dq]user\[dq]
 This is a general-purpose key type.
 The key is kept entirely within kernel memory.
 The payload may be read and updated by user-space applications.
@@ -123,12 +123,12 @@ The description may be any valid string, though it is preferred that it
 start with a colon-delimited prefix representing the service
 to which the key is of interest
 (for instance
-.IR """afs:mykey""" ).
+.IR \[dq]afs:mykey\[dq] ).
 .TP
-.IR """logon""" " (since Linux 3.3)"
+.IR \[dq]logon\[dq] " (since Linux 3.3)"
 .\" commit 9f6ed2ca257fa8650b876377833e6f14e272848b
 This key type is essentially the same as
-.IR """user""" ,
+.IR \[dq]user\[dq] ,
 but it does not provide reading (i.e., the
 .BR keyctl (2)
 .B KEYCTL_READ
@@ -138,19 +138,19 @@ This is suitable for storing username-password pairs
 that should not be readable from user space.
 .IP
 The description of a
-.I """logon"""
+.I \[dq]logon\[dq]
 key
 .I must
 start with a non-empty colon-delimited prefix whose purpose
 is to identify the service to which the key belongs.
 (Note that this differs from keys of the
-.I """user"""
+.I \[dq]user\[dq]
 type, where the inclusion of a prefix is recommended but is not enforced.)
 .TP
-.IR """big_key""" " (since Linux 3.13)"
+.IR \[dq]big_key\[dq] " (since Linux 3.13)"
 .\" commit ab3c3587f8cda9083209a61dbe3a4407d3cada10
 This key type is similar to the
-.I """user"""
+.I \[dq]user\[dq]
 key type, but it may hold a payload of up to 1\ MiB in size.
 This key type is useful for purposes such as holding Kerberos ticket caches.
 .IP
@@ -685,16 +685,16 @@ field provides some further information about the key.
 The information that appears here depends on the key type, as follows:
 .RS
 .TP
-.IR """user""" " and " """logon"""
+.IR \[dq]user\[dq] " and " \[dq]logon\[dq]
 The size in bytes of the key payload (expressed in decimal).
 .TP
-.I """keyring"""
+.I \[dq]keyring\[dq]
 The number of keys linked to the keyring,
 or the string
 .I empty
 if there are no keys linked to the keyring.
 .TP
-.I """big_key"""
+.I \[dq]big_key\[dq]
 The payload size in bytes, followed either by the string
 .IR [file] ,
 if the key payload exceeds the threshold that means that the
@@ -707,7 +707,7 @@ indicating that the key is small enough to reside in kernel memory.
 .RE
 .IP
 For the
-.I """.request_key_auth"""
+.I \[dq].request_key_auth\[dq]
 key type
 (authorization key; see
 .BR request_key (2)),

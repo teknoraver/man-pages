@@ -92,7 +92,7 @@ Such a string is either a well-known constant like "C" or "da_DK"
 If
 .I locale
 is an empty string,
-.BR """""" ,
+.BR \[dq]\[dq] ,
 each part of the locale that should be modified is set according to the
 environment variables.
 The details are implementation-dependent.
@@ -112,9 +112,9 @@ is unchanged, and
 returns NULL.
 .P
 The locale
-.B """C"""
+.B \[dq]C\[dq]
 or
-.B """POSIX"""
+.B \[dq]POSIX\[dq]
 is a portable locale;
 it exists on all conforming systems.
 .P
@@ -138,7 +138,7 @@ If
 is NULL, the current locale is only queried, not modified.
 .P
 On startup of the main program, the portable
-.B """C"""
+.B \[dq]C\[dq]
 locale is selected as default.
 A program may be made portable to all locales by calling:
 .P

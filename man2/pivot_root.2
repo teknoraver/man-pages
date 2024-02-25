@@ -66,7 +66,7 @@ must yield the same directory as \fInew_root\fP.
 .IP \[bu]
 .I new_root
 must be a path to a mount point, but can't be
-.IR """/""" .
+.IR \[dq]/\[dq] .
 A path that is not already a mount point can be converted into one by
 bind mounting the path onto itself.
 .IP \[bu]
@@ -115,7 +115,7 @@ is on the current root mount.
 (This error covers the pathological case where
 .I new_root
 is
-.IR """/""" .)
+.IR \[dq]/\[dq] .)
 .TP
 .B EINVAL
 .I new_root
@@ -227,7 +227,7 @@ working directory refer to the new root mount point
 During the subsequent
 .BR umount ()
 call, resolution of
-.I """."""
+.I \[dq].\[dq]
 starts with
 .I new_root
 and then moves up the list of mounts stacked at

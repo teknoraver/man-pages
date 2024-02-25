@@ -96,7 +96,7 @@ argument to
 .BR add_key ()
 are the following:
 .TP
-.I """keyring"""
+.I \[dq]keyring\[dq]
 Keyrings are special key types that may contain links to sequences of other
 keys of any type.
 If this interface is used to create a keyring, then
@@ -105,17 +105,17 @@ should be NULL and
 .I plen
 should be zero.
 .TP
-.I """user"""
+.I \[dq]user\[dq]
 This is a general purpose key type whose payload may be read and updated
 by user-space applications.
 The key is kept entirely within kernel memory.
 The payload for keys of this type is a blob of arbitrary data
 of up to 32,767 bytes.
 .TP
-.IR """logon""" " (since Linux 3.3)"
+.IR \[dq]logon\[dq] " (since Linux 3.3)"
 .\" commit 9f6ed2ca257fa8650b876377833e6f14e272848b
 This key type is essentially the same as
-.IR """user""" ,
+.IR \[dq]user\[dq] ,
 but it does not permit the key to read.
 This is suitable for storing payloads
 that you do not want to be readable from user space.
@@ -127,10 +127,10 @@ by checking to ensure that the
 .I description
 contains a ':' that is preceded by other characters.
 .TP
-.IR """big_key""" " (since Linux 3.13)"
+.IR \[dq]big_key\[dq] " (since Linux 3.13)"
 .\" commit ab3c3587f8cda9083209a61dbe3a4407d3cada10
 This key type is similar to
-.IR """user""" ,
+.IR \[dq]user\[dq] ,
 but may hold a payload of up to 1\ MiB.
 If the key payload is large enough,
 then it may be stored encrypted in tmpfs
@@ -175,11 +175,11 @@ The payload data was invalid.
 .B EINVAL
 .I type
 was
-.I """logon"""
+.I \[dq]logon\[dq]
 and the
 .I description
 was not qualified with a prefix string of the form
-.IR """service:""" .
+.IR \[dq]service:\[dq] .
 .TP
 .B EKEYEXPIRED
 The keyring has expired.
@@ -202,7 +202,7 @@ Key types that begin with a period are reserved to the implementation.
 .B EPERM
 .I type
 was
-.I """keyring"""
+.I \[dq]keyring\[dq]
 and the
 .I description
 started with a period (\[aq].\[aq]).
