@@ -6,12 +6,40 @@ ifndef MAKEFILE_BUILD_EX_CC_INCLUDED
 MAKEFILE_BUILD_EX_CC_INCLUDED := 1
 
 
+include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/examples/src.mk
 include $(MAKEFILEDIR)/configure/build-depends/cc.mk
 include $(MAKEFILEDIR)/configure/build-depends/cpp.mk
+include $(MAKEFILEDIR)/configure/xfail.mk
+
+
+_XFAIL_UNITS_ex_o := \
+	$(_MANDIR)/man2/bpf.2.d/bpf.o \
+	$(_MANDIR)/man2/seccomp.2.d/seccomp.o \
+	$(_MANDIR)/man2/sigaction.2.d/sigaction.o \
+	$(_MANDIR)/man2/spu_run.2.d/spu_run.o \
+	$(_MANDIR)/man2/_syscall.2.d/_syscall.o \
+	$(_MANDIR)/man3/circleq.3.d/circleq.o \
+	$(_MANDIR)/man3/encrypt.3.d/encrypt.o \
+	$(_MANDIR)/man3/getsubopt.3.d/getsubopt.o \
+	$(_MANDIR)/man3/hsearch.3.d/hsearch.o \
+	$(_MANDIR)/man3/malloc_info.3.d/malloc_info.o \
+	$(_MANDIR)/man3/mallopt.3.d/mallopt.o \
+	$(_MANDIR)/man3/matherr.3.d/matherr.o \
+	$(_MANDIR)/man3/mcheck.3.d/mcheck.o \
+	$(_MANDIR)/man3/mtrace.3.d/t_mtrace.o \
+	$(_MANDIR)/man3/__ppc_get_timebase.3.d/__ppc_get_timebase.o \
+	$(_MANDIR)/man3/pthread_getcpuclockid.3.d/pthread_getcpuclockid.o \
+	$(_MANDIR)/man3/rtime.3.d/rtime.o \
+	$(_MANDIR)/man3/setbuf.3.d/setbuf.o \
+	$(_MANDIR)/man3/stpncpy.3.d/stpncpy.o \
+	$(_MANDIR)/man3head/printf.h.3head.d/register_printf_specifier.o
 
 
 _UNITS_ex_o := $(patsubst %.c,%.o,$(_UNITS_ex_c))
+ifeq ($(SKIP_XFAIL),yes)
+_UNITS_ex_o := $(filter-out $(_XFAIL_UNITS_ex_o), $(_UNITS_ex_o))
+endif
 
 
 $(_UNITS_ex_o): %.o: %.c $(MK)
