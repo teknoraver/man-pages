@@ -34,7 +34,7 @@ DISTDATECMD := \
 		| $(SORT) -n \
 		| $(TAIL) -n1; \
 	else \
-		$(GIT) log -1 --format='%aD'; \
+		$(GIT) log -1 --format='%cD'; \
 	fi;
 
 
