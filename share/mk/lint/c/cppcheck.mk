@@ -61,7 +61,7 @@ _LINT_c_cppcheck := $(filter-out $(_XFAIL_LINT_c_cppcheck), $(_LINT_c_cppcheck))
 endif
 
 
-$(_LINT_c_cppcheck): %.lint-c.cppcheck.touch: %.c $(MK)
+$(_LINT_c_cppcheck): %.lint-c.cppcheck.touch: %.c $(CPPCHECK_SUPPRESS) $(MK)
 	$(info	$(INFO_)CPPCHECK	$@)
 	$(CPPCHECK) $(CPPCHECKFLAGS) $<
 	$(TOUCH) $@

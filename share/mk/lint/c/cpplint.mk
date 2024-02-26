@@ -14,7 +14,7 @@ include $(MAKEFILEDIR)/configure/build-depends/cpplint.mk
 _LINT_c_cpplint := $(patsubst %.c, %.lint-c.cpplint.touch, $(_UNITS_ex_c))
 
 
-$(_LINT_c_cpplint): %.lint-c.cpplint.touch: %.c $(MK)
+$(_LINT_c_cpplint): %.lint-c.cpplint.touch: %.c $(CPPLINT_CONF) $(MK)
 	$(info	$(INFO_)CPPLINT		$@)
 	$(CPPLINT) $(CPPLINTFLAGS) $< >/dev/null
 	$(TOUCH) $@

@@ -22,7 +22,7 @@ _LINT_c_checkpatch := $(filter-out $(_XFAIL_LINT_c_checkpatch), $(_LINT_c_checkp
 endif
 
 
-$(_LINT_c_checkpatch): %.lint-c.checkpatch.touch: %.c $(MK)
+$(_LINT_c_checkpatch): %.lint-c.checkpatch.touch: %.c $(CHECKPATCH_CONF) $(MK)
 	$(info	$(INFO_)CHECKPATCH	$@)
 	$(CHECKPATCH) $(CHECKPATCHFLAGS) -f $< >&2
 	$(TOUCH) $@

@@ -174,7 +174,7 @@ _LINT_c_clang_tidy := $(filter-out $(_XFAIL_LINT_c_clang_tidy), $(_LINT_c_clang_
 endif
 
 
-$(_LINT_c_clang_tidy): %.lint-c.clang-tidy.touch: %.c $(MK)
+$(_LINT_c_clang_tidy): %.lint-c.clang-tidy.touch: %.c $(CLANG_TIDY_CONF) $(MK)
 	$(info	$(INFO_)CLANG_TIDY	$@)
 	$(CLANG_TIDY) $(CLANG_TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGFLAGS) 2>&1 \
 	| $(SED) '/generated\.$$/d' >&2
