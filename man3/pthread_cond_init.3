@@ -110,12 +110,12 @@ except checking that the condition has no waiting threads.
 .
 .SH CANCELLATION
 \fBpthread_cond_wait\fP and \fBpthread_cond_timedwait\fP
-are cancellation points.
+are cancelation points.
 If a thread is cancelled while suspended in one of these functions,
 the thread immediately resumes execution,
 then locks again the \fImutex\fP
 argument to \fBpthread_cond_wait\fP and \fBpthread_cond_timedwait\fP,
-and finally executes the cancellation.
+and finally executes the cancelation.
 Consequently,
 cleanup handlers are assured that \fImutex\fP is locked
 when they are called.

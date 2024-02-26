@@ -130,16 +130,16 @@ except checking that the mutex is unlocked.
 .
 .
 .SH CANCELLATION
-None of the mutex functions is a cancellation point,
+None of the mutex functions is a cancelation point,
 not even \fBpthread_mutex_lock\fP,
 in spite of the fact that it can suspend a thread for arbitrary durations.
 This way,
-the status of mutexes at cancellation points is predictable,
-allowing cancellation handlers
+the status of mutexes at cancelation points is predictable,
+allowing cancelation handlers
 to unlock precisely those mutexes that need to be unlocked
 before the thread stops executing.
 Consequently,
-threads using deferred cancellation
+threads using deferred cancelation
 should never hold a mutex for extended periods of time.
 .
 .

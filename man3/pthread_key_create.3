@@ -59,7 +59,7 @@ is \fBNULL\fP in all currently executing threads.
 The \fIdestr_function\fP argument,
 if not \fBNULL\fP,
 specifies a destructor function associated with the key.
-When a thread terminates via \fBpthread_exit\fP or by cancellation,
+When a thread terminates via \fBpthread_exit\fP or by cancelation,
 \fIdestr_function\fP is called with arguments
 the value associated with the key in that thread.
 The \fIdestr_function\fP is not called if that value is \fBNULL\fP.
