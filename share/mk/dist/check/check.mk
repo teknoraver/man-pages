@@ -74,6 +74,7 @@ DISTCHECK_IGNORE_CHECK_CATMAN := \
 	$(_DISTCHECK_MANDIR)/man7/iso_8859-9.7.cat.grep \
 	$(_DISTCHECK_MANDIR)/man7/iso_8859-9.7.check-catman.touch \
 	$(_DISTCHECK_MANDIR)/man7/keyrings.7.check-catman.touch \
+	$(_DISTCHECK_MANDIR)/man7/string_copying.7.check-catman.touch \
 	$(_DISTCHECK_MANDIR)/man7/uri.7.check-catman.touch \
 	$(_DISTCHECK_MANDIR)/man8/tzselect.8.cat.grep \
 	$(_DISTCHECK_MANDIR)/man8/tzselect.8.check-catman.touch \
