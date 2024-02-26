@@ -11,7 +11,39 @@ include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
 include $(MAKEFILEDIR)/configure/src.mk
+include $(MAKEFILEDIR)/configure/xfail.mk
 include $(MAKEFILEDIR)/src.mk
+
+
+_XFAIL_CATMAN_MAN_set := \
+	$(_MANDIR)/man2/fanotify_init.2.cat.set \
+	$(_MANDIR)/man3/unlocked_stdio.3.cat.set \
+	$(_MANDIR)/man4/console_codes.4.cat.set \
+	$(_MANDIR)/man4/lirc.4.cat.set \
+	$(_MANDIR)/man5/proc_pid_smaps.5.cat.set \
+	$(_MANDIR)/man5/tzfile.5.cat.set \
+	$(_MANDIR)/man7/ascii.7.cat.set \
+	$(_MANDIR)/man7/bpf-helpers.7.cat.set \
+	$(_MANDIR)/man7/charsets.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-1.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-2.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-3.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-4.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-5.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-6.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-7.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-8.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-9.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-10.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-11.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-13.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-14.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-15.7.cat.set \
+	$(_MANDIR)/man7/iso_8859-16.7.cat.set \
+	$(_MANDIR)/man8/tzselect.8.cat.set \
+	$(_MANDIR)/man8/zdump.8.cat.set \
+	$(_MANDIR)/man8/zic.8.cat.set
+
 
 
 groff_man_ignore_grep := $(DATAROOTDIR)/lint/groff/man.ignore.grep
@@ -19,6 +51,11 @@ groff_man_ignore_grep := $(DATAROOTDIR)/lint/groff/man.ignore.grep
 
 _CATMAN_MAN_set  := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.set,$(NONSO_MAN))
 _CATMAN_MDOC_set := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.set,$(NONSO_MDOC))
+
+
+ifeq ($(SKIP_XFAIL),yes)
+_CATMAN_MAN_set := $(filter-out $(_XFAIL_CATMAN_MAN_set), $(_CATMAN_MAN_set))
+endif
 
 
 $(_CATMAN_MAN_set): %.cat.set: %.cat.troff $(groff_man_ignore_grep) $(MK) | $$(@D)/

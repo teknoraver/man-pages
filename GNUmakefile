@@ -138,6 +138,7 @@ $(MK):: ;
 help-variables:
 	$(info	$(INFO_)LINK_PAGES	How to install link pages.  [".so", "symlink"])
 	$(info	$(INFO_)Z		Install pages compressed.  ["", ".bz2", ".gz", ".lz", ".xz"])
+	$(info	$(INFO_)SKIP_XFAIL	Skip expected failures.  ["yes", "no"])
 	$(info	)
 	$(info	$(INFO_)DISTNAME	$$(git describe))
 	$(info	$(INFO_)DISTVERSION	/$$DISTNAME/s/man-pages-//)

@@ -10,11 +10,45 @@ include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
 include $(MAKEFILEDIR)/configure/src.mk
+include $(MAKEFILEDIR)/configure/xfail.mk
 include $(MAKEFILEDIR)/src.mk
+
+
+_XFAIL_PSMAN_MAN_set := \
+	$(_MANDIR)/man1/iconv.1.ps.set \
+	$(_MANDIR)/man2/fanotify_init.2.ps.set \
+	$(_MANDIR)/man2/syscall.2.ps.set \
+	$(_MANDIR)/man3/newlocale.3.ps.set \
+	$(_MANDIR)/man7/address_families.7.ps.set \
+	$(_MANDIR)/man7/armscii-8.7.ps.set \
+	$(_MANDIR)/man7/ascii.7.ps.set \
+	$(_MANDIR)/man7/bpf-helpers.7.ps.set \
+	$(_MANDIR)/man7/charsets.7.ps.set \
+	$(_MANDIR)/man7/cp1251.7.ps.set \
+	$(_MANDIR)/man7/iso_8859-2.7.ps.set \
+	$(_MANDIR)/man7/iso_8859-3.7.ps.set \
+	$(_MANDIR)/man7/iso_8859-4.7.ps.set \
+	$(_MANDIR)/man7/iso_8859-5.7.ps.set \
+	$(_MANDIR)/man7/iso_8859-6.7.ps.set \
+	$(_MANDIR)/man7/iso_8859-7.7.ps.set \
+	$(_MANDIR)/man7/iso_8859-8.7.ps.set \
+	$(_MANDIR)/man7/iso_8859-10.7.ps.set \
+	$(_MANDIR)/man7/iso_8859-11.7.ps.set \
+	$(_MANDIR)/man7/iso_8859-13.7.ps.set \
+	$(_MANDIR)/man7/iso_8859-14.7.ps.set \
+	$(_MANDIR)/man7/iso_8859-16.7.ps.set \
+	$(_MANDIR)/man7/koi8-r.7.ps.set \
+	$(_MANDIR)/man7/koi8-u.7.ps.set \
+	$(_MANDIR)/man7/vdso.7.ps.set
 
 
 _PSMAN_MAN_set := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.ps.set,$(NONSO_MAN))
 _PSMAN_MDOC_set:= $(patsubst $(MANDIR)/%,$(_MANDIR)/%.ps.set,$(NONSO_MDOC))
+
+
+ifeq ($(SKIP_XFAIL),yes)
+_PSMAN_MAN_set := $(filter-out $(_XFAIL_PSMAN_MAN_set), $(_PSMAN_MAN_set))
+endif
 
 
 $(_PSMAN_MAN_set): %.ps.set: %.ps.troff $(MK) | $$(@D)/

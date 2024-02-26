@@ -9,8 +9,13 @@ MAKEFILE_LINT_MAN_TBL_INCLUDED := 1
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep.mk
-include $(MAKEFILEDIR)/configure/directory_variables.mk
+include $(MAKEFILEDIR)/configure/src.mk
 include $(MAKEFILEDIR)/lint/man/_.mk
+include $(MAKEFILEDIR)/src.mk
+
+
+_LINT_man_tbl := \
+	$(patsubst $(MANDIR)/%, $(_MANDIR)/%.lint-man.tbl.touch, $(NONSO_MAN))
 
 
 $(_LINT_man_tbl): $(_MANDIR)/%.lint-man.tbl.touch: $(MANDIR)/% $(MK) | $$(@D)/
@@ -34,6 +39,10 @@ $(_LINT_man_tbl): $(_MANDIR)/%.lint-man.tbl.touch: $(MANDIR)/% $(MK) | $$(@D)/
 		exit 1; \
 	fi
 	$(TOUCH) $@
+
+
+.PHONY: lint-man-tbl
+lint-man-tbl: $(_LINT_man_tbl);
 
 
 endif  # include guard
