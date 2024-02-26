@@ -6,15 +6,30 @@ ifndef MAKEFILE_LINT_C_CHECKPATCH_INCLUDED
 MAKEFILE_LINT_C_CHECKPATCH_INCLUDED := 1
 
 
+include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/build/examples/src.mk
 include $(MAKEFILEDIR)/configure/build-depends/checkpatch.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/lint/_.mk
+include $(MAKEFILEDIR)/configure/xfail.mk
+
+
+_XFAIL_LINT_c_checkpatch := .tmp/man/man2/bpf.2.d/bpf.lint-c.checkpatch.touch
+
+
+_LINT_c_checkpatch := $(patsubst %.c, %.lint-c.checkpatch.touch, $(_UNITS_ex_c))
+ifeq ($(SKIP_XFAIL),yes)
+_LINT_c_checkpatch := $(filter-out $(_XFAIL_LINT_c_checkpatch), $(_LINT_c_checkpatch))
+endif
 
 
 $(_LINT_c_checkpatch): %.lint-c.checkpatch.touch: %.c $(MK)
 	$(info	$(INFO_)CHECKPATCH	$@)
 	$(CHECKPATCH) $(CHECKPATCHFLAGS) -f $< >&2
 	$(TOUCH) $@
+
+
+.PHONY: lint-c-checkpatch
+lint-c-checkpatch: $(_LINT_c_checkpatch);
 
 
 endif  # include guard

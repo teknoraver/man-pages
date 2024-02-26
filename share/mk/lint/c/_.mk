@@ -6,24 +6,13 @@ ifndef MAKEFILE_LINT_C_INCLUDED
 MAKEFILE_LINT_C_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/examples/src.mk
-
-
-linters_c := checkpatch clang-tidy cppcheck cpplint iwyu
-
-
-$(foreach l, $(linters_c),                                                    \
-	$(eval _LINT_c_$(l) :=                                                \
-		$(patsubst %.c, %.lint-c.$(l).touch,                          \
-			$(_UNITS_ex_c))))
-
-
-$(foreach l, $(linters_c),                                                    \
-	$(eval .PHONY: lint-c-$(l)))
-$(foreach l, $(linters_c),                                                    \
-	$(eval lint-c-$(l): $(_LINT_c_$(l));))
 .PHONY: lint-c
-lint-c: $(foreach l, $(linters_c), lint-c-$(l));
+lint-c: \
+	lint-c-checkpatch \
+	lint-c-clang-tidy \
+	lint-c-cppcheck \
+	lint-c-cpplint \
+	lint-c-iwyu
 
 
 endif  # include guard
