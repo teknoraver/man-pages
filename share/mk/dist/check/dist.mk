@@ -16,13 +16,13 @@ REDIST := $(_DISTCHECKBUILDDIR)/$(DISTNAME).tar
 
 
 $(REDIST): $(_DISTCHECKSRCDIR) $(MK) | $$(@D)/
-	$(info	$(INFO_)MAKE		dist)
-	$(MAKE) $(_MAKE_OPTS) dist \
-		'INFO_= dist:			'
+	$(info	$(INFO_)MAKE		dist-tar)
+	$(MAKE) $(_MAKE_OPTS) dist-tar \
+		'INFO_= dist-tar:	'
 
 
-.PHONY: distcheck-dist
-distcheck-dist: $(REDIST);
+.PHONY: distcheck-dist-tar
+distcheck-dist-tar: $(REDIST);
 
 
 endif  # include guard
