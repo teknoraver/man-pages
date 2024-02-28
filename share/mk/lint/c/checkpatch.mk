@@ -13,7 +13,7 @@ include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 
-_XFAIL_LINT_c_checkpatch := .tmp/man/man2/bpf.2.d/bpf.lint-c.checkpatch.touch
+_XFAIL_LINT_c_checkpatch := $(_MANDIR)/man2/bpf.2.d/bpf.lint-c.checkpatch.touch
 
 
 _LINT_c_checkpatch := $(patsubst %.c, %.lint-c.checkpatch.touch, $(_UNITS_ex_c))
