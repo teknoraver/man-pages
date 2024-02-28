@@ -56494,7 +56494,7 @@ Global changes
    -  Rewrite a large part of the documentation for string-copying
       functions.
    -  Say ISO/IEC instead of ISO where appropriate, and be consistent in
-      the fomatting of names of ISO or ISO/IEC standards.
+      the formatting of names of ISO or ISO/IEC standards.
 
 
 Changes to individual pages
