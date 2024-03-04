@@ -377,6 +377,8 @@ Linux 2.6.
 On POSIX systems on which these functions are available, the symbol
 .B _POSIX_TIMERS
 is defined in \fI<unistd.h>\fP to a value greater than 0.
+POSIX.1-2008 makes these functions mandatory.
+.P
 The symbols
 .BR _POSIX_MONOTONIC_CLOCK ,
 .BR _POSIX_CPUTIME ,
@@ -388,7 +390,6 @@ indicate that
 are available.
 (See also
 .BR sysconf (3).)
-POSIX.1-2008 makes these APIs mandatory.
 .\"
 .SS Historical note for SMP systems
 Before Linux added kernel support for
