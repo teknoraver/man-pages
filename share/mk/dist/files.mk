@@ -8,6 +8,7 @@ MAKEFILE_DIST_FILES_INCLUDED := 1
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 include $(MAKEFILEDIR)/configure/build-depends/git.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 include $(MAKEFILEDIR)/configure/version.mk
