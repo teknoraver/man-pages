@@ -19,7 +19,7 @@ Real-time library
 .nf
 .P
 .BI "int clock_nanosleep(clockid_t " clockid ", int " flags ,
-.BI "                    const struct timespec *" request ,
+.BI "                    const struct timespec *" t ,
 .BI "                    struct timespec *_Nullable " remain );
 .fi
 .P
@@ -94,7 +94,7 @@ can also be passed in
 If
 .I flags
 is 0, then the value specified in
-.I request
+.I t
 is interpreted as an interval relative to the current
 value of the clock specified by
 .IR clockid .
@@ -104,11 +104,11 @@ If
 is
 .BR TIMER_ABSTIME ,
 then
-.I request
+.I t
 is interpreted as an absolute time as measured by the clock,
 .IR clockid .
 If
-.I request
+.I t
 is less than or equal to the current value of the clock,
 then
 .BR clock_nanosleep ()
@@ -117,7 +117,7 @@ returns immediately without suspending the calling thread.
 .BR clock_nanosleep ()
 suspends the execution of the calling thread
 until either at least the time specified by
-.I request
+.I t
 has elapsed,
 or a signal is delivered that causes a signal handler to be called or
 that terminates the process.
@@ -146,7 +146,7 @@ then it returns one of the positive error number listed in ERRORS.
 .SH ERRORS
 .TP
 .B EFAULT
-.I request
+.I t
 or
 .I remain
 specified an invalid address.
@@ -180,7 +180,7 @@ Linux 2.6,
 glibc 2.1.
 .SH NOTES
 If the interval specified in
-.I request
+.I t
 is not an exact multiple of the granularity underlying clock (see
 .BR time (7)),
 then the interval will be rounded up to the next multiple.
@@ -216,7 +216,7 @@ argument is unused, and unnecessary, when
 is
 .BR TIMER_ABSTIME .
 (An absolute sleep can be restarted using the same
-.I request
+.I t
 argument.)
 .P
 POSIX.1 specifies that
