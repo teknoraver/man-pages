@@ -216,7 +216,7 @@ perform a
 (or
 .BR readv (2))
 at the same time, then the I/O operations were not atomic
-with respect updating the file offset,
+with respect to updating the file offset,
 with the result that the reads in the two processes
 might (incorrectly) overlap in the blocks of data that they obtained.
 This problem was fixed in Linux 3.14.
