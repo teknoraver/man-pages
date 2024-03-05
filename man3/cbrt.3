@@ -47,8 +47,11 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 These functions return the (real) cube root of
 .IR x .
-This function cannot fail; every representable real value has a
-representable real cube root.
+This function cannot fail;
+every representable real value
+has a real cube root,
+and rounding it to a representable value
+never causes overflow nor underflow.
 .SH RETURN VALUE
 These functions return the cube root of
 .IR x .
