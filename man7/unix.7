@@ -1064,11 +1064,15 @@ main(void)
 \&
             if (!strncmp(buffer, "DOWN", sizeof(buffer))) {
                 down_flag = 1;
-                break;
+                continue;
             }
 \&
             if (!strncmp(buffer, "END", sizeof(buffer))) {
                 break;
+            }
+\&
+            if (down_flag) {
+                continue;
             }
 \&
             /* Add received summand. */
