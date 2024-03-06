@@ -955,6 +955,7 @@ $
 .in
 .SS Program source
 \&
+.\" SRC BEGIN (connection.h)
 .EX
 /*
  * File connection.h
@@ -962,7 +963,11 @@ $
 \&
 #define SOCKET_NAME "/tmp/9Lq7BNBnBycd6nxy.socket"
 #define BUFFER_SIZE 12
-\&
+.EE
+.\" SRC END
+.P
+.\" SRC BEGIN (server.c)
+.EX
 /*
  * File server.c
  */
@@ -1097,7 +1102,11 @@ main(int argc, char *argv[])
 \&
     exit(EXIT_SUCCESS);
 }
-\&
+.EE
+.\" SRC END
+.P
+.\" SRC BEGIN (client.c)
+.EX
 /*
  * File client.c
  */
@@ -1187,6 +1196,7 @@ main(int argc, char *argv[])
     exit(EXIT_SUCCESS);
 }
 .EE
+.\" SRC END
 .P
 For examples of the use of
 .BR SCM_RIGHTS ,
