@@ -22,6 +22,7 @@ DISTVERSION := $(patsubst man-pages-%,%,$(DISTNAME))
 DISTFILESCMD := \
 	$(FIND) $(srcdir) -not -type d \
 	| $(GREP) -v '^$(srcdir)/.git$$' \
+	| $(GREP) -v '^$(srcdir)/.git/' \
 	| $(GREP) -v '^$(srcdir)/.tmp/' \
 	| $(GREP) -v '^$(srcdir)/.checkpatch-camelcase.' \
 	| $(SORT)
