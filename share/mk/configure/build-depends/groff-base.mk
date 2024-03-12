@@ -18,6 +18,12 @@ PRECONVFLAGS         := $(DEFAULT_PRECONVFLAGS) $(EXTRA_PRECONVFLAGS)
 PRECONV              := preconv
 
 
+DEFAULT_PICFLAGS :=
+EXTRA_PICFLAGS   :=
+PICFLAGS         := $(DEFAULT_PICFLAGS) $(EXTRA_PICFLAGS)
+PIC              := pic
+
+
 TBL := tbl
 
 
