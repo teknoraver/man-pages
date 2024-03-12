@@ -59,7 +59,7 @@ foreach my $al (`grep -E '^\\.so' $dir/man*/*`)
 	$aliases{$1}=$2;
 }
 
-foreach my ($k,$v) (%aliases)
+while (my ($k,$v)=each %aliases)
 {
 	while (exists($aliases{$v})) {
 		$v=$aliases{$v};
@@ -98,6 +98,15 @@ sub BuildPage
 
 	# If this is an alias, just add it to the outline panel.
 
+	# if new section add top level bookmark
+
+	if ($sec ne $Section) {
+		print ".nr PDFOUTLINE.FOLDLEVEL 1\n";
+		print ".pdfbookmark 1 $Sections{$sec}\n";
+		print ".nr PDFOUTLINE.FOLDLEVEL 2\n";
+		$Section=$sec;
+	}
+
 	if (exists($aliases{$bkmark})) {
 		print ".eo\n.device ps:exec [/Dest /$aliases{$bkmark} /Title ($title) /Level 2 /OUT pdfmark\n.ec\n.fl\n";
 		return;
@@ -123,7 +132,7 @@ sub BuildPage
 
 			s/\\-/-/g if /^\.[BM]R\s+/;
 
-			if (m/^\.BR\s+([-\w\\.]+)\s+\((.+?)\)(.*)/ or m/^\.MR\s+([-\w\\.]+)\s+(\w+)\s+(.*)/) {
+			if (m/^\.BR\s+([-\w\\.]+)\s+\((.+?)\)(.*)/ or m/^\.MR\s+([-\w\\.]+)\s+(\w+)\s+(.*)/ or m/^\\fB([-\w\\.]+)\\fR\((.+?)\)(.*)$/) {
 				my $bkmark="$1";
 				my $sec=$2;
 				my $after=$3;
@@ -135,7 +144,7 @@ sub BuildPage
 					my $dest=$files{"${bkmark}.$sec"}->[1];
 					$_=".pdfhref L -D \"$dest\" -A \"$after\" -- \\fI$bkmark\\fP($sec)";
 				} else {
-					$_=".IR ".substr($_,4);
+					$_=".IR $bkmark ($sec)\\c\n$after";
 				}
 			}
 
@@ -161,16 +170,9 @@ sub BuildPage
 				s/\n\n/\n/g;
 			}
 
-			if (m/^\.TH\s+([-\w\\.]+)\s+(\w+)/) {
+			s/\\&\././ if m/^.TH /;
 
-				# if new section add top level bookmark
-
-				if ($sec ne $Section) {
-					print ".nr PDFOUTLINE.FOLDLEVEL 1\n";
-					print ".pdfbookmark 1 $Sections{$sec}\n";
-					print ".nr PDFOUTLINE.FOLDLEVEL 2\n";
-					$Section=$sec;
-				}
+			if (m/^\.TH\s+"?([-\w\\.]+)"?\s+"?(\w+)"?/) {
 
 				print "$_\n";
 
