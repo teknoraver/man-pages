@@ -57,9 +57,10 @@ If
 .B FLT_RADIX
 is 2,
 .BI logb( x )
-is equal to
+is similar to
 .BI floor(log2(fabs( x )))\f[R],\f[]
-except that it is probably faster.
+except that the latter may give an incorrect integer
+due to intermediate rounding.
 .P
 If
 .I x
