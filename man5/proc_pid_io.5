@@ -90,9 +90,9 @@ if process A reads process B's
 while process B is updating one of these 64-bit counters,
 process A could see an intermediate result.
 .IP
-Permission to access this file is governed by a ptrace access mode
-.B PTRACE_MODE_READ_FSCREDS
-check; see
-.BR ptrace (2).
+Permission to access this file is governed by
+.BR ptrace (2)
+access mode
+.BR PTRACE_MODE_READ_FSCREDS .
 .SH SEE ALSO
 .BR proc (5)
