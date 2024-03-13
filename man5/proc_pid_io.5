@@ -84,11 +84,10 @@ will not be happening.
 .RE
 .IP
 .IR Note :
-In the current implementation, things are a bit racy on 32-bit systems:
-if process A reads process B's
-.IR /proc/ pid /io
-while process B is updating one of these 64-bit counters,
-process A could see an intermediate result.
+these counters are not atomic:
+on systems where 64-bit integer operations may tear,
+a counter could be updated simultaneously with a read,
+yielding an incorrect intermediate value.
 .IP
 Permission to access this file is governed by
 .BR ptrace (2)
