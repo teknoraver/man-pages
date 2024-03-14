@@ -231,7 +231,7 @@ and is now deprecated.
 That function can't handle user-defined types.
 .P
 .BR \%register_printf_specifier ()
-superseeds
+supersedes
 .BR \%register_printf_function (3).
 .SH EXAMPLES
 The following example program registers the 'b' and 'B' specifiers
