@@ -33,8 +33,7 @@ does not have these problems and is the common way in which
 Unicode is used on UNIX-style operating systems.
 .SS Properties
 The UTF-8 encoding has the following nice properties:
-.TP 0.2i
-*
+.IP \[bu] 3
 UCS
 characters 0x00000000 to 0x0000007f (the classic US-ASCII
 characters) are encoded simply as bytes 0x00 to 0x7f (ASCII
@@ -44,23 +43,18 @@ This means that files and strings which contain only
 ASCII
 and
 UTF-8.
-.TP
-*
+.IP \[bu]
 All UCS characters greater than 0x7f are encoded as a multibyte sequence
 consisting only of bytes in the range 0x80 to 0xfd, so no ASCII
 byte can appear as part of another character and there are no
 problems with, for example,  \[aq]\e0\[aq] or \[aq]/\[aq].
-.TP
-*
+.IP \[bu]
 The lexicographic sorting order of UCS-4 strings is preserved.
-.TP
-*
+.IP \[bu]
 All possible 2\[ha]31 UCS codes can be encoded using UTF-8.
-.TP
-*
+.IP \[bu]
 The bytes 0xc0, 0xc1, 0xfe, and 0xff are never used in the UTF-8 encoding.
-.TP
-*
+.IP \[bu]
 The first byte of a multibyte sequence which represents a single non-ASCII
 UCS character is always in the range 0xc2 to 0xfd and indicates how long
 this multibyte sequence is.
@@ -68,8 +62,7 @@ All further bytes in a multibyte sequence
 are in the range 0x80 to 0xbf.
 This allows easy resynchronization and
 makes the encoding stateless and robust against missing bytes.
-.TP
-*
+.IP \[bu]
 UTF-8 encoded UCS characters may be up to six bytes long, however the
 Unicode standard specifies no characters above 0x10ffff, so Unicode characters
 can be only up to four bytes long in
@@ -77,7 +70,7 @@ UTF-8.
 .SS Encoding
 The following byte sequences are used to represent a character.
 The sequence to be used depends on the UCS code number of the character:
-.TP 0.4i
+.TP
 0x00000000 \- 0x0000007F:
 .RI 0 xxxxxxx
 .TP
