@@ -110,7 +110,7 @@ zero or more following lines
 .q "\fIdate time interval\fP",
 one line for each transition time and following interval.  Fields are
 separated by single tabs.
-.P
+.PP
 Dates are in
 .IR yyyy - mm - dd
 format and times are in 24-hour
@@ -126,7 +126,7 @@ double-quoted strings unless they consist of one or more alphabetic
 characters.  An isdst flag is omitted for standard time, and otherwise
 is a decimal integer that is unsigned and positive (typically 1) for
 daylight saving time and negative for unknown.
-.P
+.PP
 In times and in UT offsets with absolute value less than 100 hours,
 the seconds are omitted if they are zero, and
 the minutes are also omitted if they are also zero.  Positive UT
@@ -137,14 +137,14 @@ abbreviation begins with
 .q "\*-"
 or is
 .q "zzz".
-.P
+.PP
 In double-quoted strings, escape sequences represent unusual
 characters.  The escape sequences are \es for space, and \e", \e\e,
 \ef, \en, \er, \et, and \ev with their usual meaning in the C
 programming language.  E.g., the double-quoted string
 \*(lq"CET\es\e"\e\e"\*(rq represents the character sequence \*(lqCET
 "\e\*(rq.\""
-.P
+.PP
 .ne 9
 Here is an example of the output, with the leading empty line omitted.
 (This example is shown with tab stops set far enough apart so that the
@@ -152,10 +152,9 @@ tabbed columns line up.)
 .nf
 .sp
 .if \n(.g .ft CR
-.if t .in +.5i
-.if n .in +2
+.in +2
 .nr w \w'1896-01-13  'u+\n(.i
-.ta \w'1896-01-13  'u +\w'12:01:26  'u +\w'-103126  'u +\w'HWT  'u
+.ta \w'1896-01-13\0\0'u +\w'12:01:26\0\0'u +\w'-103126\0\0'u +\w'HWT\0\0'u
 TZ="Pacific/Honolulu"
 -	-	-103126	LMT
 1896-01-13	12:01:26	-1030	HST
@@ -179,7 +178,7 @@ abbreviated HST.  Immediately after the second transition, the date is
 Immediately after the last transition the date is 1947-06-08 and the
 time is 02:30:00, and the following time interval is 10 hours west of
 UT, a standard time abbreviated HST.
-.P
+.PP
 .ne 10
 Here are excerpts from another example:
 .nf
@@ -209,7 +208,7 @@ Time discontinuities are found by sampling the results returned by
 at twelve-hour intervals.
 This works in all real-world cases;
 one can construct artificial time zones for which this fails.
-.P
+.PP
 In the
 .B \*-v
 and
