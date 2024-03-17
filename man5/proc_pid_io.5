@@ -33,63 +33,57 @@ The fields are as follows:
 .TP
 .IR rchar ": characters read"
 The number of bytes
-which this task and its waited-for children
-have caused to be read from storage.
-This is simply the sum of bytes which this process passed to
+returned by successful
 .BR read (2)
 and similar system calls.
-It includes things such as terminal I/O and
-is unaffected by whether or not actual
-physical disk I/O was required (the read might have been satisfied from
-pagecache).
 .TP
 .IR wchar ": characters written"
 The number of bytes
-which this task and its waited-for children
-have caused, or shall cause to be written to disk.
-Similar caveats apply here as with
-.IR rchar .
+returned by successful
+.BR write (2)
+and similar system calls.
 .TP
 .IR syscr ": read syscalls"
-Attempt to count the number of read I/O operations\[em]that is,
-system calls such as
+The number of "file read" system calls\[em]those from the
 .BR read (2)
+family,
+.BR sendfile (2),
+.BR copy_file_range (2),
 and
-.BR pread (2).
+.BR ioctl (2)
+.BR BTRFS_IOC_ENCODED_READ [ _32 ]
+(including when invoked by the kernel as part of other syscalls).
 .TP
 .IR syscw ": write syscalls"
-Attempt to count the number of write I/O operations\[em]that is,
-system calls such as
+The number of "file write" system calls\[em]those from the
 .BR write (2)
+family,
+.BR sendfile (2),
+.BR copy_file_range (2),
 and
-.BR pwrite (2).
+.BR ioctl (2)
+.BR BTRFS_IOC_ENCODED_WRITE [ _32 ]
+(including when invoked by the kernel as part of other syscalls).
 .TP
 .IR read_bytes ": bytes read"
-Attempt to count the number of bytes
-which this process and its waited-for children
-really did cause to be fetched from the storage layer.
+The number of bytes really fetched from the storage layer.
 This is accurate for block-backed filesystems.
 .TP
 .IR write_bytes ": bytes written"
-Attempt to count the number of bytes
-which this process and its waited-for children
-caused to be sent to the storage layer.
+The number of bytes really sent to the storage layer.
 .TP
 .IR cancelled_write_bytes :
-The big inaccuracy here is truncate.
-If a process writes 1 MB to a file and then deletes the file,
-it will in fact perform no writeout.
-But it will have been accounted as having caused 1 MB of write.
-In other words:
-this field represents the number of bytes
-which this process and its waited-for children
-caused to not happen, by truncating pagecache.
-A task can cause "negative" I/O too.
-If this task truncates some dirty pagecache,
-some I/O which another task has been accounted for
-(in its
-.IR write_bytes )
-will not be happening.
+The above statistics fail to account for truncation:
+if a process writes 1 MB to a regular file and then removes it,
+said 1 MB will not be written, but
+.I will
+have nevertheless been accounted as a 1 MB write.
+This field represents the number of bytes "saved" from I/O writeback.
+This can yield to having done negative I/O
+if caches dirtied by another process are truncated.
+.I cancelled_write_bytes
+applies to I/O already accounted-for in
+.IR write_bytes .
 .RE
 .IP
 .IR Note :
