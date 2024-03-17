@@ -26,8 +26,8 @@ a signed binary integer is represented using two's complement,
 and a boolean is represented by a one-byte binary integer that is
 either 0 (false) or 1 (true).
 The format begins with a 44-byte header containing the following fields:
-.RS "\w'  'u"
-.IP \(bu "\w'\(bu  'u"
+.RS 2
+.IP \(bu 3
 The magic four-byte ASCII sequence
 .q "TZif"
 identifies the file as a timezone information file.
@@ -42,8 +42,8 @@ or
 Fifteen bytes containing zeros reserved for future use.
 .IP \(bu
 Six four-byte integer values, in the following order:
-.RS "\w'  \(bu    'u"
-.TP "\w'  'u"
+.RS
+.TP 2
 .B tzh_ttisutcnt
 The number of UT/local indicators stored in the file.
 (UT is Universal Time.)
@@ -69,8 +69,8 @@ stored in the file.
 .PP
 The above header is followed by the following fields, whose lengths
 depend on the contents of the header:
-.RS "\w'  'u"
-.IP \(bu "\w'\(bu  'u"
+.RS 2
+.IP \(bu 3
 .B tzh_timecnt
 four-byte signed integer values sorted in ascending order.
 These values are written in network byte order.
@@ -134,8 +134,8 @@ Also, in realistic applications
 is in the range [\-89999, 93599] (i.e., more than \-25 hours and less
 than 26 hours); this allows easy support by implementations that
 already support the POSIX-required range [\-24:59:59, 25:59:59].
-.RS "\w'  'u"
-.IP \(bu "\w'\(bu  'u"
+.RS
+.IP \(bu 3
 .B tzh_charcnt
 bytes that represent time zone designations,
 which are null-terminated byte strings, each indexed by the
@@ -318,8 +318,8 @@ This section documents common problems in reading or writing TZif files.
 Most of these are problems in generating TZif files for use by
 older readers.
 The goals of this section are:
-.RS "\w'  'u"
-.IP \(bu "\w'\(bu  'u"
+.RS 2
+.IP \(bu 3
 to help TZif writers output files that avoid common
 pitfalls in older or buggy TZif readers,
 .IP \(bu
@@ -343,8 +343,8 @@ workarounds, as well as to document other common bugs in
 readers.
 .PP
 Interoperability problems with TZif include the following:
-.RS "\w'  'u"
-.IP \(bu "\w'\(bu  'u"
+.RS 2
+.IP \(bu 3
 Some readers examine only version 1 data.
 As a partial workaround, a writer can output as much version 1
 data as possible.
@@ -459,8 +459,8 @@ introduced in 1972.
 .PP
 Some interoperability problems are reader bugs that
 are listed here mostly as warnings to developers of readers.
-.RS "\w'  'u"
-.IP \(bu "\w'\(bu  'u"
+.RS 2
+.IP \(bu 3
 Some readers do not support negative timestamps.
 Developers of distributed applications should keep this
 in mind if they need to deal with pre-1970 data.
