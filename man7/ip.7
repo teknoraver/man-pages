@@ -828,6 +828,10 @@ is not zero, the primary local address of the interface specified by the
 index overwrites
 .I ipi_spec_dst
 for the routing table lookup.
+.IP
+Not supported for
+.B SOCK_STREAM
+sockets.
 .TP
 .BR IP_RECVERR " (since Linux 2.2)"
 .\" Precisely: since Linux 2.1.15
@@ -989,6 +993,9 @@ in which the kernel returns the original destination address
 of the datagram being received.
 The ancillary message contains a
 .IR "struct sockaddr_in" .
+Not supported for
+.B SOCK_STREAM
+sockets.
 .TP
 .BR IP_RECVTOS " (since Linux 2.2)"
 .\" Precisely: since Linux 2.1.68
@@ -998,6 +1005,9 @@ ancillary message is passed with incoming packets.
 It contains a byte which specifies the Type of Service/Precedence
 field of the packet header.
 Expects a boolean integer flag.
+Not supported for
+.B SOCK_STREAM
+sockets.
 .TP
 .BR IP_RECVTTL " (since Linux 2.2)"
 .\" Precisely: since Linux 2.1.68
@@ -1015,6 +1025,9 @@ Identical to
 .BR IP_RECVOPTS ,
 but returns raw unprocessed options with timestamp and route record
 options not filled in for this hop.
+Not supported for
+.B SOCK_STREAM
+sockets.
 .TP
 .BR IP_ROUTER_ALERT " (since Linux 2.2)"
 .\" Precisely: since Linux 2.1.68
