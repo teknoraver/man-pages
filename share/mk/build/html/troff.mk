@@ -15,11 +15,14 @@ include $(MAKEFILEDIR)/src.mk
 
 
 _XFAIL_HTMLMAN_MAN_set := \
+	$(_MANDIR)/man2/fanotify_init.2.html.set \
 	$(_MANDIR)/man2/membarrier.2.html.set \
 	$(_MANDIR)/man5/proc.5.html.set \
+	$(_MANDIR)/man7/bpf-helpers.7.html.set \
 	$(_MANDIR)/man7/charsets.7.html.set \
 	$(_MANDIR)/man7/iso_8859-16.7.html.set \
-	$(_MANDIR)/man7/iso_8859-6.7.html.set
+	$(_MANDIR)/man7/iso_8859-6.7.html.set \
+	$(_MANDIR)/man8/zic.8.html.set
 
 
 _HTMLMAN_MAN_set := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.html.set,$(NONSO_MAN))
