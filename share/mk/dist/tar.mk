@@ -6,6 +6,7 @@ ifndef MAKEFILE_DIST_TAR_INCLUDED
 MAKEFILE_DIST_TAR_INCLUDED := 1
 
 
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
 include $(MAKEFILEDIR)/configure/build-depends/findutils.mk
 include $(MAKEFILEDIR)/configure/build-depends/git.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed.mk
@@ -23,6 +24,7 @@ $(DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
 	$(TAR) $(TARFLAGS) -cf $@ -T /dev/null
 	$(DISTFILESCMD) \
 	| $(SED) 's,^$(srcdir)/,$(_DISTDIR)/,' \
+	| $(SORT) \
 	| $(XARGS) $(TAR) $(TARFLAGS) -rf $@ -C $(srcdir) \
 		--transform 's,^$(patsubst /%,%,$(_DISTDIR)),$(DISTNAME),'
 
