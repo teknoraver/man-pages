@@ -86,16 +86,15 @@ applies to I/O already accounted-for in
 .IR write_bytes .
 .RE
 .IP
-.IR Note :
-these counters are not atomic:
-on systems where 64-bit integer operations may tear,
-a counter could be updated simultaneously with a read,
-yielding an incorrect intermediate value.
-.IP
 Permission to access this file is governed by
 .BR ptrace (2)
 access mode
 .BR PTRACE_MODE_READ_FSCREDS .
+.SH CAVEATS
+These counters are not atomic:
+on systems where 64-bit integer operations may tear,
+a counter could be updated simultaneously with a read,
+yielding an incorrect intermediate value.
 .SH SEE ALSO
 .BR getrusage (2),
 .BR proc (5)
