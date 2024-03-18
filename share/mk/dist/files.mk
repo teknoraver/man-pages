@@ -40,7 +40,7 @@ FORCE_DISTVERSION := \
 
 
 $(_DISTPAGES): $(_DISTDIR)/man%: $(srcdir)/man% $(MK) | $$(@D)/
-	$(info	$(INFO_)CP		$@)
+	$(info	$(INFO_)SED		$@)
 	<$< \
 	$(SED) "/^.TH/s/(date)/$$($(GIT) log --format=%cs -1 -- $< $(HIDE_ERR))/" \
 	| $(SED) '/^.TH/s/(unreleased)/$(DISTVERSION)/' \
