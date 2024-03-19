@@ -46,7 +46,7 @@ _XFAIL_CATMAN_MAN_set := \
 
 
 
-groff_man_ignore_grep := $(DATAROOTDIR)/lint/groff/man.ignore.grep
+troff_man_ignore_grep := $(MAKEFILEDIR)/build/catman/troff.ignore.grep
 
 
 _CATMAN_MAN_set  := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.cat.set,$(NONSO_MAN))
@@ -58,10 +58,10 @@ _CATMAN_MAN_set := $(filter-out $(_XFAIL_CATMAN_MAN_set), $(_CATMAN_MAN_set))
 endif
 
 
-$(_CATMAN_MAN_set): %.cat.set: %.cat.troff $(groff_man_ignore_grep) $(MK) | $$(@D)/
+$(_CATMAN_MAN_set): %.cat.set: %.cat.troff $(troff_man_ignore_grep) $(MK) | $$(@D)/
 	$(info	$(INFO_)TROFF		$@)
 	! ($(TROFF) -man $(TROFFFLAGS) $(NROFFFLAGS) <$< 2>&1 >$@ \
-	   | $(GREP) -v -f '$(groff_man_ignore_grep)' \
+	   | $(GREP) -v -f '$(troff_man_ignore_grep)' \
 	   || $(TRUE); \
 	) \
 	| $(GREP) ^ >&2

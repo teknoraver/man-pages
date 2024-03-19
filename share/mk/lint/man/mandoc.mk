@@ -33,7 +33,7 @@ _LINT_man_mandoc := $(filter-out $(_XFAIL_LINT_man_mandoc), $(_LINT_man_mandoc))
 endif
 
 
-mandoc_man_ignore_grep := $(DATAROOTDIR)/lint/mandoc/man.ignore.grep
+mandoc_man_ignore_grep := $(MAKEFILEDIR)/lint/man/mandoc.ignore.grep
 
 
 $(_LINT_man_mandoc): $(_MANDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% $(mandoc_man_ignore_grep) $(MK) | $$(@D)/

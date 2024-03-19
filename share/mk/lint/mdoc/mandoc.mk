@@ -14,7 +14,7 @@ include $(MAKEFILEDIR)/lint/mdoc/_.mk
 include $(MAKEFILEDIR)/src.mk
 
 
-mandoc_mdoc_ignore_grep := $(DATAROOTDIR)/lint/mandoc/mdoc.ignore.grep
+mandoc_mdoc_ignore_grep := $(MAKEFILEDIR)/lint/mdoc/mandoc.ignore.grep
 
 
 $(_LINT_mdoc_mandoc): $(_MANDIR)/%.lint-mdoc.mandoc.touch: $(MANDIR)/% $(mandoc_mdoc_ignore_grep) | $$(@D)/
