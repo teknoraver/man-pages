@@ -37,6 +37,22 @@ $(MK):: ;
 nothing:;
 
 
+.PHONY: help
+help:
+	$(info	$(INFO_)To see a list of .PHONY targets, run:)
+	$(info	$(INFO_)	$$ make nothing -p \)
+	$(info	$(INFO_)	| grep '^\.PHONY:' \)
+	$(info	$(INFO_)	| tr ' ' '\n' \)
+	$(info	$(INFO_)	| grep -v '^\.PHONY:' \)
+	$(info	$(INFO_)	| sort;)
+	$(info	)
+	$(info	$(INFO_)To see a list of available variables, run:)
+	$(info	$(INFO_)	$$ find GNUmakefile share/mk/configure -type f \)
+	$(info	$(INFO_)	| xargs grep '^[^[:space:]].*=' \)
+	$(info	$(INFO_)	| sed 's/=.*/=/';)
+	$(info	)
+
+
 .DELETE_ON_ERROR:
 .SILENT:
 FORCE:
