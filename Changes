@@ -3,17 +3,6 @@
 Released: ????-??-??, ??Location??
 
 
-Contributors
-------------
-
-The following people contributed patches/fixes, reports, notes,
-ideas, and discussions that have been incorporated in changes in
-this release:
-
-
-Apologies if I missed anyone!
-
-
 New and rewritten pages
 -----------------------
 
@@ -43,4 +32,4 @@ Changes to individual pages
 
 The manual pages (and other files in the repository) have been improved
 beyond what this changelog covers.  To learn more about changes applied
-to individual pages, use git(1).
+to individual pages, or the authors of changes, use git(1).
