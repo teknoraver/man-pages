@@ -48,8 +48,16 @@ help:
 	$(info	)
 	$(info	$(INFO_)To see a list of available variables, run:)
 	$(info	$(INFO_)	$$ find GNUmakefile share/mk/configure -type f \)
+	$(info	$(INFO_)	| sort \)
 	$(info	$(INFO_)	| xargs grep '^[^[:space:]].*=' \)
 	$(info	$(INFO_)	| sed 's/=.*/=/';)
+	$(info	)
+	$(info	)
+	$(info	$(INFO_)To see a list of dependencies, run:)
+	$(info	$(INFO_)	$$ find share/mk/configure/build-depends -type f \)
+	$(info	$(INFO_)	| sed 's,share/mk/configure/build-depends/,,' \)
+	$(info	$(INFO_)	| sed 's,\.mk,,' \)
+	$(info	$(INFO_)	| sort;)
 	$(info	)
 
 

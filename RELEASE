@@ -12,23 +12,8 @@ Description
        release, you only need step (4) "Tarball".
 
    Dependencies
-       The following list of dependencies states what the build system
-       (the makefiles) need to perform the relevant (dist) targets:
-
-       -  echo(1)
-       -  expr(1)
-       -  find(1)
-       -  git(1)
-       -  grep(1)
-       -  gzip(1)
-       -  install(1)
-       -  locale(1)
-       -  make(1) - GNU Make is required.
-       -  sed(1)
-       -  sort(1)
-       -  tar(1) - GNU tar is required.
-       -  xargs(1)
-       -  xz(1)
+       To see the build-dependencies of the project, that is, the
+       dependencies of the build system, see `make help`.
 
        Apart from that, the following commands are also needed for other
        tasks shown below:

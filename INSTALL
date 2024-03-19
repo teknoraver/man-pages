@@ -46,7 +46,7 @@ Description
            are specially designed for this project.  To see all of the
            available variables, use:
 
-               $ make help-variables
+               $ make help
 
            The most common ones that you may use are:
 
@@ -66,22 +66,13 @@ Description
                $ make help
 
    Dependencies
-       -  Build-depends:
+       To see the build-dependencies of the project, that is, the
+       dependencies of the build system, see `make help`.
 
-          To learn the build dependencies of the project, run
+       To read the manual pages, you'll need:
 
-              $ find share/mk/ -type f \
-              | xargs grep include.*configure/build-depends/ \
-              | sed 's,share/mk/,,' \
-              | sed 's,/.*:,:,' \
-              | sed 's,include $.*/, ,' \
-              | sed 's,\.mk,,g' \
-              | sort \
-              | uniq;
-
-       -  Depends:
-          -  man(1)
-          -  groff(1) | mandoc(1)
+       -  man(1)
+       -  groff(1) | mandoc(1)
 
    Lint & check
        You can lint and check both the manual pages, and the example C
