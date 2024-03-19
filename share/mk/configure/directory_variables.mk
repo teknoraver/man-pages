@@ -20,9 +20,6 @@ htmldir     := $(docdir)/html/man
 mandir      := $(datarootdir)/man
 
 
-htmlext  := .html
-
-
 $(foreach s, $(MANSECTIONS),                                                  \
 	$(eval man$(s)dir := $(mandir)/man$(s)))
 $(foreach s, $(MANSECTIONS),                                                  \

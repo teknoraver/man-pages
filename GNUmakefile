@@ -157,7 +157,6 @@ help-variables:
 	$(info	$(INFO_)man{1,...}ext	.{1,...})
 	$(info	)
 	$(info	$(INFO_)htmldir		$$(docdir))
-	$(info	$(INFO_)htmlext		.html)
 	$(info	)
 	$(info	$(INFO_)# Command variables (and flags):)
 	$(info	)
