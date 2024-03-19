@@ -1,30 +1,40 @@
-==================== Changes in man-pages-?.?? ====================
+==================== Changes in man-pages-6.7 =====================
 
-Released: ????-??-??, ??Location??
+Released: 2024-03-19, València
 
 
 New and rewritten pages
 -----------------------
 
+man3/
+	TIMEVAL_TO_TIMESPEC.3
+
 
 Newly documented interfaces in existing pages
 ---------------------------------------------
+
+man2/
+	process_madvise.2
+		process_madvise() glibc wrapper
 
 
 New and changed links
 ---------------------
 
-
-Removed pages
--------------
-
-
-Removed links
--------------
+man3/
+	TIMESPEC_TO_TIMEVAL.3		(TIMEVAL_TO_TIMESPEC(3))
 
 
 Global changes
 --------------
+
+-  Build system
+   -  Reorganize build system
+   -  Clarify dependencies
+   -  Clarify configurable variables
+   -  Add 'distcheck' target
+   -  Ignore known warnings
+   -  Replace uses of man2html(1) by grohtml(1)
 
 
 Changes to individual pages
