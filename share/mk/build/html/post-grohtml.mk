@@ -7,7 +7,7 @@ MAKEFILE_BUILD_HTML_POST_GROHTML_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/html/troff.mk
-include $(MAKEFILEDIR)/configure/build-depends/groff.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff/post-grohtml.mk
 
 
 _HTMLMAN := $(patsubst %.html.set,%.html,$(_HTMLMAN_MAN_set) $(_HTMLMAN_MDOC_set))

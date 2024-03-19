@@ -7,8 +7,8 @@ MAKEFILE_LINT_C_CPPLINT_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/examples/src.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/cpplint.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
+include $(MAKEFILEDIR)/configure/build-depends/cpplint/cpplint.mk
 
 
 _LINT_c_cpplint := $(patsubst %.c, %.lint-c.cpplint.touch, $(_UNITS_ex_c))

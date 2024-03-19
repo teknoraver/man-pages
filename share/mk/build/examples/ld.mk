@@ -8,7 +8,7 @@ MAKEFILE_BUILD_EX_LD_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/examples/cc.mk
-include $(MAKEFILEDIR)/configure/build-depends/ld.mk
+include $(MAKEFILEDIR)/configure/build-depends/binutils/ld.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 

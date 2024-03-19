@@ -27,7 +27,7 @@ all: build;
 .SECONDEXPANSION:
 
 
-MK_ := $(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk */*/*.mk))
+MK_ := $(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk */*/*.mk */*/*/*.mk))
 MK  := $(srcdir)/GNUmakefile $(MK_)
 include $(MK_)
 $(MK):: ;
@@ -53,7 +53,7 @@ help:
 	$(info	$(INFO_)	| sed 's/=.*/=/' \)
 	$(info	$(INFO_)	| grep -v -e ':DEFAULT_.*=' -e ':MAKEFILE_.*INCLUDED :=';)
 	$(info	)
-	$(info	$(INFO_)To see a list of dependencies, run:)
+	$(info	$(INFO_)To see a list of dependencies (package/program), run:)
 	$(info	$(INFO_)	$$ find share/mk/configure/build-depends -type f \)
 	$(info	$(INFO_)	| sed 's,share/mk/configure/build-depends/,,' \)
 	$(info	$(INFO_)	| sed 's,\.mk,,' \)

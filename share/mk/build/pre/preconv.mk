@@ -7,7 +7,7 @@ MAKEFILE_BUILD_PRE_PRECONV_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base/preconv.mk
 include $(MAKEFILEDIR)/configure/src.mk
 include $(MAKEFILEDIR)/src.mk
 

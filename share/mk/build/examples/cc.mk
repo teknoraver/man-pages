@@ -8,8 +8,8 @@ MAKEFILE_BUILD_EX_CC_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/examples/src.mk
-include $(MAKEFILEDIR)/configure/build-depends/cc.mk
-include $(MAKEFILEDIR)/configure/build-depends/cpp.mk
+include $(MAKEFILEDIR)/configure/build-depends/gcc/cc.mk
+include $(MAKEFILEDIR)/configure/build-depends/cpp/cpp.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 

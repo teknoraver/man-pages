@@ -7,10 +7,14 @@ MAKEFILE_BUILD_BOOK_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/groff.mk
-include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
-include $(MAKEFILEDIR)/configure/build-depends/moreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/cat.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff/gropdf.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base/eqn.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base/pic.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base/preconv.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base/tbl.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base/troff.mk
+include $(MAKEFILEDIR)/configure/build-depends/moreutils/sponge.mk
 include $(MAKEFILEDIR)/configure/src.mk
 include $(MAKEFILEDIR)/src.mk
 

@@ -7,7 +7,7 @@ MAKEFILE_BUILD_CATMAN_GROTTY_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/catman/troff.mk
-include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base/grotty.mk
 
 
 _CATMAN := $(patsubst %.cat.set,%.cat,$(_CATMAN_MAN_set) $(_CATMAN_MDOC_set))

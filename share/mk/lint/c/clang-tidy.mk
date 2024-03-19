@@ -8,11 +8,11 @@ MAKEFILE_LINT_C_CLANG_TIDY_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/examples/src.mk
-include $(MAKEFILEDIR)/configure/build-depends/clang.mk
-include $(MAKEFILEDIR)/configure/build-depends/clang-tidy.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/cpp.mk
-include $(MAKEFILEDIR)/configure/build-depends/sed.mk
+include $(MAKEFILEDIR)/configure/build-depends/clang/clang.mk
+include $(MAKEFILEDIR)/configure/build-depends/clang-tidy/clang-tidy.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
+include $(MAKEFILEDIR)/configure/build-depends/cpp/cpp.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 

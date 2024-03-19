@@ -7,8 +7,8 @@ MAKEFILE_BUILD_PDF_EQN_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/pre/tbl.mk
-include $(MAKEFILEDIR)/configure/build-depends/grep.mk
-include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base/eqn.mk
 
 
 _PDFMAN_troff := $(patsubst %.eqn,%.pdf.troff,$(_MAN_eqn))

@@ -7,9 +7,10 @@ MAKEFILE_LINT_MAN_MANDOC_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/grep.mk
-include $(MAKEFILEDIR)/configure/build-depends/mandoc.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/true.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/mandoc/mandoc.mk
 include $(MAKEFILEDIR)/configure/src.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 include $(MAKEFILEDIR)/lint/man/_.mk

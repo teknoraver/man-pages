@@ -6,7 +6,7 @@ ifndef MAKEFILE_DIST_INCLUDED
 MAKEFILE_DIST_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/install.mk
 include $(MAKEFILEDIR)/configure/directory_variables.mk
 
 

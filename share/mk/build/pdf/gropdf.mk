@@ -7,7 +7,7 @@ MAKEFILE_BUILD_PDF_GROPDF_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/pdf/troff.mk
-include $(MAKEFILEDIR)/configure/build-depends/groff.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff/gropdf.mk
 
 
 _PDFMAN := $(patsubst %.pdf.set,%.pdf,$(_PDFMAN_MAN_set) $(_PDFMAN_MDOC_set))

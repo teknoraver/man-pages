@@ -7,8 +7,8 @@ MAKEFILE_BUILD_HTML_TROFF_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/configure/build-depends/grep.mk
-include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base/troff.mk
 include $(MAKEFILEDIR)/configure/src.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 include $(MAKEFILEDIR)/src.mk
