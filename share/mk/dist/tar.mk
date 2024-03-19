@@ -16,10 +16,11 @@ include $(MAKEFILEDIR)/dist/_.mk
 include $(MAKEFILEDIR)/dist/files.mk
 
 
-DISTFILE := $(builddir)/$(DISTNAME).tar
+DISTFILE  := $(DISTNAME).tar
+_DISTFILE := $(builddir)/$(DISTFILE)
 
 
-$(DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
+$(_DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
 	$(info	$(INFO_)TAR		$@)
 	$(TAR) $(TARFLAGS) -cf $@ -T /dev/null
 	$(DISTFILESCMD) \
@@ -30,7 +31,7 @@ $(DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
 
 
 .PHONY: dist-tar
-dist-tar: $(DISTFILE);
+dist-tar: $(_DISTFILE);
 
 
 endif  # include guard

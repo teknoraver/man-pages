@@ -17,24 +17,24 @@ include $(MAKEFILEDIR)/dist/tar.mk
 compression := bz2 gz lz xz
 
 
-define DISTFILE_z_rule
-$(DISTFILE).$(2): %.$(2): % $(MK) | $$$$(@D)/
+define _DISTFILE_z_rule
+$(_DISTFILE).$(2): %.$(2): % $(MK) | $$$$(@D)/
 	$$(info	$(INFO_)$(1)		$$@)
 	$($(1)) $($(1)FLAGS) -kf $$<
 	$(TOUCH) $$@
 endef
 
 
-$(eval $(call DISTFILE_z_rule,BZIP2,bz2))
-$(eval $(call DISTFILE_z_rule,GZIP,gz))
-$(eval $(call DISTFILE_z_rule,LZIP,lz))
-$(eval $(call DISTFILE_z_rule,XZ,xz))
+$(eval $(call _DISTFILE_z_rule,BZIP2,bz2))
+$(eval $(call _DISTFILE_z_rule,GZIP,gz))
+$(eval $(call _DISTFILE_z_rule,LZIP,lz))
+$(eval $(call _DISTFILE_z_rule,XZ,xz))
 
 
 $(foreach z, $(compression),                                                  \
 	$(eval .PHONY: dist-z-$(z)))
 $(foreach z, $(compression),                                                  \
-	$(eval dist-z-$(z): $(DISTFILE).$(z);))
+	$(eval dist-z-$(z): $(_DISTFILE).$(z);))
 
 
 .PHONY: dist-z
