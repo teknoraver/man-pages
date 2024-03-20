@@ -13,7 +13,7 @@ include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 include $(MAKEFILEDIR)/configure/src.mk
 
 
-SORTMAN := $(srcdir)/scripts/sortman
+SORTMAN := $(CURDIR)/scripts/sortman
 
 
 MANEXT := \(\.[[:digit:]]\([[:alpha:]][[:alnum:]]*\)\?\>\|\.man\)\+\(\.man\|\.in\)*$

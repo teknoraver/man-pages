@@ -7,6 +7,7 @@ MAKEFILE_BUILD_BOOK_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/build/man.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/cat.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff/gropdf.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/eqn.mk
@@ -15,18 +16,20 @@ include $(MAKEFILEDIR)/configure/build-depends/groff-base/preconv.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/tbl.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/troff.mk
 include $(MAKEFILEDIR)/configure/build-depends/moreutils/sponge.mk
-include $(MAKEFILEDIR)/configure/src.mk
+include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/src.mk
 
 
-LMBDIR   := $(srcdir)/scripts/LinuxManBook
+LMBDIR   := $(CURDIR)/scripts/LinuxManBook
 BUILDLMB := $(LMBDIR)/build.sh
 
 
-_LMB     := $(_MANDIR)/man-pages.pdf
+LMB      := $(DISTNAME).pdf
+_LMBDIR  := $(builddir)
+_LMB     := $(_LMBDIR)/$(LMB)
 
 
-$(_LMB): $(MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
+$(_LMB): $(_MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
 	$(info	$(INFO_)Build		$@)
 	CAT='$(CAT)' \
 	PRECONV='$(PRECONV)' \
@@ -35,7 +38,7 @@ $(_LMB): $(MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
 	EQN='$(EQN)' \
 	TROFF='$(TROFF)' \
 	GROPDF='$(GROPDF)' \
-	$(BUILDLMB) $(MANDIR) \
+	$(BUILDLMB) $(_MANDIR) \
 	| $(SPONGE) $@
 
 

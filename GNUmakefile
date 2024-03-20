@@ -13,8 +13,7 @@ MAKEFLAGS += --warn-undefined-variables
 
 
 srcdir      := .
-DATAROOTDIR := $(srcdir)/share
-MAKEFILEDIR := $(DATAROOTDIR)/mk
+MAKEFILEDIR := $(CURDIR)/share/mk
 
 
 INFO_ :=
@@ -28,7 +27,7 @@ all: build;
 
 
 MK_ := $(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk */*/*.mk */*/*/*.mk))
-MK  := $(srcdir)/GNUmakefile $(MK_)
+MK  := $(CURDIR)/GNUmakefile $(MK_)
 include $(MK_)
 $(MK):: ;
 
