@@ -51,7 +51,9 @@ my %files;
 my %aliases;
 my %target;
 
-foreach my $al (`grep -E '^\\.so' $dir/man*/*`)
+foreach my $al (`find "$dir"/man*/ -type f \\
+		| grep "\\.[[:digit:]]\\([[:alpha:]][[:alnum:]]*\\)\\?\\>\$" \\
+		| xargs grep '^\\.so' /dev/null;`)
 {
 	#$al=~tr[.][_];
 	$al=~m/^$dir\/man\d[a-z]*\/(.*):\.\s*so\s*man\d[a-z]*\/(.*)/o;
@@ -66,8 +68,11 @@ while (my ($k,$v)=each %aliases)
 	}
 }
 
-foreach my $fn (glob "$dir/man*/*")
+foreach my $fn (`find "$dir"/man*/ -type f \\
+		| grep "\\.[[:digit:]]\\([[:alpha:]][[:alnum:]]*\\)\\?\\>\$";`)
 {
+	$fn=~s/\n//;
+
 	my ($nm,$sec)=GetNmSec($fn,qr/\.\d[a-z]*/);
 	$files{"${nm}.$sec"}=[$fn,(exists($aliases{"${nm}.$sec"}))?$aliases{"${nm}.$sec"}:"${nm}.$sec"];
 }
