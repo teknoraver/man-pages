@@ -21,7 +21,7 @@ _NONSO_MAN := $(patsubst $(MANDIR)/%, $(_MANDIR)/%, $(NONSO_MAN))
 $(_NONSO_MAN): $(_MANDIR)/%: $(MANDIR)/% $(MK) | $$(@D)/
 	$(info	$(INFO_)SED		$@)
 	<$< \
-	$(SED) "/^\.TH/s/(date)/$$($(GIT) log --format=%cs -1 -- $< $(HIDE_ERR))/" \
+	$(SED) "/^\.TH/s/(date)/$$($(MANPAGEDATECMD))/" \
 	| $(SED) '/^\.TH/s/(unreleased)/$(DISTVERSION)/' >$@
 
 

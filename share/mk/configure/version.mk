@@ -44,4 +44,7 @@ DISTDATECMD := \
 DISTDATE := $(shell $(DISTDATECMD))
 
 
+MANPAGEDATECMD = $(GIT) log --format=%cs -1 -- $< $(HIDE_ERR)
+
+
 endif  # include guard
