@@ -33,7 +33,7 @@ _UNITS_ex_h := $(filter %.h,$(_UNITS_ex_src))
 _UNITS_ex_c := $(filter %.c,$(_UNITS_ex_src))
 
 
-$(_UNITS_ex_src): $$(patsubst $(_MANDIR)/%.d,$(MANDIR)/%,$$(@D)) $(MK) | $$(@D)/
+$(_UNITS_ex_src): $$(patsubst %.d, %, $$(@D)) $(MK) | $$(@D)/
 $(_UNITS_ex_c):   $$(filter $$(@D)/%.h,$(_UNITS_ex_h))
 $(_UNITS_ex_src):
 	$(info	$(INFO_)SED		$@)

@@ -7,6 +7,8 @@ MAKEFILE_BUILD_HTML_TROFF_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/build/man/man.mk
+include $(MAKEFILEDIR)/build/man/mdoc.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/troff.mk
 include $(MAKEFILEDIR)/configure/src.mk
@@ -25,8 +27,8 @@ _XFAIL_HTMLMAN_MAN_set := \
 	$(_MANDIR)/man8/zic.8.html.set
 
 
-_HTMLMAN_MAN_set := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.html.set,$(NONSO_MAN))
-_HTMLMAN_MDOC_set:= $(patsubst $(MANDIR)/%,$(_MANDIR)/%.html.set,$(NONSO_MDOC))
+_HTMLMAN_MAN_set  := $(patsubst %, %.html.set, $(_NONSO_MAN))
+_HTMLMAN_MDOC_set := $(patsubst %, %.html.set, $(_NONSO_MDOC))
 
 
 ifeq ($(SKIP_XFAIL),yes)

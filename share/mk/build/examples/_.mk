@@ -6,14 +6,12 @@ ifndef MAKEFILE_BUILD_EX_DIR_INCLUDED
 MAKEFILE_BUILD_EX_DIR_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/build/man/man.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/mkdir.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
-include $(MAKEFILEDIR)/configure/src.mk
-include $(MAKEFILEDIR)/src.mk
 
 
-_PAGEEXDIRS := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.d/,$(NONSO_MAN))
+_PAGEEXDIRS := $(patsubst %, %.d/, $(_NONSO_MAN))
 
 
 $(_PAGEEXDIRS):
