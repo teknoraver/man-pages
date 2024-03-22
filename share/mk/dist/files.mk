@@ -44,10 +44,7 @@ FORCE_DISTVERSION := \
 
 $(_DISTPAGES): $(_DISTDIR)/man%: $(srcdir)/man% $(MK) | $$(@D)/
 	$(info	$(INFO_)SED		$@)
-	<$< \
-	$(SED) "/^\.TH/s/(date)/$$($(MANPAGEDATECMD))/" \
-	| $(SED) '/^\.TH/s/(unreleased)/$(DISTVERSION)/' \
-	| $(INSTALL_DATA) -T /dev/stdin $@
+	$(SED) "/^\.TH/s/(date)/$$($(MANPAGEDATECMD))/" <$< >$@
 
 $(_DISTVERSION): $(MAKEFILEDIR)/configure/version.mk $(MK) $(FORCE_DISTVERSION) | $$(@D)/
 	$(info	$(INFO_)SED		$@)
