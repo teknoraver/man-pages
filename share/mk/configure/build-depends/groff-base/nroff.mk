@@ -2,11 +2,12 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_BASE_TROFF_INCLUDED
-MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_BASE_TROFF_INCLUDED := 1
+ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_BASE_NROFF_INCLUDED
+MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_BASE_NROFF_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/echo.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/expr.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/libc-bin/locale.mk
 include $(MAKEFILEDIR)/configure/build-depends/man/man.mk
