@@ -45,8 +45,8 @@ FORCE_DISTVERSION := \
 $(_DISTPAGES): $(_DISTDIR)/man%: $(srcdir)/man% $(MK) | $$(@D)/
 	$(info	$(INFO_)SED		$@)
 	<$< \
-	$(SED) "/^.TH/s/(date)/$$($(GIT) log --format=%cs -1 -- $< $(HIDE_ERR))/" \
-	| $(SED) '/^.TH/s/(unreleased)/$(DISTVERSION)/' \
+	$(SED) "/^\.TH/s/(date)/$$($(GIT) log --format=%cs -1 -- $< $(HIDE_ERR))/" \
+	| $(SED) '/^\.TH/s/(unreleased)/$(DISTVERSION)/' \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 
 $(_DISTVERSION): $(MAKEFILEDIR)/configure/version.mk $(MK) $(FORCE_DISTVERSION) | $$(@D)/

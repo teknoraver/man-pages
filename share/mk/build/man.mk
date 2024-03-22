@@ -20,8 +20,8 @@ _MANPAGES := $(patsubst $(MANDIR)/%,$(_MANDIR)/%,$(MANPAGES))
 $(_MANPAGES): $(_MANDIR)/%: $(MANDIR)/% $(MK) | $$(@D)/
 	$(info	$(INFO_)SED		$@)
 	<$< \
-	$(SED) "/^.TH/s/(date)/$$($(GIT) log --format=%cs -1 -- $< $(HIDE_ERR))/" \
-	| $(SED) '/^.TH/s/(unreleased)/$(DISTVERSION)/' >$@
+	$(SED) "/^\.TH/s/(date)/$$($(GIT) log --format=%cs -1 -- $< $(HIDE_ERR))/" \
+	| $(SED) '/^\.TH/s/(unreleased)/$(DISTVERSION)/' >$@
 
 
 .PHONY: build-man
