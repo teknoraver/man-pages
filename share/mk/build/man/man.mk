@@ -6,6 +6,7 @@ ifndef MAKEFILE_BUILD_MAN_MAN_INCLUDED
 MAKEFILE_BUILD_MAN_MAN_INCLUDED := 1
 
 
+include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/configure/build-depends/git/git.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 include $(MAKEFILEDIR)/configure/src.mk
@@ -14,18 +15,18 @@ include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/src.mk
 
 
-_MANPAGES := $(patsubst $(MANDIR)/%,$(_MANDIR)/%,$(MANPAGES))
+_NONSO_MAN := $(patsubst $(MANDIR)/%, $(_MANDIR)/%, $(NONSO_MAN))
 
 
-$(_MANPAGES): $(_MANDIR)/%: $(MANDIR)/% $(MK) | $$(@D)/
+$(_NONSO_MAN): $(_MANDIR)/%: $(MANDIR)/% $(MK) | $$(@D)/
 	$(info	$(INFO_)SED		$@)
 	<$< \
 	$(SED) "/^\.TH/s/(date)/$$($(GIT) log --format=%cs -1 -- $< $(HIDE_ERR))/" \
 	| $(SED) '/^\.TH/s/(unreleased)/$(DISTVERSION)/' >$@
 
 
-.PHONY: build-man
-build-man: $(_MANPAGES)
+.PHONY: build-man-man
+build-man-man: $(_NONSO_MAN)
 
 
 endif  # include guard

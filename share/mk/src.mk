@@ -58,6 +58,7 @@ NONSO_MDOC := $(shell $(FIND) $(MANDIR)/* -type f \
 		| $(XARGS) $(GREP) -l '^\.Dt ' \
 		| $(SORTMAN) \
 		| $(SED) 's,:,\\:,g')
+SO_MAN := $(filter-out $(NONSO_MAN) $(NONSO_MDOC), $(MANPAGES))
 
 
 endif  # include guard
