@@ -13,7 +13,7 @@ include $(MAKEFILEDIR)/configure/build-depends/cpp/cpp.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 
-_XFAIL_UNITS_ex_o := \
+_XFAIL_EX_TU_o := \
 	$(_MANDIR)/man2/bpf.2.d/bpf.o \
 	$(_MANDIR)/man2/seccomp.2.d/seccomp.o \
 	$(_MANDIR)/man2/sigaction.2.d/sigaction.o \
@@ -36,19 +36,19 @@ _XFAIL_UNITS_ex_o := \
 	$(_MANDIR)/man3head/printf.h.3head.d/register_printf_specifier.o
 
 
-_UNITS_ex_o := $(patsubst %.c,%.o,$(_UNITS_ex_c))
+_EX_TU_o := $(patsubst %.c,%.o,$(_EX_TU_c))
 ifeq ($(SKIP_XFAIL),yes)
-_UNITS_ex_o := $(filter-out $(_XFAIL_UNITS_ex_o), $(_UNITS_ex_o))
+_EX_TU_o := $(filter-out $(_XFAIL_EX_TU_o), $(_EX_TU_o))
 endif
 
 
-$(_UNITS_ex_o): %.o: %.c $(MK)
+$(_EX_TU_o): %.o: %.c $(MK)
 	$(info	$(INFO_)CC		$@)
 	$(CC) -c $(CPPFLAGS) $(CFLAGS) -o $@ $<
 
 
 .PHONY: build-ex-cc
-build-ex-cc:  $(_UNITS_ex_o);
+build-ex-cc:  $(_EX_TU_o);
 
 
 endif  # include guard

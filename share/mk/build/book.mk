@@ -17,7 +17,6 @@ include $(MAKEFILEDIR)/configure/build-depends/groff-base/tbl.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/troff.mk
 include $(MAKEFILEDIR)/configure/build-depends/moreutils/sponge.mk
 include $(MAKEFILEDIR)/configure/version.mk
-include $(MAKEFILEDIR)/src.mk
 
 
 LMBDIR   := $(CURDIR)/scripts/LinuxManBook

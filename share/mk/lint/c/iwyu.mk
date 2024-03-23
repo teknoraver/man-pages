@@ -85,7 +85,7 @@ _XFAIL_LINT_c_iwyu := \
 	$(_MANDIR)/man3/slist.3.d/slist.lint-c.iwyu.touch
 
 
-_LINT_c_iwyu := $(patsubst %.c, %.lint-c.iwyu.touch, $(_UNITS_ex_c))
+_LINT_c_iwyu := $(patsubst %.c, %.lint-c.iwyu.touch, $(_EX_TU_c))
 ifeq ($(SKIP_XFAIL),yes)
 _LINT_c_iwyu := $(filter-out $(_XFAIL_LINT_c_iwyu), $(_LINT_c_iwyu))
 endif

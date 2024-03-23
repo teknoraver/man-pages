@@ -11,9 +11,7 @@ include $(MAKEFILEDIR)/build/man/man.mk
 include $(MAKEFILEDIR)/build/man/mdoc.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/troff.mk
-include $(MAKEFILEDIR)/configure/src.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
-include $(MAKEFILEDIR)/src.mk
 
 
 _XFAIL_HTMLMAN_MAN_set := \

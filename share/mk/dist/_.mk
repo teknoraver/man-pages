@@ -7,7 +7,7 @@ MAKEFILE_DIST_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/install.mk
-include $(MAKEFILEDIR)/configure/directory_variables.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
 
 
 _DISTDIR := $(builddir)/dist

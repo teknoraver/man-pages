@@ -7,11 +7,11 @@ MAKEFILE_BUILD_PDF_TROFF_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/build/man/man.mk
+include $(MAKEFILEDIR)/build/man/mdoc.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/troff.mk
-include $(MAKEFILEDIR)/configure/src.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
-include $(MAKEFILEDIR)/src.mk
 
 
 _XFAIL_PDFMAN_MAN_set := \
@@ -42,8 +42,8 @@ _XFAIL_PDFMAN_MAN_set := \
 	$(_MANDIR)/man7/vdso.7.pdf.set
 
 
-_PDFMAN_MAN_set  := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.pdf.set,$(NONSO_MAN))
-_PDFMAN_MDOC_set := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.pdf.set,$(NONSO_MDOC))
+_PDFMAN_MAN_set  := $(patsubst %, %.pdf.set, $(_NONSO_MAN))
+_PDFMAN_MDOC_set := $(patsubst %, %.pdf.set, $(_NONSO_MDOC))
 
 
 ifeq ($(SKIP_XFAIL),yes)

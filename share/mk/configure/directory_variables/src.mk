@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-ifndef MAKEFILE_CONFIGURE_SRC_INCLUDED
-MAKEFILE_CONFIGURE_SRC_INCLUDED := 1
+ifndef MAKEFILE_CONFIGURE_DIRECTORY_VARIABLES_SRC_INCLUDED
+MAKEFILE_CONFIGURE_DIRECTORY_VARIABLES_SRC_INCLUDED := 1
 
 
 SYSCONFDIR := $(srcdir)/etc
@@ -11,6 +11,10 @@ MANDIR     := $(srcdir)
 
 
 MANSECTIONS := $(patsubst $(MANDIR)/man%/, %, $(wildcard $(MANDIR)/man*/))
+
+
+$(foreach s, $(MANSECTIONS),                                                  \
+	$(eval MAN$(s)DIR := $(MANDIR)/man$(s)))
 
 
 endif  # include guard

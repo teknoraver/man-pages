@@ -6,7 +6,7 @@ ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_CLANG_TIDY_CLANG_TIDY_INCLUDED
 MAKEFILE_CONFIGURE_BUILD_DEPENDS_CLANG_TIDY_CLANG_TIDY_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/src.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 
 
 CLANG_TIDY_CONF         := $(SYSCONFDIR)/clang-tidy/config.yaml

@@ -12,7 +12,7 @@ include $(MAKEFILEDIR)/configure/build-depends/binutils/ld.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
 
 
-_XFAIL_UNITS_ex_bin := \
+_XFAIL_EX_TU_bin := \
 	$(_MANDIR)/man2/add_key.2.d/add_key \
 	$(_MANDIR)/man2/keyctl.2.d/key_instantiate \
 	$(_MANDIR)/man2/request_key.2.d/t_request_key \
@@ -33,19 +33,19 @@ _XFAIL_UNITS_ex_bin := \
 	$(_MANDIR)/man3/tsearch.3.d/tsearch
 
 
-_UNITS_ex_bin := $(patsubst %.o,%,$(_UNITS_ex_o))
+_EX_TU_bin := $(patsubst %.o,%,$(_EX_TU_o))
 ifeq ($(SKIP_XFAIL),yes)
-_UNITS_ex_bin := $(filter-out $(_XFAIL_UNITS_ex_bin), $(_UNITS_ex_bin))
+_EX_TU_bin := $(filter-out $(_XFAIL_EX_TU_bin), $(_EX_TU_bin))
 endif
 
 
-$(_UNITS_ex_bin): %: %.o $(MK)
+$(_EX_TU_bin): %: %.o $(MK)
 	$(info	$(INFO_)LD		$@)
 	$(LD) $(LDFLAGS) -o $@ $< $(LDLIBS)
 
 
 .PHONY: build-ex-ld
-build-ex-ld: $(_UNITS_ex_bin);
+build-ex-ld: $(_EX_TU_bin);
 
 
 endif  # include guard

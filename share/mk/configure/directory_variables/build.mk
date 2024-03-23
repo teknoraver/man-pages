@@ -2,12 +2,11 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-ifndef MAKEFILE_BUILD_EX_INCLUDED
-MAKEFILE_BUILD_EX_INCLUDED := 1
+ifndef MAKEFILE_CONFIGURE_DIRECTORY_VARIABLES_BUILD_INCLUDED
+MAKEFILE_CONFIGURE_DIRECTORY_VARIABLES_BUILD_INCLUDED := 1
 
 
-.PHONY: build-ex
-build-ex: build-ex-ld;
+builddir := .tmp
 
 
 endif  # include guard

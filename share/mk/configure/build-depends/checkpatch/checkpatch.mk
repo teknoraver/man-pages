@@ -6,7 +6,7 @@ ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_CHECKPATCH_CHECKPATCH_INCLUDED
 MAKEFILE_CONFIGURE_BUILD_DEPENDS_CHECKPATCH_CHECKPATCH_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/src.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 
 
 CHECKPATCH_CONF         := $(SYSCONFDIR)/checkpatch/checkpatch.conf

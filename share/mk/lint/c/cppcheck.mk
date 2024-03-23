@@ -55,7 +55,7 @@ _XFAIL_LINT_c_cppcheck := \
 	$(_MANDIR)/man3/tsearch.3.d/tsearch.lint-c.cppcheck.touch
 
 
-_LINT_c_cppcheck := $(patsubst %.c, %.lint-c.cppcheck.touch, $(_UNITS_ex_c))
+_LINT_c_cppcheck := $(patsubst %.c, %.lint-c.cppcheck.touch, $(_EX_TU_c))
 ifeq ($(SKIP_XFAIL),yes)
 _LINT_c_cppcheck := $(filter-out $(_XFAIL_LINT_c_cppcheck), $(_LINT_c_cppcheck))
 endif

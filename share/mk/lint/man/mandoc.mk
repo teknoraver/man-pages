@@ -13,7 +13,7 @@ include $(MAKEFILEDIR)/configure/build-depends/coreutils/true.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/mandoc/mandoc.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/src/man.mk
 
 
 _XFAIL_LINT_man_mandoc := \

@@ -7,8 +7,8 @@ MAKEFILE_BUILD_MAN_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/configure/src.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
+include $(MAKEFILEDIR)/src/man.mk
 
 
 _MANPAGES := $(patsubst $(MANDIR)/%, $(_MANDIR)/%, $(MANPAGES))

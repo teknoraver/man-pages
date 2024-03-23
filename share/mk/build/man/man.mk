@@ -9,10 +9,10 @@ MAKEFILE_BUILD_MAN_MAN_INCLUDED := 1
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/configure/build-depends/git/git.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
-include $(MAKEFILEDIR)/configure/src.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 include $(MAKEFILEDIR)/configure/version.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/src/man.mk
 
 
 _NONSO_MAN := $(patsubst $(MANDIR)/%, $(_MANDIR)/%, $(NONSO_MAN))

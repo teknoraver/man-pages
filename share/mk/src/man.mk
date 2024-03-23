@@ -2,18 +2,16 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-ifndef MAKEFILE_SRC_INCLUDED
-MAKEFILE_SRC_INCLUDED := 1
+ifndef MAKEFILE_SRC_MAN_INCLUDED
+MAKEFILE_SRC_MAN_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/findutils/find.mk
 include $(MAKEFILEDIR)/configure/build-depends/findutils/xargs.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
-include $(MAKEFILEDIR)/configure/src.mk
-
-
-SORTMAN := $(CURDIR)/scripts/sortman
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
+include $(MAKEFILEDIR)/src/sortman.mk
 
 
 MANEXT := \(\.[[:digit:]]\([[:alpha:]][[:alnum:]]*\)\?\>\|\.man\)\+\(\.man\|\.in\)*$
@@ -33,17 +31,14 @@ MANINTROPAGES := $(shell $(FIND) $(MANDIR)/* -type f \
 
 
 $(foreach s, $(MANSECTIONS),                                                  \
-	$(eval MAN$(s)DIR := $(MANDIR)/man$(s)))
-
-$(foreach s, $(MANSECTIONS),                                                  \
 	$(eval MAN$(s)PAGES :=                                                \
 		$(filter-out $(MANINTROPAGES),                                \
-			$(filter $(MANDIR)/man$(s)/%,                         \
+			$(filter $(MAN$(s)DIR)/%,                             \
 				$(filter %.$(s),                              \
 					$(MANPAGES))))))
 $(foreach s, $(MANSECTIONS),                                                  \
 	$(eval MAN$(s)INTROPAGE :=                                            \
-		$(filter $(MANDIR)/man$(s)/%,                                 \
+		$(filter $(MAN$(s)DIR)/%,                                     \
 			$(filter %.$(s),                                      \
 				$(MANINTROPAGES)))))
 

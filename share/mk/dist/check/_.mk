@@ -7,7 +7,7 @@ MAKEFILE_DIST_CHECK_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/realpath.mk
-include $(MAKEFILEDIR)/configure/directory_variables.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
 include $(MAKEFILEDIR)/configure/version.mk
 
 

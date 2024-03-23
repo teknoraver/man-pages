@@ -7,11 +7,11 @@ MAKEFILE_BUILD_PS_TROFF_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/build/man/man.mk
+include $(MAKEFILEDIR)/build/man/mdoc.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/troff.mk
-include $(MAKEFILEDIR)/configure/src.mk
 include $(MAKEFILEDIR)/configure/xfail.mk
-include $(MAKEFILEDIR)/src.mk
 
 
 _XFAIL_PSMAN_MAN_set := \
@@ -42,8 +42,8 @@ _XFAIL_PSMAN_MAN_set := \
 	$(_MANDIR)/man7/vdso.7.ps.set
 
 
-_PSMAN_MAN_set := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.ps.set,$(NONSO_MAN))
-_PSMAN_MDOC_set:= $(patsubst $(MANDIR)/%,$(_MANDIR)/%.ps.set,$(NONSO_MDOC))
+_PSMAN_MAN_set  := $(patsubst %, %.ps.set, $(_NONSO_MAN))
+_PSMAN_MDOC_set := $(patsubst %, %.ps.set, $(_NONSO_MDOC))
 
 
 ifeq ($(SKIP_XFAIL),yes)

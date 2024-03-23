@@ -6,7 +6,7 @@ ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_CPPCHECK_CPPCHECK_INCLUDED
 MAKEFILE_CONFIGURE_BUILD_DEPENDS_CPPCHECK_CPPCHECK_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/src.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 
 
 CPPCHECK_SUPPRESS     := $(SYSCONFDIR)/cppcheck/cppcheck.suppress

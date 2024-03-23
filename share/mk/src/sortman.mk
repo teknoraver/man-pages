@@ -2,12 +2,11 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-ifndef MAKEFILE_BUILD_EX_INCLUDED
-MAKEFILE_BUILD_EX_INCLUDED := 1
+ifndef MAKEFILE_SRC_SORTMAN_INCLUDED
+MAKEFILE_SRC_SORTMAN_INCLUDED := 1
 
 
-.PHONY: build-ex
-build-ex: build-ex-ld;
+SORTMAN := $(CURDIR)/scripts/sortman
 
 
 endif  # include guard

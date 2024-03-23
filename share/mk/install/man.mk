@@ -17,10 +17,12 @@ include $(MAKEFILEDIR)/configure/build-depends/lzip/lzip.mk
 include $(MAKEFILEDIR)/configure/build-depends/moreutils/sponge.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 include $(MAKEFILEDIR)/configure/build-depends/xz-utils/xz.mk
-include $(MAKEFILEDIR)/configure/directory_variables.mk
-include $(MAKEFILEDIR)/configure/z.mk
+include $(MAKEFILEDIR)/configure/directory_variables/install.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
+include $(MAKEFILEDIR)/configure/man/link_pages.mk
+include $(MAKEFILEDIR)/configure/man/z.mk
 include $(MAKEFILEDIR)/install/_.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/src/man.mk
 
 
 _mandir := $(DESTDIR)$(mandir)
