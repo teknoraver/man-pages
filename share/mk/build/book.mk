@@ -23,12 +23,12 @@ LMBDIR   := $(CURDIR)/scripts/LinuxManBook
 BUILDLMB := $(LMBDIR)/build.sh
 
 
-LMB      := $(DISTNAME).pdf
-_LMBDIR  := $(builddir)
-_LMB     := $(_LMBDIR)/$(LMB)
+BOOK      := $(DISTNAME).pdf
+_BOOKDIR  := $(builddir)
+_BOOK     := $(_BOOKDIR)/$(BOOK)
 
 
-$(_LMB): $(_MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
+$(_BOOK): $(_MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
 	$(info	$(INFO_)Build		$@)
 	CAT='$(CAT)' \
 	PRECONV='$(PRECONV)' \
@@ -42,7 +42,7 @@ $(_LMB): $(_MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
 
 
 .PHONY: build-book
-build-book: $(_LMB);
+build-book: $(_BOOK);
 
 
 endif  # include guard

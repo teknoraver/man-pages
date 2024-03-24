@@ -12,9 +12,10 @@ include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 DESTDIR     :=
 prefix      := /usr/local
 datarootdir := $(prefix)/share
+mandir      := $(datarootdir)/man
 docdir      := $(datarootdir)/doc
 htmldir     := $(docdir)/html/man
-mandir      := $(datarootdir)/man
+pdfdir      := $(docdir)/pdf
 
 
 $(foreach s, $(MANSECTIONS),                                                  \
