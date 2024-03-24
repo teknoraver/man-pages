@@ -30,11 +30,9 @@ FORCE_DISTVERSION := \
 		if $(TEST) -f $(_DISTVERSION); then \
 			<$(_DISTVERSION) \
 			$(GREP) \
-				-e '^DISTVERSION :=' \
-				-e '^DISTNAME :=' \
+				-e '^VERSION :=' \
 				-e '^DISTDATE :=' \
-			| $(SED) '/^DISTVERSION := $(DISTVERSION)$$/d' \
-			| $(SED) '/^DISTNAME := $(DISTNAME)$$/d' \
+			| $(SED) '/^VERSION := $(VERSION)$$/d' \
 			| $(SED) '/^DISTDATE := $(DISTDATE)$$/d' \
 			| $(GREP) ^ $(HIDE_ERR) >&2 \
 			&& $(ECHO) FORCE; \
@@ -49,8 +47,7 @@ $(_DISTPAGES): $(_DISTDIR)/man%: $(srcdir)/man% $(MK) | $$(@D)/
 $(_DISTVERSION): $(MAKEFILEDIR)/configure/version.mk $(MK) $(FORCE_DISTVERSION) | $$(@D)/
 	$(info	$(INFO_)SED		$@)
 	<$< \
-	$(SED) 's/^DISTVERSION *:=.*/DISTVERSION := $(DISTVERSION)/' \
-	| $(SED) 's/^DISTNAME *:=.*/DISTNAME := $(DISTNAME)/' \
+	$(SED) 's/^VERSION *:=.*/VERSION := $(VERSION)/' \
 	| $(SED) 's/^DISTDATE *:=.*/DISTDATE := $(DISTDATE)/' \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 
