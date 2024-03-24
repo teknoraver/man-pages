@@ -20,7 +20,6 @@ include $(MAKEFILEDIR)/configure/version.mk
 
 
 LMBDIR   := $(CURDIR)/scripts/LinuxManBook
-BUILDLMB := $(LMBDIR)/build.sh
 
 
 BOOK      := $(DISTNAME).pdf
@@ -29,15 +28,18 @@ _BOOK     := $(_BOOKDIR)/$(BOOK)
 
 
 $(_BOOK): $(_MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
-	$(info	$(INFO_)Build		$@)
-	CAT='$(CAT)' \
-	PRECONV='$(PRECONV)' \
-	PIC='$(PIC)' \
-	TBL='$(TBL)' \
-	EQN='$(EQN)' \
-	TROFF='$(TROFF)' \
-	GROPDF='$(GROPDF)' \
-	$(BUILDLMB) $(_MANDIR) \
+	$(info	$(INFO_)GROPDF		$@)
+	( \
+		$(CAT) "$(LMBDIR)"/LMBfront.roff; \
+		$(CAT) "$(LMBDIR)"/an.tmac; \
+		"$(LMBDIR)"/prepare.pl "$(_MANDIR)"; \
+	) \
+	| $(PRECONV) \
+	| $(PIC) \
+	| $(TBL) \
+	| $(EQN) -Tpdf \
+	| $(TROFF) -Tpdf -F"$(LMBDIR)" -dpaper=a4 $(TROFFFLAGS) \
+	| $(GROPDF) -F"$(LMBDIR)" -pa4 $(GROPDFFLAGS) \
 	| $(SPONGE) $@
 
 
