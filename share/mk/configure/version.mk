@@ -20,9 +20,10 @@ include $(MAKEFILEDIR)/configure/verbose.mk
 
 projname     := man-pages
 VERSION      := $(shell $(GIT) describe --dirty | $(SED) 's/$(projname)-//')
+EXTRAVERSION :=
 
 
-DISTVERSION := $(VERSION)
+DISTVERSION := $(VERSION)$(EXTRAVERSION)
 DISTNAME    := $(projname)-$(DISTVERSION)
 
 
