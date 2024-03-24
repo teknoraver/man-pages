@@ -14,7 +14,6 @@ _MANDIR := $(builddir)/man
 
 .PHONY: build
 build: \
-	build-book \
 	build-catman \
 	build-html \
 	build-pdf \

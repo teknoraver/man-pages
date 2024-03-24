@@ -2,11 +2,11 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-ifndef MAKEFILE_BUILD_PDF_GROPDF_INCLUDED
-MAKEFILE_BUILD_PDF_GROPDF_INCLUDED := 1
+ifndef MAKEFILE_BUILD_PDF_PAGES_GROPDF_INCLUDED
+MAKEFILE_BUILD_PDF_PAGES_GROPDF_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/pdf/troff.mk
+include $(MAKEFILEDIR)/build/pdf/pages/troff.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff/gropdf.mk
 
 
@@ -18,8 +18,8 @@ $(_PDFMAN): %.pdf: %.pdf.set $(MK) | $$(@D)/
 	$(GROPDF) $(GROPDFFLAGS) <$< >$@
 
 
-.PHONY: build-pdf-gropdf
-build-pdf-gropdf: $(_PDFMAN);
+.PHONY: build-pdf-pages-gropdf
+build-pdf-pages-gropdf: $(_PDFMAN);
 
 
 endif  # include guard

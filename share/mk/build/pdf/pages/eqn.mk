@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-ifndef MAKEFILE_BUILD_PDF_EQN_INCLUDED
-MAKEFILE_BUILD_PDF_EQN_INCLUDED := 1
+ifndef MAKEFILE_BUILD_PDF_PAGES_EQN_INCLUDED
+MAKEFILE_BUILD_PDF_PAGES_EQN_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/pre/tbl.mk
@@ -20,8 +20,8 @@ $(_PDFMAN_troff): %.pdf.troff: %.eqn $(MK) | $$(@D)/
 	| $(GREP) ^ >&2
 
 
-.PHONY: build-pdf-eqn
-build-pdf-eqn: $(_PDFMAN_troff);
+.PHONY: build-pdf-pages-eqn
+build-pdf-pages-eqn: $(_PDFMAN_troff);
 
 
 endif  # include guard

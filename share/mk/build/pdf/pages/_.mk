@@ -2,12 +2,12 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-ifndef MAKEFILE_BUILD_PDF_INCLUDED
-MAKEFILE_BUILD_PDF_INCLUDED := 1
+ifndef MAKEFILE_BUILD_PDF_PAGES_INCLUDED
+MAKEFILE_BUILD_PDF_PAGES_INCLUDED := 1
 
 
-.PHONY: build-pdf
-build-pdf: build-pdf-book build-pdf-pages;
+.PHONY: build-pdf-pages
+build-pdf-pages: build-pdf-pages-gropdf;
 
 
 endif  # include guard

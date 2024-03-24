@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-ifndef MAKEFILE_BUILD_BOOK_INCLUDED
-MAKEFILE_BUILD_BOOK_INCLUDED := 1
+ifndef MAKEFILE_BUILD_PDF_BOOK_INCLUDED
+MAKEFILE_BUILD_PDF_BOOK_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
@@ -22,12 +22,12 @@ include $(MAKEFILEDIR)/configure/version.mk
 LMBDIR   := $(CURDIR)/scripts/LinuxManBook
 
 
-BOOK      := $(DISTNAME).pdf
-_BOOKDIR  := $(builddir)
-_BOOK     := $(_BOOKDIR)/$(BOOK)
+PDF_BOOK  := $(DISTNAME).pdf
+_PDFDIR   := $(builddir)
+_PDF_BOOK := $(_PDFDIR)/$(PDF_BOOK)
 
 
-$(_BOOK): $(_MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
+$(_PDF_BOOK): $(_MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
 	$(info	$(INFO_)GROPDF		$@)
 	( \
 		$(CAT) "$(LMBDIR)"/LMBfront.roff; \
@@ -43,8 +43,8 @@ $(_BOOK): $(_MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
 	| $(SPONGE) $@
 
 
-.PHONY: build-book
-build-book: $(_BOOK);
+.PHONY: build-pdf-book
+build-pdf-book: $(_PDF_BOOK);
 
 
 endif  # include guard
