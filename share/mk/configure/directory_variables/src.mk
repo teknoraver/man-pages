@@ -6,8 +6,8 @@ ifndef MAKEFILE_CONFIGURE_DIRECTORY_VARIABLES_SRC_INCLUDED
 MAKEFILE_CONFIGURE_DIRECTORY_VARIABLES_SRC_INCLUDED := 1
 
 
-SYSCONFDIR := $(srcdir)/etc
-MANDIR     := $(srcdir)
+SYSCONFDIR  := $(srcdir)/etc
+MANDIR      := $(srcdir)
 
 
 MANSECTIONS := $(patsubst $(MANDIR)/man%/, %, $(wildcard $(MANDIR)/man*/))

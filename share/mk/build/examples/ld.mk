@@ -33,7 +33,7 @@ _XFAIL_EX_TU_bin := \
 	$(_MANDIR)/man3/tsearch.3.d/tsearch
 
 
-_EX_TU_bin := $(patsubst %.o,%,$(_EX_TU_o))
+_EX_TU_bin := $(patsubst %.o, %, $(_EX_TU_o))
 ifeq ($(SKIP_XFAIL),yes)
 _EX_TU_bin := $(filter-out $(_XFAIL_EX_TU_bin), $(_EX_TU_bin))
 endif

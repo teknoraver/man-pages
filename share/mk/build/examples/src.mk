@@ -29,12 +29,12 @@ _EX_TU_src := \
 			| $(SED) 's,:,\\:,g' \
 		) \
 	)
-_EX_TU_h := $(filter %.h,$(_EX_TU_src))
-_EX_TU_c := $(filter %.c,$(_EX_TU_src))
+_EX_TU_h := $(filter %.h, $(_EX_TU_src))
+_EX_TU_c := $(filter %.c, $(_EX_TU_src))
 
 
 $(_EX_TU_src): $$(patsubst %.d, %, $$(@D)) $(MK) | $$(@D)/
-$(_EX_TU_c):   $$(filter $$(@D)/%.h,$(_EX_TU_h))
+$(_EX_TU_c):   $$(filter $$(@D)/%.h, $(_EX_TU_h))
 $(_EX_TU_src):
 	$(info	$(INFO_)SED		$@)
 	<$< \

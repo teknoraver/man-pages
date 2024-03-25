@@ -36,7 +36,7 @@ _XFAIL_EX_TU_o := \
 	$(_MANDIR)/man3head/printf.h.3head.d/register_printf_specifier.o
 
 
-_EX_TU_o := $(patsubst %.c,%.o,$(_EX_TU_c))
+_EX_TU_o := $(patsubst %.c, %.o, $(_EX_TU_c))
 ifeq ($(SKIP_XFAIL),yes)
 _EX_TU_o := $(filter-out $(_XFAIL_EX_TU_o), $(_EX_TU_o))
 endif

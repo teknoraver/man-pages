@@ -16,6 +16,7 @@ _MANDIR := $(builddir)/man
 build: \
 	build-catman \
 	build-html \
+	build-man \
 	build-pdf \
 	build-ps \
 	build-ex;

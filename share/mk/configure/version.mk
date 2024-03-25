@@ -18,13 +18,13 @@ include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 
 
-projname     := man-pages
-VERSION      := $(shell $(GIT) describe --dirty | $(SED) 's/$(projname)-//')
-EXTRAVERSION :=
+projname      := man-pages
+VERSION       := $(shell $(GIT) describe --dirty | $(SED) 's/$(projname)-//')
+EXTRAVERSION  :=
 
 
-DISTVERSION := $(VERSION)$(EXTRAVERSION)
-DISTNAME    := $(projname)-$(DISTVERSION)
+DISTVERSION   := $(VERSION)$(EXTRAVERSION)
+DISTNAME      := $(projname)-$(DISTVERSION)
 
 
 DISTFILESCMD := \

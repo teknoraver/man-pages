@@ -31,7 +31,7 @@ _XFAIL_CHECK_catman := \
 	$(_MANDIR)/man7/uri.7.check-catman.touch
 
 
-_CHECK_catman := $(patsubst %.cat.grep,%.check-catman.touch,$(_CHECK_catman_grep))
+_CHECK_catman := $(patsubst %.cat.grep, %.check-catman.touch, $(_CHECK_catman_grep))
 ifeq ($(SKIP_XFAIL),yes)
 _CHECK_catman := $(filter-out $(_XFAIL_CHECK_catman), $(_CHECK_catman))
 endif
