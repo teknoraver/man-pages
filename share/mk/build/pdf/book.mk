@@ -8,6 +8,8 @@ MAKEFILE_BUILD_PDF_BOOK_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/man/_.mk
+include $(MAKEFILEDIR)/build/fonts/_.mk
+include $(MAKEFILEDIR)/build/fonts/tinos.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/cat.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff/gropdf.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/eqn.mk
@@ -27,7 +29,7 @@ _PDFDIR   := $(builddir)
 _PDF_BOOK := $(_PDFDIR)/$(PDF_BOOK)
 
 
-$(_PDF_BOOK): $(_MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
+$(_PDF_BOOK): $(_MANPAGES) $(_TINOS) $(wildcard $(LMBDIR)/*) | $$(@D)/
 	$(info	$(INFO_)GROPDF		$@)
 	( \
 		$(CAT) "$(LMBDIR)"/LMBfront.roff; \
@@ -38,8 +40,8 @@ $(_PDF_BOOK): $(_MANPAGES) $(wildcard $(LMBDIR)/* $(LMBDIR)/*/*) | $$(@D)/
 	| $(PIC) \
 	| $(TBL) \
 	| $(EQN) -Tpdf \
-	| $(TROFF) -Tpdf -F"$(LMBDIR)" -dpaper=a4 $(TROFFFLAGS) \
-	| $(GROPDF) -F"$(LMBDIR)" -pa4 $(GROPDFFLAGS) \
+	| $(TROFF) -Tpdf -F$(_FONTSDIR) -dpaper=a4 $(TROFFFLAGS) \
+	| $(GROPDF) -F$(_FONTSDIR) -pa4 $(GROPDFFLAGS) \
 	| $(SPONGE) $@
 
 
