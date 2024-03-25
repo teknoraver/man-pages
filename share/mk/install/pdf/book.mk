@@ -6,7 +6,7 @@ ifndef MAKEFILE_INSTALL_PDF_BOOK_INCLUDED
 MAKEFILE_INSTALL_PDF_BOOK_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/pdf/book.mk
+include $(MAKEFILEDIR)/build/pdf/book/_.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/install.mk
 include $(MAKEFILEDIR)/configure/directory_variables/install.mk
 

@@ -21,7 +21,8 @@ include $(MAKEFILEDIR)/configure/build-depends/moreutils/sponge.mk
 include $(MAKEFILEDIR)/configure/version.mk
 
 
-LMBDIR   := $(CURDIR)/scripts/LinuxManBook
+MKBOOKDIR := $(MAKEFILEDIR)/build/pdf/book
+MKBOOK    := $(wildcard $(MKBOOKDIR)/*)
 
 
 PDF_BOOK  := $(DISTNAME).pdf
@@ -29,12 +30,12 @@ _PDFDIR   := $(builddir)
 _PDF_BOOK := $(_PDFDIR)/$(PDF_BOOK)
 
 
-$(_PDF_BOOK): $(_MANPAGES) $(_TINOS) $(wildcard $(LMBDIR)/*) | $$(@D)/
+$(_PDF_BOOK): $(_MANPAGES) $(_TINOS) $(MKBOOK) $(MK) | $$(@D)/
 	$(info	$(INFO_)GROPDF		$@)
 	( \
-		$(CAT) "$(LMBDIR)"/LMBfront.roff; \
-		$(CAT) "$(LMBDIR)"/an.tmac; \
-		"$(LMBDIR)"/prepare.pl "$(_MANDIR)"; \
+		$(CAT) $(MKBOOKDIR)/front.roff; \
+		$(CAT) $(MKBOOKDIR)/an.tmac; \
+		$(MKBOOKDIR)/prepare.pl $(_MANDIR); \
 	) \
 	| $(PRECONV) \
 	| $(PIC) \
