@@ -34,6 +34,8 @@ COMMON_CFLAGS := \
 	-Werror \
 	-Wstrict-prototypes \
 	-Wdeclaration-after-statement \
+	-Wno-reserved-identifier \
+	-Wno-unused-macros \
 	-Wno-error=unused-parameter \
 	-Wno-error=sign-compare \
 	-Wno-error=format \
