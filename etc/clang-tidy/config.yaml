@@ -35,6 +35,7 @@ Checks: >
     -hicpp-braces-around-statements,
     -hicpp-no-assembler,
     -hicpp-uppercase-literal-suffix,
+    -llvm-header-guard,
     -llvmlibc-restrict-system-libc-headers,
     -misc-no-recursion,
     -modernize-macro-to-enum,
