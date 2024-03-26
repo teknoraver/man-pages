@@ -30,6 +30,7 @@ _XFAIL_LINT_c_EX_iwyu := \
 	$(_MANDIR)/man2/select.2.d/select.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man2/semget.2.d/t_semget.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man2/sendmmsg.2.d/sendmmsg.c.lint-c.iwyu.touch \
+	$(_MANDIR)/man2/shmop.2.d/svshm_string.h.lint-c.iwyu.touch \
 	$(_MANDIR)/man2/_syscall.2.d/_syscall.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man2/timer_create.2.d/timer_create.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man2/userfaultfd.2.d/userfaultfd.c.lint-c.iwyu.touch \
@@ -80,6 +81,7 @@ _XFAIL_LINT_c_EX_iwyu := \
 	$(_MANDIR)/man3/pthread_setname_np.3.d/pthread_setname_np.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/pthread_setschedparam.3.d/pthreads_sched_test.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/sem_wait.3.d/sem_wait.c.lint-c.iwyu.touch \
+	$(_MANDIR)/man3/shm_open.3.d/pshm_ucase.h.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/shm_open.3.d/pshm_ucase_bounce.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/shm_open.3.d/pshm_ucase_send.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/slist.3.d/slist.c.lint-c.iwyu.touch
