@@ -331,10 +331,10 @@ The following header file is included by the "reader" and "writer" programs:
 \&
 union semun {                   /* Used in calls to semctl() */
     int                 val;
-    struct semid_ds *   buf;
-    unsigned short *    array;
+    struct semid_ds     *buf;
+    unsigned short      *array;
 #if defined(__linux__)
-    struct seminfo *    __buf;
+    struct seminfo      *__buf;
 #endif
 };
 \&
