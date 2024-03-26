@@ -16,7 +16,7 @@ include $(MAKEFILEDIR)/configure/xfail.mk
 _XFAIL_LINT_c_EX_checkpatch := $(_MANDIR)/man2/bpf.2.d/bpf.c.lint-c.checkpatch.touch
 
 
-_LINT_c_EX_checkpatch   := $(patsubst %, %.lint-c.checkpatch.touch, $(_EX_TU_c))
+_LINT_c_EX_checkpatch   := $(patsubst %, %.lint-c.checkpatch.touch, $(_EX_TU_src))
 ifeq ($(SKIP_XFAIL),yes)
 _LINT_c_EX_checkpatch   := $(filter-out $(_XFAIL_LINT_c_EX_checkpatch), $(_LINT_c_EX_checkpatch))
 endif

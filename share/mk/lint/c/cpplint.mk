@@ -11,7 +11,7 @@ include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
 include $(MAKEFILEDIR)/configure/build-depends/cpplint/cpplint.mk
 
 
-_LINT_c_EX_cpplint   := $(patsubst %, %.lint-c.cpplint.touch, $(_EX_TU_c))
+_LINT_c_EX_cpplint   := $(patsubst %, %.lint-c.cpplint.touch, $(_EX_TU_src))
 _LINT_c_cpplint      := $(_LINT_c_EX_cpplint)
 
 

@@ -168,7 +168,7 @@ _XFAIL_LINT_c_EX_clang_tidy := \
 	$(_MANDIR)/man3head/printf.h.3head.d/register_printf_specifier.c.lint-c.clang-tidy.touch
 
 
-_LINT_c_EX_clang_tidy   := $(patsubst %, %.lint-c.clang-tidy.touch, $(_EX_TU_c))
+_LINT_c_EX_clang_tidy   := $(patsubst %, %.lint-c.clang-tidy.touch, $(_EX_TU_src))
 ifeq ($(SKIP_XFAIL),yes)
 _LINT_c_EX_clang_tidy   := $(filter-out $(_XFAIL_LINT_c_EX_clang_tidy), $(_LINT_c_EX_clang_tidy))
 endif
