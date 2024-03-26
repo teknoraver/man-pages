@@ -290,6 +290,9 @@ on the memory object that is shared between the two programs.
 .in +4n
 .\" SRC BEGIN (pshm_ucase.h)
 .EX
+#ifndef PSHM_UCASE_H
+#define PSHM_UCASE_H
+\&
 #include <semaphore.h>
 #include <stddef.h>
 #include <stdio.h>
@@ -309,6 +312,8 @@ struct shmbuf {
     size_t cnt;             /* Number of bytes used in \[aq]buf\[aq] */
     char   buf[BUF_SIZE];   /* Data being transferred */
 };
+\&
+#endif  // include guard
 .EE
 .\" SRC END
 .in

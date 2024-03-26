@@ -319,6 +319,9 @@ The following header file is included by the "reader" and "writer" programs:
 \&
    Licensed under GNU General Public License v2 or later.
 */
+#ifndef SVSHM_STRING_H
+#define SVSHM_STRING_H
+\&
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/sem.h>
@@ -336,6 +339,8 @@ union semun {                   /* Used in calls to semctl() */
 };
 \&
 #define MEM_SIZE 4096
+\&
+#endif  // include guard
 .EE
 .\" SRC END
 .in
