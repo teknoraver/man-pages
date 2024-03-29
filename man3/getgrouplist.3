@@ -134,6 +134,7 @@ ngroups = 3
 \&
 .\" SRC BEGIN (getgrouplist.c)
 .EX
+#include <errno.h>
 #include <grp.h>
 #include <pwd.h>
 #include <stdio.h>
@@ -162,10 +163,14 @@ main(int argc, char *argv[])
 \&
     /* Fetch passwd structure (contains first group ID for user). */
 \&
+    errno = 0;
     pw = getpwnam(argv[1]);
     if (pw == NULL) {
-        perror("getpwnam");
-        exit(EXIT_SUCCESS);
+        if (errno)
+            perror("getpwnam");
+        else
+            fprintf(stderr, "no such user\en");
+        exit(EXIT_FAILURE);
     }
 \&
     /* Retrieve group list. */
