@@ -37,6 +37,19 @@ returns the number of bytes in a memory page,
 where "page" is a fixed-length block,
 the unit for memory allocation and file mapping performed by
 .BR mmap (2).
+.SH VERSIONS
+A user program should not hard-code a page size,
+neither as a literal nor using the
+.B PAGE_SIZE
+macro,
+because some architectures support multiple page sizes.
+.P
+This manual page is in section 2 because
+Alpha, SPARC, and SPARC64
+all have a Linux system call
+.BR getpagesize ()
+though other architectures do not,
+and use the ELF auxiliary vector instead.
 .SH STANDARDS
 None.
 .SH HISTORY
@@ -44,46 +57,11 @@ This call first appeared in 4.2BSD.
 SVr4, 4.4BSD, SUSv2.
 In SUSv2 the
 .BR getpagesize ()
-call is labeled LEGACY, and in POSIX.1-2001
-it has been dropped;
-HP-UX does not have this call.
-.SH NOTES
-Portable applications should employ
-.I sysconf(_SC_PAGESIZE)
-instead of
-.BR getpagesize ():
+call was labeled LEGACY,
+and it was removed in POSIX.1-2001.
 .P
-.in +4n
-.EX
-#include <unistd.h>
-long sz = sysconf(_SC_PAGESIZE);
-.EE
-.in
-.P
-(Most systems allow the synonym
-.B _SC_PAGE_SIZE
-for
-.BR _SC_PAGESIZE .)
-.P
-Whether
-.BR getpagesize ()
-is present as a Linux system call depends on the architecture.
-If it is, it returns the kernel symbol
-.BR PAGE_SIZE ,
-whose value depends on the architecture and machine model.
-Generally, one uses binaries that are dependent on the architecture but not
-on the machine model, in order to have a single binary
-distribution per architecture.
-This means that a user program
-should not find
-.B PAGE_SIZE
-at compile time from a header file,
-but use an actual system call, at least for those architectures
-(like sun4) where this dependency exists.
-Here glibc 2.0 fails because its
-.BR getpagesize ()
-returns a statically derived value, and does not use a system call.
-Things are OK in glibc 2.1.
+glibc 2.0 returned a constant
+even on architectures with mutliple page sizes.
 .SH SEE ALSO
 .BR mmap (2),
 .BR sysconf (3)
