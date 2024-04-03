@@ -107,6 +107,10 @@ Ignore symbol version hashes.
 .TP
 .B MODULE_INIT_IGNORE_VERMAGIC
 Ignore kernel version magic.
+.TP
+.BR MODULE_INIT_COMPRESSED_FILE " (since Linux 5.17)"
+.\" commit b1ae6dc41eaaa98bb75671e0f3665bfda248c3e7
+Use in-kernel module decompression.
 .P
 There are some safety checks built into a module to ensure that
 it matches the kernel against which it is loaded.
@@ -136,6 +140,40 @@ If the kernel is built to permit forced loading (i.e., configured with
 then loading continues, otherwise it fails with the error
 .B ENOEXEC
 as expected for malformed modules.
+.P
+If the kernel was build with
+.BR CONFIG_MODULE_DECOMPRESS ,
+the in-kernel decompression feature can be used.
+User-space code can check if the kernel supports decompression
+by reading the
+.I /sys/module/compression
+attribute.
+If the kernel supports decompression,
+the compressed file can directly be passed to
+.BR finit_module ()
+using the
+.B MODULE_INIT_COMPRESSED_FILE
+flag.
+The in-kernel module decompressor supports the following compression algorithms:
+.P
+.RS 4
+.PD 0
+.IP \[bu] 3
+.I gzip
+(since Linux 5.17)
+.IP \[bu]
+.I xz
+(since Linux 5.17)
+.IP \[bu]
+.I zstd
+.\" commit 169a58ad824d896b9e291a27193342616e651b82
+(since Linux 6.2)
+.PD
+.RE
+.P
+The kernel only implements a single decompression method.
+This is selected during module generation accordingly to the compression method
+chosen in the kernel configuration.
 .SH RETURN VALUE
 On success, these system calls return 0.
 On error, \-1 is returned and
@@ -223,9 +261,22 @@ is too large.
 .I flags
 is invalid.
 .TP
+.B EINVAL
+The decompressor sanity checks failed,
+while loading a compressed module with flag
+.B MODULE_INIT_COMPRESSED_FILE
+set.
+.TP
 .B ENOEXEC
 .I fd
 does not refer to an open file.
+.TP
+.BR EOPNOTSUPP " (since Linux 5.17)"
+The flag
+.B MODULE_INIT_COMPRESSED_FILE
+is set to load a compressed module,
+and the kernel was built without
+.BR CONFIG_MODULE_DECOMPRESS .
 .TP
 .BR ETXTBSY " (since Linux 4.7)"
 .\" commit 39d637af5aa7577f655c58b9e55587566c63a0af
