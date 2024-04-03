@@ -36,6 +36,9 @@ function suspends execution of the calling thread until
 one of the signals specified in the signal set
 .I set
 becomes pending.
+For a signal to become pending,
+it must first be blocked with
+.BR sigprocmask (2).
 The function accepts the signal
 (removes it from the pending list of signals),
 and returns the signal number in
@@ -81,7 +84,9 @@ T}	Thread safety	MT-Safe
 .SH VERSIONS
 .BR sigwait ()
 is implemented using
-.BR sigtimedwait (2).
+.BR sigtimedwait (2);
+consult its
+.BR NOTES .
 .P
 The glibc implementation of
 .BR sigwait ()
