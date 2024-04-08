@@ -17,6 +17,8 @@ include $(MAKEFILEDIR)/configure/xfail.mk
 _XFAIL_PSMAN_MAN_set := \
 	$(_MANDIR)/man1/iconv.1.ps.set \
 	$(_MANDIR)/man2/fanotify_init.2.ps.set \
+	$(_MANDIR)/man2/membarrier.2.ps.set \
+	$(_MANDIR)/man2/statx.2.ps.set \
 	$(_MANDIR)/man2/syscall.2.ps.set \
 	$(_MANDIR)/man3/newlocale.3.ps.set \
 	$(_MANDIR)/man7/address_families.7.ps.set \
