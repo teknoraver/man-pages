@@ -33,12 +33,12 @@ _PDF_BOOK := $(_PDFDIR)/$(PDF_BOOK)
 $(_PDF_BOOK): $(_MANPAGES) $(_TINOS) $(MKBOOK) $(MK) | $$(@D)/
 	$(info	$(INFO_)GROPDF		$@)
 	$(MKBOOKDIR)/prepare.pl $(_MANDIR) \
-	| $(CAT) $(MKBOOKDIR)/front.roff $(MKBOOKDIR)/an.tmac /dev/stdin \
+	| $(CAT) $(MKBOOKDIR)/front.roff /dev/stdin \
 	| $(PRECONV) \
 	| $(PIC) \
 	| $(TBL) \
 	| $(EQN) -Tpdf \
-	| $(TROFF) -Tpdf -F$(_FONTSDIR) -dpaper=a4 $(TROFFFLAGS) \
+	| $(TROFF) -man -Tpdf -F$(_FONTSDIR) -dpaper=a4 $(TROFFFLAGS) \
 	| $(GROPDF) -F$(_FONTSDIR) -pa4 $(GROPDFFLAGS) \
 	| $(SPONGE) $@
 
