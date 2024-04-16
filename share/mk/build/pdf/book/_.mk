@@ -38,7 +38,8 @@ $(_PDF_BOOK): $(_MANPAGES) $(_TINOS) $(MKBOOK) $(MK) | $$(@D)/
 	| $(PIC) \
 	| $(TBL) \
 	| $(EQN) -Tpdf \
-	| $(TROFF) -mandoc -Tpdf -F$(_FONTSDIR) -dpaper=a4 -rC1 $(TROFFFLAGS) \
+	| $(TROFF) -mandoc -Tpdf -F$(_FONTSDIR) -dpaper=a4 -rC1 \
+		-ran*bookmark-base-level=1 $(TROFFFLAGS) \
 	| $(GROPDF) -F$(_FONTSDIR) -pa4 $(GROPDFFLAGS) \
 	| $(SPONGE) $@
 
