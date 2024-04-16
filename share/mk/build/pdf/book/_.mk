@@ -38,7 +38,7 @@ $(_PDF_BOOK): $(_MANPAGES) $(_TINOS) $(MKBOOK) $(MK) | $$(@D)/
 	| $(PIC) \
 	| $(TBL) \
 	| $(EQN) -Tpdf \
-	| $(TROFF) -man -Tpdf -F$(_FONTSDIR) -dpaper=a4 $(TROFFFLAGS) \
+	| $(TROFF) -man -Tpdf -F$(_FONTSDIR) -dpaper=a4 -rC1 $(TROFFFLAGS) \
 	| $(GROPDF) -F$(_FONTSDIR) -pa4 $(GROPDFFLAGS) \
 	| $(SPONGE) $@
 
