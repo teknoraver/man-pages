@@ -15,7 +15,7 @@ _FONTSDIR := $(builddir)/fonts
 
 
 .PHONY: build-fonts
-build-fonts: build-fonts-tinos
+build-fonts: build-fonts-download build-fonts-tinos
 
 
 endif  # include guard

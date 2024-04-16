@@ -11,11 +11,11 @@ include $(MAKEFILEDIR)/configure/build-depends/texlive-fonts-extra/Tinos.pfb.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff/pfbtops.mk
 
 
-TINOR := $(MAKEFILEDIR)/build/fonts/TINOR
+TINOR := $(MAKEFILEDIR)/build/fonts/devpdf/TINOR
 
 
-_TINOS_PFA := $(_FONTSDIR)/Tinos.pfa
-_TINOR     := $(_FONTSDIR)/TINOR
+_TINOS_PFA := $(_FONTSDIR)/devpdf/Tinos.pfa
+_TINOR     := $(_FONTSDIR)/devpdf/TINOR
 
 _TINOS := $(_TINOS_PFA) $(_TINOR)
 
