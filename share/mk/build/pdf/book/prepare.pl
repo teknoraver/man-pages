@@ -49,7 +49,6 @@ my $dir2=$dir;
 $dir2=~tr[.][_];
 my %files;
 my %aliases;
-my %target;
 
 foreach my $al (`find "$dir"/man*/ -type f \\
 		| grep "\\.[[:digit:]]\\([[:alpha:]][[:alnum:]]*\\)\\?\\>\$" \\
