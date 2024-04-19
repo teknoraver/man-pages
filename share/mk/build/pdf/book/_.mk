@@ -9,7 +9,7 @@ MAKEFILE_BUILD_PDF_BOOK_INCLUDED := 1
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/man/_.mk
 include $(MAKEFILEDIR)/build/fonts/_.mk
-include $(MAKEFILEDIR)/build/fonts/tinos.mk
+include $(MAKEFILEDIR)/build/fonts/tinos/_.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/cat.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff/gropdf.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/eqn.mk
