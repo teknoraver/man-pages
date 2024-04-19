@@ -82,7 +82,7 @@ BuildBook();
 
 sub BuildBook
 {
-	print ".pdfpagenumbering D . 1\n.nr PDFOUTLINE.FOLDLEVEL 0\n.defcolor pdf:href.colour rgb 0.00 0.25 0.75\n.pdfinfo /Title \"The Linux man-pages Book\"\n.special TINOR S\n";
+	print ".pdfpagenumbering D . 1\n.nr PDFOUTLINE.FOLDLEVEL 0\n.defcolor pdf:href.colour rgb 0.00 0.25 0.75\n.pdfinfo /Title \"The Linux man-pages Book\"\n.special TinosR S\n";
 
 	foreach my $bkmark (sort sortman keys %files) {
 		BuildPage($bkmark);
