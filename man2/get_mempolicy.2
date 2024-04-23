@@ -137,7 +137,9 @@ specifies
 but not
 .BR MPOL_F_ADDR ,
 and the thread's current policy is
-.BR MPOL_INTERLEAVE ,
+.B MPOL_INTERLEAVE
+or
+.BR MPOL_WEIGHTED_INTERLEAVE ,
 then
 .BR get_mempolicy ()
 will return in the location pointed to by a non-NULL
@@ -205,8 +207,10 @@ specified
 .B MPOL_F_NODE
 but not
 .B MPOL_F_ADDR
-and the current thread policy is not
-.BR MPOL_INTERLEAVE .
+and the current thread policy is neither
+.B MPOL_INTERLEAVE
+nor
+.BR MPOL_WEIGHTED_INTERLEAVE .
 Or,
 .I flags
 specified

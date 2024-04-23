@@ -63,6 +63,7 @@ argument must specify one of
 .BR MPOL_DEFAULT ,
 .BR MPOL_BIND ,
 .BR MPOL_INTERLEAVE ,
+.BR MPOL_WEIGHTED_INTERLEAVE ,
 .BR MPOL_PREFERRED ,
 or
 .B MPOL_LOCAL
@@ -198,6 +199,23 @@ the memory bandwidth of a single node.
 .\" of set_mempolicy() -- no memory area specified.
 .\" To be effective the memory area should be fairly large,
 .\" at least 1 MB or bigger.
+.TP
+.BR MPOL_WEIGHTED_INTERLEAVE " (since Linux 6.9)"
+.\" commit fa3bea4e1f8202d787709b7e3654eb0a99aed758
+This mode interleaves page allocations across the nodes specified in
+.I nodemask
+according to the weights in
+.IR /sys/kernel/mm/mempolicy/weighted_interleave .
+For example, if bits 0, 2, and 5 are set in
+.IR nodemask ,
+and the contents of
+.IR /sys/kernel/mm/mempolicy/weighted_interleave/node0 ,
+.IR /sys/ .\|.\|. /node2 ,
+and
+.IR /sys/ .\|.\|. /node5
+are 4, 7, and 9, respectively,
+then pages in this region will be allocated on nodes 0, 2, and 5
+in a 4:7:9 ratio.
 .TP
 .B MPOL_PREFERRED
 This mode sets the preferred node for allocation.
