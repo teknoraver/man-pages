@@ -1787,7 +1787,7 @@ Address of the termination function
 String table offset to name of shared object
 .TP
 .B DT_RPATH
-String table offset to library search path (deprecated)
+String table offset to search path for direct and indirect library dependencies
 .TP
 .B DT_SYMBOLIC
 Alert linker to search this shared object before the executable for symbols
@@ -1819,7 +1819,7 @@ Instruct dynamic linker to process all relocations before
 transferring control to the executable
 .TP
 .B DT_RUNPATH
-String table offset to library search path
+String table offset to search path for direct library dependencies
 .TP
 .B DT_LOPROC
 .TQ
