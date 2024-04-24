@@ -16,7 +16,9 @@ include $(MAKEFILEDIR)/configure/xfail.mk
 
 _XFAIL_HTMLMAN_MAN_set := \
 	$(_MANDIR)/man2/fanotify_init.2.html.set \
+	$(_MANDIR)/man2/mbind.2.html.set \
 	$(_MANDIR)/man2/membarrier.2.html.set \
+	$(_MANDIR)/man2/set_mempolicy.2.html.set \
 	$(_MANDIR)/man5/proc.5.html.set \
 	$(_MANDIR)/man7/bpf-helpers.7.html.set \
 	$(_MANDIR)/man7/charsets.7.html.set \
