@@ -6,7 +6,8 @@ Description
        <CONTRIBUTING.d/bugs>), then send a patch in an email.
 
        -  Follow the instructions for sending mail to the mailing list
-          from <CONTRIBUTING.d/mail>.
+          from <CONTRIBUTING.d/mail>.  See also "Send the patches"
+          below.
 
        -  The subject of the email should contain "[patch]" in the
           subject line.
@@ -87,8 +88,32 @@ Description
        -  Make patches against the latest version of the manual page.
           Use git(1) for getting the latest version.
 
+
+   Send the patches
+       We recommend using git-send-email(1) to send the patches to the
+       mailing list.  For instructions on how to configure and use it,
+       see <https://git-send-email.io/>.  It can also be configured to
+       use mutt(1) as a driver, which only requires the following
+       section in <~/.gitconfig> (assuming mutt(1) is already configured
+       for sending mail):
+
+           [sendemail]
+               sendmailcmd = mutt -H - && true
+
+   Sign the patches with PGP
+       See <CONTRIBUTING.d/mail> for more details on signing your mail
+       to the list.  git-send-email(1) can be configured to use a recent
+       version of neomutt(1) (>= 20240201), to sign patches with PGP
+       (assuming neomutt(1) is already configured for sending signed
+       mail).  neomutt(1)'s -C flag enables crypto:
+
+           [sendemail]
+               sendmailcmd = neomutt -C -H - && true
+
 See also
        CONTRIBUTING
        CONTRIBUTING.d/*
 
        <https://www.kernel.org/doc/Documentation/process/submitting-patches.rst>
+       <https://git-send-email.io/>
+       <https://neomutt.org/feature/cli-crypto>
