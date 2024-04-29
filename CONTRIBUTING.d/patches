@@ -100,6 +100,13 @@ Description
            [sendemail]
                sendmailcmd = mutt -H - && true
 
+       In <man-pages/.git/config>, the following configuration will
+       simplify sending to the right addresses:
+
+           [sendemail]
+               to = Alejandro Colomar <alx@kernel.org>
+               cc = linux-man@vger.kernel.org
+
    Sign the patches with PGP
        See <CONTRIBUTING.d/mail> for more details on signing your mail
        to the list.  git-send-email(1) can be configured to use a recent
