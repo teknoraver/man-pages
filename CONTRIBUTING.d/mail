@@ -51,6 +51,12 @@ Description
         using a PGP key.  See also:
         <https://www.gnupg.org/faq/gnupg-faq.html#use_pgpmime>
 
+        If you use mutt(1), we recommend the following configuration for
+        PGP:
+
+            set crypt_autosign = yes
+            set crypt_protected_headers_write = yes
+
 See also
        CONTRIBUTING
        CONTRIBUTING.d/*
