@@ -9,4 +9,5 @@ unassignedVariable
 uninitvar
 unknownMacro
 unmatchedSuppression
+unusedStructMember
 variableScope
