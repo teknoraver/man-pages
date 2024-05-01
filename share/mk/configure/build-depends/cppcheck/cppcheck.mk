@@ -14,6 +14,7 @@ DEFAULT_CPPCHECKFLAGS := \
 	--enable=all \
 	--error-exitcode=2 \
 	--inconclusive \
+	--check-level=exhaustive \
 	--quiet \
 	--suppressions-list=$(CPPCHECK_SUPPRESS)
 EXTRA_CPPCHECKFLAGS   :=
