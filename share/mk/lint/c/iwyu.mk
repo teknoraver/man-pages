@@ -80,6 +80,7 @@ _XFAIL_LINT_c_EX_iwyu := \
 	$(_MANDIR)/man3/pthread_setaffinity_np.3.d/pthread_setaffinity_np.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/pthread_setname_np.3.d/pthread_setname_np.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/pthread_setschedparam.3.d/pthreads_sched_test.c.lint-c.iwyu.touch \
+	$(_MANDIR)/man3/pthread_sigmask.3.d/pthread_sigmask.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/sem_wait.3.d/sem_wait.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/shm_open.3.d/pshm_ucase.h.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/shm_open.3.d/pshm_ucase_bounce.c.lint-c.iwyu.touch \
