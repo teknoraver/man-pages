@@ -5,6 +5,8 @@ Description
        If you know how to fix a problem in a manual page (if not, see
        <CONTRIBUTING.d/bugs>), then send a patch in an email.
 
+       -  Configure git(1) for this project.  See <CONTRIBUTING.d/git>.
+
        -  Follow the instructions for sending mail to the mailing list
           from <CONTRIBUTING.d/mail>.  See also "Send the patches"
           below.
@@ -121,30 +123,12 @@ Description
    Send the patches
        We recommend using git-send-email(1) to send the patches to the
        mailing list.  For instructions on how to configure and use it,
-       see <https://git-send-email.io/>.  It can also be configured to
-       use mutt(1) as a driver, which only requires the following
-       section in <~/.gitconfig> (assuming mutt(1) is already configured
-       for sending mail):
-
-           [sendemail]
-               sendmailcmd = mutt -H - && true
-
-       In <man-pages/.git/config>, the following configuration will
-       simplify sending to the right addresses:
-
-           [sendemail]
-               to = Alejandro Colomar <alx@kernel.org>
-               cc = linux-man@vger.kernel.org
+       see <https://git-send-email.io/>.  See also <CONTRIBUTING.d/git>.
 
    Sign the patches with PGP
        See <CONTRIBUTING.d/mail> for more details on signing your mail
-       to the list.  git-send-email(1) can be configured to use a recent
-       version of neomutt(1) (>= 20240201), to sign patches with PGP
-       (assuming neomutt(1) is already configured for sending signed
-       mail).  neomutt(1)'s -C flag enables crypto:
-
-           [sendemail]
-               sendmailcmd = neomutt -C -H - && true
+       to the list.  See also <CONTRIBUTING.d/git> for instructions for
+       configuring git-send-email(1) to use neomutt(1) as a driver.
 
 See also
        CONTRIBUTING
