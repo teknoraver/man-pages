@@ -61,6 +61,9 @@ const char *restrict " src ,
 // Catenate a null-padded character sequence into a string.
 .BI "char *strncat(char *restrict " dst ", const char " src "[restrict ." ssize ],
 .BI "               size_t " ssize );
+.P
+// Duplicate a null-padded character sequence into a string.
+.BI "char *strndup(const char " src [. ssize "], size_t " ssize );
 .fi
 .\" ----- SYNOPSIS :: Known-length character sequences --------------------/
 .SS Known-length character sequences
@@ -154,6 +157,11 @@ a pointer to the new location of the terminating null character
 (or one after the last character in a character sequence)
 after the call,
 so that the programmer can use it to chain such calls.
+.\" ----- DESCRIPTION :: Terms (and abbreviations) :: duplicate -------/
+.TP
+.I duplicate
+Allocate a new buffer
+where a copy is placed.
 .\" ----- DESCRIPTION :: Copy, catenate, and chain-copy ---------------/
 .SS Copy, catenate, and chain-copy
 Originally,
@@ -252,6 +260,8 @@ use
 and then you can treat it as a known-length character sequence;
 or use
 .BR strncat (3)
+or
+.BR strndup (3)
 directly.
 .\" ----- DESCRIPTION :: Known-length character sequences -----------------/
 .SS Known-length character sequences
@@ -342,7 +352,11 @@ holds a string before the call.
 has an even more misleading name than the functions above.
 List of functions:
 .IP \[bu] 3
+.PD 0
 .BR strncat (3)
+.IP \[bu]
+.BR strndup (3)
+.PD
 .P
 Other functions operate on an input character sequence
 to create an output character sequence.
@@ -453,6 +467,15 @@ they are not related at all.
 .IP
 .I \%stpcpy(mempcpy(dst,\ src,\ strnlen(src,\ NITEMS(src))),\ \[dq]\[dq])
 is a faster alternative to this function.
+.\" ----- DESCRIPTION :: Functions :: strndup(3) ----------------------/
+.TP
+.BR strndup (3)
+Duplicate the input character sequence,
+contained in a null-padded fixed-size buffer,
+into a newly allocated destination string.
+.IP
+The string must be freed with
+.BR free (3).
 .\" ----- DESCRIPTION :: Functions :: mempcpy(3) ----------------------/
 .TP
 .BR mempcpy (3)
@@ -508,6 +531,9 @@ The
 .I dst
 pointer,
 which is useless.
+.TP
+.BR strndup (3)
+The newly allocated string.
 .\" ----- ERRORS ------------------------------------------------------/
 .SH ERRORS
 Most of these functions don't set
@@ -525,6 +551,13 @@ was
 .TP
 .B E2BIG
 The string has been truncated.
+.RE
+.TP
+.BR strndup (3)
+.RS
+.TP
+.B ENOMEM
+Insufficient memory available to allocate duplicate string.
 .RE
 .\" ----- NOTES :: strscpy(9) -----------------------------------------/
 .SH NOTES
@@ -688,6 +721,15 @@ strcpy(buf, "");
 strncat(buf, u->ut_user, NITEMS(u->ut_user));
 len = strlen(buf);
 puts(buf);
+.EE
+.\" ----- EXAMPLES :: strndup(3) --------------------------------------/
+.TP
+.BR strndup (3)
+.EX
+buf = strndup(u->ut_user, NITEMS(u->ut_user));
+len = strlen(buf);
+puts(buf);
+free(buf);
 .EE
 .\" ----- EXAMPLES :: mempcpy(3) --------------------------------------/
 .TP
