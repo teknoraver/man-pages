@@ -105,7 +105,13 @@ This group should be used instead of approaches such as putting
 nonroot users into the
 .BR sudoers (5)
 file.
-.\"
+.RE
+.TP
+.BR subset = pid " (since Linux 5.8)"
+.\" commit 6814ef2d992af09451bbeda4770daa204461329e
+Show only the specified subset of procfs,
+hiding all top level files and directories in the procfs
+that are not related to tasks.
 .SS Overview
 Underneath
 .IR /proc ,
