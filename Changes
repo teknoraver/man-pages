@@ -1,109 +1,30 @@
-==================== Changes in man-pages-6.08 ====================
+==================== Changes in man-pages-?.?? ====================
 
-Released: 2024-05-19, Aldaya
+Released: ????-??-??, ??Location??
 
 
 New and rewritten pages
 -----------------------
 
-man3type/
-	locale_t.3type
-	mbstate_t.3type
-	wchar_t.3type
-	wint_t.3type
-
 
 Newly documented interfaces in existing pages
 ---------------------------------------------
-
-man2/
-	init_module.2
-		MODULE_INIT_COMPRESS_FILE
-
-	get_mempolicy.2
-	mbind.2
-	set_mempolicy.2
-		MPOL_WEIGHTED_INTERLEAVE
-
-	mount_setattr.2
-		squashfs
-		tmpfs
-		cephfs
-		hugetlbfs
-
-man5/
-man8/
-	proc.5
-		subset
-
-	elf.5
-	ld.so.8
-		Updeprecate and explain DT_RPATH
-
-man7/
-	string_copying.7
-		strndup()
 
 
 New and changed links
 ---------------------
 
-man3/
-	S_ISBLK.3			(inode(7))
-	S_ISCHR.3			(inode(7))
-	S_ISDIR.3			(inode(7))
-	S_ISFIFO.3			(inode(7))
-	S_ISLNK.3			(inode(7))
-	S_ISREG.3			(inode(7))
-	S_ISSOCK.3			(inode(7))
-	pthread_cond_broadcast.3	(pthread_cond_init(3))
-	pthread_cond_destroy.3		(pthread_cond_init(3))
-	pthread_cond_signal.3		(pthread_cond_init(3))
-	pthread_cond_timedwait.3	(pthread_cond_init(3))
-	pthread_cond_wait.3		(pthread_cond_init(3))
-	pthread_condattr_destroy.3	(pthread_condattr_init(3))
-	pthread_getspecific.3		(pthread_key_create(3))
-	pthread_key_delete.3		(pthread_key_create(3))
-	pthread_mutex_destroy.3		(pthread_mutex_init(3))
-	pthread_mutex_lock.3		(pthread_mutex_init(3))
-	pthread_mutex_trylock.3		(pthread_mutex_init(3))
-	pthread_mutex_unlock.3		(pthread_mutex_init(3))
-	pthread_mutexattr_getkind_np.3	(pthread_mutexattr_setkind_np(3))
-	pthread_mutexattr_gettype.3	(pthread_mutexattr_init(3))
-	pthread_mutexattr_settype.3	(pthread_mutexattr_init(3))
-	pthread_setspecific.3		(pthread_key_create(3))
+
+Removed pages
+-------------
+
+
+Removed links
+-------------
 
 
 Global changes
 --------------
-
--  Build system
-   !  Stamp the versions on the pages at install time, instead of dist
-      time.  This change is important, because downstream packagers will
-      need to `make install` instead of just copying the pages.
-      The benefit of this is that downstream distributors are now able
-      to set their own distro-specific version strings.  The most common
-      thing that I'd expect is setting a suffix such as '-1', which can
-      be done with `make install EXTRAVERSION=-1`.
-      Another benefit is that downstream patches that apply near the
-      TH line will have to be refreshed less often, since the TH line
-      will not necessarily change in every release.
-   -  Reorganize build system
-   -  Improve support for Darwin systems.
-   -  Remove any generated files (fonts) from the repository, and
-      generate them at build time.
-   -  Various improvements to the generation of the PDF book.
-
--  man
-   -  Move manual pages to a new directory man/, so that they are now
-      under man/man*/.  Symlinks have been added for convenience.
-
--  git
-   -  Import pthread_*.3 link pages' git history from debian/glibc.git
-
--  CONTRIBUTING.d
-   -  Add help for using git-config(1), git-send-email(1),
-      git-range-diff(1), and [neo]mutt(1).
 
 
 Changes to individual files
