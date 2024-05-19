@@ -18,16 +18,20 @@ operations on conditions
 .
 .
 .SH SYNOPSIS
+.nf
 .B #include <pthread.h>
 .P
 .BI "pthread_cond_t " cond " = PTHREAD_COND_INITIALIZER;"
 .P
-.BI "int pthread_cond_init(pthread_cond_t *" cond ", pthread_condattr_t *" cond_attr ");"
-.BI "int pthread_cond_signal(pthread_cond_t *" cond ");"
-.BI "int pthread_cond_broadcast(pthread_cond_t *" cond ");"
-.BI "int pthread_cond_wait(pthread_cond_t *" cond ", pthread_mutex_t *" mutex ");"
-.BI "int pthread_cond_timedwait(pthread_cond_t *" cond ", pthread_mutex_t *" mutex ", const struct timespec *" abstime ");"
-.BI "int pthread_cond_destroy(pthread_cond_t *" cond ");"
+.BI "int pthread_cond_init(pthread_cond_t *" cond ,
+.BI "                      pthread_condattr_t *" cond_attr );
+.BI "int pthread_cond_signal(pthread_cond_t *" cond );
+.BI "int pthread_cond_broadcast(pthread_cond_t *" cond );
+.BI "int pthread_cond_wait(pthread_cond_t *" cond ", pthread_mutex_t *" mutex );
+.BI "int pthread_cond_timedwait(pthread_cond_t *" cond ", pthread_mutex_t *" mutex ,
+.BI "                      const struct timespec *" abstime );
+.BI "int pthread_cond_destroy(pthread_cond_t *" cond );
+.fi
 .
 .
 .SH DESCRIPTION

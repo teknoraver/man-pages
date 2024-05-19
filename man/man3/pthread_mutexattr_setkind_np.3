@@ -14,10 +14,13 @@ deprecated mutex creation attributes
 .
 .
 .SH SYNOPSIS
+.nf
 .B #include <pthread.h>
 .P
-.BI "int pthread_mutexattr_setkind_np(pthread_mutexattr_t *" attr ", int " kind ");"
-.BI "int pthread_mutexattr_getkind_np(const pthread_mutexattr_t *" attr ", int *" kind ");"
+.BI "int pthread_mutexattr_setkind_np(pthread_mutexattr_t *" attr ", int " kind );
+.BI "int pthread_mutexattr_getkind_np(const pthread_mutexattr_t *" attr ,
+.BI "                                 int *" kind );
+.fi
 .
 .
 .SH DESCRIPTION

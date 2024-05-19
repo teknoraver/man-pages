@@ -16,12 +16,15 @@ management of thread-specific data
 .
 .
 .SH SYNOPSIS
+.nf
 .B #include <pthread.h>
 .P
-.BI "int pthread_key_create(pthread_key_t *" key ", void (*" destr_function ") (void *));"
-.BI "int pthread_key_delete(pthread_key_t " key ");"
-.BI "int pthread_setspecific(pthread_key_t " key ", const void *" pointer ");"
-.BI "void * pthread_getspecific(pthread_key_t " key ");"
+.BI "int pthread_key_create(pthread_key_t *" key ,
+.BI "                       void (*" destr_function ") (void *));"
+.BI "int pthread_key_delete(pthread_key_t " key );
+.BI "int pthread_setspecific(pthread_key_t " key ", const void *" pointer );
+.BI "void * pthread_getspecific(pthread_key_t " key );
+.fi
 .
 .
 .SH DESCRIPTION
