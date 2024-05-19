@@ -11,5 +11,5 @@ Maintained-by:  Alejandro Colomar <alx@kernel.org>
 Primary-site:   http://www.kernel.org/pub/linux/docs/man-pages
                 2.7M  man-pages-6.8.tar.gz
 Copying-policy: several; the pages are all freely distributable as long as
-		nroff source is provided
+                nroff source is provided
 End
