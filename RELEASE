@@ -120,7 +120,9 @@ Description
                    $ git commit -sm "lsm: Released $new"
 
             -  Send (email) the lsm file to <lsm@qqx.org> with the
-               subject "add".
+               subject "add":
+
+                   $ neomutt -C -s add -i lsm lsm@qqx.org;
 
        (6)  Email
 
