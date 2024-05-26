@@ -1,8 +1,7 @@
 .\" Copyright 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" 2012-02-04 Michael Kerrisk, document PR_SET_CHILD_SUBREAPER
 .\"
 .TH PR_SET_CHILD_SUBREAPER 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -16,22 +15,17 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ..."
-.BI "          \fR/*\fP unsigned long " arg2 ", unsigned long " arg3 ,
-.BI "          unsigned long " arg4 ", unsigned long " arg5 " \fR*/\fP );"
+.BI "int prctl(PR_SET_CHILD_SUBREAPER, long " set ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_SET_CHILD_SUBREAPER " (since Linux 3.4)"
-.\" commit ebec18a6d3aa1e7d84aab16225e87fd25170ec2b
 If
-.I arg2
+.I set
 is nonzero,
 set the "child subreaper" attribute of the calling process;
 if
-.I arg2
+.I set
 is zero, unset the attribute.
-.IP
+.P
 A subreaper fulfills the role of
 .BR init (1)
 for its descendant processes.
@@ -48,7 +42,7 @@ will receive a
 signal and will be able to
 .BR wait (2)
 on the process to discover its termination status.
-.IP
+.P
 The setting of the "child subreaper" attribute
 is not inherited by children created by
 .BR fork (2)
@@ -56,7 +50,7 @@ and
 .BR clone (2).
 The setting is preserved across
 .BR execve (2).
-.IP
+.P
 Establishing a subreaper process is useful in session management frameworks
 where a hierarchical group of processes is managed by a subreaper process
 that needs to be informed when one of the processes\[em]for example,
@@ -69,12 +63,15 @@ frameworks (e.g.,
 employ a subreaper process for similar reasons.
 .SH RETURN VALUE
 On success,
-values return 0 on success.
+0 is returned.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 3.4.
+.\" commit ebec18a6d3aa1e7d84aab16225e87fd25170ec2b
 .SH SEE ALSO
-.BR prctl (2)
+.BR prctl (2),
+.BR PR_GET_CHILD_SUBREAPER (2const)
