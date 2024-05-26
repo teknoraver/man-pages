@@ -2183,16 +2183,7 @@ is not recognized,
 or not supported on this system.
 .TP
 .B EINVAL
-.I op
-is
-.B PR_MCE_KILL
-or
-.B PR_MCE_KILL_GET
-or
-.BR PR_SET_MM ,
-and unused
-.BR prctl ()
-arguments were not specified as zero.
+An unused argument is nonzero.
 .TP
 .B EINVAL
 .I arg2
@@ -2225,11 +2216,6 @@ is
 and one of the following is true
 .RS
 .IP \[bu] 3
-.I arg4
-or
-.I arg5
-is nonzero;
-.IP \[bu]
 .I arg3
 is greater than
 .B TASK_SIZE
@@ -2302,61 +2288,13 @@ is
 .B PR_SET_NO_NEW_PRIVS
 and
 .I arg2
-is not equal to 1
-or
-.IR arg3 ,
-.IR arg4 ,
-or
-.I arg5
-is nonzero.
-.TP
-.B EINVAL
-.I op
-is
-.B PR_GET_NO_NEW_PRIVS
-and
-.IR arg2 ,
-.IR arg3 ,
-.IR arg4 ,
-or
-.I arg5
-is nonzero.
-.TP
-.B EINVAL
-.I op
-is
-.B PR_SET_THP_DISABLE
-and
-.IR arg3 ,
-.IR arg4 ,
-or
-.I arg5
-is nonzero.
-.TP
-.B EINVAL
-.I op
-is
-.B PR_GET_THP_DISABLE
-and
-.IR arg2 ,
-.IR arg3 ,
-.IR arg4 ,
-or
-.I arg5
-is nonzero.
+is not equal to 1.
 .TP
 .B EINVAL
 .I op
 is
 .B PR_CAP_AMBIENT
-and an unused argument
-.RI ( arg4 ,
-.IR arg5 ,
-or,
-in the case of
-.BR PR_CAP_AMBIENT_CLEAR_ALL ,
-.IR arg3 )
-is nonzero; or
+and
 .I arg2
 has an invalid value;
 or
@@ -2369,16 +2307,6 @@ or
 and
 .I arg3
 does not specify a valid capability.
-.TP
-.B EINVAL
-.I op
-was
-.B PR_GET_SPECULATION_CTRL
-or
-.B PR_SET_SPECULATION_CTRL
-and unused arguments to
-.BR prctl ()
-are not 0.
 .TP
 .B EINVAL
 .I op
@@ -2412,11 +2340,6 @@ is
 and one of the following is true:
 .RS
 .IP \[bu] 3
-.I arg2
-is
-.B PR_SYS_DISPATCH_OFF
-and the remaining arguments are not 0;
-.IP \[bu]
 .I arg2
 is
 .B PR_SYS_DISPATCH_ON
