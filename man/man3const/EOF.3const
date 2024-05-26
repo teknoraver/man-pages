@@ -26,9 +26,10 @@ is not a character
 (it can't be represented by
 .IR "unsigned char" ).
 It is instead a sentinel value outside of the valid range for valid characters.
-.SH CONFORMING TO
-C99 and later;
-POSIX.1-2001 and later.
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+C89, POSIX.1-2001.
 .SH CAVEATS
 Programs can't pass this value to an output function
 to "write" the end of a file.

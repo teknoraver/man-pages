@@ -19,9 +19,10 @@ Standard C library
 .B NULL
 represents a null pointer constant,
 that is, a pointer that does not point to anything.
-.SH CONFORMING TO
-C99 and later;
-POSIX.1-2001 and later.
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+C89, POSIX.1-2001.
 .SH NOTES
 The following headers also provide
 .BR NULL :

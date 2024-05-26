@@ -24,9 +24,10 @@ represent a successful and unsuccessful exit status respectively,
 and can be used as arguments to the
 .BR exit (3)
 function.
-.SH CONFORMING TO
-C99 and later;
-POSIX.1-2001 and later.
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+C89, POSIX.1-2001.
 .SH EXAMPLES
 .\" SRC BEGIN (EXIT_SUCCESS.c)
 .EX
