@@ -1,4 +1,5 @@
 .\" Copyright 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
@@ -14,25 +15,18 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ..."
-.BI "          \fR/*\fP unsigned long " arg2 ", unsigned long " arg3 ,
-.BI "          unsigned long " arg4 ", unsigned long " arg5 " \fR*/\fP );"
+.BI "int prctl(PR_CAP_AMBIENT, long " sub-op ", long " cap ", 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_CAP_AMBIENT " (since Linux 4.3)"
-.\" commit 58319057b7847667f0c9585b9de0e8932b0fdb08
 Reads or changes the ambient capability set of the calling thread,
 according to the value of
-.IR arg2 ,
+.IR sub-op ,
 which must be one of the following:
-.RS
-.\"
 .TP
 .B PR_CAP_AMBIENT_RAISE
 The capability specified in
-.I arg3
-is added to the ambient set.
+.I cap
+is added to the ambient capability set.
 The specified capability must already be present in
 both the permitted and the inheritable sets of the process.
 This operation is not permitted if the
@@ -41,29 +35,59 @@ securebit is set.
 .TP
 .B PR_CAP_AMBIENT_LOWER
 The capability specified in
-.I arg3
-is removed from the ambient set.
+.I cap
+is removed from the ambient capability set.
 .TP
 .B PR_CAP_AMBIENT_IS_SET
 The
 .BR prctl ()
 call returns 1 if the capability in
-.I arg3
-is in the ambient set and 0 if it is not.
+.I cap
+is in the ambient capability set and 0 if it is not.
 .TP
 .B PR_CAP_AMBIENT_CLEAR_ALL
-All capabilities will be removed from the ambient set.
+All capabilities will be removed from the ambient capability set.
 This operation requires setting
-.I arg3
+.I cap
 to zero.
-.RE
-.IP
-In all of the above operations,
-.I arg4
+.SH RETURN VALUE
+On success,
+.B PR_CAP_AMBIENT_IS_SET
+returns the boolean value described above.
+All other
+.I sub-op
+values return 0 on success.
+On error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH ERRORS
+.TP
+.B EINVAL
+.I sub-op
+is not a valid value.
+.TP
+.B EINVAL
+.I sub-op
+is
+.BR PR_CAP_AMBIENT_LOWER ,
+.BR PR_CAP_AMBIENT_RAISE ,
+or
+.B PR_CAP_AMBIENT_IS_SET
 and
-.I arg5
-must be specified as 0.
-.IP
+.I cap
+does not specify a valid capability.
+.TP
+.B EPERM
+.I sub-op
+is
+.BR PR_CAP_AMBIENT_RAISE ,
+but either the capability specified in
+.I cap
+is not present in the process's permitted and inheritable capability sets,
+or the
+.B PR_CAP_AMBIENT_LOWER
+securebit has been set.
+.SH VERSIONS
 Higher-level interfaces layered on top of the above operations are
 provided in the
 .BR libcap (3)
@@ -72,58 +96,14 @@ library in the form of
 .BR cap_set_ambient (3),
 and
 .BR cap_reset_ambient (3).
-.\" prctl PR_CAPBSET_READ
-.SH RETURN VALUE
-On success,
-.BR PR_CAP_AMBIENT + PR_CAP_AMBIENT_IS_SET ,
-return the nonnegative values described above.
-All other
-.I op
-values return 0 on success.
-On error, \-1 is returned, and
-.I errno
-is set to indicate the error.
-.SH ERRORS
-.TP
-.B EINVAL
-.I arg2
-is not valid value for this
-.IR op .
-.TP
-.B EINVAL
-.I op
-is
-.B PR_CAP_AMBIENT
-and
-.I arg2
-has an invalid value;
-or
-.I arg2
-is
-.BR PR_CAP_AMBIENT_LOWER ,
-.BR PR_CAP_AMBIENT_RAISE ,
-or
-.B PR_CAP_AMBIENT_IS_SET
-and
-.I arg3
-does not specify a valid capability.
-.TP
-.B EPERM
-.I op
-is
-.B PR_CAP_AMBIENT
-and
-.I arg2
-is
-.BR PR_CAP_AMBIENT_RAISE ,
-but either the capability specified in
-.I arg3
-is not present in the process's permitted and inheritable capability sets,
-or the
-.B PR_CAP_AMBIENT_LOWER
-securebit has been set.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 4.3.
+.\" commit 58319057b7847667f0c9585b9de0e8932b0fdb08
 .SH SEE ALSO
-.BR prctl (2)
+.BR prctl (2),
+.BR libcap (3),
+.BR cap_get_ambient (3),
+.BR cap_set_ambient (3),
+.BR cap_reset_ambient (3)
