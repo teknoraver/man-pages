@@ -82,25 +82,8 @@ The first argument can be:
 .B PR_GET_ENDIAN
 .TQ
 .B PR_SET_FP_MODE
-.\" prctl PR_GET_FP_MODE
-.TP
-.BR PR_GET_FP_MODE " (since Linux 4.0, only on MIPS)"
-Return (as the function result)
-the current floating-point mode
-(see
-.BR PR_SET_FP_MODE (2const)
-for details).
-.IP
-On success,
-the call returns a bit mask which represents the current floating-point mode.
-.IP
-The arguments
-.IR arg2 ,
-.IR arg3 ,
-.IR arg4 ,
-and
-.I arg5
-are ignored.
+.TQ
+.B PR_GET_FP_MODE
 .\" prctl PR_SET_FPEMU
 .TP
 .BR PR_SET_FPEMU " (since Linux 2.4.18, 2.5.9, only on ia64)"
@@ -1735,7 +1718,6 @@ of the calling process.
 for information on the protection mask bits.)
 .SH RETURN VALUE
 On success,
-.BR PR_GET_FP_MODE ,
 .BR PR_GET_IO_FLUSHER ,
 .BR PR_GET_KEEPCAPS ,
 .BR PR_MCE_KILL_GET ,
@@ -2104,4 +2086,5 @@ glibc 2.0.6
 .BR PR_SET_ENDIAN (2const),
 .BR PR_GET_ENDIAN (2const),
 .BR PR_SET_FP_MODE (2const),
+.BR PR_GET_FP_MODE (2const),
 .BR core (5)
