@@ -76,17 +76,8 @@ The first argument can be:
 .B PR_SET_DUMPABLE
 .TQ
 .B PR_GET_DUMPABLE
-.\" prctl PR_SET_ENDIAN
-.TP
-.BR PR_SET_ENDIAN " (since Linux 2.6.18, PowerPC only)"
-Set the endian-ness of the calling process to the value given
-in \fIarg2\fP, which should be one of the following:
-.\" Respectively 0, 1, 2
-.BR PR_ENDIAN_BIG ,
-.BR PR_ENDIAN_LITTLE ,
-or
-.B PR_ENDIAN_PPC_LITTLE
-(PowerPC pseudo little endian).
+.TQ
+.B PR_SET_ENDIAN
 .\" prctl PR_GET_ENDIAN
 .TP
 .BR PR_GET_ENDIAN " (since Linux 2.6.18, PowerPC only)"
@@ -2225,4 +2216,5 @@ glibc 2.0.6
 .BR PR_GET_CHILD_SUBREAPER (2const),
 .BR PR_SET_DUMPABLE (2const),
 .BR PR_GET_DUMPABLE (2const),
+.BR PR_SET_ENDIAN (2const),
 .BR core (5)
