@@ -19,7 +19,7 @@
 .\"	Added PR_SET_TIMING, PR_GET_TIMING, PR_SET_NAME, PR_GET_NAME,
 .\"	PR_SET_UNALIGN, PR_GET_UNALIGN, PR_SET_FPEMU, PR_GET_FPEMU,
 .\"	PR_SET_FPEXC, PR_GET_FPEXC
-.\" 2008-04-29 Serge Hallyn, Document PR_CAPBSET_READ and PR_CAPBSET_DROP
+.\" 2008-04-29 Serge Hallyn, Document PR_CAPBSET_DROP
 .\" 2008-06-13 Erik Bosman, <ejbosman@cs.vu.nl>
 .\"     Document PR_GET_TSC and PR_SET_TSC.
 .\" 2008-06-15 mtk, Document PR_SET_SECCOMP, PR_GET_SECCOMP
@@ -66,29 +66,8 @@ The first argument can be:
 .\"
 .TP
 .B PR_CAP_AMBIENT
-.\" prctl PR_CAPBSET_READ
-.TP
-.BR PR_CAPBSET_READ " (since Linux 2.6.25)"
-Return (as the function result) 1 if the capability specified in
-.I arg2
-is in the calling thread's capability bounding set,
-or 0 if it is not.
-(The capability constants are defined in
-.IR <linux/capability.h> .)
-The capability bounding set dictates
-whether the process can receive the capability through a
-file's permitted capability set on a subsequent call to
-.BR execve (2).
-.IP
-If the capability specified in
-.I arg2
-is not valid, then the call fails with the error
-.BR EINVAL .
-.IP
-A higher-level interface layered on top of this operation is provided in the
-.BR libcap (3)
-library in the form of
-.BR cap_get_bound (3).
+.TQ
+.B PR_CAPBSET_READ
 .\" prctl PR_CAPBSET_DROP
 .TP
 .BR PR_CAPBSET_DROP " (since Linux 2.6.25)"
@@ -2021,7 +2000,6 @@ of the calling process.
 for information on the protection mask bits.)
 .SH RETURN VALUE
 On success,
-.BR PR_CAPBSET_READ ,
 .BR PR_GET_DUMPABLE ,
 .BR PR_GET_FP_MODE ,
 .BR PR_GET_IO_FLUSHER ,
@@ -2410,4 +2388,5 @@ glibc 2.0.6
 .SH SEE ALSO
 .BR signal (2),
 .BR PR_CAP_AMBIENT (2const),
+.BR PR_CAPBSET_READ (2const),
 .BR core (5)
