@@ -1,4 +1,5 @@
 .\" Copyright 2016, Eugene Syromyatnikov <evgsyr@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
@@ -14,39 +15,25 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ..."
-.BI "          \fR/*\fP unsigned long " arg2 ", unsigned long " arg3 ,
-.BI "          unsigned long " arg4 ", unsigned long " arg5 " \fR*/\fP );"
+.B int prctl(PR_GET_FP_MODE, 0L, 0L, 0L, 0L);
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_GET_FP_MODE " (since Linux 4.0, only on MIPS)"
-Return (as the function result)
+Return a bit mask which represents
 the current floating-point mode
 (see
 .BR PR_SET_FP_MODE (2const)
 for details).
-.IP
-On success,
-the call returns a bit mask which represents the current floating-point mode.
-.IP
-The arguments
-.IR arg2 ,
-.IR arg3 ,
-.IR arg4 ,
-and
-.I arg5
-are ignored.
 .SH RETURN VALUE
 On success,
-.BR PR_GET_FP_MODE ,
-return the nonnegative values described above.
+this call returns the nonnegative value described above.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
 .SH STANDARDS
 Linux.
+MIPS only.
 .SH HISTORY
+Linux 4.0 (MIPS).
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_GET_FP_MODE (2const)
