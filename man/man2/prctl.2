@@ -31,7 +31,6 @@
 .\" 2012-10-25 Michael Kerrisk, Document PR_SET_TIMERSLACK and
 .\"                             PR_GET_TIMERSLACK
 .\" 2013-01-10 Kees Cook, document PR_SET_PTRACER
-.\" 2012-02-04 Michael Kerrisk, document PR_GET_CHILD_SUBREAPER
 .\" 2014-11-10 Dave Hansen, document PR_MPX_{EN,DIS}ABLE_MANAGEMENT
 .\"
 .\"
@@ -71,12 +70,8 @@ The first argument can be:
 .B PR_CAPBSET_DROP
 .TQ
 .B PR_SET_CHILD_SUBREAPER
-.\" prctl PR_GET_CHILD_SUBREAPER
-.TP
-.BR PR_GET_CHILD_SUBREAPER " (since Linux 3.4)"
-Return the "child subreaper" setting of the caller,
-in the location pointed to by
-.IR "(int\~*) arg2" .
+.TQ
+.B PR_GET_CHILD_SUBREAPER
 .\" prctl PR_SET_DUMPABLE
 .TP
 .BR PR_SET_DUMPABLE " (since Linux 2.3.20)"
@@ -2312,4 +2307,5 @@ glibc 2.0.6
 .BR PR_CAPBSET_READ (2const),
 .BR PR_CAPBSET_DROP (2const),
 .BR PR_SET_CHILD_SUBREAPER (2const),
+.BR PR_GET_CHILD_SUBREAPER (2const),
 .BR core (5)
