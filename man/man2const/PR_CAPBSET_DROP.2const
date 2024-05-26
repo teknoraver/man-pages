@@ -1,0 +1,75 @@
+.\" Copyright 2008, Serge Hallyn <serge@hallyn.com>
+.\" Copyright 2008, 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.\" 2008-04-29 Serge Hallyn, Document PR_CAPBSET_DROP
+.\"
+.TH PR_CAPBSET_DROP 2const (date) "Linux man-pages (unreleased)"
+.SH NAME
+PR_CAPBSET_DROP
+\-
+drop capabilities from the calling thread's capability bounding set
+.SH LIBRARY
+Standard C library
+.RI ( libc ", " \-lc )
+.SH SYNOPSIS
+.nf
+.B #include <sys/prctl.h>
+.P
+.BI "int prctl(int " op ", ..."
+.BI "          \fR/*\fP unsigned long " arg2 ", unsigned long " arg3 ,
+.BI "          unsigned long " arg4 ", unsigned long " arg5 " \fR*/\fP );"
+.fi
+.SH DESCRIPTION
+.TP
+.BR PR_CAPBSET_DROP " (since Linux 2.6.25)"
+If the calling thread has the
+.B CAP_SETPCAP
+capability within its user namespace, then drop the capability specified by
+.I arg2
+from the calling thread's capability bounding set.
+Any children of the calling thread will inherit the newly
+reduced bounding set.
+.IP
+The call fails with the error:
+.B EPERM
+if the calling thread does not have the
+.BR CAP_SETPCAP ;
+.B EINVAL
+if
+.I arg2
+does not represent a valid capability; or
+.B EINVAL
+if file capabilities are not enabled in the kernel,
+in which case bounding sets are not supported.
+.IP
+A higher-level interface layered on top of this operation is provided in the
+.BR libcap (3)
+library in the form of
+.BR cap_drop_bound (3).
+.SH RETURN VALUE
+On success,
+values return 0 on success.
+On error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH ERRORS
+.TP
+.B EINVAL
+.I arg2
+is not a valid value for this
+.IR op .
+.TP
+.B EPERM
+.I op
+is
+.BR PR_CAPBSET_DROP ,
+and the caller does not have the
+.B CAP_SETPCAP
+capability.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+.SH SEE ALSO
+.BR prctl (2),

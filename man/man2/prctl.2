@@ -19,7 +19,6 @@
 .\"	Added PR_SET_TIMING, PR_GET_TIMING, PR_SET_NAME, PR_GET_NAME,
 .\"	PR_SET_UNALIGN, PR_GET_UNALIGN, PR_SET_FPEMU, PR_GET_FPEMU,
 .\"	PR_SET_FPEXC, PR_GET_FPEXC
-.\" 2008-04-29 Serge Hallyn, Document PR_CAPBSET_DROP
 .\" 2008-06-13 Erik Bosman, <ejbosman@cs.vu.nl>
 .\"     Document PR_GET_TSC and PR_SET_TSC.
 .\" 2008-06-15 mtk, Document PR_SET_SECCOMP, PR_GET_SECCOMP
@@ -68,33 +67,8 @@ The first argument can be:
 .B PR_CAP_AMBIENT
 .TQ
 .B PR_CAPBSET_READ
-.\" prctl PR_CAPBSET_DROP
-.TP
-.BR PR_CAPBSET_DROP " (since Linux 2.6.25)"
-If the calling thread has the
-.B CAP_SETPCAP
-capability within its user namespace, then drop the capability specified by
-.I arg2
-from the calling thread's capability bounding set.
-Any children of the calling thread will inherit the newly
-reduced bounding set.
-.IP
-The call fails with the error:
-.B EPERM
-if the calling thread does not have the
-.BR CAP_SETPCAP ;
-.B EINVAL
-if
-.I arg2
-does not represent a valid capability; or
-.B EINVAL
-if file capabilities are not enabled in the kernel,
-in which case bounding sets are not supported.
-.IP
-A higher-level interface layered on top of this operation is provided in the
-.BR libcap (3)
-library in the form of
-.BR cap_drop_bound (3).
+.TQ
+.B PR_CAPBSET_DROP
 .\" prctl PR_SET_CHILD_SUBREAPER
 .TP
 .BR PR_SET_CHILD_SUBREAPER " (since Linux 3.4)"
@@ -2338,14 +2312,6 @@ flag is set
 .B EPERM
 .I op
 is
-.BR PR_CAPBSET_DROP ,
-and the caller does not have the
-.B CAP_SETPCAP
-capability.
-.TP
-.B EPERM
-.I op
-is
 .BR PR_SET_MM ,
 and the caller does not have the
 .B CAP_SYS_RESOURCE
@@ -2389,4 +2355,5 @@ glibc 2.0.6
 .BR signal (2),
 .BR PR_CAP_AMBIENT (2const),
 .BR PR_CAPBSET_READ (2const),
+.BR PR_CAPBSET_DROP (2const),
 .BR core (5)
