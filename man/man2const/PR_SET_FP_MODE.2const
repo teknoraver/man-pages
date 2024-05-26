@@ -1,4 +1,5 @@
 .\" Copyright 2016, Eugene Syromyatnikov <evgsyr@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
@@ -14,24 +15,20 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ..."
-.BI "          \fR/*\fP unsigned long " arg2 ", unsigned long " arg3 ,
-.BI "          unsigned long " arg4 ", unsigned long " arg5 " \fR*/\fP );"
+.BI "int prctl(PR_SET_FP_MODE, unsigned long " mode ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_SET_FP_MODE " (since Linux 4.0, only on MIPS)"
-.\" commit 9791554b45a2acc28247f66a5fd5bbc212a6b8c8
 On the MIPS architecture,
-user-space code can be built using an ABI which permits linking
-with code that has more restrictive floating-point (FP) requirements.
-For example, user-space code may be built to target the O32 FPXX ABI
+user-space code can be built using an ABI which permits
+linking with code that has more restrictive floating-point (FP) requirements.
+For example,
+user-space code may be built to target the O32 FPXX ABI
 and linked with code built for either one of the more restrictive
 FP32 or FP64 ABIs.
 When more restrictive code is linked in,
 the overall requirement for the process is to use the more
 restrictive floating-point mode.
-.IP
+.P
 Because the kernel has no means of knowing in advance
 which mode the process should be executed in,
 and because these restrictions can
@@ -39,12 +36,11 @@ change over the lifetime of the process, the
 .B PR_SET_FP_MODE
 operation is provided to allow control of the floating-point mode
 from user space.
-.IP
+.P
 .\" https://dmz-portal.mips.com/wiki/MIPS_O32_ABI_-_FR0_and_FR1_Interlinking
 The
-.I (unsigned int) arg2
+.I mode
 argument is a bit mask describing the floating-point mode used:
-.RS
 .TP
 .B PR_FP_MODE_FR
 When this bit is
@@ -108,22 +104,14 @@ Note that this mode makes sense only when the FPU is in 64-bit mode
 .IP
 Note that the use of emulation inherently has a significant performance hit
 and should be avoided if possible.
-.RE
-.IP
+.P
 In the N32/N64 ABI, 64-bit floating-point mode is always used,
 so FPU emulation is not required and the FPU always operates in
 .B FR=1
 mode.
-.IP
+.P
 This operation is mainly intended for use by the dynamic linker
 .RB ( ld.so (8)).
-.IP
-The arguments
-.IR arg3 ,
-.IR arg4 ,
-and
-.I arg5
-are ignored.
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -133,15 +121,14 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EOPNOTSUPP
-.I op
-is
-.B PR_SET_FP_MODE
-and
-.I arg2
+.I mode
 has an invalid or unsupported value.
 .SH STANDARDS
 Linux.
+MIPS only.
 .SH HISTORY
+Linux 4.0 (MIPS).
+.\" commit 9791554b45a2acc28247f66a5fd5bbc212a6b8c8
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_GET_FP_MODE (2const)
