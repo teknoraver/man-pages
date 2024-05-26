@@ -1,9 +1,8 @@
 .\" Copyright 2008, Serge Hallyn <serge@hallyn.com>
 .\" Copyright 2008, 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" 2008-04-29 Serge Hallyn, Document PR_CAPBSET_READ
 .\"
 .TH PR_CAPBSET_READ 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -17,48 +16,44 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ..."
-.BI "          \fR/*\fP unsigned long " arg2 ", unsigned long " arg3 ,
-.BI "          unsigned long " arg4 ", unsigned long " arg5 " \fR*/\fP );"
+.BI "int prctl(PR_CAPBSET_READ, long " cap ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_CAPBSET_READ " (since Linux 2.6.25)"
-Return (as the function result) 1 if the capability specified in
-.I arg2
+Return 1 if the capability specified in
+.I cap
 is in the calling thread's capability bounding set,
 or 0 if it is not.
-(The capability constants are defined in
-.IR <linux/capability.h> .)
+.P
+The capability constants are defined in
+.IR <linux/capability.h> .
+.P
 The capability bounding set dictates
 whether the process can receive the capability through a
 file's permitted capability set on a subsequent call to
 .BR execve (2).
-.IP
-If the capability specified in
-.I arg2
-is not valid, then the call fails with the error
-.BR EINVAL .
-.IP
-A higher-level interface layered on top of this operation is provided in the
-.BR libcap (3)
-library in the form of
-.BR cap_get_bound (3).
 .SH RETURN VALUE
 On success,
-.BR PR_CAPBSET_READ ,
-return the nonnegative values described above.
+this call
+returns the boolean value described above.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-.I arg2
-is not valid value for this
-.IR op .
+.I cap
+does not specify a valid capability.
+.SH VERSIONS
+A higher-level interface layered on top of this operation is provided in the
+.BR libcap (3)
+library in the form of
+.BR cap_get_bound (3).
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.6.25.
 .SH SEE ALSO
-.BR prctl (2)
+.BR prctl (2),
+.BR PR_CAPBSET_DROP (2const),
+.BR libcap (3),
+.BR cap_get_bound (3)
