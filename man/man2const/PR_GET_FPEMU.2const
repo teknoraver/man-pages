@@ -1,10 +1,7 @@
 .\" Copyright Guillem Jover <guillem@hadrons.org>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" Modified 2006-08-30 Guillem Jover <guillem@hadrons.org>
-.\"	Added
-.\"	PR_GET_FPEMU
 .\"
 .TH PR_GET_FPEMU 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -18,16 +15,12 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ..."
-.BI "          \fR/*\fP unsigned long " arg2 ", unsigned long " arg3 ,
-.BI "          unsigned long " arg4 ", unsigned long " arg5 " \fR*/\fP );"
+.BI "int prctl(PR_GET_FPEMU, int *" fpemu ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_GET_FPEMU " (since Linux 2.4.18, 2.5.9, only on ia64)"
 Return floating-point emulation control bits,
 in the location pointed to by
-.IR "(int\~*) arg2" .
+.IR fpemu .
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -37,11 +30,14 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EFAULT
-.I arg2
+.I fpemu
 is an invalid address.
 .SH STANDARDS
 Linux.
+ia64 only.
 .SH HISTORY
+Linux 2.4.18, 2.5.9.
+(ia64)
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_SET_FPEMU (2const)
