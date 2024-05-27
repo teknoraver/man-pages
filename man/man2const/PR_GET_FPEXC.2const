@@ -1,10 +1,7 @@
 .\" Copyright Guillem Jover <guillem@hadrons.org>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" Modified 2006-08-30 Guillem Jover <guillem@hadrons.org>
-.\"	Added
-.\"	PR_GET_FPEXC
 .\"
 .TH PR_GET_FPEXC 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -18,16 +15,12 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ..."
-.BI "          \fR/*\fP unsigned long " arg2 ", unsigned long " arg3 ,
-.BI "          unsigned long " arg4 ", unsigned long " arg5 " \fR*/\fP );"
+.BI "int prctl(PR_GET_FPEXC, unsigned int *" mode ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_GET_FPEXC " (since Linux 2.4.21, 2.5.32, only on PowerPC)"
 Return floating-point exception mode,
 in the location pointed to by
-.IR "(int\~*) arg2" .
+.IR mode .
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -37,11 +30,14 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EFAULT
-.I arg2
+.I mode
 is an invalid address.
 .SH STANDARDS
 Linux.
+PowerPC only.
 .SH HISTORY
+Linux 2.4.21, 2.5.32.
+(PowerPC)
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_SET_FPEXC (2const)
