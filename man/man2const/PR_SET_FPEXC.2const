@@ -1,10 +1,7 @@
 .\" Copyright Guillem Jover <guillem@hadrons.org>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" Modified 2006-08-30 Guillem Jover <guillem@hadrons.org>
-.\"	Added
-.\"	PR_SET_FPEXC
 .\"
 .TH PR_SET_FPEXC 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -18,24 +15,32 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ..."
-.BI "          \fR/*\fP unsigned long " arg2 ", unsigned long " arg3 ,
-.BI "          unsigned long " arg4 ", unsigned long " arg5 " \fR*/\fP );"
+.BI "int prctl(PR_SET_FPEXC, unsigned long " mode ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_SET_FPEXC " (since Linux 2.4.21, 2.5.32, only on PowerPC)"
-Set floating-point exception mode to \fIarg2\fP.
-Pass \fBPR_FP_EXC_SW_ENABLE\fP to use FPEXC for FP exception enables,
-\fBPR_FP_EXC_DIV\fP for floating-point divide by zero,
-\fBPR_FP_EXC_OVF\fP for floating-point overflow,
-\fBPR_FP_EXC_UND\fP for floating-point underflow,
-\fBPR_FP_EXC_RES\fP for floating-point inexact result,
-\fBPR_FP_EXC_INV\fP for floating-point invalid operation,
-\fBPR_FP_EXC_DISABLED\fP for FP exceptions disabled,
-\fBPR_FP_EXC_NONRECOV\fP for async nonrecoverable exception mode,
-\fBPR_FP_EXC_ASYNC\fP for async recoverable exception mode,
-\fBPR_FP_EXC_PRECISE\fP for precise exception mode.
+Set floating-point exception mode to
+.IR mode .
+Pass
+.B PR_FP_EXC_SW_ENABLE
+to use FPEXC for FP exception enables,
+.B PR_FP_EXC_DIV
+for floating-point divide by zero,
+.B PR_FP_EXC_OVF
+for floating-point overflow,
+.B PR_FP_EXC_UND
+for floating-point underflow,
+.B PR_FP_EXC_RES
+for floating-point inexact result,
+.B PR_FP_EXC_INV
+for floating-point invalid operation,
+.B PR_FP_EXC_DISABLED
+for FP exceptions disabled,
+.B PR_FP_EXC_NONRECOV
+for async nonrecoverable exception mode,
+.B PR_FP_EXC_ASYNC
+for async recoverable exception mode,
+.B PR_FP_EXC_PRECISE
+for precise exception mode.
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -45,12 +50,14 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-.I arg2
-is not a valid value for this
-.IR op .
+.I mode
+is not a valid value.
 .SH STANDARDS
 Linux.
+PowerPC only.
 .SH HISTORY
+Linux 2.4.21, 2.5.32.
+(PowerPC)
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_GET_FPEXC (2const)
