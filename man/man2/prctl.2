@@ -17,7 +17,7 @@
 .\" Modified 2006-08-30 Guillem Jover <guillem@hadrons.org>
 .\"	Updated Linux versions where the options where introduced.
 .\"	Added PR_SET_TIMING, PR_GET_TIMING, PR_SET_NAME, PR_GET_NAME,
-.\"	PR_SET_UNALIGN, PR_GET_UNALIGN, PR_SET_FPEMU, PR_GET_FPEMU,
+.\"	PR_SET_UNALIGN, PR_GET_UNALIGN, PR_GET_FPEMU,
 .\"	PR_SET_FPEXC, PR_GET_FPEXC
 .\" 2008-06-13 Erik Bosman, <ejbosman@cs.vu.nl>
 .\"     Document PR_GET_TSC and PR_SET_TSC.
@@ -84,17 +84,8 @@ The first argument can be:
 .B PR_SET_FP_MODE
 .TQ
 .B PR_GET_FP_MODE
-.\" prctl PR_SET_FPEMU
-.TP
-.BR PR_SET_FPEMU " (since Linux 2.4.18, 2.5.9, only on ia64)"
-Set floating-point emulation control bits to \fIarg2\fP.
-Pass
-.B PR_FPEMU_NOPRINT
-to silently emulate floating-point operation accesses, or
-.B PR_FPEMU_SIGFPE
-to not emulate floating-point operations and send
-.B SIGFPE
-instead.
+.TQ
+.B PR_SET_FPEMU
 .\" prctl PR_GET_FPEMU
 .TP
 .BR PR_GET_FPEMU " (since Linux 2.4.18, 2.5.9, only on ia64)"
@@ -2087,4 +2078,5 @@ glibc 2.0.6
 .BR PR_GET_ENDIAN (2const),
 .BR PR_SET_FP_MODE (2const),
 .BR PR_GET_FP_MODE (2const),
+.BR PR_SET_FPEMU (2const),
 .BR core (5)
