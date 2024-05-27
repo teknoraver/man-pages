@@ -24,11 +24,8 @@ according to the value of
 which must be one of the following:
 .TP
 .B PR_CAP_AMBIENT_RAISE
-.TP
+.TQ
 .B PR_CAP_AMBIENT_LOWER
-The capability specified in
-.I cap
-is removed from the ambient capability set.
 .TP
 .B PR_CAP_AMBIENT_IS_SET
 The
@@ -61,8 +58,6 @@ is not a valid value.
 .B EINVAL
 .I sub-op
 is
-.BR PR_CAP_AMBIENT_LOWER ,
-or
 .B PR_CAP_AMBIENT_IS_SET
 and
 .I cap
@@ -84,6 +79,7 @@ Linux 4.3.
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_CAP_AMBIENT_RAISE (2const),
+.BR PR_CAP_AMBIENT_LOWER (2const),
 .BR libcap (3),
 .BR cap_get_ambient (3),
 .BR cap_set_ambient (3),
