@@ -18,7 +18,7 @@
 .\"	Updated Linux versions where the options where introduced.
 .\"	Added PR_SET_TIMING, PR_GET_TIMING, PR_SET_NAME, PR_GET_NAME,
 .\"	PR_SET_UNALIGN, PR_GET_UNALIGN,
-.\"	PR_SET_FPEXC, PR_GET_FPEXC
+.\"	PR_GET_FPEXC
 .\" 2008-06-13 Erik Bosman, <ejbosman@cs.vu.nl>
 .\"     Document PR_GET_TSC and PR_SET_TSC.
 .\" 2008-06-15 mtk, Document PR_SET_SECCOMP, PR_GET_SECCOMP
@@ -88,21 +88,8 @@ The first argument can be:
 .B PR_SET_FPEMU
 .TQ
 .B PR_GET_FPEMU
-.\" prctl PR_SET_FPEXC
-.TP
-.BR PR_SET_FPEXC " (since Linux 2.4.21, 2.5.32, only on PowerPC)"
-Set floating-point exception mode to \fIarg2\fP.
-Pass \fBPR_FP_EXC_SW_ENABLE\fP to use FPEXC for FP exception enables,
-\fBPR_FP_EXC_DIV\fP for floating-point divide by zero,
-\fBPR_FP_EXC_OVF\fP for floating-point overflow,
-\fBPR_FP_EXC_UND\fP for floating-point underflow,
-\fBPR_FP_EXC_RES\fP for floating-point inexact result,
-\fBPR_FP_EXC_INV\fP for floating-point invalid operation,
-\fBPR_FP_EXC_DISABLED\fP for FP exceptions disabled,
-\fBPR_FP_EXC_NONRECOV\fP for async nonrecoverable exception mode,
-\fBPR_FP_EXC_ASYNC\fP for async recoverable exception mode,
-\fBPR_FP_EXC_PRECISE\fP for precise exception mode.
-.\" prctl PR_GET_FPEXC
+.TQ
+.B PR_SET_FPEXC
 .TP
 .BR PR_GET_FPEXC " (since Linux 2.4.21, 2.5.32, only on PowerPC)"
 Return floating-point exception mode,
@@ -2076,4 +2063,5 @@ glibc 2.0.6
 .BR PR_GET_FP_MODE (2const),
 .BR PR_SET_FPEMU (2const),
 .BR PR_GET_FPEMU (2const),
+.BR PR_SET_FPEXC (2const),
 .BR core (5)
