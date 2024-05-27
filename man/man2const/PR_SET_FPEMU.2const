@@ -1,10 +1,7 @@
 .\" Copyright Guillem Jover <guillem@hadrons.org>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" Modified 2006-08-30 Guillem Jover <guillem@hadrons.org>
-.\"	Added
-.\"	PR_SET_FPEMU
 .\"
 .TH PR_SET_FPEMU 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -18,14 +15,11 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ..."
-.BI "          \fR/*\fP unsigned long " arg2 ", unsigned long " arg3 ,
-.BI "          unsigned long " arg4 ", unsigned long " arg5 " \fR*/\fP );"
+.BI "int prctl(PR_SET_FPEMU, long " fpemu ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_SET_FPEMU " (since Linux 2.4.18, 2.5.9, only on ia64)"
-Set floating-point emulation control bits to \fIarg2\fP.
+Set floating-point emulation control bits to
+.IR fpemu .
 Pass
 .B PR_FPEMU_NOPRINT
 to silently emulate floating-point operation accesses, or
@@ -42,12 +36,14 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-.I arg2
-is not a valid value for this
-.IR op .
+.I fpemu
+is not a valid value.
 .SH STANDARDS
 Linux.
+ia64 only.
 .SH HISTORY
+Linux 2.4.18, 2.5.9.
+(ia64)
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_GET_FPEMU (2const)
