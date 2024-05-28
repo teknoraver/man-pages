@@ -25,13 +25,6 @@ Set the machine check memory corruption kill policy for the calling thread.
 is one of the following operations:
 .TP
 .B PR_MCE_KILL_CLEAR
-Clear the thread memory corruption kill policy and
-use the system-wide default.
-.IP
-The system-wide default is defined by
-.IR /proc/sys/vm/memory_failure_early_kill ;
-see
-.BR proc_sys_vm (5).
 .TP
 .B PR_MCE_KILL_SET
 Use a thread-specific memory corruption kill policy.
@@ -73,4 +66,5 @@ Linux.
 Linux 2.6.32.
 .SH SEE ALSO
 .BR prctl (2),
+.BR PR_MCE_KILL_CLEAR (2const),
 .BR PR_MCE_KILL_GET (2const)
