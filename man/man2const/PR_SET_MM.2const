@@ -47,8 +47,6 @@ is one of the options below.
 .B PR_SET_MM_START_BRK
 .TQ
 .B PR_SET_MM_BRK
-.P
-The following options are available since Linux 3.5.
 .TQ
 .B PR_SET_MM_ARG_START
 .TQ
@@ -59,36 +57,8 @@ The following options are available since Linux 3.5.
 .B PR_SET_MM_ENV_END
 .TQ
 .B PR_SET_MM_AUXV
-.TP
+.TQ
 .B PR_SET_MM_EXE_FILE
-.\" commit b32dfe377102ce668775f8b6b1461f7ad428f8b6
-Supersede the
-.IR /proc/ pid /exe
-symbolic link with a new one pointing to a new executable file
-identified by the file descriptor provided in
-.I arg3
-argument.
-The file descriptor should be obtained with a regular
-.BR open (2)
-call.
-.IP
-To change the symbolic link, one needs to unmap all existing
-executable memory areas, including those created by the kernel itself
-(for example the kernel usually creates at least one executable
-memory area for the ELF
-.I .text
-section).
-.IP
-In Linux 4.9 and earlier, the
-.\" commit 3fb4afd9a504c2386b8435028d43283216bf588e
-.B PR_SET_MM_EXE_FILE
-operation can be performed only once in a process's lifetime;
-attempting to perform the operation a second time results in the error
-.BR EPERM .
-This restriction was enforced for security reasons that were subsequently
-deemed specious,
-and the restriction was removed in Linux 4.10 because some
-user-space applications needed to perform this operation more than once.
 .P
 The following options are available since Linux 3.18.
 .\" commit f606b77f1a9e362451aca8f81d8f36a3a112139e
@@ -125,28 +95,6 @@ On error, \-1 is returned, and
 is set to indicate the error.
 .SH ERRORS
 .TP
-.B EACCES
-.I op
-is
-.BR PR_SET_MM_EXE_FILE ,
-the file is not executable.
-.TP
-.B EBADF
-.I op
-is
-.BR PR_SET_MM_EXE_FILE ,
-and the file descriptor passed in
-.I arg3
-is not valid.
-.TP
-.B EBUSY
-.I op
-is
-.BR PR_SET_MM_EXE_FILE ,
-and this the second attempt to change the
-.IR /proc/ pid /exe
-symbolic link, which is prohibited.
-.TP
 .B EINVAL
 .I op
 is not a valid value.
@@ -178,4 +126,5 @@ option enabled.
 .BR PR_SET_MM_ARG_START (2const),
 .BR PR_SET_MM_ARG_END (2const),
 .BR PR_SET_MM_ENV_START (2const),
-.BR PR_SET_MM_ENV_END (2const)
+.BR PR_SET_MM_ENV_END (2const),
+.BR PR_SET_MM_EXE_FILE (2const)
