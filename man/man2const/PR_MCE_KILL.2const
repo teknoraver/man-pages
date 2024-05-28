@@ -1,9 +1,8 @@
 .\" Copyright 2010, Andi Kleen <andi@firstfloor.org>
 .\" Copyright 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" 2009-10-03 Andi Kleen, document PR_MCE_KILL
 .\"
 .TH PR_MCE_KILL 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -17,26 +16,25 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.BI "int prctl(PR_MCE_KILL, long " op ", ...);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_MCE_KILL " (since Linux 2.6.32)"
 Set the machine check memory corruption kill policy for the calling thread.
-If
-.I arg2
-is
-.BR PR_MCE_KILL_CLEAR ,
-clear the thread memory corruption kill policy and use the system-wide default.
-(The system-wide default is defined by
+.P
+.I op
+is one of the following operations:
+.TP
+.B PR_MCE_KILL_CLEAR
+Clear the thread memory corruption kill policy and
+use the system-wide default.
+.IP
+The system-wide default is defined by
 .IR /proc/sys/vm/memory_failure_early_kill ;
 see
-.BR proc (5).)
-If
-.I arg2
-is
-.BR PR_MCE_KILL_SET ,
-use a thread-specific memory corruption kill policy.
+.BR proc_sys_vm (5).
+.TP
+.B PR_MCE_KILL_SET
+Use a thread-specific memory corruption kill policy.
 In this case,
 .I arg3
 defines whether the policy is
@@ -56,10 +54,8 @@ See
 for more information on the
 .B SIGBUS
 signal.
+.P
 The policy is inherited by children.
-The remaining unused
-.BR prctl ()
-arguments must be zero for future compatibility.
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -69,12 +65,12 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-.I arg2
-is not a valid value for this
-.IR op .
+.I op
+is not a valid value.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.6.32.
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_MCE_KILL_GET (2const)
