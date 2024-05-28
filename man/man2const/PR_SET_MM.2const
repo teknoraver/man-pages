@@ -41,10 +41,8 @@ is one of the options below.
 .B PR_SET_MM_START_DATA
 .TQ
 .B PR_SET_MM_END_DATA
-.TP
+.TQ
 .B PR_SET_MM_START_STACK
-Set the start address of the stack.
-The corresponding memory area must be readable and writable.
 .TP
 .B PR_SET_MM_START_BRK
 Set the address above which the program heap can be expanded with
@@ -203,12 +201,6 @@ is greater than
 .B EINVAL
 .I op
 is
-.BR PR_SET_MM_START_STACK ,
-and the permissions of the corresponding memory area are not as required.
-.TP
-.B EINVAL
-.I op
-is
 .B PR_SET_MM_START_BRK
 or
 .BR PR_SET_MM_BRK ,
@@ -239,4 +231,5 @@ option enabled.
 .BR PR_SET_MM_START_CODE (2const),
 .BR PR_SET_MM_END_CODE (2const),
 .BR PR_SET_MM_START_DATA (2const),
-.BR PR_SET_MM_END_DATA (2const)
+.BR PR_SET_MM_END_DATA (2const),
+.BR PR_SET_MM_START_STACK (2const)
