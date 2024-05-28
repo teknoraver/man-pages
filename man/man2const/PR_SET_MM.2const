@@ -43,18 +43,8 @@ is one of the options below.
 .B PR_SET_MM_END_DATA
 .TQ
 .B PR_SET_MM_START_STACK
-.TP
+.TQ
 .B PR_SET_MM_START_BRK
-Set the address above which the program heap can be expanded with
-.BR brk (2)
-call.
-The address must be greater than the ending address of
-the current program data segment.
-In addition, the combined size of the resulting heap and
-the size of the data segment can't exceed the
-.B RLIMIT_DATA
-resource limit (see
-.BR setrlimit (2)).
 .TP
 .B PR_SET_MM_BRK
 Set the current
@@ -201,8 +191,6 @@ is greater than
 .B EINVAL
 .I op
 is
-.B PR_SET_MM_START_BRK
-or
 .BR PR_SET_MM_BRK ,
 and
 .I arg3
@@ -232,4 +220,5 @@ option enabled.
 .BR PR_SET_MM_END_CODE (2const),
 .BR PR_SET_MM_START_DATA (2const),
 .BR PR_SET_MM_END_DATA (2const),
-.BR PR_SET_MM_START_STACK (2const)
+.BR PR_SET_MM_START_STACK (2const),
+.BR PR_SET_MM_START_BRK (2const)
