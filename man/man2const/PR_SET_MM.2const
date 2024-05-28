@@ -59,34 +59,10 @@ is one of the options below.
 .B PR_SET_MM_AUXV
 .TQ
 .B PR_SET_MM_EXE_FILE
-.P
-The following options are available since Linux 3.18.
-.\" commit f606b77f1a9e362451aca8f81d8f36a3a112139e
-.TP
+.TQ
 .B PR_SET_MM_MAP
-Provides one-shot access to all the addresses by passing in a
-.I struct prctl_mm_map
-(as defined in \fI<linux/prctl.h>\fP).
-The
-.I arg4
-argument should provide the size of the struct.
-.IP
-This feature is available only if the kernel is built with the
-.B CONFIG_CHECKPOINT_RESTORE
-option enabled.
-.TP
+.TQ
 .B PR_SET_MM_MAP_SIZE
-Returns the size of the
-.I struct prctl_mm_map
-the kernel expects.
-This allows user space to find a compatible struct.
-The
-.I arg3
-argument should be a pointer to an unsigned int.
-.IP
-This feature is available only if the kernel is built with the
-.B CONFIG_CHECKPOINT_RESTORE
-option enabled.
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -127,4 +103,6 @@ option enabled.
 .BR PR_SET_MM_ARG_END (2const),
 .BR PR_SET_MM_ENV_START (2const),
 .BR PR_SET_MM_ENV_END (2const),
-.BR PR_SET_MM_EXE_FILE (2const)
+.BR PR_SET_MM_EXE_FILE (2const),
+.BR PR_SET_MM_MAP (2const),
+.BR PR_SET_MM_MAP_SIZE (2const)
