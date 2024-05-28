@@ -50,31 +50,14 @@ is one of the options below.
 .P
 The following options are available since Linux 3.5.
 .\" commit fe8c7f5cbf91124987106faa3bdf0c8b955c4cf7
-.TP
+.TQ
 .B PR_SET_MM_ARG_START
-Set the address above which the program command line is placed.
-.TP
+.TQ
 .B PR_SET_MM_ARG_END
-Set the address below which the program command line is placed.
-.TP
+.TQ
 .B PR_SET_MM_ENV_START
-Set the address above which the program environment is placed.
-.TP
+.TQ
 .B PR_SET_MM_ENV_END
-Set the address below which the program environment is placed.
-.IP
-The address passed with
-.BR PR_SET_MM_ARG_START ,
-.BR PR_SET_MM_ARG_END ,
-.BR PR_SET_MM_ENV_START ,
-and
-.B PR_SET_MM_ENV_END
-should belong to a process stack area.
-Thus, the corresponding memory area must be readable, writable, and
-(depending on the kernel configuration) have the
-.B MAP_GROWSDOWN
-attribute set (see
-.BR mmap (2)).
 .TP
 .B PR_SET_MM_AUXV
 Set a new auxiliary vector.
@@ -205,4 +188,8 @@ option enabled.
 .BR PR_SET_MM_END_DATA (2const),
 .BR PR_SET_MM_START_STACK (2const),
 .BR PR_SET_MM_START_BRK (2const),
-.BR PR_SET_MM_BRK (2const)
+.BR PR_SET_MM_BRK (2const),
+.BR PR_SET_MM_ARG_START (2const),
+.BR PR_SET_MM_ARG_END (2const),
+.BR PR_SET_MM_ENV_START (2const),
+.BR PR_SET_MM_ENV_END (2const)
