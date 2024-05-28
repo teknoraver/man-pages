@@ -1,0 +1,40 @@
+.\" Copyright 2010, Andi Kleen <andi@firstfloor.org>
+.\" Copyright 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH PR_MCE_KILL_GET 2const (date) "Linux man-pages (unreleased)"
+.SH NAME
+PR_MCE_KILL_GET
+\-
+get the machine check memory corruption kill policy
+.SH LIBRARY
+Standard C library
+.RI ( libc ", " \-lc )
+.SH SYNOPSIS
+.nf
+.B #include <sys/prctl.h>
+.P
+.BI "int prctl(int " op ", ...);"
+.fi
+.SH DESCRIPTION
+.TP
+.BR PR_MCE_KILL_GET " (since Linux 2.6.32)"
+Return (as the function result)
+the current per-process machine check kill policy.
+All unused
+.BR prctl ()
+arguments must be zero.
+.SH RETURN VALUE
+On success,
+.BR PR_MCE_KILL_GET ,
+return the nonnegative values described above.
+On error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+.SH SEE ALSO
+.BR prctl (2),
+.BR PR_MCE_KILL (2const)

@@ -97,14 +97,8 @@ The first argument can be:
 .B PR_GET_KEEPCAPS
 .TQ
 .B PR_MCE_KILL
-.\" prctl PR_MCE_KILL_GET
-.TP
-.BR PR_MCE_KILL_GET " (since Linux 2.6.32)"
-Return (as the function result)
-the current per-process machine check kill policy.
-All unused
-.BR prctl ()
-arguments must be zero.
+.TQ
+.B PR_MCE_KILL_GET
 .\" prctl PR_SET_MM
 .TP
 .BR PR_SET_MM " (since Linux 3.3)"
@@ -1588,7 +1582,6 @@ of the calling process.
 for information on the protection mask bits.)
 .SH RETURN VALUE
 On success,
-.BR PR_MCE_KILL_GET ,
 .BR PR_GET_NO_NEW_PRIVS ,
 .BR PR_GET_SECUREBITS ,
 .BR PR_GET_SPECULATION_CTRL ,
@@ -1954,4 +1947,5 @@ glibc 2.0.6
 .BR PR_SET_KEEPCAPS (2const),
 .BR PR_GET_KEEPCAPS (2const),
 .BR PR_MCE_KILL (2const),
+.BR PR_MCE_KILL_GET (2const),
 .BR core (5)
