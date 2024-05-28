@@ -49,7 +49,6 @@ is one of the options below.
 .B PR_SET_MM_BRK
 .P
 The following options are available since Linux 3.5.
-.\" commit fe8c7f5cbf91124987106faa3bdf0c8b955c4cf7
 .TQ
 .B PR_SET_MM_ARG_START
 .TQ
@@ -58,15 +57,8 @@ The following options are available since Linux 3.5.
 .B PR_SET_MM_ENV_START
 .TQ
 .B PR_SET_MM_ENV_END
-.TP
+.TQ
 .B PR_SET_MM_AUXV
-Set a new auxiliary vector.
-The
-.I arg3
-argument should provide the address of the vector.
-The
-.I arg4
-is the size of the vector.
 .TP
 .B PR_SET_MM_EXE_FILE
 .\" commit b32dfe377102ce668775f8b6b1461f7ad428f8b6
@@ -158,12 +150,6 @@ symbolic link, which is prohibited.
 .B EINVAL
 .I op
 is not a valid value.
-.TP
-.B EINVAL
-.I arg3
-is greater than
-.B TASK_SIZE
-(the limit on the size of the user address space for this architecture).
 .TP
 .B EPERM
 The caller does not have the
