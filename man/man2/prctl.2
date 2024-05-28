@@ -18,7 +18,6 @@
 .\" 2008-06-13 Erik Bosman, <ejbosman@cs.vu.nl>
 .\"     Document PR_GET_TSC and PR_SET_TSC.
 .\" 2008-06-15 mtk, Document PR_SET_SECCOMP, PR_GET_SECCOMP
-.\" 2012-04 Cyrill Gorcunov, Document PR_SET_MM
 .\" 2012-04-25 Michael Kerrisk, Document PR_TASK_PERF_EVENTS_DISABLE and
 .\"				PR_TASK_PERF_EVENTS_ENABLE
 .\" 2012-09-20 Kees Cook, update PR_SET_SECCOMP for mode 2
@@ -99,184 +98,8 @@ The first argument can be:
 .B PR_MCE_KILL
 .TQ
 .B PR_MCE_KILL_GET
-.\" prctl PR_SET_MM
-.TP
-.BR PR_SET_MM " (since Linux 3.3)"
-.\" commit 028ee4be34a09a6d48bdf30ab991ae933a7bc036
-Modify certain kernel memory map descriptor fields
-of the calling process.
-Usually these fields are set by the kernel and dynamic loader (see
-.BR ld.so (8)
-for more information) and a regular application should not use this feature.
-However, there are cases, such as self-modifying programs,
-where a program might find it useful to change its own memory map.
-.IP
-The calling process must have the
-.B CAP_SYS_RESOURCE
-capability.
-The value in
-.I arg2
-is one of the options below, while
-.I arg3
-provides a new value for the option.
-The
-.I arg4
-and
-.I arg5
-arguments must be zero if unused.
-.IP
-Before Linux 3.10,
-.\" commit 52b3694157e3aa6df871e283115652ec6f2d31e0
-this feature is available only if the kernel is built with the
-.B CONFIG_CHECKPOINT_RESTORE
-option enabled.
-.RS
-.TP
-.B PR_SET_MM_START_CODE
-Set the address above which the program text can run.
-The corresponding memory area must be readable and executable,
-but not writable or shareable (see
-.BR mprotect (2)
-and
-.BR mmap (2)
-for more information).
-.TP
-.B PR_SET_MM_END_CODE
-Set the address below which the program text can run.
-The corresponding memory area must be readable and executable,
-but not writable or shareable.
-.TP
-.B PR_SET_MM_START_DATA
-Set the address above which initialized and
-uninitialized (bss) data are placed.
-The corresponding memory area must be readable and writable,
-but not executable or shareable.
-.TP
-.B PR_SET_MM_END_DATA
-Set the address below which initialized and
-uninitialized (bss) data are placed.
-The corresponding memory area must be readable and writable,
-but not executable or shareable.
-.TP
-.B PR_SET_MM_START_STACK
-Set the start address of the stack.
-The corresponding memory area must be readable and writable.
-.TP
-.B PR_SET_MM_START_BRK
-Set the address above which the program heap can be expanded with
-.BR brk (2)
-call.
-The address must be greater than the ending address of
-the current program data segment.
-In addition, the combined size of the resulting heap and
-the size of the data segment can't exceed the
-.B RLIMIT_DATA
-resource limit (see
-.BR setrlimit (2)).
-.TP
-.B PR_SET_MM_BRK
-Set the current
-.BR brk (2)
-value.
-The requirements for the address are the same as for the
-.B PR_SET_MM_START_BRK
-option.
-.P
-The following options are available since Linux 3.5.
-.\" commit fe8c7f5cbf91124987106faa3bdf0c8b955c4cf7
-.TP
-.B PR_SET_MM_ARG_START
-Set the address above which the program command line is placed.
-.TP
-.B PR_SET_MM_ARG_END
-Set the address below which the program command line is placed.
-.TP
-.B PR_SET_MM_ENV_START
-Set the address above which the program environment is placed.
-.TP
-.B PR_SET_MM_ENV_END
-Set the address below which the program environment is placed.
-.IP
-The address passed with
-.BR PR_SET_MM_ARG_START ,
-.BR PR_SET_MM_ARG_END ,
-.BR PR_SET_MM_ENV_START ,
-and
-.B PR_SET_MM_ENV_END
-should belong to a process stack area.
-Thus, the corresponding memory area must be readable, writable, and
-(depending on the kernel configuration) have the
-.B MAP_GROWSDOWN
-attribute set (see
-.BR mmap (2)).
-.TP
-.B PR_SET_MM_AUXV
-Set a new auxiliary vector.
-The
-.I arg3
-argument should provide the address of the vector.
-The
-.I arg4
-is the size of the vector.
-.TP
-.B PR_SET_MM_EXE_FILE
-.\" commit b32dfe377102ce668775f8b6b1461f7ad428f8b6
-Supersede the
-.IR /proc/ pid /exe
-symbolic link with a new one pointing to a new executable file
-identified by the file descriptor provided in
-.I arg3
-argument.
-The file descriptor should be obtained with a regular
-.BR open (2)
-call.
-.IP
-To change the symbolic link, one needs to unmap all existing
-executable memory areas, including those created by the kernel itself
-(for example the kernel usually creates at least one executable
-memory area for the ELF
-.I .text
-section).
-.IP
-In Linux 4.9 and earlier, the
-.\" commit 3fb4afd9a504c2386b8435028d43283216bf588e
-.B PR_SET_MM_EXE_FILE
-operation can be performed only once in a process's lifetime;
-attempting to perform the operation a second time results in the error
-.BR EPERM .
-This restriction was enforced for security reasons that were subsequently
-deemed specious,
-and the restriction was removed in Linux 4.10 because some
-user-space applications needed to perform this operation more than once.
-.P
-The following options are available since Linux 3.18.
-.\" commit f606b77f1a9e362451aca8f81d8f36a3a112139e
-.TP
-.B PR_SET_MM_MAP
-Provides one-shot access to all the addresses by passing in a
-.I struct prctl_mm_map
-(as defined in \fI<linux/prctl.h>\fP).
-The
-.I arg4
-argument should provide the size of the struct.
-.IP
-This feature is available only if the kernel is built with the
-.B CONFIG_CHECKPOINT_RESTORE
-option enabled.
-.TP
-.B PR_SET_MM_MAP_SIZE
-Returns the size of the
-.I struct prctl_mm_map
-the kernel expects.
-This allows user space to find a compatible struct.
-The
-.I arg3
-argument should be a pointer to an unsigned int.
-.IP
-This feature is available only if the kernel is built with the
-.B CONFIG_CHECKPOINT_RESTORE
-option enabled.
-.RE
+.TQ
+.B PR_SET_MM
 .\" prctl PR_SET_VMA
 .TP
 .BR PR_SET_VMA " (since Linux 5.17)"
@@ -1619,38 +1442,6 @@ attribute (see the discussion of
 .B PR_SET_NO_NEW_PRIVS
 above).
 .TP
-.B EACCES
-.I op
-is
-.BR PR_SET_MM ,
-and
-.I arg2
-is
-.BR PR_SET_MM_EXE_FILE ,
-the file is not executable.
-.TP
-.B EBADF
-.I op
-is
-.BR PR_SET_MM ,
-.I arg2
-is
-.BR PR_SET_MM_EXE_FILE ,
-and the file descriptor passed in
-.I arg3
-is not valid.
-.TP
-.B EBUSY
-.I op
-is
-.BR PR_SET_MM ,
-.I arg2
-is
-.BR PR_SET_MM_EXE_FILE ,
-and this the second attempt to change the
-.IR /proc/ pid /exe
-symbolic link, which is prohibited.
-.TP
 .B EFAULT
 .I arg2
 is an invalid address.
@@ -1708,41 +1499,6 @@ is
 .BR SECCOMP_MODE_FILTER ,
 and the kernel was not configured with
 .BR CONFIG_SECCOMP_FILTER .
-.TP
-.B EINVAL
-.I op
-is
-.BR PR_SET_MM ,
-and one of the following is true
-.RS
-.IP \[bu] 3
-.I arg3
-is greater than
-.B TASK_SIZE
-(the limit on the size of the user address space for this architecture);
-.IP \[bu]
-.I arg2
-is
-.BR PR_SET_MM_START_CODE ,
-.BR PR_SET_MM_END_CODE ,
-.BR PR_SET_MM_START_DATA ,
-.BR PR_SET_MM_END_DATA ,
-or
-.BR PR_SET_MM_START_STACK ,
-and the permissions of the corresponding memory area are not as required;
-.IP \[bu]
-.I arg2
-is
-.B PR_SET_MM_START_BRK
-or
-.BR PR_SET_MM_BRK ,
-and
-.I arg3
-is less than or equal to the end of the data segment
-or specifies a value that would cause the
-.B RLIMIT_DATA
-resource limit to be exceeded.
-.RE
 .TP
 .B EINVAL
 .I op
@@ -1883,14 +1639,6 @@ wherein the speculation was disabled with
 .B PR_SPEC_FORCE_DISABLE
 and caller tried to enable it again.
 .TP
-.B EPERM
-.I op
-is
-.BR PR_SET_MM ,
-and the caller does not have the
-.B CAP_SYS_RESOURCE
-capability.
-.TP
 .B ERANGE
 .I op
 was
@@ -1948,4 +1696,5 @@ glibc 2.0.6
 .BR PR_GET_KEEPCAPS (2const),
 .BR PR_MCE_KILL (2const),
 .BR PR_MCE_KILL_GET (2const),
+.BR PR_SET_MM (2const),
 .BR core (5)
