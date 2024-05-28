@@ -13,7 +13,7 @@
 .\" Modified Thu Nov 11 04:19:42 MET 1999, aeb: added PR_GET_PDEATHSIG
 .\" Modified 27 Jun 02, Michael Kerrisk
 .\" 	Added
-.\"	PR_SET_KEEPCAPS, PR_GET_KEEPCAPS
+.\"	PR_GET_KEEPCAPS
 .\" Modified 2006-08-30 Guillem Jover <guillem@hadrons.org>
 .\"	Updated Linux versions where the options where introduced.
 .\"	Added PR_SET_TIMING, PR_GET_TIMING, PR_SET_NAME, PR_GET_NAME,
@@ -95,17 +95,8 @@ The first argument can be:
 .B PR_SET_IO_FLUSHER
 .TQ
 .B PR_GET_IO_FLUSHER
-.\" prctl PR_SET_KEEPCAPS
-.TP
-.BR PR_SET_KEEPCAPS " (since Linux 2.2.18)"
-Set the state of the calling thread's "keep capabilities" flag.
-The effect of this flag is described in
-.BR capabilities (7).
-.I arg2
-must be either 0 (clear the flag)
-or 1 (set the flag).
-The "keep capabilities" value will be reset to 0 on subsequent calls to
-.BR execve (2).
+.TQ
+.B PR_SET_KEEPCAPS
 .\" prctl PR_GET_KEEPCAPS
 .TP
 .BR PR_GET_KEEPCAPS " (since Linux 2.2.18)"
@@ -1952,16 +1943,6 @@ and caller tried to enable it again.
 .B EPERM
 .I op
 is
-.BR PR_SET_KEEPCAPS ,
-and the caller's
-.B SECBIT_KEEP_CAPS_LOCKED
-flag is set
-(see
-.BR capabilities (7)).
-.TP
-.B EPERM
-.I op
-is
 .BR PR_SET_MM ,
 and the caller does not have the
 .B CAP_SYS_RESOURCE
@@ -2020,4 +2001,5 @@ glibc 2.0.6
 .BR PR_GET_FPEXC (2const),
 .BR PR_SET_IO_FLUSHER (2const),
 .BR PR_GET_IO_FLUSHER (2const),
+.BR PR_SET_KEEPCAPS (2const),
 .BR core (5)
