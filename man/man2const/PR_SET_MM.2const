@@ -35,18 +35,8 @@ The value in
 is one of the options below.
 .TP
 .B PR_SET_MM_START_CODE
-Set the address above which the program text can run.
-The corresponding memory area must be readable and executable,
-but not writable or shareable (see
-.BR mprotect (2)
-and
-.BR mmap (2)
-for more information).
-.TP
+.TQ
 .B PR_SET_MM_END_CODE
-Set the address below which the program text can run.
-The corresponding memory area must be readable and executable,
-but not writable or shareable.
 .TP
 .B PR_SET_MM_START_DATA
 Set the address above which initialized and
@@ -221,8 +211,6 @@ is greater than
 .B EINVAL
 .I op
 is
-.BR PR_SET_MM_START_CODE ,
-.BR PR_SET_MM_END_CODE ,
 .BR PR_SET_MM_START_DATA ,
 .BR PR_SET_MM_END_DATA ,
 or
@@ -258,4 +246,6 @@ this feature is available only if the kernel is built with the
 .B CONFIG_CHECKPOINT_RESTORE
 option enabled.
 .SH SEE ALSO
-.BR prctl (2)
+.BR prctl (2),
+.BR PR_SET_MM_START_CODE (2const),
+.BR PR_SET_MM_END_CODE (2const)
