@@ -25,28 +25,8 @@ Set the machine check memory corruption kill policy for the calling thread.
 is one of the following operations:
 .TP
 .B PR_MCE_KILL_CLEAR
-.TP
+.TQ
 .B PR_MCE_KILL_SET
-Use a thread-specific memory corruption kill policy.
-In this case,
-.I arg3
-defines whether the policy is
-.I early kill
-.RB ( PR_MCE_KILL_EARLY ),
-.I late kill
-.RB ( PR_MCE_KILL_LATE ),
-or the system-wide default
-.RB ( PR_MCE_KILL_DEFAULT ).
-Early kill means that the thread receives a
-.B SIGBUS
-signal as soon as hardware memory corruption is detected inside
-its address space.
-In late kill mode, the process is killed only when it accesses a corrupted page.
-See
-.BR sigaction (2)
-for more information on the
-.B SIGBUS
-signal.
 .P
 The policy is inherited by children.
 .SH RETURN VALUE
@@ -67,4 +47,5 @@ Linux 2.6.32.
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_MCE_KILL_CLEAR (2const),
+.BR PR_MCE_KILL_SET (2const),
 .BR PR_MCE_KILL_GET (2const)
