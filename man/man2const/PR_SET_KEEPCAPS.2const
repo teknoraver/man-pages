@@ -1,10 +1,7 @@
 .\" Copyright 2002, 2006, 2008, 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" Modified 27 Jun 02, Michael Kerrisk
-.\" 	Added
-.\"	PR_SET_KEEPCAPS
 .\"
 .TH PR_SET_KEEPCAPS 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -18,15 +15,13 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.BI "int prctl(PR_SET_KEEPCAPS, long " state ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_SET_KEEPCAPS " (since Linux 2.2.18)"
 Set the state of the calling thread's "keep capabilities" flag.
 The effect of this flag is described in
 .BR capabilities (7).
-.I arg2
+.I state
 must be either 0 (clear the flag)
 or 1 (set the flag).
 The "keep capabilities" value will be reset to 0 on subsequent calls to
@@ -40,15 +35,11 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-.I arg2
-is not a valid value for this
-.IR op .
+.I state
+is not a valid value.
 .TP
 .B EPERM
-.I op
-is
-.BR PR_SET_KEEPCAPS ,
-and the caller's
+The caller's
 .B SECBIT_KEEP_CAPS_LOCKED
 flag is set
 (see
@@ -56,6 +47,7 @@ flag is set
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.2.18.
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_GET_KEEPCAPS (2const)
