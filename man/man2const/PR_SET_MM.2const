@@ -1,9 +1,8 @@
 .\" Copyright 2012, Cyrill Gorcunov <gorcunov@openvz.org>
 .\" Copyright 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" 2012-04 Cyrill Gorcunov, Document PR_SET_MM
 .\"
 .TH PR_SET_MM 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -17,12 +16,9 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.BI "int prctl(PR_SET_MM, long " op ", ...);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_SET_MM " (since Linux 3.3)"
-.\" commit 028ee4be34a09a6d48bdf30ab991ae933a7bc036
 Modify certain kernel memory map descriptor fields
 of the calling process.
 Usually these fields are set by the kernel and dynamic loader (see
@@ -30,27 +26,13 @@ Usually these fields are set by the kernel and dynamic loader (see
 for more information) and a regular application should not use this feature.
 However, there are cases, such as self-modifying programs,
 where a program might find it useful to change its own memory map.
-.IP
+.P
 The calling process must have the
 .B CAP_SYS_RESOURCE
 capability.
 The value in
-.I arg2
-is one of the options below, while
-.I arg3
-provides a new value for the option.
-The
-.I arg4
-and
-.I arg5
-arguments must be zero if unused.
-.IP
-Before Linux 3.10,
-.\" commit 52b3694157e3aa6df871e283115652ec6f2d31e0
-this feature is available only if the kernel is built with the
-.B CONFIG_CHECKPOINT_RESTORE
-option enabled.
-.RS
+.I op
+is one of the options below.
 .TP
 .B PR_SET_MM_START_CODE
 Set the address above which the program text can run.
@@ -196,7 +178,6 @@ argument should be a pointer to an unsigned int.
 This feature is available only if the kernel is built with the
 .B CONFIG_CHECKPOINT_RESTORE
 option enabled.
-.RE
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -208,18 +189,11 @@ is set to indicate the error.
 .B EACCES
 .I op
 is
-.BR PR_SET_MM ,
-and
-.I arg2
-is
 .BR PR_SET_MM_EXE_FILE ,
 the file is not executable.
 .TP
 .B EBADF
 .I op
-is
-.BR PR_SET_MM ,
-.I arg2
 is
 .BR PR_SET_MM_EXE_FILE ,
 and the file descriptor passed in
@@ -229,32 +203,23 @@ is not valid.
 .B EBUSY
 .I op
 is
-.BR PR_SET_MM ,
-.I arg2
-is
 .BR PR_SET_MM_EXE_FILE ,
 and this the second attempt to change the
 .IR /proc/ pid /exe
 symbolic link, which is prohibited.
 .TP
 .B EINVAL
-.I arg2
-is not a valid value for this
-.IR op .
+.I op
+is not a valid value.
 .TP
 .B EINVAL
-.I op
-is
-.BR PR_SET_MM ,
-and one of the following is true
-.RS
-.IP \[bu] 3
 .I arg3
 is greater than
 .B TASK_SIZE
-(the limit on the size of the user address space for this architecture);
-.IP \[bu]
-.I arg2
+(the limit on the size of the user address space for this architecture).
+.TP
+.B EINVAL
+.I op
 is
 .BR PR_SET_MM_START_CODE ,
 .BR PR_SET_MM_END_CODE ,
@@ -262,9 +227,10 @@ is
 .BR PR_SET_MM_END_DATA ,
 or
 .BR PR_SET_MM_START_STACK ,
-and the permissions of the corresponding memory area are not as required;
-.IP \[bu]
-.I arg2
+and the permissions of the corresponding memory area are not as required.
+.TP
+.B EINVAL
+.I op
 is
 .B PR_SET_MM_START_BRK
 or
@@ -275,17 +241,21 @@ is less than or equal to the end of the data segment
 or specifies a value that would cause the
 .B RLIMIT_DATA
 resource limit to be exceeded.
-.RE
 .TP
 .B EPERM
-.I op
-is
-.BR PR_SET_MM ,
-and the caller does not have the
+The caller does not have the
 .B CAP_SYS_RESOURCE
 capability.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 3.3.
+.\" commit 028ee4be34a09a6d48bdf30ab991ae933a7bc036
+.P
+Before Linux 3.10,
+.\" commit 52b3694157e3aa6df871e283115652ec6f2d31e0
+this feature is available only if the kernel is built with the
+.B CONFIG_CHECKPOINT_RESTORE
+option enabled.
 .SH SEE ALSO
 .BR prctl (2)
