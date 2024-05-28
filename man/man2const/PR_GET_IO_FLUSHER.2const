@@ -1,5 +1,6 @@
 .\" Copyright 2020, Mike Christie <mchristi@redhat.com>
 .\" Copyright 2020, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
@@ -15,35 +16,27 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.B int prctl(PR_GET_IO_FLUSHER, 0L, 0L, 0L, 0L);
 .fi
 .SH DESCRIPTION
-.TP
-.B PR_GET_IO_FLUSHER (Since Linux 5.6)
-Return (as the function result) the IO_FLUSHER state of the caller.
+Return the IO_FLUSHER state of the caller.
 A value of 1 indicates that the caller is in the IO_FLUSHER state;
 0 indicates that the caller is not in the IO_FLUSHER state.
-.IP
+.P
 The calling process must have the
 .B CAP_SYS_RESOURCE
 capability.
-.IP
-.IR arg2 ,
-.IR arg3 ,
-.IR arg4 ,
-and
-.I arg5
-must be zero.
 .SH RETURN VALUE
 On success,
-.BR PR_GET_IO_FLUSHER ,
-return the nonnegative values described above.
+this call
+returns the boolean value described above.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 5.6.
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_SET_IO_FLUSHER (2const)
