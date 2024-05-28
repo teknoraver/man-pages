@@ -11,9 +11,6 @@
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
 .\" Modified Thu Nov 11 04:19:42 MET 1999, aeb: added PR_GET_PDEATHSIG
-.\" Modified 27 Jun 02, Michael Kerrisk
-.\" 	Added
-.\"	PR_GET_KEEPCAPS
 .\" Modified 2006-08-30 Guillem Jover <guillem@hadrons.org>
 .\"	Updated Linux versions where the options where introduced.
 .\"	Added PR_SET_TIMING, PR_GET_TIMING, PR_SET_NAME, PR_GET_NAME,
@@ -97,14 +94,8 @@ The first argument can be:
 .B PR_GET_IO_FLUSHER
 .TQ
 .B PR_SET_KEEPCAPS
-.\" prctl PR_GET_KEEPCAPS
-.TP
-.BR PR_GET_KEEPCAPS " (since Linux 2.2.18)"
-Return (as the function result) the current state of the calling thread's
-"keep capabilities" flag.
-See
-.BR capabilities (7)
-for a description of this flag.
+.TQ
+.B PR_GET_KEEPCAPS
 .\" prctl PR_MCE_KILL
 .TP
 .BR PR_MCE_KILL " (since Linux 2.6.32)"
@@ -1637,7 +1628,6 @@ of the calling process.
 for information on the protection mask bits.)
 .SH RETURN VALUE
 On success,
-.BR PR_GET_KEEPCAPS ,
 .BR PR_MCE_KILL_GET ,
 .BR PR_GET_NO_NEW_PRIVS ,
 .BR PR_GET_SECUREBITS ,
@@ -2002,4 +1992,5 @@ glibc 2.0.6
 .BR PR_SET_IO_FLUSHER (2const),
 .BR PR_GET_IO_FLUSHER (2const),
 .BR PR_SET_KEEPCAPS (2const),
+.BR PR_GET_KEEPCAPS (2const),
 .BR core (5)

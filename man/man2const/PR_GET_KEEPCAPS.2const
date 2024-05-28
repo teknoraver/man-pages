@@ -1,0 +1,43 @@
+.\" Copyright 2002, 2006, 2008, 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.\" Modified 27 Jun 02, Michael Kerrisk
+.\" 	Added
+.\"	PR_GET_KEEPCAPS
+.\"
+.TH PR_GET_KEEPCAPS 2const (date) "Linux man-pages (unreleased)"
+.SH NAME
+PR_GET_KEEPCAPS
+\-
+get the state of the "keep capabilities" flag
+.SH LIBRARY
+Standard C library
+.RI ( libc ", " \-lc )
+.SH SYNOPSIS
+.nf
+.B #include <sys/prctl.h>
+.P
+.BI "int prctl(int " op ", ...);"
+.fi
+.SH DESCRIPTION
+.TP
+.BR PR_GET_KEEPCAPS " (since Linux 2.2.18)"
+Return (as the function result) the current state of the calling thread's
+"keep capabilities" flag.
+See
+.BR capabilities (7)
+for a description of this flag.
+.SH RETURN VALUE
+On success,
+.BR PR_GET_KEEPCAPS ,
+return the nonnegative values described above.
+On error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+.SH SEE ALSO
+.BR signal (2),
+.BR PR_SET_KEEPCAPS (2const)
