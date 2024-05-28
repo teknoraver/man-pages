@@ -1,5 +1,6 @@
 .\" Copyright 2010, Andi Kleen <andi@firstfloor.org>
 .\" Copyright 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
@@ -15,26 +16,24 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.B int prctl(PR_MCE_KILL_GET, 0L, 0L, 0L, 0L);
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_MCE_KILL_GET " (since Linux 2.6.32)"
-Return (as the function result)
-the current per-process machine check kill policy.
-All unused
-.BR prctl ()
-arguments must be zero.
+Return the current per-process machine check kill policy;
+see
+.BR PR_MCE_KILL_SET (2const).
 .SH RETURN VALUE
 On success,
-.BR PR_MCE_KILL_GET ,
-return the nonnegative values described above.
+this call
+returns the nonnegative value described above.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.6.32.
 .SH SEE ALSO
 .BR prctl (2),
-.BR PR_MCE_KILL (2const)
+.BR PR_MCE_KILL (2const),
+.BR PR_MCE_KILL_SET (2const)
