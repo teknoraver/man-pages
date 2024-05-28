@@ -93,23 +93,8 @@ The first argument can be:
 .B PR_GET_FPEXC
 .TQ
 .B PR_SET_IO_FLUSHER
-.\" prctl PR_GET_IO_FLUSHER
-.TP
-.B PR_GET_IO_FLUSHER (Since Linux 5.6)
-Return (as the function result) the IO_FLUSHER state of the caller.
-A value of 1 indicates that the caller is in the IO_FLUSHER state;
-0 indicates that the caller is not in the IO_FLUSHER state.
-.IP
-The calling process must have the
-.B CAP_SYS_RESOURCE
-capability.
-.IP
-.IR arg2 ,
-.IR arg3 ,
-.IR arg4 ,
-and
-.I arg5
-must be zero.
+.TQ
+.B PR_GET_IO_FLUSHER
 .\" prctl PR_SET_KEEPCAPS
 .TP
 .BR PR_SET_KEEPCAPS " (since Linux 2.2.18)"
@@ -1661,7 +1646,6 @@ of the calling process.
 for information on the protection mask bits.)
 .SH RETURN VALUE
 On success,
-.BR PR_GET_IO_FLUSHER ,
 .BR PR_GET_KEEPCAPS ,
 .BR PR_MCE_KILL_GET ,
 .BR PR_GET_NO_NEW_PRIVS ,
@@ -2035,4 +2019,5 @@ glibc 2.0.6
 .BR PR_SET_FPEXC (2const),
 .BR PR_GET_FPEXC (2const),
 .BR PR_SET_IO_FLUSHER (2const),
+.BR PR_GET_IO_FLUSHER (2const),
 .BR core (5)
