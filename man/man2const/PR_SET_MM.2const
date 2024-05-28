@@ -37,18 +37,10 @@ is one of the options below.
 .B PR_SET_MM_START_CODE
 .TQ
 .B PR_SET_MM_END_CODE
-.TP
+.TQ
 .B PR_SET_MM_START_DATA
-Set the address above which initialized and
-uninitialized (bss) data are placed.
-The corresponding memory area must be readable and writable,
-but not executable or shareable.
-.TP
+.TQ
 .B PR_SET_MM_END_DATA
-Set the address below which initialized and
-uninitialized (bss) data are placed.
-The corresponding memory area must be readable and writable,
-but not executable or shareable.
 .TP
 .B PR_SET_MM_START_STACK
 Set the start address of the stack.
@@ -211,9 +203,6 @@ is greater than
 .B EINVAL
 .I op
 is
-.BR PR_SET_MM_START_DATA ,
-.BR PR_SET_MM_END_DATA ,
-or
 .BR PR_SET_MM_START_STACK ,
 and the permissions of the corresponding memory area are not as required.
 .TP
@@ -248,4 +237,6 @@ option enabled.
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_SET_MM_START_CODE (2const),
-.BR PR_SET_MM_END_CODE (2const)
+.BR PR_SET_MM_END_CODE (2const),
+.BR PR_SET_MM_START_DATA (2const),
+.BR PR_SET_MM_END_DATA (2const)
