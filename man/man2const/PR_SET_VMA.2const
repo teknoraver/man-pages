@@ -16,42 +16,40 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.BI "int prctl(PR_SET_VMA, long " attr ", unsigned long " addr \
+", unsigned long " size ,
+.BI "          const char *_Nullable " val );
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_SET_VMA " (since Linux 5.17)"
-.\" Commit 9a10064f5625d5572c3626c1516e0bebc6c9fe9b
 Sets an attribute specified in
-.I arg2
+.I attr
 for virtual memory areas starting from the address specified in
-.I arg3
+.I addr
 and spanning the size specified in
-.IR arg4 .
-.I arg5
+.IR size .
+.I val
 specifies the value of the attribute to be set.
-.IP
+.P
 Note that assigning an attribute to a virtual memory area
 might prevent it from being merged with adjacent virtual memory areas
 due to the difference in that attribute's value.
-.IP
+.P
 Currently,
-.I arg2
+.I attr
 must be one of:
-.RS
 .TP
 .B PR_SET_VMA_ANON_NAME
 Set a name for anonymous virtual memory areas.
-.I arg5
+.I val
 should be a pointer to a null-terminated string containing the name.
 The name length including null byte cannot exceed 80 bytes.
 If
-.I arg5
+.I val
 is NULL, the name of the appropriate anonymous virtual memory areas
 will be reset.
-The name can contain only printable ascii characters (including space),
+The name can contain only printable ascii characters
+.RB ( isprint (3)),
 except \[aq][\[aq], \[aq]]\[aq], \[aq]\e\[aq], \[aq]$\[aq], and \[aq]\[ga]\[aq].
-.RE
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -61,14 +59,16 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-.I arg2
-is not a valid value.
+.I attr
+is not a valid attribute.
 .TP
 .B EINVAL
-.I arg3
+.I addr
 is an invalid address.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 5.17.
+.\" Commit 9a10064f5625d5572c3626c1516e0bebc6c9fe9b
 .SH SEE ALSO
 .BR prctl (2)
