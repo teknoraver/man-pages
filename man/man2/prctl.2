@@ -16,10 +16,9 @@
 .\"	PR_SET_UNALIGN, PR_GET_UNALIGN,
 .\" 2008-06-13 Erik Bosman, <ejbosman@cs.vu.nl>
 .\"     Document PR_GET_TSC and PR_SET_TSC.
-.\" 2008-06-15 mtk, Document PR_SET_SECCOMP, PR_GET_SECCOMP
+.\" 2008-06-15 mtk, Document PR_GET_SECCOMP
 .\" 2012-04-25 Michael Kerrisk, Document PR_TASK_PERF_EVENTS_DISABLE and
 .\"				PR_TASK_PERF_EVENTS_ENABLE
-.\" 2012-09-20 Kees Cook, update PR_SET_SECCOMP for mode 2
 .\" 2012-10-25 Michael Kerrisk, Document PR_SET_TIMERSLACK and
 .\"                             PR_GET_TIMERSLACK
 .\"
@@ -117,59 +116,8 @@ The first argument can be:
 .B PR_GET_PDEATHSIG
 .TQ
 .B PR_SET_PTRACER
-.\" prctl PR_SET_SECCOMP
-.TP
-.BR PR_SET_SECCOMP " (since Linux 2.6.23)"
-.\" See http://thread.gmane.org/gmane.linux.kernel/542632
-.\" [PATCH 0 of 2] seccomp updates
-.\" andrea@cpushare.com
-Set the secure computing (seccomp) mode for the calling thread, to limit
-the available system calls.
-The more recent
-.BR seccomp (2)
-system call provides a superset of the functionality of
-.BR PR_SET_SECCOMP ,
-and is the preferred interface for new applications.
-.IP
-The seccomp mode is selected via
-.IR arg2 .
-(The seccomp constants are defined in
-.IR <linux/seccomp.h> .)
-The following values can be specified:
-.RS
-.TP
-.BR SECCOMP_MODE_STRICT " (since Linux 2.6.23)"
-See the description of
-.B SECCOMP_SET_MODE_STRICT
-in
-.BR seccomp (2).
-.IP
-This operation is available only
-if the kernel is configured with
-.B CONFIG_SECCOMP
-enabled.
-.TP
-.BR SECCOMP_MODE_FILTER " (since Linux 3.5)"
-The allowed system calls are defined by a pointer
-to a Berkeley Packet Filter passed in
-.IR arg3 .
-This argument is a pointer to
-.IR "struct sock_fprog" ;
-it can be designed to filter
-arbitrary system calls and system call arguments.
-See the description of
-.B SECCOMP_SET_MODE_FILTER
-in
-.BR seccomp (2).
-.IP
-This operation is available only
-if the kernel is configured with
-.B CONFIG_SECCOMP_FILTER
-enabled.
-.RE
-.IP
-For further details on seccomp filtering, see
-.BR seccomp (2).
+.TQ
+.B PR_SET_SECCOMP
 .\" prctl PR_GET_SECCOMP
 .TP
 .BR PR_GET_SECCOMP " (since Linux 2.6.23)"
@@ -1065,36 +1013,8 @@ On error, \-1 is returned, and
 is set to indicate the error.
 .SH ERRORS
 .TP
-.B EACCES
-.I op
-is
-.B PR_SET_SECCOMP
-and
-.I arg2
-is
-.BR SECCOMP_MODE_FILTER ,
-but the process does not have the
-.B CAP_SYS_ADMIN
-capability or has not set the
-.I no_new_privs
-attribute (see
-.BR PR_SET_NO_NEW_PRIVS (2const)).
-.TP
 .B EFAULT
 .I arg2
-is an invalid address.
-.TP
-.B EFAULT
-.I op
-is
-.BR PR_SET_SECCOMP ,
-.I arg2
-is
-.BR SECCOMP_MODE_FILTER ,
-the system was built with
-.BR CONFIG_SECCOMP_FILTER ,
-and
-.I arg3
 is an invalid address.
 .TP
 .B EFAULT
@@ -1122,21 +1042,9 @@ is not a valid value for this
 .B EINVAL
 .I op
 is
-.B PR_SET_SECCOMP
-or
 .BR PR_GET_SECCOMP ,
 and the kernel was not configured with
 .BR CONFIG_SECCOMP .
-.TP
-.B EINVAL
-.I op
-is
-.BR PR_SET_SECCOMP ,
-.I arg2
-is
-.BR SECCOMP_MODE_FILTER ,
-and the kernel was not configured with
-.BR CONFIG_SECCOMP_FILTER .
 .TP
 .B EINVAL
 .I op
@@ -1302,4 +1210,5 @@ glibc 2.0.6
 .BR PR_SET_PDEATHSIG (2const),
 .BR PR_GET_PDEATHSIG (2const),
 .BR PR_SET_PTRACER (2const),
+.BR PR_SET_SECCOMP (2const),
 .BR core (5)
