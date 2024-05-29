@@ -1,8 +1,7 @@
 .\" Copyright 2008, 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" 2008-06-15 mtk, Document PR_GET_SECCOMP
 .\"
 .TH PR_GET_SECCOMP 2 (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -16,13 +15,11 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.B int prctl(PR_GET_SECCOMP, 0L, 0L, 0L, 0L);
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_GET_SECCOMP " (since Linux 2.6.23)"
-Return (as the function result)
-the secure computing mode of the calling thread.
+Return the secure computing mode of the calling thread.
+.P
 If the caller is not in secure computing mode, this operation returns 0;
 if the caller is in strict secure computing mode, then the
 .BR prctl ()
@@ -33,38 +30,44 @@ If the caller is in filter mode, and this system call is allowed by the
 seccomp filters, it returns 2; otherwise, the process is killed with a
 .B SIGKILL
 signal.
-.IP
+.P
 This operation is available only
 if the kernel is configured with
 .B CONFIG_SECCOMP
 enabled.
-.IP
-Since Linux 3.8, the
-.I Seccomp
-field of the
-.IR /proc/ pid /status
-file provides a method of obtaining the same information,
-without the risk that the process is killed; see
-.BR proc (5).
 .SH RETURN VALUE
 On success,
-and (if it returns)
-.B PR_GET_SECCOMP
-return the nonnegative values described above.
+this call
+returns the nonnegative value described above.
 On error, \-1 is returned, and
 .I errno
-is set to indicate the error.
+is set to indicate the error;
+or the process is killed.
 .SH ERRORS
 .TP
 .B EINVAL
-.I op
-is
-.BR PR_GET_SECCOMP ,
-and the kernel was not configured with
+The kernel was not configured with
 .BR CONFIG_SECCOMP .
+.TP
+.B SIGKILL
+The caller is in strict secure computing mode.
+.TP
+.B SIGKILL
+The caller is in filter mode,
+and this system call is not allowed by the seccomp filters.
+.SH FILES
+.TP
+.IR /proc/ pid /status
+Since Linux 3.8, the
+.I Seccomp
+field of this file
+provides a method of obtaining the same information,
+without the risk that the process is killed; see
+.BR proc_pid_status (5).
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.6.23.
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_SET_SECCOMP (2const),
