@@ -1,5 +1,6 @@
 .\" Copyright 1998, Andries Brouwer <aeb@cwi.nl>
 .\" Copyright 2002, 2006, 2008, 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
@@ -15,13 +16,13 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.BI "int prctl(PR_SET_PDEATHSIG, long " sig ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_SET_PDEATHSIG " (since Linux 2.1.57)"
 Set the parent-death signal
-of the calling process to \fIarg2\fP (either a signal value
+of the calling process to
+.I sig
+(either a signal value
 in the range
 .RB [ 1 ,
 .IR NSIG\~\-\~1 ],
@@ -30,19 +31,10 @@ or
 to clear).
 This is the signal that the calling process will get when its
 parent dies.
-.IP
-.IR Warning :
-.\" https://bugzilla.kernel.org/show_bug.cgi?id=43300
-the "parent" in this case is considered to be the
-.I thread
-that created this process.
-In other words, the signal will be sent when that thread terminates
-(via, for example,
-.BR pthread_exit (3)),
-rather than after all of the threads in the parent process terminate.
-.IP
-The parent-death signal is sent upon subsequent termination of the parent
-thread and also upon termination of each subreaper process
+.P
+The parent-death signal is sent
+upon subsequent termination of the parent thread
+and also upon termination of each subreaper process
 (see
 .BR PR_SET_CHILD_SUBREAPER (2const))
 to which the caller is subsequently reparented.
@@ -50,7 +42,7 @@ If the parent thread and all ancestor subreapers have already terminated
 by the time of the
 .B PR_SET_PDEATHSIG
 operation, then no parent-death signal is sent to the caller.
-.IP
+.P
 The parent-death signal is process-directed (see
 .BR signal (7))
 and, if the child installs a handler using the
@@ -61,7 +53,7 @@ flag, the
 field of the
 .I siginfo_t
 argument of the handler contains the PID of the terminating parent process.
-.IP
+.P
 The parent-death signal setting is cleared for the child of a
 .BR fork (2).
 It is also
@@ -87,15 +79,21 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-.I op
-is
-.B PR_SET_PDEATHSIG
-and
-.I arg2
+.I sig
 is not a valid signal number.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.1.57.
+.SH CAVEATS
+.\" https://bugzilla.kernel.org/show_bug.cgi?id=43300
+The "parent" in this case is considered to be the
+.I thread
+that created this process.
+In other words, the signal will be sent when that thread terminates
+(via, for example,
+.BR pthread_exit (3)),
+rather than after all of the threads in the parent process terminate.
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_GET_PDEATHSIG (2const)
