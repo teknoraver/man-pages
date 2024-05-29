@@ -21,7 +21,6 @@
 .\" 2012-04-25 Michael Kerrisk, Document PR_TASK_PERF_EVENTS_DISABLE and
 .\"				PR_TASK_PERF_EVENTS_ENABLE
 .\" 2012-09-20 Kees Cook, update PR_SET_SECCOMP for mode 2
-.\" 2012-09-20 Kees Cook, document PR_GET_NO_NEW_PRIVS
 .\" 2012-10-25 Michael Kerrisk, Document PR_SET_TIMERSLACK and
 .\"                             PR_GET_TIMERSLACK
 .\" 2013-01-10 Kees Cook, document PR_SET_PTRACER
@@ -111,18 +110,8 @@ The first argument can be:
 .B PR_GET_NAME
 .TQ
 .B PR_SET_NO_NEW_PRIVS
-.\" prctl PR_GET_NO_NEW_PRIVS
-.TP
-.BR PR_GET_NO_NEW_PRIVS " (since Linux 3.5)"
-Return (as the function result) the value of the
-.I no_new_privs
-attribute for the calling thread.
-A value of 0 indicates the regular
-.BR execve (2)
-behavior.
-A value of 1 indicates
-.BR execve (2)
-will operate in the privilege-restricting mode described above.
+.TQ
+.B PR_GET_NO_NEW_PRIVS
 .\" prctl PR_PAC_RESET_KEYS
 .\" commit ba830885656414101b2f8ca88786524d4bb5e8c1
 .TP
@@ -1222,7 +1211,6 @@ of the calling process.
 for information on the protection mask bits.)
 .SH RETURN VALUE
 On success,
-.BR PR_GET_NO_NEW_PRIVS ,
 .BR PR_GET_SECUREBITS ,
 .BR PR_GET_SPECULATION_CTRL ,
 .BR PR_SVE_GET_VL ,
@@ -1502,4 +1490,5 @@ glibc 2.0.6
 .BR PR_SET_NAME (2const),
 .BR PR_GET_NAME (2const),
 .BR PR_SET_NO_NEW_PRIVS (2const),
+.BR PR_GET_NO_NEW_PRIVS (2const),
 .BR core (5)

@@ -1,0 +1,46 @@
+.\" Copyright 2012, Kees Cook <keescook@chromium.org>
+.\" Copyright 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.\" 2012-09-20 Kees Cook, document PR_GET_NO_NEW_PRIVS
+.\"
+.TH PR_GET_NO_NEW_PRIVS 2const (date) "Linux man-pages (unreleased)"
+.SH NAME
+PR_GET_NO_NEW_PRIVS
+\-
+get the calling thread's no_new_privs attribute
+.SH LIBRARY
+Standard C library
+.RI ( libc ", " \-lc )
+.SH SYNOPSIS
+.nf
+.B #include <sys/prctl.h>
+.P
+.BI "int prctl(int " op ", ...);"
+.fi
+.SH DESCRIPTION
+.TP
+.BR PR_GET_NO_NEW_PRIVS " (since Linux 3.5)"
+Return (as the function result) the value of the
+.I no_new_privs
+attribute for the calling thread.
+A value of 0 indicates the regular
+.BR execve (2)
+behavior.
+A value of 1 indicates
+.BR execve (2)
+will operate in the privilege-restricting mode described above.
+.SH RETURN VALUE
+On success,
+.BR PR_GET_NO_NEW_PRIVS ,
+return the nonnegative values described above.
+On error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+.SH SEE ALSO
+.BR prctl (2),
+.BR PR_SET_NO_NEW_PRIVS (2const)
