@@ -1,0 +1,71 @@
+.\" Copyright 2008, 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.\" 2008-06-15 mtk, Document PR_GET_SECCOMP
+.\"
+.TH PR_GET_SECCOMP 2 (date) "Linux man-pages (unreleased)"
+.SH NAME
+PR_GET_SECCOMP
+\-
+get the secure computing mode
+.SH LIBRARY
+Standard C library
+.RI ( libc ", " \-lc )
+.SH SYNOPSIS
+.nf
+.B #include <sys/prctl.h>
+.P
+.BI "int prctl(int " op ", ...);"
+.fi
+.SH DESCRIPTION
+.TP
+.BR PR_GET_SECCOMP " (since Linux 2.6.23)"
+Return (as the function result)
+the secure computing mode of the calling thread.
+If the caller is not in secure computing mode, this operation returns 0;
+if the caller is in strict secure computing mode, then the
+.BR prctl ()
+call will cause a
+.B SIGKILL
+signal to be sent to the process.
+If the caller is in filter mode, and this system call is allowed by the
+seccomp filters, it returns 2; otherwise, the process is killed with a
+.B SIGKILL
+signal.
+.IP
+This operation is available only
+if the kernel is configured with
+.B CONFIG_SECCOMP
+enabled.
+.IP
+Since Linux 3.8, the
+.I Seccomp
+field of the
+.IR /proc/ pid /status
+file provides a method of obtaining the same information,
+without the risk that the process is killed; see
+.BR proc (5).
+.SH RETURN VALUE
+On success,
+and (if it returns)
+.B PR_GET_SECCOMP
+return the nonnegative values described above.
+On error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH ERRORS
+.TP
+.B EINVAL
+.I op
+is
+.BR PR_GET_SECCOMP ,
+and the kernel was not configured with
+.BR CONFIG_SECCOMP .
+.SH STANDARDS
+Linux.
+.SH HISTORY
+.SH SEE ALSO
+.BR prctl (2),
+.BR PR_SET_SECCOMP (2const),
+.BR seccomp (2)
