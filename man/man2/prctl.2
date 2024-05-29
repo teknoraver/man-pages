@@ -114,67 +114,8 @@ The first argument can be:
 .B PR_GET_NO_NEW_PRIVS
 .TQ
 .B PR_PAC_RESET_KEYS
-.\" prctl PR_SET_PDEATHSIG
-.TP
-.BR PR_SET_PDEATHSIG " (since Linux 2.1.57)"
-Set the parent-death signal
-of the calling process to \fIarg2\fP (either a signal value
-in the range
-.RB [ 1 ,
-.IR NSIG\~\-\~1 ],
-or
-.B 0
-to clear).
-This is the signal that the calling process will get when its
-parent dies.
-.IP
-.IR Warning :
-.\" https://bugzilla.kernel.org/show_bug.cgi?id=43300
-the "parent" in this case is considered to be the
-.I thread
-that created this process.
-In other words, the signal will be sent when that thread terminates
-(via, for example,
-.BR pthread_exit (3)),
-rather than after all of the threads in the parent process terminate.
-.IP
-The parent-death signal is sent upon subsequent termination of the parent
-thread and also upon termination of each subreaper process
-(see
-.BR PR_SET_CHILD_SUBREAPER (2const))
-to which the caller is subsequently reparented.
-If the parent thread and all ancestor subreapers have already terminated
-by the time of the
+.TQ
 .B PR_SET_PDEATHSIG
-operation, then no parent-death signal is sent to the caller.
-.IP
-The parent-death signal is process-directed (see
-.BR signal (7))
-and, if the child installs a handler using the
-.BR sigaction (2)
-.B SA_SIGINFO
-flag, the
-.I si_pid
-field of the
-.I siginfo_t
-argument of the handler contains the PID of the terminating parent process.
-.IP
-The parent-death signal setting is cleared for the child of a
-.BR fork (2).
-It is also
-(since Linux 2.4.36 / 2.6.23)
-.\" commit d2d56c5f51028cb9f3d800882eb6f4cbd3f9099f
-cleared when executing a set-user-ID or set-group-ID binary,
-or a binary that has associated capabilities (see
-.BR capabilities (7));
-otherwise, this value is preserved across
-.BR execve (2).
-The parent-death signal setting is also cleared upon changes to
-any of the following thread credentials:
-.\" FIXME capability changes can also trigger this; see
-.\" kernel/cred.c::commit_creds in the Linux 5.6 source.
-effective user ID, effective group ID, filesystem user ID,
-or filesystem group ID.
 .\" prctl PR_GET_PDEATHSIG
 .TP
 .BR PR_GET_PDEATHSIG " (since Linux 2.3.15)"
@@ -1248,14 +1189,6 @@ or the PID of an existing process.
 .B EINVAL
 .I op
 is
-.B PR_SET_PDEATHSIG
-and
-.I arg2
-is not a valid signal number.
-.TP
-.B EINVAL
-.I op
-is
 .B PR_SET_TIMING
 and
 .I arg2
@@ -1414,4 +1347,5 @@ glibc 2.0.6
 .BR PR_SET_NO_NEW_PRIVS (2const),
 .BR PR_GET_NO_NEW_PRIVS (2const),
 .BR PR_PAC_RESET_KEYS (2const),
+.BR PR_SET_PDEATHSIG (2const),
 .BR core (5)
