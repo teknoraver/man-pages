@@ -141,12 +141,8 @@ The first argument can be:
 .B PR_TASK_PERF_EVENTS_ENABLE
 .TQ
 .B PR_SET_THP_DISABLE
-.\" prctl PR_GET_THP_DISABLE
-.TP
-.BR PR_GET_THP_DISABLE " (since Linux 3.15)"
-Return (as the function result) the current setting of the "THP disable"
-flag for the calling thread:
-either 1, if the flag is set, or 0, if it is not.
+.TQ
+.B PR_GET_THP_DISABLE
 .\" prctl PR_GET_TID_ADDRESS
 .TP
 .BR PR_GET_TID_ADDRESS " (since Linux 3.5)"
@@ -366,7 +362,6 @@ of the calling process.
 for information on the protection mask bits.)
 .SH RETURN VALUE
 On success,
-.BR PR_GET_THP_DISABLE ,
 .BR PR_GET_TIMING ,
 .BR PR_GET_TIMERSLACK ,
 .BR PR_GET_AUXV ,
@@ -476,4 +471,5 @@ glibc 2.0.6
 .BR PR_TASK_PERF_EVENTS_DISABLE (2const),
 .BR PR_TASK_PERF_EVENTS_ENABLE (2const),
 .BR PR_SET_THP_DISABLE (2const),
+.BR PR_GET_THP_DISABLE (2const),
 .BR core (5)
