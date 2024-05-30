@@ -129,38 +129,8 @@ The first argument can be:
 .B PR_SET_SPECULATION_CTRL
 .TQ
 .B PR_SVE_SET_VL
-.\" prctl PR_SVE_GET_VL
-.TP
-.BR PR_SVE_GET_VL " (since Linux 4.15, only on arm64)"
-Get the thread's current SVE vector length configuration.
-.IP
-Arguments
-.IR arg2 ", " arg3 ", " arg4 ", and " arg5
-are ignored.
-.IP
-Provided that the kernel and platform support SVE,
-this operation always succeeds,
-returning a nonnegative value that describes the
-.I current
-configuration.
-The bits corresponding to
-.B PR_SVE_VL_LEN_MASK
-contain the currently configured vector length in bytes.
-The bit corresponding to
-.B PR_SVE_VL_INHERIT
-indicates whether the vector length will be inherited
-across
-.BR execve (2).
-.IP
-Note that there is no way to determine whether there is
-a pending vector length change that has not yet taken effect.
-.IP
-For more information, see the kernel source file
-.I Documentation/arm64/sve.rst
-.\"commit b693d0b372afb39432e1c49ad7b3454855bc6bed
-(or
-.I Documentation/arm64/sve.txt
-before Linux 5.3).
+.TQ
+.B PR_SVE_GET_VL
 .TP
 .\" prctl PR_SET_SYSCALL_USER_DISPATCH
 .\" commit 1446e1df9eb183fdf81c3f0715402f1d7595d4
@@ -700,7 +670,6 @@ of the calling process.
 for information on the protection mask bits.)
 .SH RETURN VALUE
 On success,
-.BR PR_SVE_GET_VL ,
 .BR PR_GET_TAGGED_ADDR_CTRL ,
 .BR PR_GET_THP_DISABLE ,
 .BR PR_GET_TIMING ,
@@ -749,12 +718,6 @@ and
 .I arg2
 is not
 .BR PR_TIMING_STATISTICAL .
-.TP
-.B EINVAL
-.I op
-is
-.B PR_SVE_GET_VL
-and SVE is not available on this platform.
 .TP
 .B EINVAL
 .I op
@@ -854,4 +817,5 @@ glibc 2.0.6
 .BR PR_SET_SPECULATION_CTRL (2const),
 .BR PR_GET_SPECULATION_CTRL (2const),
 .BR PR_SVE_SET_VL (2const),
+.BR PR_SVE_GET_VL (2const),
 .BR core (5)
