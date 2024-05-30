@@ -16,8 +16,6 @@
 .\"	PR_SET_UNALIGN, PR_GET_UNALIGN,
 .\" 2008-06-13 Erik Bosman, <ejbosman@cs.vu.nl>
 .\"     Document PR_GET_TSC and PR_SET_TSC.
-.\" 2012-04-25 Michael Kerrisk, Document PR_TASK_PERF_EVENTS_DISABLE and
-.\"				PR_TASK_PERF_EVENTS_ENABLE
 .\" 2012-10-25 Michael Kerrisk, Document PR_SET_TIMERSLACK and
 .\"                             PR_GET_TIMERSLACK
 .\"
@@ -137,37 +135,10 @@ The first argument can be:
 .B PR_SET_TAGGED_ADDR_CTRL
 .TQ
 .B PR_GET_TAGGED_ADDR_CTRL
-.\" prctl PR_TASK_PERF_EVENTS_DISABLE
-.TP
-.BR PR_TASK_PERF_EVENTS_DISABLE " (since Linux 2.6.31)"
-Disable all performance counters attached to the calling process,
-regardless of whether the counters were created by
-this process or another process.
-Performance counters created by the calling process for other
-processes are unaffected.
-For more information on performance counters, see the Linux kernel source file
-.IR tools/perf/design.txt .
-.IP
-Originally called
-.BR PR_TASK_PERF_COUNTERS_DISABLE ;
-.\" commit 1d1c7ddbfab358445a542715551301b7fc363e28
-renamed (retaining the same numerical value)
-in Linux 2.6.32.
-.\"
-.\" prctl PR_TASK_PERF_EVENTS_ENABLE
-.TP
-.BR PR_TASK_PERF_EVENTS_ENABLE " (since Linux 2.6.31)"
-The converse of
-.BR PR_TASK_PERF_EVENTS_DISABLE ;
-enable performance counters attached to the calling process.
-.IP
-Originally called
-.BR PR_TASK_PERF_COUNTERS_ENABLE ;
-.\" commit 1d1c7ddbfab358445a542715551301b7fc363e28
-renamed
-.\" commit cdd6c482c9ff9c55475ee7392ec8f672eddb7be6
-in Linux 2.6.32.
-.\"
+.TQ
+.B PR_TASK_PERF_EVENTS_DISABLE
+.TQ
+.B PR_TASK_PERF_EVENTS_ENABLE
 .\" prctl PR_SET_THP_DISABLE
 .TP
 .BR PR_SET_THP_DISABLE " (since Linux 3.15)"
@@ -517,4 +488,6 @@ glibc 2.0.6
 .BR PR_SET_SYSCALL_USER_DISPATCH (2const),
 .BR PR_SET_TAGGED_ADDR_CTRL (2const),
 .BR PR_GET_TAGGED_ADDR_CTRL (2const),
+.BR PR_TASK_PERF_EVENTS_DISABLE (2const),
+.BR PR_TASK_PERF_EVENTS_ENABLE (2const),
 .BR core (5)
