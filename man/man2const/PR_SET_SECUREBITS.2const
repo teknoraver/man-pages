@@ -1,4 +1,5 @@
 .\" Copyright 2008, 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
@@ -14,13 +15,11 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.BI "int prctl(PR_SET_SECUREBITS, unsigned long " flags ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_SET_SECUREBITS " (since Linux 2.6.26)"
 Set the "securebits" flags of the calling thread to the value supplied in
-.IR arg2 .
+.IR flags .
 See
 .BR capabilities (7).
 .SH RETURN VALUE
@@ -32,7 +31,7 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-.I arg2
+.I flags
 is not a valid value.
 .TP
 .B EPERM
@@ -49,6 +48,7 @@ or tried to set a flag whose corresponding locked flag was set
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.6.26.
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_GET_SECUREBITS (2const),
