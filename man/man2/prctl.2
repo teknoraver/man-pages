@@ -119,13 +119,8 @@ The first argument can be:
 .B PR_SET_SECCOMP
 .TQ
 .B PR_GET_SECCOMP
-.\" prctl PR_SET_SECUREBITS
-.TP
-.BR PR_SET_SECUREBITS " (since Linux 2.6.26)"
-Set the "securebits" flags of the calling thread to the value supplied in
-.IR arg2 .
-See
-.BR capabilities (7).
+.TQ
+.B PR_SET_SECUREBITS
 .\" prctl PR_GET_SECUREBITS
 .TP
 .BR PR_GET_SECUREBITS " (since Linux 2.6.26)"
@@ -1088,18 +1083,6 @@ for the bit fields to determine which option is available.
 .B EPERM
 .I op
 is
-.BR PR_SET_SECUREBITS ,
-and the caller does not have the
-.B CAP_SETPCAP
-capability,
-or tried to unset a "locked" flag,
-or tried to set a flag whose corresponding locked flag was set
-(see
-.BR capabilities (7)).
-.TP
-.B EPERM
-.I op
-is
 .B PR_SET_SPECULATION_CTRL
 wherein the speculation was disabled with
 .B PR_SPEC_FORCE_DISABLE
@@ -1176,4 +1159,5 @@ glibc 2.0.6
 .BR PR_SET_PTRACER (2const),
 .BR PR_SET_SECCOMP (2const),
 .BR PR_GET_SECCOMP (2const),
+.BR PR_SET_SECUREBITS (2const),
 .BR core (5)
