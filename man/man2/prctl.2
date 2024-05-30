@@ -16,8 +16,6 @@
 .\"	PR_SET_UNALIGN, PR_GET_UNALIGN,
 .\" 2008-06-13 Erik Bosman, <ejbosman@cs.vu.nl>
 .\"     Document PR_GET_TSC and PR_SET_TSC.
-.\" 2012-10-25 Michael Kerrisk, Document
-.\"                             PR_GET_TIMERSLACK
 .\"
 .TH prctl 2 (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -147,11 +145,8 @@ The first argument can be:
 .B PR_GET_TID_ADDRESS
 .TQ
 .B PR_SET_TIMERSLACK
-.\" prctl PR_GET_TIMERSLACK
-.TP
-.BR PR_GET_TIMERSLACK " (since Linux 2.6.28)"
-Return (as the function result)
-the "current" timer slack value of the calling thread.
+.TQ
+.B PR_GET_TIMERSLACK
 .\" prctl PR_SET_TIMING
 .TP
 .BR PR_SET_TIMING " (since Linux 2.6.0)"
@@ -274,7 +269,6 @@ for information on the protection mask bits.)
 .SH RETURN VALUE
 On success,
 .BR PR_GET_TIMING ,
-.BR PR_GET_TIMERSLACK ,
 .BR PR_GET_AUXV ,
 return the nonnegative values described above.
 All other
@@ -385,4 +379,5 @@ glibc 2.0.6
 .BR PR_GET_THP_DISABLE (2const),
 .BR PR_GET_TID_ADDRESS (2const),
 .BR PR_SET_TIMERSLACK (2const),
+.BR PR_GET_TIMERSLACK (2const),
 .BR core (5)
