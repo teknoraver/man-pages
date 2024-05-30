@@ -139,23 +139,8 @@ The first argument can be:
 .B PR_TASK_PERF_EVENTS_DISABLE
 .TQ
 .B PR_TASK_PERF_EVENTS_ENABLE
-.\" prctl PR_SET_THP_DISABLE
-.TP
-.BR PR_SET_THP_DISABLE " (since Linux 3.15)"
-.\" commit a0715cc22601e8830ace98366c0c2bd8da52af52
-Set the state of the "THP disable" flag for the calling thread.
-If
-.I arg2
-has a nonzero value, the flag is set, otherwise it is cleared.
-Setting this flag provides a method
-for disabling transparent huge pages
-for jobs where the code cannot be modified, and using a malloc hook with
-.BR madvise (2)
-is not an option (i.e., statically allocated data).
-The setting of the "THP disable" flag is inherited by a child created via
-.BR fork (2)
-and is preserved across
-.BR execve (2).
+.TQ
+.B PR_SET_THP_DISABLE
 .\" prctl PR_GET_THP_DISABLE
 .TP
 .BR PR_GET_THP_DISABLE " (since Linux 3.15)"
@@ -490,4 +475,5 @@ glibc 2.0.6
 .BR PR_GET_TAGGED_ADDR_CTRL (2const),
 .BR PR_TASK_PERF_EVENTS_DISABLE (2const),
 .BR PR_TASK_PERF_EVENTS_ENABLE (2const),
+.BR PR_SET_THP_DISABLE (2const),
 .BR core (5)
