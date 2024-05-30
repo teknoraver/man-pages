@@ -1,5 +1,6 @@
 .\" Copyright 2020, Dave Martin <Dave.Martin@arm.com>
 .\" Copyright 2020, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
@@ -15,20 +16,13 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.B int prctl(PR_SVE_GET_VL, 0L, 0L, 0L, 0L);
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_SVE_GET_VL " (since Linux 4.15, only on arm64)"
 Get the thread's current SVE vector length configuration.
-.IP
-Arguments
-.IR arg2 ", " arg3 ", " arg4 ", and " arg5
-are ignored.
-.IP
-Provided that the kernel and platform support SVE,
-this operation always succeeds,
-returning a nonnegative value that describes the
+.P
+This operation returns
+a nonnegative value that describes the
 .I current
 configuration.
 The bits corresponding to
@@ -39,16 +33,6 @@ The bit corresponding to
 indicates whether the vector length will be inherited
 across
 .BR execve (2).
-.IP
-Note that there is no way to determine whether there is
-a pending vector length change that has not yet taken effect.
-.IP
-For more information, see the kernel source file
-.I Documentation/arm64/sve.rst
-.\"commit b693d0b372afb39432e1c49ad7b3454855bc6bed
-(or
-.I Documentation/arm64/sve.txt
-before Linux 5.3).
 .SH RETURN VALUE
 On success,
 .BR PR_SVE_GET_VL ,
@@ -59,13 +43,22 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-.I op
-is
-.B PR_SVE_GET_VL
-and SVE is not available on this platform.
+SVE is not available on this platform.
 .SH STANDARDS
 Linux.
+arm64 only.
 .SH HISTORY
+Linux 4.15 (arm64).
+.SH CAVEATS
+There is no way to determine whether there is
+a pending vector length change that has not yet taken effect.
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_SVE_SET_VL (2const)
+.P
+For more information, see the kernel source file
+.I Documentation/arm64/sve.rst
+.\"commit b693d0b372afb39432e1c49ad7b3454855bc6bed
+(or
+.I Documentation/arm64/sve.txt
+before Linux 5.3).
