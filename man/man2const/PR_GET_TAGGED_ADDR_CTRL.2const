@@ -1,0 +1,78 @@
+.\" Copyright 2020, Dave Martin <Dave.Martin@arm.com>
+.\" Copyright 2020, Michael Kerrisk <mtk.manpages@gmail.com>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH PR_GET_TAGGED_ADDR_CTRL 2const (date) "Linux man-pages (unreleased)"
+.SH NAME
+PR_GET_TAGGED_ADDR_CTRL
+\-
+get the tagged address mode for the calling thread
+.SH LIBRARY
+Standard C library
+.RI ( libc ", " \-lc )
+.SH SYNOPSIS
+.nf
+.B #include <sys/prctl.h>
+.P
+.BI "int prctl(int " op ", ...);"
+.fi
+.SH DESCRIPTION
+.\" prctl PR_GET_TAGGED_ADDR_CTRL
+.\" commit 63f0c60379650d82250f22e4cf4137ef3dc4f43d
+.TP
+.BR PR_GET_TAGGED_ADDR_CTRL " (since Linux 5.4, only on arm64)"
+Returns the current tagged address mode
+for the calling thread.
+.IP
+Arguments
+.IR arg2 ", " arg3 ", " arg4 ", and " arg5
+must all be zero.
+.IP
+If the arguments are invalid
+or this feature is disabled or unsupported by the kernel,
+the call fails with
+.BR EINVAL .
+In particular, if
+.BR prctl ( PR_GET_TAGGED_ADDR_CTRL ,
+0, 0, 0, 0)
+fails with
+.BR EINVAL ,
+then this feature is definitely either unsupported,
+or disabled via
+.IR /proc/sys/abi/tagged_addr_disabled .
+In this case,
+all addresses passed to the kernel must be untagged.
+.IP
+Otherwise, the call returns a nonnegative value
+describing the current tagged address mode,
+encoded in the same way as the
+.I arg2
+argument of
+.BR PR_SET_TAGGED_ADDR_CTRL (2const).
+.IP
+For more information, see the kernel source file
+.IR Documentation/arm64/tagged\-address\-abi.rst .
+.SH RETURN VALUE
+On success,
+.BR PR_GET_TAGGED_ADDR_CTRL ,
+return the nonnegative values described above.
+On error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH ERRORS
+.TP
+.B EINVAL
+.I op
+is
+.B PR_GET_TAGGED_ADDR_CTRL
+and the arguments are invalid or unsupported.
+See the description of
+.B PR_GET_TAGGED_ADDR_CTRL
+above for details.
+.SH STANDARDS
+Linux.
+.SH HISTORY
+.SH SEE ALSO
+.BR prctl (2),
+.BR PR_SET_TAGGED_ADDR_CTRL (2const)
