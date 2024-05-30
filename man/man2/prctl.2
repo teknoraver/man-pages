@@ -121,13 +121,8 @@ The first argument can be:
 .B PR_GET_SECCOMP
 .TQ
 .B PR_SET_SECUREBITS
-.\" prctl PR_GET_SECUREBITS
-.TP
-.BR PR_GET_SECUREBITS " (since Linux 2.6.26)"
-Return (as the function result)
-the "securebits" flags of the calling thread.
-See
-.BR capabilities (7).
+.TQ
+.B PR_GET_SECUREBITS
 .\" prctl PR_GET_SPECULATION_CTRL
 .TP
 .BR PR_GET_SPECULATION_CTRL " (since Linux 4.17)"
@@ -961,7 +956,6 @@ of the calling process.
 for information on the protection mask bits.)
 .SH RETURN VALUE
 On success,
-.BR PR_GET_SECUREBITS ,
 .BR PR_GET_SPECULATION_CTRL ,
 .BR PR_SVE_GET_VL ,
 .BR PR_SVE_SET_VL ,
@@ -1160,4 +1154,5 @@ glibc 2.0.6
 .BR PR_SET_SECCOMP (2const),
 .BR PR_GET_SECCOMP (2const),
 .BR PR_SET_SECUREBITS (2const),
+.BR PR_GET_SECUREBITS (2const),
 .BR core (5)
