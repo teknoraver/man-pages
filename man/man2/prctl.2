@@ -143,28 +143,8 @@ The first argument can be:
 .B PR_SET_THP_DISABLE
 .TQ
 .B PR_GET_THP_DISABLE
-.\" prctl PR_GET_TID_ADDRESS
-.TP
-.BR PR_GET_TID_ADDRESS " (since Linux 3.5)"
-.\" commit 300f786b2683f8bb1ec0afb6e1851183a479c86d
-Return the
-.I clear_child_tid
-address set by
-.BR set_tid_address (2)
-and the
-.BR clone (2)
-.B CLONE_CHILD_CLEARTID
-flag, in the location pointed to by
-.IR "(int\~**)\~arg2" .
-This feature is available only if the kernel is built with the
-.B CONFIG_CHECKPOINT_RESTORE
-option enabled.
-Note that since the
-.BR prctl ()
-system call does not have a compat implementation for
-the AMD64 x32 and MIPS n32 ABIs,
-and the kernel writes out a pointer using the kernel's pointer size,
-this operation expects a user-space buffer of 8 (not 4) bytes on these ABIs.
+.TQ
+.B PR_GET_TID_ADDRESS
 .\" prctl PR_SET_TIMERSLACK
 .TP
 .BR PR_SET_TIMERSLACK " (since Linux 2.6.28)"
@@ -472,4 +452,5 @@ glibc 2.0.6
 .BR PR_TASK_PERF_EVENTS_ENABLE (2const),
 .BR PR_SET_THP_DISABLE (2const),
 .BR PR_GET_THP_DISABLE (2const),
+.BR PR_GET_TID_ADDRESS (2const),
 .BR core (5)
