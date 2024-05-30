@@ -1,0 +1,86 @@
+.\" Copyright 2018, Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
+.\" Copyright 2018, Michael Kerrisk <mtk.manpages@gmail.com>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH PR_GET_SPECULATION_CTRL 2const (date) "Linux man-pages (unreleased)"
+.SH NAME
+PR_GET_SPECULATION_CTRL
+\-
+get the state of a speculation misfeature for the calling thread
+.SH LIBRARY
+Standard C library
+.RI ( libc ", " \-lc )
+.SH SYNOPSIS
+.nf
+.B #include <sys/prctl.h>
+.P
+.BI "int prctl(int " op ", ...);"
+.fi
+.SH DESCRIPTION
+.TP
+.BR PR_GET_SPECULATION_CTRL " (since Linux 4.17)"
+Return (as the function result)
+the state of the speculation misfeature specified in
+.IR arg2 .
+Currently, the only permitted value for this argument is
+.B PR_SPEC_STORE_BYPASS
+(otherwise the call fails with the error
+.BR ENODEV ).
+.IP
+The return value uses bits 0-3 with the following meaning:
+.RS
+.TP
+.B PR_SPEC_PRCTL
+Mitigation can be controlled per thread by
+.BR PR_SET_SPECULATION_CTRL (2const).
+.TP
+.B PR_SPEC_ENABLE
+The speculation feature is enabled, mitigation is disabled.
+.TP
+.B PR_SPEC_DISABLE
+The speculation feature is disabled, mitigation is enabled.
+.TP
+.B PR_SPEC_FORCE_DISABLE
+Same as
+.B PR_SPEC_DISABLE
+but cannot be undone.
+.TP
+.BR PR_SPEC_DISABLE_NOEXEC " (since Linux 5.1)"
+Same as
+.BR PR_SPEC_DISABLE ,
+but the state will be cleared on
+.BR execve (2).
+.RE
+.IP
+If all bits are 0,
+then the CPU is not affected by the speculation misfeature.
+.IP
+If
+.B PR_SPEC_PRCTL
+is set, then per-thread control of the mitigation is available.
+If not set,
+.BR prctl ()
+for the speculation misfeature will fail.
+.IP
+The
+.IR arg3 ,
+.IR arg4 ,
+and
+.I arg5
+arguments must be specified as 0; otherwise the call fails with the error
+.BR EINVAL .
+.SH RETURN VALUE
+On success,
+.BR PR_GET_SPECULATION_CTRL ,
+return the nonnegative values described above.
+On error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH ERRORS
+.SH STANDARDS
+Linux.
+.SH HISTORY
+.SH SEE ALSO
+.BR prctl (2),
+.BR PR_SET_SPECULATION_CTRL (2const)
