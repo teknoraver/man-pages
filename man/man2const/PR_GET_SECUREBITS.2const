@@ -1,4 +1,5 @@
 .\" Copyright 2008, 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
@@ -14,25 +15,23 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.B int prctl(PR_GET_SECUREBITS, 0L, 0L, 0L, 0L);
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_GET_SECUREBITS " (since Linux 2.6.26)"
-Return (as the function result)
-the "securebits" flags of the calling thread.
+Return the "securebits" flags of the calling thread.
 See
 .BR capabilities (7).
 .SH RETURN VALUE
 On success,
 .BR PR_GET_SECUREBITS ,
-return the nonnegative values described above.
+returns the nonnegative value described above.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.6.26.
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_SET_SECUREBITS (2const),
