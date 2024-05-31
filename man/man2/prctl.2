@@ -12,8 +12,6 @@
 .\"
 .\" Modified 2006-08-30 Guillem Jover <guillem@hadrons.org>
 .\"	Updated Linux versions where the options where introduced.
-.\"	Added
-.\"	PR_GET_UNALIGN,
 .\"
 .TH prctl 2 (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -155,14 +153,8 @@ The first argument can be:
 .B PR_GET_TSC
 .TQ
 .B PR_SET_UNALIGN
-.\" prctl PR_GET_UNALIGN
-.TP
+.TQ
 .B PR_GET_UNALIGN
-(See
-.B PR_SET_UNALIGN
-for information on versions and architectures.)
-Return unaligned access control bits, in the location pointed to by
-.IR "(unsigned int\~*) arg2" .
 .\" prctl PR_GET_AUXV
 .TP
 .BR PR_GET_AUXV " (since Linux 6.4)"
@@ -313,4 +305,5 @@ glibc 2.0.6
 .BR PR_SET_TSC (2const),
 .BR PR_GET_TSC (2const),
 .BR PR_SET_UNALIGN (2const),
+.BR PR_GET_UNALIGN (2const),
 .BR core (5)
