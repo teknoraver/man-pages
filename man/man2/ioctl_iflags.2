@@ -44,6 +44,8 @@ and
 The file can be opened only with the
 .B O_APPEND
 flag.
+If applied to a directory, forbids removing files from the directory
+.RB "(via " unlink "(), " rename "(), and the like)."
 (This restriction applies even to the superuser.)
 Only a privileged process
 .RB ( CAP_LINUX_IMMUTABLE )
