@@ -1,4 +1,5 @@
 .\" Copyright 2023, Florent Revest <revest@chromium.org>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
@@ -14,18 +15,15 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.BI "int prctl(PR_SET_MDWE, unsigned long " mask ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_SET_MDWE " (since Linux 6.3)"
-.\" commit b507808ebce23561d4ff8c2aa1fb949fe402bc61
 Set the calling process' Memory-Deny-Write-Execute protection mask.
 Once protection bits are set,
 they can not be changed.
-.I arg2
+.P
+.I mask
 must be a bit mask of:
-.RS
 .TP
 .B PR_MDWE_REFUSE_EXEC_GAIN
 New memory mapping protections can't be writable and executable.
@@ -38,7 +36,6 @@ Do not propagate MDWE protection to child processes on
 Setting this bit requires setting
 .B PR_MDWE_REFUSE_EXEC_GAIN
 too.
-.RE
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -48,12 +45,13 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-.I arg2
-is not a valid value for this
-.IR op .
+.I mask
+is not a valid value.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 6.3.
+.\" commit b507808ebce23561d4ff8c2aa1fb949fe402bc61
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_GET_MDWE (2const)
