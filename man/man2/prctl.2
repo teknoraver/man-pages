@@ -157,28 +157,8 @@ The first argument can be:
 .B PR_GET_UNALIGN
 .TQ
 .B PR_GET_AUXV
-.TP
-.BR PR_SET_MDWE " (since Linux 6.3)"
-.\" commit b507808ebce23561d4ff8c2aa1fb949fe402bc61
-Set the calling process' Memory-Deny-Write-Execute protection mask.
-Once protection bits are set,
-they can not be changed.
-.I arg2
-must be a bit mask of:
-.RS
-.TP
-.B PR_MDWE_REFUSE_EXEC_GAIN
-New memory mapping protections can't be writable and executable.
-Non-executable mappings can't become executable.
-.TP
-.B PR_MDWE_NO_INHERIT " (since Linux 6.6)"
-.\" commit 2a87e5520554034e8c423479740f95bea4a086a0
-Do not propagate MDWE protection to child processes on
-.BR fork (2).
-Setting this bit requires setting
-.B PR_MDWE_REFUSE_EXEC_GAIN
-too.
-.RE
+.TQ
+.B PR_SET_MDWE
 .TP
 .BR PR_GET_MDWE " (since Linux 6.3)"
 .\" commit b507808ebce23561d4ff8c2aa1fb949fe402bc61
@@ -189,8 +169,7 @@ of the calling process.
 for information on the protection mask bits.)
 .SH RETURN VALUE
 On success,
-a nonnegative value or
-0 is returned.
+a nonnegative value is returned.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
@@ -204,11 +183,6 @@ or not supported on this system.
 .TP
 .B EINVAL
 An unused argument is nonzero.
-.TP
-.B EINVAL
-.I arg2
-is not a valid value for this
-.IR op .
 .SH VERSIONS
 IRIX has a
 .BR prctl ()
@@ -291,4 +265,5 @@ glibc 2.0.6
 .BR PR_SET_UNALIGN (2const),
 .BR PR_GET_UNALIGN (2const),
 .BR PR_GET_AUXV (2const),
+.BR PR_SET_MDWE (2const),
 .BR core (5)
