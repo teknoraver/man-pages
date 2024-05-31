@@ -1,10 +1,8 @@
 .\" Copyright 2008, Erik Bosman <ejbosman@cs.vu.nl>
 .\" Copyright 2008, 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" 2008-06-13 Erik Bosman, <ejbosman@cs.vu.nl>
-.\"     Document PR_SET_TSC.
 .\"
 .TH PR_SET_TSC 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -18,17 +16,15 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.BI "int prctl(PR_SET_TSC, long " flag ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_SET_TSC " (since Linux 2.6.26, x86 only)"
 Set the state of the flag determining whether the timestamp counter
 can be read by the process.
 Pass
 .B PR_TSC_ENABLE
 to
-.I arg2
+.I flag
 to allow it to be read, or
 .B PR_TSC_SIGSEGV
 to generate a
@@ -44,11 +40,12 @@ is set to indicate the error.
 .TP
 .B EINVAL
 .I arg2
-is not a valid value for this
-.IR op .
+is not a valid value.
 .SH STANDARDS
 Linux.
+x86 only.
 .SH HISTORY
+Linux 2.6.26 (x86).
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_GET_TSC (2const)
