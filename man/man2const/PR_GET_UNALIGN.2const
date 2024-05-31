@@ -1,11 +1,8 @@
 .\" Copyright, Guillem Jover <guillem@hadrons.org>
 .\" Copyright 2006, 2008, 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" Modified 2006-08-30 Guillem Jover <guillem@hadrons.org>
-.\"	Added
-.\"	PR_GET_UNALIGN,
 .\"
 .TH PR_GET_UNALIGN 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -19,16 +16,11 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.BI "int prctl(PR_GET_UNALIGN, unsigned int *" bits ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.B PR_GET_UNALIGN
-(See
-.B PR_SET_UNALIGN
-for information on versions and architectures.)
 Return unaligned access control bits, in the location pointed to by
-.IR "(unsigned int\~*) arg2" .
+.IR bits .
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -38,11 +30,13 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EFAULT
-.I arg2
+.I bits
 is an invalid address.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+See
+.BR PR_SET_UNALIGN (2const).
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_SET_UNALIGN (2const)
