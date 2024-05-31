@@ -195,6 +195,12 @@ Linux.
 Linux 2.1.57,
 glibc 2.0.6
 .SH CAVEATS
+The prototype of the libc wrapper uses a variadic argument list.
+This makes it necessary to pass the arguments with the right width.
+When passing numeric constants, such as 0,
+use a suffix:
+.BR 0L .
+.P
 Careless use of some
 .BR prctl ()
 operations can confuse the user-space run-time environment,
