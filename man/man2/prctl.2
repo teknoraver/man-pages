@@ -155,17 +155,8 @@ The first argument can be:
 .B PR_SET_UNALIGN
 .TQ
 .B PR_GET_UNALIGN
-.\" prctl PR_GET_AUXV
-.TP
-.BR PR_GET_AUXV " (since Linux 6.4)"
-Get the auxiliary vector (auxv) into the buffer pointed to by
-.IR "(void\~*) arg2" ,
-whose length is given by \fIarg3\fP.
-If the buffer is not long enough for the full auxiliary vector,
-the copy will be truncated.
-Return (as the function result)
-the full length of the auxiliary vector.
-\fIarg4\fP and \fIarg5\fP must be 0.
+.TQ
+.B PR_GET_AUXV
 .TP
 .BR PR_SET_MDWE " (since Linux 6.3)"
 .\" commit b507808ebce23561d4ff8c2aa1fb949fe402bc61
@@ -198,19 +189,12 @@ of the calling process.
 for information on the protection mask bits.)
 .SH RETURN VALUE
 On success,
-.B PR_GET_AUXV
-returns the nonnegative value described above.
-All other
-.I op
-values return 0 on success.
+a nonnegative value or
+0 is returned.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
 .SH ERRORS
-.TP
-.B EFAULT
-.I arg2
-is an invalid address.
 .TP
 .B EINVAL
 The value of
@@ -306,4 +290,5 @@ glibc 2.0.6
 .BR PR_GET_TSC (2const),
 .BR PR_SET_UNALIGN (2const),
 .BR PR_GET_UNALIGN (2const),
+.BR PR_GET_AUXV (2const),
 .BR core (5)
