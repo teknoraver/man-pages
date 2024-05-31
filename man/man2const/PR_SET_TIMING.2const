@@ -1,10 +1,8 @@
 .\" Copyright, Guillem Jover <guillem@hadrons.org>
 .\" Copyright 2006, 2008, 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" Modified 2006-08-30 Guillem Jover <guillem@hadrons.org>
-.\"	Added PR_SET_TIMING
 .\"
 .TH PR_SET_TIMING 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -18,27 +16,16 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(int " op ", ...);"
+.BI "int prctl(PR_SET_TIMING, long " mode ", 0L, 0L, 0L);"
 .fi
 .SH DESCRIPTION
-.TP
-.BR PR_SET_TIMING " (since Linux 2.6.0)"
-.\" Precisely: Linux 2.6.0-test4
 Set whether to use (normal, traditional) statistical process timing or
 accurate timestamp-based process timing, by passing
 .B PR_TIMING_STATISTICAL
-.\" 0
 or
 .B PR_TIMING_TIMESTAMP
-.\" 1
-to \fIarg2\fP.
-.B PR_TIMING_TIMESTAMP
-is not currently implemented
-(attempting to set this mode will yield the error
-.BR EINVAL ).
-.\" PR_TIMING_TIMESTAMP doesn't do anything in Linux 2.6.26-rc8,
-.\" and looking at the patch history, it appears
-.\" that it never did anything.
+to
+.IR mode .
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -48,16 +35,22 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-.I op
-is
-.B PR_SET_TIMING
-and
-.I arg2
+.I mode
 is not
 .BR PR_TIMING_STATISTICAL .
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.6.0.
+.\" Precisely: Linux 2.6.0-test4
+.SH CAVEATS
+.B PR_TIMING_TIMESTAMP
+is not currently implemented
+(attempting to set this mode will yield the error
+.BR EINVAL ).
+.\" PR_TIMING_TIMESTAMP doesn't do anything in Linux 2.6.26-rc8,
+.\" and looking at the patch history, it appears
+.\" that it never did anything.
 .SH SEE ALSO
 .BR prctl (2),
 .BR PR_GET_TIMING (2const)
