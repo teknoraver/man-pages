@@ -14,8 +14,6 @@
 .\"	Updated Linux versions where the options where introduced.
 .\"	Added
 .\"	PR_SET_UNALIGN, PR_GET_UNALIGN,
-.\" 2008-06-13 Erik Bosman, <ejbosman@cs.vu.nl>
-.\"     Document PR_GET_TSC
 .\"
 .TH prctl 2 (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -153,13 +151,8 @@ The first argument can be:
 .B PR_GET_TIMING
 .TQ
 .B PR_SET_TSC
-.\" prctl PR_GET_TSC
-.TP
-.BR PR_GET_TSC " (since Linux 2.6.26, x86 only)"
-Return the state of the flag determining whether the timestamp counter
-can be read,
-in the location pointed to by
-.IR "(int\~*) arg2" .
+.TQ
+.B PR_GET_TSC
 .\" prctl PR_SET_UNALIGN
 .TP
 .B PR_SET_UNALIGN
@@ -340,4 +333,5 @@ glibc 2.0.6
 .BR PR_SET_TIMING (2const),
 .BR PR_GET_TIMING (2const),
 .BR PR_SET_TSC (2const),
+.BR PR_GET_TSC (2const),
 .BR core (5)
