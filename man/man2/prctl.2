@@ -12,7 +12,7 @@
 .\"
 .\" Modified 2006-08-30 Guillem Jover <guillem@hadrons.org>
 .\"	Updated Linux versions where the options where introduced.
-.\"	Added PR_GET_TIMING
+.\"	Added
 .\"	PR_SET_UNALIGN, PR_GET_UNALIGN,
 .\" 2008-06-13 Erik Bosman, <ejbosman@cs.vu.nl>
 .\"     Document PR_GET_TSC and PR_SET_TSC.
@@ -149,12 +149,8 @@ The first argument can be:
 .B PR_GET_TIMERSLACK
 .TQ
 .B PR_SET_TIMING
-.\" prctl PR_GET_TIMING
-.TP
-.BR PR_GET_TIMING " (since Linux 2.6.0)"
-.\" Precisely: Linux 2.6.0-test4
-Return (as the function result) which process timing method is currently
-in use.
+.TQ
+.B PR_GET_TIMING
 .\" prctl PR_SET_TSC
 .TP
 .BR PR_SET_TSC " (since Linux 2.6.26, x86 only)"
@@ -251,9 +247,8 @@ of the calling process.
 for information on the protection mask bits.)
 .SH RETURN VALUE
 On success,
-.BR PR_GET_TIMING ,
-.BR PR_GET_AUXV ,
-return the nonnegative values described above.
+.B PR_GET_AUXV
+returns the nonnegative value described above.
 All other
 .I op
 values return 0 on success.
@@ -355,4 +350,5 @@ glibc 2.0.6
 .BR PR_SET_TIMERSLACK (2const),
 .BR PR_GET_TIMERSLACK (2const),
 .BR PR_SET_TIMING (2const),
+.BR PR_GET_TIMING (2const),
 .BR core (5)
