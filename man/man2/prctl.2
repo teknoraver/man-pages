@@ -1,21 +1,21 @@
-.\" Copyright (C) 1998 Andries Brouwer (aeb@cwi.nl)
-.\" and Copyright (C) 2002, 2006, 2008, 2012, 2013, 2015 Michael Kerrisk <mtk.manpages@gmail.com>
-.\" and Copyright Guillem Jover <guillem@hadrons.org>
-.\" and Copyright (C) 2010 Andi Kleen <andi@firstfloor.org>
-.\" and Copyright (C) 2012 Cyrill Gorcunov <gorcunov@openvz.org>
-.\" and Copyright (C) 2014 Dave Hansen / Intel
-.\" and Copyright (c) 2016 Eugene Syromyatnikov <evgsyr@gmail.com>
-.\" and Copyright (c) 2018 Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
-.\" and Copyright (c) 2020 Dave Martin <Dave.Martin@arm.com>
+.\" Copyright 1998, Andries Brouwer <aeb@cwi.nl>
+.\" Copyright 2002, 2006, 2008, 2012, 2013, 2015, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright, Guillem Jover <guillem@hadrons.org>
+.\" Copyright 2010, Andi Kleen <andi@firstfloor.org>
+.\" Copyright 2012, Cyrill Gorcunov <gorcunov@openvz.org>
+.\" Copyright 2014, Dave Hansen / Intel
+.\" Copyright 2016, Eugene Syromyatnikov <evgsyr@gmail.com>
+.\" Copyright 2018, Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
+.\" Copyright 2020, Dave Martin <Dave.Martin@arm.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\" Modified 2006-08-30 Guillem Jover <guillem@hadrons.org>
-.\"	Updated Linux versions where the options where introduced.
-.\"
 .TH prctl 2 (date) "Linux man-pages (unreleased)"
 .SH NAME
-prctl \- operations on a process or thread
+prctl
+\-
+operations on a process or thread
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
@@ -29,11 +29,6 @@ Standard C library
 .BR prctl ()
 manipulates various aspects of the behavior
 of the calling thread or process.
-.P
-Note that careless use of some
-.BR prctl ()
-operations can confuse the user-space run-time environment,
-so these operations should be used with care.
 .P
 .BR prctl ()
 is called with a first argument describing what to do
@@ -199,6 +194,11 @@ Linux.
 .SH HISTORY
 Linux 2.1.57,
 glibc 2.0.6
+.SH CAVEATS
+Careless use of some
+.BR prctl ()
+operations can confuse the user-space run-time environment,
+so these operations should be used with care.
 .SH SEE ALSO
 .BR signal (2),
 .BR PR_CAP_AMBIENT (2const),
