@@ -13,6 +13,7 @@ Standard C library
 .RI ( libc ", " \-lc )
 .SH SYNOPSIS
 .nf
+.BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"
 .B #include <sys/prctl.h>
 .P
 .B int prctl(PR_GET_MDWE, 0L, 0L, 0L, 0L);

@@ -16,6 +16,7 @@ Standard C library
 .nf
 .B #include <sys/prctl.h>
 .P
+.BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"
 .B int prctl(PR_SET_MM, PR_SET_MM_AUXV,
 .BI "          unsigned long " addr ", unsigned long " size ", 0L);"
 .fi

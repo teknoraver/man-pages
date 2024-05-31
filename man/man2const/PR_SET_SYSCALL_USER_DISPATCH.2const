@@ -14,6 +14,7 @@ Standard C library
 .RI ( libc ", " \-lc )
 .SH SYNOPSIS
 .nf
+.BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"
 .B #include <sys/prctl.h>
 .P
 .BI "int prctl(PR_SET_SYSCALL_USER_DISPATCH, long " op ", ...);"

@@ -21,6 +21,7 @@ Standard C library
 .RI ( libc ", " \-lc )
 .SH SYNOPSIS
 .nf
+.BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"
 .B #include <sys/prctl.h>
 .P
 .BI "int prctl(int " op ", ...);"
@@ -31,9 +32,9 @@ manipulates various aspects of the behavior
 of the calling thread or process.
 .P
 .BR prctl ()
-is called with a first argument describing what to do
-(with values defined in \fI<linux/prctl.h>\fP), and further
-arguments with a significance depending on the first one.
+is called with a first argument describing what to do,
+and further arguments
+with a significance depending on the first one.
 The first argument can be:
 .\"
 .TP
