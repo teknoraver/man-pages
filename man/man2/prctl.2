@@ -159,14 +159,8 @@ The first argument can be:
 .B PR_GET_AUXV
 .TQ
 .B PR_SET_MDWE
-.TP
-.BR PR_GET_MDWE " (since Linux 6.3)"
-.\" commit b507808ebce23561d4ff8c2aa1fb949fe402bc61
-Return (as the function result) the Memory-Deny-Write-Execute protection mask
-of the calling process.
-(See
-.B PR_SET_MDWE
-for information on the protection mask bits.)
+.TQ
+.B PR_GET_MDWE
 .SH RETURN VALUE
 On success,
 a nonnegative value is returned.
@@ -266,4 +260,5 @@ glibc 2.0.6
 .BR PR_GET_UNALIGN (2const),
 .BR PR_GET_AUXV (2const),
 .BR PR_SET_MDWE (2const),
+.BR PR_GET_MDWE (2const),
 .BR core (5)
