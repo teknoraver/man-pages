@@ -16,7 +16,7 @@ Standard C library
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(PR_SET_FP_MODE, unsigned long " mode ", 0L, 0L, 0L);"
+.BI "int prctl(PR_SET_FP_MODE, unsigned long " mode );
 .fi
 .SH DESCRIPTION
 On the MIPS architecture,

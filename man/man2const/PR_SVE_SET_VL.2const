@@ -17,7 +17,7 @@ Standard C library
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(PR_SVE_SET_VL, unsigned long " val ", 0L, 0L, 0L);"
+.BI "int prctl(PR_SVE_SET_VL, unsigned long " val );
 .fi
 .SH DESCRIPTION
 Configure the thread's SVE vector length,

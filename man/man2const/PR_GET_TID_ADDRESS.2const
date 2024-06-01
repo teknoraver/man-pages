@@ -16,7 +16,7 @@ Standard C library
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(PR_GET_TID_ADDRESS, int **" addrp ", 0L, 0L, 0L);"
+.BI "int prctl(PR_GET_TID_ADDRESS, int **" addrp );
 .fi
 .SH DESCRIPTION
 Return the

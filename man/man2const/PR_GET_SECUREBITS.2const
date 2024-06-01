@@ -16,7 +16,7 @@ Standard C library
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"
 .B #include <sys/prctl.h>
 .P
-.B int prctl(PR_GET_SECUREBITS, 0L, 0L, 0L, 0L);
+.B int prctl(PR_GET_SECUREBITS);
 .fi
 .SH DESCRIPTION
 Return the "securebits" flags of the calling thread.

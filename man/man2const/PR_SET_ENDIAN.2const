@@ -16,7 +16,7 @@ Standard C library
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(PR_SET_ENDIAN, long " endianness ", 0L, 0L, 0L);"
+.BI "int prctl(PR_SET_ENDIAN, long " endianness );
 .fi
 .SH DESCRIPTION
 Set the endian-ness of the calling process

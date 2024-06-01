@@ -17,7 +17,7 @@ Standard C library
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(PR_CAPBSET_READ, long " cap ", 0L, 0L, 0L);"
+.BI "int prctl(PR_CAPBSET_READ, long " cap );
 .fi
 .SH DESCRIPTION
 Return 1 if the capability specified in

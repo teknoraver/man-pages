@@ -17,7 +17,7 @@ Standard C library
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(PR_SET_PDEATHSIG, long " sig ", 0L, 0L, 0L);"
+.BI "int prctl(PR_SET_PDEATHSIG, long " sig );
 .fi
 .SH DESCRIPTION
 Set the parent-death signal

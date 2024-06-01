@@ -21,10 +21,10 @@ Standard C library
 .BI "int prctl(PR_SET_SECCOMP, long " mode ", ...);"
 .P
 .B [[deprecated]]
-.B int prctl(PR_SET_SECCOMP, SECCOMP_MODE_STRICT, 0L, 0L, 0L);
+.B int prctl(PR_SET_SECCOMP, SECCOMP_MODE_STRICT);
 .B [[deprecated]]
 .B int prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER,
-.BI "          struct sock_fprog *" filter ", 0L, 0L);"
+.BI "          struct sock_fprog *" filter );
 .fi
 .SH DESCRIPTION
 Set the secure computing (seccomp) mode for the calling thread,

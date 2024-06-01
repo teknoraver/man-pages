@@ -17,7 +17,7 @@ Standard C library
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"
 .B #include <sys/prctl.h>
 .P
-.BI "int prctl(PR_GET_TSC, int *" flag ", 0L, 0L, 0L);"
+.BI "int prctl(PR_GET_TSC, int *" flag );
 .fi
 .SH DESCRIPTION
 Return the state of the flag determining whether the timestamp counter
