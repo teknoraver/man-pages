@@ -1,12 +1,12 @@
 '\" t
-.\" Copyright (c) 1995 Jim Van Zandt <jrv@vanzandt.mv.com> and aeb
-.\" Sun Feb 26 11:46:23 MET 1995
+.\" Copyright 1995, Jim Van Zandt <jrv@vanzandt.mv.com> and aeb
+.\" Copyright 1995, <faith@cs.unc.edu>
+.\" Copyright 1995, <jrv@vanzandt.mv.com>
+.\" Copyright 1995, "H. Peter Anvin" <hpa@storm.net>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: GPL-2.0-or-later
 .\"
-.\" Modified, Sun Feb 26 15:04:20 1995, faith@cs.unc.edu
-.\" Modified, Thu Apr 20 22:08:17 1995, jrv@vanzandt.mv.com
-.\" Modified, Mon Sep 18 22:32:47 1995, hpa@storm.net (H. Peter Anvin)
 .\" FIXME The following are not documented:
 .\"     KDFONTOP (since Linux 2.1.111)
 .\"     KDGKBDIACRUC (since Linux 2.6.24)
@@ -23,6 +23,7 @@ ioctl_kd
 ioctls for console terminal and virtual consoles
 .SH SYNOPSIS
 .nf
+.BR "#include <linux/kd.h>" "  /* Definition of op constants */"
 .B #include <sys/ioctl.h>
 .P
 .BI "int ioctl(int " fd ", unsigned long " op ", void *" argp );
@@ -543,5 +544,3 @@ Linux.
 .SH SEE ALSO
 .BR ioctl (2),
 .BR ioctl_console (2)
-.P
-.I /usr/include/linux/kd.h
