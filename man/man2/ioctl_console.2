@@ -22,12 +22,16 @@
 .TH ioctl_console 2 (date) "Linux man-pages (unreleased)"
 .SH NAME
 ioctl_console \- ioctls for console terminal and virtual consoles
+.SH SYNOPSIS
+.nf
+.B #include <sys/ioctl.h>
+.P
+.BI "int ioctl(int " fd ", unsigned long " op ", void *" argp );
+.fi
 .SH DESCRIPTION
 The following Linux-specific
 .BR ioctl (2)
 operations are supported for console terminals and virtual consoles.
-Each operation requires a third argument, assumed here to be
-.IR argp .
 .TP
 .B KDGETLED
 Get state of LEDs.
