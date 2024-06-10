@@ -1,0 +1,40 @@
+.\" Copyright 2017, Michael Kerrisk <mtk.manpages@gmail.com>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH NS_GET_NSTYPE 2const (date) "Linux man-pages (unreleased)"
+.SH NAME
+NS_GET_NSTYPE
+\-
+discovering the namespace type
+.SH DESCRIPTION
+The
+.B NS_GET_NSTYPE
+.\" commit e5ff5ce6e20ee22511398bb31fb912466cf82a36
+operation (available since Linux 4.11) can be used to discover
+the type of namespace referred to by the file descriptor
+.IR fd :
+.P
+.in +4n
+.EX
+nstype = ioctl(fd, NS_GET_NSTYPE);
+.EE
+.in
+.P
+.I fd
+refers to a
+.IR /proc/ pid /ns/*
+file.
+.P
+The return value is one of the
+.B CLONE_NEW*
+values that can be specified to
+.BR clone (2)
+or
+.BR unshare (2)
+in order to create a namespace.
+.SH STANDARDS
+Linux.
+.SH SEE ALSO
+.BR ioctl (2),
+.BR ioctl_nsfs (2)
