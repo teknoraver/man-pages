@@ -150,7 +150,7 @@ and
 .BR CAP_DAC_READ_SEARCH ;
 .IP \[bu]
 set inode flags (see
-.BR ioctl_iflags (2))
+.BR FS_IOC_SETFLAGS (2const))
 on arbitrary files;
 .IP \[bu]
 set Access Control Lists (ACLs) on arbitrary files;
@@ -227,7 +227,7 @@ Set the
 and
 .B FS_IMMUTABLE_FL
 inode flags (see
-.BR ioctl_iflags (2)).
+.BR FS_IOC_SETFLAGS (2const)).
 .TP
 .BR CAP_MAC_ADMIN " (since Linux 2.6.25)"
 Allow MAC configuration or state changes.
