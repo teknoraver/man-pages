@@ -4,9 +4,11 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.TH ioctl_pagemap_scan 2 (date) "Linux man-pages (unreleased)"
+.TH PAGEMAP_SCAN 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
-ioctl_pagemap_scan \- get and/or clear page flags
+PAGEMAP_SCAN
+\-
+get and/or clear page flags
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
