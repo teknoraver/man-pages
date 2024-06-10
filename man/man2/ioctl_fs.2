@@ -1,0 +1,61 @@
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH ioctl_fs 2 (date) "Linux man-pages (unreleased)"
+.SH NAME
+ioctl_fs
+\-
+filesystem operations
+.SH LIBRARY
+Standard C library
+.RI ( libc ", " \-lc )
+.SH SYNOPSIS
+.nf
+.BR "#include <linux/fs.h>" "  /* Definition of op constants */"
+.B #include <sys/ioctl.h>
+.P
+.BI "int ioctl(int " fd ", unsigned long " op ", ...);"
+.fi
+.SH DESCRIPTION
+The following
+.I op
+values are available.
+.SS Share some of the data of one file with another file
+.TP
+.B FICLONE
+.TQ
+.B FICLONERANGE
+.TP
+.B FIDEDUPERANGE
+.SS Operations for inode flags
+.TP
+.B FS_IOC_GETFLAGS
+.TQ
+.B FS_IOC_SETFLAGS
+.SS Get or set a filesystem label
+.TP
+.B FS_IOC_GETFSLABEL
+.TQ
+.B FS_IOC_SETFSLABEL
+.SS Get and/or clear page flags
+.TP
+.B PAGEMAP_SCAN
+.SH RETURN VALUE
+On success,
+a nonnegative value is returned.
+On error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH STANDARDS
+Linux.
+.SH SEE ALSO
+.BR ioctl (2),
+.BR FICLONE (2const),
+.BR FICLONERANGE (2const),
+.BR FIDEDUPERANGE (2const),
+.BR FS_IOC_GETFLAGS (2const),
+.BR FS_IOC_SETFLAGS (2const),
+.BR FS_IOC_GETFSLABEL (2const),
+.BR FS_IOC_SETFSLABEL (2const),
+.BR PAGEMAP_SCAN (2const)
