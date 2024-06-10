@@ -1,11 +1,22 @@
-.\" Copyright (c) 2017 by Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2017, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\"
-.TH ioctl_iflags 2 (date) "Linux man-pages (unreleased)"
+.TH FS_IOC_SETFLAGS 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
-ioctl_iflags \- ioctl() operations for inode flags
+FS_IOC_GETFLAGS,
+FS_IOC_SETFLAGS
+\-
+ioctl() operations for inode flags
+.SH SYNOPSIS
+.nf
+.BR "#include <linux/fs.h>" "  /* Definition of " FS_* " constants */"
+.B #include <sys/ioctl.h>
+.P
+.BI "int ioctl(int " fd ", FS_IOC_GETFLAGS, int *" attr );
+.BI "int ioctl(int " fd ", FS_IOC_SETFLAGS, const int *" attr );
+.fi
 .SH DESCRIPTION
 Various Linux filesystems support the notion of
 .IR "inode flags" \[em]attributes
@@ -182,18 +193,8 @@ the effective user ID of the caller must match the owner of the file,
 or the caller must have the
 .B CAP_FOWNER
 capability.
-.P
-The type of the argument given to the
-.B FS_IOC_GETFLAGS
-and
-.B FS_IOC_SETFLAGS
-operations is
-.IR int\~* ,
-notwithstanding the implication in the kernel source file
-.I include/uapi/linux/fs.h
-that the argument is
-.IR long\~* .
 .SH SEE ALSO
+.BR ioctl (2),
 .BR chattr (1),
 .BR lsattr (1),
 .BR mount (2),
