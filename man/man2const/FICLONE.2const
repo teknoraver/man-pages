@@ -1,16 +1,18 @@
 .\" Copyright (c) 2016, Oracle.  All rights reserved.
 .\"
 .\" SPDX-License-Identifier: GPL-2.0-or-later
-.TH ioctl_ficlonerange 2 (date) "Linux man-pages (unreleased)"
+.TH FICLONE 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
-ioctl_ficlonerange, ioctl_ficlone \-
+FICLONE,
+FICLONERANGE
+\-
 share some the data of one file with another file
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
 .SH SYNOPSIS
 .nf
-.BR "#include <linux/fs.h>" "        /* Definition of " FICLONE* " constants */"
+.BR "#include <linux/fs.h>" "  /* Definition of " FICLONE* " constants */"
 .B #include <sys/ioctl.h>
 .P
 .BI "int ioctl(int " dest_fd ", FICLONERANGE, struct file_clone_range *" arg );
@@ -120,7 +122,7 @@ They were previously known as
 and
 .BR BTRFS_IOC_CLONE_RANGE ,
 and were private to Btrfs.
-.SH NOTES
+.SH CAVEATS
 Because a copy-on-write operation requires the allocation of new storage, the
 .BR fallocate (2)
 operation may unshare shared blocks to guarantee that subsequent writes will
