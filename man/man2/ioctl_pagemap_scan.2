@@ -1,5 +1,6 @@
-.\" This manpage is Copyright (C) 2023 Collabora;
+.\" Copyright 2023, Collabora
 .\" Written by Muhammad Usama Anjum <usama.anjum@collabora.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
@@ -11,11 +12,35 @@ Standard C library
 .RI ( libc ", " \-lc )
 .SH SYNOPSIS
 .nf
-.BR "#include <linux/fs.h>" "  /* Definition of " "struct pm_scan_arg" ,
-.BR "                          struct page_region" ", and " PAGE_IS_* " constants */"
+.BR "#include <linux/fs.h>" "  /* Definition of " PAGE* " and " PM_* " constants */"
 .B #include <sys/ioctl.h>
 .P
 .BI "int ioctl(int " pagemap_fd ", PAGEMAP_SCAN, struct pm_scan_arg *" arg );
+.P
+.B #include <linux/fs.h>
+.P
+.EX
+.B struct pm_scan_arg {
+.B "    __u64  size;"
+.B "    __u64  flags;"
+.B "    __u64  start;"
+.B "    __u64  end;"
+.B "    __u64  walk_end;"
+.B "    __u64  vec;"
+.B "    __u64  vec_len;"
+.B "    __u64  max_pages;"
+.B "    __u64  category_inverted;"
+.B "    __u64  category_mask;"
+.B "    __u64  category_anyof_mask;"
+.B "    __u64  return_mask;"
+.B };
+.P
+.B struct page_region {
+.B "    __u64  start;"
+.B "    __u64  end;"
+.B "    __u64  categories;"
+.B };
+.EE
 .fi
 .SH DESCRIPTION
 This
@@ -75,22 +100,6 @@ Abort the scan
 when a page is found
 which doesn't have the Userfaultfd Asynchronous Write protection enabled.
 .SS The \f[I]struct pm_scan_arg\f[] argument
-.EX
-struct pm_scan_arg {
-    __u64  size;
-    __u64  flags;
-    __u64  start;
-    __u64  end;
-    __u64  walk_end;
-    __u64  vec;
-    __u64  vec_len;
-    __u64  max_pages
-    __u64  category_inverted;
-    __u64  category_mask;
-    __u64  category_anyof_mask
-    __u64  return_mask;
-};
-.EE
 .TP
 .B size
 This field should be set to the size of the structure in bytes,
@@ -118,16 +127,6 @@ means that scan has completed on the entire range.
 The address of
 .I page_region
 array for output.
-.IP
-.in +4n
-.EX
-struct page_region {
-    __u64  start;
-    __u64  end;
-    __u64  categories;
-};
-.EE
-.in
 .TP
 .B vec_len
 The length of the
