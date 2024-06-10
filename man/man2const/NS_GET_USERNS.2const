@@ -1,4 +1,5 @@
 .\" Copyright 2017, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
@@ -8,6 +9,13 @@ NS_GET_USERNS,
 NS_GET_PARENT
 \-
 discovering namespace relationships
+.SH SYNOPSIS
+.nf
+.BR "#include <linux/nsfs.h>" "  /* Definition of " NS_GET_* " constants */"
+.B #include <sys/ioctl.h>
+.P
+.BI "int ioctl(int " fd ", unsigned long " op );
+.fi
 .SH DESCRIPTION
 The following
 .BR ioctl (2)
@@ -15,13 +23,6 @@ operations are provided to allow discovery of namespace relationships (see
 .BR user_namespaces (7)
 and
 .BR pid_namespaces (7)).
-The form of the calls is:
-.P
-.in +4n
-.EX
-new_fd = ioctl(fd, op);
-.EE
-.in
 .P
 In each case,
 .I fd
@@ -30,15 +31,12 @@ refers to a
 file.
 Both operations return a new file descriptor on success.
 .TP
-.BR NS_GET_USERNS " (since Linux 4.9)"
-.\" commit bcac25a58bfc6bd79191ac5d7afb49bea96da8c9
-.\" commit 6786741dbf99e44fb0c0ed85a37582b8a26f1c3b
+.B NS_GET_USERNS
 Returns a file descriptor that refers to the owning user namespace
 for the namespace referred to by
 .IR fd .
 .TP
-.BR NS_GET_PARENT " (since Linux 4.9)"
-.\" commit a7306ed8d94af729ecef8b6e37506a1c6fc14788
+.B NS_GET_PARENT
 Returns a file descriptor that refers to the parent namespace of
 the namespace referred to by
 .IR fd .
@@ -69,10 +67,13 @@ structure whose
 This inode number can be matched with the inode number of another
 .IR /proc/ pid /ns/ { pid , user }
 file to determine whether that is the owning/parent namespace.
-.P
-Either of these
-.BR ioctl (2)
-operations can fail with the following errors:
+.SH RETURN VALUE
+On success,
+a file descriptor is returned.
+Or error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH ERRORS
 .TP
 .B EPERM
 The requested namespace is outside of the caller's namespace scope.
@@ -91,10 +92,18 @@ operation can fail with the following error:
 .B EINVAL
 .I fd
 refers to a nonhierarchical namespace.
-.P
-See the EXAMPLES section for an example of the use of these operations.
 .SH STANDARDS
 Linux.
+.SH HISTORY
+.TP
+.B NS_GET_USERNS
+.\" linux.git bcac25a58bfc6bd79191ac5d7afb49bea96da8c9
+.\" linux.git 6786741dbf99e44fb0c0ed85a37582b8a26f1c3b
+Linux 4.9.
+.TP
+.B NS_GET_PARENT
+.\" linux.git a7306ed8d94af729ecef8b6e37506a1c6fc14788
+Linux 4.9.
 .SH EXAMPLES
 The example shown below uses the
 .BR ioctl (2)
