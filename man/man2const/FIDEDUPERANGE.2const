@@ -1,9 +1,12 @@
 .\" Copyright (c) 2016, Oracle.  All rights reserved.
 .\"
 .\" SPDX-License-Identifier: GPL-2.0-or-later
-.TH ioctl_fideduperange 2 (date) "Linux man-pages (unreleased)"
+.\"
+.TH FIDEDUPERANGE 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
-ioctl_fideduperange \- share some the data of one file with another file
+FIDEDUPERANGE
+\-
+share some the data of one file with another file
 .SH LIBRARY
 Standard C library
 .RI ( libc ", " \-lc )
