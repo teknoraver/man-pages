@@ -100,7 +100,8 @@ and
 originate from 4.3BSD-Tahoe (where
 .I tm_zone
 is a
-.IR "char *" ).
+.IR "char *" ),
+and were first standardized in POSIX.1-2024.
 .SH NOTES
 .I tm_sec
 can represent a leap second with the value
