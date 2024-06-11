@@ -90,9 +90,9 @@ points to static storage and may be overridden on subsequent calls to
 .BR localtime (3)
 and similar functions (however, this never happens under glibc).
 .SH STANDARDS
-C11, POSIX.1-2008.
+C23, POSIX.1-2024.
 .SH HISTORY
-C89, POSIX.1-2001.
+C89, POSIX.1-1988.
 .P
 .I tm_gmtoff
 and
