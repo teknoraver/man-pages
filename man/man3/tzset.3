@@ -63,6 +63,11 @@ In a System-V-like environment, it will also set the variables \fItimezone\fP
 have any daylight saving time rules, or to nonzero if there is a time,
 past, present, or future when daylight saving time applies).
 .P
+The
+.BR tzset ()
+function initializes these variables to unspecified values if this
+timezone is a geographical timezone like "America/New_York" (see below).
+.P
 If the
 .B TZ
 variable does not appear in the environment, the system timezone is used.
@@ -155,7 +160,9 @@ TZ="NZST\-12:00:00NZDT\-13:00:00,M10.1.0,M3.3.0"
 .EE
 .in
 .P
-The second format specifies that the timezone information should be read
+The second
+\[em]or "geographical"\[em]
+format specifies that the timezone information should be read
 from a file:
 .P
 .in +4n
