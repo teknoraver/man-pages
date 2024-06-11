@@ -146,6 +146,12 @@ Day 0 is a Sunday.
 .P
 The \fItime\fP fields specify when, in the local time currently in effect,
 the change to the other time occurs.
+They use the same format as
+.I offset
+except that the hour can be in the range
+.RB [ \-167 ,\~
+.BR 167 ]
+to represent times before and after the named day.
 If omitted, the default is 02:00:00.
 .P
 Here is an example for New Zealand,
