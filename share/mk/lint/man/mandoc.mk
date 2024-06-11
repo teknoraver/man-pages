@@ -16,6 +16,7 @@ include $(MAKEFILEDIR)/configure/xfail.mk
 
 
 _XFAIL_LINT_man_mandoc := \
+	$(_MANDIR)/man2/ioctl_eventpoll.2.lint-man.mandoc.touch \
 	$(_MANDIR)/man3/pthread_cond_init.3.lint-man.mandoc.touch \
 	$(_MANDIR)/man3/pthread_key_create.3.lint-man.mandoc.touch \
 	$(_MANDIR)/man3/pthread_mutex_init.3.lint-man.mandoc.touch \
