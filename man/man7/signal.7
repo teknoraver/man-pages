@@ -277,12 +277,18 @@ the thread's current signal mask;
 the thread's alternate signal stack settings.
 .RE
 .IP
-(If the signal handler was installed using the
+If the signal handler was installed using the
 .BR sigaction (2)
 .B SA_SIGINFO
 flag, then the above information is accessible via the
 .I ucontext_t
-object that is pointed to by the third argument of the signal handler.)
+object that is pointed to by the third argument of the signal handler.
+This object reflects the state at which the signal is delivered,
+rather than in the handler;
+for example,
+the mask of blocked signals stored in this object
+will not contain the mask of new signals blocked through
+.BR sigaction (2).
 .IP (1.4)
 Any signals specified in
 .I act\->sa_mask
