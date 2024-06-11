@@ -1,13 +1,20 @@
-.\" Copyright (c) 2017 by Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2017, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
 .\"
 .TH ioctl_nsfs 2 (date) "Linux man-pages (unreleased)"
 .SH NAME
 ioctl_nsfs
 \-
 ioctl() operations for Linux namespaces
+.SH SYNOPSIS
+.nf
+.BR "#include <linux/nsfs.h>" "  /* Definition of " NS_* " constants */"
+.B #include <sys/ioctl.h>
+.P
+.BI "int ioctl(int " fd ", unsigned long " op ", ...);"
+.fi
 .SH DESCRIPTION
 .SS Discovering namespace relationships
 .TP
@@ -21,9 +28,6 @@ ioctl() operations for Linux namespaces
 .TP
 .B NS_GET_OWNER_UID
 .SH ERRORS
-Any of the above
-.BR ioctl ()
-operations can return the following errors:
 .TP
 .B ENOTTY
 .I fd
