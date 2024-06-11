@@ -1,28 +1,28 @@
-.\" Copyright (c) 2017 by Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2017, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\"
-.TH ioctl_ns 2 (date) "Linux man-pages (unreleased)"
+.TH NS_GET_USERNS 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
-ioctl_ns \- ioctl() operations for Linux namespaces
+NS_GET_USERNS,
+NS_GET_PARENT
+\-
+discovering namespace relationships
+.SH SYNOPSIS
+.nf
+.BR "#include <linux/nsfs.h>" "  /* Definition of " NS_GET_* " constants */"
+.B #include <sys/ioctl.h>
+.P
+.BI "int ioctl(int " fd ", unsigned long " op );
+.fi
 .SH DESCRIPTION
-.\" ============================================================
-.\"
-.SS Discovering namespace relationships
 The following
 .BR ioctl (2)
 operations are provided to allow discovery of namespace relationships (see
 .BR user_namespaces (7)
 and
 .BR pid_namespaces (7)).
-The form of the calls is:
-.P
-.in +4n
-.EX
-new_fd = ioctl(fd, op);
-.EE
-.in
 .P
 In each case,
 .I fd
@@ -31,15 +31,12 @@ refers to a
 file.
 Both operations return a new file descriptor on success.
 .TP
-.BR NS_GET_USERNS " (since Linux 4.9)"
-.\" commit bcac25a58bfc6bd79191ac5d7afb49bea96da8c9
-.\" commit 6786741dbf99e44fb0c0ed85a37582b8a26f1c3b
+.B NS_GET_USERNS
 Returns a file descriptor that refers to the owning user namespace
 for the namespace referred to by
 .IR fd .
 .TP
-.BR NS_GET_PARENT " (since Linux 4.9)"
-.\" commit a7306ed8d94af729ecef8b6e37506a1c6fc14788
+.B NS_GET_PARENT
 Returns a file descriptor that refers to the parent namespace of
 the namespace referred to by
 .IR fd .
@@ -70,10 +67,13 @@ structure whose
 This inode number can be matched with the inode number of another
 .IR /proc/ pid /ns/ { pid , user }
 file to determine whether that is the owning/parent namespace.
-.P
-Either of these
-.BR ioctl (2)
-operations can fail with the following errors:
+.SH RETURN VALUE
+On success,
+a file descriptor is returned.
+Or error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH ERRORS
 .TP
 .B EPERM
 The requested namespace is outside of the caller's namespace scope.
@@ -92,80 +92,18 @@ operation can fail with the following error:
 .B EINVAL
 .I fd
 refers to a nonhierarchical namespace.
-.P
-See the EXAMPLES section for an example of the use of these operations.
-.\" ============================================================
-.\"
-.SS Discovering the namespace type
-The
-.B NS_GET_NSTYPE
-.\" commit e5ff5ce6e20ee22511398bb31fb912466cf82a36
-operation (available since Linux 4.11) can be used to discover
-the type of namespace referred to by the file descriptor
-.IR fd :
-.P
-.in +4n
-.EX
-nstype = ioctl(fd, NS_GET_NSTYPE);
-.EE
-.in
-.P
-.I fd
-refers to a
-.IR /proc/ pid /ns/*
-file.
-.P
-The return value is one of the
-.B CLONE_NEW*
-values that can be specified to
-.BR clone (2)
-or
-.BR unshare (2)
-in order to create a namespace.
-.\" ============================================================
-.\"
-.SS Discovering the owner of a user namespace
-The
-.B NS_GET_OWNER_UID
-.\" commit 015bb305b8ebe8d601a238ab70ebdc394c7a19ba
-operation (available since Linux 4.11) can be used to discover
-the owner user ID of a user namespace (i.e., the effective user ID
-of the process that created the user namespace).
-The form of the call is:
-.P
-.in +4n
-.EX
-uid_t uid;
-ioctl(fd, NS_GET_OWNER_UID, &uid);
-.EE
-.in
-.P
-.I fd
-refers to a
-.IR /proc/ pid /ns/user
-file.
-.P
-The owner user ID is returned in the
-.I uid_t
-pointed to by the third argument.
-.P
-This operation can fail with the following error:
-.TP
-.B EINVAL
-.I fd
-does not refer to a user namespace.
-.SH ERRORS
-Any of the above
-.BR ioctl ()
-operations can return the following errors:
-.TP
-.B ENOTTY
-.I fd
-does not refer to a
-.IR /proc/ pid /ns/ *
-file.
 .SH STANDARDS
 Linux.
+.SH HISTORY
+.TP
+.B NS_GET_USERNS
+.\" linux.git bcac25a58bfc6bd79191ac5d7afb49bea96da8c9
+.\" linux.git 6786741dbf99e44fb0c0ed85a37582b8a26f1c3b
+Linux 4.9.
+.TP
+.B NS_GET_PARENT
+.\" linux.git a7306ed8d94af729ecef8b6e37506a1c6fc14788
+Linux 4.9.
 .SH EXAMPLES
 The example shown below uses the
 .BR ioctl (2)
@@ -336,7 +274,5 @@ main(int argc, char *argv[])
 .EE
 .\" SRC END
 .SH SEE ALSO
-.BR fstat (2),
 .BR ioctl (2),
-.BR proc (5),
-.BR namespaces (7)
+.BR ioctl_nsfs (2)
