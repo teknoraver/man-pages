@@ -242,6 +242,20 @@ name of the timezone corresponding to its first argument (minutes
 West of UTC).
 If the second argument was 0, the standard name was used,
 otherwise the daylight saving time version.
+.SH CAVEATS
+Because the values of
+.IR tzname ,
+.IR timezone ,
+and
+.I daylight
+are often unspecified, and accessing them can lead to undefined
+behavior in multithreaded applications,
+code should instead obtain time zone offset and abbreviations from the
+.I tm_gmtoff
+and
+.I tm_zone
+members of the broken-down time structure
+.BR tm (3type).
 .SH SEE ALSO
 .BR date (1),
 .BR gettimeofday (2),
