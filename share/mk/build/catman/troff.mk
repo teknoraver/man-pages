@@ -18,11 +18,13 @@ include $(MAKEFILEDIR)/configure/xfail.mk
 
 _XFAIL_CATMAN_MAN_set := \
 	$(_MANDIR)/man2/fanotify_init.2.cat.set \
+	$(_MANDIR)/man2/s390_sthyi.2.cat.set \
 	$(_MANDIR)/man3/unlocked_stdio.3.cat.set \
 	$(_MANDIR)/man4/console_codes.4.cat.set \
 	$(_MANDIR)/man4/lirc.4.cat.set \
 	$(_MANDIR)/man5/proc_pid_smaps.5.cat.set \
 	$(_MANDIR)/man5/tzfile.5.cat.set \
+	$(_MANDIR)/man7/address_families.7.cat.set \
 	$(_MANDIR)/man7/ascii.7.cat.set \
 	$(_MANDIR)/man7/bpf-helpers.7.cat.set \
 	$(_MANDIR)/man7/charsets.7.cat.set \
