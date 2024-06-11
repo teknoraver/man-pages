@@ -293,7 +293,7 @@ will not contain the mask of new signals blocked through
 Any signals specified in
 .I act\->sa_mask
 when registering the handler with
-.BR sigprocmask (2)
+.BR sigaction (2)
 are added to the thread's signal mask.
 The signal being delivered is also
 added to the signal mask, unless
