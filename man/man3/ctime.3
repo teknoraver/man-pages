@@ -101,10 +101,9 @@ The abbreviations for the months are "Jan",
 The return value points to a statically allocated string which
 might be overwritten by subsequent calls to any of the date and time
 functions.
-The function also sets the external
-variables \fItzname\fP, \fItimezone\fP, and \fIdaylight\fP (see
-.BR tzset (3))
-with information about the current timezone.
+The function also sets the external variables \fItzname\fP,
+\fItimezone\fP, and \fIdaylight\fP as if it called
+.BR tzset (3).
 The reentrant version
 .BR ctime_r ()
 does the same, but stores the
@@ -131,13 +130,9 @@ The
 function converts the calendar time \fItimep\fP to
 broken-down time representation,
 expressed relative to the user's specified timezone.
-The function acts as if it called
-.BR tzset (3)
-and sets the external variables \fItzname\fP with
-information about the current timezone, \fItimezone\fP with the difference
-between Coordinated Universal Time (UTC) and local standard time in
-seconds, and \fIdaylight\fP to a nonzero value if daylight savings
-time rules apply during some part of the year.
+The function also sets the external variables \fItzname\fP,
+\fItimezone\fP, and \fIdaylight\fP as if it called
+.BR tzset (3).
 The return value points to a statically allocated struct which might be
 overwritten by subsequent calls to any of the date and time functions.
 The
@@ -198,10 +193,9 @@ normalized (so that, for example, 40 October is changed into 9 November);
 is set (regardless of its initial value)
 to a positive value or to 0, respectively,
 to indicate whether DST is or is not in effect at the specified time.
-Calling
-.BR mktime ()
-also sets the external variable \fItzname\fP with
-information about the current timezone.
+The function also sets the external variables \fItzname\fP,
+\fItimezone\fP, and \fIdaylight\fP as if it called
+.BR tzset (3).
 .P
 If the specified broken-down
 time cannot be represented as calendar time (seconds since the Epoch),
@@ -326,7 +320,7 @@ In many implementations, including glibc, a 0 in
 .I tm_mday
 is interpreted as meaning the last day of the preceding month.
 .P
-According to POSIX.1-2001,
+According to POSIX.1,
 .BR localtime ()
 is required to behave as though
 .BR tzset (3)
@@ -349,16 +343,17 @@ should be called before
 .BR localtime ()
 .TQ
 .BR mktime ()
-C11, POSIX.1-2008.
+C23, POSIX.1-2024.
+.TP
+.BR gmtime_r ()
+.TQ
+.BR localtime_r ()
+POSIX.1-2024.
 .TP
 .BR asctime_r ()
 .TQ
 .BR ctime_r ()
-.TQ
-.BR gmtime_r ()
-.TQ
-.BR localtime_r ()
-POSIX.1-2008.
+None.
 .SH HISTORY
 .TP
 .BR gmtime ()
@@ -366,25 +361,26 @@ POSIX.1-2008.
 .BR localtime ()
 .TQ
 .BR mktime ()
-C89, POSIX.1-2001.
+C89, POSIX.1-1988.
 .TP
 .BR asctime ()
 .TQ
 .BR ctime ()
-C89, POSIX.1-2001.
-Marked obsolete in POSIX.1-2008 (recommending
+C89, POSIX.1-1988.
+Marked obsolescent in C23 and in POSIX.1-2008 (recommending
 .BR strftime (3)).
 .TP
 .BR gmtime_r ()
 .TQ
 .BR localtime_r ()
-POSIX.1-2001.
+POSIX.1-1996.
 .TP
 .BR asctime_r ()
 .TQ
 .BR ctime_r ()
-POSIX.1-2001.
-Marked obsolete in POSIX.1-2008 (recommending
+POSIX.1-1996.
+Marked obsolescent in POSIX.1-2008.
+Removed in POSIX.1-2024 (recommending
 .BR strftime (3)).
 .SH NOTES
 The four functions
@@ -402,7 +398,7 @@ and
 .BR localtime_r (),
 are specified by SUSv2.
 .P
-POSIX.1-2001 says:
+POSIX.1 says:
 "The
 .BR asctime (),
 .BR ctime (),
@@ -412,8 +408,9 @@ and
 functions shall return values in one of two static objects:
 a broken-down time structure and an array of type
 .IR char .
-Execution of any of the functions may overwrite the information returned
-in either of these objects by any of the other functions."
+Execution of any of the functions that return a pointer to one of these
+object types may overwrite the information in any object of the same type
+pointed to by the value returned from any previous call to any of them."
 This can occur in the glibc implementation.
 .SH SEE ALSO
 .BR date (1),
