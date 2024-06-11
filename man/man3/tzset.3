@@ -245,7 +245,16 @@ T}	Thread safety	MT-Safe env locale
 .SH STANDARDS
 POSIX.1-2024.
 .SH HISTORY
+.TP
+.BR tzset ()
+.TQ
+.I tzname
 POSIX.1-1988, SVr4, 4.3BSD.
+.TP
+.I timezone
+.TQ
+.I daylight
+POSIX.1-2001 (XSI), SVr4, 4.3BSD.
 .P
 4.3BSD had a function
 .BI "char *timezone(" zone ", " dst )
