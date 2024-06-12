@@ -75,63 +75,12 @@ whenever possible.
 .SS Sending a break
 .TP
 .B TCSBRK
-Argument:
-.BI "int " arg
-.IP
-Equivalent to
-.IR "tcsendbreak(fd, arg)" .
-.IP
-If the terminal is using asynchronous serial data transmission, and
-.I arg
-is zero, then send a break (a stream of zero bits) for between
-0.25 and 0.5 seconds.
-If the terminal is not using asynchronous
-serial data transmission, then either a break is sent, or the function
-returns without doing anything.
-When
-.I arg
-is nonzero, nobody knows what will happen.
-.IP
-(SVr4, UnixWare, Solaris, and Linux treat
-.I "tcsendbreak(fd,arg)"
-with nonzero
-.I arg
-like
-.IR "tcdrain(fd)" .
-SunOS treats
-.I arg
-as a multiplier, and sends a stream of bits
-.I arg
-times as long as done for zero
-.IR arg .
-DG/UX and AIX treat
-.I arg
-(when nonzero) as a time interval measured in milliseconds.
-HP-UX ignores
-.IR arg .)
-.TP
+.TQ
 .B TCSBRKP
-Argument:
-.BI "int " arg
-.IP
-So-called "POSIX version" of
-.BR TCSBRK .
-It treats nonzero
-.I arg
-as a time interval measured in deciseconds, and does nothing
-when the driver does not support breaks.
-.TP
+.TQ
 .B TIOCSBRK
-Argument:
-.B void
-.IP
-Turn break on, that is, start sending zero bits.
-.TP
+.TQ
 .B TIOCCBRK
-Argument:
-.B void
-.IP
-Turn break off, that is, stop sending zero bits.
 .SS Software flow control
 .TP
 .B TCXONC
@@ -680,6 +629,10 @@ main(void)
 .BR TIOCSLCKTRMIOS (2const),
 .BR TIOCGWINSZ (2const),
 .BR TIOCSWINSZ (2const),
+.BR TCSBRK (2const),
+.BR TCSBRKP (2const),
+.BR TIOCSBRK (2const),
+.BR TIOCCBRK (2const),
 .BR ldattach (8),
 .BR ioctl_console (2),
 .BR termios (3),
