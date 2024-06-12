@@ -87,54 +87,14 @@ whenever possible.
 .SS Buffer count and flushing
 .TP
 .B FIONREAD
-Argument:
-.BI "int\~*" argp
-.IP
-Get the number of bytes in the input buffer.
-.TP
+.TQ
 .B TIOCINQ
-Argument:
-.BI "int\~*" argp
-.IP
-Same as
-.BR FIONREAD .
-.TP
+.TQ
 .B TIOCOUTQ
-Argument:
-.BI "int\~*" argp
-.IP
-Get the number of bytes in the output buffer.
-.TP
+.TQ
 .B TCFLSH
-Argument:
-.BI "int " arg
-.IP
-Equivalent to
-.IR "tcflush(fd, arg)" .
-.IP
-See
-.BR tcflush (3)
-for the argument values
-.BR TCIFLUSH ,
-.BR TCOFLUSH ,
-.BR TCIOFLUSH .
-.TP
+.TQ
 .B TIOCSERGETLSR
-Argument:
-.BI "int\~*" argp
-.IP
-Get line status register.
-Status register has
-.B TIOCSER_TEMT
-bit set when
-output buffer is empty and also hardware transmitter is physically empty.
-.IP
-Does not have to be supported by all serial tty drivers.
-.IP
-.BR tcdrain (3)
-does not wait and returns immediately when
-.B TIOCSER_TEMT
-bit is set.
 .SS Faking input
 .TP
 .B TIOCSTI
@@ -621,6 +581,11 @@ main(void)
 .BR TIOCSBRK (2const),
 .BR TIOCCBRK (2const),
 .BR TCXONC (2const),
+.BR FIONREAD (2const),
+.BR TIOCINQ (2const),
+.BR TIOCOUTQ (2const),
+.BR TCFLSH (2const),
+.BR TIOCSERGETLSR (2const),
 .BR ldattach (8),
 .BR ioctl_console (2),
 .BR termios (3),
