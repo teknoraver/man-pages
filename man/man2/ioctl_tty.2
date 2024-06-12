@@ -84,19 +84,6 @@ whenever possible.
 .SS Software flow control
 .TP
 .B TCXONC
-Argument:
-.BI "int " arg
-.IP
-Equivalent to
-.IR "tcflow(fd, arg)" .
-.IP
-See
-.BR tcflow (3)
-for the argument values
-.BR TCOOFF ,
-.BR TCOON ,
-.BR TCIOFF ,
-.BR TCION .
 .SS Buffer count and flushing
 .TP
 .B FIONREAD
@@ -633,6 +620,7 @@ main(void)
 .BR TCSBRKP (2const),
 .BR TIOCSBRK (2const),
 .BR TIOCCBRK (2const),
+.BR TCXONC (2const),
 .BR ldattach (8),
 .BR ioctl_console (2),
 .BR termios (3),
