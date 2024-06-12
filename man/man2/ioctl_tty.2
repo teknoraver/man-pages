@@ -1,6 +1,7 @@
 '\" t
-.\" Copyright 2002 Walter Harms <walter.harms@informatik.uni-oldenburg.de>
-.\" and Andries Brouwer <aeb@cwi.nl>.
+.\" Copyright 2002, Walter Harms <walter.harms@informatik.uni-oldenburg.de>
+.\" Copyright 2002, Andries Brouwer <aeb@cwi.nl>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: GPL-1.0-or-later
 .\"
@@ -12,13 +13,21 @@ Standard C library
 .RI ( libc ", " \-lc )
 .SH SYNOPSIS
 .nf
+.BR "#include <asm/termbits.h>" "  /* Definition of constants */"
 .B #include <sys/ioctl.h>
-.BR "#include <asm/termbits.h>" "   /* Definition of " "struct termios" ,
-.BR    "                               struct termios2" ", and"
-.BR    "                               Bnnn" ", " BOTHER ", " CBAUD ", " CLOCAL ,
-.BR    "                               TC*" { FLUSH , ON , OFF "} and other constants */"
 .P
 .BI "int ioctl(int " fd ", int " op ", ...);"
+.P
+.B #include <asm/termbits.h>
+.P
+.B struct termios;
+.B struct termios2;
+.B struct termio;
+.B struct winsize;
+.P
+.B #include <linux/serial.h>
+.P
+.B struct serial_icounter_struct;
 .fi
 .SH DESCRIPTION
 The
@@ -35,19 +44,6 @@ makes for nonportable programs.
 Use the POSIX interface described in
 .BR termios (3)
 whenever possible.
-.P
-Please note that
-.B struct termios
-from
-.I <asm/termbits.h>
-is different and incompatible with
-.B struct termios
-from
-.IR <termios.h> .
-These ioctl calls require
-.B struct termios
-from
-.IR <asm/termbits.h> .
 .SS Get and set terminal attributes
 .TP
 .B TCGETS
@@ -755,26 +751,29 @@ This operation was removed in Linux 2.5.67.
 .\" .BI "TIOCSSERIAL	const struct serial_struct *" argp
 .\" Set serial info.
 .SH RETURN VALUE
-The
-.BR ioctl (2)
-system call returns 0 on success.
-On error, it returns \-1 and sets
+On success,
+0 is returned.
+On error,
+\-1 is returned, and
 .I errno
-to indicate the error.
+is set to indicate the error.
 .SH ERRORS
-.TP
-.B EINVAL
-Invalid operation parameter.
-.TP
-.B ENOIOCTLCMD
-Unknown operation.
-.TP
-.B ENOTTY
-Inappropriate
-.IR fd .
 .TP
 .B EPERM
 Insufficient permission.
+.SH CAVEATS
+Please note that
+.B struct termios
+from
+.I <asm/termbits.h>
+is different and incompatible with
+.B struct termios
+from
+.IR <termios.h> .
+These ioctl calls require
+.B struct termios
+from
+.IR <asm/termbits.h> .
 .SH EXAMPLES
 Check the condition of DTR on the serial port.
 .P
