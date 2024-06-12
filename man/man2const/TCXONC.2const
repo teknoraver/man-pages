@@ -1,5 +1,6 @@
 .\" Copyright 2002, Walter Harms <walter.harms@informatik.uni-oldenburg.de>
 .\" Copyright 2002, Andries Brouwer <aeb@cwi.nl>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: GPL-1.0-or-later
 .\"
@@ -16,17 +17,12 @@ Standard C library
 .BR "#include <asm/termbits.h>" "  /* Definition of " TCXONC " */"
 .B #include <sys/ioctl.h>
 .P
-.BI "int ioctl(int " fd ", int " op ", ...);"
+.BI "int ioctl(int " fd ", TCXONC, int " arg );
 .fi
 .SH DESCRIPTION
-.TP
-.B TCXONC
-Argument:
-.BI "int " arg
-.IP
 Equivalent to
 .IR "tcflow(fd, arg)" .
-.IP
+.P
 See
 .BR tcflow (3)
 for the argument values
