@@ -18,11 +18,17 @@ Standard C library
 .BR "#include <asm/termbits.h>" "  /* Definition of " TIOC*WINSZ " constants */"
 .B #include <sys/ioctl.h>
 .P
-.BI "int ioctl(int " fd ", int " op ", ...);"
+.BI "int ioctl(int " fd ", TIOCGWINSZ, struct winsize *" argp );
+.BI "int ioctl(int " fd ", TIOCSWINSZ, const struct winsize *" argp );
 .P
 .B #include <asm/termios.h>
 .P
-.B struct winsize;
+.B struct winsize {
+.B "    unsigned short ws_row;"
+.B "    unsigned short ws_col;"
+.BR "    unsigned short ws_xpixel;" "  /* unused */"
+.BR "    unsigned short ws_ypixel;" "  /* unused */"
+.B };
 .fi
 .SH DESCRIPTION
 Window sizes are kept in the kernel, but not used by the kernel
@@ -31,29 +37,10 @@ update the window size when the size of the virtual console changes,
 for example, by loading a new font).
 .TP
 .B TIOCGWINSZ
-Argument:
-.BI "struct winsize\~*" argp
-.IP
 Get window size.
 .TP
 .B TIOCSWINSZ
-Argument:
-.BI "const struct winsize\~*" argp
-.IP
 Set window size.
-.P
-The struct used by these ioctls is defined as
-.P
-.in +4n
-.EX
-struct winsize {
-    unsigned short ws_row;
-    unsigned short ws_col;
-    unsigned short ws_xpixel;   /* unused */
-    unsigned short ws_ypixel;   /* unused */
-};
-.EE
-.in
 .P
 When the window size changes, a
 .B SIGWINCH
