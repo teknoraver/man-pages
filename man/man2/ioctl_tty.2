@@ -18,10 +18,6 @@ Standard C library
 .P
 .BI "int ioctl(int " fd ", int " op ", ...);"
 .P
-.B #include <asm/termbits.h>
-.P
-.B struct termios;
-.P
 .B #include <linux/serial.h>
 .P
 .B struct serial_icounter_struct;
@@ -67,32 +63,10 @@ whenever possible.
 .TQ
 .B TCSETSF
 .SS Locking the termios structure
-The
-.I termios
-structure of a terminal can be locked.
-The lock is itself a
-.I termios
-structure, with nonzero bits or fields indicating a
-locked value.
 .TP
 .B TIOCGLCKTRMIOS
-Argument:
-.BI "struct termios\~*" argp
-.IP
-Gets the locking status of the
-.I termios
-structure of the terminal.
-.TP
+.TQ
 .B TIOCSLCKTRMIOS
-Argument:
-.BI "const struct termios\~*" argp
-.IP
-Sets the locking status of the
-.I termios
-structure of the terminal.
-Only a process with the
-.B CAP_SYS_ADMIN
-capability can do this.
 .SS Get and set window size
 .TP
 .B TIOCGWINSZ
@@ -663,19 +637,6 @@ is set to indicate the error.
 .TP
 .B EPERM
 Insufficient permission.
-.SH CAVEATS
-Please note that
-.B struct termios
-from
-.I <asm/termbits.h>
-is different and incompatible with
-.B struct termios
-from
-.IR <termios.h> .
-These ioctl calls require
-.B struct termios
-from
-.IR <asm/termbits.h> .
 .SH EXAMPLES
 Check the condition of DTR on the serial port.
 .P
@@ -715,6 +676,8 @@ main(void)
 .BR TCSETS (2const),
 .BR TCSETSW (2const),
 .BR TCSETSF (2const),
+.BR TIOCGLCKTRMIOS (2const),
+.BR TIOCSLCKTRMIOS (2const),
 .BR TIOCGWINSZ (2const),
 .BR TIOCSWINSZ (2const),
 .BR ldattach (8),
