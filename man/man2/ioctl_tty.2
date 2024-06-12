@@ -21,7 +21,6 @@ Standard C library
 .B #include <asm/termbits.h>
 .P
 .B struct termios;
-.B struct winsize;
 .P
 .B #include <linux/serial.h>
 .P
@@ -95,40 +94,10 @@ Only a process with the
 .B CAP_SYS_ADMIN
 capability can do this.
 .SS Get and set window size
-Window sizes are kept in the kernel, but not used by the kernel
-(except in the case of virtual consoles, where the kernel will
-update the window size when the size of the virtual console changes,
-for example, by loading a new font).
 .TP
 .B TIOCGWINSZ
-Argument:
-.BI "struct winsize\~*" argp
-.IP
-Get window size.
-.TP
+.TQ
 .B TIOCSWINSZ
-Argument:
-.BI "const struct winsize\~*" argp
-.IP
-Set window size.
-.P
-The struct used by these ioctls is defined as
-.P
-.in +4n
-.EX
-struct winsize {
-    unsigned short ws_row;
-    unsigned short ws_col;
-    unsigned short ws_xpixel;   /* unused */
-    unsigned short ws_ypixel;   /* unused */
-};
-.EE
-.in
-.P
-When the window size changes, a
-.B SIGWINCH
-signal is sent to the
-foreground process group.
 .SS Sending a break
 .TP
 .B TCSBRK
@@ -746,6 +715,8 @@ main(void)
 .BR TCSETS (2const),
 .BR TCSETSW (2const),
 .BR TCSETSF (2const),
+.BR TIOCGWINSZ (2const),
+.BR TIOCSWINSZ (2const),
 .BR ldattach (8),
 .BR ioctl_console (2),
 .BR termios (3),
