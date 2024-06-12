@@ -1,6 +1,6 @@
-'\" t
-.\" Copyright 2002 Walter Harms <walter.harms@informatik.uni-oldenburg.de>
-.\" and Andries Brouwer <aeb@cwi.nl>.
+.\" Copyright 2002, Walter Harms <walter.harms@informatik.uni-oldenburg.de>
+.\" Copyright 2002, Andries Brouwer <aeb@cwi.nl>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: GPL-1.0-or-later
 .\"
@@ -28,7 +28,20 @@ Standard C library
 .BR "#include <asm/termbits.h>" "  /* Definition of " TC* " constants */"
 .B #include <sys/ioctl.h>
 .P
-.BI "int ioctl(int " fd ", int " op ", ...);"
+.BI "int ioctl(int " fd ", TCGETS, struct termios *" argp );
+.BI "int ioctl(int " fd ", TCSETS, const struct termios *" argp );
+.BI "int ioctl(int " fd ", TCSETSW, const struct termios *" argp );
+.BI "int ioctl(int " fd ", TCSETSF, const struct termios *" argp );
+.P
+.BI "int ioctl(int " fd ", TCGETS2, struct termios2 *" argp );
+.BI "int ioctl(int " fd ", TCSETS2, const struct termios2 *" argp );
+.BI "int ioctl(int " fd ", TCSETSW2, const struct termios2 *" argp );
+.BI "int ioctl(int " fd ", TCSETSF2, const struct termios2 *" argp );
+.P
+.BI "int ioctl(int " fd ", TCGETA, struct termio *" argp );
+.BI "int ioctl(int " fd ", TCSETA, const struct termio *" argp );
+.BI "int ioctl(int " fd ", TCSETAW, const struct termio *" argp );
+.BI "int ioctl(int " fd ", TCSETAF, const struct termio *" argp );
 .P
 .B #include <asm/termbits.h>
 .P
@@ -39,27 +52,18 @@ Standard C library
 .SH DESCRIPTION
 .TP
 .B TCGETS
-Argument:
-.BI "struct termios\~*" argp
-.IP
 Equivalent to
 .IR "tcgetattr(fd, argp)" .
 .IP
 Get the current serial port settings.
 .TP
 .B TCSETS
-Argument:
-.BI "const struct termios\~*" argp
-.IP
 Equivalent to
 .IR "tcsetattr(fd, TCSANOW, argp)" .
 .IP
 Set the current serial port settings.
 .TP
 .B TCSETSW
-Argument:
-.BI "const struct termios\~*" argp
-.IP
 Equivalent to
 .IR "tcsetattr(fd, TCSADRAIN, argp)" .
 .IP
@@ -67,18 +71,13 @@ Allow the output buffer to drain, and
 set the current serial port settings.
 .TP
 .B TCSETSF
-Argument:
-.BI "const struct termios\~*" argp
-.IP
 Equivalent to
 .IR "tcsetattr(fd, TCSAFLUSH, argp)" .
 .IP
 Allow the output buffer to drain, discard pending input, and
 set the current serial port settings.
 .P
-The following four ioctls, added in Linux 2.6.20,
-.\" commit 64bb6c5e1ddcd47c951740485026ef08975ee2e6
-.\" commit 592ee3a5e5e2a981ef2829a0380093006d045661
+The following four ioctls
 are just like
 .BR TCGETS ,
 .BR TCSETS ,
@@ -99,13 +98,14 @@ and
 as integer values.
 These ioctls are not supported on all architectures.
 .RS
-.TS
-lb l.
-TCGETS2	\fBstruct termios2 *\fPargp
-TCSETS2	\fBconst struct termios2 *\fPargp
-TCSETSW2	\fBconst struct termios2 *\fPargp
-TCSETSF2	\fBconst struct termios2 *\fPargp
-.TE
+.TP
+.B TCGETS2
+.TQ
+.B TCSETS2
+.TQ
+.B TCSETSW2
+.TQ
+.B TCSETSF2
 .RE
 .P
 The following four ioctls are just like
@@ -118,13 +118,14 @@ except that they take a
 instead of a
 .IR "struct termios\~*" .
 .RS
-.TS
-lb l.
-TCGETA	\fBstruct termio *\fPargp
-TCSETA	\fBconst struct termio *\fPargp
-TCSETAW	\fBconst struct termio *\fPargp
-TCSETAF	\fBconst struct termio *\fPargp
-.TE
+.TP
+.B TCGETA
+.TQ
+.B TCSETA
+.TQ
+.B TCSETAW
+.TQ
+.B TCSETAF
 .RE
 .SH RETURN VALUE
 On success,
@@ -136,6 +137,18 @@ is set to indicate the error.
 .TP
 .B EPERM
 Insufficient permission.
+.SH HISTORY
+.TP
+.B TCGETS2
+.TQ
+.B TCSETS2
+.TQ
+.B TCSETSW2
+.TQ
+.B TCSETSF2
+.\" linux.git commit 64bb6c5e1ddcd47c951740485026ef08975ee2e6
+.\" linux.git commit 592ee3a5e5e2a981ef2829a0380093006d045661
+Linux 2.6.20.
 .SH CAVEATS
 .B struct termios
 from
