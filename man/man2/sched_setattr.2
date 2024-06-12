@@ -349,16 +349,21 @@ admission control failure, see
 .TP
 .B EINVAL
 .I attr.sched_policy
-is not one of the recognized policies;
+is not one of the recognized policies.
+.TP
+.B EINVAL
 .I attr.sched_flags
 contains a flag other than
-.BR SCHED_FLAG_RESET_ON_FORK ;
-or
+.BR SCHED_FLAG_RESET_ON_FORK .
+.TP
+.B EINVAL
 .I attr.sched_priority
-is invalid; or
+is invalid.
+.TP
+.B EINVAL
 .I attr.sched_policy
 is
-.B SCHED_DEADLINE
+.BR SCHED_DEADLINE ,
 and the deadline scheduling parameters in
 .I attr
 are invalid.
