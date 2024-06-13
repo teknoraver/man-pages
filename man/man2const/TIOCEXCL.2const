@@ -37,7 +37,6 @@ except for a process with the
 capability.)
 .TP
 .B TIOCGEXCL
-(since Linux 3.8)
 If the terminal is currently in exclusive mode,
 place a nonzero value in the location pointed to by
 .IR argp ;
@@ -53,6 +52,10 @@ On error,
 \-1 is returned, and
 .I errno
 is set to indicate the error.
+.SH HISTORY
+.TP
+.B TIOCGEXCL
+Linux 3.8.
 .SH SEE ALSO
 .BR ioctl (2),
 .BR ioctl_tty (2)
