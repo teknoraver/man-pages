@@ -155,26 +155,8 @@ For the
 ioctl, see
 .BR ioctl_console (2).
 .SS Kernel debugging
-.B "#include <linux/tty.h>"
 .TP
 .B TIOCTTYGSTRUCT
-Argument:
-.BI "struct tty_struct\~*" argp
-.IP
-Get the
-.I tty_struct
-corresponding to
-.IR fd .
-This operation was removed in Linux 2.5.67.
-.\"     commit b3506a09d15dc5aee6d4bb88d759b157016e1864
-.\"     Author: Andries E. Brouwer <andries.brouwer@cwi.nl>
-.\"     Date:   Tue Apr 1 04:42:46 2003 -0800
-.\"
-.\"     [PATCH] kill TIOCTTYGSTRUCT
-.\"
-.\"     Only used for (dubious) debugging purposes, and exposes
-.\"     internal kernel state.
-.\"
 .\" .SS Serial info
 .\" .BR "#include <linux/serial.h>"
 .\" .P
@@ -242,6 +224,7 @@ is set to indicate the error.
 .BR TIOCGICOUNT (2const),
 .BR TIOCGSOFTCAR (2const),
 .BR TIOCSSOFTCAR (2const),
+.BR TIOCTTYGSTRUCT (2const),
 .BR ldattach (8),
 .BR ioctl_console (2),
 .BR termios (3),
