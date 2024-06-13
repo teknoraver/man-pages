@@ -116,35 +116,10 @@ whenever possible.
 .SS Exclusive mode
 .TP
 .B TIOCEXCL
-Argument:
-.B void
-.IP
-Put the terminal into exclusive mode.
-No further
-.BR open (2)
-operations on the terminal are permitted.
-(They fail with
-.BR EBUSY ,
-except for a process with the
-.B CAP_SYS_ADMIN
-capability.)
-.TP
+.TQ
 .B TIOCGEXCL
-Argument:
-.BI "int\~*" argp
-.IP
-(since Linux 3.8)
-If the terminal is currently in exclusive mode,
-place a nonzero value in the location pointed to by
-.IR argp ;
-otherwise, place zero in
-.IR *argp .
-.TP
+.TQ
 .B TIOCNXCL
-Argument:
-.B void
-.IP
-Disable exclusive mode.
 .SS Line discipline
 .TP
 .B TIOCGETD
@@ -496,6 +471,9 @@ main(void)
 .BR TIOCGPGRP (2const),
 .BR TIOCSPGRP (2const),
 .BR TIOCGSID (2const),
+.BR TIOCEXCL (2const),
+.BR TIOCGEXCL (2const),
+.BR TIOCNXCL (2const),
 .BR ldattach (8),
 .BR ioctl_console (2),
 .BR termios (3),
