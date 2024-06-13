@@ -18,28 +18,20 @@ Standard C library
 .BR "#include <linux/userfaultfd.h>" "  /* Definition of " UFFD* " constants */"
 .B #include <sys/ioctl.h>
 .P
-.BI "int ioctl(int " fd ", UFFDIO_API, ...);"
+.BI "int ioctl(int " fd ", UFFDIO_API, struct uffdio_api *" argp );
+.P
+.B #include <linux/userfaultfd.h>
+.P
+.EX
+.B struct uffdio_api {
+.BR "    __u64 api;" "       /* Requested API version (input) */"
+.BR "    __u64 features;" "  /* Requested features (input/output) */"
+.BR "    __u64 ioctls;" "    /* Available ioctl() operations (output) */"
+.B };
+.EE
 .fi
 .SH DESCRIPTION
-.SS UFFDIO_API
-(Since Linux 4.3.)
 Enable operation of the userfaultfd and perform API handshake.
-.P
-The
-.I argp
-argument is a pointer to a
-.I uffdio_api
-structure, defined as:
-.P
-.in +4n
-.EX
-struct uffdio_api {
-    __u64 api;        /* Requested API version (input) */
-    __u64 features;   /* Requested features (input/output) */
-    __u64 ioctls;     /* Available ioctl() operations (output) */
-};
-.EE
-.in
 .P
 The
 .I api
@@ -212,9 +204,9 @@ the write protection faults would be asynchronously resolved
 by the kernel.
 .P
 The returned
-.I ioctls
+.I argp->ioctls
 field can contain the following bits:
-.\" FIXME This user-space API seems not fully polished. Why are there
+.\" FIXME This user-space API seems not fully polished.  Why are there
 .\" not constants defined for each of the bit-mask values listed below?
 .TP
 .B 1 << _UFFDIO_API
@@ -231,22 +223,14 @@ operation is supported.
 The
 .B UFFDIO_UNREGISTER
 operation is supported.
+.SH RETURN VALUE
+On success,
+0 is returned.
 .P
-This
-.BR ioctl (2)
-operation returns 0 on success.
 On error, \-1 is returned and
 .I errno
 is set to indicate the error.
-If an error occurs,
-the kernel may zero the provided
-.I uffdio_api
-structure.
-The caller should treat its contents as unspecified,
-and reinitialize it before re-attempting another
-.B UFFDIO_API
-call.
-Possible errors include:
+.SH ERRORS
 .TP
 .B EFAULT
 .I argp
@@ -279,11 +263,19 @@ feature was enabled,
 but the calling process doesn't have the
 .B CAP_SYS_PTRACE
 capability.
-.SH RETURN VALUE
-.SH ERRORS
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 4.3.
+.SH CAVEATS
+If an error occurs,
+the kernel may zero the provided
+.I uffdio_api
+structure.
+The caller should treat its contents as unspecified,
+and reinitialize it before re-attempting another
+.B UFFDIO_API
+call.
 .SH BUGS
 In order to detect available userfault features and
 enable some subset of those features
@@ -302,5 +294,4 @@ See
 .BR mmap (2),
 .BR userfaultfd (2)
 .P
-.I Documentation/admin\-guide/mm/userfaultfd.rst
-in the Linux kernel source tree
+.I linux.git/\:Documentation/\:admin\-guide/\:mm/\:userfaultfd.rst
