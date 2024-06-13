@@ -190,7 +190,7 @@ locally \fB\[ha]S\fP/\fB\[ha]Q\fP flow-controlled remote login.
 .TP
 .B TIOCGPKT
 Argument:
-.BI "const int\~*" argp
+.BI int\~* argp
 .IP
 (since Linux 3.8)
 Return the current packet mode setting in the integer pointed to by
@@ -198,7 +198,7 @@ Return the current packet mode setting in the integer pointed to by
 .TP
 .B TIOCSPTLCK
 Argument:
-.BI "int\~*" argp
+.BI "const int\~*" argp
 .IP
 Set (if
 .I *argp
