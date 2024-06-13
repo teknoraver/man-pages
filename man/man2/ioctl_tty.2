@@ -109,36 +109,10 @@ whenever possible.
 .SS Process group and session ID
 .TP
 .B TIOCGPGRP
-Argument:
-.BI "pid_t\~*" argp
-.IP
-When successful, equivalent to
-.IR "*argp = tcgetpgrp(fd)" .
-.IP
-Get the process group ID of the foreground process group on this terminal.
-.TP
+.TQ
 .B TIOCSPGRP
-Argument:
-.BI "const pid_t\~*" argp
-.IP
-Equivalent to
-.IR "tcsetpgrp(fd, *argp)" .
-.IP
-Set the foreground process group ID of this terminal.
-.TP
+.TQ
 .B TIOCGSID
-Argument:
-.BI "pid_t\~*" argp
-.IP
-When successful, equivalent to
-.IR "*argp = tcgetsid(fd)" .
-.IP
-Get the session ID of the given terminal.
-This fails with the error
-.B ENOTTY
-if the terminal is not a master pseudoterminal
-and not our controlling terminal.
-Strange.
 .SS Exclusive mode
 .TP
 .B TIOCEXCL
@@ -462,10 +436,6 @@ On error,
 \-1 is returned, and
 .I errno
 is set to indicate the error.
-.SH ERRORS
-.TP
-.B EPERM
-Insufficient permission.
 .SH EXAMPLES
 Check the condition of DTR on the serial port.
 .P
@@ -523,6 +493,9 @@ main(void)
 .BR TIOCCONS (2const),
 .BR TIOCSCTTY (2const),
 .BR TIOCNOTTY (2const),
+.BR TIOCGPGRP (2const),
+.BR TIOCSPGRP (2const),
+.BR TIOCGSID (2const),
 .BR ldattach (8),
 .BR ioctl_console (2),
 .BR termios (3),
