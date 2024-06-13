@@ -22,11 +22,11 @@ Standard C library
 .BR "#include <asm/termbits.h>" "  /* Definition of " TIOC* " constants */"
 .B #include <sys/ioctl.h>
 .P
-.BI "int ioctl(int " fd ", TIOCPKT, const int *" argp );
-.BI "int ioctl(int " fd ", TIOCPKT, int *" argp );
+.BI "int ioctl(int " fd ", TIOCPKT, const int *" mode );
+.BI "int ioctl(int " fd ", TIOCPKT, int *" mode );
 .P
-.BI "int ioctl(int " fd ", TIOCSPTLCK, const int *" argp );
-.BI "int ioctl(int " fd ", TIOCGPTLCK, int *" argp );
+.BI "int ioctl(int " fd ", TIOCSPTLCK, const int *" lock );
+.BI "int ioctl(int " fd ", TIOCGPTLCK, int *" lock );
 .P
 .BI "int ioctl(int " fd ", TIOCGPTPEER, int " flags );
 .fi
@@ -34,7 +34,7 @@ Standard C library
 .TP
 .B TIOCPKT
 Enable (when
-.RI * argp
+.RI * mode
 is nonzero) or disable packet mode.
 Can be applied to the master side of a pseudoterminal only (and will return
 .B ENOTTY
@@ -91,28 +91,24 @@ to implement a remote-echoed,
 locally \fB\[ha]S\fP/\fB\[ha]Q\fP flow-controlled remote login.
 .TP
 .B TIOCGPKT
-(since Linux 3.8)
 Return the current packet mode setting in the integer pointed to by
-.IR argp .
+.IR mode .
 .TP
 .B TIOCSPTLCK
 Set (if
-.I *argp
+.I *lock
 is nonzero) or remove (if
-.I *argp
+.I *lock
 is zero) the lock on the pseudoterminal slave device.
 (See also
 .BR unlockpt (3).)
 .TP
 .B TIOCGPTLCK
-(since Linux 3.8)
 Place the current lock state of the pseudoterminal slave device
 in the location pointed to by
-.IR argp .
+.IR lock .
 .TP
 .B TIOCGPTPEER
-.\" commit 54ebbfb1603415d9953c150535850d30609ef077
-(since Linux 4.13)
 Given a file descriptor in
 .I fd
 that refers to a pseudoterminal master,
@@ -135,14 +131,6 @@ and similar library functions that have insecure APIs.
 .BR ptsname (3)
 with a pathname where a devpts filesystem
 has been mounted in a different mount namespace.)
-.P
-The BSD ioctls
-.BR TIOCSTOP ,
-.BR TIOCSTART ,
-.BR TIOCUCNTL ,
-and
-.B TIOCREMOTE
-have not been implemented under Linux.
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -153,6 +141,25 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B ENOTTY
+.SH HISTORY
+.TP
+.B TIOCGPKT
+Linux 3.8.
+.TP
+.B TIOCGPTLCK
+Linux 3.8.
+.TP
+.B TIOCGPTPEER
+.\" linux.git commit 54ebbfb1603415d9953c150535850d30609ef077
+Linux 4.13.
+.P
+The BSD ioctls
+.BR TIOCSTOP ,
+.BR TIOCSTART ,
+.BR TIOCUCNTL ,
+and
+.B TIOCREMOTE
+have not been implemented under Linux.
 .SH SEE ALSO
 .BR ioctl (2),
 .BR ioctl_tty (2)
