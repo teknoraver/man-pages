@@ -147,39 +147,8 @@ whenever possible.
 .SS Marking a line as local
 .TP
 .B TIOCGSOFTCAR
-Argument:
-.BI "int\~*" argp
-.IP
-("Get software carrier flag")
-Get the status of the CLOCAL flag in the c_cflag field of the
-.I termios
-structure.
-.TP
+.TQ
 .B TIOCSSOFTCAR
-Argument:
-.BI "const int\~*" argp
-.IP
-("Set software carrier flag")
-Set the CLOCAL flag in the
-.I termios
-structure when
-.RI * argp
-is nonzero, and clear it otherwise.
-.P
-If the
-.B CLOCAL
-flag for a line is off, the hardware carrier detect (DCD)
-signal is significant, and an
-.BR open (2)
-of the corresponding terminal will block until DCD is asserted,
-unless the
-.B O_NONBLOCK
-flag is given.
-If
-.B CLOCAL
-is set, the line behaves as if DCD is always asserted.
-The software carrier flag is usually turned on for local devices,
-and is off for lines with modems.
 .SS Linux-specific
 For the
 .B TIOCLINUX
@@ -271,6 +240,8 @@ is set to indicate the error.
 .BR TIOCMBIS (2const),
 .BR TIOCMIWAIT (2const),
 .BR TIOCGICOUNT (2const),
+.BR TIOCGSOFTCAR (2const),
+.BR TIOCSSOFTCAR (2const),
 .BR ldattach (8),
 .BR ioctl_console (2),
 .BR termios (3),
