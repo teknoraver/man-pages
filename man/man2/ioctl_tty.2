@@ -104,39 +104,8 @@ whenever possible.
 .SS Controlling terminal
 .TP
 .B TIOCSCTTY
-Argument:
-.BI "int " arg
-.IP
-Make the given terminal the controlling terminal of the calling process.
-The calling process must be a session leader and not have a
-controlling terminal already.
-For this case,
-.I arg
-should be specified as zero.
-.IP
-If this terminal is already the controlling terminal
-of a different session group, then the ioctl fails with
-.BR EPERM ,
-unless the caller has the
-.B CAP_SYS_ADMIN
-capability and
-.I arg
-equals 1, in which case the terminal is stolen, and all processes that had
-it as controlling terminal lose it.
-.TP
+.TQ
 .B TIOCNOTTY
-Argument:
-.B void
-.IP
-If the given terminal was the controlling terminal of the calling process,
-give up this controlling terminal.
-If the process was session leader,
-then send
-.B SIGHUP
-and
-.B SIGCONT
-to the foreground process group
-and all processes in the current session lose their controlling terminal.
 .SS Process group and session ID
 .TP
 .B TIOCGPGRP
@@ -552,6 +521,8 @@ main(void)
 .BR TIOCSERGETLSR (2const),
 .BR TIOCSTI (2const),
 .BR TIOCCONS (2const),
+.BR TIOCSCTTY (2const),
+.BR TIOCNOTTY (2const),
 .BR ldattach (8),
 .BR ioctl_console (2),
 .BR termios (3),
