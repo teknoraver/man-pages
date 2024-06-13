@@ -101,29 +101,6 @@ whenever possible.
 .SS Redirecting console output
 .TP
 .B TIOCCONS
-Argument:
-.B void
-.IP
-Redirect output that would have gone to
-.I /dev/console
-or
-.I /dev/tty0
-to the given terminal.
-If that was a pseudoterminal master, send it to the slave.
-Before Linux 2.6.10,
-anybody can do this as long as the output was not redirected yet;
-since Linux 2.6.10, only a process with the
-.B CAP_SYS_ADMIN
-capability may do this.
-If output was redirected already, then
-.B EBUSY
-is returned,
-but redirection can be stopped by using this ioctl with
-.I fd
-pointing at
-.I /dev/console
-or
-.IR /dev/tty0 .
 .SS Controlling terminal
 .TP
 .B TIOCSCTTY
@@ -574,6 +551,7 @@ main(void)
 .BR TCFLSH (2const),
 .BR TIOCSERGETLSR (2const),
 .BR TIOCSTI (2const),
+.BR TIOCCONS (2const),
 .BR ldattach (8),
 .BR ioctl_console (2),
 .BR termios (3),
