@@ -17,25 +17,20 @@ Standard C library
 .BR "#include <asm/termbits.h>" "  /* Definition of " TIOCCONS " */"
 .B #include <sys/ioctl.h>
 .P
-.BI "int ioctl(int " fd ", int " op ", ...);"
+.BI "int ioctl(int " fd ", TIOCCONS);"
 .fi
 .SH DESCRIPTION
-.TP
-.B TIOCCONS
-Argument:
-.B void
-.IP
 Redirect output that would have gone to
 .I /dev/console
 or
 .I /dev/tty0
 to the given terminal.
 If that was a pseudoterminal master, send it to the slave.
-Before Linux 2.6.10,
-anybody can do this as long as the output was not redirected yet;
-since Linux 2.6.10, only a process with the
+.P
+Only a process with the
 .B CAP_SYS_ADMIN
 capability may do this.
+.P
 If output was redirected already, then
 .B EBUSY
 is returned,
@@ -54,8 +49,16 @@ On error,
 is set to indicate the error.
 .SH ERRORS
 .TP
+.B EBUSY
+Output was redirected already.
+.TP
 .B EPERM
 Insufficient permission.
+.SH HISTORY
+Before Linux 2.6.10,
+anybody can do this as long as the output was not redirected yet;
+.B CAP_SYS_ADMIN
+was not necessary.
 .SH SEE ALSO
 .BR ioctl (2),
 .BR ioctl_tty (2)
