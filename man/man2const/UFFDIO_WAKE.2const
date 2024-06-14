@@ -18,10 +18,9 @@ Standard C library
 .BR "#include <linux/userfaultfd.h>" "  /* Definition of " UFFD* " constants */"
 .B #include <sys/ioctl.h>
 .P
-.BI "int ioctl(int " fd ", UFFDIO_WAKE, ...);"
+.BI "int ioctl(int " fd ", UFFDIO_WAKE, const struct uffdio_range *" argp );
 .fi
 .SH DESCRIPTION
-(Since Linux 4.3.)
 Wake up the thread waiting for page-fault resolution on
 a specified memory address range.
 .P
@@ -44,12 +43,6 @@ and
 .B UFFDIO_ZEROPAGE
 operations in a batch and then explicitly wake up the faulting thread using
 .BR UFFDIO_WAKE .
-.P
-The
-.I argp
-argument is a pointer to a
-.I uffdio_range
-structure (shown above) that specifies the address range.
 .SH RETURN VALUE
 This
 .BR ioctl (2)
@@ -72,6 +65,7 @@ was zero; or the specified range was otherwise invalid.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 4.3.
 .SH EXAMPLES
 See
 .BR userfaultfd (2).
@@ -81,5 +75,4 @@ See
 .BR UFFDIO_REGISTER (2const),
 .BR userfaultfd (2)
 .P
-.I Documentation/admin\-guide/mm/userfaultfd.rst
-in the Linux kernel source tree
+.I linux.git/\:Documentation/\:admin\-guide/\:mm/\:userfaultfd.rst
