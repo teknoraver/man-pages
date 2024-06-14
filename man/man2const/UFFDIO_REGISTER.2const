@@ -18,51 +18,39 @@ Standard C library
 .BR "#include <linux/userfaultfd.h>" "  /* Definition of " UFFD* " constants */"
 .B #include <sys/ioctl.h>
 .P
-.BI "int ioctl(int " fd ", UFFDIO_REGISTER, ...);"
+.BI "int ioctl(int " fd ", UFFDIO_REGISTER, struct uffdio_register *" argp );
 .P
 .B #include <linux/userfaultfd.h>
 .P
-.B struct uffdio_range;
-.B struct uffdio_register;
+.EX
+.B struct uffdio_range {
+.BR "    __u64  start;" "   /* Start of range */"
+.BR "    __u64  len;" "     /* Length of range (bytes) */"
+.B };
+\&
+.B struct uffdio_register {
+.B "    struct uffdio_range  range;"
+.BR "    __u64                mode;" "    /* Desired mode of operation (input) */"
+.BR "    __u64                ioctls;" "  /* Available ioctl()s (output) */"
+.B };
+.EE
 .fi
 .SH DESCRIPTION
-(Since Linux 4.3.)
 Register a memory address range with the userfaultfd object.
 The pages in the range must be \[lq]compatible\[rq].
 Please refer to the list of register modes below
 for the compatible memory backends for each mode.
 .P
 The
-.I argp
-argument is a pointer to a
-.I uffdio_register
-structure, defined as:
-.P
-.in +4n
-.EX
-struct uffdio_range {
-    __u64 start;    /* Start of range */
-    __u64 len;      /* Length of range (bytes) */
-};
-\&
-struct uffdio_register {
-    struct uffdio_range range;
-    __u64 mode;     /* Desired mode of operation (input) */
-    __u64 ioctls;   /* Available ioctl() operations (output) */
-};
-.EE
-.in
-.P
-The
-.I range
+.I argp->range
 field defines a memory range starting at
-.I start
+.I argp->range.start
 and continuing for
-.I len
+.I argp->range.len
 bytes that should be handled by the userfaultfd.
 .P
 The
-.I mode
+.I argp->mode
 field defines the mode of operation desired for this memory region.
 The following values may be bitwise ORed to set the userfaultfd mode for
 the specified range:
@@ -87,7 +75,7 @@ Since Linux 5.14,
 compatibility with shmem ranges was added.
 .P
 If the operation is successful, the kernel modifies the
-.I ioctls
+.I argp->ioctls
 bit-mask field to indicate which
 .BR ioctl (2)
 operations are available for the specified range.
@@ -123,9 +111,8 @@ The
 .B UFFDIO_POISON
 operation is supported.
 .SH RETURN VALUE
-This
-.BR ioctl (2)
-operation returns 0 on success.
+On success,
+0 is returned.
 On error, \-1 is returned and
 .I errno
 is set to indicate the error.
@@ -167,6 +154,8 @@ There as an incompatible mapping in the specified address range.
 .\" mm_struct has gone by the time userfault grabs it.
 .SH STANDARDS
 Linux.
+.SH HISTORY
+Linux 4.3.
 .SH EXAMPLES
 See
 .BR userfaultfd (2).
@@ -176,5 +165,4 @@ See
 .BR UFFDIO_UNREGISTER (2const),
 .BR userfaultfd (2)
 .P
-.I Documentation/admin\-guide/mm/userfaultfd.rst
-in the Linux kernel source tree
+.I linux.git/\:Documentation/\:admin\-guide/\:mm/\:userfaultfd.rst
