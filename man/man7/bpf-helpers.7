@@ -27,7 +27,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
-.TH "BPF-HELPERS" 7 "2023-11-10" "Linux v6.8"
+.TH "BPF-HELPERS" 7 "2024-01-23" "Linux v6.9"
 .SH NAME
 BPF-HELPERS \- list of eBPF helper functions
 .\" Copyright (C) All BPF authors and contributors from 2014 to present.
@@ -3997,9 +3997,9 @@ the netns switch takes place from ingress to ingress without
 going through the CPU\(aqs backlog queue.
 .sp
 The \fIflags\fP argument is reserved and must be 0. The helper is
-currently only supported for tc BPF program types at the ingress
-hook and for veth device types. The peer device must reside in a
-different network namespace.
+currently only supported for tc BPF program types at the
+ingress hook and for veth and netkit target device types. The
+peer device must reside in a different network namespace.
 .TP
 .B Return
 The helper returns \fBTC_ACT_REDIRECT\fP on success or
