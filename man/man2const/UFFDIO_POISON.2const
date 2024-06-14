@@ -19,9 +19,19 @@ Standard C library
 .B #include <sys/ioctl.h>
 .P
 .BI "int ioctl(int " fd ", UFFDIO_POISON, ...);"
+.P
+.B #include <linux/userfaultfd.h>
+.P
+.EX
+.B struct uffdio_poison {
+.B "	struct uffdio_range  range;"
+	                  /* Range to install poison PTE markers in */
+.BR "	__u64   mode;" "     /* Flags controlling the behavior of poison */"
+.BR "	__s64   updated;" "  /* Number of bytes poisoned, or negated error */"
+.B };
+.EE
 .fi
 .SH DESCRIPTION
-(Since Linux 6.6.)
 Mark an address range as "poisoned".
 Future accesses to these addresses will raise a
 .B SIGBUS
@@ -31,23 +41,6 @@ Unlike
 this works by installing page table entries,
 rather than "really" poisoning the underlying physical pages.
 This means it only affects this particular address space.
-.P
-The
-.I argp
-argument is a pointer to a
-.I uffdio_poison
-structure as shown below:
-.P
-.in +4n
-.EX
-struct uffdio_poison {
-	struct uffdio_range range;
-	                /* Range to install poison PTE markers in */
-	__u64 mode;     /* Flags controlling the behavior of poison */
-	__s64 updated;  /* Number of bytes poisoned, or negated error */
-};
-.EE
-.in
 .P
 The following value may be bitwise ORed in
 .I mode
@@ -77,11 +70,11 @@ it is not read by the
 .B UFFDIO_POISON
 operation.
 .SH RETURN VALUE
-This
-.BR ioctl (2)
-operation returns 0 on success.
+On success,
+0 is returned.
 In this case,
 the entire area was poisoned.
+.P
 On error, \-1 is returned and
 .I errno
 is set to indicate the error.
@@ -129,6 +122,7 @@ operation.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 6.6.
 .SH EXAMPLES
 See
 .BR userfaultfd (2).
@@ -137,5 +131,4 @@ See
 .BR ioctl_userfaultfd (2),
 .BR userfaultfd (2)
 .P
-.I Documentation/admin\-guide/mm/userfaultfd.rst
-in the Linux kernel source tree
+.I linux.git/\:Documentation/\:admin\-guide/\:mm/\:userfaultfd.rst
