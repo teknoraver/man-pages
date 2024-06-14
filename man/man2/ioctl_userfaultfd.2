@@ -70,55 +70,8 @@ events.
 .BR UFFDIO_COPY (2const)
 .TQ
 .BR UFFDIO_ZEROPAGE (2const)
-.SS UFFDIO_WAKE
-(Since Linux 4.3.)
-Wake up the thread waiting for page-fault resolution on
-a specified memory address range.
-.P
-The
-.B UFFDIO_WAKE
-operation is used in conjunction with
-.B UFFDIO_COPY
-and
-.B UFFDIO_ZEROPAGE
-operations that have the
-.B UFFDIO_COPY_MODE_DONTWAKE
-or
-.B UFFDIO_ZEROPAGE_MODE_DONTWAKE
-bit set in the
-.I mode
-field.
-The userfault monitor can perform several
-.B UFFDIO_COPY
-and
-.B UFFDIO_ZEROPAGE
-operations in a batch and then explicitly wake up the faulting thread using
-.BR UFFDIO_WAKE .
-.P
-The
-.I argp
-argument is a pointer to a
-.I uffdio_range
-structure (shown above) that specifies the address range.
-.P
-This
-.BR ioctl (2)
-operation returns 0 on success.
-On error, \-1 is returned and
-.I errno
-is set to indicate the error.
-Possible errors include:
-.TP
-.B EINVAL
-The
-.I start
-or the
-.I len
-field of the
-.I ufdio_range
-structure was not a multiple of the system page size; or
-.I len
-was zero; or the specified range was otherwise invalid.
+.TQ
+.BR UFFDIO_WAKE (2const)
 .SS UFFDIO_WRITEPROTECT
 (Since Linux 5.7.)
 Write-protect or write-unprotect a userfaultfd-registered memory range
