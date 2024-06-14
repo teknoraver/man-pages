@@ -18,37 +18,29 @@ Standard C library
 .BR "#include <linux/userfaultfd.h>" "  /* Definition of " UFFD* " constants */"
 .B #include <sys/ioctl.h>
 .P
-.BI "int ioctl(int " fd ", UFFDIO_UNREGISTER, ...);"
+.BI "int ioctl(int " fd ", UFFDIO_UNREGISTER, const struct uffdio_range *" argp );
 .fi
 .SH DESCRIPTION
-(Since Linux 4.3.)
 Unregister a memory address range from userfaultfd.
 The pages in the range must be \[lq]compatible\[rq]
-(see the description of
-.BR UFFDIO_REGISTER .)
-.P
-The address range to unregister is specified in the
-.I uffdio_range
-structure pointed to by
-.IR argp .
+(see
+.BR UFFDIO_REGISTER (2const)).
 .SH RETURN VALUE
-This
-.BR ioctl (2)
-operation returns 0 on success.
+On success,
+0 is returned.
 On error, \-1 is returned and
 .I errno
 is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-Either the
-.I start
+Either
+.I argp->start
 or the
-.I len
-field of the
-.I ufdio_range
-structure was not a multiple of the system page size; or the
-.I len
+.I argp->len
+fields
+was not a multiple of the system page size; or the
+.I argp->len
 field was zero; or these fields were otherwise invalid.
 .TP
 .B EINVAL
@@ -59,6 +51,7 @@ There was no mapping in the specified address range.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 4.3.
 .SH EXAMPLES
 See
 .BR userfaultfd (2).
@@ -68,5 +61,4 @@ See
 .BR UFFDIO_REGISTER (2const),
 .BR userfaultfd (2)
 .P
-.I Documentation/admin\-guide/mm/userfaultfd.rst
-in the Linux kernel source tree
+.I linux.git/Documentation/admin\-guide/mm/userfaultfd.rst
