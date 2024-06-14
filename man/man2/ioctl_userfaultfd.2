@@ -1,9 +1,9 @@
-.\" Copyright (c) 2016, IBM Corporation.
+.\" Copyright 2016, IBM Corporation.
 .\" Written by Mike Rapoport <rppt@linux.vnet.ibm.com>
-.\" and Copyright (C) 2016 Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2016, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
 .\"
 .TH ioctl_userfaultfd 2 (date) "Linux man-pages (unreleased)"
 .SH NAME
@@ -79,10 +79,14 @@ events.
 .TQ
 .BR UFFDIO_POISON (2const)
 .SH RETURN VALUE
-See descriptions of the individual operations, above.
+On success,
+0 is returned.
+On error,
+\-1 is returned, and
+.I errno
+is set to indicate the error.
 .SH ERRORS
-See descriptions of the individual operations, above.
-In addition, the following general errors can occur for all of the
+The following general errors can occur for all of the
 operations described above:
 .TP
 .B EFAULT
@@ -105,5 +109,4 @@ See
 .BR mmap (2),
 .BR userfaultfd (2)
 .P
-.I Documentation/admin\-guide/mm/userfaultfd.rst
-in the Linux kernel source tree
+.I linux.git/\:Documentation/\:admin\-guide/\:mm/\:userfaultfd.rst
