@@ -19,27 +19,20 @@ Standard C library
 .B #include <sys/ioctl.h>
 .P
 .BI "int ioctl(int " fd ", UFFDIO_WRITEPROTECT, ...);"
+.P
+.B #include <linux/userfaultfd.h>
+.P
+.EX
+.B struct uffdio_writeprotect {
+.BR "    struct uffdio_range  range;" "  /* Range to change write permission*/"
+.BR "    __u64                mode;" "   /* Mode to change write permission */"
+.B };
+.EE
 .fi
 .SH DESCRIPTION
-(Since Linux 5.7.)
 Write-protect or write-unprotect a userfaultfd-registered memory range
 registered with mode
 .BR UFFDIO_REGISTER_MODE_WP .
-.P
-The
-.I argp
-argument is a pointer to a
-.I uffdio_range
-structure as shown below:
-.P
-.in +4n
-.EX
-struct uffdio_writeprotect {
-    struct uffdio_range range; /* Range to change write permission*/
-    __u64 mode;                /* Mode to change write permission */
-};
-.EE
-.in
 .P
 There are two mode bits that are supported in this structure:
 .TP
@@ -58,9 +51,8 @@ This can be specified only if
 .B UFFDIO_WRITEPROTECT_MODE_WP
 is not specified.
 .SH RETURN VALUE
-This
-.BR ioctl (2)
-operation returns 0 on success.
+On success,
+0 is returned.
 On error, \-1 is returned and
 .I errno
 is set to indicate the error.
@@ -92,6 +84,7 @@ Encountered a generic fault during processing.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 5.7.
 .SH EXAMPLES
 See
 .BR userfaultfd (2).
