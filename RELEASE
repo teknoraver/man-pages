@@ -139,6 +139,16 @@ Description
             The subject of the email should be
             "man-pages-$new released".
 
+            A list of contributors can be obtained with:
+
+                $ git log man-pages-$old..HEAD \
+                | grep -v -e Message-ID: -e Link: \
+                | grep '<.*@.*>' \
+                | sed 's/^ *//' \
+                | sed 's/[^:]*: //' \
+                | sort \
+                | uniq;
+
        (7)  Changes.old
 
             Move the contents of <Changes> to <Changes.old>, and prepare
