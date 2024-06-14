@@ -56681,11 +56681,11 @@ man2/
 	ioctl_eventpoll.2
 	ioctl_fat.2			(split into many small pages)
 	ioctl_fs.2
-	ioctl_kd.2			(split into many small pages)
-	ioctl_nsfs.2			(split into many small pages)
+	ioctl_kd.2
+	ioctl_nsfs.2	(split into many small pages; previously, ioctl_ns.2)
 	ioctl_tty.2			(split into many small pages)
 	ioctl_userfaultfd.2		(split into many small pages)
-	ioctl_vt.2			(split into many small pages)
+	ioctl_vt.2
 	prctl.2				(split into many small pages)
 
 man2const/
