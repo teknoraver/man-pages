@@ -64,43 +64,8 @@ events.
 .BR UFFDIO_API (2const)
 .TQ
 .BR UFFDIO_REGISTER (2const)
-.SS UFFDIO_UNREGISTER
-(Since Linux 4.3.)
-Unregister a memory address range from userfaultfd.
-The pages in the range must be \[lq]compatible\[rq]
-(see the description of
-.BR UFFDIO_REGISTER .)
-.P
-The address range to unregister is specified in the
-.I uffdio_range
-structure pointed to by
-.IR argp .
-.P
-This
-.BR ioctl (2)
-operation returns 0 on success.
-On error, \-1 is returned and
-.I errno
-is set to indicate the error.
-Possible errors include:
-.TP
-.B EINVAL
-Either the
-.I start
-or the
-.I len
-field of the
-.I ufdio_range
-structure was not a multiple of the system page size; or the
-.I len
-field was zero; or these fields were otherwise invalid.
-.TP
-.B EINVAL
-There as an incompatible mapping in the specified address range.
-.TP
-.B EINVAL
-There was no mapping in the specified address range.
-.\"
+.TQ
+.BR UFFDIO_UNREGISTER (2const)
 .SS UFFDIO_COPY
 (Since Linux 4.3.)
 Atomically copy a continuous memory chunk into the userfault registered
