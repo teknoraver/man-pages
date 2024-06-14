@@ -18,30 +18,23 @@ Standard C library
 .BR "#include <linux/userfaultfd.h>" "  /* Definition of " UFFD* " constants */"
 .B #include <sys/ioctl.h>
 .P
-.BI "int ioctl(int " fd ", UFFDIO_CONTINUE, ...);"
+.BI "int ioctl(int " fd ", UFFDIO_CONTINUE, struct uffdio_continue *" argp );
+.P
+.B #include <linux/userfaultfd.h>
+.P
+.EX
+.B struct uffdio_continue {
+.B "    struct uffdio_range  range;"
+                     /* Range to install PTEs for and continue */
+.BR "    __u64   mode;" "    /* Flags controlling the behavior of continue */"
+.BR "    __s64   mapped;" "  /* Number of bytes mapped, or negated error */"
+.B };
+.EE
 .fi
 .SH DESCRIPTION
-(Since Linux 5.13.)
 Resolve a minor page fault
 by installing page table entries
 for existing pages in the page cache.
-.P
-The
-.I argp
-argument is a pointer to a
-.I uffdio_continue
-structure as shown below:
-.P
-.in +4n
-.EX
-struct uffdio_continue {
-    struct uffdio_range range;
-                   /* Range to install PTEs for and continue */
-    __u64 mode;    /* Flags controlling the behavior of continue */
-    __s64 mapped;  /* Number of bytes mapped, or negated error */
-};
-.EE
-.in
 .P
 The following value may be bitwise ORed in
 .I mode
@@ -126,6 +119,7 @@ operation.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 5.13.
 .SH EXAMPLES
 See
 .BR userfaultfd (2).
@@ -134,5 +128,4 @@ See
 .BR ioctl_userfaultfd (2),
 .BR userfaultfd (2)
 .P
-.I Documentation/admin\-guide/mm/userfaultfd.rst
-in the Linux kernel source tree
+.I linux.git/\:Documentation/\:admin\-guide/\:mm/\:userfaultfd.rst
