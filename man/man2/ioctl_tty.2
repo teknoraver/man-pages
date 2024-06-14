@@ -34,129 +34,129 @@ Use the POSIX interface described in
 whenever possible.
 .SS Get and set terminal attributes
 .TP
-.B TCGETS
+.BR TCGETS (2const)
 .TQ
-.B TCSETS
+.BR TCSETS (2const)
 .TQ
-.B TCSETSW
+.BR TCSETSW (2const)
 .TQ
-.B TCSETSF
+.BR TCSETSF (2const)
 .TP
-.B TCGETS
+.BR TCGETS (2const)
 .TQ
-.B TCSETS
+.BR TCSETS (2const)
 .TQ
-.B TCSETSW
+.BR TCSETSW (2const)
 .TQ
-.B TCSETSF
+.BR TCSETSF (2const)
 .TP
-.B TCGETS
+.BR TCGETS (2const)
 .TQ
-.B TCSETS
+.BR TCSETS (2const)
 .TQ
-.B TCSETSW
+.BR TCSETSW (2const)
 .TQ
-.B TCSETSF
+.BR TCSETSF (2const)
 .SS Locking the termios structure
 .TP
-.B TIOCGLCKTRMIOS
+.BR TIOCGLCKTRMIOS (2const)
 .TQ
-.B TIOCSLCKTRMIOS
+.BR TIOCSLCKTRMIOS (2const)
 .SS Get and set window size
 .TP
-.B TIOCGWINSZ
+.BR TIOCGWINSZ (2const)
 .TQ
-.B TIOCSWINSZ
+.BR TIOCSWINSZ (2const)
 .SS Sending a break
 .TP
-.B TCSBRK
+.BR TCSBRK (2const)
 .TQ
-.B TCSBRKP
+.BR TCSBRKP (2const)
 .TQ
-.B TIOCSBRK
+.BR TIOCSBRK (2const)
 .TQ
-.B TIOCCBRK
+.BR TIOCCBRK (2const)
 .SS Software flow control
 .TP
-.B TCXONC
+.BR TCXONC (2const)
 .SS Buffer count and flushing
 .TP
-.B FIONREAD
+.BR FIONREAD (2const)
 .TQ
-.B TIOCINQ
+.BR TIOCINQ (2const)
 .TQ
-.B TIOCOUTQ
+.BR TIOCOUTQ (2const)
 .TQ
-.B TCFLSH
+.BR TCFLSH (2const)
 .TQ
-.B TIOCSERGETLSR
+.BR TIOCSERGETLSR (2const)
 .SS Faking input
 .TP
-.B TIOCSTI
+.BR TIOCSTI (2const)
 .SS Redirecting console output
 .TP
-.B TIOCCONS
+.BR TIOCCONS (2const)
 .SS Controlling terminal
 .TP
-.B TIOCSCTTY
+.BR TIOCSCTTY (2const)
 .TQ
-.B TIOCNOTTY
+.BR TIOCNOTTY (2const)
 .SS Process group and session ID
 .TP
-.B TIOCGPGRP
+.BR TIOCGPGRP (2const)
 .TQ
-.B TIOCSPGRP
+.BR TIOCSPGRP (2const)
 .TQ
-.B TIOCGSID
+.BR TIOCGSID (2const)
 .SS Exclusive mode
 .TP
-.B TIOCEXCL
+.BR TIOCEXCL (2const)
 .TQ
-.B TIOCGEXCL
+.BR TIOCGEXCL (2const)
 .TQ
-.B TIOCNXCL
+.BR TIOCNXCL (2const)
 .SS Line discipline
 .TP
-.B TIOCGETD
+.BR TIOCGETD (2const)
 .TQ
-.B TIOCSETD
+.BR TIOCSETD (2const)
 .SS Pseudoterminal ioctls
 .TP
-.B TIOCPKT
+.BR TIOCPKT (2const)
 .TQ
-.B TIOCGPKT
+.BR TIOCGPKT (2const)
 .TP
-.B TIOCSPTLCK
+.BR TIOCSPTLCK (2const)
 .TQ
-.B TIOCGPTLCK
+.BR TIOCGPTLCK (2const)
 .TP
-.B TIOCGPTPEER
+.BR TIOCGPTPEER (2const)
 .SS Modem control
 .TP
-.B TIOCMGET
+.BR TIOCMGET (2const)
 .TQ
-.B TIOCMSET
+.BR TIOCMSET (2const)
 .TQ
-.B TIOCMBIC
+.BR TIOCMBIC (2const)
 .TQ
-.B TIOCMBIS
+.BR TIOCMBIS (2const)
 .TP
-.B TIOCMIWAIT
+.BR TIOCMIWAIT (2const)
 .TP
-.B TIOCGICOUNT
+.BR TIOCGICOUNT (2const)
 .SS Marking a line as local
 .TP
-.B TIOCGSOFTCAR
+.BR TIOCGSOFTCAR (2const)
 .TQ
-.B TIOCSSOFTCAR
+.BR TIOCSSOFTCAR (2const)
 .SS Linux-specific
 For the
-.B TIOCLINUX
+.BR TIOCLINUX (2const)
 ioctl, see
 .BR ioctl_console (2).
 .SS Kernel debugging
 .TP
-.B TIOCTTYGSTRUCT
+.BR TIOCTTYGSTRUCT (2const)
 .\" .SS Serial info
 .\" .BR "#include <linux/serial.h>"
 .\" .P
@@ -175,56 +175,6 @@ On error,
 is set to indicate the error.
 .SH SEE ALSO
 .BR ioctl (2),
-.BR TCGETS (2const),
-.BR TCSETS (2const),
-.BR TCSETSW (2const),
-.BR TCSETSF (2const),
-.BR TCGETS (2const),
-.BR TCSETS (2const),
-.BR TCSETSW (2const),
-.BR TCSETSF (2const),
-.BR TCGETS (2const),
-.BR TCSETS (2const),
-.BR TCSETSW (2const),
-.BR TCSETSF (2const),
-.BR TIOCGLCKTRMIOS (2const),
-.BR TIOCSLCKTRMIOS (2const),
-.BR TIOCGWINSZ (2const),
-.BR TIOCSWINSZ (2const),
-.BR TCSBRK (2const),
-.BR TCSBRKP (2const),
-.BR TIOCSBRK (2const),
-.BR TIOCCBRK (2const),
-.BR TCXONC (2const),
-.BR FIONREAD (2const),
-.BR TIOCINQ (2const),
-.BR TIOCOUTQ (2const),
-.BR TCFLSH (2const),
-.BR TIOCSERGETLSR (2const),
-.BR TIOCSTI (2const),
-.BR TIOCCONS (2const),
-.BR TIOCSCTTY (2const),
-.BR TIOCNOTTY (2const),
-.BR TIOCGPGRP (2const),
-.BR TIOCSPGRP (2const),
-.BR TIOCGSID (2const),
-.BR TIOCEXCL (2const),
-.BR TIOCGEXCL (2const),
-.BR TIOCNXCL (2const),
-.BR TIOCPKT (2const),
-.BR TIOCGPKT (2const),
-.BR TIOCSPTLCK (2const),
-.BR TIOCGPTLCK (2const),
-.BR TIOCGPTPEER (2const),
-.BR TIOCMGET (2const),
-.BR TIOCMSET (2const),
-.BR TIOCMBIC (2const),
-.BR TIOCMBIS (2const),
-.BR TIOCMIWAIT (2const),
-.BR TIOCGICOUNT (2const),
-.BR TIOCGSOFTCAR (2const),
-.BR TIOCSSOFTCAR (2const),
-.BR TIOCTTYGSTRUCT (2const),
 .BR ldattach (8),
 .BR ioctl_console (2),
 .BR termios (3),

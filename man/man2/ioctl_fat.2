@@ -25,17 +25,17 @@ The following
 values are available.
 .SS Reading and setting file attributes
 .TP
-.B FAT_IOCTL_GET_ATTRIBUTES
+.BR FAT_IOCTL_GET_ATTRIBUTES (2const)
 .TQ
-.B FAT_IOCTL_SET_ATTRIBUTES
+.BR FAT_IOCTL_SET_ATTRIBUTES (2const)
 .SS Reading the volume ID
 .TP
-.B FAT_IOCTL_GET_VOLUME_ID
+.BR FAT_IOCTL_GET_VOLUME_ID (2const)
 .SS Reading short filenames of a directory
 .TP
-.B VFAT_IOCTL_READDIR_BOTH
+.BR VFAT_IOCTL_READDIR_BOTH (2const)
 .TQ
-.B VFAT_IOCTL_READDIR_SHORT
+.BR VFAT_IOCTL_READDIR_SHORT (2const)
 .SH RETURN VALUE
 On success,
 a nonnegative value is returned.
@@ -51,9 +51,4 @@ does not refer to an object in a FAT filesystem.
 .SH STANDARDS
 Linux.
 .SH SEE ALSO
-.BR ioctl (2),
-.BR FAT_IOCTL_GET_ATTRIBUTES (2const),
-.BR FAT_IOCTL_SET_ATTRIBUTES (2const),
-.BR FAT_IOCTL_GET_VOLUME_ID (2const),
-.BR VFAT_IOCTL_READDIR_BOTH (2const),
-.BR VFAT_IOCTL_READDIR_SHORT (2const)
+.BR ioctl (2)

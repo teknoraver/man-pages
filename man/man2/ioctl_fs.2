@@ -23,24 +23,24 @@ The following
 values are available.
 .SS Share some of the data of one file with another file
 .TP
-.B FICLONE
+.BR FICLONE (2const)
 .TQ
-.B FICLONERANGE
+.BR FICLONERANGE (2const)
 .TP
-.B FIDEDUPERANGE
+.BR FIDEDUPERANGE (2const)
 .SS Operations for inode flags
 .TP
-.B FS_IOC_GETFLAGS
+.BR FS_IOC_GETFLAGS (2const)
 .TQ
-.B FS_IOC_SETFLAGS
+.BR FS_IOC_SETFLAGS (2const)
 .SS Get or set a filesystem label
 .TP
-.B FS_IOC_GETFSLABEL
+.BR FS_IOC_GETFSLABEL (2const)
 .TQ
-.B FS_IOC_SETFSLABEL
+.BR FS_IOC_SETFSLABEL (2const)
 .SS Get and/or clear page flags
 .TP
-.B PAGEMAP_SCAN
+.BR PAGEMAP_SCAN (2const)
 .SH RETURN VALUE
 On success,
 a nonnegative value is returned.
@@ -50,12 +50,4 @@ is set to indicate the error.
 .SH STANDARDS
 Linux.
 .SH SEE ALSO
-.BR ioctl (2),
-.BR FICLONE (2const),
-.BR FICLONERANGE (2const),
-.BR FIDEDUPERANGE (2const),
-.BR FS_IOC_GETFLAGS (2const),
-.BR FS_IOC_SETFLAGS (2const),
-.BR FS_IOC_GETFSLABEL (2const),
-.BR FS_IOC_SETFSLABEL (2const),
-.BR PAGEMAP_SCAN (2const)
+.BR ioctl (2)

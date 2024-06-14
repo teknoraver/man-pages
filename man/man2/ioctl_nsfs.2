@@ -18,15 +18,15 @@ ioctl() operations for Linux namespaces
 .SH DESCRIPTION
 .SS Discovering namespace relationships
 .TP
-.B NS_GET_USERNS
+.BR NS_GET_USERNS (2const)
 .TQ
-.B NS_GET_PARENT
+.BR NS_GET_PARENT (2const)
 .SS Discovering the namespace type
 .TP
-.B NS_GET_NSTYPE
+.BR NS_GET_NSTYPE (2const)
 .SS Discovering the owner of a user namespace
 .TP
-.B NS_GET_OWNER_UID
+.BR NS_GET_OWNER_UID (2const)
 .SH ERRORS
 .TP
 .B ENOTTY
@@ -38,10 +38,6 @@ file.
 Linux.
 .SH SEE ALSO
 .BR ioctl (2),
-.BR NS_GET_USERNS (2const),
-.BR NS_GET_PARENT (2const),
-.BR NS_GET_NSTYPE (2const),
-.BR NS_GET_OWNER_UID (2const),
 .BR fstat (2),
 .BR proc (5),
 .BR namespaces (7)
