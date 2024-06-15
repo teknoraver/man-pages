@@ -258,7 +258,14 @@ matches the same sequence of characters
 matched by the \fId\fRth parenthesized subexpression
 (numbering subexpressions by the positions of their opening parentheses,
 left to right),
-so that, for example, "\fI\[rs]([bc]\[rs])\[rs]1\fP" matches "bb" or "cc" but not "bc".
+so that, for example,
+.I \[dq]\[rs]([bc]\[rs])\[rs]1\[dq]
+matches
+.I \[dq]bb\[dq]
+or
+.I \[dq]cc\[dq]
+but not
+.IR \[dq]bc\[dq] .
 .SH BUGS
 Having two kinds of REs is a botch.
 .P

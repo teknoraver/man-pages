@@ -50,7 +50,13 @@ is NULL, the name of the appropriate anonymous virtual memory areas
 will be reset.
 The name can contain only printable ascii characters
 .RB ( isprint (3)),
-except \[aq][\[aq], \[aq]]\[aq], \[aq]\[rs]\[aq], \[aq]$\[aq], and \[aq]\[ga]\[aq].
+except
+.BR \[aq][\[aq] ,
+.BR \[aq]]\[aq] ,
+.BR \[aq]\[rs]\[aq] ,
+.BR \[aq]$\[aq] ,
+and
+.BR \[aq]\[ga]\[aq] .
 .SH RETURN VALUE
 On success,
 0 is returned.
