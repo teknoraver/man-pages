@@ -70,7 +70,7 @@ Description
        -  Where relevant, include source code comments that cite commit
           hashes for relevant kernel or glibc changes:
 
-              .\" commit <40-character-git-hash>
+              .\" linux.git commit <40-character-git-hash>
 
        -  For trivial patches, you can use subject tags:
 
