@@ -298,7 +298,7 @@ on the memory object that is shared between the two programs.
 #include <stdio.h>
 #include <stdlib.h>
 \&
-#define errExit(msg)    do { perror(msg); exit(EXIT_FAILURE); \e
+#define errExit(msg)    do { perror(msg); exit(EXIT_FAILURE); \[rs]
                         } while (0)
 \&
 #define BUF_SIZE 1024   /* Maximum size for exchanged string */
@@ -356,7 +356,7 @@ main(int argc, char *argv[])
     struct shmbuf  *shmp;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s /shm\-path\en", argv[0]);
+        fprintf(stderr, "Usage: %s /shm\-path\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -456,7 +456,7 @@ main(int argc, char *argv[])
     struct shmbuf  *shmp;
 \&
     if (argc != 3) {
-        fprintf(stderr, "Usage: %s /shm\-path string\en", argv[0]);
+        fprintf(stderr, "Usage: %s /shm\-path string\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -465,7 +465,7 @@ main(int argc, char *argv[])
     len = strlen(string);
 \&
     if (len > BUF_SIZE) {
-        fprintf(stderr, "String is too long\en");
+        fprintf(stderr, "String is too long\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
@@ -500,7 +500,7 @@ main(int argc, char *argv[])
     /* Write modified data in shared memory to standard output. */
 \&
     write(STDOUT_FILENO, &shmp\->buf, len);
-    write(STDOUT_FILENO, "\en", 1);
+    write(STDOUT_FILENO, "\[rs]n", 1);
 \&
     exit(EXIT_SUCCESS);
 }

@@ -943,7 +943,7 @@ to output the desired bytes.
 #include <sys/types.h>
 #include <unistd.h>
 \&
-#define handle_error(msg) \e
+#define handle_error(msg) \[rs]
     do { perror(msg); exit(EXIT_FAILURE); } while (0)
 \&
 int
@@ -957,7 +957,7 @@ main(int argc, char *argv[])
     struct stat  sb;
 \&
     if (argc < 3 || argc > 4) {
-        fprintf(stderr, "%s file offset [length]\en", argv[0]);
+        fprintf(stderr, "%s file offset [length]\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -973,7 +973,7 @@ main(int argc, char *argv[])
         /* offset for mmap() must be page aligned */
 \&
     if (offset >= sb.st_size) {
-        fprintf(stderr, "offset is past end of file\en");
+        fprintf(stderr, "offset is past end of file\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&

@@ -86,12 +86,12 @@ from the second call.)
 The
 .I list
 of names is returned as an unordered array of null-terminated character strings
-(attribute names are separated by null bytes (\[aq]\e0\[aq])),
+(attribute names are separated by null bytes (\[aq]\[rs]0\[aq])),
 like this:
 .P
 .in +4n
 .EX
-user.name1\e0system.name1\e0user.name2\e0
+user.name1\[rs]0system.name1\[rs]0user.name2\[rs]0
 .EE
 .in
 .P
@@ -102,7 +102,7 @@ like this:
 .P
 .in +4n
 .EX
-system.posix_acl_access\e0system.posix_acl_default\e0
+system.posix_acl_access\[rs]0system.posix_acl_default\[rs]0
 .EE
 .in
 .SH RETURN VALUE
@@ -209,7 +209,7 @@ main(int argc, char *argv[])
     ssize_t  buflen, keylen, vallen;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s path\en", argv[0]);
+        fprintf(stderr, "Usage: %s path\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -222,7 +222,7 @@ main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
     if (buflen == 0) {
-        printf("%s has no attributes.\en", argv[1]);
+        printf("%s has no attributes.\[rs]n", argv[1]);
         exit(EXIT_SUCCESS);
     }
 \&
@@ -295,7 +295,7 @@ main(int argc, char *argv[])
             printf("<no value>");
         }
 \&
-        printf("\en");
+        printf("\[rs]n");
 \&
         /*
          * Forward to next attribute key.

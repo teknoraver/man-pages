@@ -192,13 +192,13 @@ main(int argc, char *argv[])
     struct stat  sb;
 \&
     if (argc < 2) {
-        fprintf(stderr, "Usage: %s /proc/[pid]/ns/[file] [p|u]\en",
+        fprintf(stderr, "Usage: %s /proc/[pid]/ns/[file] [p|u]\[rs]n",
                 argv[0]);
-        fprintf(stderr, "\enDisplay the result of one or both "
-                "of NS_GET_USERNS (u) or NS_GET_PARENT (p)\en"
+        fprintf(stderr, "\[rs]nDisplay the result of one or both "
+                "of NS_GET_USERNS (u) or NS_GET_PARENT (p)\[rs]n"
                 "for the specified /proc/[pid]/ns/[file]. If neither "
-                "\[aq]p\[aq] nor \[aq]u\[aq] is specified,\en"
-                "NS_GET_USERNS is the default.\en");
+                "\[aq]p\[aq] nor \[aq]u\[aq] is specified,\[rs]n"
+                "NS_GET_USERNS is the default.\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
@@ -220,7 +220,7 @@ main(int argc, char *argv[])
         if (userns_fd == \-1) {
             if (errno == EPERM)
                 printf("The owning user namespace is outside "
-                       "your namespace scope\en");
+                       "your namespace scope\[rs]n");
             else
                perror("ioctl\-NS_GET_USERNS");
             exit(EXIT_FAILURE);
@@ -231,7 +231,7 @@ main(int argc, char *argv[])
             exit(EXIT_FAILURE);
         }
         printf("Device/Inode of owning user namespace is: "
-               "[%x,%x] / %ju\en",
+               "[%x,%x] / %ju\[rs]n",
                major(sb.st_dev),
                minor(sb.st_dev),
                (uintmax_t) sb.st_ino);
@@ -248,10 +248,10 @@ main(int argc, char *argv[])
         if (parent_fd == \-1) {
             if (errno == EINVAL)
                 printf("Can\[aq] get parent namespace of a "
-                       "nonhierarchical namespace\en");
+                       "nonhierarchical namespace\[rs]n");
             else if (errno == EPERM)
                 printf("The parent namespace is outside "
-                       "your namespace scope\en");
+                       "your namespace scope\[rs]n");
             else
                 perror("ioctl\-NS_GET_PARENT");
             exit(EXIT_FAILURE);
@@ -261,7 +261,7 @@ main(int argc, char *argv[])
             perror("fstat\-parentns");
             exit(EXIT_FAILURE);
         }
-        printf("Device/Inode of parent namespace is: [%x,%x] / %ju\en",
+        printf("Device/Inode of parent namespace is: [%x,%x] / %ju\[rs]n",
                major(sb.st_dev),
                minor(sb.st_dev),
                (uintmax_t) sb.st_ino);

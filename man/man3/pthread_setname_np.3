@@ -30,7 +30,7 @@ which can be useful for debugging
 multithreaded applications.
 The thread name is a meaningful C language string,
 whose length is restricted to 16 characters,
-including the terminating null byte (\[aq]\e0\[aq]).
+including the terminating null byte (\[aq]\[rs]0\[aq]).
 The
 .I thread
 argument specifies the thread whose name is to be changed;
@@ -173,7 +173,7 @@ main(int argc, char *argv[])
     if (rc != 0)
         errc(EXIT_FAILURE, rc, "pthread_getname_np");
 \&
-    printf("Created a thread. Default name is: %s\en", thread_name);
+    printf("Created a thread. Default name is: %s\[rs]n", thread_name);
     rc = pthread_setname_np(thread, (argc > 1) ? argv[1] : "THREADFOO");
     if (rc != 0)
         errc(EXIT_FAILURE, rc, "pthread_setname_np");
@@ -183,13 +183,13 @@ main(int argc, char *argv[])
     rc = pthread_getname_np(thread, thread_name, NAMELEN);
     if (rc != 0)
         errc(EXIT_FAILURE, rc, "pthread_getname_np");
-    printf("The thread name after setting it is %s.\en", thread_name);
+    printf("The thread name after setting it is %s.\[rs]n", thread_name);
 \&
     rc = pthread_join(thread, NULL);
     if (rc != 0)
         errc(EXIT_FAILURE, rc, "pthread_join");
 \&
-    printf("Done\en");
+    printf("Done\[rs]n");
     exit(EXIT_SUCCESS);
 }
 .EE

@@ -33,7 +33,7 @@ The termcap database is indexed on the
 .B TERM
 environment variable.
 .P
-Termcap entries must be defined on a single logical line, with \[aq]\e\[aq]
+Termcap entries must be defined on a single logical line, with \[aq]\[rs]\[aq]
 used to suppress the newline.
 Fields are separated by \[aq]:\[aq].
 The first field of each entry starts at the left-hand margin,
@@ -68,11 +68,11 @@ Capabilities of similar functions can be written in one line.
 Example for:
 .nf
 .P
-Head line: vt|vt101|DEC VT 101 terminal in 80 character mode:\e
-Head line: Vt|vt101-w|DEC VT 101 terminal in (wide) 132 character mode:\e
-Boolean: :bs:\e
-Numeric: :co#80:\e
-String: :sr=\eE[H:\e
+Head line: vt|vt101|DEC VT 101 terminal in 80 character mode:\[rs]
+Head line: Vt|vt101-w|DEC VT 101 terminal in (wide) 132 character mode:\[rs]
+Boolean: :bs:\[rs]
+Numeric: :co#80:\[rs]
+String: :sr=\[rs]E[H:\[rs]
 .fi
 .SS Boolean capabilities
 .nf
@@ -362,12 +362,12 @@ XF	XOFF character if not \fB\[ha]S\fP
 There are several ways of defining the control codes for string capabilities:
 .P
 Every normal character represents itself,
-except \[aq]\[ha]\[aq], \[aq]\e\[aq], and \[aq]%\[aq].
+except \[aq]\[ha]\[aq], \[aq]\[rs]\[aq], and \[aq]%\[aq].
 .P
 A \fB\[ha]x\fP means Control-x.
 Control-A equals 1 decimal.
 .P
-\ex means a special code.
+\[rs]x means a special code.
 x can be one of the following characters:
 .RS
 E Escape (27)
@@ -383,7 +383,7 @@ b Backspace (8)
 f Form feed (12)
 .br
 0 Null character.
-A \exxx specifies the octal character xxx.
+A \[rs]xxx specifies the octal character xxx.
 .RE
 .TP
 i
@@ -405,7 +405,7 @@ Do ASCII output of this parameter with a field with of 3
 Print a \[aq]%\[aq]
 .P
 If you use binary output,
-then you should avoid the null character (\[aq]\e0\[aq])
+then you should avoid the null character (\[aq]\[rs]0\[aq])
 because it terminates the string.
 You should reset tabulator expansion
 if a tabulator can be the binary output of a parameter.

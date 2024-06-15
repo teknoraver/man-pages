@@ -200,7 +200,7 @@ main(void)
         i = getpwent_r(&pw, buf, sizeof(buf), &pwp);
         if (i)
             break;
-        printf("%s (%jd)\etHOME %s\etSHELL %s\en", pwp\->pw_name,
+        printf("%s (%jd)\[rs]tHOME %s\[rs]tSHELL %s\[rs]n", pwp\->pw_name,
                (intmax_t) pwp\->pw_uid, pwp\->pw_dir, pwp\->pw_shell);
     }
     endpwent();

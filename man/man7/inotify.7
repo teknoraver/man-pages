@@ -126,7 +126,7 @@ field is present only when an event is returned
 for a file inside a watched directory;
 it identifies the filename within the watched directory.
 This filename is null-terminated,
-and may include further null bytes (\[aq]\e0\[aq])
+and may include further null bytes (\[aq]\[rs]0\[aq])
 to align subsequent reads to a suitable address boundary.
 .P
 The
@@ -980,9 +980,9 @@ handle_events(int fd, int *wd, int argc, char* argv[])
             /* Print type of filesystem object. */
 \&
             if (event\->mask & IN_ISDIR)
-                printf(" [directory]\en");
+                printf(" [directory]\[rs]n");
             else
-                printf(" [file]\en");
+                printf(" [file]\[rs]n");
         }
     }
 }
@@ -997,11 +997,11 @@ main(int argc, char* argv[])
     struct pollfd fds[2];
 \&
     if (argc < 2) {
-        printf("Usage: %s PATH [PATH ...]\en", argv[0]);
+        printf("Usage: %s PATH [PATH ...]\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
-    printf("Press ENTER key to terminate.\en");
+    printf("Press ENTER key to terminate.\[rs]n");
 \&
     /* Create the file descriptor for accessing the inotify API. */
 \&
@@ -1027,7 +1027,7 @@ main(int argc, char* argv[])
         wd[i] = inotify_add_watch(fd, argv[i],
                                   IN_OPEN | IN_CLOSE);
         if (wd[i] == \-1) {
-            fprintf(stderr, "Cannot watch \[aq]%s\[aq]: %s\en",
+            fprintf(stderr, "Cannot watch \[aq]%s\[aq]: %s\[rs]n",
                     argv[i], strerror(errno));
             exit(EXIT_FAILURE);
         }
@@ -1045,7 +1045,7 @@ main(int argc, char* argv[])
 \&
     /* Wait for events and/or terminal input. */
 \&
-    printf("Listening for events.\en");
+    printf("Listening for events.\[rs]n");
     while (1) {
         poll_num = poll(fds, nfds, \-1);
         if (poll_num == \-1) {
@@ -1061,7 +1061,7 @@ main(int argc, char* argv[])
 \&
                 /* Console input is available. Empty stdin and quit. */
 \&
-                while (read(STDIN_FILENO, &buf, 1) > 0 && buf != \[aq]\en\[aq])
+                while (read(STDIN_FILENO, &buf, 1) > 0 && buf != \[aq]\[rs]n\[aq])
                     continue;
                 break;
             }
@@ -1075,7 +1075,7 @@ main(int argc, char* argv[])
         }
     }
 \&
-    printf("Listening for events stopped.\en");
+    printf("Listening for events stopped.\[rs]n");
 \&
     /* Close inotify file descriptor. */
 \&

@@ -285,7 +285,7 @@ char hbuf[NI_MAXHOST], sbuf[NI_MAXSERV];
 \&
 if (getnameinfo(addr, addrlen, hbuf, sizeof(hbuf), sbuf,
             sizeof(sbuf), NI_NUMERICHOST | NI_NUMERICSERV) == 0)
-    printf("host=%s, serv=%s\en", hbuf, sbuf);
+    printf("host=%s, serv=%s\[rs]n", hbuf, sbuf);
 .EE
 .in
 .P
@@ -302,7 +302,7 @@ if (getnameinfo(addr, addrlen, hbuf, sizeof(hbuf),
             NULL, 0, NI_NAMEREQD))
     printf("could not resolve hostname");
 else
-    printf("host=%s\en", hbuf);
+    printf("host=%s\[rs]n", hbuf);
 .EE
 .in
 .P

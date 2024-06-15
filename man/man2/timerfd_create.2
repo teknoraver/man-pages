@@ -644,7 +644,7 @@ main(int argc, char *argv[])
     struct itimerspec  new_value;
 \&
     if (argc != 2 && argc != 4) {
-        fprintf(stderr, "%s init\-secs [interval\-secs max\-exp]\en",
+        fprintf(stderr, "%s init\-secs [interval\-secs max\-exp]\[rs]n",
                 argv[0]);
         exit(EXIT_FAILURE);
     }
@@ -674,7 +674,7 @@ main(int argc, char *argv[])
         err(EXIT_FAILURE, "timerfd_settime");
 \&
     print_elapsed_time();
-    printf("timer started\en");
+    printf("timer started\[rs]n");
 \&
     for (tot_exp = 0; tot_exp < max_exp;) {
         s = read(fd, &exp, sizeof(uint64_t));
@@ -683,7 +683,7 @@ main(int argc, char *argv[])
 \&
         tot_exp += exp;
         print_elapsed_time();
-        printf("read: %" PRIu64 "; total=%" PRIu64 "\en", exp, tot_exp);
+        printf("read: %" PRIu64 "; total=%" PRIu64 "\[rs]n", exp, tot_exp);
     }
 \&
     exit(EXIT_SUCCESS);

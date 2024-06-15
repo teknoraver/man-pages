@@ -433,14 +433,14 @@ main(int argc, char *argv[])
         nread = fread(buf, 1, 2, stream);
         if (nread == 0) {
             if (ferror(stream) != 0) {
-                fprintf(stderr, "fread failed\en");
+                fprintf(stderr, "fread failed\[rs]n");
                 exit(EXIT_FAILURE);
             }
-            printf("Reached end of file\en");
+            printf("Reached end of file\[rs]n");
             break;
         }
 \&
-        printf("/%.*s/\en", (int) nread, buf);
+        printf("/%.*s/\[rs]n", (int) nread, buf);
     }
 \&
     free(mycookie.buf);

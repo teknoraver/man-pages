@@ -196,7 +196,7 @@ $ \fB./a.out\fP
 #include <stdlib.h>
 #include <unistd.h>
 \&
-#define handle_error_en(en, msg) \e
+#define handle_error_en(en, msg) \[rs]
         do { errno = en; perror(msg); exit(EXIT_FAILURE); } while (0)
 \&
 static pthread_mutex_t mtx;
@@ -204,9 +204,9 @@ static pthread_mutex_t mtx;
 static void *
 original_owner_thread(void *ptr)
 {
-    printf("[original owner] Setting lock...\en");
+    printf("[original owner] Setting lock...\[rs]n");
     pthread_mutex_lock(&mtx);
-    printf("[original owner] Locked. Now exiting without unlocking.\en");
+    printf("[original owner] Locked. Now exiting without unlocking.\[rs]n");
     pthread_exit(NULL);
 }
 \&
@@ -229,25 +229,25 @@ main(void)
 \&
     /* "original_owner_thread" should have exited by now. */
 \&
-    printf("[main] Attempting to lock the robust mutex.\en");
+    printf("[main] Attempting to lock the robust mutex.\[rs]n");
     s = pthread_mutex_lock(&mtx);
     if (s == EOWNERDEAD) {
-        printf("[main] pthread_mutex_lock() returned EOWNERDEAD\en");
-        printf("[main] Now make the mutex consistent\en");
+        printf("[main] pthread_mutex_lock() returned EOWNERDEAD\[rs]n");
+        printf("[main] Now make the mutex consistent\[rs]n");
         s = pthread_mutex_consistent(&mtx);
         if (s != 0)
             handle_error_en(s, "pthread_mutex_consistent");
-        printf("[main] Mutex is now consistent; unlocking\en");
+        printf("[main] Mutex is now consistent; unlocking\[rs]n");
         s = pthread_mutex_unlock(&mtx);
         if (s != 0)
             handle_error_en(s, "pthread_mutex_unlock");
 \&
         exit(EXIT_SUCCESS);
     } else if (s == 0) {
-        printf("[main] pthread_mutex_lock() unexpectedly succeeded\en");
+        printf("[main] pthread_mutex_lock() unexpectedly succeeded\[rs]n");
         exit(EXIT_FAILURE);
     } else {
-        printf("[main] pthread_mutex_lock() unexpectedly failed\en");
+        printf("[main] pthread_mutex_lock() unexpectedly failed\[rs]n");
         handle_error_en(s, "pthread_mutex_lock");
     }
 }

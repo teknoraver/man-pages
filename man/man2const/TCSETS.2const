@@ -179,7 +179,7 @@ int
 main(int argc, char *argv[])
 {
 #if !defined BOTHER
-    fprintf(stderr, "BOTHER is unsupported\en");
+    fprintf(stderr, "BOTHER is unsupported\[rs]n");
     /* Program may fallback to TCGETS/TCSETS with Bnnn constants */
     exit(EXIT_FAILURE);
 #else
@@ -192,7 +192,7 @@ main(int argc, char *argv[])
     int fd, rc;
 \&
     if (argc != 2 && argc != 3 && argc != 4) {
-        fprintf(stderr, "Usage: %s device [output [input] ]\en", argv[0]);
+        fprintf(stderr, "Usage: %s device [output [input] ]\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -254,8 +254,8 @@ main(int argc, char *argv[])
 \&
     close(fd);
 \&
-    printf("output baud rate: %u\en", tio.c_ospeed);
-    printf("input baud rate: %u\en", tio.c_ispeed);
+    printf("output baud rate: %u\[rs]n", tio.c_ospeed);
+    printf("input baud rate: %u\[rs]n", tio.c_ispeed);
 \&
     exit(EXIT_SUCCESS);
 #endif

@@ -684,11 +684,11 @@ static int
 print_diag(const struct unix_diag_msg *diag, unsigned int len)
 {
     if (len < NLMSG_LENGTH(sizeof(*diag))) {
-        fputs("short response\en", stderr);
+        fputs("short response\[rs]n", stderr);
         return \-1;
     }
     if (diag\->udiag_family != AF_UNIX) {
-        fprintf(stderr, "unexpected family %u\en", diag\->udiag_family);
+        fprintf(stderr, "unexpected family %u\[rs]n", diag\->udiag_family);
         return \-1;
     }
 \&
@@ -706,7 +706,7 @@ print_diag(const struct unix_diag_msg *diag, unsigned int len)
                 if (path_len > sizeof(path) \- 1)
                     path_len = sizeof(path) \- 1;
                 memcpy(path, RTA_DATA(attr), path_len);
-                path[path_len] = \[aq]\e0\[aq];
+                path[path_len] = \[aq]\[rs]0\[aq];
             }
             break;
 \&
@@ -726,7 +726,7 @@ print_diag(const struct unix_diag_msg *diag, unsigned int len)
         printf(", name=%s%s", *path ? "" : "@",
                 *path ? path : path + 1);
 \&
-    putchar(\[aq]\en\[aq]);
+    putchar(\[aq]\[rs]n\[aq]);
     return 0;
 }
 \&
@@ -762,14 +762,14 @@ receive_responses(int fd)
             return 0;
 \&
         if (nladdr.nl_family != AF_NETLINK) {
-            fputs("!AF_NETLINK\en", stderr);
+            fputs("!AF_NETLINK\[rs]n", stderr);
             return \-1;
         }
 \&
         const struct nlmsghdr *h = (struct nlmsghdr *) buf;
 \&
         if (!NLMSG_OK(h, ret)) {
-            fputs("!NLMSG_OK\en", stderr);
+            fputs("!NLMSG_OK\[rs]n", stderr);
             return \-1;
         }
 \&
@@ -781,7 +781,7 @@ receive_responses(int fd)
                 const struct nlmsgerr *err = NLMSG_DATA(h);
 \&
                 if (h\->nlmsg_len < NLMSG_LENGTH(sizeof(*err))) {
-                    fputs("NLMSG_ERROR\en", stderr);
+                    fputs("NLMSG_ERROR\[rs]n", stderr);
                 } else {
                     errno = \-err\->error;
                     perror("NLMSG_ERROR");
@@ -791,7 +791,7 @@ receive_responses(int fd)
             }
 \&
             if (h\->nlmsg_type != SOCK_DIAG_BY_FAMILY) {
-                fprintf(stderr, "unexpected nlmsg_type %u\en",
+                fprintf(stderr, "unexpected nlmsg_type %u\[rs]n",
                         (unsigned) h\->nlmsg_type);
                 return \-1;
             }

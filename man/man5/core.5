@@ -537,7 +537,7 @@ mechanism, using something like:
 .P
 .in +4n
 .EX
-# \fBecho "kernel.core_pattern=core.%p" > \e\fP
+# \fBecho "kernel.core_pattern=core.%p" > \[rs]\fP
 \fB               /etc/sysctl.d/50\-coredump.conf\fP
 # \fB/lib/systemd/systemd\-sysctl\fP
 .EE
@@ -600,11 +600,11 @@ The following shell session demonstrates the use of this program
 .RB "$" " su"
 Password:
 .RB "#" " echo \[dq]|$PWD/core_pattern_pipe_test %p \
-UID=%u GID=%g sig=%s\[dq] > \e"
+UID=%u GID=%g sig=%s\[dq] > \[rs]"
 .B "    /proc/sys/kernel/core_pattern"
 .RB "#" " exit"
 .RB "$" " sleep 100"
-.BR "\[ha]\e" "                     # type control\-backslash"
+.BR "\[ha]\[rs]" "                     # type control\-backslash"
 Quit (core dumped)
 .RB "$" " cat core.info"
 argc=5
@@ -654,16 +654,16 @@ main(int argc, char *argv[])
     /* Display command\-line arguments given to core_pattern
        pipe program. */
 \&
-    fprintf(fp, "argc=%d\en", argc);
+    fprintf(fp, "argc=%d\[rs]n", argc);
     for (size_t j = 0; j < argc; j++)
-        fprintf(fp, "argc[%zu]=<%s>\en", j, argv[j]);
+        fprintf(fp, "argc[%zu]=<%s>\[rs]n", j, argv[j]);
 \&
     /* Count bytes in standard input (the core dump). */
 \&
     tot = 0;
     while ((nread = read(STDIN_FILENO, buf, BUF_SIZE)) > 0)
         tot += nread;
-    fprintf(fp, "Total bytes in core dump: %zd\en", tot);
+    fprintf(fp, "Total bytes in core dump: %zd\[rs]n", tot);
 \&
     fclose(fp);
     exit(EXIT_SUCCESS);

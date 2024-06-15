@@ -164,11 +164,11 @@ cast to
 .TP
 .B PA_STRING
 .IR "const char\~*" ,
-a \(aq\e0\(aq-terminated string.
+a \(aq\[rs]0\(aq-terminated string.
 .TP
 .B PA_WSTRING
 .IR "const wchar_t\~*" ,
-a wide character L\(aq\e0\(aq-terminated string.
+a wide character L\(aq\[rs]0\(aq-terminated string.
 .TP
 .B PA_POINTER
 .IR void\~* .
@@ -254,7 +254,7 @@ This can be used to print in binary prior to C23.
 \&
 #include <printf.h>
 \&
-#define GROUP_SEP  \[aq]\e\[aq]\[aq]
+#define GROUP_SEP  \[aq]\[rs]\[aq]\[aq]
 \&
 struct Printf_Pad {
     char    ch;
@@ -293,55 +293,55 @@ main(void)
     if (register_printf_specifier(\[aq]B\[aq], b_printf, b_arginf_sz) == \-1)
         err(EXIT_FAILURE, "register_printf_specifier(\[aq]B\[aq], ...)");
 \&
-    printf("....----....----....----....----\en");
-    printf("%llb;\en", 0x5Ellu);
-    printf("%lB;\en", 0x5Elu);
-    printf("%b;\en", 0x5Eu);
-    printf("%hB;\en", 0x5Eu);
-    printf("%hhb;\en", 0x5Eu);
-    printf("%jb;\en", (uintmax_t)0x5E);
-    printf("%zb;\en", (size_t)0x5E);
-    printf("....----....----....----....----\en");
-    printf("%#b;\en", 0x5Eu);
-    printf("%#B;\en", 0x5Eu);
-    printf("....----....----....----....----\en");
-    printf("%10b;\en", 0x5Eu);
-    printf("%010b;\en", 0x5Eu);
-    printf("%.10b;\en", 0x5Eu);
-    printf("....----....----....----....----\en");
-    printf("%\-10B;\en", 0x5Eu);
-    printf("....----....----....----....----\en");
-    printf("%\[aq]B;\en", 0x5Eu);
-    printf("....----....----....----....----\en");
-    printf("....----....----....----....----\en");
-    printf("%#16.12b;\en", 0xAB);
-    printf("%\-#\[aq]20.12b;\en", 0xAB);
-    printf("%#\[aq]020B;\en", 0xAB);
-    printf("....----....----....----....----\en");
-    printf("%#020B;\en", 0xAB);
-    printf("%\[aq]020B;\en", 0xAB);
-    printf("%020B;\en", 0xAB);
-    printf("....----....----....----....----\en");
-    printf("%#021B;\en", 0xAB);
-    printf("%\[aq]021B;\en", 0xAB);
-    printf("%021B;\en", 0xAB);
-    printf("....----....----....----....----\en");
-    printf("%#022B;\en", 0xAB);
-    printf("%\[aq]022B;\en", 0xAB);
-    printf("%022B;\en", 0xAB);
-    printf("....----....----....----....----\en");
-    printf("%#023B;\en", 0xAB);
-    printf("%\[aq]023B;\en", 0xAB);
-    printf("%023B;\en", 0xAB);
-    printf("....----....----....----....----\en");
-    printf("%\-#\[aq]19.11b;\en", 0xAB);
-    printf("%#\[aq]019B;\en", 0xAB);
-    printf("%#019B;\en", 0xAB);
-    printf("....----....----....----....----\en");
-    printf("%\[aq]019B;\en", 0xAB);
-    printf("%019B;\en", 0xAB);
-    printf("%#016b;\en", 0xAB);
-    printf("....----....----....----....----\en");
+    printf("....----....----....----....----\[rs]n");
+    printf("%llb;\[rs]n", 0x5Ellu);
+    printf("%lB;\[rs]n", 0x5Elu);
+    printf("%b;\[rs]n", 0x5Eu);
+    printf("%hB;\[rs]n", 0x5Eu);
+    printf("%hhb;\[rs]n", 0x5Eu);
+    printf("%jb;\[rs]n", (uintmax_t)0x5E);
+    printf("%zb;\[rs]n", (size_t)0x5E);
+    printf("....----....----....----....----\[rs]n");
+    printf("%#b;\[rs]n", 0x5Eu);
+    printf("%#B;\[rs]n", 0x5Eu);
+    printf("....----....----....----....----\[rs]n");
+    printf("%10b;\[rs]n", 0x5Eu);
+    printf("%010b;\[rs]n", 0x5Eu);
+    printf("%.10b;\[rs]n", 0x5Eu);
+    printf("....----....----....----....----\[rs]n");
+    printf("%\-10B;\[rs]n", 0x5Eu);
+    printf("....----....----....----....----\[rs]n");
+    printf("%\[aq]B;\[rs]n", 0x5Eu);
+    printf("....----....----....----....----\[rs]n");
+    printf("....----....----....----....----\[rs]n");
+    printf("%#16.12b;\[rs]n", 0xAB);
+    printf("%\-#\[aq]20.12b;\[rs]n", 0xAB);
+    printf("%#\[aq]020B;\[rs]n", 0xAB);
+    printf("....----....----....----....----\[rs]n");
+    printf("%#020B;\[rs]n", 0xAB);
+    printf("%\[aq]020B;\[rs]n", 0xAB);
+    printf("%020B;\[rs]n", 0xAB);
+    printf("....----....----....----....----\[rs]n");
+    printf("%#021B;\[rs]n", 0xAB);
+    printf("%\[aq]021B;\[rs]n", 0xAB);
+    printf("%021B;\[rs]n", 0xAB);
+    printf("....----....----....----....----\[rs]n");
+    printf("%#022B;\[rs]n", 0xAB);
+    printf("%\[aq]022B;\[rs]n", 0xAB);
+    printf("%022B;\[rs]n", 0xAB);
+    printf("....----....----....----....----\[rs]n");
+    printf("%#023B;\[rs]n", 0xAB);
+    printf("%\[aq]023B;\[rs]n", 0xAB);
+    printf("%023B;\[rs]n", 0xAB);
+    printf("....----....----....----....----\[rs]n");
+    printf("%\-#\[aq]19.11b;\[rs]n", 0xAB);
+    printf("%#\[aq]019B;\[rs]n", 0xAB);
+    printf("%#019B;\[rs]n", 0xAB);
+    printf("....----....----....----....----\[rs]n");
+    printf("%\[aq]019B;\[rs]n", 0xAB);
+    printf("%019B;\[rs]n", 0xAB);
+    printf("%#016b;\[rs]n", 0xAB);
+    printf("....----....----....----....----\[rs]n");
 \&
     return 0;
 }

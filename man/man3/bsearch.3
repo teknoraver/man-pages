@@ -124,9 +124,9 @@ main(int argc, char *argv[])
         res = bsearch(&key, months, ARRAY_SIZE(months),
                       sizeof(months[0]), compmi);
         if (res == NULL)
-            printf("\[aq]%s\[aq]: unknown month\en", argv[i]);
+            printf("\[aq]%s\[aq]: unknown month\[rs]n", argv[i]);
         else
-            printf("%s: month #%d\en", res\->name, res\->nr);
+            printf("%s: month #%d\[rs]n", res\->name, res\->nr);
     }
     exit(EXIT_SUCCESS);
 }

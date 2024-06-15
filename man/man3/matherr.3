@@ -374,7 +374,7 @@ static double new_retval;       /* New function return value */
 int
 matherr(struct exception *exc)
 {
-    fprintf(stderr, "matherr %s exception in %s() function\en",
+    fprintf(stderr, "matherr %s exception in %s() function\[rs]n",
             (exc\->type == DOMAIN) ?    "DOMAIN" :
             (exc\->type == OVERFLOW) ?  "OVERFLOW" :
             (exc\->type == UNDERFLOW) ? "UNDERFLOW" :
@@ -382,9 +382,9 @@ matherr(struct exception *exc)
             (exc\->type == TLOSS) ?     "TLOSS" :
             (exc\->type == PLOSS) ?     "PLOSS" : "???",
             exc\->name);
-    fprintf(stderr, "        args:   %f, %f\en",
+    fprintf(stderr, "        args:   %f, %f\[rs]n",
             exc\->arg1, exc\->arg2);
-    fprintf(stderr, "        retval: %f\en", exc\->retval);
+    fprintf(stderr, "        retval: %f\[rs]n", exc\->retval);
 \&
     if (change_retval)
         exc\->retval = new_retval;
@@ -399,7 +399,7 @@ main(int argc, char *argv[])
 \&
     if (argc < 2) {
         fprintf(stderr, "Usage: %s <argval>"
-                " [<matherr\-ret> [<new\-func\-retval>]]\en", argv[0]);
+                " [<matherr\-ret> [<new\-func\-retval>]]\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -417,7 +417,7 @@ main(int argc, char *argv[])
     if (errno != 0)
         perror("errno");
 \&
-    printf("x=%f\en", x);
+    printf("x=%f\[rs]n", x);
     exit(EXIT_SUCCESS);
 }
 .EE

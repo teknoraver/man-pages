@@ -212,7 +212,7 @@ main(int argc, char *argv[])
     unsigned int  seed, nloops;
 \&
     if (argc != 3) {
-        fprintf(stderr, "Usage: %s <seed> <nloops>\en", argv[0]);
+        fprintf(stderr, "Usage: %s <seed> <nloops>\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -221,13 +221,13 @@ main(int argc, char *argv[])
 \&
     if (seed == \-1) {
         seed = arc4random();
-        printf("seed: %u\en", seed);
+        printf("seed: %u\[rs]n", seed);
     }
 \&
     srand(seed);
     for (unsigned int j = 0; j < nloops; j++) {
         r =  rand();
-        printf("%d\en", r);
+        printf("%d\[rs]n", r);
     }
 \&
     exit(EXIT_SUCCESS);

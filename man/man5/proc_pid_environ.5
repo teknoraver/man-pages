@@ -13,13 +13,13 @@
 This file contains the initial environment that was set
 when the currently executing program was started via
 .BR execve (2).
-The entries are separated by null bytes (\[aq]\e0\[aq]),
+The entries are separated by null bytes (\[aq]\[rs]0\[aq]),
 and there may be a null byte at the end.
 Thus, to print out the environment of process 1, you would do:
 .IP
 .in +4n
 .EX
-.RB "$" " cat /proc/1/environ | tr \[aq]\e000\[aq] \[aq]\en\[aq]"
+.RB "$" " cat /proc/1/environ | tr \[aq]\[rs]000\[aq] \[aq]\[rs]n\[aq]"
 .EE
 .in
 .IP

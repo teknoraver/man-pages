@@ -126,9 +126,9 @@ readattr(int fd)
     }
 \&
     if (attr & ATTR_ARCH)
-        printf("Archive flag is set\en");
+        printf("Archive flag is set\[rs]n");
     else
-        printf("Archive flag is not set\en");
+        printf("Archive flag is not set\[rs]n");
 \&
     return attr;
 }
@@ -141,7 +141,7 @@ main(int argc, char *argv[])
     uint32_t  attr;
 \&
     if (argc != 2) {
-        printf("Usage: %s FILENAME\en", argv[0]);
+        printf("Usage: %s FILENAME\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -159,7 +159,7 @@ main(int argc, char *argv[])
     /*
      * Invert archive attribute.
      */
-    printf("Toggling archive flag\en");
+    printf("Toggling archive flag\[rs]n");
     attr \[ha]= ATTR_ARCH;
 \&
     /*

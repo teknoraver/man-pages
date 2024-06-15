@@ -157,8 +157,8 @@ struct mntent {
 .in
 .P
 Since fields in the mtab and fstab files are separated by whitespace,
-octal escapes are used to represent the characters space (\e040),
-tab (\e011), newline (\e012), and backslash (\e\e) in those files
+octal escapes are used to represent the characters space (\[rs]040),
+tab (\[rs]011), newline (\[rs]012), and backslash (\[rs]\[rs]) in those files
 when they occur in one of the four strings in a
 .I mntent
 structure.
@@ -168,7 +168,7 @@ and
 .BR getmntent ()
 will convert
 from string representation to escaped representation and back.
-When converting from escaped representation, the sequence \e134 is
+When converting from escaped representation, the sequence \[rs]134 is
 also converted to a backslash.
 .SH RETURN VALUE
 The

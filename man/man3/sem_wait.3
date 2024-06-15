@@ -177,15 +177,15 @@ sem_timedwait() timed out
 \&
 sem_t sem;
 \&
-#define handle_error(msg) \e
+#define handle_error(msg) \[rs]
     do { perror(msg); exit(EXIT_FAILURE); } while (0)
 \&
 static void
 handler(int sig)
 {
-    write(STDOUT_FILENO, "sem_post() from handler\en", 24);
+    write(STDOUT_FILENO, "sem_post() from handler\[rs]n", 24);
     if (sem_post(&sem) == \-1) {
-        write(STDERR_FILENO, "sem_post() failed\en", 18);
+        write(STDERR_FILENO, "sem_post() failed\[rs]n", 18);
         _exit(EXIT_FAILURE);
     }
 }
@@ -198,7 +198,7 @@ main(int argc, char *argv[])
     int s;
 \&
     if (argc != 3) {
-        fprintf(stderr, "Usage: %s <alarm\-secs> <wait\-secs>\en",
+        fprintf(stderr, "Usage: %s <alarm\-secs> <wait\-secs>\[rs]n",
                 argv[0]);
         exit(EXIT_FAILURE);
     }
@@ -224,7 +224,7 @@ main(int argc, char *argv[])
 \&
     ts.tv_sec += atoi(argv[2]);
 \&
-    printf("%s() about to call sem_timedwait()\en", __func__);
+    printf("%s() about to call sem_timedwait()\[rs]n", __func__);
     while ((s = sem_timedwait(&sem, &ts)) == \-1 && errno == EINTR)
         continue;       /* Restart if interrupted by handler. */
 \&
@@ -232,11 +232,11 @@ main(int argc, char *argv[])
 \&
     if (s == \-1) {
         if (errno == ETIMEDOUT)
-            printf("sem_timedwait() timed out\en");
+            printf("sem_timedwait() timed out\[rs]n");
         else
             perror("sem_timedwait");
     } else
-        printf("sem_timedwait() succeeded\en");
+        printf("sem_timedwait() succeeded\[rs]n");
 \&
     exit((s == 0) ? EXIT_SUCCESS : EXIT_FAILURE);
 }

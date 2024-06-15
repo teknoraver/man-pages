@@ -80,10 +80,10 @@ extern char etext, edata, end; /* The symbols must have some type,
 int
 main(void)
 {
-    printf("First address past:\en");
-    printf("    program text (etext)      %10p\en", &etext);
-    printf("    initialized data (edata)  %10p\en", &edata);
-    printf("    uninitialized data (end)  %10p\en", &end);
+    printf("First address past:\[rs]n");
+    printf("    program text (etext)      %10p\[rs]n", &etext);
+    printf("    initialized data (edata)  %10p\[rs]n", &edata);
+    printf("    uninitialized data (end)  %10p\[rs]n", &end);
 \&
     exit(EXIT_SUCCESS);
 }

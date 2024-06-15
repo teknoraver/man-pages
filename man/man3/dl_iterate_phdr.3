@@ -294,7 +294,7 @@ callback(struct dl_phdr_info *info, size_t size, void *data)
     char *type;
     int p_type;
 \&
-    printf("Name: \e"%s\e" (%d segments)\en", info\->dlpi_name,
+    printf("Name: \[rs]"%s\[rs]" (%d segments)\[rs]n", info\->dlpi_name,
            info\->dlpi_phnum);
 \&
     for (size_t j = 0; j < info\->dlpi_phnum; j++) {
@@ -315,9 +315,9 @@ callback(struct dl_phdr_info *info, size_t size, void *data)
                (uintmax_t) info\->dlpi_phdr[j].p_memsz,
                (uintmax_t) info\->dlpi_phdr[j].p_flags);
         if (type != NULL)
-            printf("%s\en", type);
+            printf("%s\[rs]n", type);
         else
-            printf("[other (%#x)]\en", p_type);
+            printf("[other (%#x)]\[rs]n", p_type);
     }
 \&
     return 0;

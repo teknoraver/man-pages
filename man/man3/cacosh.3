@@ -71,17 +71,17 @@ main(int argc, char *argv[])
     double complex z, c, f;
 \&
     if (argc != 3) {
-        fprintf(stderr, "Usage: %s <real> <imag>\en", argv[0]);
+        fprintf(stderr, "Usage: %s <real> <imag>\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
     z = atof(argv[1]) + atof(argv[2]) * I;
 \&
     c = cacosh(z);
-    printf("cacosh() = %6.3f %6.3f*i\en", creal(c), cimag(c));
+    printf("cacosh() = %6.3f %6.3f*i\[rs]n", creal(c), cimag(c));
 \&
     f = 2 * clog(csqrt((z + 1)/2) + csqrt((z \- 1)/2));
-    printf("formula  = %6.3f %6.3f*i\en", creal(f), cimag(f));
+    printf("formula  = %6.3f %6.3f*i\[rs]n", creal(f), cimag(f));
 \&
     exit(EXIT_SUCCESS);
 }

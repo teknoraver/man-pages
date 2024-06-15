@@ -128,7 +128,7 @@ main(int argc, char *argv[])
     struct timespec ts;
 \&
     if (argc != 2) {
-        fprintf(stderr, "%s <process\-ID>\en", argv[0]);
+        fprintf(stderr, "%s <process\-ID>\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -142,7 +142,7 @@ main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 \&
-    printf("CPU\-time clock for PID %s is %jd.%09ld seconds\en",
+    printf("CPU\-time clock for PID %s is %jd.%09ld seconds\[rs]n",
            argv[1], (intmax_t) ts.tv_sec, ts.tv_nsec);
     exit(EXIT_SUCCESS);
 }

@@ -213,7 +213,7 @@ main (void)
     /* Check that the value is within the valid range of suseconds_t. */
 \&
     if (tmp < \-1 || tmp > 1000000) {
-        fprintf(stderr, "Scanned value outside valid range!\en");
+        fprintf(stderr, "Scanned value outside valid range!\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
@@ -225,13 +225,13 @@ main (void)
        a sensible number of microseconds. */
 \&
     if (us < 0) {
-        fprintf(stderr, "Scanned value shouldn\[aq]t be negative!\en");
+        fprintf(stderr, "Scanned value shouldn\[aq]t be negative!\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
     /* Print the value. */
 \&
-    printf("There are %jd microseconds in half a second.\en",
+    printf("There are %jd microseconds in half a second.\[rs]n",
             (intmax_t) us);
 \&
     exit(EXIT_SUCCESS);

@@ -336,8 +336,8 @@ main(void)
     setlocale(LC_CTYPE, "");
     setlocale(LC_NUMERIC, "");
 \&
-    printf("%s\en", nl_langinfo(CODESET));
-    printf("%s\en", nl_langinfo(RADIXCHAR));
+    printf("%s\[rs]n", nl_langinfo(CODESET));
+    printf("%s\[rs]n", nl_langinfo(RADIXCHAR));
 \&
     exit(EXIT_SUCCESS);
 }

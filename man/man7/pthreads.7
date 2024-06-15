@@ -865,7 +865,7 @@ be sufficient to determine the default threading implementation:
 .P
 .in +4n
 .EX
-bash$ $( ldd /bin/ls | grep libc.so | awk \[aq]{print $3}\[aq] ) | \e
+bash$ $( ldd /bin/ls | grep libc.so | awk \[aq]{print $3}\[aq] ) | \[rs]
                 egrep \-i \[aq]threads|nptl\[aq]
         Native POSIX Threads Library by Ulrich Drepper et al
 .EE
@@ -888,7 +888,7 @@ For example:
 .P
 .in +4n
 .EX
-bash$ $( LD_ASSUME_KERNEL=2.2.5 ldd /bin/ls | grep libc.so | \e
+bash$ $( LD_ASSUME_KERNEL=2.2.5 ldd /bin/ls | grep libc.so | \[rs]
                 awk \[aq]{print $3}\[aq] ) | egrep \-i \[aq]threads|nptl\[aq]
         linuxthreads\-0.10 by Xavier Leroy
 .EE

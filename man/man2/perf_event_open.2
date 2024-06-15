@@ -4007,19 +4007,19 @@ main(void)
 \&
     fd = perf_event_open(&pe, 0, \-1, \-1, 0);
     if (fd == \-1) {
-       fprintf(stderr, "Error opening leader %llx\en", pe.config);
+       fprintf(stderr, "Error opening leader %llx\[rs]n", pe.config);
        exit(EXIT_FAILURE);
     }
 \&
     ioctl(fd, PERF_EVENT_IOC_RESET, 0);
     ioctl(fd, PERF_EVENT_IOC_ENABLE, 0);
 \&
-    printf("Measuring instruction count for this printf\en");
+    printf("Measuring instruction count for this printf\[rs]n");
 \&
     ioctl(fd, PERF_EVENT_IOC_DISABLE, 0);
     read(fd, &count, sizeof(count));
 \&
-    printf("Used %lld instructions\en", count);
+    printf("Used %lld instructions\[rs]n", count);
 \&
     close(fd);
 }

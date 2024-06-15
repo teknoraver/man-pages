@@ -194,7 +194,7 @@ display_stack_related_attributes(pthread_attr_t *attr, char *prefix)
     s = pthread_attr_getguardsize(attr, &guard_size);
     if (s != 0)
         errc(EXIT_FAILURE, s, "pthread_attr_getguardsize");
-    printf("%sGuard size          = %zu bytes\en", prefix, guard_size);
+    printf("%sGuard size          = %zu bytes\[rs]n", prefix, guard_size);
 \&
     s = pthread_attr_getstack(attr, &stack_addr, &stack_size);
     if (s != 0)
@@ -202,8 +202,8 @@ display_stack_related_attributes(pthread_attr_t *attr, char *prefix)
     printf("%sStack address       = %p", prefix, stack_addr);
     if (stack_size > 0)
         printf(" (EOS = %p)", (char *) stack_addr + stack_size);
-    printf("\en");
-    printf("%sStack size          = %#zx (%zu) bytes\en",
+    printf("\[rs]n");
+    printf("%sStack size          = %#zx (%zu) bytes\[rs]n",
            prefix, stack_size, stack_size);
 }
 \&
@@ -227,8 +227,8 @@ display_thread_attributes(pthread_t thread, char *prefix)
 static void *           /* Start function for thread we create */
 thread_start(void *arg)
 {
-    printf("Attributes of created thread:\en");
-    display_thread_attributes(pthread_self(), "\et");
+    printf("Attributes of created thread:\[rs]n");
+    display_thread_attributes(pthread_self(), "\[rs]t");
 \&
     exit(EXIT_SUCCESS);         /* Terminate all threads */
 }
@@ -239,8 +239,8 @@ usage(char *pname, char *msg)
     if (msg != NULL)
         fputs(msg, stderr);
     fprintf(stderr, "Usage: %s [\-s stack\-size [\-a]]"
-            " [\-g guard\-size]\en", pname);
-    fprintf(stderr, "\et\et\-a means program should allocate stack\en");
+            " [\-g guard\-size]\[rs]n", pname);
+    fprintf(stderr, "\[rs]t\[rs]t\-a means program should allocate stack\[rs]n");
     exit(EXIT_FAILURE);
 }
 \&
@@ -267,10 +267,10 @@ get_thread_attributes_from_cl(int argc, char *argv[],
     }
 \&
     if (allocate_stack && stack_size == \-1)
-        usage(argv[0], "Specifying \-a without \-s makes no sense\en");
+        usage(argv[0], "Specifying \-a without \-s makes no sense\[rs]n");
 \&
     if (argc > optind)
-        usage(argv[0], "Extraneous command\-line arguments\en");
+        usage(argv[0], "Extraneous command\-line arguments\[rs]n");
 \&
     if (stack_size != -1 || guard_size > 0) {
         ret_attrp = attrp;
@@ -290,7 +290,7 @@ get_thread_attributes_from_cl(int argc, char *argv[],
                                stack_size);
             if (s != 0)
                 errc(EXIT_FAILURE, s, "posix_memalign");
-            printf("Allocated thread stack at %p\en\en", stack_addr);
+            printf("Allocated thread stack at %p\[rs]n\[rs]n", stack_addr);
 \&
             s = pthread_attr_setstack(attrp, stack_addr, stack_size);
             if (s != 0)
@@ -319,9 +319,9 @@ main(int argc, char *argv[])
     attrp = get_thread_attributes_from_cl(argc, argv, &attr);
 \&
     if (attrp != NULL) {
-        printf("Thread attributes object after initializations:\en");
-        display_stack_related_attributes(attrp, "\et");
-        printf("\en");
+        printf("Thread attributes object after initializations:\[rs]n");
+        display_stack_related_attributes(attrp, "\[rs]t");
+        printf("\[rs]n");
     }
 \&
     s = pthread_create(&thr, attrp, &thread_start, NULL);

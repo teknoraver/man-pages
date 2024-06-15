@@ -396,7 +396,7 @@ main(int argc, char *argv[])
     ssize_t   s;
 \&
     if (argc < 2) {
-        fprintf(stderr, "Usage: %s <num>...\en", argv[0]);
+        fprintf(stderr, "Usage: %s <num>...\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -407,25 +407,25 @@ main(int argc, char *argv[])
     switch (fork()) {
     case 0:
         for (size_t j = 1; j < argc; j++) {
-            printf("Child writing %s to efd\en", argv[j]);
+            printf("Child writing %s to efd\[rs]n", argv[j]);
             u = strtoull(argv[j], NULL, 0);
                     /* strtoull() allows various bases */
             s = write(efd, &u, sizeof(uint64_t));
             if (s != sizeof(uint64_t))
                 err(EXIT_FAILURE, "write");
         }
-        printf("Child completed write loop\en");
+        printf("Child completed write loop\[rs]n");
 \&
         exit(EXIT_SUCCESS);
 \&
     default:
         sleep(2);
 \&
-        printf("Parent about to read\en");
+        printf("Parent about to read\[rs]n");
         s = read(efd, &u, sizeof(uint64_t));
         if (s != sizeof(uint64_t))
             err(EXIT_FAILURE, "read");
-        printf("Parent read %"PRIu64" (%#"PRIx64") from efd\en", u, u);
+        printf("Parent read %"PRIu64" (%#"PRIx64") from efd\[rs]n", u, u);
         exit(EXIT_SUCCESS);
 \&
     case \-1:

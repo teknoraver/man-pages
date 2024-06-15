@@ -341,7 +341,7 @@ A different
 can, however, be specified, which would have the same effect.
 .SS Escape sequences
 To specify control- or blank characters in the color sequences or
-filename extensions, either C-style \e-escaped notation or
+filename extensions, either C-style \[rs]-escaped notation or
 .BR stty \-style
 \[ha]-notation can be used.
 The C-style notation
@@ -349,21 +349,21 @@ includes the following characters:
 .RS
 .TS
 lb l.
-\ea	Bell (ASCII 7)
-\eb	Backspace (ASCII 8)
-\ee	Escape (ASCII 27)
-\ef	Form feed (ASCII 12)
-\en	Newline (ASCII 10)
-\er	Carriage Return (ASCII 13)
-\et	Tab (ASCII 9)
-\ev	Vertical Tab (ASCII 11)
-\e?	Delete (ASCII 127)
-\e\fInnn	Any character (octal notation)
-\ex\fInnn	Any character (hexadecimal notation)
-\e_	Space
-\e\e	Backslash (\e)
-\e\[ha]	Caret (\[ha])
-\e#	Hash mark (#)
+\[rs]a	Bell (ASCII 7)
+\[rs]b	Backspace (ASCII 8)
+\[rs]e	Escape (ASCII 27)
+\[rs]f	Form feed (ASCII 12)
+\[rs]n	Newline (ASCII 10)
+\[rs]r	Carriage Return (ASCII 13)
+\[rs]t	Tab (ASCII 9)
+\[rs]v	Vertical Tab (ASCII 11)
+\[rs]?	Delete (ASCII 127)
+\[rs]\fInnn	Any character (octal notation)
+\[rs]x\fInnn	Any character (hexadecimal notation)
+\[rs]_	Space
+\[rs]\[rs]	Backslash (\[rs])
+\[rs]\[ha]	Caret (\[ha])
+\[rs]#	Hash mark (#)
 .TE
 .RE
 .P
@@ -391,7 +391,7 @@ definitions, which are used by ISO/IEC\~6429 terminals are:
 .RS
 .TS
 lb l.
-LEFTCODE	\ee[
+LEFTCODE	\[rs]e[
 RIGHTCODE	m
 .TE
 .RE

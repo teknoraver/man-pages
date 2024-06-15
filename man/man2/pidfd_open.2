@@ -230,7 +230,7 @@ main(int argc, char *argv[])
     struct pollfd  pollfd;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s <pid>\en", argv[0]);
+        fprintf(stderr, "Usage: %s <pid>\[rs]n", argv[0]);
         exit(EXIT_SUCCESS);
     }
 \&
@@ -249,7 +249,7 @@ main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 \&
-    printf("Events (%#x): POLLIN is %sset\en", pollfd.revents,
+    printf("Events (%#x): POLLIN is %sset\[rs]n", pollfd.revents,
            (pollfd.revents & POLLIN) ? "" : "not ");
 \&
     close(pidfd);

@@ -383,7 +383,7 @@ listen_socket(int listen_port)
         return \-1;
     }
 \&
-    printf("accepting connections on port %d\en", listen_port);
+    printf("accepting connections on port %d\[rs]n", listen_port);
     listen(lfd, 10);
     return lfd;
 }
@@ -405,7 +405,7 @@ connect_socket(int connect_port, char *address)
     addr.sin_family = AF_INET;
 \&
     if (!inet_aton(address, (struct in_addr *) &addr.sin_addr.s_addr)) {
-        fprintf(stderr, "inet_aton(): bad IP address format\en");
+        fprintf(stderr, "inet_aton(): bad IP address format\[rs]n");
         close(cfd);
         return \-1;
     }
@@ -419,20 +419,20 @@ connect_socket(int connect_port, char *address)
     return cfd;
 }
 \&
-#define SHUT_FD1 do {                                \e
-                     if (fd1 >= 0) {                 \e
-                         shutdown(fd1, SHUT_RDWR);   \e
-                         close(fd1);                 \e
-                         fd1 = \-1;                   \e
-                     }                               \e
+#define SHUT_FD1 do {                                \[rs]
+                     if (fd1 >= 0) {                 \[rs]
+                         shutdown(fd1, SHUT_RDWR);   \[rs]
+                         close(fd1);                 \[rs]
+                         fd1 = \-1;                   \[rs]
+                     }                               \[rs]
                  } while (0)
 \&
-#define SHUT_FD2 do {                                \e
-                     if (fd2 >= 0) {                 \e
-                         shutdown(fd2, SHUT_RDWR);   \e
-                         close(fd2);                 \e
-                         fd2 = \-1;                   \e
-                     }                               \e
+#define SHUT_FD2 do {                                \[rs]
+                     if (fd2 >= 0) {                 \[rs]
+                         shutdown(fd2, SHUT_RDWR);   \[rs]
+                         close(fd2);                 \[rs]
+                         fd2 = \-1;                   \[rs]
+                     }                               \[rs]
                  } while (0)
 \&
 #define BUF_SIZE 1024
@@ -450,8 +450,8 @@ main(int argc, char *argv[])
     ssize_t  nbytes;
 \&
     if (argc != 4) {
-        fprintf(stderr, "Usage\en\etfwd <listen\-port> "
-                "<forward\-to\-port> <forward\-to\-ip\-address>\en");
+        fprintf(stderr, "Usage\[rs]n\[rs]tfwd <listen\-port> "
+                "<forward\-to\-port> <forward\-to\-ip\-address>\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
@@ -523,7 +523,7 @@ main(int argc, char *argv[])
                 if (fd2 == \-1)
                     SHUT_FD1;
                 else
-                    printf("connect from %s\en",
+                    printf("connect from %s\[rs]n",
                            inet_ntoa(client_addr.sin_addr));
 \&
                 /* Skip any events on the old, closed file

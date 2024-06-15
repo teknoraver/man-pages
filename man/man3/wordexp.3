@@ -234,7 +234,7 @@ main(void)
     wordexp("[a\-c]*.c", &p, 0);
     w = p.we_wordv;
     for (size_t i = 0; i < p.we_wordc; i++)
-        printf("%s\en", w[i]);
+        printf("%s\[rs]n", w[i]);
     wordfree(&p);
     exit(EXIT_SUCCESS);
 }

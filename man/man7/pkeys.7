@@ -189,7 +189,7 @@ main(void)
      * Put some random data into the page (still OK to touch).
      */
     *buffer = __LINE__;
-    printf("buffer contains: %d\en", *buffer);
+    printf("buffer contains: %d\[rs]n", *buffer);
 \&
     /*
      * Allocate a protection key:
@@ -216,12 +216,12 @@ main(void)
     if (status == \-1)
         err(EXIT_FAILURE, "pkey_mprotect");
 \&
-    printf("about to read buffer again...\en");
+    printf("about to read buffer again...\[rs]n");
 \&
     /*
      * This will crash, because we have disallowed access.
      */
-    printf("buffer contains: %d\en", *buffer);
+    printf("buffer contains: %d\[rs]n", *buffer);
 \&
     status = pkey_free(pkey);
     if (status == \-1)

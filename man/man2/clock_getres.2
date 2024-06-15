@@ -492,7 +492,7 @@ displayClock(clockid_t clock, const char *name, bool showRes)
            (int) (ts.tv_sec % SECS_IN_DAY) / 3600,
            (int) (ts.tv_sec % 3600) / 60,
            (int) ts.tv_sec % 60);
-    printf(")\en");
+    printf(")\[rs]n");
 \&
     if (clock_getres(clock, &ts) == \-1) {
         perror("clock_getres");
@@ -500,7 +500,7 @@ displayClock(clockid_t clock, const char *name, bool showRes)
     }
 \&
     if (showRes)
-        printf("     resolution: %10jd.%09ld\en",
+        printf("     resolution: %10jd.%09ld\[rs]n",
                (intmax_t) ts.tv_sec, ts.tv_nsec);
 }
 \&

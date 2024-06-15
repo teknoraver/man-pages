@@ -183,7 +183,7 @@ when a nonmatching character is found, whichever happens first.
 Most conversions discard initial white space characters (the exceptions
 are noted below),
 and these discarded characters don't count toward the maximum field width.
-String input conversions store a terminating null byte (\[aq]\e0\[aq])
+String input conversions store a terminating null byte (\[aq]\[rs]0\[aq])
 to mark the end of the input;
 the maximum field width does not include this terminator.
 .TP
@@ -432,7 +432,7 @@ Equivalent to
 Matches a sequence of non-white-space characters;
 the next pointer must be a pointer to the initial element of a
 character array that is long enough to hold the input sequence and
-the terminating null byte (\[aq]\e0\[aq]), which is added automatically.
+the terminating null byte (\[aq]\[rs]0\[aq]), which is added automatically.
 The input string stops at white space or at the maximum field
 width, whichever occurs first.
 .TP
@@ -706,12 +706,12 @@ int n;
 errno = 0;
 n = sscanf(str, "%m[a\-z]", &p);
 if (n == 1) {
-    printf("read: %s\en", p);
+    printf("read: %s\[rs]n", p);
     free(p);
 } else if (errno != 0) {
     perror("sscanf");
 } else {
-    fprintf(stderr, "No matching characters\en");
+    fprintf(stderr, "No matching characters\[rs]n");
 }
 .EE
 .in

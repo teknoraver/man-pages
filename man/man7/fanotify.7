@@ -1090,7 +1090,7 @@ handle_events(int fd)
 \&
             if (metadata\->vers != FANOTIFY_METADATA_VERSION) {
                 fprintf(stderr,
-                        "Mismatch of fanotify metadata version.\en");
+                        "Mismatch of fanotify metadata version.\[rs]n");
                 exit(EXIT_FAILURE);
             }
 \&
@@ -1128,8 +1128,8 @@ handle_events(int fd)
                     exit(EXIT_FAILURE);
                 }
 \&
-                path[path_len] = \[aq]\e0\[aq];
-                printf("File %s\en", path);
+                path[path_len] = \[aq]\[rs]0\[aq];
+                printf("File %s\[rs]n", path);
 \&
                 /* Close the file descriptor of the event. */
 \&
@@ -1154,11 +1154,11 @@ main(int argc, char *argv[])
     /* Check mount point is supplied. */
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s MOUNT\en", argv[0]);
+        fprintf(stderr, "Usage: %s MOUNT\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
-    printf("Press enter key to terminate.\en");
+    printf("Press enter key to terminate.\[rs]n");
 \&
     /* Create the file descriptor for accessing the fanotify API. */
 \&
@@ -1193,7 +1193,7 @@ main(int argc, char *argv[])
 \&
     /* This is the loop to wait for incoming events. */
 \&
-    printf("Listening for events.\en");
+    printf("Listening for events.\[rs]n");
 \&
     while (1) {
         poll_num = poll(fds, nfds, \-1);
@@ -1210,7 +1210,7 @@ main(int argc, char *argv[])
 \&
                 /* Console input is available: empty stdin and quit. */
 \&
-                while (read(STDIN_FILENO, &buf, 1) > 0 && buf != \[aq]\en\[aq])
+                while (read(STDIN_FILENO, &buf, 1) > 0 && buf != \[aq]\[rs]n\[aq])
                     continue;
                 break;
             }
@@ -1224,7 +1224,7 @@ main(int argc, char *argv[])
         }
     }
 \&
-    printf("Listening for events stopped.\en");
+    printf("Listening for events stopped.\[rs]n");
     exit(EXIT_SUCCESS);
 }
 .EE
@@ -1322,7 +1322,7 @@ main(int argc, char *argv[])
     struct stat sb;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Invalid number of command line arguments.\en");
+        fprintf(stderr, "Invalid number of command line arguments.\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
@@ -1352,7 +1352,7 @@ main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 \&
-    printf("Listening for events.\en");
+    printf("Listening for events.\[rs]n");
 \&
     /* Read events from the event queue into a buffer. */
 \&
@@ -1379,15 +1379,15 @@ main(int argc, char *argv[])
             file_name = file_handle\->f_handle +
                         file_handle\->handle_bytes;
         } else {
-            fprintf(stderr, "Received unexpected event info type.\en");
+            fprintf(stderr, "Received unexpected event info type.\[rs]n");
             exit(EXIT_FAILURE);
         }
 \&
         if (metadata\->mask == FAN_CREATE)
-            printf("FAN_CREATE (file created):\en");
+            printf("FAN_CREATE (file created):\[rs]n");
 \&
         if (metadata\->mask == (FAN_CREATE | FAN_ONDIR))
-            printf("FAN_CREATE | FAN_ONDIR (subdirectory created):\en");
+            printf("FAN_CREATE | FAN_ONDIR (subdirectory created):\[rs]n");
 \&
 	/* metadata\->fd is set to FAN_NOFD when the group identifies
 	   objects by file handles.  To obtain a file descriptor for
@@ -1402,7 +1402,7 @@ main(int argc, char *argv[])
         if (event_fd == \-1) {
             if (errno == ESTALE) {
                 printf("File handle is no longer valid. "
-                        "File has been deleted\en");
+                        "File has been deleted\[rs]n");
                 continue;
             } else {
                 perror("open_by_handle_at");
@@ -1421,8 +1421,8 @@ main(int argc, char *argv[])
             exit(EXIT_FAILURE);
         }
 \&
-        path[path_len] = \[aq]\e0\[aq];
-        printf("\etDirectory \[aq]%s\[aq] has been modified.\en", path);
+        path[path_len] = \[aq]\[rs]0\[aq];
+        printf("\[rs]tDirectory \[aq]%s\[aq] has been modified.\[rs]n", path);
 \&
         if (file_name) {
             ret = fstatat(event_fd, file_name, &sb, 0);
@@ -1431,11 +1431,11 @@ main(int argc, char *argv[])
                     perror("fstatat");
                     exit(EXIT_FAILURE);
                 }
-                printf("\etEntry \[aq]%s\[aq] does not exist.\en", file_name);
+                printf("\[rs]tEntry \[aq]%s\[aq] does not exist.\[rs]n", file_name);
             } else if ((sb.st_mode & S_IFMT) == S_IFDIR) {
-                printf("\etEntry \[aq]%s\[aq] is a subdirectory.\en", file_name);
+                printf("\[rs]tEntry \[aq]%s\[aq] is a subdirectory.\[rs]n", file_name);
             } else {
-                printf("\etEntry \[aq]%s\[aq] is not a subdirectory.\en",
+                printf("\[rs]tEntry \[aq]%s\[aq] is not a subdirectory.\[rs]n",
                         file_name);
             }
         }
@@ -1445,7 +1445,7 @@ main(int argc, char *argv[])
         close(event_fd);
     }
 \&
-    printf("All events processed successfully. Program exiting.\en");
+    printf("All events processed successfully. Program exiting.\[rs]n");
     exit(EXIT_SUCCESS);
 }
 .EE

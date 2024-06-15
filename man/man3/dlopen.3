@@ -569,7 +569,7 @@ main(void)
 \&
     handle = dlopen(LIBM_SO, RTLD_LAZY);
     if (!handle) {
-        fprintf(stderr, "%s\en", dlerror());
+        fprintf(stderr, "%s\[rs]n", dlerror());
         exit(EXIT_FAILURE);
     }
 \&
@@ -598,11 +598,11 @@ main(void)
 \&
     error = dlerror();
     if (error != NULL) {
-        fprintf(stderr, "%s\en", error);
+        fprintf(stderr, "%s\[rs]n", error);
         exit(EXIT_FAILURE);
     }
 \&
-    printf("%f\en", (*cosine)(2.0));
+    printf("%f\[rs]n", (*cosine)(2.0));
     dlclose(handle);
     exit(EXIT_SUCCESS);
 }

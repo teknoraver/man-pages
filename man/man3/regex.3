@@ -370,7 +370,7 @@ Always reference them by name.
 #define ARRAY_SIZE(arr) (sizeof((arr)) / sizeof((arr)[0]))
 \&
 static const char *const str =
-        "1) John Driverhacker;\en2) John Doe;\en3) John Foo;\en";
+        "1) John Driverhacker;\[rs]n2) John Doe;\[rs]n3) John Foo;\[rs]n";
 static const char *const re = "John.*o";
 \&
 int main(void)
@@ -383,8 +383,8 @@ int main(void)
     if (regcomp(&regex, re, REG_NEWLINE))
         exit(EXIT_FAILURE);
 \&
-    printf("String = \e"%s\e"\en", str);
-    printf("Matches:\en");
+    printf("String = \[rs]"%s\[rs]"\[rs]n", str);
+    printf("Matches:\[rs]n");
 \&
     for (unsigned int i = 0; ; i++) {
         if (regexec(&regex, s, ARRAY_SIZE(pmatch), pmatch, 0))
@@ -392,10 +392,10 @@ int main(void)
 \&
         off = pmatch[0].rm_so + (s \- str);
         len = pmatch[0].rm_eo \- pmatch[0].rm_so;
-        printf("#%zu:\en", i);
-        printf("offset = %jd; length = %jd\en", (intmax_t) off,
+        printf("#%zu:\[rs]n", i);
+        printf("offset = %jd; length = %jd\[rs]n", (intmax_t) off,
                 (intmax_t) len);
-        printf("substring = \e"%.*s\e"\en", len, s + pmatch[0].rm_so);
+        printf("substring = \[rs]"%.*s\[rs]"\[rs]n", len, s + pmatch[0].rm_so);
 \&
         s += pmatch[0].rm_eo;
     }

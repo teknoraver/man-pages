@@ -549,11 +549,11 @@ no longer exists.
 .P
 .in +4n
 .EX
-$ \fBstat \-\-printf="%i\en" cecilia.txt\fP     # Display inode number
+$ \fBstat \-\-printf="%i\[rs]n" cecilia.txt\fP     # Display inode number
 4072121
 $ \fBrm cecilia.txt\fP
 $ \fBecho \[aq]Can you please think about it?\[aq] > cecilia.txt\fP
-$ \fBstat \-\-printf="%i\en" cecilia.txt\fP     # Check inode number
+$ \fBstat \-\-printf="%i\[rs]n" cecilia.txt\fP     # Check inode number
 4072121
 $ \fBsudo ./t_open_by_handle_at < fh\fP
 open_by_handle_at: Stale NFS file handle
@@ -578,7 +578,7 @@ main(int argc, char *argv[])
     struct file_handle  *fhp;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s pathname\en", argv[0]);
+        fprintf(stderr, "Usage: %s pathname\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -601,7 +601,7 @@ main(int argc, char *argv[])
                           &mount_id, flags) != \-1
         || errno != EOVERFLOW)
     {
-        fprintf(stderr, "Unexpected result from name_to_handle_at()\en");
+        fprintf(stderr, "Unexpected result from name_to_handle_at()\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
@@ -620,11 +620,11 @@ main(int argc, char *argv[])
     /* Write mount ID, file handle size, and file handle to stdout,
        for later reuse by t_open_by_handle_at.c. */
 \&
-    printf("%d\en", mount_id);
+    printf("%d\[rs]n", mount_id);
     printf("%u %d   ", fhp\->handle_bytes, fhp\->handle_type);
     for (size_t j = 0; j < fhp\->handle_bytes; j++)
         printf(" %02x", fhp\->f_handle[j]);
-    printf("\en");
+    printf("\[rs]n");
 \&
     exit(EXIT_SUCCESS);
 }
@@ -674,7 +674,7 @@ open_mount_path_by_id(int mount_id)
         nread = sscanf(linep, "%d %*d %*s %*s %s",
                        &mi_mount_id, mount_path);
         if (nread != 2) {
-            fprintf(stderr, "Bad sscanf()\en");
+            fprintf(stderr, "Bad sscanf()\[rs]n");
             exit(EXIT_FAILURE);
         }
 \&
@@ -686,7 +686,7 @@ open_mount_path_by_id(int mount_id)
     fclose(fp);
 \&
     if (!found) {
-        fprintf(stderr, "Could not find mount point\en");
+        fprintf(stderr, "Could not find mount point\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
@@ -705,7 +705,7 @@ main(int argc, char *argv[])
     struct file_handle  *fhp;
 \&
     if ((argc > 1 && strcmp(argv[1], "\-\-help") == 0) || argc > 2) {
-        fprintf(stderr, "Usage: %s [mount\-path]\en", argv[0]);
+        fprintf(stderr, "Usage: %s [mount\-path]\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -718,7 +718,7 @@ main(int argc, char *argv[])
     if (fgets(line1, sizeof(line1), stdin) == NULL ||
         fgets(line2, sizeof(line2), stdin) == NULL)
     {
-        fprintf(stderr, "Missing mount_id / file handle\en");
+        fprintf(stderr, "Missing mount_id / file handle\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
@@ -764,7 +764,7 @@ main(int argc, char *argv[])
     if (nread == \-1)
         err(EXIT_FAILURE, "read");
 \&
-    printf("Read %zd bytes\en", nread);
+    printf("Read %zd bytes\[rs]n", nread);
 \&
     exit(EXIT_SUCCESS);
 }

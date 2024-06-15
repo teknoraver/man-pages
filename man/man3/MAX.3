@@ -57,14 +57,14 @@ main(int argc, char *argv[])
     int a, b, x;
 \&
     if (argc != 3) {
-        fprintf(stderr, "Usage: %s <num> <num>\en", argv[0]);
+        fprintf(stderr, "Usage: %s <num> <num>\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
     a = atoi(argv[1]);
     b = atoi(argv[2]);
     x = MAX(a, b);
-    printf("MAX(%d, %d) is %d\en", a, b, x);
+    printf("MAX(%d, %d) is %d\[rs]n", a, b, x);
 \&
     exit(EXIT_SUCCESS);
 }

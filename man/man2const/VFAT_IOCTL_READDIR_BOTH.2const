@@ -151,7 +151,7 @@ main(int argc, char *argv[])
     struct __fat_dirent  entry[2];
 \&
     if (argc != 2) {
-        printf("Usage: %s DIRECTORY\en", argv[0]);
+        printf("Usage: %s DIRECTORY\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -184,7 +184,7 @@ main(int argc, char *argv[])
         /*
          * Write both the short name and the long name.
          */
-        printf("%s \-> \[aq]%s\[aq]\en", entry[0].d_name, entry[1].d_name);
+        printf("%s \-> \[aq]%s\[aq]\[rs]n", entry[0].d_name, entry[1].d_name);
     }
 \&
     if (ret == \-1) {

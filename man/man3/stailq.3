@@ -358,7 +358,7 @@ main(void)
     }
                                             /* Forward traversal */
     STAILQ_FOREACH(np, &head, entries)
-        printf("%i\en", np\->data);
+        printf("%i\[rs]n", np\->data);
                                             /* TailQ deletion */
     n1 = STAILQ_FIRST(&head);
     while (n1 != NULL) {

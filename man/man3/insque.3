@@ -169,7 +169,7 @@ new_element(void)
 \&
     e = malloc(sizeof(*e));
     if (e == NULL) {
-        fprintf(stderr, "malloc() failed\en");
+        fprintf(stderr, "malloc() failed\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
@@ -199,7 +199,7 @@ main(int argc, char *argv[])
     }
 \&
     if (errfnd || optind >= argc) {
-        fprintf(stderr,  "Usage: %s [\-c] string...\en", argv[0]);
+        fprintf(stderr,  "Usage: %s [\-c] string...\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -230,15 +230,15 @@ main(int argc, char *argv[])
 \&
     /* Traverse the list from the start, printing element names. */
 \&
-    printf("Traversing completed list:\en");
+    printf("Traversing completed list:\[rs]n");
     elem = first;
     do {
-        printf("    %s\en", elem\->name);
+        printf("    %s\[rs]n", elem\->name);
         elem = elem\->forward;
     } while (elem != NULL && elem != first);
 \&
     if (elem == first)
-        printf("That was a circular list\en");
+        printf("That was a circular list\[rs]n");
 \&
     exit(EXIT_SUCCESS);
 }

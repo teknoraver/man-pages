@@ -599,7 +599,7 @@ A common mistake is to do
 .in +4n
 .EX
 if (somecall() == \-1) {
-    printf("somecall() failed\en");
+    printf("somecall() failed\[rs]n");
     if (errno == ...) { ... }
 }
 .EE
@@ -619,7 +619,7 @@ should be preserved across a library call, it must be saved:
 .EX
 if (somecall() == \-1) {
     int errsv = errno;
-    printf("somecall() failed\en");
+    printf("somecall() failed\[rs]n");
     if (errsv == ...) { ... }
 }
 .EE

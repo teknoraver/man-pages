@@ -107,7 +107,7 @@ and
 .BR vsnprintf ()
 write at most
 .I size
-bytes (including the terminating null byte (\[aq]\e0\[aq])) to
+bytes (including the terminating null byte (\[aq]\[rs]0\[aq])) to
 .IR str .
 .P
 The functions
@@ -794,7 +794,7 @@ modifier is present: the
 argument is expected to be a pointer to an array of character type (pointer
 to a string).
 Characters from the array are written up to (but not
-including) a terminating null byte (\[aq]\e0\[aq]);
+including) a terminating null byte (\[aq]\[rs]0\[aq]);
 if a precision is specified, no more than the number specified
 are written.
 If a precision is given, no null byte need be present;
@@ -884,7 +884,7 @@ and
 .BR vsnprintf ()
 do not write more than
 .I size
-bytes (including the terminating null byte (\[aq]\e0\[aq])).
+bytes (including the terminating null byte (\[aq]\[rs]0\[aq])).
 If the output was truncated due to this limit, then the return value
 is the number of characters (excluding the terminating null byte)
 which would have been written to the final string if enough space
@@ -1138,7 +1138,7 @@ to five decimal places:
 .EX
 #include <math.h>
 #include <stdio.h>
-fprintf(stdout, "pi = %.5f\en", 4 * atan(1.0));
+fprintf(stdout, "pi = %.5f\[rs]n", 4 * atan(1.0));
 .EE
 .in
 .P
@@ -1152,7 +1152,7 @@ are pointers to strings:
 .in +4n
 .EX
 #include <stdio.h>
-fprintf(stdout, "%s, %s %d, %.2d:%.2d\en",
+fprintf(stdout, "%s, %s %d, %.2d:%.2d\[rs]n",
         weekday, month, day, hour, min);
 .EE
 .in
@@ -1176,7 +1176,7 @@ With the value:
 .P
 .in +4n
 .EX
-"%1$s, %3$d. %2$s, %4$d:%5$.2d\en"
+"%1$s, %3$d. %2$s, %4$d:%5$.2d\[rs]n"
 .EE
 .in
 .P
@@ -1207,7 +1207,7 @@ make_message(const char *fmt, ...)
     if (n < 0)
         return NULL;
 \&
-    size = (size_t) n + 1;      /* One extra byte for \[aq]\e0\[aq] */
+    size = (size_t) n + 1;      /* One extra byte for \[aq]\[rs]0\[aq] */
     p = malloc(size);
     if (p == NULL)
         return NULL;

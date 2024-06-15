@@ -91,7 +91,7 @@ On success,
 and
 .BR getdelim ()
 return the number of characters read, including the delimiter character,
-but not including the terminating null byte (\[aq]\e0\[aq]).
+but not including the terminating null byte (\[aq]\[rs]0\[aq]).
 This value can be used
 to handle embedded null bytes in the line read.
 .P
@@ -153,7 +153,7 @@ main(int argc, char *argv[])
     ssize_t nread;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s <file>\en", argv[0]);
+        fprintf(stderr, "Usage: %s <file>\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -164,7 +164,7 @@ main(int argc, char *argv[])
     }
 \&
     while ((nread = getline(&line, &len, stream)) != \-1) {
-        printf("Retrieved line of length %zd:\en", nread);
+        printf("Retrieved line of length %zd:\[rs]n", nread);
         fwrite(line, nread, 1, stdout);
     }
 \&

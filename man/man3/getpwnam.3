@@ -307,7 +307,7 @@ main(int argc, char *argv[])
     int s;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s username\en", argv[0]);
+        fprintf(stderr, "Usage: %s username\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -324,7 +324,7 @@ main(int argc, char *argv[])
     s = getpwnam_r(argv[1], &pwd, buf, bufsize, &result);
     if (result == NULL) {
         if (s == 0)
-            printf("Not found\en");
+            printf("Not found\[rs]n");
         else {
             errno = s;
             perror("getpwnam_r");
@@ -332,7 +332,7 @@ main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 \&
-    printf("Name: %s; UID: %jd\en", pwd.pw_gecos,
+    printf("Name: %s; UID: %jd\[rs]n", pwd.pw_gecos,
            (intmax_t) pwd.pw_uid);
     exit(EXIT_SUCCESS);
 }

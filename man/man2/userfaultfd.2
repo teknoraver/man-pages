@@ -799,9 +799,9 @@ fault_handler_thread(void *arg)
         if (nready == \-1)
             err(EXIT_FAILURE, "poll");
 \&
-        printf("\enfault_handler_thread():\en");
+        printf("\[rs]nfault_handler_thread():\[rs]n");
         printf("    poll() returns: nready = %d; "
-               "POLLIN = %d; POLLERR = %d\en", nready,
+               "POLLIN = %d; POLLERR = %d\[rs]n", nready,
                (pollfd.revents & POLLIN) != 0,
                (pollfd.revents & POLLERR) != 0);
 \&
@@ -809,7 +809,7 @@ fault_handler_thread(void *arg)
 \&
         nread = read(uffd, &msg, sizeof(msg));
         if (nread == 0) {
-            printf("EOF on userfaultfd!\en");
+            printf("EOF on userfaultfd!\[rs]n");
             exit(EXIT_FAILURE);
         }
 \&
@@ -819,7 +819,7 @@ fault_handler_thread(void *arg)
         /* We expect only one kind of event; verify that assumption. */
 \&
         if (msg.event != UFFD_EVENT_PAGEFAULT) {
-            fprintf(stderr, "Unexpected event on userfaultfd\en");
+            fprintf(stderr, "Unexpected event on userfaultfd\[rs]n");
             exit(EXIT_FAILURE);
         }
 \&
@@ -827,7 +827,7 @@ fault_handler_thread(void *arg)
 \&
         printf("    UFFD_EVENT_PAGEFAULT event: ");
         printf("flags = %"PRIx64"; ", msg.arg.pagefault.flags);
-        printf("address = %"PRIx64"\en", msg.arg.pagefault.address);
+        printf("address = %"PRIx64"\[rs]n", msg.arg.pagefault.address);
 \&
         /* Copy the page pointed to by \[aq]page\[aq] into the faulting
            region. Vary the contents that are copied in, so that it
@@ -849,7 +849,7 @@ fault_handler_thread(void *arg)
         if (ioctl(uffd, UFFDIO_COPY, &uffdio_copy) == \-1)
             err(EXIT_FAILURE, "ioctl\-UFFDIO_COPY");
 \&
-        printf("        (uffdio_copy.copy returned %"PRId64")\en",
+        printf("        (uffdio_copy.copy returned %"PRId64")\[rs]n",
                uffdio_copy.copy);
     }
 }
@@ -867,7 +867,7 @@ main(int argc, char *argv[])
     struct uffdio_register  uffdio_register;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s num\-pages\en", argv[0]);
+        fprintf(stderr, "Usage: %s num\-pages\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -902,7 +902,7 @@ main(int argc, char *argv[])
     if (addr == MAP_FAILED)
         err(EXIT_FAILURE, "mmap");
 \&
-    printf("Address returned by mmap() = %p\en", addr);
+    printf("Address returned by mmap() = %p\[rs]n", addr);
 \&
     /* Register the memory range of the mapping we just created for
        handling by the userfaultfd object. In mode, we request to track
@@ -931,7 +931,7 @@ main(int argc, char *argv[])
     while (l < len) {
         c = addr[l];
         printf("Read address %p in %s(): ", addr + l, __func__);
-        printf("%c\en", c);
+        printf("%c\[rs]n", c);
         l += 1024;
         usleep(100000);         /* Slow things down a little */
     }

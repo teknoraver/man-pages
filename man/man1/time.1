@@ -57,7 +57,7 @@ When in the POSIX locale, use the precise traditional format
 .IP
 .in +4n
 .EX
-"real %f\enuser %f\ensys %f\en"
+"real %f\[rs]nuser %f\[rs]nsys %f\[rs]n"
 .EE
 .in
 .IP
@@ -123,7 +123,7 @@ sys %S
 .SS The format string
 The format is interpreted in the usual printf-like way.
 Ordinary characters are directly copied, tab, newline,
-and backslash are escaped using \et, \en, and \e\e,
+and backslash are escaped using \[rs]t, \[rs]n, and \[rs]\[rs],
 a percent sign is represented by %%, and otherwise %
 indicates a conversion.
 The program

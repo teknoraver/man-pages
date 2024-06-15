@@ -115,7 +115,7 @@ main(void)
     if (dest == NULL)
         err(EXIT_FAILURE, "malloc()");
 \&
-    dest[0] = \[aq]\e0\[aq];  // There's no 'cpy' function to this 'cat'.
+    dest[0] = \[aq]\[rs]0\[aq];  // There's no 'cpy' function to this 'cat'.
     strncat(dest, pre, nitems(pre));
     strncat(dest, src, strlen(src) \- strlen(post));
     strncat(dest, new_post, nitems(new_post));

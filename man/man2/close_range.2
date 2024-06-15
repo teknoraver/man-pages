@@ -238,7 +238,7 @@ show_fds(void)
                      dp\->d_name);
 \&
             len = readlink(path, target, sizeof(target));
-            printf("%s ==> %.*s\en", path, (int) len, target);
+            printf("%s ==> %.*s\[rs]n", path, (int) len, target);
         }
     }
 \&
@@ -256,12 +256,12 @@ main(int argc, char *argv[])
             perror(argv[j]);
             exit(EXIT_FAILURE);
         }
-        printf("%s opened as FD %d\en", argv[j], fd);
+        printf("%s opened as FD %d\[rs]n", argv[j], fd);
     }
 \&
     show_fds();
 \&
-    printf("========= About to call close_range() =======\en");
+    printf("========= About to call close_range() =======\[rs]n");
 \&
     if (close_range(3, \[ti]0U, 0) == \-1) {
         perror("close_range");

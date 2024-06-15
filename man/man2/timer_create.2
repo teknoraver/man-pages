@@ -364,7 +364,7 @@ Caught signal 34
 #define CLOCKID CLOCK_REALTIME
 #define SIG SIGRTMIN
 \&
-#define errExit(msg)    do { perror(msg); exit(EXIT_FAILURE); \e
+#define errExit(msg)    do { perror(msg); exit(EXIT_FAILURE); \[rs]
                         } while (0)
 \&
 static void
@@ -376,13 +376,13 @@ print_siginfo(siginfo_t *si)
     tidp = si\->si_value.sival_ptr;
 \&
     printf("    sival_ptr = %p; ", si\->si_value.sival_ptr);
-    printf("    *sival_ptr = %#jx\en", (uintmax_t) *tidp);
+    printf("    *sival_ptr = %#jx\[rs]n", (uintmax_t) *tidp);
 \&
     or = timer_getoverrun(*tidp);
     if (or == \-1)
         errExit("timer_getoverrun");
     else
-        printf("    overrun count = %d\en", or);
+        printf("    overrun count = %d\[rs]n", or);
 }
 \&
 static void
@@ -394,7 +394,7 @@ handler(int sig, siginfo_t *si, void *uc)
        Nevertheless, we use printf() here as a simple way of
        showing that the handler was called. */
 \&
-    printf("Caught signal %d\en", sig);
+    printf("Caught signal %d\[rs]n", sig);
     print_siginfo(si);
     signal(sig, SIG_IGN);
 }
@@ -410,14 +410,14 @@ main(int argc, char *argv[])
     struct itimerspec  its;
 \&
     if (argc != 3) {
-        fprintf(stderr, "Usage: %s <sleep\-secs> <freq\-nanosecs>\en",
+        fprintf(stderr, "Usage: %s <sleep\-secs> <freq\-nanosecs>\[rs]n",
                 argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
     /* Establish handler for timer signal. */
 \&
-    printf("Establishing handler for signal %d\en", SIG);
+    printf("Establishing handler for signal %d\[rs]n", SIG);
     sa.sa_flags = SA_SIGINFO;
     sa.sa_sigaction = handler;
     sigemptyset(&sa.sa_mask);
@@ -426,7 +426,7 @@ main(int argc, char *argv[])
 \&
     /* Block timer signal temporarily. */
 \&
-    printf("Blocking signal %d\en", SIG);
+    printf("Blocking signal %d\[rs]n", SIG);
     sigemptyset(&mask);
     sigaddset(&mask, SIG);
     if (sigprocmask(SIG_SETMASK, &mask, NULL) == \-1)
@@ -440,7 +440,7 @@ main(int argc, char *argv[])
     if (timer_create(CLOCKID, &sev, &timerid) == \-1)
         errExit("timer_create");
 \&
-    printf("timer ID is %#jx\en", (uintmax_t) timerid);
+    printf("timer ID is %#jx\[rs]n", (uintmax_t) timerid);
 \&
     /* Start the timer. */
 \&
@@ -456,13 +456,13 @@ main(int argc, char *argv[])
     /* Sleep for a while; meanwhile, the timer may expire
        multiple times. */
 \&
-    printf("Sleeping for %d seconds\en", atoi(argv[1]));
+    printf("Sleeping for %d seconds\[rs]n", atoi(argv[1]));
     sleep(atoi(argv[1]));
 \&
     /* Unlock the timer signal, so that timer notification
        can be delivered. */
 \&
-    printf("Unblocking signal %d\en", SIG);
+    printf("Unblocking signal %d\[rs]n", SIG);
     if (sigprocmask(SIG_UNBLOCK, &mask, NULL) == \-1)
         errExit("sigprocmask");
 \&

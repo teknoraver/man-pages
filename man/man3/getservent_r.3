@@ -186,7 +186,7 @@ main(int argc, char *argv[])
     char *protop;
 \&
     if (argc < 3) {
-        printf("Usage: %s port\-num proto\-name [buflen]\en", argv[0]);
+        printf("Usage: %s port\-num proto\-name [buflen]\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -199,7 +199,7 @@ main(int argc, char *argv[])
         buflen = atoi(argv[3]);
 \&
     if (buflen > MAX_BUF) {
-        printf("Exceeded buffer limit (%d)\en", MAX_BUF);
+        printf("Exceeded buffer limit (%d)\[rs]n", MAX_BUF);
         exit(EXIT_FAILURE);
     }
 \&
@@ -209,7 +209,7 @@ main(int argc, char *argv[])
                             buf, buflen, &result);
         if (s == ERANGE) {
             if (erange_cnt == 0)
-                printf("ERANGE! Retrying with larger buffer\en");
+                printf("ERANGE! Retrying with larger buffer\[rs]n");
             erange_cnt++;
 \&
             /* Increment a byte at a time so we can see exactly
@@ -218,18 +218,18 @@ main(int argc, char *argv[])
             buflen++;
 \&
             if (buflen > MAX_BUF) {
-                printf("Exceeded buffer limit (%d)\en", MAX_BUF);
+                printf("Exceeded buffer limit (%d)\[rs]n", MAX_BUF);
                 exit(EXIT_FAILURE);
             }
         }
     } while (s == ERANGE);
 \&
-    printf("getservbyport_r() returned: %s  (buflen=%d)\en",
+    printf("getservbyport_r() returned: %s  (buflen=%d)\[rs]n",
            (s == 0) ? "0 (success)" : (s == ENOENT) ? "ENOENT" :
            strerror(s), buflen);
 \&
     if (s != 0 || result == NULL) {
-        printf("Call failed/record not found\en");
+        printf("Call failed/record not found\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
@@ -238,7 +238,7 @@ main(int argc, char *argv[])
            ntohs(result_buf.s_port));
     for (char **p = result_buf.s_aliases; *p != NULL; p++)
         printf("%s ", *p);
-    printf("\en");
+    printf("\[rs]n");
 \&
     exit(EXIT_SUCCESS);
 }

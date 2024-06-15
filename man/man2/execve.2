@@ -790,7 +790,7 @@ int
 main(int argc, char *argv[])
 {
     for (size_t j = 0; j < argc; j++)
-        printf("argv[%zu]: %s\en", j, argv[j]);
+        printf("argv[%zu]: %s\[rs]n", j, argv[j]);
 \&
     exit(EXIT_SUCCESS);
 }
@@ -817,7 +817,7 @@ main(int argc, char *argv[])
     static char *newenviron[] = { NULL };
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s <file\-to\-exec>\en", argv[0]);
+        fprintf(stderr, "Usage: %s <file\-to\-exec>\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&

@@ -452,7 +452,7 @@ we first create a suitable entry in the file
 .in +4n
 .EX
 $ sudo sh
-# \fBecho \[aq]create user mtk:* *   /bin/keyctl instantiate %k %c %S\[aq] \e\fP
+# \fBecho \[aq]create user mtk:* *   /bin/keyctl instantiate %k %c %S\[aq] \[rs]\fP
           \fB> /etc/request\-key.conf\fP
 # \fBexit\fP
 .EE
@@ -514,7 +514,7 @@ main(int argc, char *argv[])
     key_serial_t key;
 \&
     if (argc != 4) {
-        fprintf(stderr, "Usage: %s type description callout\-data\en",
+        fprintf(stderr, "Usage: %s type description callout\-data\[rs]n",
                 argv[0]);
         exit(EXIT_FAILURE);
     }
@@ -526,7 +526,7 @@ main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 \&
-    printf("Key ID is %jx\en", (uintmax_t) key);
+    printf("Key ID is %jx\[rs]n", (uintmax_t) key);
 \&
     exit(EXIT_SUCCESS);
 }

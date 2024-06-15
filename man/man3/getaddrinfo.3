@@ -672,7 +672,7 @@ main(int argc, char *argv[])
     struct sockaddr_storage  peer_addr;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s port\en", argv[0]);
+        fprintf(stderr, "Usage: %s port\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -687,7 +687,7 @@ main(int argc, char *argv[])
 \&
     s = getaddrinfo(NULL, argv[1], &hints, &result);
     if (s != 0) {
-        fprintf(stderr, "getaddrinfo: %s\en", gai_strerror(s));
+        fprintf(stderr, "getaddrinfo: %s\[rs]n", gai_strerror(s));
         exit(EXIT_FAILURE);
     }
 \&
@@ -711,7 +711,7 @@ main(int argc, char *argv[])
     freeaddrinfo(result);           /* No longer needed */
 \&
     if (rp == NULL) {               /* No address succeeded */
-        fprintf(stderr, "Could not bind\en");
+        fprintf(stderr, "Could not bind\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
@@ -730,15 +730,15 @@ main(int argc, char *argv[])
                         peer_addrlen, host, NI_MAXHOST,
                         service, NI_MAXSERV, NI_NUMERICSERV);
         if (s == 0)
-            printf("Received %zd bytes from %s:%s\en",
+            printf("Received %zd bytes from %s:%s\[rs]n",
                    nread, host, service);
         else
-            fprintf(stderr, "getnameinfo: %s\en", gai_strerror(s));
+            fprintf(stderr, "getnameinfo: %s\[rs]n", gai_strerror(s));
 \&
         if (sendto(sfd, buf, nread, 0, (struct sockaddr *) &peer_addr,
                    peer_addrlen) != nread)
         {
-            fprintf(stderr, "Error sending response\en");
+            fprintf(stderr, "Error sending response\[rs]n");
         }
     }
 }
@@ -769,7 +769,7 @@ main(int argc, char *argv[])
     struct addrinfo  *result, *rp;
 \&
     if (argc < 3) {
-        fprintf(stderr, "Usage: %s host port msg...\en", argv[0]);
+        fprintf(stderr, "Usage: %s host port msg...\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -783,7 +783,7 @@ main(int argc, char *argv[])
 \&
     s = getaddrinfo(argv[1], argv[2], &hints, &result);
     if (s != 0) {
-        fprintf(stderr, "getaddrinfo: %s\en", gai_strerror(s));
+        fprintf(stderr, "getaddrinfo: %s\[rs]n", gai_strerror(s));
         exit(EXIT_FAILURE);
     }
 \&
@@ -807,7 +807,7 @@ main(int argc, char *argv[])
     freeaddrinfo(result);           /* No longer needed */
 \&
     if (rp == NULL) {               /* No address succeeded */
-        fprintf(stderr, "Could not connect\en");
+        fprintf(stderr, "Could not connect\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
@@ -820,12 +820,12 @@ main(int argc, char *argv[])
 \&
         if (len > BUF_SIZE) {
             fprintf(stderr,
-                    "Ignoring long message in argument %zu\en", j);
+                    "Ignoring long message in argument %zu\[rs]n", j);
             continue;
         }
 \&
         if (write(sfd, argv[j], len) != len) {
-            fprintf(stderr, "partial/failed write\en");
+            fprintf(stderr, "partial/failed write\[rs]n");
             exit(EXIT_FAILURE);
         }
 \&
@@ -835,7 +835,7 @@ main(int argc, char *argv[])
             exit(EXIT_FAILURE);
         }
 \&
-        printf("Received %zd bytes: %s\en", nread, buf);
+        printf("Received %zd bytes: %s\[rs]n", nread, buf);
     }
 \&
     exit(EXIT_SUCCESS);

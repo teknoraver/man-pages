@@ -199,7 +199,7 @@ main(int argc, char *argv[])
 \&
     if (argc < 4) {
         fprintf(stderr,
-                "%s num\-threads num\-blocks block\-size [sleep\-time]\en",
+                "%s num\-threads num\-blocks block\-size [sleep\-time]\[rs]n",
                 argv[0]);
         exit(EXIT_FAILURE);
     }
@@ -213,7 +213,7 @@ main(int argc, char *argv[])
     if (thr == NULL)
         err(EXIT_FAILURE, "calloc");
 \&
-    printf("============ Before allocating blocks ============\en");
+    printf("============ Before allocating blocks ============\[rs]n");
     malloc_info(0, stdout);
 \&
     /* Create threads that allocate different amounts of memory. */
@@ -242,7 +242,7 @@ main(int argc, char *argv[])
     sleep(2);           /* Give all threads a chance to
                            complete allocations. */
 \&
-    printf("\en============ After allocating blocks ============\en");
+    printf("\[rs]n============ After allocating blocks ============\[rs]n");
     malloc_info(0, stdout);
 \&
     exit(EXIT_SUCCESS);

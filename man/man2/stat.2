@@ -474,7 +474,7 @@ main(int argc, char *argv[])
     struct stat sb;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s <pathname>\en", argv[0]);
+        fprintf(stderr, "Usage: %s <pathname>\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -483,37 +483,37 @@ main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 \&
-    printf("ID of containing device:  [%x,%x]\en",
+    printf("ID of containing device:  [%x,%x]\[rs]n",
            major(sb.st_dev),
            minor(sb.st_dev));
 \&
     printf("File type:                ");
 \&
     switch (sb.st_mode & S_IFMT) {
-    case S_IFBLK:  printf("block device\en");            break;
-    case S_IFCHR:  printf("character device\en");        break;
-    case S_IFDIR:  printf("directory\en");               break;
-    case S_IFIFO:  printf("FIFO/pipe\en");               break;
-    case S_IFLNK:  printf("symlink\en");                 break;
-    case S_IFREG:  printf("regular file\en");            break;
-    case S_IFSOCK: printf("socket\en");                  break;
-    default:       printf("unknown?\en");                break;
+    case S_IFBLK:  printf("block device\[rs]n");            break;
+    case S_IFCHR:  printf("character device\[rs]n");        break;
+    case S_IFDIR:  printf("directory\[rs]n");               break;
+    case S_IFIFO:  printf("FIFO/pipe\[rs]n");               break;
+    case S_IFLNK:  printf("symlink\[rs]n");                 break;
+    case S_IFREG:  printf("regular file\[rs]n");            break;
+    case S_IFSOCK: printf("socket\[rs]n");                  break;
+    default:       printf("unknown?\[rs]n");                break;
     }
 \&
-    printf("I\-node number:            %ju\en", (uintmax_t) sb.st_ino);
+    printf("I\-node number:            %ju\[rs]n", (uintmax_t) sb.st_ino);
 \&
-    printf("Mode:                     %jo (octal)\en",
+    printf("Mode:                     %jo (octal)\[rs]n",
            (uintmax_t) sb.st_mode);
 \&
-    printf("Link count:               %ju\en", (uintmax_t) sb.st_nlink);
-    printf("Ownership:                UID=%ju   GID=%ju\en",
+    printf("Link count:               %ju\[rs]n", (uintmax_t) sb.st_nlink);
+    printf("Ownership:                UID=%ju   GID=%ju\[rs]n",
            (uintmax_t) sb.st_uid, (uintmax_t) sb.st_gid);
 \&
-    printf("Preferred I/O block size: %jd bytes\en",
+    printf("Preferred I/O block size: %jd bytes\[rs]n",
            (intmax_t) sb.st_blksize);
-    printf("File size:                %jd bytes\en",
+    printf("File size:                %jd bytes\[rs]n",
            (intmax_t) sb.st_size);
-    printf("Blocks allocated:         %jd\en",
+    printf("Blocks allocated:         %jd\[rs]n",
            (intmax_t) sb.st_blocks);
 \&
     printf("Last status change:       %s", ctime(&sb.st_ctime));

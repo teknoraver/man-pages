@@ -1038,7 +1038,7 @@ numbers on this architecture:
 $ \fBuname \-m\fP
 x86_64
 $ \fBsyscall_nr() {
-    cat /usr/src/linux/arch/x86/syscalls/syscall_64.tbl | \e
+    cat /usr/src/linux/arch/x86/syscalls/syscall_64.tbl | \[rs]
     awk \[aq]$2 != "x32" && $3 == "\[aq]$1\[aq]" { print $1 }\[aq]
 }\fP
 .EE
@@ -1184,10 +1184,10 @@ main(int argc, char *argv[])
 {
     if (argc < 5) {
         fprintf(stderr, "Usage: "
-                "%s <syscall_nr> <arch> <errno> <prog> [<args>]\en"
-                "Hint for <arch>: AUDIT_ARCH_I386: 0x%X\en"
-                "                 AUDIT_ARCH_X86_64: 0x%X\en"
-                "\en", argv[0], AUDIT_ARCH_I386, AUDIT_ARCH_X86_64);
+                "%s <syscall_nr> <arch> <errno> <prog> [<args>]\[rs]n"
+                "Hint for <arch>: AUDIT_ARCH_I386: 0x%X\[rs]n"
+                "                 AUDIT_ARCH_X86_64: 0x%X\[rs]n"
+                "\[rs]n", argv[0], AUDIT_ARCH_I386, AUDIT_ARCH_X86_64);
         exit(EXIT_FAILURE);
     }
 \&

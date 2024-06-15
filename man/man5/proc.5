@@ -214,13 +214,13 @@ whose names start with
 .SH NOTES
 Many files contain strings (e.g., the environment and command line)
 that are in the internal format,
-with subfields terminated by null bytes (\[aq]\e0\[aq]).
+with subfields terminated by null bytes (\[aq]\[rs]0\[aq]).
 When inspecting such files, you may find that the results are more readable
 if you use a command of the following form to display them:
 .P
 .in +4n
 .EX
-.RB "$" " cat \fIfile\fP | tr \[aq]\e000\[aq] \[aq]\en\[aq]"
+.RB "$" " cat \fIfile\fP | tr \[aq]\[rs]000\[aq] \[aq]\[rs]n\[aq]"
 .EE
 .in
 .\" .SH ACKNOWLEDGEMENTS

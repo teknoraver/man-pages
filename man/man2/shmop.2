@@ -326,7 +326,7 @@ The following header file is included by the "reader" and "writer" programs:
 #include <stdlib.h>
 #include <sys/sem.h>
 \&
-#define errExit(msg)    do { perror(msg); exit(EXIT_FAILURE); \e
+#define errExit(msg)    do { perror(msg); exit(EXIT_FAILURE); \[rs]
                         } while (0)
 \&
 union semun {                   /* Used in calls to semctl() */
@@ -400,7 +400,7 @@ main(void)
     if (semctl(semid, 0, SETVAL, arg) == \-1)
         errExit("semctl");
 \&
-    printf("shmid = %d; semid = %d\en", shmid, semid);
+    printf("shmid = %d; semid = %d\[rs]n", shmid, semid);
 \&
     /* Wait for semaphore value to become 0. */
 \&
@@ -413,7 +413,7 @@ main(void)
 \&
     /* Print the string from shared memory. */
 \&
-    printf("%s\en", addr);
+    printf("%s\[rs]n", addr);
 \&
     /* Remove shared memory and semaphore set. */
 \&
@@ -460,13 +460,13 @@ main(int argc, char *argv[])
     struct sembuf  sop;
 \&
     if (argc != 4) {
-        fprintf(stderr, "Usage: %s shmid semid string\en", argv[0]);
+        fprintf(stderr, "Usage: %s shmid semid string\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
-    len = strlen(argv[3]) + 1;  /* +1 to include trailing \[aq]\e0\[aq] */
+    len = strlen(argv[3]) + 1;  /* +1 to include trailing \[aq]\[rs]0\[aq] */
     if (len > MEM_SIZE) {
-        fprintf(stderr, "String is too big!\en");
+        fprintf(stderr, "String is too big!\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&

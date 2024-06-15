@@ -581,12 +581,12 @@ usage(char *prog_name, char *msg)
     if (msg != NULL)
         fputs(msg, stderr);
 \&
-    fprintf(stderr, "Usage: %s [options]\en", prog_name);
-    fprintf(stderr, "Options are:\en");
-    fprintf(stderr, "\-s        send message using msgsnd()\en");
-    fprintf(stderr, "\-r        read message using msgrcv()\en");
-    fprintf(stderr, "\-t        message type (default is 1)\en");
-    fprintf(stderr, "\-k        message queue key (default is 1234)\en");
+    fprintf(stderr, "Usage: %s [options]\[rs]n", prog_name);
+    fprintf(stderr, "Options are:\[rs]n");
+    fprintf(stderr, "\-s        send message using msgsnd()\[rs]n");
+    fprintf(stderr, "\-r        read message using msgrcv()\[rs]n");
+    fprintf(stderr, "\-t        message type (default is 1)\[rs]n");
+    fprintf(stderr, "\-k        message queue key (default is 1234)\[rs]n");
     exit(EXIT_FAILURE);
 }
 \&
@@ -608,7 +608,7 @@ send_msg(int qid, int msgtype)
         perror("msgsnd error");
         exit(EXIT_FAILURE);
     }
-    printf("sent: %s\en", msg.mtext);
+    printf("sent: %s\[rs]n", msg.mtext);
 }
 \&
 static void
@@ -622,9 +622,9 @@ get_msg(int qid, int msgtype)
             perror("msgrcv");
             exit(EXIT_FAILURE);
         }
-        printf("No message available for msgrcv()\en");
+        printf("No message available for msgrcv()\[rs]n");
     } else {
-        printf("message received: %s\en", msg.mtext);
+        printf("message received: %s\[rs]n", msg.mtext);
     }
 }
 \&
@@ -647,18 +647,18 @@ main(int argc, char *argv[])
         case \[aq]t\[aq]:
             msgtype = atoi(optarg);
             if (msgtype <= 0)
-                usage(argv[0], "\-t option must be greater than 0\en");
+                usage(argv[0], "\-t option must be greater than 0\[rs]n");
             break;
         case \[aq]k\[aq]:
             msgkey = atoi(optarg);
             break;
         default:
-            usage(argv[0], "Unrecognized option\en");
+            usage(argv[0], "Unrecognized option\[rs]n");
         }
     }
 \&
     if (mode == 0)
-        usage(argv[0], "must use either \-s or \-r option\en");
+        usage(argv[0], "must use either \-s or \-r option\[rs]n");
 \&
     qid = msgget(msgkey, IPC_CREAT | 0666);
 \&

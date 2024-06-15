@@ -59,7 +59,7 @@ Open the stream for reading and writing.
 .I w+
 Open the stream for reading and writing.
 The buffer contents are truncated
-(i.e., \[aq]\e0\[aq] is placed in the first byte of the buffer).
+(i.e., \[aq]\[rs]0\[aq] is placed in the first byte of the buffer).
 .TP
 .I a+
 Append; open the stream for reading and writing,
@@ -112,7 +112,7 @@ counts that byte)
 to allow for this.
 .P
 In a stream opened for reading,
-null bytes (\[aq]\e0\[aq]) in the buffer do not cause read
+null bytes (\[aq]\[rs]0\[aq]) in the buffer do not cause read
 operations to return an end-of-file indication.
 A read from the buffer will indicate end-of-file
 only when the current buffer position advances
@@ -314,7 +314,7 @@ main(int argc, char *argv[])
     char *ptr;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s \[aq]<num>...\[aq]\en", argv[0]);
+        fprintf(stderr, "Usage: %s \[aq]<num>...\[aq]\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -339,7 +339,7 @@ main(int argc, char *argv[])
     fclose(in);
     fclose(out);
 \&
-    printf("size=%zu; ptr=%s\en", size, ptr);
+    printf("size=%zu; ptr=%s\[rs]n", size, ptr);
 \&
     free(ptr);
     exit(EXIT_SUCCESS);

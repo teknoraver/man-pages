@@ -291,16 +291,16 @@ main(void)
     case MM_OK:
         break;
     case MM_NOTOK:
-        printf("Nothing printed\en");
+        printf("Nothing printed\[rs]n");
         break;
     case MM_NOMSG:
-        printf("Nothing printed to stderr\en");
+        printf("Nothing printed to stderr\[rs]n");
         break;
     case MM_NOCON:
-        printf("No console output\en");
+        printf("No console output\[rs]n");
         break;
     default:
-        printf("Unknown error from fmtmsg()\en");
+        printf("Unknown error from fmtmsg()\[rs]n");
     }
     exit(EXIT_SUCCESS);
 }

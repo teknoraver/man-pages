@@ -1542,7 +1542,7 @@ recvfd(int sockfd)
 static void
 sigchldHandler(int sig)
 {
-    char msg[] = "\etS: target has terminated; bye\en";
+    char msg[] = "\[rs]tS: target has terminated; bye\[rs]n";
 \&
     write(STDOUT_FILENO, msg, sizeof(msg) \- 1);
     _exit(EXIT_SUCCESS);
@@ -1563,13 +1563,13 @@ seccomp(unsigned int operation, unsigned int flags, void *args)
 \&
 #define X32_SYSCALL_BIT         0x40000000
 \&
-#define X86_64_CHECK_ARCH_AND_LOAD_SYSCALL_NR \e
-        BPF_STMT(BPF_LD | BPF_W | BPF_ABS, \e
-                 (offsetof(struct seccomp_data, arch))), \e
-        BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, AUDIT_ARCH_X86_64, 0, 2), \e
-        BPF_STMT(BPF_LD | BPF_W | BPF_ABS, \e
-                 (offsetof(struct seccomp_data, nr))), \e
-        BPF_JUMP(BPF_JMP | BPF_JGE | BPF_K, X32_SYSCALL_BIT, 0, 1), \e
+#define X86_64_CHECK_ARCH_AND_LOAD_SYSCALL_NR \[rs]
+        BPF_STMT(BPF_LD | BPF_W | BPF_ABS, \[rs]
+                 (offsetof(struct seccomp_data, arch))), \[rs]
+        BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, AUDIT_ARCH_X86_64, 0, 2), \[rs]
+        BPF_STMT(BPF_LD | BPF_W | BPF_ABS, \[rs]
+                 (offsetof(struct seccomp_data, nr))), \[rs]
+        BPF_JUMP(BPF_JMP | BPF_JGE | BPF_K, X32_SYSCALL_BIT, 0, 1), \[rs]
         BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_KILL_PROCESS)
 \&
 /* installNotifyFilter() installs a seccomp filter that generates
@@ -1651,7 +1651,7 @@ targetProcess(int sockPair[2], char *argv[])
 \&
     /* Child falls through to here */
 \&
-    printf("T: PID = %ld\en", (long) getpid());
+    printf("T: PID = %ld\[rs]n", (long) getpid());
 \&
     /* Install seccomp filter(s) */
 \&
@@ -1676,16 +1676,16 @@ targetProcess(int sockPair[2], char *argv[])
     /* Perform a mkdir() call for each of the command\-line arguments */
 \&
     for (char **ap = argv; *ap != NULL; ap++) {
-        printf("\enT: about to mkdir(\e"%s\e")\en", *ap);
+        printf("\[rs]nT: about to mkdir(\[rs]"%s\[rs]")\[rs]n", *ap);
 \&
         s = mkdir(*ap, 0700);
         if (s == \-1)
             perror("T: ERROR: mkdir(2)");
         else
-            printf("T: SUCCESS: mkdir(2) returned %d\en", s);
+            printf("T: SUCCESS: mkdir(2) returned %d\[rs]n", s);
     }
 \&
-    printf("\enT: terminating\en");
+    printf("\[rs]nT: terminating\[rs]n");
     exit(EXIT_SUCCESS);
 }
 \&
@@ -1759,7 +1759,7 @@ getTargetPathname(struct seccomp_notif *req, int notifyFd,
        changed by subsequent operations. */
 \&
     if (!cookieIsValid(notifyFd, req\->id)) {
-        perror("\etS: notification ID check failed!!!");
+        perror("\[rs]tS: notification ID check failed!!!");
         return false;
     }
 \&
@@ -1842,10 +1842,10 @@ handleNotifications(int notifyFd)
         if (ioctl(notifyFd, SECCOMP_IOCTL_NOTIF_RECV, req) == \-1) {
             if (errno == EINTR)
                 continue;
-            err(EXIT_FAILURE, "\etS: ioctl\-SECCOMP_IOCTL_NOTIF_RECV");
+            err(EXIT_FAILURE, "\[rs]tS: ioctl\-SECCOMP_IOCTL_NOTIF_RECV");
         }
 \&
-        printf("\etS: got notification (ID %#llx) for PID %d\en",
+        printf("\[rs]tS: got notification (ID %#llx) for PID %d\[rs]n",
                req\->id, req\->pid);
 \&
         /* The only system call that can generate a notification event
@@ -1855,8 +1855,8 @@ handleNotifications(int notifyFd)
            generate notifications for other system calls. */
 \&
         if (req\->data.nr != SYS_mkdir) {
-            printf("\etS: notification contained unexpected "
-                   "system call number; bye!!!\en");
+            printf("\[rs]tS: notification contained unexpected "
+                   "system call number; bye!!!\[rs]n");
             exit(EXIT_FAILURE);
         }
 \&
@@ -1879,17 +1879,17 @@ handleNotifications(int notifyFd)
 \&
         if (!pathOK) {
             resp\->error = \-EINVAL;
-            printf("\etS: spoofing error for invalid pathname (%s)\en",
+            printf("\[rs]tS: spoofing error for invalid pathname (%s)\[rs]n",
                    strerror(\-resp\->error));
         } else if (strncmp(path, "/tmp/", strlen("/tmp/")) == 0) {
-            printf("\etS: executing: mkdir(\e"%s\e", %#llo)\en",
+            printf("\[rs]tS: executing: mkdir(\[rs]"%s\[rs]", %#llo)\[rs]n",
                    path, req\->data.args[1]);
 \&
             if (mkdir(path, req\->data.args[1]) == 0) {
                 resp\->error = 0;            /* "Success" */
                 resp\->val = strlen(path);   /* Used as return value of
                                                mkdir() in target */
-                printf("\etS: success! spoofed return = %lld\en",
+                printf("\[rs]tS: success! spoofed return = %lld\[rs]n",
                        resp\->val);
             } else {
 \&
@@ -1897,30 +1897,30 @@ handleNotifications(int notifyFd)
                    back to the target */
 \&
                 resp\->error = \-errno;
-                printf("\etS: failure! (errno = %d; %s)\en", errno,
+                printf("\[rs]tS: failure! (errno = %d; %s)\[rs]n", errno,
                        strerror(errno));
             }
         } else if (strncmp(path, "./", strlen("./")) == 0) {
             resp\->error = resp\->val = 0;
             resp\->flags = SECCOMP_USER_NOTIF_FLAG_CONTINUE;
-            printf("\etS: target can execute system call\en");
+            printf("\[rs]tS: target can execute system call\[rs]n");
         } else {
             resp\->error = \-EOPNOTSUPP;
-            printf("\etS: spoofing error response (%s)\en",
+            printf("\[rs]tS: spoofing error response (%s)\[rs]n",
                    strerror(\-resp\->error));
         }
 \&
         /* Send a response to the notification */
 \&
-        printf("\etS: sending response "
-               "(flags = %#x; val = %lld; error = %d)\en",
+        printf("\[rs]tS: sending response "
+               "(flags = %#x; val = %lld; error = %d)\[rs]n",
                resp\->flags, resp\->val, resp\->error);
 \&
         if (ioctl(notifyFd, SECCOMP_IOCTL_NOTIF_SEND, resp) == \-1) {
             if (errno == ENOENT)
-                printf("\etS: response failed with ENOENT; "
+                printf("\[rs]tS: response failed with ENOENT; "
                        "perhaps target process\[aq]s syscall was "
-                       "interrupted by a signal?\en");
+                       "interrupted by a signal?\[rs]n");
             else
                 perror("ioctl\-SECCOMP_IOCTL_NOTIF_SEND");
         }
@@ -1935,7 +1935,7 @@ handleNotifications(int notifyFd)
 \&
     free(req);
     free(resp);
-    printf("\etS: terminating **********\en");
+    printf("\[rs]tS: terminating **********\[rs]n");
     exit(EXIT_FAILURE);
 }
 \&
@@ -1968,7 +1968,7 @@ main(int argc, char *argv[])
     setbuf(stdout, NULL);
 \&
     if (argc < 2) {
-        fprintf(stderr, "At least one pathname argument is required\en");
+        fprintf(stderr, "At least one pathname argument is required\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&

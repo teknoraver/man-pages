@@ -16,7 +16,7 @@ The most obvious
 Unicode encoding (known as UCS-2)
 consists of a sequence of 16-bit words.
 Such strings can contain\[em]as part of many 16-bit characters\[em]bytes
-such as \[aq]\e0\[aq] or \[aq]/\[aq], which have a
+such as \[aq]\[rs]0\[aq] or \[aq]/\[aq], which have a
 special meaning in filenames and other C library function arguments.
 In addition, the majority of UNIX tools expect ASCII files and can't
 read 16-bit words as characters without major modifications.
@@ -47,7 +47,7 @@ UTF-8.
 All UCS characters greater than 0x7f are encoded as a multibyte sequence
 consisting only of bytes in the range 0x80 to 0xfd, so no ASCII
 byte can appear as part of another character and there are no
-problems with, for example,  \[aq]\e0\[aq] or \[aq]/\[aq].
+problems with, for example,  \[aq]\[rs]0\[aq] or \[aq]/\[aq].
 .IP \[bu]
 The lexicographic sorting order of UCS-4 strings is preserved.
 .IP \[bu]
@@ -176,9 +176,9 @@ should be used today to count characters and cursor positions.
 The official ESC sequence to switch from an ISO/IEC\~2022
 encoding scheme (as used for instance by VT100 terminals) to
 UTF-8 is ESC % G
-("\ex1b%G").
+("\[rs]x1b%G").
 The corresponding return sequence from
-UTF-8 to ISO/IEC\~2022 is ESC % @ ("\ex1b%@").
+UTF-8 to ISO/IEC\~2022 is ESC % @ ("\[rs]x1b%@").
 Other ISO/IEC\~2022 sequences (such as
 for switching the G0 and G1 sets) are not applicable in UTF-8 mode.
 .SS Security

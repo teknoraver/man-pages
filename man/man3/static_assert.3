@@ -74,24 +74,24 @@ The following program uses the macro to get the size of an array safely.
  * returns 0, which allows using it everywhere an expression
  * can be used.
  */
-#define must_be(e)                                        \e
-(                                                         \e
-    0 * (int) sizeof(                                     \e
-        struct {                                          \e
-            static_assert(e);                             \e
-            int  ISO_C_forbids_a_struct_with_no_members;  \e
-        }                                                 \e
-    )                                                     \e
+#define must_be(e)                                        \[rs]
+(                                                         \[rs]
+    0 * (int) sizeof(                                     \[rs]
+        struct {                                          \[rs]
+            static_assert(e);                             \[rs]
+            int  ISO_C_forbids_a_struct_with_no_members;  \[rs]
+        }                                                 \[rs]
+    )                                                     \[rs]
 )
 \&
-#define is_same_type(a, b)  \e
+#define is_same_type(a, b)  \[rs]
     __builtin_types_compatible_p(typeof(a), typeof(b))
 \&
 #define is_array(arr)       (!is_same_type((arr), &*(arr)))
 #define must_be_array(arr)  must_be(is_array(arr))
 \&
 #define sizeof_array(arr)   (sizeof(arr) + must_be_array(arr))
-#define nitems(arr)         (sizeof((arr)) / sizeof((arr)[0]) \e
+#define nitems(arr)         (sizeof((arr)) / sizeof((arr)[0]) \[rs]
                              + must_be_array(arr))
 \&
 int     foo[10];

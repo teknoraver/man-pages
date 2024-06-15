@@ -1869,7 +1869,7 @@ childFunc(void *arg)
 \&
     if (uname(&uts) == \-1)
         err(EXIT_FAILURE, "uname");
-    printf("uts.nodename in child:  %s\en", uts.nodename);
+    printf("uts.nodename in child:  %s\[rs]n", uts.nodename);
 \&
     /* Keep the namespace open for a while, by sleeping.
        This allows some experimentation\-\-for example, another
@@ -1891,7 +1891,7 @@ main(int argc, char *argv[])
     struct utsname  uts;
 \&
     if (argc < 2) {
-        fprintf(stderr, "Usage: %s <child\-hostname>\en", argv[0]);
+        fprintf(stderr, "Usage: %s <child\-hostname>\[rs]n", argv[0]);
         exit(EXIT_SUCCESS);
     }
 \&
@@ -1910,7 +1910,7 @@ main(int argc, char *argv[])
     pid = clone(childFunc, stackTop, CLONE_NEWUTS | SIGCHLD, argv[1]);
     if (pid == \-1)
         err(EXIT_FAILURE, "clone");
-    printf("clone() returned %jd\en", (intmax_t) pid);
+    printf("clone() returned %jd\[rs]n", (intmax_t) pid);
 \&
     /* Parent falls through to here */
 \&
@@ -1921,11 +1921,11 @@ main(int argc, char *argv[])
 \&
     if (uname(&uts) == \-1)
         err(EXIT_FAILURE, "uname");
-    printf("uts.nodename in parent: %s\en", uts.nodename);
+    printf("uts.nodename in parent: %s\[rs]n", uts.nodename);
 \&
     if (waitpid(pid, NULL, 0) == \-1)    /* Wait for child */
         err(EXIT_FAILURE, "waitpid");
-    printf("child has terminated\en");
+    printf("child has terminated\[rs]n");
 \&
     exit(EXIT_SUCCESS);
 }

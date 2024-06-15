@@ -191,16 +191,16 @@ main(void)
     char *p;
 \&
     if (mcheck(NULL) != 0) {
-        fprintf(stderr, "mcheck() failed\en");
+        fprintf(stderr, "mcheck() failed\[rs]n");
 \&
         exit(EXIT_FAILURE);
     }
 \&
     p = malloc(1000);
 \&
-    fprintf(stderr, "About to free\en");
+    fprintf(stderr, "About to free\[rs]n");
     free(p);
-    fprintf(stderr, "\enAbout to free a second time\en");
+    fprintf(stderr, "\[rs]nAbout to free a second time\[rs]n");
     free(p);
 \&
     exit(EXIT_SUCCESS);

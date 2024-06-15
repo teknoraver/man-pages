@@ -301,7 +301,7 @@ main(void)
 \&
                                             /* Forward traversal */
     SLIST_FOREACH(np, &head, entries)
-        printf("%i\en", np\->data);
+        printf("%i\[rs]n", np\->data);
 \&
     while (!SLIST_EMPTY(&head)) {           /* List deletion */
         n1 = SLIST_FIRST(&head);

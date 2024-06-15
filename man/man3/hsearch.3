@@ -330,7 +330,7 @@ main(void)
         ep = hsearch(e, ENTER);
         /* there should be no failures */
         if (ep == NULL) {
-            fprintf(stderr, "entry failed\en");
+            fprintf(stderr, "entry failed\[rs]n");
             exit(EXIT_FAILURE);
         }
     }
@@ -340,7 +340,7 @@ main(void)
            show that two are not in the table */
         e.key = data[i];
         ep = hsearch(e, FIND);
-        printf("%9.9s \-> %9.9s:%d\en", e.key,
+        printf("%9.9s \-> %9.9s:%d\[rs]n", e.key,
                ep ? ep\->key : "NULL", ep ? (int)(ep\->data) : 0);
     }
     hdestroy();

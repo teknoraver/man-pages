@@ -380,10 +380,10 @@ ID = 9
 static void
 usage(const char *pname)
 {
-    fprintf(stderr, "Usage: %s [\-cx] pathname proj\-id num\-sems\en",
+    fprintf(stderr, "Usage: %s [\-cx] pathname proj\-id num\-sems\[rs]n",
             pname);
-    fprintf(stderr, "    \-c           Use IPC_CREAT flag\en");
-    fprintf(stderr, "    \-x           Use IPC_EXCL flag\en");
+    fprintf(stderr, "    \-c           Use IPC_CREAT flag\[rs]n");
+    fprintf(stderr, "    \-x           Use IPC_EXCL flag\[rs]n");
     exit(EXIT_FAILURE);
 }
 \&
@@ -419,7 +419,7 @@ main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 \&
-    printf("ID = %d\en", semid);
+    printf("ID = %d\[rs]n", semid);
 \&
     exit(EXIT_SUCCESS);
 }

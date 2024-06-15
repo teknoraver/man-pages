@@ -667,11 +667,11 @@ Child status: exited, status=127
 #include <unistd.h>
 #include <wait.h>
 \&
-#define errExit(msg)    do { perror(msg); \e
+#define errExit(msg)    do { perror(msg); \[rs]
                              exit(EXIT_FAILURE); } while (0)
 \&
-#define errExitEN(en, msg) \e
-                        do { errno = en; perror(msg); \e
+#define errExitEN(en, msg) \[rs]
+                        do { errno = en; perror(msg); \[rs]
                              exit(EXIT_FAILURE); } while (0)
 \&
 char **environ;
@@ -758,7 +758,7 @@ main(int argc, char *argv[])
             errExitEN(s, "posix_spawn_file_actions_destroy");
     }
 \&
-    printf("PID of child: %jd\en", (intmax_t) child_pid);
+    printf("PID of child: %jd\[rs]n", (intmax_t) child_pid);
 \&
     /* Monitor status of the child until it terminates. */
 \&
@@ -769,13 +769,13 @@ main(int argc, char *argv[])
 \&
         printf("Child status: ");
         if (WIFEXITED(status)) {
-            printf("exited, status=%d\en", WEXITSTATUS(status));
+            printf("exited, status=%d\[rs]n", WEXITSTATUS(status));
         } else if (WIFSIGNALED(status)) {
-            printf("killed by signal %d\en", WTERMSIG(status));
+            printf("killed by signal %d\[rs]n", WTERMSIG(status));
         } else if (WIFSTOPPED(status)) {
-            printf("stopped by signal %d\en", WSTOPSIG(status));
+            printf("stopped by signal %d\[rs]n", WSTOPSIG(status));
         } else if (WIFCONTINUED(status)) {
-            printf("continued\en");
+            printf("continued\[rs]n");
         }
     } while (!WIFEXITED(status) && !WIFSIGNALED(status));
 \&

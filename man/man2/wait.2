@@ -678,7 +678,7 @@ main(int argc, char *argv[])
     }
 \&
     if (cpid == 0) {            /* Code executed by child */
-        printf("Child PID is %jd\en", (intmax_t) getpid());
+        printf("Child PID is %jd\[rs]n", (intmax_t) getpid());
         if (argc == 1)
             pause();                    /* Wait for signals */
         _exit(atoi(argv[1]));
@@ -692,13 +692,13 @@ main(int argc, char *argv[])
             }
 \&
             if (WIFEXITED(wstatus)) {
-                printf("exited, status=%d\en", WEXITSTATUS(wstatus));
+                printf("exited, status=%d\[rs]n", WEXITSTATUS(wstatus));
             } else if (WIFSIGNALED(wstatus)) {
-                printf("killed by signal %d\en", WTERMSIG(wstatus));
+                printf("killed by signal %d\[rs]n", WTERMSIG(wstatus));
             } else if (WIFSTOPPED(wstatus)) {
-                printf("stopped by signal %d\en", WSTOPSIG(wstatus));
+                printf("stopped by signal %d\[rs]n", WSTOPSIG(wstatus));
             } else if (WIFCONTINUED(wstatus)) {
-                printf("continued\en");
+                printf("continued\[rs]n");
             }
         } while (!WIFEXITED(wstatus) && !WIFSIGNALED(wstatus));
         exit(EXIT_SUCCESS);

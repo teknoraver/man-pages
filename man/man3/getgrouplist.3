@@ -149,7 +149,7 @@ main(int argc, char *argv[])
     struct passwd  *pw;
 \&
     if (argc != 3) {
-        fprintf(stderr, "Usage: %s <user> <ngroups>\en", argv[0]);
+        fprintf(stderr, "Usage: %s <user> <ngroups>\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -169,27 +169,27 @@ main(int argc, char *argv[])
         if (errno)
             perror("getpwnam");
         else
-            fprintf(stderr, "no such user\en");
+            fprintf(stderr, "no such user\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
     /* Retrieve group list. */
 \&
     if (getgrouplist(argv[1], pw\->pw_gid, groups, &ngroups) == \-1) {
-        fprintf(stderr, "getgrouplist() returned \-1; ngroups = %d\en",
+        fprintf(stderr, "getgrouplist() returned \-1; ngroups = %d\[rs]n",
                 ngroups);
         exit(EXIT_FAILURE);
     }
 \&
     /* Display list of retrieved groups, along with group names. */
 \&
-    fprintf(stderr, "ngroups = %d\en", ngroups);
+    fprintf(stderr, "ngroups = %d\[rs]n", ngroups);
     for (int j = 0; j < ngroups; j++) {
         printf("%d", groups[j]);
         gr = getgrgid(groups[j]);
         if (gr != NULL)
             printf(" (%s)", gr\->gr_name);
-        printf("\en");
+        printf("\[rs]n");
     }
 \&
     exit(EXIT_SUCCESS);

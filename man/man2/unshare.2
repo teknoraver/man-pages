@@ -510,16 +510,16 @@ commands shows that the two shells are in different mount namespaces.
 static void
 usage(char *pname)
 {
-    fprintf(stderr, "Usage: %s [options] program [arg...]\en", pname);
-    fprintf(stderr, "Options can be:\en");
-    fprintf(stderr, "    \-C   unshare cgroup namespace\en");
-    fprintf(stderr, "    \-i   unshare IPC namespace\en");
-    fprintf(stderr, "    \-m   unshare mount namespace\en");
-    fprintf(stderr, "    \-n   unshare network namespace\en");
-    fprintf(stderr, "    \-p   unshare PID namespace\en");
-    fprintf(stderr, "    \-t   unshare time namespace\en");
-    fprintf(stderr, "    \-u   unshare UTS namespace\en");
-    fprintf(stderr, "    \-U   unshare user namespace\en");
+    fprintf(stderr, "Usage: %s [options] program [arg...]\[rs]n", pname);
+    fprintf(stderr, "Options can be:\[rs]n");
+    fprintf(stderr, "    \-C   unshare cgroup namespace\[rs]n");
+    fprintf(stderr, "    \-i   unshare IPC namespace\[rs]n");
+    fprintf(stderr, "    \-m   unshare mount namespace\[rs]n");
+    fprintf(stderr, "    \-n   unshare network namespace\[rs]n");
+    fprintf(stderr, "    \-p   unshare PID namespace\[rs]n");
+    fprintf(stderr, "    \-t   unshare time namespace\[rs]n");
+    fprintf(stderr, "    \-u   unshare UTS namespace\[rs]n");
+    fprintf(stderr, "    \-U   unshare user namespace\[rs]n");
     exit(EXIT_FAILURE);
 }
 \&

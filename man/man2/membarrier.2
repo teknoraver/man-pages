@@ -402,7 +402,7 @@ init_membarrier(void)
 \&
     if (!(ret & MEMBARRIER_CMD_GLOBAL)) {
         fprintf(stderr,
-            "membarrier does not support MEMBARRIER_CMD_GLOBAL\en");
+            "membarrier does not support MEMBARRIER_CMD_GLOBAL\[rs]n");
         return \-1;
     }
 \&

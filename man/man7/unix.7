@@ -141,7 +141,7 @@ abstract
 an abstract socket address is distinguished (from a pathname socket)
 by the fact that
 .I sun_path[0]
-is a null byte (\[aq]\e0\[aq]).
+is a null byte (\[aq]\[rs]0\[aq]).
 The socket's address in this namespace is given by the additional
 bytes in
 .I sun_path
@@ -913,7 +913,7 @@ memset(addrp, 0, addrlen + 1);
 if (getsockname(sfd, (struct sockaddr *) addrp, &addrlen)) == \-1)
     /* handle error */ ;
 \&
-printf("sun_path = %s\en", ((struct sockaddr_un *) addrp)\->sun_path);
+printf("sun_path = %s\[rs]n", ((struct sockaddr_un *) addrp)\->sun_path);
 .EE
 .in
 .P
@@ -1165,7 +1165,7 @@ main(int argc, char *argv[])
     ret = connect(data_socket, (const struct sockaddr *) &addr,
                    sizeof(addr));
     if (ret == \-1) {
-        fprintf(stderr, "The server is down.\en");
+        fprintf(stderr, "The server is down.\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
@@ -1200,7 +1200,7 @@ main(int argc, char *argv[])
 \&
     buffer[sizeof(buffer) \- 1] = 0;
 \&
-    printf("Result = %s\en", buffer);
+    printf("Result = %s\[rs]n", buffer);
 \&
     /* Close socket. */
 \&

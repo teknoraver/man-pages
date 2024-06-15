@@ -187,10 +187,10 @@ main(void)
     if (s != 0)
         errc(EXIT_FAILURE, s, "pthread_getaffinity_np");
 \&
-    printf("Set returned by pthread_getaffinity_np() contained:\en");
+    printf("Set returned by pthread_getaffinity_np() contained:\[rs]n");
     for (size_t j = 0; j < CPU_SETSIZE; j++)
         if (CPU_ISSET(j, &cpuset))
-            printf("    CPU %zu\en", j);
+            printf("    CPU %zu\[rs]n", j);
 \&
     exit(EXIT_SUCCESS);
 }

@@ -289,7 +289,7 @@ main(void)
     free(n2);
                                             /* Forward traversal */
     LIST_FOREACH(np, &head, entries)
-        printf("%i\en", np\->data);
+        printf("%i\[rs]n", np\->data);
                                             /* List deletion */
     n1 = LIST_FIRST(&head);
     while (n1 != NULL) {

@@ -799,7 +799,7 @@ main(int argc, char *argv[])
 \&
     if (!(argc == 2 || argc == 4)) {
         fprintf(stderr, "Usage: %s <pid> [<new\-soft\-limit> "
-                "<new\-hard\-limit>]\en", argv[0]);
+                "<new\-hard\-limit>]\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -817,14 +817,14 @@ main(int argc, char *argv[])
 \&
     if (prlimit(pid, RLIMIT_CPU, newp, &old) == \-1)
         err(EXIT_FAILURE, "prlimit\-1");
-    printf("Previous limits: soft=%jd; hard=%jd\en",
+    printf("Previous limits: soft=%jd; hard=%jd\[rs]n",
            (intmax_t) old.rlim_cur, (intmax_t) old.rlim_max);
 \&
     /* Retrieve and display new CPU time limit */
 \&
     if (prlimit(pid, RLIMIT_CPU, NULL, &old) == \-1)
         err(EXIT_FAILURE, "prlimit\-2");
-    printf("New limits: soft=%jd; hard=%jd\en",
+    printf("New limits: soft=%jd; hard=%jd\[rs]n",
            (intmax_t) old.rlim_cur, (intmax_t) old.rlim_max);
 \&
     exit(EXIT_SUCCESS);

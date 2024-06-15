@@ -292,7 +292,7 @@ xmalloc(size_t n)
     p = malloc(n);
     if (p)
         return p;
-    fprintf(stderr, "insufficient memory\en");
+    fprintf(stderr, "insufficient memory\[rs]n");
     exit(EXIT_FAILURE);
 }
 \&
@@ -316,13 +316,13 @@ action(const void *nodep, VISIT which, int depth)
         break;
     case postorder:
         datap = *(int **) nodep;
-        printf("%6d\en", *datap);
+        printf("%6d\[rs]n", *datap);
         break;
     case endorder:
         break;
     case leaf:
         datap = *(int **) nodep;
-        printf("%6d\en", *datap);
+        printf("%6d\[rs]n", *datap);
         break;
     }
 }

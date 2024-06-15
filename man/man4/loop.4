@@ -316,7 +316,7 @@ loopname = /dev/loop5
 #include <stdlib.h>
 #include <unistd.h>
 \&
-#define errExit(msg)    do { perror(msg); exit(EXIT_FAILURE); \e
+#define errExit(msg)    do { perror(msg); exit(EXIT_FAILURE); \[rs]
                         } while (0)
 \&
 int
@@ -327,7 +327,7 @@ main(int argc, char *argv[])
     char loopname[4096];
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s backing\-file\en", argv[0]);
+        fprintf(stderr, "Usage: %s backing\-file\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -340,7 +340,7 @@ main(int argc, char *argv[])
         errExit("ioctl\-LOOP_CTL_GET_FREE");
 \&
     sprintf(loopname, "/dev/loop%ld", devnr);
-    printf("loopname = %s\en", loopname);
+    printf("loopname = %s\[rs]n", loopname);
 \&
     loopfd = open(loopname, O_RDWR);
     if (loopfd == \-1)

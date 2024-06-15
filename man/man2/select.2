@@ -738,10 +738,10 @@ main(void)
     if (retval == \-1)
         perror("select()");
     else if (retval)
-        printf("Data is available now.\en");
+        printf("Data is available now.\[rs]n");
         /* FD_ISSET(0, &rfds) will be true. */
     else
-        printf("No data within five seconds.\en");
+        printf("No data within five seconds.\[rs]n");
 \&
     exit(EXIT_SUCCESS);
 }

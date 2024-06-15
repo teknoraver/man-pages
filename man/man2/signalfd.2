@@ -455,7 +455,7 @@ The following shell session demonstrates the use of the program:
 Got SIGINT
 .B \[ha]C
 Got SIGINT
-\fB\[ha]\e\fP                    # Control\-\e generates SIGQUIT
+\fB\[ha]\[rs]\fP                    # Control\-\[rs] generates SIGQUIT
 Got SIGQUIT
 $
 .EE
@@ -500,12 +500,12 @@ main(void)
             err(EXIT_FAILURE, "read");
 \&
         if (fdsi.ssi_signo == SIGINT) {
-            printf("Got SIGINT\en");
+            printf("Got SIGINT\[rs]n");
         } else if (fdsi.ssi_signo == SIGQUIT) {
-            printf("Got SIGQUIT\en");
+            printf("Got SIGQUIT\[rs]n");
             exit(EXIT_SUCCESS);
         } else {
-            printf("Read unexpected signal\en");
+            printf("Read unexpected signal\[rs]n");
         }
     }
 }

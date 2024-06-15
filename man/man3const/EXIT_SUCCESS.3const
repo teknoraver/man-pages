@@ -40,7 +40,7 @@ main(int argc, char *argv[])
     FILE *fp;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s <file>\en", argv[0]);
+        fprintf(stderr, "Usage: %s <file>\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&

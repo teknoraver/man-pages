@@ -49,7 +49,7 @@ in the string
 that is delimited by one of the bytes in the string
 .IR delim .
 This token is terminated by overwriting the delimiter
-with a null byte (\[aq]\e0\[aq]),
+with a null byte (\[aq]\[rs]0\[aq]),
 and
 .I *stringp
 is updated to point past the token.
@@ -137,15 +137,15 @@ main(int argc, char *argv[])
     char *token, *subtoken;
 \&
     if (argc != 4) {
-        fprintf(stderr, "Usage: %s string delim subdelim\en", argv[0]);
+        fprintf(stderr, "Usage: %s string delim subdelim\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
     for (unsigned int j = 1; (token = strsep(&argv[1], argv[2])); j++) {
-        printf("%u: %s\en", j, token);
+        printf("%u: %s\[rs]n", j, token);
 \&
         while ((subtoken = strsep(&token, argv[3])))
-            printf("\et \-\-> %s\en", subtoken);
+            printf("\[rs]t \-\-> %s\[rs]n", subtoken);
     }
 \&
     exit(EXIT_SUCCESS);

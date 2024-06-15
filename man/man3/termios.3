@@ -107,8 +107,8 @@ queues to be flushed, and if the terminal is the controlling
 terminal of a foreground process group, it will cause a
 \fBSIGINT\fP to be sent to this foreground process group.
 When neither \fBIGNBRK\fP nor \fBBRKINT\fP are set, a BREAK
-reads as a null byte (\[aq]\e0\[aq]), except when \fBPARMRK\fP is set,
-in which case it reads as the sequence \e377 \e0 \e0.
+reads as a null byte (\[aq]\[rs]0\[aq]), except when \fBPARMRK\fP is set,
+in which case it reads as the sequence \[rs]377 \[rs]0 \[rs]0.
 .TP
 .B IGNPAR
 Ignore framing errors and parity errors.
@@ -119,19 +119,19 @@ marked when passed to the program.
 This bit is meaningful only when
 \fBINPCK\fP is set and \fBIGNPAR\fP is not set.
 The way erroneous bytes are marked is with two preceding bytes,
-\e377 and \e0.
+\[rs]377 and \[rs]0.
 Thus, the program actually reads three bytes for one
 erroneous byte received from the terminal.
-If a valid byte has the value \e377,
+If a valid byte has the value \[rs]377,
 and \fBISTRIP\fP (see below) is not set,
 the program might confuse it with the prefix that marks a
 parity error.
-Therefore, a valid byte \e377 is passed to the program as two
-bytes, \e377 \e377, in this case.
+Therefore, a valid byte \[rs]377 is passed to the program as two
+bytes, \[rs]377 \[rs]377, in this case.
 .IP
 If neither \fBIGNPAR\fP nor \fBPARMRK\fP
 is set, read a character with a parity error or framing error
-as \e0.
+as \[rs]0.
 .TP
 .B INPCK
 Enable input parity checking.
@@ -197,7 +197,7 @@ Send fill characters for a delay, rather than using a timed delay.
 .TP
 .B OFDEL
 Fill character is ASCII DEL (0177).
-If unset, fill character is ASCII NUL (\[aq]\e0\[aq]).
+If unset, fill character is ASCII NUL (\[aq]\[rs]0\[aq]).
 (Not implemented on Linux.)
 .TP
 .B NLDLY
@@ -374,8 +374,8 @@ Enable canonical mode (described below).
 .B XCASE
 (not in POSIX; not supported under Linux)
 If \fBICANON\fP is also set, terminal is uppercase only.
-Input is converted to lowercase, except for characters preceded by \e.
-On output, uppercase characters are preceded by \e and lowercase
+Input is converted to lowercase, except for characters preceded by \[rs].
+On output, uppercase characters are preceded by \[rs] and lowercase
 characters are converted to uppercase.
 [requires
 .B _BSD_SOURCE
@@ -562,7 +562,7 @@ is set, and then not passed as input.
 Minimum number of characters for noncanonical read (MIN).
 .TP
 .B VQUIT
-(034, FS, Ctrl-\e)
+(034, FS, Ctrl-\[rs])
 Quit character (QUIT).
 Send
 .B SIGQUIT

@@ -88,9 +88,9 @@ in
 (and returns 0).
 In particular, if
 .I *nptr
-is not \[aq]\e0\[aq] but
+is not \[aq]\[rs]0\[aq] but
 .I **endptr
-is \[aq]\e0\[aq] on return, the entire string is valid.
+is \[aq]\[rs]0\[aq] on return, the entire string is valid.
 .P
 The
 .BR strtoll ()
@@ -272,7 +272,7 @@ main(int argc, char *argv[])
     long val;
 \&
     if (argc < 2) {
-        fprintf(stderr, "Usage: %s str [base]\en", argv[0]);
+        fprintf(stderr, "Usage: %s str [base]\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -297,16 +297,16 @@ main(int argc, char *argv[])
     }
 \&
     if (endptr == str) {
-        fprintf(stderr, "No digits were found\en");
+        fprintf(stderr, "No digits were found\[rs]n");
         exit(EXIT_FAILURE);
     }
 \&
     /* If we got here, strtol() successfully parsed a number. */
 \&
-    printf("strtol() returned %ld\en", val);
+    printf("strtol() returned %ld\[rs]n", val);
 \&
-    if (*endptr != \[aq]\e0\[aq])        /* Not necessarily an error... */
-        printf("Further characters after number: \e"%s\e"\en", endptr);
+    if (*endptr != \[aq]\[rs]0\[aq])        /* Not necessarily an error... */
+        printf("Further characters after number: \[rs]"%s\[rs]"\[rs]n", endptr);
 \&
     exit(EXIT_SUCCESS);
 }

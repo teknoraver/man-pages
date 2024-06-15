@@ -158,7 +158,7 @@ main(void)
 \&
     printf("[len = %zu]: ", len);
     fwrite(buf2, 1, len, stdout);
-    putchar(\[aq]\en\[aq]);
+    putchar(\[aq]\[rs]n\[aq]);
 \&
     if (sizeof(buf1) < strlen("Hello world!"))
         errx("stpncpy: truncating character sequence");
@@ -167,7 +167,7 @@ main(void)
 \&
     printf("[len = %zu]: ", len);
     fwrite(buf1, 1, len, stdout);
-    putchar(\[aq]\en\[aq]);
+    putchar(\[aq]\[rs]n\[aq]);
 \&
     exit(EXIT_SUCCESS);
 }

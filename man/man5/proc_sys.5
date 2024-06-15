@@ -18,13 +18,13 @@ the \fI/proc\fP filesystem, and the (deprecated)
 .BR sysctl (2)
 system call.
 .IP
-String values may be terminated by either \[aq]\e0\[aq] or \[aq]\en\[aq].
+String values may be terminated by either \[aq]\[rs]0\[aq] or \[aq]\[rs]n\[aq].
 .IP
 Integer and long values may be written either in decimal or in
 hexadecimal notation (e.g., 0x3FFF).
 When writing multiple integer or long values, these may be separated
 by any of the following whitespace characters:
-\[aq]\ \[aq], \[aq]\et\[aq], or \[aq]\en\[aq].
+\[aq]\ \[aq], \[aq]\[rs]t\[aq], or \[aq]\[rs]n\[aq].
 Using other separators leads to the error
 .BR EINVAL .
 .SH SEE ALSO

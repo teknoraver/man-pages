@@ -1125,8 +1125,8 @@ in the following step:
 .IP
 .in +4n
 .EX
-# \fBunshare \-\-user \-\-map\-root\-user \-\-mount \e\fP
-               \fBstrace \-o /tmp/log \e\fP
+# \fBunshare \-\-user \-\-map\-root\-user \-\-mount \[rs]\fP
+               \fBstrace \-o /tmp/log \[rs]\fP
                \fBumount /mnt/dir\fP
 umount: /etc/shadow: not mounted.
 # \fBgrep \[aq]\[ha]umount\[aq] /tmp/log\fP
@@ -1152,7 +1152,7 @@ less privileged mount namespace:
 .in +4n
 .EX
 # \fBecho \[aq]aaaaa\[aq] > /tmp/a\fP    # File to mount onto /etc/shadow
-# \fBunshare \-\-user \-\-map\-root\-user \-\-mount \e\fP
+# \fBunshare \-\-user \-\-map\-root\-user \-\-mount \[rs]\fP
     \fBsh \-c \[aq]mount \-\-bind /tmp/a /etc/shadow; cat /etc/shadow\[aq]\fP
 aaaaa
 # \fBumount /etc/shadow\fP
@@ -1183,7 +1183,7 @@ and a small hierarchy of mounts underneath that mount.
 .IP
 .in +4n
 .EX
-$ \fBPS1=\[aq]ns1# \[aq] sudo unshare \-\-user \-\-map\-root\-user \e\fP
+$ \fBPS1=\[aq]ns1# \[aq] sudo unshare \-\-user \-\-map\-root\-user \[rs]\fP
                        \fB\-\-mount \-\-propagation private bash\fP
 ns1# \fBecho $$\fP        # We need the PID of this shell later
 778501
@@ -1207,7 +1207,7 @@ check the state of the propagated mounts rooted at
 .IP
 .in +4n
 .EX
-ns1# \fBPS1=\[aq]ns2# \[aq] unshare \-\-user \-\-map\-root\-user \e\fP
+ns1# \fBPS1=\[aq]ns2# \[aq] unshare \-\-user \-\-map\-root\-user \[rs]\fP
                        \fB\-\-mount \-\-propagation unchanged bash\fP
 ns2# \fBgrep /mnt /proc/self/mountinfo | sed \[aq]s/ \- .*//\[aq]\fP
 1239 1204 8:5 /mnt /mnt rw,relatime master:344
@@ -1317,7 +1317,7 @@ a less privileged mount namespace, and indeed the kernel prevents this:
 .EX
 $ \fBsudo mkdir /mnt/dir\fP
 $ \fBsudo mount \-\-bind \-o ro /some/path /mnt/dir\fP
-$ \fBsudo unshare \-\-user \-\-map\-root\-user \-\-mount \e\fP
+$ \fBsudo unshare \-\-user \-\-map\-root\-user \-\-mount \[rs]\fP
                \fBmount \-o remount,rw /mnt/dir\fP
 mount: /mnt/dir: permission denied.
 .EE

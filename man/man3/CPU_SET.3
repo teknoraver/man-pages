@@ -316,7 +316,7 @@ main(int argc, char *argv[])
     size_t size, num_cpus;
 \&
     if (argc < 2) {
-        fprintf(stderr, "Usage: %s <num\-cpus>\en", argv[0]);
+        fprintf(stderr, "Usage: %s <num\-cpus>\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
@@ -334,7 +334,7 @@ main(int argc, char *argv[])
     for (size_t cpu = 0; cpu < num_cpus; cpu += 2)
         CPU_SET_S(cpu, size, cpusetp);
 \&
-    printf("CPU_COUNT() of set:    %d\en", CPU_COUNT_S(size, cpusetp));
+    printf("CPU_COUNT() of set:    %d\[rs]n", CPU_COUNT_S(size, cpusetp));
 \&
     CPU_FREE(cpusetp);
     exit(EXIT_SUCCESS);
