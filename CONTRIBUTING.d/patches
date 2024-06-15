@@ -44,7 +44,7 @@ Description
           example, was it:
 
           -  by reading (or writing) the relevant kernel or (g)libc
-             source code?  Please provide a pointer to the following
+             source code?  Please provide a pointer to the relevant
              code.
 
           -  from a commit message in the kernel or (g)libc source code
@@ -64,8 +64,8 @@ Description
              if possible.
 
        -  Send patches in diff -u format in an email patch.  You may
-          find it useful to employ git-send-email(1) and
-          git-format-patch(1).
+          find it useful to employ git-format-patch(1) and
+          git-send-email(1).
 
        -  Where relevant, include source code comments that cite commit
           hashes for relevant kernel or glibc changes:
