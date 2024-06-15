@@ -11,7 +11,7 @@ Description
           from <CONTRIBUTING.d/mail>.  See also "Send the patches"
           below.
 
-       -  The subject of the email should contain "[patch]" in the
+       -  The subject of the email should contain "[PATCH]" in the
           subject line.
 
        The above is the minimum needed so that someone might respond to
@@ -26,7 +26,7 @@ Description
        -  Write a suitable subject line.  Make sure to mention the
           name(s) of the page(s) being patched.  Example:
 
-             [patch] shmop.2: Add "(void *)" cast to RETURN VALUE
+             [PATCH] shmop.2: Add "(void *)" cast to RETURN VALUE
 
        -  Sign your patch with "Signed-off-by:".  Read about the
           "Developer's Certificate of Origin" at
@@ -81,7 +81,7 @@ Description
 
           Example:
 
-              [patch] tcp.7: tfix
+              [PATCH] tcp.7: tfix
 
        -  Send logically separate patches.  For unrelated pages, or for
           logically-separate issues in the same page, send separate
