@@ -17,15 +17,6 @@ include $(MAKEFILEDIR)/configure/xfail.mk
 
 
 _XFAIL_LINT_man_mandoc := \
-	$(_MANDIR)/man2/ioctl_eventpoll.2.lint-man.mandoc.touch \
-	$(_MANDIR)/man2const/PAGEMAP_SCAN.2const.lint-man.mandoc.touch \
-	$(_MANDIR)/man2const/UFFDIO_API.2const.lint-man.mandoc.touch \
-	$(_MANDIR)/man2const/UFFDIO_CONTINUE.2const.lint-man.mandoc.touch \
-	$(_MANDIR)/man2const/UFFDIO_COPY.2const.lint-man.mandoc.touch \
-	$(_MANDIR)/man2const/UFFDIO_POISON.2const.lint-man.mandoc.touch \
-	$(_MANDIR)/man2const/UFFDIO_REGISTER.2const.lint-man.mandoc.touch \
-	$(_MANDIR)/man2const/UFFDIO_WRITEPROTECT.2const.lint-man.mandoc.touch \
-	$(_MANDIR)/man2const/UFFDIO_ZEROPAGE.2const.lint-man.mandoc.touch \
 	$(_MANDIR)/man3/pthread_cond_init.3.lint-man.mandoc.touch \
 	$(_MANDIR)/man3/pthread_key_create.3.lint-man.mandoc.touch \
 	$(_MANDIR)/man3/pthread_mutex_init.3.lint-man.mandoc.touch \
