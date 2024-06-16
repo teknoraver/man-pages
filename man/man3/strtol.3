@@ -162,34 +162,7 @@ T{
 .BR strtoq ()
 T}	Thread safety	MT-Safe locale
 .TE
-.SH STANDARDS
-C11, POSIX.1-2008.
-.SH HISTORY
-.TP
-.BR strtol ()
-POSIX.1-2001, C89, SVr4, 4.3BSD.
-.TP
-.BR strtoll ()
-POSIX.1-2001, C99.
-.SH NOTES
-Since
-.BR strtol ()
-can legitimately return 0,
-.BR LONG_MAX ,
-or
-.B LONG_MIN
-.RB ( LLONG_MAX
-or
-.B LLONG_MIN
-for
-.BR strtoll ())
-on both success and failure, the calling program should set
-.I errno
-to 0 before the call,
-and then determine if an error occurred by checking whether
-.I errno == ERANGE
-after the call.
-.P
+.SH VERSIONS
 According to POSIX.1,
 in locales other than "C" and "POSIX",
 these functions may accept other,
@@ -209,7 +182,34 @@ may be equivalent to
 .BR strtoll ()
 or to
 .BR strtol ().
+.SH STANDARDS
+C11, POSIX.1-2008.
+.SH HISTORY
+.TP
+.BR strtol ()
+POSIX.1-2001, C89, SVr4, 4.3BSD.
+.TP
+.BR strtoll ()
+POSIX.1-2001, C99.
 .SH CAVEATS
+Since
+.BR strtol ()
+can legitimately return 0,
+.BR LONG_MAX ,
+or
+.B LONG_MIN
+.RB ( LLONG_MAX
+or
+.B LLONG_MIN
+for
+.BR strtoll ())
+on both success and failure, the calling program should set
+.I errno
+to 0 before the call,
+and then determine if an error occurred by checking whether
+.I errno == ERANGE
+after the call.
+.P
 If the
 .I base
 needs to be tested,
