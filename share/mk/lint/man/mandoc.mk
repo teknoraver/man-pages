@@ -17,10 +17,6 @@ include $(MAKEFILEDIR)/configure/xfail.mk
 
 
 _XFAIL_LINT_man_mandoc := \
-	$(_MANDIR)/man3/pthread_cond_init.3.lint-man.mandoc.touch \
-	$(_MANDIR)/man3/pthread_key_create.3.lint-man.mandoc.touch \
-	$(_MANDIR)/man3/pthread_mutex_init.3.lint-man.mandoc.touch \
-	$(_MANDIR)/man5/dir_colors.5.lint-man.mandoc.touch \
 	$(_MANDIR)/man7/bpf-helpers.7.lint-man.mandoc.touch \
 	$(_MANDIR)/man7/uri.7.lint-man.mandoc.touch \
 	$(_MANDIR)/man8/zic.8.lint-man.mandoc.touch

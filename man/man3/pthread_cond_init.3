@@ -190,7 +190,6 @@ int x,y;
 pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
 .ft
-.P
 .RE
 .fi
 .P
@@ -207,7 +206,6 @@ while (x <= y) {
 /* operate on x and y */
 pthread_mutex_unlock(&mut);
 .ft
-.P
 .RE
 .fi
 .P
@@ -224,7 +222,6 @@ pthread_mutex_lock(&mut);
 if (x > y) pthread_cond_broadcast(&cond);
 pthread_mutex_unlock(&mut);
 .ft
-.P
 .RE
 .fi
 .P
@@ -263,6 +260,5 @@ if (retcode == ETIMEDOUT) {
 }
 pthread_mutex_unlock(&mut);
 .ft
-.P
 .RE
 .fi

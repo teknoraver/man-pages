@@ -222,7 +222,6 @@ A shared global variable \fIx\fP can be protected by a mutex as follows:
 int x;
 pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 .ft
-.P
 .RE
 .fi
 .P
@@ -239,6 +238,5 @@ pthread_mutex_lock(&mut);
 /* operate on x */
 pthread_mutex_unlock(&mut);
 .ft
-.P
 .RE
 .fi
