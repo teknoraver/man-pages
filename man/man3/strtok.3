@@ -20,8 +20,10 @@ Standard C library
 .nf
 .B #include <string.h>
 .P
-.BI "char *strtok(char *restrict " str ", const char *restrict " delim );
-.BI "char *strtok_r(char *restrict " str ", const char *restrict " delim ,
+.BI "char *strtok(char *_Nullable restrict " str \
+", const char *restrict " delim );
+.BI "char *strtok_r(char *_Nullable restrict " str \
+", const char *restrict " delim ,
 .BI "               char **restrict " saveptr );
 .fi
 .P
