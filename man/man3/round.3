@@ -56,7 +56,6 @@ is integral, +0, \-0, NaN, or infinite,
 itself is returned.
 .SH ERRORS
 No errors occur.
-POSIX.1-2001 documents a range error for overflows, but see HISTORY.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -87,7 +86,7 @@ or raise an
 .B FE_OVERFLOW
 exception).
 In practice, the result cannot overflow on any current machine,
-so this error-handling stuff is just nonsense.
+so this error-handling stuff was just nonsense.
 .\" The POSIX.1-2001 APPLICATION USAGE SECTION discusses this point.
 (More precisely, overflow can happen only when the maximum value
 of the exponent is smaller than the number of mantissa bits.
@@ -96,6 +95,7 @@ the maximum value of the exponent is 127 (respectively, 1023),
 and the number of mantissa bits
 including the implicit bit
 is 24 (respectively, 53).)
+This was removed in POSIX.1-2008.
 .P
 If you want to store the rounded value in an integer type,
 you probably want to use one of the functions described in
