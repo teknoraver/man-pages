@@ -58,6 +58,15 @@ Standard C library
 .BI "int prlimit(pid_t "  pid ", int " resource ,
 .BI "            const struct rlimit *_Nullable " new_limit ,
 .BI "            struct rlimit *_Nullable " old_limit );
+.P
+.EX
+.B struct rlimit {
+.BR "    rlim_t  rlim_cur;" "  /* Soft limit */"
+.BR "    rlim_t  rlim_max;" "  /* Hard limit (ceiling for rlim_cur) */"
+.B };
+.EE
+.P
+.BR typedef " /* ... */  " rlim_t; "  /* Unsigned integer type */"
 .fi
 .P
 .RS -4
@@ -77,16 +86,7 @@ and
 system calls get and set resource limits.
 Each resource has an associated soft and hard limit, as defined by the
 .I rlimit
-structure:
-.P
-.in +4n
-.EX
-struct rlimit {
-    rlim_t rlim_cur;  /* Soft limit */
-    rlim_t rlim_max;  /* Hard limit (ceiling for rlim_cur) */
-};
-.EE
-.in
+structure.
 .P
 The soft limit is the value that the kernel enforces for the
 corresponding resource.
