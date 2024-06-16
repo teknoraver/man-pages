@@ -521,7 +521,45 @@ and
 .BR request\-key.conf (5)
 for more information.
 .\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-.SS /proc files
+.SS Users
+The Linux key-management facility has a number of users and usages,
+but is not limited to those that already exist.
+.P
+In-kernel users of this facility include:
+.TP
+Network filesystems - DNS
+The kernel uses the upcall mechanism provided by the keys to upcall to
+user space to do DNS lookups and then to cache the results.
+.TP
+AF_RXRPC and kAFS - Authentication
+The AF_RXRPC network protocol and the in-kernel AFS filesystem
+use keys to store the ticket needed to do secured or encrypted traffic.
+These are then looked up by
+network operations on AF_RXRPC and filesystem operations on kAFS.
+.TP
+NFS - User ID mapping
+The NFS filesystem uses keys to store mappings of
+foreign user IDs to local user IDs.
+.TP
+CIFS - Password
+The CIFS filesystem uses keys to store passwords for accessing remote shares.
+.TP
+Module verification
+The kernel build process can be made to cryptographically sign modules.
+That signature is then checked when a module is loaded.
+.P
+User-space users of this facility include:
+.TP
+Kerberos key storage
+The MIT Kerberos 5 facility (libkrb5) can use keys to store authentication
+tokens which can be made to be automatically cleaned up a set time after
+the user last uses them,
+but until then permits them to hang around after the user
+has logged out so that
+.BR cron (8)
+scripts can use them.
+.\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.SH FILES
 The kernel provides various
 .I /proc
 files that expose information about keys or define limits on key usage.
@@ -837,44 +875,6 @@ The default value in this file is 1,000,000 (200 before Linux 3.17).
 With respect to keyrings,
 note that each link in a keyring consumes 4 bytes of the keyring payload.
 .\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-.SS Users
-The Linux key-management facility has a number of users and usages,
-but is not limited to those that already exist.
-.P
-In-kernel users of this facility include:
-.TP
-Network filesystems - DNS
-The kernel uses the upcall mechanism provided by the keys to upcall to
-user space to do DNS lookups and then to cache the results.
-.TP
-AF_RXRPC and kAFS - Authentication
-The AF_RXRPC network protocol and the in-kernel AFS filesystem
-use keys to store the ticket needed to do secured or encrypted traffic.
-These are then looked up by
-network operations on AF_RXRPC and filesystem operations on kAFS.
-.TP
-NFS - User ID mapping
-The NFS filesystem uses keys to store mappings of
-foreign user IDs to local user IDs.
-.TP
-CIFS - Password
-The CIFS filesystem uses keys to store passwords for accessing remote shares.
-.TP
-Module verification
-The kernel build process can be made to cryptographically sign modules.
-That signature is then checked when a module is loaded.
-.P
-User-space users of this facility include:
-.TP
-Kerberos key storage
-The MIT Kerberos 5 facility (libkrb5) can use keys to store authentication
-tokens which can be made to be automatically cleaned up a set time after
-the user last uses them,
-but until then permits them to hang around after the user
-has logged out so that
-.BR cron (8)
-scripts can use them.
-.\"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 .SH SEE ALSO
 .ad l
 .nh
@@ -892,10 +892,7 @@ scripts can use them.
 .BR user\-session\-keyring (7),
 .BR pam_keyinit (8),
 .BR request\-key (8)
-.P
-The kernel source files
-.I Documentation/crypto/asymmetric\-keys.txt
-and under
-.I Documentation/security/keys
-(or, before Linux 4.13, in the file
-.IR Documentation/security/keys.txt ).
+.TP
+.I linux.git/Documentation/crypto/asymmetric\-keys.txt
+.TQ
+.I linux.git/\:Documentation/\:security/\:keys/
