@@ -1,6 +1,4 @@
 STYLE: lower case character in document title:
-STYLE: fill mode already disabled, skipping: EX
-STYLE: fill mode already enabled, skipping: fi
 STYLE: legacy man(7) date format: Dd
 STYLE: lower case character in document title: Dt
 STYLE: operating system explicitly specified: Os

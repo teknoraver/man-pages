@@ -21,6 +21,7 @@ Standard C library
 .P
 .B #include <linux/fs.h>
 .P
+.fi
 .EX
 .B struct pm_scan_arg {
 .B "    __u64  size;"
@@ -43,7 +44,6 @@ Standard C library
 .B "    __u64  categories;"
 .B };
 .EE
-.fi
 .SH DESCRIPTION
 This
 .BR ioctl (2)

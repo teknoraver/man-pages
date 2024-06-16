@@ -22,6 +22,7 @@ Standard C library
 .P
 .B #include <linux/userfaultfd.h>
 .P
+.fi
 .EX
 .B struct uffdio_continue {
 .B "    struct uffdio_range  range;"
@@ -30,7 +31,6 @@ Standard C library
 .BR "    __s64   mapped;" "  /* Number of bytes mapped, or negated error */"
 .B };
 .EE
-.fi
 .SH DESCRIPTION
 Resolve a minor page fault
 by installing page table entries

@@ -22,6 +22,7 @@ Standard C library
 .P
 .B #include <linux/userfaultfd.h>
 .P
+.fi
 .EX
 .B struct uffdio_poison {
 .B "	struct uffdio_range  range;"
@@ -30,7 +31,6 @@ Standard C library
 .BR "	__s64   updated;" "  /* Number of bytes poisoned, or negated error */"
 .B };
 .EE
-.fi
 .SH DESCRIPTION
 Mark an address range as "poisoned".
 Future accesses to these addresses will raise a

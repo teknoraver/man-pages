@@ -22,6 +22,7 @@ Standard C library
 .P
 .B #include <linux/userfaultfd.h>
 .P
+.fi
 .EX
 .B struct uffdio_copy {
 .BR "    __u64  dst;" "   /* Destination of copy */"
@@ -31,7 +32,6 @@ Standard C library
 .BR "    __s64  copy;" "  /* Number of bytes copied, or negated error */"
 .B };
 .EE
-.fi
 .SH DESCRIPTION
 Atomically copy a continuous memory chunk into the userfault registered
 range and optionally wake up the blocked thread.

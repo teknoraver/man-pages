@@ -22,6 +22,7 @@ Standard C library
 .P
 .B "#include <sys/epoll.h>"
 .P
+.fi
 .EX
 .B struct epoll_params {
 .BR "    uint32_t  busy_poll_usecs;" "   /* Number of usecs to busy poll */"
@@ -32,7 +33,6 @@ Standard C library
 .BR "    uint8_t   __pad;" "             /* Must be zero */"
 .B };
 .EE
-.fi
 .SH DESCRIPTION
 .TP
 .B EPIOCSPARAMS

@@ -22,6 +22,7 @@ Standard C library
 .P
 .B #include <linux/userfaultfd.h>
 .P
+.fi
 .EX
 .B struct uffdio_range {
 .BR "    __u64  start;" "   /* Start of range */"
@@ -34,7 +35,6 @@ Standard C library
 .BR "    __u64                ioctls;" "  /* Available ioctl()s (output) */"
 .B };
 .EE
-.fi
 .SH DESCRIPTION
 Register a memory address range with the userfaultfd object.
 The pages in the range must be \[lq]compatible\[rq].

@@ -22,13 +22,13 @@ Standard C library
 .P
 .B #include <linux/userfaultfd.h>
 .P
+.fi
 .EX
 .B struct uffdio_writeprotect {
 .BR "    struct uffdio_range  range;" "  /* Range to change write permission*/"
 .BR "    __u64                mode;" "   /* Mode to change write permission */"
 .B };
 .EE
-.fi
 .SH DESCRIPTION
 Write-protect or write-unprotect a userfaultfd-registered memory range
 registered with mode

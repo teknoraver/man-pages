@@ -59,12 +59,14 @@ Standard C library
 .BI "            const struct rlimit *_Nullable " new_limit ,
 .BI "            struct rlimit *_Nullable " old_limit );
 .P
+.fi
 .EX
 .B struct rlimit {
 .BR "    rlim_t  rlim_cur;" "  /* Soft limit */"
 .BR "    rlim_t  rlim_max;" "  /* Hard limit (ceiling for rlim_cur) */"
 .B };
 .EE
+.nf
 .P
 .BR typedef " /* ... */  " rlim_t; "  /* Unsigned integer type */"
 .fi

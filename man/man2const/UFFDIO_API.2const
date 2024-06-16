@@ -22,6 +22,7 @@ Standard C library
 .P
 .B #include <linux/userfaultfd.h>
 .P
+.fi
 .EX
 .B struct uffdio_api {
 .BR "    __u64 api;" "       /* Requested API version (input) */"
@@ -29,7 +30,6 @@ Standard C library
 .BR "    __u64 ioctls;" "    /* Available ioctl() operations (output) */"
 .B };
 .EE
-.fi
 .SH DESCRIPTION
 Enable operation of the userfaultfd and perform API handshake.
 .P
