@@ -22,9 +22,9 @@ Standard C library
 .B #include <stdlib.h>
 .P
 .BI "unsigned long strtoul(const char *restrict " nptr ,
-.BI "                      char **restrict " endptr ", int " base );
+.BI "                      char **_Nullable restrict " endptr ", int " base );
 .BI "unsigned long long strtoull(const char *restrict " nptr ,
-.BI "                      char **restrict " endptr ", int " base );
+.BI "                      char **_Nullable restrict " endptr ", int " base );
 .fi
 .P
 .RS -4

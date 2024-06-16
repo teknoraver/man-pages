@@ -21,9 +21,9 @@ Standard C library
 .B #include <stdlib.h>
 .P
 .BI "long strtol(const char *restrict " nptr ,
-.BI "            char **restrict " endptr ", int " base );
+.BI "            char **_Nullable restrict " endptr ", int " base );
 .BI "long long strtoll(const char *restrict " nptr ,
-.BI "            char **restrict " endptr ", int " base );
+.BI "            char **_Nullable restrict " endptr ", int " base );
 .fi
 .P
 .RS -4

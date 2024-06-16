@@ -25,10 +25,12 @@ Standard C library
 .nf
 .B #include <stdlib.h>
 .P
-.BI "double strtod(const char *restrict " nptr ", char **restrict " endptr );
-.BI "float strtof(const char *restrict " nptr ", char **restrict " endptr );
-.BI "long double strtold(const char *restrict " nptr \
-", char **restrict " endptr );
+.BI "double strtod(const char *restrict " nptr ,
+.BI "              char **_Nullable restrict " endptr );
+.BI "float strtof(const char *restrict " nptr ,
+.BI "              char **_Nullable restrict " endptr );
+.BI "long double strtold(const char *restrict " nptr ,
+.BI "              char **_Nullable restrict " endptr );
 .fi
 .P
 .RS -4
