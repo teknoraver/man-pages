@@ -56691,9 +56691,15 @@ man2/
 man2const/
 	FAT_IOCTL_GET_VOLUME_ID.2const
 	FAT_IOCTL_SET_ATTRIBUTES.2const
+	FICLONE.2const			(previously, ioctl_ficlonerange.2)
+	FIDEDUPERANGE.2const		(previously, ioctl_fideduperange.2)
 	FIONREAD.2const
+	FS_IOC_SETFLAGS.2const		(previously, ioctl_iflags.2)
+	FS_IOC_SETFSLABEL.2const	(previously, ioctl_fslabel.2)
 	NS_GET_NSTYPE.2const
 	NS_GET_OWNER_UID.2const
+	NS_GET_USERNS.2const
+	PAGEMAP_SCAN.2const		(previously, ioctl_pagemap_scan.2)
 	PR_CAPBSET_DROP.2const
 	PR_CAPBSET_READ.2const
 	PR_CAP_AMBIENT.2const
@@ -56916,8 +56922,13 @@ Removed pages
 -------------
 
 man2/
+	ioctl_ficlonerange.2		(moved to FICLONE.2const)
+	ioctl_fideduperange.2		(moved to FIDEDUPERANGE.2const)
+	ioctl_fslabel.2			(moved to FS_IOC_SETFSLABEL.2const)
 	ioctl_getfsmap.2		(moved to ioctl_fsmap.2)
+	ioctl_iflags.2			(moved to FS_IOC_SETFLAGS.2const
 	ioctl_ns.2			(moved to ioctl_nsfs.2)
+	ioctl_pagemap_scan.2		(moved to PAGEMAP_SCAN.2const)
 
 
 Removed links
