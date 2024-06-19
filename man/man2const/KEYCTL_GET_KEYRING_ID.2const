@@ -20,23 +20,18 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "long syscall(SYS_keyctl, KEYCTL_GET_KEYRING_ID, key_serial_t " arg2 ,
+.BI "long syscall(SYS_keyctl, KEYCTL_GET_KEYRING_ID, key_serial_t " key ,
 .BI "             int " arg3 );
 .fi
 .SH DESCRIPTION
-.TP
-.BR KEYCTL_GET_KEYRING_ID " (since Linux 2.6.10)"
 Map a special key ID to a real key ID for this process.
-.IP
+.P
 This operation looks up the special key whose ID is provided in
-.I arg2
-(cast to
-.IR key_serial_t ).
+.IR key .
 If the special key is found,
 the ID of the corresponding real key is returned as the function result.
 The following values may be specified in
-.IR arg2 :
-.RS
+.IR key :
 .TP
 .B KEY_SPEC_THREAD_KEYRING
 This specifies the calling thread's thread-specific keyring.
@@ -84,19 +79,18 @@ This keyring is available only in a
 program that was passed an authorization key by the kernel and
 ceases to be available once the requested key has been instantiated; see
 .BR request_key (2).
-.RE
-.IP
+.P
 The behavior if the key specified in
-.I arg2
+.I key
 does not exist depends on the value of
-.I arg3
-(cast to
-.IR int ).
+.IR arg3 .
 If
 .I arg3
-contains a nonzero value, then\[em]if it is appropriate to do so
-(e.g., when looking up the user, user-session, or session key)\[em]a new key
-is created and its real key ID returned as the function result.
+contains a nonzero value, then
+\[em]if it is appropriate to do so
+(e.g., when looking up the user, user-session, or session key)\[em]
+a new key is created and
+its real key ID returned as the function result.
 .\" The keyctl_get_keyring_ID.3 page says that a new key
 .\" "will be created *if it is appropriate to do so**. What is the
 .\" determiner for appropriate?
@@ -105,31 +99,19 @@ is created and its real key ID returned as the function result.
 .\" be created.
 Otherwise, the operation fails with the error
 .BR ENOKEY .
-.IP
+.P
 If a valid key ID is specified in
-.IR arg2 ,
+.IR key ,
 and the key exists, then this operation simply returns the key ID.
 If the key does not exist, the call fails with error
 .BR ENOKEY .
-.IP
+.P
 The caller must have
 .I search
 permission on a keyring in order for it to be found.
-.IP
-The arguments
-.I arg4
-and
-.I arg5
-are ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_get_keyring_ID (3).
 .SH RETURN VALUE
-.TP
-.B KEYCTL_GET_KEYRING_ID
-The ID of the requested keyring.
+On success,
+the ID of the requested keyring.
 .P
 On error, \-1 is returned, and
 .I errno
@@ -137,15 +119,12 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B ENOKEY
-The value
-.B KEYCTL_GET_KEYRING_ID
-was specified in
-.IR operation ,
-the key specified in
-.I arg2
+The key specified in
+.I key
 did not exist, and
 .I arg3
-was zero (meaning don't create the key if it didn't exist).
+was zero
+(meaning don't create the key if it didn't exist).
 .SH VERSIONS
 A wrapper is provided in the
 .I libkeyutils
