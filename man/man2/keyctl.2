@@ -1,7 +1,8 @@
-.\" Copyright (C) 2016 Michael Kerrisk <mtk.manpages@gmail.com>
-.\" and Copyright (C) 2016 Eugene Syromyatnikov <evgsyr@gmail.com>
+.\" Copyright 2016, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2016, Eugene Syromyatnikov <evgsyr@gmail.com>
 .\" A very few fragments remain from an earlier version of this page
 .\" written by David Howells (dhowells@redhat.com)
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
@@ -11,26 +12,16 @@ keyctl \- manipulate the kernel's key management facility
 .SH LIBRARY
 Standard C library
 .RI ( libc ,\~ \-lc )
-.P
-Alternatively, Linux Key Management Utilities
-.RI ( libkeyutils ,\~ \-lkeyutils );
-see VERSIONS.
 .SH SYNOPSIS
 .nf
-.BR "#include <linux/keyctl.h>" "     /* Definition of " KEY* " constants */"
-.BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
+.BR "#include <linux/keyctl.h>" "  /* Definition of " KEY* " constants */"
+.BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
 .BI "long syscall(SYS_keyctl, int " operation ", unsigned long " arg2 ,
 .BI "             unsigned long " arg3 ", unsigned long " arg4 ,
 .BI "             unsigned long " arg5 );
 .fi
-.P
-.IR Note :
-glibc provides no wrapper for
-.BR keyctl (),
-necessitating the use of
-.BR syscall (2).
 .SH DESCRIPTION
 .BR keyctl ()
 allows user-space programs to perform key manipulation.
