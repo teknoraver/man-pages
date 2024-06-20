@@ -68,6 +68,8 @@ struct statx {
     /* Direct I/O alignment restrictions */
     __u32 stx_dio_mem_align;
     __u32 stx_dio_offset_align;
+\&
+    __u64 stx_subvol;      /* Subvolume identifier */
 };
 .EE
 .in
@@ -255,6 +257,8 @@ STATX_MNT_ID	Want stx_mnt_id (since Linux 5.8)
 STATX_DIOALIGN	Want stx_dio_mem_align and stx_dio_offset_align
 	(since Linux 6.1; support varies by filesystem)
 STATX_MNT_ID_UNIQUE	Want unique stx_mnt_id (since Linux 6.8)
+STATX_SUBVOL	Want stx_subvol
+	(since Linux 6.10; support varies by filesystem)
 .TE
 .in
 .P
@@ -451,6 +455,14 @@ or 0 if direct I/O is not supported on this file.
 This will only be nonzero if
 .I stx_dio_mem_align
 is nonzero, and vice versa.
+.TP
+.I stx_subvol
+Subvolume number of the current file.
+.IP
+Subvolumes are fancy directories,
+i.e. they form a tree structure that may be walked recursively.
+Support varies by filesystem;
+it is supported by bcachefs and btrfs since Linux 6.10.
 .P
 For further information on the above fields, see
 .BR inode (7).
