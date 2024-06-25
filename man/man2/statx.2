@@ -234,7 +234,7 @@ is used to tell the kernel which fields the caller is interested in.
 .I mask
 is an ORed combination of the following constants:
 .P
-.in +4n
+.in +1n
 .TS
 lB l.
 STATX_TYPE	Want stx_mode & S_IFMT
@@ -255,6 +255,7 @@ STATX_ALL	The same as STATX_BASIC_STATS | STATX_BTIME.
 STATX_MNT_ID	Want stx_mnt_id (since Linux 5.8)
 STATX_DIOALIGN	Want stx_dio_mem_align and stx_dio_offset_align
 	(since Linux 6.1; support varies by filesystem)
+STATX_MNT_ID_UNIQUE	Want unique stx_mnt_id (since Linux 6.8)
 .TE
 .in
 .P
@@ -410,11 +411,20 @@ character device type.
 .TP
 .I stx_mnt_id
 .\" commit fa2fcf4f1df1559a0a4ee0f46915b496cc2ebf60
-The mount ID of the mount containing the file.
+If using STATX_MNT_ID,
+this is the mount ID of the mount containing the file.
 This is the same number reported by
 .BR name_to_handle_at (2)
 and corresponds to the number in the first field in one of the records in
 .IR /proc/self/mountinfo .
+.IP
+If using STATX_MNT_ID_UNIQUE,
+this is the unique mount ID of the mount containing the file.
+This is the number reported by
+.BR listmount (2)
+and is the ID used to query the mount with
+.BR statmount (2) .
+It is guaranteed to not be reused while the system is running.
 .TP
 .I stx_dio_mem_align
 The alignment (in bytes) required for user memory buffers for direct I/O
