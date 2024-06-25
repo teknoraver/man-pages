@@ -187,13 +187,17 @@ Network device not available or not capable of sending IP.
 .B SIOCGSTAMP
 was called on a socket where no packet arrived.
 .TP
-.BR ENOMEM " and " ENOBUFS
+.B ENOMEM
+.TQ
+.B ENOBUFS
 Not enough memory available.
 .TP
 .B ENOPKG
 A kernel subsystem was not configured.
 .TP
-.BR ENOPROTOOPT " and " EOPNOTSUPP
+.B ENOPROTOOPT
+.TQ
+.B EOPNOTSUPP
 Invalid socket option passed.
 .TP
 .B ENOTCONN

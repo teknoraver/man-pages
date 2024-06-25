@@ -14,7 +14,9 @@
 This directory contains the files and subdirectories for kernel variables
 related to filesystems.
 .TP
-.IR /proc/sys/fs/aio\-max\-nr " and " /proc/sys/fs/aio\-nr " (since Linux 2.6.4)"
+.I /proc/sys/fs/aio\-max\-nr
+.TQ
+.IR /proc/sys/fs/aio\-nr " (both since Linux 2.6.4)"
 .I aio\-nr
 is the running total of the number of events specified by
 .BR io_setup (2)
@@ -239,7 +241,9 @@ The default value in this file is 1048576.
 .B RLIMIT_NOFILE
 was hard-coded to the same value.)
 .TP
-.IR /proc/sys/fs/overflowgid " and " /proc/sys/fs/overflowuid
+.I /proc/sys/fs/overflowgid
+.TQ
+.I /proc/sys/fs/overflowuid
 These files
 allow you to change the value of the fixed UID and GID.
 The default is 65534.

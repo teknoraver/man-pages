@@ -119,7 +119,9 @@ only users with the
 .B CAP_SYS_ADMIN
 capability may change the value in this file.
 .TP
-.IR /proc/sys/kernel/domainname " and " /proc/sys/kernel/hostname
+.I /proc/sys/kernel/domainname
+.TQ
+.I /proc/sys/kernel/hostname
 can be used to set the NIS/YP domainname and the
 hostname of your box in exactly the same way as the commands
 .BR domainname (1)
@@ -261,12 +263,16 @@ number of a process's group memberships.
 See
 .BR pid_namespaces (7).
 .TP
-.IR /proc/sys/kernel/ostype " and " /proc/sys/kernel/osrelease
+.I /proc/sys/kernel/ostype
+.TQ
+.I /proc/sys/kernel/osrelease
 These files
 give substrings of
 .IR /proc/version .
 .TP
-.IR /proc/sys/kernel/overflowgid " and " /proc/sys/kernel/overflowuid
+.I /proc/sys/kernel/overflowgid
+.TQ
+.I /proc/sys/kernel/overflowuid
 These files duplicate the files
 .I /proc/sys/fs/overflowgid
 and

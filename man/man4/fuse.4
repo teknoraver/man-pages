@@ -242,7 +242,9 @@ field in the reply header (in particular, access denied errors
 may be indicated by returning
 .BR \-EACCES ).
 .TP
-.BR FUSE_OPEN " and " FUSE_OPENDIR
+.B FUSE_OPEN
+.TQ
+.B FUSE_OPENDIR
 .in +4n
 .EX
 struct fuse_open_in {
@@ -293,7 +295,9 @@ Don't invalidate the data cache on open.
 The file is not seekable.
 .RE
 .TP
-.BR FUSE_READ " and " FUSE_READDIR
+.B FUSE_READ
+.TQ
+.B FUSE_READDIR
 .IP
 .in +4n
 .EX
@@ -387,7 +391,9 @@ No reply data is expected.
 However, an empty reply message
 still needs to be issued once the flush operation is complete.
 .TP
-.BR FUSE_RELEASE " and " FUSE_RELEASEDIR
+.B FUSE_RELEASE
+.TQ
+.B FUSE_RELEASEDIR
 .in +4n
 .EX
 struct fuse_release_in {

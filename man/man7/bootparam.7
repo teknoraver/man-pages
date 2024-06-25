@@ -151,7 +151,9 @@ mount an ext3 filesystem as ext2 and then remove the journal in the root
 filesystem, in fact reverting its format from ext3 to ext2 without the
 need to boot the box from alternate media.
 .TP
-.BR 'ro' " and " 'rw'
+.B 'ro'
+.TQ
+.B 'rw'
 The 'ro' option tells the kernel to mount the root filesystem
 as 'read-only' so that filesystem consistency check programs (fsck)
 can do their work on a quiescent filesystem.
@@ -233,7 +235,9 @@ of motherboard where that doesn't work.
 The option 'reboot=bios' will
 instead jump through the BIOS.
 .TP
-.BR 'nosmp' " and " 'maxcpus=N'
+.B 'nosmp'
+.TQ
+.B 'maxcpus=N'
 (Only when __SMP__ is defined.)
 A command-line option of 'nosmp' or 'maxcpus=0' will disable SMP
 activation entirely; an option 'maxcpus=N' limits the maximum number
