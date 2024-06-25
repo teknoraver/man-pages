@@ -84,8 +84,7 @@ struct statx_timestamp {
 .in
 .P
 (Note that reserved space and padding is omitted.)
-.SS
-Invoking \fBstatx\fR():
+.SS Invoking statx():
 To access a file's status, no permissions are required on the file itself,
 but in the case of
 .BR statx ()
@@ -280,8 +279,7 @@ to
 (all bits set),
 as one or more bits may, in the future, be used to specify an
 extension to the buffer.
-.SS
-The returned information
+.SS The returned information
 The status information for the target file is returned in the
 .I statx
 structure pointed to by
