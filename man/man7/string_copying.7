@@ -68,12 +68,12 @@ const char *restrict " src ,
 .\" ----- SYNOPSIS :: Known-length character sequences --------------------/
 .SS Known-length character sequences
 .nf
-// Chain-copy a known-length character sequence.
+// Chain-copy a length-bounded character sequence.
 .BI "void *mempcpy(void " dst "[restrict ." len "], \
 const void " src "[restrict ." len ],
 .BI "               size_t " len );
 .P
-// Chain-copy a known-length character sequence into a string.
+// Chain-copy a length-bounded character sequence into a string.
 .I stpcpy(mempcpy(dst, src, len), \[dq]\[dq]);
 .fi
 .SH DESCRIPTION
@@ -101,9 +101,9 @@ however, those padding null bytes are not part of the character sequence.
 Don't confuse null-padded with null-terminated:
 null-padded means 0 or more padding null bytes,
 while null-terminated means exactly 1 terminating null character.
-.\" ----- DESCRIPTION :: Terms (and abbreviations) :: known-length character sequence
+.\" ----- DESCRIPTION :: Terms (and abbreviations) :: length-bounded character sequence
 .TP
-.I known-length character sequence
+.I length-bounded character sequence
 Character sequence delimited by its length.
 It may be a slice of a larger character sequence,
 or even of a string.
@@ -257,7 +257,7 @@ or
 To read a null-padded character sequence,
 use
 .IR "strnlen(src,\ NITEMS(src))" ,
-and then you can treat it as a known-length character sequence;
+and then you can treat it as a length-bounded character sequence;
 or use
 .BR strncat (3)
 or
@@ -290,10 +290,10 @@ C library APIs use strings,
 so programs that use character sequences
 will have to take care of differentiating strings from character sequences.
 .P
-To copy a known-length character sequence, use
+To copy a length-bounded character sequence, use
 .BR mempcpy (3).
 .P
-To copy a known-length character sequence into a string, use
+To copy a length-bounded character sequence into a string, use
 .IR "\%stpcpy(mempcpy(dst,\ src,\ len),\ \[dq]\[dq])" .
 .P
 A string is also accepted as input,
