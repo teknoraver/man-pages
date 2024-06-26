@@ -65,8 +65,8 @@ const char *restrict " src ,
 // Duplicate a null-padded character sequence into a string.
 .BI "char *strndup(const char " src [. ssize "], size_t " ssize );
 .fi
-.\" ----- SYNOPSIS :: Known-length character sequences --------------------/
-.SS Known-length character sequences
+.\" ----- SYNOPSIS :: Length-bounded character sequences --------------/
+.SS Length-bounded character sequences
 .nf
 // Chain-copy a length-bounded character sequence.
 .BI "void *mempcpy(void " dst "[restrict ." len "], \
@@ -263,8 +263,8 @@ or use
 or
 .BR strndup (3)
 directly.
-.\" ----- DESCRIPTION :: Known-length character sequences -----------------/
-.SS Known-length character sequences
+.\" ----- DESCRIPTION :: Length-bounded character sequences -----------/
+.SS Length-bounded character sequences
 The simplest character sequence copying function is
 .BR mempcpy (3).
 It requires always knowing the length of your character sequences,
