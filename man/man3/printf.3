@@ -361,7 +361,7 @@ A
 overrides a space if both are used.
 .P
 The five flag characters above are defined in the C99 standard.
-The Single UNIX Specification specifies one further flag character.
+POSIX specifies one further flag character.
 .TP
 .B \[aq]
 For decimal conversion
@@ -373,19 +373,21 @@ For decimal conversion
 .BR g ,
 .BR G )
 the output is to be grouped with thousands' grouping characters
-if the locale information indicates any.
-(See
-.BR setlocale (3).)
-Note that many versions of
-.BR gcc (1)
-cannot parse this option and will issue a warning.
-(SUSv2 did not
-include \fI%\[aq]F\fP, but SUSv3 added it.)
-Note also that the default locale of a C program is "C"
-whose locale information indicates no thousands' grouping character.
-Therefore, without a prior call to
-.BR setlocale (3),
-no thousands' grouping characters will be printed.
+as a
+.I non-monetary
+quantity.
+Misleadingly, this isn't necessarily every thousand:
+for example Karbi ("mjw_IN"), groups its digits into 3 once, then 2 repeatedly.
+Compare
+.BR locale (7)
+.I grouping
+and
+.IR thousands_sep ,
+contrast with
+.IR mon_grouping / mon_thousands_sep
+and
+.BR strfmon (3).
+This is a no-op in the default "C" locale.
 .P
 glibc 2.2 adds one further flag character.
 .TP
@@ -979,6 +981,9 @@ with C99.
 .TQ
 .BR vdprintf ()
 GNU, POSIX.1-2008.
+.P
+Issue 4 of the X/Open Portability Guide (SUSv1, 1994) adds
+.BR \[aq] .
 .P
 .\" Linux libc4 knows about the five C standard flags.
 .\" It knows about the length modifiers \fBh\fP, \fBl\fP, \fBL\fP,
