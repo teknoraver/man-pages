@@ -43,53 +43,8 @@ The permitted values for
 are:
 .TP
 .BR KEYCTL_GET_KEYRING_ID (2const)
-.TP
-.BR KEYCTL_JOIN_SESSION_KEYRING " (since Linux 2.6.10)"
-Replace the session keyring this process subscribes to with
-a new session keyring.
-.\" This may be useful in conjunction with some sort of
-.\" session management framework that is employed by the application.
-.IP
-If
-.I arg2
-is NULL,
-an anonymous keyring with the description "_ses" is created
-and the process is subscribed to that keyring as its session keyring,
-displacing the previous session keyring.
-.IP
-Otherwise,
-.I arg2
-(cast to
-.IR "char\ *" )
-is treated as the description (name) of a keyring,
-and the behavior is as follows:
-.RS
-.IP \[bu] 3
-If a keyring with a matching description exists,
-the process will attempt to subscribe to that keyring
-as its session keyring if possible;
-if that is not possible, an error is returned.
-In order to subscribe to the keyring,
-the caller must have
-.I search
-permission on the keyring.
-.IP \[bu]
-If a keyring with a matching description does not exist,
-then a new keyring with the specified description is created,
-and the process is subscribed to that keyring as its session keyring.
-.RE
-.IP
-The arguments
-.IR arg3 ,
-.IR arg4 ,
-and
-.I arg5
-are ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_join_session_keyring (3).
+.TQ
+.BR KEYCTL_JOIN_SESSION_KEYRING (2const)
 .TP
 .BR KEYCTL_UPDATE " (since Linux 2.6.10)"
 Update a key's data payload.
@@ -342,7 +297,7 @@ permission set.
 .IP
 This permission is required for the
 .BR KEYCTL_GET_KEYRING_ID (2const),
-.BR KEYCTL_JOIN_SESSION_KEYRING ,
+.BR KEYCTL_JOIN_SESSION_KEYRING (2const),
 .BR KEYCTL_SEARCH ,
 and
 .B KEYCTL_INVALIDATE
@@ -1501,9 +1456,6 @@ is ignored.
 .SH RETURN VALUE
 For a successful call, the return value depends on the operation.
 .TP
-.B KEYCTL_JOIN_SESSION_KEYRING
-The ID of the joined session keyring.
-.TP
 .B KEYCTL_DESCRIBE
 The size of the description (including the terminating null byte),
 irrespective of the provided buffer size.
@@ -2138,7 +2090,6 @@ main(int argc, char *argv[])
 .BR keyctl_instantiate (3),
 .BR keyctl_instantiate_iov (3),
 .BR keyctl_invalidate (3),
-.BR keyctl_join_session_keyring (3),
 .BR keyctl_link (3),
 .BR keyctl_negate (3),
 .BR keyctl_read (3),
