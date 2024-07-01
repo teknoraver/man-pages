@@ -21,30 +21,25 @@ Standard C library
 .B #include <unistd.h>
 .P
 .B long syscall(SYS_keyctl, KEYCTL_JOIN_SESSION_KEYRING,
-.BI "             unsigned long " arg2 );
+.BI "             char *_Nullable " desc );
 .fi
 .SH DESCRIPTION
-.TP
-.BR KEYCTL_JOIN_SESSION_KEYRING " (since Linux 2.6.10)"
 Replace the session keyring this process subscribes to with
 a new session keyring.
 .\" This may be useful in conjunction with some sort of
 .\" session management framework that is employed by the application.
-.IP
+.P
 If
-.I arg2
+.I desc
 is NULL,
 an anonymous keyring with the description "_ses" is created
 and the process is subscribed to that keyring as its session keyring,
 displacing the previous session keyring.
-.IP
+.P
 Otherwise,
-.I arg2
-(cast to
-.IR "char\ *" )
+.I desc
 is treated as the description (name) of a keyring,
 and the behavior is as follows:
-.RS
 .IP \[bu] 3
 If a keyring with a matching description exists,
 the process will attempt to subscribe to that keyring
@@ -58,23 +53,9 @@ permission on the keyring.
 If a keyring with a matching description does not exist,
 then a new keyring with the specified description is created,
 and the process is subscribed to that keyring as its session keyring.
-.RE
-.IP
-The arguments
-.IR arg3 ,
-.IR arg4 ,
-and
-.I arg5
-are ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_join_session_keyring (3).
 .SH RETURN VALUE
-.TP
-.B KEYCTL_JOIN_SESSION_KEYRING
-The ID of the joined session keyring.
+On success,
+the ID of the joined session keyring.
 .P
 On error, \-1 is returned, and
 .I errno
