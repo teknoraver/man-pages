@@ -1027,6 +1027,10 @@ Inherit does not work for some combinations of
 .I read_format
 values, such as
 .BR PERF_FORMAT_GROUP .
+Additionally, using it together with
+.I cpu == \-1
+prevents the creation of the mmap ring-buffer used for
+logging asynchronous events in sampled mode.
 .TP
 .I pinned
 The
