@@ -20,53 +20,33 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "long syscall(SYS_keyctl, KEYCTL_CHOWN, unsigned long " arg2 ,
-.BI "             unsigned long " arg3 ", unsigned long " arg4 );
+.BI "long syscall(SYS_keyctl, KEYCTL_CHOWN, key_serial_t " key ,
+.BI "             uid_t " uid ", gid_t " gid );
 .fi
 .SH DESCRIPTION
-.TP
-.BR KEYCTL_CHOWN " (since Linux 2.6.10)"
 Change the ownership (user and group ID) of a key.
-.IP
-The
-.I arg2
-argument (cast to
-.IR key_serial_t )
+.P
+.I key
 contains the key ID.
-The
-.I arg3
-argument (cast to
-.IR uid_t )
+.I uid
 contains the new user ID (or \-1 in case the user ID shouldn't be changed).
-The
-.I arg4
-argument (cast to
-.IR gid_t )
+.I gid
 contains the new group ID (or \-1 in case the group ID shouldn't be changed).
-.IP
+.P
 The key must grant the caller
 .I setattr
 permission.
-.IP
+.P
 For the UID to be changed, or for the GID to be changed to a group
 the caller is not a member of, the caller must have the
 .B CAP_SYS_ADMIN
 capability (see
 .BR capabilities (7)).
-.IP
+.P
 If the UID is to be changed, the new user must have sufficient
 quota to accept the key.
 The quota deduction will be removed from the old user
 to the new user should the UID be changed.
-.IP
-The
-.I arg5
-argument is ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_chown (3).
 .SH RETURN VALUE
 On success,
 0 is returned.
