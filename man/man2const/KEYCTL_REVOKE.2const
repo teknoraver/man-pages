@@ -20,21 +20,17 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "long syscall(SYS_keyctl, KEYCTL_REVOKE, unsigned long " arg2 );
+.BI "long syscall(SYS_keyctl, KEYCTL_REVOKE, key_serial_t " key );
 .fi
 .SH DESCRIPTION
-.TP
-.BR KEYCTL_REVOKE " (since Linux 2.6.10)"
 Revoke the key with the ID provided in
-.I arg2
-(cast to
-.IR key_serial_t ).
+.IR key .
 The key is scheduled for garbage collection;
 it will no longer be findable,
 and will be unavailable for further operations.
 Further attempts to use the key will fail with the error
 .BR EKEYREVOKED .
-.IP
+.P
 The caller must have
 .I write
 or
@@ -43,18 +39,6 @@ permission on the key.
 .\" Keys with the KEY_FLAG_KEEP bit set cause an EPERM
 .\" error for KEYCTL_REVOKE. Does this need to be documented?
 .\" David Howells: No significance for user space.
-.IP
-The arguments
-.IR arg3 ,
-.IR arg4 ,
-and
-.I arg5
-are ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_revoke (3).
 .SH RETURN VALUE
 On success,
 0 is returned.
