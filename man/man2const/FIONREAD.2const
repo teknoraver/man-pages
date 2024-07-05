@@ -25,7 +25,7 @@ Standard C library
 .BI "int ioctl(int " fd ", TIOCINQ, int *" argp );
 .BI "int ioctl(int " fd ", TIOCOUTQ, int *" argp );
 .BI "int ioctl(int " fd ", TCFLSH, int " arg );
-.BI "int ioctl(int " fd ", FIONREAD, int *" argp );
+.BI "int ioctl(int " fd ", TIOCSERGETLSR, int *" argp );
 .fi
 .SH DESCRIPTION
 .TP
