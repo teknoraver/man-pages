@@ -645,7 +645,11 @@ Sent by the kernel.
 .BR sigqueue (3).
 .TP
 .B SI_TIMER
-POSIX timer expired.
+POSIX, or
+.BR setitimer (2)
+or
+.BR alarm (2)
+timer expired.
 .TP
 .BR SI_MESGQ " (since Linux 2.6.6)"
 POSIX message queue state changed; see
@@ -1099,6 +1103,13 @@ See
 .BR signal\-safety (7)
 for a list of the async-signal-safe functions that can be
 safely called inside from inside a signal handler.
+.P
+POSIX only guarantees
+.B SI_TIMER
+for signals created by
+.IR timer_create (2).
+Implementations are free to also provide it for other types of timers.
+The Linux behaviour matches NetBSD.
 .\"
 .SS Undocumented
 Before the introduction of
