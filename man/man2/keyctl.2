@@ -55,37 +55,8 @@ are:
 .BR KEYCTL_SETPERM (2const)
 .TQ
 .BR KEYCTL_DESCRIBE (2const)
-.TP
-.B KEYCTL_CLEAR
-Clear the contents of (i.e., unlink all keys from) a keyring.
-.IP
-The ID of the key
-(which must be of keyring type)
-.\" or the error ENOTDIR results
-is provided in
-.I arg2
-(cast to
-.IR key_serial_t ).
-.\" According to Documentation/security/keys.txt:
-.\"     This function can also be used to clear special kernel keyrings if they
-.\"     are appropriately marked if the user has CAP_SYS_ADMIN capability.  The
-.\"     DNS resolver cache keyring is an example of this.
-.IP
-The caller must have
-.I write
-permission on the keyring.
-.IP
-The arguments
-.IR arg3 ,
-.IR arg4 ,
-and
-.I arg5
-are ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_clear (3).
+.TQ
+.BR KEYCTL_CLEAR (2const)
 .TP
 .BR KEYCTL_LINK " (since Linux 2.6.10)"
 Create a link from a keyring to a key.
@@ -1672,7 +1643,6 @@ main(int argc, char *argv[])
 .\"     There is a man page, but this function seems not to exist
 .BR keyctl (3),
 .BR keyctl_assume_authority (3),
-.BR keyctl_clear (3),
 .BR keyctl_dh_compute (3),
 .BR keyctl_dh_compute_alloc (3),
 .BR keyctl_get_persistent (3),
