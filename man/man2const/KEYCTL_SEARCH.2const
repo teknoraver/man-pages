@@ -1,0 +1,123 @@
+.\" Copyright 2016, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2016, Eugene Syromyatnikov <evgsyr@gmail.com>
+.\" A very few fragments remain from an earlier version of this page
+.\" written by David Howells (dhowells@redhat.com)
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH KEYCTL_SEARCH 2const (date) "Linux man-pages (unreleased)"
+.SH NAME
+KEYCTL_SEARCH
+\-
+search a keyring for a key
+.SH LIBRARY
+Standard C library
+.RI ( libc ,\~ \-lc )
+.SH SYNOPSIS
+.nf
+.BR "#include <linux/keyctl.h>" "  /* Definition of " KEY* " constants */"
+.BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
+.B #include <unistd.h>
+.P
+.BI "long syscall(SYS_keyctl, KEYCTL_SEARCH, unsigned long " arg2 ,
+.BI "             unsigned long " arg3 ", unsigned long " arg4 ,
+.BI "             unsigned long " arg5 );
+.fi
+.SH DESCRIPTION
+.TP
+.BR KEYCTL_SEARCH " (since Linux 2.6.10)"
+Search for a key in a keyring tree,
+returning its ID and optionally linking it to a specified keyring.
+.IP
+The tree to be searched is specified by passing
+the ID of the head keyring in
+.I arg2
+(cast to
+.IR key_serial_t ).
+The search is performed breadth-first and recursively.
+.IP
+The
+.I arg3
+and
+.I arg4
+arguments specify the key to be searched for:
+.I arg3
+(cast as
+.IR char\~* )
+contains the key type
+(a null-terminated character string up to 32 bytes in size,
+including the terminating null byte), and
+.I arg4
+(cast as
+.IR char\~* )
+contains the description of the key
+(a null-terminated character string up to 4096 bytes in size,
+including the terminating null byte).
+.IP
+The source keyring must grant
+.I search
+permission to the caller.
+When performing the recursive search, only keyrings that grant the caller
+.I search
+permission will be searched.
+Only keys with for which the caller has
+.I search
+permission can be found.
+.IP
+If the key is found, its ID is returned as the function result.
+.IP
+If the key is found and
+.I arg5
+(cast to
+.IR key_serial_t )
+is nonzero, then, subject to the same constraints and rules as
+.BR KEYCTL_LINK (2const),
+the key is linked into the keyring whose ID is specified in
+.IR arg5 .
+If the destination keyring specified in
+.I arg5
+already contains a link to a key that has the same type and description,
+then that link will be displaced by a link to
+the key found by this operation.
+.IP
+Instead of valid existing keyring IDs, the source
+.RI ( arg2 )
+and destination
+.RI ( arg5 )
+keyrings can be one of the special keyring IDs listed under
+.BR KEYCTL_GET_KEYRING_ID (2const).
+.IP
+This operation is exposed by
+.I libkeyutils
+via the function
+.BR keyctl_search (3).
+.SH RETURN VALUE
+.TP
+.B KEYCTL_SEARCH
+The ID of the key that was found.
+.P
+On error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH ERRORS
+.TP
+.B EINVAL
+.I operation
+was
+.B KEYCTL_SEARCH
+and the size of the description in
+.I arg4
+(including the terminating null byte) exceeded 4096 bytes.
+.SH VERSIONS
+A wrapper is provided in the
+.I libkeyutils
+library:
+.BR keyctl_search (3).
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.6.10.
+.SH SEE ALSO
+.BR keyctl (2),
+.BR keyctl_search (3)
