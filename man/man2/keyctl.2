@@ -63,66 +63,8 @@ are:
 .BR KEYCTL_UNLINK (2const)
 .TQ
 .BR KEYCTL_SEARCH (2const)
-.TP
-.BR KEYCTL_READ " (since Linux 2.6.10)"
-Read the payload data of a key.
-.IP
-The ID of the key whose payload is to be read is specified in
-.I arg2
-(cast to
-.IR key_serial_t ).
-This can be the ID of an existing key,
-or any of the special key IDs listed for
-.BR KEYCTL_GET_KEYRING_ID (2const).
-.\" including KEY_SPEC_REQKEY_AUTH_KEY
-.IP
-The payload is placed in the buffer pointed by
-.I arg3
-(cast to
-.IR "char\ *" );
-the size of that buffer must be specified in
-.I arg4
-(cast to
-.IR size_t ).
-.IP
-The returned data will be processed for presentation
-according to the key type.
-For example, a keyring will return an array of
-.I key_serial_t
-entries representing the IDs of all the keys that are linked to it.
-The
-.I user
-key type will return its data as is.
-If a key type does not implement this function,
-the operation fails with the error
-.BR EOPNOTSUPP .
-.IP
-If
-.I arg3
-is not NULL,
-as much of the payload data as will fit is copied into the buffer.
-On a successful return,
-the return value is always the total size of the payload data.
-To determine whether the buffer was of sufficient size,
-check to see that the return value is less than or equal to
-the value supplied in
-.IR arg4 .
-.IP
-The key must either grant the caller
-.I read
-permission, or grant the caller
-.I search
-permission when searched for from the process keyrings
-(i.e., the key is possessed).
-.IP
-The
-.I arg5
-argument is ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_read (3).
+.TQ
+.BR KEYCTL_READ (2const)
 .TP
 .BR KEYCTL_INSTANTIATE " (since Linux 2.6.10)"
 (Positively) instantiate an uninstantiated key with a specified payload.
@@ -370,7 +312,7 @@ permission on the authorization key.
 If the specified key has a matching authorization key,
 then the ID of that key is returned.
 The authorization key can be read
-.RB ( KEYCTL_READ )
+.RB ( KEYCTL_READ (2const))
 to obtain the callout information passed to
 .BR request_key (2).
 .IP
@@ -904,10 +846,6 @@ is ignored.
 .SH RETURN VALUE
 For a successful call, the return value depends on the operation.
 .TP
-.B KEYCTL_READ
-The amount of data that is available in the key,
-irrespective of the provided buffer size.
-.TP
 .B KEYCTL_SET_REQKEY_KEYRING
 The ID of the previous default keyring
 to which implicitly requested keys were linked
@@ -1116,14 +1054,6 @@ syscall.
 .B ENOTDIR
 A key of keyring type was expected but the ID of a key with
 a different type was provided.
-.TP
-.B EOPNOTSUPP
-.I operation
-was
-.B KEYCTL_READ
-and the key type does not support reading
-(e.g., the type is
-.IR \[dq]login\[dq] ).
 .TP
 .B EOPNOTSUPP
 .I operation
@@ -1478,8 +1408,6 @@ main(int argc, char *argv[])
 .BR keyctl_instantiate_iov (3),
 .BR keyctl_invalidate (3),
 .BR keyctl_negate (3),
-.BR keyctl_read (3),
-.BR keyctl_read_alloc (3),
 .BR keyctl_reject (3),
 .BR keyctl_session_to_parent (3),
 .BR keyctl_set_reqkey_keyring (3),
