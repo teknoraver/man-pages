@@ -1,0 +1,131 @@
+.\" Copyright 2016, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2016, Eugene Syromyatnikov <evgsyr@gmail.com>
+.\" A very few fragments remain from an earlier version of this page
+.\" written by David Howells (dhowells@redhat.com)
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH KEYCTL_DESCRIBE 2const (date) "Linux man-pages (unreleased)"
+.SH NAME
+KEYCTL_DESCRIBE
+\-
+describe a key
+.SH LIBRARY
+Standard C library
+.RI ( libc ,\~ \-lc )
+.SH SYNOPSIS
+.nf
+.BR "#include <linux/keyctl.h>" "  /* Definition of " KEY* " constants */"
+.BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
+.B #include <unistd.h>
+.P
+.BI "long syscall(SYS_keyctl, KEYCTL_DESCRIBE, unsigned long " arg2 ,
+.BI "             unsigned long " arg3 ", unsigned long " arg4 ,
+.BI "             unsigned long " arg5 );
+.fi
+.SH DESCRIPTION
+.TP
+.BR KEYCTL_DESCRIBE " (since Linux 2.6.10)"
+Obtain a string describing the attributes of a specified key.
+.IP
+The ID of the key to be described is specified in
+.I arg2
+(cast to
+.IR key_serial_t ).
+The descriptive string is returned in the buffer pointed to by
+.I arg3
+(cast to
+.IR char\~* );
+.I arg4
+(cast to
+.IR size_t )
+specifies the size of that buffer in bytes.
+.IP
+The key must grant the caller
+.I view
+permission.
+.IP
+The returned string is null-terminated and
+contains the following information about the key:
+.IP
+.in +4n
+.IR type ; uid ; gid ; perm ; description
+.in
+.IP
+In the above,
+.I type
+and
+.I description
+are strings,
+.I uid
+and
+.I gid
+are decimal strings, and
+.I perm
+is a hexadecimal permissions mask.
+The descriptive string is written with the following format:
+.IP
+.in +4n
+.EX
+%s;%d;%d;%08x;%s
+.EE
+.in
+.IP
+.B Note: the intention is that the descriptive string should
+.B be extensible in future kernel versions.
+In particular, the
+.I description
+field will not contain semicolons;
+.\" FIXME But, the kernel does not enforce the requirement
+.\" that the key description contains no semicolons!
+.\" So, user space has no guarantee here??
+.\" Either something more needs to be said here,
+.\" or a kernel fix is required.
+it should be parsed by working backwards from the end of the string
+to find the last semicolon.
+This allows future semicolon-delimited fields to be inserted
+in the descriptive string in the future.
+.IP
+Writing to the buffer is attempted only when
+.I arg3
+is non-NULL and the specified buffer size
+is large enough to accept the descriptive string
+(including the terminating null byte).
+.\" Function commentary says it copies up to buflen bytes, but see the
+.\" (buffer && buflen >= ret) condition in keyctl_describe_key() in
+.\" security/keyctl.c
+In order to determine whether the buffer size was too small,
+check to see if the return value of the operation is greater than
+.IR arg4 .
+.IP
+The
+.I arg5
+argument is ignored.
+.IP
+This operation is exposed by
+.I libkeyutils
+via the function
+.BR keyctl_describe (3).
+.SH RETURN VALUE
+.TP
+.B KEYCTL_DESCRIBE
+The size of the description (including the terminating null byte),
+irrespective of the provided buffer size.
+.P
+On error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH VERSIONS
+A wrapper is provided in the
+.I libkeyutils
+library:
+.BR keyctl_describe (3).
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.6.10.
+.SH SEE ALSO
+.BR keyctl (2),
+.BR keyctl_describe (3),
+.BR keyctl_describe_alloc (3)
