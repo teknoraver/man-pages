@@ -20,41 +20,33 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "long syscall(SYS_keyctl, KEYCTL_SEARCH, unsigned long " arg2 ,
-.BI "             unsigned long " arg3 ", unsigned long " arg4 ,
-.BI "             unsigned long " arg5 );
+.BI "long syscall(SYS_keyctl, KEYCTL_SEARCH, key_serial_t " src ,
+.BI "             char *" type ", char *" desc ,
+.BI "             unsigned long " dst );
 .fi
 .SH DESCRIPTION
-.TP
-.BR KEYCTL_SEARCH " (since Linux 2.6.10)"
 Search for a key in a keyring tree,
 returning its ID and optionally linking it to a specified keyring.
-.IP
+.P
 The tree to be searched is specified by passing
 the ID of the head keyring in
-.I arg2
-(cast to
-.IR key_serial_t ).
+.IR src .
 The search is performed breadth-first and recursively.
-.IP
+.P
 The
-.I arg3
+.I type
 and
-.I arg4
+.I desc
 arguments specify the key to be searched for:
-.I arg3
-(cast as
-.IR char\~* )
+.I type
 contains the key type
 (a null-terminated character string up to 32 bytes in size,
 including the terminating null byte), and
-.I arg4
-(cast as
-.IR char\~* )
+.I desc
 contains the description of the key
 (a null-terminated character string up to 4096 bytes in size,
 including the terminating null byte).
-.IP
+.P
 The source keyring must grant
 .I search
 permission to the caller.
@@ -64,38 +56,30 @@ permission will be searched.
 Only keys with for which the caller has
 .I search
 permission can be found.
-.IP
+.P
 If the key is found, its ID is returned as the function result.
-.IP
+.P
 If the key is found and
-.I arg5
-(cast to
-.IR key_serial_t )
+.I dst
 is nonzero, then, subject to the same constraints and rules as
 .BR KEYCTL_LINK (2const),
 the key is linked into the keyring whose ID is specified in
-.IR arg5 .
+.IR dst .
 If the destination keyring specified in
-.I arg5
+.I dst
 already contains a link to a key that has the same type and description,
 then that link will be displaced by a link to
 the key found by this operation.
-.IP
+.P
 Instead of valid existing keyring IDs, the source
-.RI ( arg2 )
+.RI ( src )
 and destination
-.RI ( arg5 )
+.RI ( dst )
 keyrings can be one of the special keyring IDs listed under
 .BR KEYCTL_GET_KEYRING_ID (2const).
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_search (3).
 .SH RETURN VALUE
-.TP
-.B KEYCTL_SEARCH
-The ID of the key that was found.
+On success,
+the ID of the key that was found.
 .P
 On error, \-1 is returned, and
 .I errno
@@ -103,11 +87,8 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EINVAL
-.I operation
-was
-.B KEYCTL_SEARCH
-and the size of the description in
-.I arg4
+The size of the description in
+.I desc
 (including the terminating null byte) exceeded 4096 bytes.
 .SH VERSIONS
 A wrapper is provided in the
