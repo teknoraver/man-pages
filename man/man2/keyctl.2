@@ -59,38 +59,8 @@ are:
 .BR KEYCTL_CLEAR (2const)
 .TQ
 .BR KEYCTL_LINK (2const)
-.TP
-.BR KEYCTL_UNLINK " (since Linux 2.6.10)"
-Unlink a key from a keyring.
-.IP
-The ID of the key to be unlinked is specified in
-.I arg2
-(cast to
-.IR key_serial_t );
-the ID of the keyring from which it is to be unlinked is specified in
-.I arg3
-(cast to
-.IR key_serial_t ).
-.IP
-If the key is not currently linked into the keyring, an error results.
-.IP
-The caller must have
-.I write
-permission on the keyring from which the key is being removed.
-.IP
-If the last link to a key is removed,
-then that key will be scheduled for destruction.
-.IP
-The arguments
-.I arg4
-and
-.I arg5
-are ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_unlink (3).
+.TQ
+.BR KEYCTL_UNLINK (2const)
 .TP
 .BR KEYCTL_SEARCH " (since Linux 2.6.10)"
 Search for a key in a keyring tree,
@@ -1195,12 +1165,6 @@ exceeds
 .B ENOENT
 .I operation
 was
-.B KEYCTL_UNLINK
-and the key to be unlinked isn't linked to the keyring.
-.TP
-.B ENOENT
-.I operation
-was
 .B KEYCTL_DH_COMPUTE
 and the hashing algorithm specified in the
 .I hashname
@@ -1597,7 +1561,6 @@ main(int argc, char *argv[])
 .BR keyctl_session_to_parent (3),
 .BR keyctl_set_reqkey_keyring (3),
 .BR keyctl_set_timeout (3),
-.BR keyctl_unlink (3),
 .BR recursive_key_scan (3),
 .BR recursive_session_key_scan (3),
 .BR capabilities (7),
