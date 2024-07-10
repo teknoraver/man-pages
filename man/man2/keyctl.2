@@ -57,47 +57,8 @@ are:
 .BR KEYCTL_DESCRIBE (2const)
 .TQ
 .BR KEYCTL_CLEAR (2const)
-.TP
-.BR KEYCTL_LINK " (since Linux 2.6.10)"
-Create a link from a keyring to a key.
-.IP
-The key to be linked is specified in
-.I arg2
-(cast to
-.IR key_serial_t );
-the keyring is specified in
-.I arg3
-(cast to
-.IR key_serial_t ).
-.IP
-If a key with the same type and description is already linked in the keyring,
-then that key is displaced from the keyring.
-.IP
-Before creating the link,
-the kernel checks the nesting of the keyrings and returns appropriate errors
-if the link would produce a cycle
-or if the nesting of keyrings would be too deep
-(The limit on the nesting of keyrings is determined by the kernel constant
-.BR KEYRING_SEARCH_MAX_DEPTH ,
-defined with the value 6, and is necessary to prevent overflows
-on the kernel stack when recursively searching keyrings).
-.IP
-The caller must have
-.I link
-permission on the key being added and
-.I write
-permission on the keyring.
-.IP
-The arguments
-.I arg4
-and
-.I arg5
-are ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_link (3).
+.TQ
+.BR KEYCTL_LINK (2const)
 .TP
 .BR KEYCTL_UNLINK " (since Linux 2.6.10)"
 Unlink a key from a keyring.
@@ -177,7 +138,7 @@ If the key is found and
 (cast to
 .IR key_serial_t )
 is nonzero, then, subject to the same constraints and rules as
-.BR KEYCTL_LINK ,
+.BR KEYCTL_LINK (2const),
 the key is linked into the keyring whose ID is specified in
 .IR arg5 .
 If the destination keyring specified in
@@ -286,7 +247,7 @@ If
 (cast to
 .IR key_serial_t )
 is nonzero, then, subject to the same constraints and rules as
-.BR KEYCTL_LINK ,
+.BR KEYCTL_LINK (2const),
 the instantiated key is linked into the keyring whose ID specified in
 .IR arg5 .
 .IP
@@ -669,7 +630,7 @@ If
 (cast to
 .IR key_serial_t )
 is nonzero, then, subject to the same constraints and rules as
-.BR KEYCTL_LINK ,
+.BR KEYCTL_LINK (2const),
 the negatively instantiated key is linked into the keyring
 whose ID is specified in
 .IR arg5 .
@@ -1089,12 +1050,6 @@ and there was an error during crypto module initialization.
 .B EDEADLK
 .I operation
 was
-.B KEYCTL_LINK
-and the requested link would result in a cycle.
-.TP
-.B EDEADLK
-.I operation
-was
 .B KEYCTL_RESTRICT_KEYRING
 and the requested keyring restriction would result in a cycle.
 .TP
@@ -1220,13 +1175,6 @@ A rejected key was found or specified.
 .B EKEYREVOKED
 A revoked key was found or specified.
 .TP
-.B ELOOP
-.I operation
-was
-.B KEYCTL_LINK
-and the requested link would cause the maximum nesting depth
-for keyrings to be exceeded.
-.TP
 .B EMSGSIZE
 .I operation
 was
@@ -1243,16 +1191,6 @@ passed in
 exceeds
 .B KEYCTL_KDF_MAX_OI_LEN
 (which is 64 currently).
-.TP
-.BR ENFILE " (before Linux 3.13)"
-.I operation
-was
-.B KEYCTL_LINK
-and the keyring is full.
-(Before Linux 3.13,
-.\" commit b2a4df200d570b2c33a57e1ebfa5896e4bc81b69
-the available space for storing keyring links was limited to
-a single page of memory; since Linux 3.13, there is no fixed limit.)
 .TP
 .B ENOENT
 .I operation
@@ -1651,7 +1589,6 @@ main(int argc, char *argv[])
 .BR keyctl_instantiate (3),
 .BR keyctl_instantiate_iov (3),
 .BR keyctl_invalidate (3),
-.BR keyctl_link (3),
 .BR keyctl_negate (3),
 .BR keyctl_read (3),
 .BR keyctl_read_alloc (3),
