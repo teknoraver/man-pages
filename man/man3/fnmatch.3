@@ -69,7 +69,9 @@ This flag is mainly for the internal
 use of glibc and is implemented only in certain cases.
 .TP
 .B FNM_CASEFOLD
-If this flag (a GNU extension) is set, the pattern is matched
+.TQ
+.BR FNM_IGNORECASE " (same as " FNM_CASEFOLD )
+If this flag is set, the pattern is matched
 case-insensitively.
 .TP
 .B FNM_EXTMATCH
@@ -123,16 +125,22 @@ T}	Thread safety	MT-Safe env locale
 .BR fnmatch ()
 POSIX.1-2008.
 .TP
+.B FNM_CASEFOLD
+.TQ
+.B FNM_IGNORECASE
+POSIX.1-2024.
+.TP
 .B FNM_FILE_NAME
 .TQ
 .B FNM_LEADING_DIR
-.TQ
-.B FNM_CASEFOLD
 GNU.
 .SH HISTORY
 .TP
 .BR fnmatch ()
 POSIX.1-2001, POSIX.2.
+.TP
+.B FNM_CASEFOLD
+has been available on many systems even before POSIX.1-2024.
 .SH SEE ALSO
 .BR sh (1),
 .BR glob (3),
