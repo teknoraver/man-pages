@@ -86,6 +86,10 @@ returns a new Landlock ruleset file descriptor,
 or a Landlock ABI version,
 according to
 .IR flags .
+On error,
+\-1 is returned and
+.I errno
+is set to indicate the error.
 .SH ERRORS
 .BR landlock_create_ruleset ()
 can fail for the following reasons:
