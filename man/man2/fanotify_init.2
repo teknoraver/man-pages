@@ -295,7 +295,7 @@ for additional details.
 This is a synonym for
 .RB ( FAN_REPORT_DIR_FID | FAN_REPORT_NAME ).
 .TP
-.BR FAN_REPORT_TARGET_FID " (since Linux 5.17)"
+.BR FAN_REPORT_TARGET_FID " (since Linux 5.17, 5.15.154, and 5.10.220)"
 .\" commit d61fd650e9d206a71fda789f02a1ced4b19944c4
 Events for fanotify groups initialized with this flag
 will contain additional information about the child
@@ -330,7 +330,7 @@ that the directory entry is referring to.
 This is a synonym for
 .RB ( FAN_REPORT_DFID_NAME | FAN_REPORT_FID | FAN_REPORT_TARGET_FID ).
 .TP
-.BR FAN_REPORT_PIDFD " (since Linux 5.15)"
+.BR FAN_REPORT_PIDFD " (since Linux 5.15 and 5.10.220)"
 .\" commit af579beb666aefb17e9a335c12c788c92932baf1
 Events for fanotify groups initialized with this flag will contain
 an additional information record alongside the generic
@@ -460,14 +460,14 @@ The fanotify API is available only if the kernel was configured with
 .B EPERM
 The operation is not permitted because the caller lacks a required capability.
 .SH VERSIONS
-Prior to Linux 5.13,
+Prior to Linux 5.13 (and 5.10.220),
 .\" commit 7cea2a3c505e87a9d6afc78be4a7f7be636a73a7
 calling
 .BR fanotify_init ()
 required the
 .B CAP_SYS_ADMIN
 capability.
-Since Linux 5.13,
+Since Linux 5.13 (and 5.10.220),
 .\" commit 7cea2a3c505e87a9d6afc78be4a7f7be636a73a7
 users may call
 .BR fanotify_init ()
