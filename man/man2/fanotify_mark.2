@@ -176,7 +176,7 @@ the update fails with
 .B EEXIST
 error.
 .TP
-.BR FAN_MARK_IGNORE " (since Linux 6.0)"
+.BR FAN_MARK_IGNORE " (since Linux 6.0, 5.15.154, and 5.10.220)"
 .\" commit e252f2ed1c8c6c3884ab5dd34e003ed21f1fe6e0
 This flag has a similar effect as setting the
 .B FAN_MARK_IGNORED_MASK
@@ -271,7 +271,7 @@ error.
 This is a synonym for
 .RB ( FAN_MARK_IGNORE | FAN_MARK_IGNORED_SURV_MODIFY ).
 .TP
-.BR FAN_MARK_EVICTABLE " (since Linux 5.19)"
+.BR FAN_MARK_EVICTABLE " (since Linux 5.19, 5.15.154, and 5.10.220)"
 .\" commit 5f9d3bd520261fd7a850818c71809fd580e0f30c
 When an inode mark is created with this flag,
 the inode object will not be pinned to the inode cache,
@@ -362,7 +362,7 @@ Create an event when a marked file or directory itself is deleted.
 An fanotify group that identifies filesystem objects by file handles
 is required.
 .TP
-.BR FAN_FS_ERROR " (since Linux 5.16)"
+.BR FAN_FS_ERROR " (since Linux 5.16, 5.15.154, and 5.10.220)"
 .\" commit 9709bd548f11a092d124698118013f66e1740f9b
 Create an event when a filesystem error
 leading to inconsistent filesystem metadata is detected.
@@ -399,7 +399,7 @@ directory.
 An fanotify group that identifies filesystem objects by file handles
 is required.
 .TP
-.BR FAN_RENAME " (since Linux 5.17)"
+.BR FAN_RENAME " (since Linux 5.17, 5.15.154, and 5.10.220)"
 .\" commit 8cc3b1ccd930fe6971e1527f0c4f1bdc8cb56026
 This event contains the same information provided by events
 .B FAN_MOVED_FROM
