@@ -12,7 +12,8 @@ include $(MAKEFILEDIR)/configure/verbose.mk
 
 
 DEFAULT_CPPFLAGS := \
-	$(shell $(PKGCONF_CMD) --cflags $(PKGCONF_LIBS) $(HIDE_ERR))
+	$(shell $(PKGCONF_CMD) --cflags $(PKGCONF_LIBS) $(HIDE_ERR)) \
+	-D_FORTIFY_SOURCE=2
 EXTRA_CPPFLAGS   :=
 CPPFLAGS         := $(DEFAULT_CPPFLAGS) $(EXTRA_CPPFLAGS)
 CPP              := $(CC) $(CFLAGS) -E
