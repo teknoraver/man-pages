@@ -58,8 +58,8 @@ else ifeq ($(CC_VENDOR),clang)
 DEFAULT_CFLAGS += $(CLANG_CFLAGS)
 endif
 
-EXTRA_CFLAGS   :=
-CFLAGS         := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
+CFLAGS         :=
+CFLAGS_        := $(DEFAULT_CFLAGS) $(CFLAGS)
 
 
 endif  # include guard

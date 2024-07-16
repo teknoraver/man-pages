@@ -17,8 +17,8 @@ DEFAULT_CPPCHECKFLAGS := \
 	--check-level=exhaustive \
 	--quiet \
 	--suppressions-list=$(CPPCHECK_SUPPRESS)
-EXTRA_CPPCHECKFLAGS   :=
-CPPCHECKFLAGS         := $(DEFAULT_CPPCHECKFLAGS) $(EXTRA_CPPCHECKFLAGS)
+CPPCHECKFLAGS         :=
+CPPCHECKFLAGS_        := $(DEFAULT_CPPCHECKFLAGS) $(CPPCHECKFLAGS)
 CPPCHECK              := cppcheck
 
 

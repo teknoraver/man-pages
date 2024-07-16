@@ -13,7 +13,7 @@ include $(MAKEFILEDIR)/configure/build-depends/pkgconf/pkgconf.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 
 
-LD := $(CC) $(CPPFLAGS) $(CFLAGS)
+LD := $(CC) $(CFLAGS_) $(CPPFLAGS_)
 
 
 LD_HAS_FUSE_LINKER_PLUGIN := \
@@ -37,15 +37,15 @@ ifeq ($(LD_HAS_FUSE_LINKER_PLUGIN),yes)
 DEFAULT_LDFLAGS += -fuse-linker-plugin
 endif
 
-EXTRA_LDFLAGS   :=
-LDFLAGS         := $(DEFAULT_LDFLAGS) $(EXTRA_LDFLAGS)
+LDFLAGS         :=
+LDFLAGS_        := $(DEFAULT_LDFLAGS) $(LDFLAGS)
 
 
 DEFAULT_LDLIBS := \
 	-lc \
 	$(shell $(PKGCONF_CMD) --libs-only-l $(PKGCONF_LIBS) $(HIDE_ERR))
-EXTRA_LDLIBS   :=
-LDLIBS         := $(DEFAULT_LDLIBS) $(EXTRA_LDLIBS)
+LDLIBS         ?=
+LDLIBS_        := $(DEFAULT_LDLIBS) $(LDLIBS)
 
 
 endif  # include guard

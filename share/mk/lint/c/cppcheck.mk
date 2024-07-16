@@ -68,7 +68,7 @@ $(_LINT_c_cppcheck): $(CPPCHECK_SUPPRESS) $(MK) | $$(@D)/
 
 $(_LINT_c_EX_cppcheck):
 	$(info	$(INFO_)CPPCHECK	$@)
-	$(CPPCHECK) $(CPPCHECKFLAGS) $<
+	$(CPPCHECK) $(CPPCHECKFLAGS_) $<
 	$(TOUCH) $@
 
 
