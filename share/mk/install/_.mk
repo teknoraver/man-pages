@@ -19,6 +19,9 @@ include $(MAKEFILEDIR)/configure/build-depends/coreutils/rm.mk
 	$(RM) $*
 
 
+.PHONY: install-all
+install-all: install-man;
+
 .PHONY: install
 install: install-man;
 

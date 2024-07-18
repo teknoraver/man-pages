@@ -12,14 +12,18 @@ include $(MAKEFILEDIR)/configure/directory_variables/build.mk
 _MANDIR := $(builddir)/man
 
 
-.PHONY: build
-build: \
+.PHONY: build-all
+build-all: \
 	build-catman \
 	build-html \
 	build-man \
 	build-pdf \
 	build-ps \
 	build-ex;
+
+.PHONY: build
+build: \
+	build-man;
 
 
 endif  # include guard
