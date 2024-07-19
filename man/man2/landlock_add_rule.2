@@ -101,6 +101,16 @@ The rule accesses are inconsistent (i.e.,
 .I rule_attr\->allowed_access
 is not a subset of the ruleset handled accesses).
 .TP
+.B EINVAL
+In
+.IR \%struct\~landlock_path_beneath_attr ,
+the rule accesses are not applicable to the file
+(i.e., some access rights in
+.I \%rule_attr\->allowed_access
+are only applicable to directories, but
+.I \%rule_attr\->parent_fd
+does not refer to a directory).
+.TP
 .B ENOMSG
 Empty accesses (i.e.,
 .I rule_attr\->allowed_access
