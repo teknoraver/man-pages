@@ -51,8 +51,38 @@ is a bitmask of handled filesystem actions
 .B Filesystem actions
 in
 .BR landlock (7)).
-This enables simply restricting ambient rights
-(e.g., global filesystem access) and is needed for compatibility reasons.
+.IP
+This structure defines a set of
+.IR "handled access rights" ,
+a set of actions on different object types,
+which should be denied by default
+when the ruleset is enacted.
+Vice versa,
+access rights that are not specifically listed here
+are not going to be denied by this ruleset when it is enacted.
+.IP
+For historical reasons, the
+.B LANDLOCK_ACCESS_FS_REFER
+right is always denied by default,
+even when its bit is not set in
+.IR handled_access_fs .
+In order to add new rules with this access right,
+the bit must still be set explicitly
+(see
+.B Filesystem actions
+in
+.BR landlock (7)).
+.IP
+The explicit listing of
+.I handled access rights
+is required for backwards compatibility reasons.
+In most use cases,
+processes that use Landlock will
+.I handle
+a wide range or all access rights that they know about at build time
+(and that they have tested with a kernel that supported them all).
+.IP
+This structure can grow in future Landlock versions.
 .P
 .I size
 must be specified as
