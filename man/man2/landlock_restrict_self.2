@@ -20,7 +20,7 @@ Standard C library
 .SH DESCRIPTION
 Once a Landlock ruleset is populated with the desired rules, the
 .BR landlock_restrict_self ()
-system call enables enforcing this ruleset on the calling thread.
+system call enforces this ruleset on the calling thread.
 See
 .BR landlock (7)
 for a global overview.
@@ -38,10 +38,11 @@ with multiple independent rulesets coming from different sources
 built-in application policy).
 However, most applications should only need one call to
 .BR landlock_restrict_self ()
-and they should avoid arbitrary numbers of such calls because of the
-composed rulesets limit.
-Instead, developers are encouraged to build a tailored ruleset thanks to
-multiple calls to
+and they should avoid arbitrary numbers of such calls
+because of the composed rulesets limit.
+Instead,
+developers are encouraged to build a single tailored ruleset
+with multiple calls to
 .BR landlock_add_rule (2).
 .P
 In order to enforce a ruleset, either the caller must have the

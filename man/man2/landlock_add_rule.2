@@ -60,7 +60,9 @@ struct landlock_path_beneath_attr {
 .in
 .IP
 .I allowed_access
-contains a bitmask of allowed filesystem actions for this file hierarchy
+contains a bitmask of allowed filesystem actions,
+which can be applied on the given
+.I parent_fd
 (see
 .B Filesystem actions
 in
@@ -92,7 +94,10 @@ Landlock is supported by the kernel but disabled at boot time.
 .TP
 .B EINVAL
 .I flags
-is not 0, or the rule accesses are inconsistent (i.e.,
+is not 0.
+.TP
+.B EINVAL
+The rule accesses are inconsistent (i.e.,
 .I rule_attr\->allowed_access
 is not a subset of the ruleset handled accesses).
 .TP

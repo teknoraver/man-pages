@@ -23,7 +23,8 @@ Standard C library
 A Landlock ruleset identifies a set of rules (i.e., actions on objects).
 This
 .BR landlock_create_ruleset ()
-system call enables creating a new file descriptor identifying a ruleset.
+system call creates a new file descriptor
+which identifies a ruleset.
 This file descriptor can then be used by
 .BR landlock_add_rule (2)
 and
@@ -45,8 +46,7 @@ struct landlock_ruleset_attr {
 .in
 .IP
 .I handled_access_fs
-is a bitmask of actions that is handled by this ruleset and
-should then be forbidden if no rule explicitly allows them
+is a bitmask of handled filesystem actions
 (see
 .B Filesystem actions
 in

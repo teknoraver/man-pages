@@ -58,7 +58,7 @@ and
 .BR landlock_create_ruleset (2)
 for more context.
 .P
-A file can only receive these access rights:
+The following access rights apply only to files:
 .TP
 .B LANDLOCK_ACCESS_FS_EXECUTE
 Execute a file.
@@ -87,6 +87,9 @@ or
 .BR open (2)
 with
 .BR O_TRUNC .
+.IP
+This access right is available since the third version of the Landlock ABI.
+.IP
 Whether an opened file can be truncated with
 .BR ftruncate (2)
 is determined during
@@ -97,7 +100,6 @@ using
 .B LANDLOCK_ACCESS_FS_READ_FILE
 and
 .BR LANDLOCK_ACCESS_FS_WRITE_FILE .
-This access right is available since the third version of the Landlock ABI.
 .P
 A directory can receive access rights related to files or directories.
 The following access right is applied to the directory itself,
