@@ -3976,6 +3976,7 @@ instruction count of a call to
 .P
 .\" SRC BEGIN (perf_event_open.c)
 .EX
+#include <err.h>
 #include <linux/perf_event.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -4012,22 +4013,25 @@ main(void)
     pe.exclude_hv = 1;
 \&
     fd = perf_event_open(&pe, 0, \-1, \-1, 0);
-    if (fd == \-1) {
-       fprintf(stderr, "Error opening leader %llx\[rs]n", pe.config);
-       exit(EXIT_FAILURE);
-    }
+    if (fd == \-1)
+        err(EXIT_FAILURE, "Error opening leader %llx\[rs]n", pe.config);
 \&
-    ioctl(fd, PERF_EVENT_IOC_RESET, 0);
-    ioctl(fd, PERF_EVENT_IOC_ENABLE, 0);
+    if (ioctl(fd, PERF_EVENT_IOC_RESET, 0) == \-1)
+        err(EXIT_FAILURE, "PERF_EVENT_IOC_RESET");
+    if (ioctl(fd, PERF_EVENT_IOC_ENABLE, 0) == \-1)
+        err(EXIT_FAILURE, "PERF_EVENT_IOC_ENABLE");
 \&
     printf("Measuring instruction count for this printf\[rs]n");
 \&
-    ioctl(fd, PERF_EVENT_IOC_DISABLE, 0);
-    read(fd, &count, sizeof(count));
+    if (ioctl(fd, PERF_EVENT_IOC_DISABLE, 0) == \-1)
+        err(EXIT_FAILURE, "PERF_EVENT_IOC_DISABLE");
+    if (read(fd, &count, sizeof(count)) != sizeof(count))
+        err(EXIT_FAILURE, "read");
 \&
     printf("Used %lld instructions\[rs]n", count);
 \&
-    close(fd);
+    if (close(fd) == \-1)
+        err(EXIT_FAILURE, "close");
 }
 .EE
 .\" SRC END
