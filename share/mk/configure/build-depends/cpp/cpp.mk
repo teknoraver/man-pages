@@ -11,7 +11,8 @@ include $(MAKEFILEDIR)/configure/build-depends/pkgconf/pkgconf.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 
 
-DEFAULT_CPPFLAGS := $(shell $(PKGCONF_CMD) --cflags $(PKGCONF_LIBS) $(HIDE_ERR))
+DEFAULT_CPPFLAGS := \
+	$(shell $(PKGCONF_CMD) --cflags $(PKGCONF_LIBS) $(HIDE_ERR))
 EXTRA_CPPFLAGS   :=
 CPPFLAGS         := $(DEFAULT_CPPFLAGS) $(EXTRA_CPPFLAGS)
 CPP              := $(CC) $(CFLAGS) -E
