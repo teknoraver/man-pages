@@ -132,6 +132,7 @@ _XFAIL_LINT_c_EX_clang_tidy := \
 	$(_MANDIR)/man3/mbstowcs.3.d/mbstowcs.c.lint-c.clang-tidy.touch \
 	$(_MANDIR)/man3/mq_getattr.3.d/mq_getattr.c.lint-c.clang-tidy.touch \
 	$(_MANDIR)/man3/mq_notify.3.d/mq_notify.c.lint-c.clang-tidy.touch \
+	$(_MANDIR)/man3/mtrace.3.d/t_mtrace.c.lint-c.clang-tidy.touch \
 	$(_MANDIR)/man3/newlocale.3.d/newlocale.c.lint-c.clang-tidy.touch \
 	$(_MANDIR)/man3/offsetof.3.d/offsetof.c.lint-c.clang-tidy.touch \
 	$(_MANDIR)/man3/posix_spawn.3.d/posix_spawn.c.lint-c.clang-tidy.touch \

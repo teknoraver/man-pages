@@ -64,6 +64,7 @@ _XFAIL_LINT_c_EX_iwyu := \
 	$(_MANDIR)/man3/inet.3.d/inet.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/inet_net_pton.3.d/inet_net_pton.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/inet_pton.3.d/inet_pton.c.lint-c.iwyu.touch \
+	$(_MANDIR)/man3/list.3.d/list.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/mallinfo.3.d/mallinfo.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/malloc_info.3.d/malloc_info.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/mbstowcs.3.d/mbstowcs.c.lint-c.iwyu.touch \
@@ -85,7 +86,9 @@ _XFAIL_LINT_c_EX_iwyu := \
 	$(_MANDIR)/man3/shm_open.3.d/pshm_ucase.h.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/shm_open.3.d/pshm_ucase_bounce.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/shm_open.3.d/pshm_ucase_send.c.lint-c.iwyu.touch \
-	$(_MANDIR)/man3/slist.3.d/slist.c.lint-c.iwyu.touch
+	$(_MANDIR)/man3/slist.3.d/slist.c.lint-c.iwyu.touch \
+	$(_MANDIR)/man3/stailq.3.d/stailq.c.lint-c.iwyu.touch \
+	$(_MANDIR)/man3/tailq.3.d/tailq.c.lint-c.iwyu.touch
 
 
 _LINT_c_EX_iwyu   := $(patsubst %, %.lint-c.iwyu.touch, $(_EX_TU_src))
