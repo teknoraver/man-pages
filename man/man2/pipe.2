@@ -243,6 +243,7 @@ and echoes it on standard output.
 .SS Program source
 .\" SRC BEGIN (pipe.c)
 .EX
+#include <err.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -262,32 +263,37 @@ main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 \&
-    if (pipe(pipefd) == \-1) {
-        perror("pipe");
-        exit(EXIT_FAILURE);
-    }
+    if (pipe(pipefd) == \-1)
+        err(EXIT_FAILURE, "pipe");
 \&
     cpid = fork();
-    if (cpid == \-1) {
-        perror("fork");
-        exit(EXIT_FAILURE);
-    }
+    if (cpid == \-1)
+        err(EXIT_FAILURE, "fork");
 \&
     if (cpid == 0) {    /* Child reads from pipe */
-        close(pipefd[1]);          /* Close unused write end */
+        if (close(pipefd[1]) == \-1)  /* Close unused write end */
+            err(EXIT_FAILURE, "close");
 \&
-        while (read(pipefd[0], &buf, 1) > 0)
-            write(STDOUT_FILENO, &buf, 1);
+        while (read(pipefd[0], &buf, 1) > 0) {
+            if (write(STDOUT_FILENO, &buf, 1) != 1)
+                err(EXIT_FAILURE, "write");
+        }
 \&
-        write(STDOUT_FILENO, "\[rs]n", 1);
-        close(pipefd[0]);
+        if (write(STDOUT_FILENO, "\[rs]n", 1) != 1)
+            err(EXIT_FAILURE, "write");
+        if (close(pipefd[0]) == \-1)
+            err(EXIT_FAILURE, "close");
         _exit(EXIT_SUCCESS);
 \&
     } else {            /* Parent writes argv[1] to pipe */
-        close(pipefd[0]);          /* Close unused read end */
-        write(pipefd[1], argv[1], strlen(argv[1]));
-        close(pipefd[1]);          /* Reader will see EOF */
-        wait(NULL);                /* Wait for child */
+        if (close(pipefd[0]) == \-1)  /* Close unused read end */
+            err(EXIT_FAILURE, "close");
+        if (write(pipefd[1], argv[1], strlen(argv[1])) != strlen(argv[1]))
+            err(EXIT_FAILURE, "write");
+        if (close(pipefd[1]) == \-1)  /* Reader will see EOF */
+            err(EXIT_FAILURE, "close");
+        if (wait(NULL) == \-1)        /* Wait for child */
+            err(EXIT_FAILURE, "wait");
         exit(EXIT_SUCCESS);
     }
 }
