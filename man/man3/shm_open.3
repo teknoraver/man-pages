@@ -499,8 +499,10 @@ main(int argc, char *argv[])
 \&
     /* Write modified data in shared memory to standard output. */
 \&
-    write(STDOUT_FILENO, &shmp\->buf, len);
-    write(STDOUT_FILENO, "\[rs]n", 1);
+    if (write(STDOUT_FILENO, &shmp\->buf, len) == \-1)
+        errExit("write");
+    if (write(STDOUT_FILENO, "\[rs]n", 1) == \-1)
+        errExit("write");
 \&
     exit(EXIT_SUCCESS);
 }
