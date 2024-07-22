@@ -77,6 +77,7 @@ _XFAIL_LINT_c_EX_clang_tidy := \
 	$(_MANDIR)/man2/unshare.2.d/unshare.c.lint-c.clang-tidy.touch \
 	$(_MANDIR)/man2/userfaultfd.2.d/userfaultfd.c.lint-c.clang-tidy.touch \
 	$(_MANDIR)/man2/wait.2.d/wait.c.lint-c.clang-tidy.touch \
+	$(_MANDIR)/man2const/PR_RISCV_SET_ICACHE_FLUSH_CTX.2const.d/cmodx.c.lint-c.clang-tidy.touch \
 	$(_MANDIR)/man2const/TCSETS.2const.d/tcgets.c.lint-c.clang-tidy.touch \
 	$(_MANDIR)/man3/atexit.3.d/atexit.c.lint-c.clang-tidy.touch \
 	$(_MANDIR)/man3/backtrace.3.d/backtrace.c.lint-c.clang-tidy.touch \

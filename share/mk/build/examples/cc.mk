@@ -20,6 +20,7 @@ _XFAIL_EX_TU_o := \
 	$(_MANDIR)/man2/sigaction.2.d/sigaction.o \
 	$(_MANDIR)/man2/spu_run.2.d/spu_run.o \
 	$(_MANDIR)/man2/_syscall.2.d/_syscall.o \
+	$(_MANDIR)/man2const/PR_RISCV_SET_ICACHE_FLUSH_CTX.2const.d/cmodx.o \
 	$(_MANDIR)/man3/circleq.3.d/circleq.o \
 	$(_MANDIR)/man3/encrypt.3.d/encrypt.o \
 	$(_MANDIR)/man3/getsubopt.3.d/getsubopt.o \
