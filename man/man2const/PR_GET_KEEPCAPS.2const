@@ -10,7 +10,7 @@ PR_GET_KEEPCAPS
 get the state of the "keep capabilities" flag
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"

@@ -11,7 +11,7 @@ PR_SET_VMA
 set an attribute for virtual memory areas
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"

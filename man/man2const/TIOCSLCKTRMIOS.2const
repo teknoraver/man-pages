@@ -12,7 +12,7 @@ TIOCSLCKTRMIOS
 locking the termios structre
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <asm/termbits.h>" "  /* Definition of " TIOC*CLKTRMIOS " constants */"

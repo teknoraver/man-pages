@@ -12,7 +12,7 @@ UFFDIO_WRITEPROTECT
 write-protect or write-unprotect a userfaultfd-registered memory range
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/userfaultfd.h>" "  /* Definition of " UFFD* " constants */"

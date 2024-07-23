@@ -12,7 +12,7 @@ UFFDIO_WAKE
 wake up a thread waiting for page-fault resolution
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/userfaultfd.h>" "  /* Definition of " UFFD* " constants */"

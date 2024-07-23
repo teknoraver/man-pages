@@ -11,7 +11,7 @@ PR_SET_TAGGED_ADDR_CTRL
 control support for passing tagged user-space addresses to the kernel
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"

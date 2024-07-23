@@ -11,7 +11,7 @@ PR_TASK_PERF_EVENTS_ENABLE
 disable or enable performance counters attached to the calling process
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"

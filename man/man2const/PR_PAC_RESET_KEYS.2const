@@ -11,7 +11,7 @@ PR_PAC_RESET_KEYS
 reset the calling thread's pointer authentication code keys
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"

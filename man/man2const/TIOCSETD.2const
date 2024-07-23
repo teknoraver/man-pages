@@ -12,7 +12,7 @@ TIOCSETD
 get or set the line discipline of the terminal
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <asm/termbits.h>" "  /* Definition of " TIOC*ETD " constants */"

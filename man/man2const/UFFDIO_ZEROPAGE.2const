@@ -12,7 +12,7 @@ UFFDIO_ZEROPAGE
 zero out a memory range registered with userfaultfd
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/userfaultfd.h>" "  /* Definition of " UFFD* " constants */"

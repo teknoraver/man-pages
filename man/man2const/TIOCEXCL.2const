@@ -13,7 +13,7 @@ TIOCNXCL
 exclusive mode
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <asm/termbits.h>" "  /* Definition of " TIOC*XCL " constants */"

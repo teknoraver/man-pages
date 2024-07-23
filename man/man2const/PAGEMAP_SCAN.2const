@@ -11,7 +11,7 @@ PAGEMAP_SCAN
 get and/or clear page flags
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/fs.h>" "  /* Definition of " PAGE* " and " PM_* " constants */"

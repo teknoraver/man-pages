@@ -11,7 +11,7 @@ PR_SET_MM_AUXV
 set a new auxiliary vector
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .B #include <sys/prctl.h>

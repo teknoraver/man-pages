@@ -12,7 +12,7 @@ UFFDIO_REGISTER
 register a memory address range with the userfaultfd object
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/userfaultfd.h>" "  /* Definition of " UFFD* " constants */"

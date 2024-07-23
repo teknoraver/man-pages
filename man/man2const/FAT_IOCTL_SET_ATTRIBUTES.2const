@@ -11,7 +11,7 @@ FAT_IOCTL_SET_ATTRIBUTES
 get and set file attributes in a FAT filesystem
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/msdos_fs.h>" "  /* Definition of " FAT_* " and"

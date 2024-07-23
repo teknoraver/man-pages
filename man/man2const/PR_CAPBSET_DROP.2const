@@ -11,7 +11,7 @@ PR_CAPBSET_DROP
 drop a capability from the calling thread's capability bounding set
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"

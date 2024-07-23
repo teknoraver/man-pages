@@ -11,7 +11,7 @@ PR_SET_NO_NEW_PRIVS
 set the calling thread's no_new_privs attribute
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"

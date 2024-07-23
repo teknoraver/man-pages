@@ -10,7 +10,7 @@ FAT_IOCTL_GET_VOLUME_ID
 read the volume ID in a FAT filesystem
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/msdos_fs.h>" "  /* Definition of " FAT_* " constants */"

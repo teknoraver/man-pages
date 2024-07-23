@@ -9,7 +9,7 @@ PR_RISCV_SET_ICACHE_FLUSH_CTX
 Enable/disable icache flushing instructions in userspace.
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"

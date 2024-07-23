@@ -10,7 +10,7 @@ PR_GET_THP_DISABLE
 get the state of the "THP disable" flag for the calling thread
 .SH LIBRARY
 Standard C library
-.RI ( libc ", " \-lc )
+.RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
 .BR "#include <linux/prctl.h>" "  /* Definition of " PR_* " constants */"
