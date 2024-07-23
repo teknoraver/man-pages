@@ -89,9 +89,11 @@ with
 .BR O_TRUNC .
 .IP
 This access right is available since the third version of the Landlock ABI.
-.IP
+.P
 Whether an opened file can be truncated with
 .BR ftruncate (2)
+or used with
+.BR ioctl (2)
 is determined during
 .BR open (2),
 in the same way as read and write permissions are checked during
@@ -188,6 +190,48 @@ If multiple requirements are not met, the
 .B EACCES
 error code takes precedence over
 .BR EXDEV .
+.P
+The following access right
+applies to both files and directories:
+.TP
+.B LANDLOCK_ACCESS_FS_IOCTL_DEV
+Invoke
+.BR ioctl (2)
+commands on an opened character or block device.
+.IP
+This access right applies to all
+.BR ioctl (2)
+commands implemented by device drivers.
+However, the following common IOCTL commands continue to be invokable
+independent of the
+.B LANDLOCK_ACCESS_FS_IOCTL_DEV
+right:
+.RS
+.IP \[bu] 3
+IOCTL commands targeting file descriptors
+.RB ( FIOCLEX ,
+.BR FIONCLEX ),
+.IP \[bu]
+IOCTL commands targeting file descriptions
+.RB ( FIONBIO ,
+.BR FIOASYNC ),
+.IP \[bu]
+IOCTL commands targeting file systems
+.RB ( FIFREEZE ,
+.BR FITHAW ,
+.BR FIGETBSZ ,
+.BR FS_IOC_GETFSUUID ,
+.BR FS_IOC_GETFSSYSFSPATH )
+.IP \[bu]
+Some IOCTL commands which do not make sense when used with devices, but
+whose implementations are safe and return the right error codes
+.RB ( FS_IOC_FIEMAP ,
+.BR FICLONE ,
+.BR FICLONERANGE ,
+.BR FIDEDUPERANGE )
+.RE
+.IP
+This access right is available since the fifth version of the Landlock ABI.
 .\"
 .SS Network flags
 These flags enable to restrict a sandboxed process
@@ -355,6 +399,8 @@ _	_	_
 _	_	_
 4	6.7	LANDLOCK_ACCESS_NET_BIND_TCP
 \^	\^	LANDLOCK_ACCESS_NET_CONNECT_TCP
+_	_	_
+5	6.10	LANDLOCK_ACCESS_FS_IOCTL_DEV
 .TE
 .P
 Users should use the Landlock ABI version rather than the kernel version
@@ -405,7 +451,6 @@ accessible through these system call families:
 .BR chown (2),
 .BR setxattr (2),
 .BR utime (2),
-.BR ioctl (2),
 .BR fcntl (2),
 .BR access (2).
 Future Landlock evolutions will enable to restrict them.
@@ -440,7 +485,8 @@ attr.handled_access_fs =
         LANDLOCK_ACCESS_FS_MAKE_BLOCK |
         LANDLOCK_ACCESS_FS_MAKE_SYM |
         LANDLOCK_ACCESS_FS_REFER |
-        LANDLOCK_ACCESS_FS_TRUNCATE;
+        LANDLOCK_ACCESS_FS_TRUNCATE |
+        LANDLOCK_ACCESS_FS_IOCTL_DEV;
 .EE
 .in
 .P
@@ -459,6 +505,7 @@ __u64 landlock_fs_access_rights[] = {
     (LANDLOCK_ACCESS_FS_REFER     << 1) \- 1,  /* v2: add "refer"     */
     (LANDLOCK_ACCESS_FS_TRUNCATE  << 1) \- 1,  /* v3: add "truncate"  */
     (LANDLOCK_ACCESS_FS_TRUNCATE  << 1) \- 1,  /* v4: TCP support     */
+    (LANDLOCK_ACCESS_FS_IOCTL_DEV << 1) \- 1,  /* v5: add "ioctl_dev" */
 };
 \&
 int abi = landlock_create_ruleset(NULL, 0,
