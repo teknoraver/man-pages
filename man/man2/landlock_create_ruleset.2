@@ -41,6 +41,7 @@ It points to the following structure:
 .EX
 struct landlock_ruleset_attr {
     __u64 handled_access_fs;
+    __u64 handled_access_net;
 };
 .EE
 .in
@@ -49,6 +50,13 @@ struct landlock_ruleset_attr {
 is a bitmask of handled filesystem actions
 (see
 .B Filesystem actions
+in
+.BR landlock (7)).
+.IP
+.I handled_access_net
+is a bitmask of handled network actions
+(see
+.B Network actions
 in
 .BR landlock (7)).
 .IP
@@ -143,8 +151,8 @@ was not a valid address.
 .TP
 .B ENOMSG
 Empty accesses (i.e.,
-.I attr\->handled_access_fs
-is 0).
+.I attr
+did not specify any access rights to restrict).
 .SH STANDARDS
 Linux.
 .SH HISTORY

@@ -189,6 +189,19 @@ If multiple requirements are not met, the
 error code takes precedence over
 .BR EXDEV .
 .\"
+.SS Network flags
+These flags enable to restrict a sandboxed process
+to a set of network actions.
+This is supported since the Landlock ABI version 4.
+.P
+The following access rights apply to TCP port numbers:
+.TP
+.B LANDLOCK_ACCESS_NET_BIND_TCP
+Bind a TCP socket to a local port.
+.TP
+.B LANDLOCK_ACCESS_NET_CONNECT_TCP
+Connect an active TCP socket to a remote port.
+.\"
 .SS Layers of file path access rights
 Each time a thread enforces a ruleset on itself,
 it updates its Landlock domain with a new layer of policy.
@@ -339,6 +352,9 @@ _	_	_
 2	5.19	LANDLOCK_ACCESS_FS_REFER
 _	_	_
 3	6.2	LANDLOCK_ACCESS_FS_TRUNCATE
+_	_	_
+4	6.7	LANDLOCK_ACCESS_NET_BIND_TCP
+\^	\^	LANDLOCK_ACCESS_NET_CONNECT_TCP
 .TE
 .P
 Users should use the Landlock ABI version rather than the kernel version
@@ -439,9 +455,10 @@ and only use the available subset of access rights:
  * numbers hardcoded to keep the example short.
  */
 __u64 landlock_fs_access_rights[] = {
-    (LANDLOCK_ACCESS_FS_MAKE_SYM << 1) \- 1,  /* v1                 */
-    (LANDLOCK_ACCESS_FS_REFER    << 1) \- 1,  /* v2: add "refer"    */
-    (LANDLOCK_ACCESS_FS_TRUNCATE << 1) \- 1,  /* v3: add "truncate" */
+    (LANDLOCK_ACCESS_FS_MAKE_SYM  << 1) \- 1,  /* v1                  */
+    (LANDLOCK_ACCESS_FS_REFER     << 1) \- 1,  /* v2: add "refer"     */
+    (LANDLOCK_ACCESS_FS_TRUNCATE  << 1) \- 1,  /* v3: add "truncate"  */
+    (LANDLOCK_ACCESS_FS_TRUNCATE  << 1) \- 1,  /* v4: TCP support     */
 };
 \&
 int abi = landlock_create_ruleset(NULL, 0,

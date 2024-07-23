@@ -20,15 +20,14 @@ Standard C library
 .BI "            const void *" rule_attr ", uint32_t " flags );
 .fi
 .SH DESCRIPTION
-A Landlock rule describes an action on an object.
-An object is currently a file hierarchy,
-and the related filesystem actions
-are defined with a set of access rights.
-This
+A Landlock rule describes an action on an object
+which the process intends to perform.
+A set of rules is aggregated in a ruleset,
+which can then restrict the thread enforcing it, and its future children.
+.P
+The
 .BR landlock_add_rule ()
-system call enables adding a new Landlock rule to an existing ruleset
-created with
-.BR landlock_create_ruleset (2).
+system call adds a new Landlock rule to an existing ruleset.
 See
 .BR landlock (7)
 for a global overview.
@@ -42,10 +41,15 @@ identifies the structure type pointed to by
 .IR rule_attr .
 Currently, Linux supports the following
 .I rule_type
-value:
+values:
 .TP
 .B LANDLOCK_RULE_PATH_BENEATH
-This defines the object type as a file hierarchy.
+For these rules,
+the object is a file hierarchy,
+and the related filesystem actions
+are defined with
+.IR "filesystem access rights" .
+.IP
 In this case,
 .I rule_attr
 points to the following structure:
@@ -74,6 +78,45 @@ is an opened file descriptor, preferably with the
 flag,
 which identifies the parent directory of the file hierarchy or
 just a file.
+.TP
+.B LANDLOCK_RULE_NET_PORT
+For these rules,
+the object is a TCP port,
+and the related actions are defined with
+.IR "network access rights" .
+.IP
+In this case,
+.I rule_attr
+points to the following structure:
+.IP
+.in +4n
+.EX
+struct landlock_net_port_attr {
+    __u64 allowed_access;
+    __u64 port;
+};
+.EE
+.in
+.IP
+.I allowed_access
+contains a bitmask of allowed network actions,
+which can be applied on the given port.
+.IP
+.I port
+is the network port in host endianness.
+.IP
+It should be noted that port 0 passed to
+.BR bind (2)
+will bind to an available port from the ephemeral port range.
+This can be configured in the
+.I /proc/sys/net/ipv4/ip_local_port_range
+sysctl (also used for IPv6).
+.IP
+A Landlock rule with port 0
+and the
+.B LANDLOCK_ACCESS_NET_BIND_TCP
+right means that requesting to bind on port 0 is allowed
+and it will automatically translate to binding on the related port range.
 .P
 .I flags
 must be 0.
@@ -88,6 +131,12 @@ is set to indicate the error.
 .SH ERRORS
 .BR landlock_add_rule ()
 can fail for the following reasons:
+.TP
+.B EAFNOSUPPORT
+.I rule_type
+is
+.BR LANDLOCK_RULE_NET_PORT ,
+but TCP is not supported by the running kernel.
 .TP
 .B EOPNOTSUPP
 Landlock is supported by the kernel but disabled at boot time.
@@ -110,6 +159,11 @@ the rule accesses are not applicable to the file
 are only applicable to directories, but
 .I \%rule_attr\->parent_fd
 does not refer to a directory).
+.TP
+.B EINVAL
+In
+.IR \%struct\~landlock_net_port_attr ,
+the port number is greater than 65535.
 .TP
 .B ENOMSG
 Empty accesses (i.e.,
