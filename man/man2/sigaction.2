@@ -1129,13 +1129,29 @@ handler.
 See the relevant Linux kernel sources for details.
 This use is obsolete now.
 .SH BUGS
-When delivering a signal with a
+When delivering a signal resulting from a hardware exception with a
 .B SA_SIGINFO
 handler,
 the kernel does not always provide meaningful values
 for all of the fields of the
 .I siginfo_t
 that are relevant for that signal.
+For example, when the x86
+.I int
+instruction is called with a forbidden argument
+(any number other than 3 or 128), a
+.B SIGSEGV
+signal is delivered, but the
+.I siginfo_t
+passed to the signal handler has all its fields besides
+.I si_signo
+and
+.I si_code
+set to zero, even if other fields should be set (as an example,
+.I si_addr
+should be non-zero for all
+.B SIGSEGV
+signals).
 .P
 Up to and including Linux 2.6.13, specifying
 .B SA_NODEFER
