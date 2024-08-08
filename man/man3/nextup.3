@@ -38,8 +38,9 @@ is the smallest representable negative number in the corresponding type,
 these functions return \-0.
 If
 .I x
-is 0, the returned value is the smallest representable positive number
-of the corresponding type.
+is +0 or \-0,
+the returned value is
+the smallest representable positive number of the corresponding type.
 .P
 If
 .I x
@@ -52,7 +53,7 @@ of the corresponding type.
 .P
 If
 .I x
-is Nan,
+is NaN,
 the returned value is NaN.
 .P
 The value returned by
