@@ -269,8 +269,9 @@ Because the values of
 .IR timezone ,
 and
 .I daylight
-are often unspecified, and accessing them can lead to undefined
-behavior in multithreaded applications,
+are often unspecified,
+and accessing them can lead to
+undefined behavior in multithreaded applications,
 code should instead obtain time zone offset and abbreviations from the
 .I tm_gmtoff
 and
