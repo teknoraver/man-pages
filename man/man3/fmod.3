@@ -66,7 +66,7 @@ you will need to adjust the result from fmod like so:
 .nf
 z = fmod(x, y);
 if (z < 0)
-	z += y;
+	z += fabs(y);
 .fi
 .in
 .P
