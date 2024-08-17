@@ -20,25 +20,20 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "long syscall(SYS_keyctl, KEYCTL_ASSUME_AUTHORITY, unsigned long " arg2 ,
-.BI "             unsigned long " arg3 ", unsigned long " arg4 ,
-.BI "             unsigned long " arg5 );
+.BI "long syscall(SYS_keyctl, KEYCTL_ASSUME_AUTHORITY, key_serial_t " key );
 .fi
 .SH DESCRIPTION
-.TP
-.BR KEYCTL_ASSUME_AUTHORITY " (since Linux 2.6.16)"
 Assume (or divest) the authority for the calling thread
 to instantiate a key.
-.IP
+.P
 The
-.I arg2
-argument (cast to
-.IR key_serial_t )
+.I key
+argument
 specifies either a nonzero key ID to assume authority,
 or the value 0 to divest authority.
-.IP
+.P
 If
-.I arg2
+.I key
 is nonzero, then it specifies the ID of an uninstantiated key for which
 authority is to be assumed.
 That key can then be instantiated using one of
@@ -49,7 +44,7 @@ or
 .BR KEYCTL_NEGATE (2const).
 Once the key has been instantiated,
 the thread is automatically divested of authority to instantiate the key.
-.IP
+.P
 Authority over a key can be assumed only if the calling thread has present
 in its keyrings the authorization key that is
 associated with the specified key.
@@ -63,19 +58,19 @@ for an explanation of how this operation is used.)
 The caller must have
 .I search
 permission on the authorization key.
-.IP
+.P
 If the specified key has a matching authorization key,
 then the ID of that key is returned.
 The authorization key can be read
 .RB ( KEYCTL_READ (2const))
 to obtain the callout information passed to
 .BR request_key (2).
-.IP
+.P
 If the ID given in
-.I arg2
+.I key
 is 0, then the currently assumed authority is cleared (divested),
 and the value 0 is returned.
-.IP
+.P
 The
 .B KEYCTL_ASSUME_AUTHORITY
 mechanism allows a program such as
@@ -87,22 +82,9 @@ For further information, see
 .BR request_key (2)
 and the kernel source file
 .IR Documentation/security/keys\-request\-key.txt .
-.IP
-The arguments
-.IR arg3 ,
-.IR arg4 ,
-and
-.I arg5
-are ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_assume_authority (3).
 .SH RETURN VALUE
-.TP
-.B KEYCTL_ASSUME_AUTHORITY
-Either 0, if the ID given was 0,
+On success,
+either 0, if the ID given was 0,
 or the ID of the authorization key matching the specified key,
 if a nonzero key ID was provided.
 .P
