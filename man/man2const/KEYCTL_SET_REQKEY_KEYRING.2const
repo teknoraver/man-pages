@@ -20,13 +20,9 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "long syscall(SYS_keyctl, KEYCTL_SET_REQKEY_KEYRING, unsigned long " arg2 ,
-.BI "             unsigned long " arg3 ", unsigned long " arg4 ,
-.BI "             unsigned long " arg5 );
+.BI "long syscall(SYS_keyctl, KEYCTL_SET_REQKEY_KEYRING, int " op );
 .fi
 .SH DESCRIPTION
-.TP
-.BR KEYCTL_SET_REQKEY_KEYRING " (since Linux 2.6.13)"
 Set the default keyring to which implicitly requested keys
 will be linked for this thread, and return the previous setting.
 Implicit key requests are those made by internal kernel components,
@@ -39,14 +35,12 @@ Setting the default keyring also has an effect when requesting
 a key from user space; see
 .BR request_key (2)
 for details.
-.IP
+.P
 The
-.I arg2
-argument (cast to
-.IR int )
+.I op
+argument
 should contain one of the following values,
 to specify the new default keyring:
-.RS
 .TP
 .B KEY_REQKEY_DEFL_NO_CHANGE
 Don't change the default keyring.
@@ -96,31 +90,17 @@ Use the requestor keyring.
 .\"	was supplied to a call to request_key(2)?
 .\"
 .\" David Howells said: to be checked
-.RE
-.IP
+.P
 All other values are invalid.
 .\" (including the still-unsupported KEY_REQKEY_DEFL_GROUP_KEYRING)
-.IP
-The arguments
-.IR arg3 ,
-.IR arg4 ,
-and
-.I arg5
-are ignored.
-.IP
+.P
 The setting controlled by this operation is inherited by the child of
 .BR fork (2)
 and preserved across
 .BR  execve (2).
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_set_reqkey_keyring (3).
 .SH RETURN VALUE
-.TP
-.B KEYCTL_SET_REQKEY_KEYRING
-The ID of the previous default keyring
+On success,
+the ID of the previous default keyring
 to which implicitly requested keys were linked
 (one of
 .BR KEY_REQKEY_DEFL_USER_* ).
