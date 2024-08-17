@@ -18,9 +18,7 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "long syscall(SYS_keyctl, int " operation ", unsigned long " arg2 ,
-.BI "             unsigned long " arg3 ", unsigned long " arg4 ,
-.BI "             unsigned long " arg5 );
+.BI "long syscall(SYS_keyctl, int " op ", ...);"
 .fi
 .SH DESCRIPTION
 .BR keyctl ()
@@ -29,17 +27,18 @@ allows user-space programs to perform key manipulation.
 The operation performed by
 .BR keyctl ()
 is determined by the value of the
-.I operation
+.I op
 argument.
 Each of these operations is wrapped by the
 .I libkeyutils
 library (provided by the
 .I keyutils
-package) into individual functions (noted below)
+package) into individual functions (see
+.BR keyctl (3))
 to permit the compiler to check types.
 .P
 The permitted values for
-.I operation
+.I op
 are:
 .TP
 .BR KEYCTL_GET_KEYRING_ID (2const)
