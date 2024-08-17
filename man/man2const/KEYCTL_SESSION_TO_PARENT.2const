@@ -20,14 +20,9 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "long syscall(SYS_keyctl, KEYCTL_SESSION_TO_PARENT, unsigned long " arg2 ,
-.BI "             unsigned long " arg3 ", unsigned long " arg4 ,
-.BI "             unsigned long " arg5 );
+.BI long syscall(SYS_keyctl, KEYCTL_SESSION_TO_PARENT);
 .fi
 .SH DESCRIPTION
-.TP
-.BR KEYCTL_SESSION_TO_PARENT " (since Linux 2.6.32)"
-.\" commit ee18d64c1f632043a02e6f5ba5e045bb26a5465f
 Replace the session keyring to which the
 .I parent
 of the calling process
@@ -35,10 +30,10 @@ subscribes with the session keyring of the calling process.
 .\" What is the use case for KEYCTL_SESSION_TO_PARENT?
 .\" David Howells: the Process Authentication Groups people requested this,
 .\" but then didn't use it; maybe there are no users.
-.IP
+.P
 The keyring will be replaced in the parent process at the point
 where the parent next transitions from kernel space to user space.
-.IP
+.P
 The keyring must exist and must grant the caller
 .I link
 permission.
@@ -48,7 +43,7 @@ and must not be set-user-ID or set-group-ID.
 The UID of the parent process's existing session keyring (f it has one),
 as well as the UID of the caller's session keyring
 much match the caller's effective UID.
-.IP
+.P
 The fact that it is the parent process that is affected by this operation
 allows a program such as the shell to start a child process that
 uses this operation to change the shell's session keyring.
@@ -56,19 +51,6 @@ uses this operation to change the shell's session keyring.
 .BR keyctl (1)
 .B new_session
 command does.)
-.IP
-The arguments
-.IR arg2 ,
-.IR arg3 ,
-.IR arg4 ,
-and
-.I arg5
-are ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_session_to_parent (3).
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -79,17 +61,19 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EPERM
-.I operation
-was
-.B KEYCTL_SESSION_TO_PARENT
-and either:
-all of the UIDs (GIDs) of the parent process do not match
-the effective UID (GID) of the calling process;
-the UID of the parent's existing session keyring or
+All of the UIDs (GIDs) of the parent process do not match
+the effective UID (GID) of the calling process.
+.TP
+.B EPERM
+The UID of the parent's existing session keyring or
 the UID of the caller's session keyring did not match
-the effective UID of the caller;
-the parent process is not single-thread;
-or the parent process is
+the effective UID of the caller.
+.TP
+.B EPERM
+The parent process is not single-threaded.
+.TP
+.B EPERM
+The parent process is
 .BR init (1)
 or a kernel thread.
 .SH VERSIONS
@@ -101,6 +85,7 @@ library:
 Linux.
 .SH HISTORY
 Linux 2.6.32.
+.\" commit ee18d64c1f632043a02e6f5ba5e045bb26a5465f
 .SH SEE ALSO
 .BR keyctl (2),
 .BR keyctl_session_to_parent (3)
