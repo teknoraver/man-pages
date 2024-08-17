@@ -1,0 +1,92 @@
+.\" Copyright 2016, Michael Kerrisk <mtk.manpages@gmail.com>
+.\" Copyright 2016, Eugene Syromyatnikov <evgsyr@gmail.com>
+.\" A very few fragments remain from an earlier version of this page
+.\" written by David Howells (dhowells@redhat.com)
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH KEYCTL_SET_TIMEOUT 2const (date) "Linux man-pages (unreleased)"
+.SH NAME
+KEYCTL_SET_TIMEOUT
+\-
+set the expiration timer on a key
+.SH LIBRARY
+Standard C library
+.RI ( libc ,\~ \-lc )
+.SH SYNOPSIS
+.nf
+.BR "#include <linux/keyctl.h>" "  /* Definition of " KEY* " constants */"
+.BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
+.B #include <unistd.h>
+.P
+.BI "long syscall(SYS_keyctl, KEYCTL_SET_TIMEOUT, unsigned long " arg2 ,
+.BI "             unsigned long " arg3 ", unsigned long " arg4 ,
+.BI "             unsigned long " arg5 );
+.fi
+.SH DESCRIPTION
+.TP
+.BR KEYCTL_SET_TIMEOUT " (since Linux 2.6.16)"
+Set a timeout on a key.
+.IP
+The ID of the key is specified in
+.I arg2
+(cast to
+.IR key_serial_t ).
+The timeout value, in seconds from the current time,
+is specified in
+.I arg3
+(cast to
+.IR "unsigned int" ).
+The timeout is measured against the realtime clock.
+.IP
+Specifying the timeout value as 0 clears any existing timeout on the key.
+.IP
+The
+.I /proc/keys
+file displays the remaining time until each key will expire.
+(This is the only method of discovering the timeout on a key.)
+.IP
+The caller must either have the
+.I setattr
+permission on the key
+or hold an instantiation authorization token for the key (see
+.BR request_key (2)).
+.IP
+The key and any links to the key will be
+automatically garbage collected after the timeout expires.
+Subsequent attempts to access the key will then fail with the error
+.BR EKEYEXPIRED .
+.IP
+This operation cannot be used to set timeouts on revoked, expired,
+or negatively instantiated keys.
+.IP
+The arguments
+.I arg4
+and
+.I arg5
+are ignored.
+.IP
+This operation is exposed by
+.I libkeyutils
+via the function
+.BR keyctl_set_timeout (3).
+.SH RETURN VALUE
+On success,
+0 is returned.
+.P
+On error, \-1 is returned, and
+.I errno
+is set to indicate the error.
+.SH VERSIONS
+A wrapper is provided in the
+.I libkeyutils
+library:
+.BR keyctl_set_timeout (3).
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.6.16.
+.SH SEE ALSO
+.BR keyctl (2),
+.BR keyctl_set_timeout (3)
