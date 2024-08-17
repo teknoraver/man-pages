@@ -85,68 +85,8 @@ are:
 .BR KEYCTL_SESSION_TO_PARENT (2const)
 .TQ
 .BR KEYCTL_INVALIDATE (2const)
-.TP
-.BR KEYCTL_GET_PERSISTENT " (since Linux 3.13)"
-.\" commit f36f8c75ae2e7d4da34f4c908cebdb4aa42c977e
-Get the persistent keyring
-.RB ( persistent\-keyring (7))
-for a specified user and link it to a specified keyring.
-.IP
-The user ID is specified in
-.I arg2
-(cast to
-.IR uid_t ).
-If the value \-1 is specified, the caller's real user ID is used.
-The ID of the destination keyring is specified in
-.I arg3
-(cast to
-.IR key_serial_t ).
-.IP
-The caller must have the
-.B CAP_SETUID
-capability in its user namespace in order to fetch the persistent keyring
-for a user ID that does not match either the real or effective user ID
-of the caller.
-.IP
-If the call is successful,
-a link to the persistent keyring is added to the keyring
-whose ID was specified in
-.IR arg3 .
-.IP
-The caller must have
-.I write
-permission on the keyring.
-.IP
-The persistent keyring will be created by the kernel
-if it does not yet exist.
-.IP
-Each time the
-.B KEYCTL_GET_PERSISTENT
-operation is performed, the persistent keyring will
-have its expiration timeout reset to the value in:
-.IP
-.in +4n
-.EX
-/proc/sys/kernel/keys/persistent_keyring_expiry
-.EE
-.in
-.IP
-Should the timeout be reached,
-the persistent keyring will be removed and
-everything it pins can then be garbage collected.
-.IP
-Persistent keyrings were added in Linux 3.13.
-.IP
-The arguments
-.I arg4
-and
-.I arg5
-are ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_get_persistent (3).
+.TQ
+.BR KEYCTL_GET_PERSISTENT (2const)
 .TP
 .BR KEYCTL_DH_COMPUTE " (since Linux 4.7)"
 .\" commit ddbb41148724367394d0880c516bfaeed127b52e
@@ -352,9 +292,6 @@ is ignored.
 .SH RETURN VALUE
 For a successful call, the return value depends on the operation.
 .TP
-.B KEYCTL_GET_PERSISTENT
-The ID of the persistent keyring.
-.TP
 .B KEYCTL_DH_COMPUTE
 The number of bytes copied to the buffer, or, if
 .I arg4
@@ -555,16 +492,6 @@ argument was "asymmetric",
 and the key specified in the restriction specification provided in
 .I arg4
 has type other than "asymmetric" or "keyring".
-.TP
-.B EPERM
-.I operation
-was
-.BR KEYCTL_GET_PERSISTENT ,
-.I arg2
-specified a UID other than the calling thread's real or effective UID,
-and the caller did not have the
-.B CAP_SETUID
-capability.
 .TP
 .B ETIMEDOUT
 .I operation
@@ -875,7 +802,6 @@ main(int argc, char *argv[])
 .BR keyctl (3),
 .BR keyctl_dh_compute (3),
 .BR keyctl_dh_compute_alloc (3),
-.BR keyctl_get_persistent (3),
 .BR recursive_key_scan (3),
 .BR recursive_session_key_scan (3),
 .BR capabilities (7),
