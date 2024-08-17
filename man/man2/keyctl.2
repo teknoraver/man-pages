@@ -89,65 +89,8 @@ are:
 .BR KEYCTL_GET_PERSISTENT (2const)
 .TQ
 .BR KEYCTL_DH_COMPUTE (2const)
-.TP
-.BR KEYCTL_RESTRICT_KEYRING " (since Linux 4.12)"
-.\" commit 6563c91fd645556c7801748f15bc727c77fcd311
-.\" commit 7228b66aaf723a623e578aa4db7d083bb39546c9
-Apply a key-linking restriction to the keyring with the ID provided in
-.I arg2
-(cast to
-.IR key_serial_t ).
-The caller must have
-.I setattr
-permission on the key.
-If
-.I arg3
-is NULL, any attempt to add a key to the keyring is blocked;
-otherwise it contains a pointer to a string with a key type name and
-.I arg4
-contains a pointer to string that describes the type-specific restriction.
-As of Linux 4.12, only the type "asymmetric" has restrictions defined:
-.RS
-.TP
-.B builtin_trusted
-Allows only keys that are signed by a key linked to the built-in keyring
-(".builtin_trusted_keys").
-.TP
-.B builtin_and_secondary_trusted
-Allows only keys that are signed by a key linked to the secondary keyring
-(".secondary_trusted_keys") or, by extension, a key in a built-in keyring,
-as the latter is linked to the former.
-.TP
-.BI key_or_keyring: key
 .TQ
-.BI key_or_keyring: key :chain
-If
-.I key
-specifies the ID of a key of type "asymmetric",
-then only keys that are signed by this key are allowed.
-.IP
-If
-.I key
-specifies the ID of a keyring,
-then only keys that are signed by a key linked
-to this keyring are allowed.
-.IP
-If ":chain" is specified, keys that are signed by a keys linked to the
-destination keyring (that is, the keyring with the ID specified in the
-.I arg2
-argument) are also allowed.
-.RE
-.IP
-Note that a restriction can be configured only once for the specified keyring;
-once a restriction is set, it can't be overridden.
-.IP
-The argument
-.I arg5
-is ignored.
-.\" FIXME Document KEYCTL_RESTRICT_KEYRING, added in Linux 4.12
-.\"     commit 6563c91fd645556c7801748f15bc727c77fcd311
-.\"     Author: Mat Martineau <mathew.j.martineau@linux.intel.com>
-.\" See Documentation/security/keys.txt
+.BR KEYCTL_RESTRICT_KEYRING (2const)
 .SH RETURN VALUE
 For a successful call, the return value depends on the operation.
 .P
@@ -159,23 +102,9 @@ is set to indicate the error.
 .B EACCES
 The requested operation wasn't permitted.
 .TP
-.B EDEADLK
-.I operation
-was
-.B KEYCTL_RESTRICT_KEYRING
-and the requested keyring restriction would result in a cycle.
-.TP
 .B EDQUOT
 The key quota for the caller's user would be exceeded by creating a key or
 linking it to the keyring.
-.TP
-.B EEXIST
-.I operation
-was
-.B KEYCTL_RESTRICT_KEYRING
-and keyring provided in
-.I arg2
-argument already has a restriction set.
 .TP
 .B EINVAL
 size of the string (including the terminating null byte) specified in
@@ -195,14 +124,6 @@ A rejected key was found or specified.
 .B EKEYREVOKED
 A revoked key was found or specified.
 .TP
-.B ENOENT
-.I operation
-was
-.B KEYCTL_RESTRICT_KEYRING
-and the type provided in
-.I arg3
-argument doesn't support setting key linking restrictions.
-.TP
 .B ENOKEY
 No matching key was found or an invalid key was specified.
 .TP
@@ -213,17 +134,6 @@ syscall.
 .B ENOTDIR
 A key of keyring type was expected but the ID of a key with
 a different type was provided.
-.TP
-.B EOPNOTSUPP
-.I operation
-was
-.BR KEYCTL_RESTRICT_KEYRING ,
-the type provided in
-.I arg3
-argument was "asymmetric",
-and the key specified in the restriction specification provided in
-.I arg4
-has type other than "asymmetric" or "keyring".
 .SH VERSIONS
 A wrapper is provided in the
 .I libkeyutils
