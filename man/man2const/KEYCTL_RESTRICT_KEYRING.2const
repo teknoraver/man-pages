@@ -20,28 +20,22 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "long syscall(SYS_keyctl, KEYCTL_RESTRICT_KEYRING, unsigned long " arg2 ,
-.BI "             unsigned long " arg3 ", unsigned long " arg4 ,
-.BI "             unsigned long " arg5 );
+.BI "long syscall(SYS_keyctl, KEYCTL_RESTRICT_KEYRING, key_serial_t " keyring ,
+.BI "             const char *_Nullable " type ", const char *" restriction );
 .fi
 .SH DESCRIPTION
-.TP
-.BR KEYCTL_RESTRICT_KEYRING " (since Linux 4.12)"
 Apply a key-linking restriction to the keyring with the ID provided in
-.I arg2
-(cast to
-.IR key_serial_t ).
+.IR keyring .
 The caller must have
 .I setattr
 permission on the key.
 If
-.I arg3
+.I type
 is NULL, any attempt to add a key to the keyring is blocked;
 otherwise it contains a pointer to a string with a key type name and
-.I arg4
+.I restriction
 contains a pointer to string that describes the type-specific restriction.
 As of Linux 4.12, only the type "asymmetric" has restrictions defined:
-.RS
 .TP
 .B builtin_trusted
 Allows only keys that are signed by a key linked to the built-in keyring
@@ -68,20 +62,11 @@ to this keyring are allowed.
 .IP
 If ":chain" is specified, keys that are signed by a keys linked to the
 destination keyring (that is, the keyring with the ID specified in the
-.I arg2
+.I keyring
 argument) are also allowed.
-.RE
-.IP
+.P
 Note that a restriction can be configured only once for the specified keyring;
 once a restriction is set, it can't be overridden.
-.IP
-The argument
-.I arg5
-is ignored.
-.\" FIXME Document KEYCTL_RESTRICT_KEYRING, added in Linux 4.12
-.\"     commit 6563c91fd645556c7801748f15bc727c77fcd311
-.\"     Author: Mat Martineau <mathew.j.martineau@linux.intel.com>
-.\" See Documentation/security/keys.txt
 .SH RETURN VALUE
 On success,
 0 is returned.
@@ -92,36 +77,22 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EDEADLK
-.I operation
-was
-.B KEYCTL_RESTRICT_KEYRING
-and the requested keyring restriction would result in a cycle.
+The requested keyring restriction would result in a cycle.
 .TP
 .B EEXIST
-.I operation
-was
-.B KEYCTL_RESTRICT_KEYRING
-and keyring provided in
-.I arg2
-argument already has a restriction set.
+.I keyring
+already has a restriction set.
 .TP
 .B ENOENT
-.I operation
-was
-.B KEYCTL_RESTRICT_KEYRING
-and the type provided in
-.I arg3
+The type provided in
+.I type
 argument doesn't support setting key linking restrictions.
 .TP
 .B EOPNOTSUPP
-.I operation
-was
-.BR KEYCTL_RESTRICT_KEYRING ,
-the type provided in
-.I arg3
-argument was "asymmetric",
+.I type
+was "asymmetric",
 and the key specified in the restriction specification provided in
-.I arg4
+.I restriction
 has type other than "asymmetric" or "keyring".
 .SH VERSIONS
 A wrapper is provided in the
