@@ -65,73 +65,14 @@ are:
 .BR KEYCTL_SEARCH (2const)
 .TQ
 .BR KEYCTL_READ (2const)
-.TP
-.BR KEYCTL_INSTANTIATE " (since Linux 2.6.10)"
-(Positively) instantiate an uninstantiated key with a specified payload.
-.IP
-The ID of the key to be instantiated is provided in
-.I arg2
-(cast to
-.IR key_serial_t ).
-.IP
-The key payload is specified in the buffer pointed to by
-.I arg3
-(cast to
-.IR "void\ *");
-the size of that buffer is specified in
-.I arg4
-(cast to
-.IR size_t ).
-.IP
-The payload may be a null pointer and the buffer size may be 0
-if this is supported by the key type (e.g., it is a keyring).
-.IP
-The operation may be fail if the payload data is in the wrong format
-or is otherwise invalid.
-.IP
-If
-.I arg5
-(cast to
-.IR key_serial_t )
-is nonzero, then, subject to the same constraints and rules as
-.BR KEYCTL_LINK (2const),
-the instantiated key is linked into the keyring whose ID specified in
-.IR arg5 .
-.IP
-The caller must have the appropriate authorization key,
-and once the uninstantiated key has been instantiated,
-the authorization key is revoked.
-In other words, this operation is available only from a
-.BR request\-key (8)-style
-program.
-See
-.BR request_key (2)
-for an explanation of uninstantiated keys and key instantiation.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_instantiate (3).
-.TP
-.BR KEYCTL_NEGATE " (since Linux 2.6.10)"
-Negatively instantiate an uninstantiated key.
-.IP
-This operation is equivalent to the call:
-.IP
-.in +4n
-.EX
-keyctl(KEYCTL_REJECT, arg2, arg3, ENOKEY, arg4);
-.EE
-.in
-.IP
-The
-.I arg5
-argument is ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_negate (3).
+.TQ
+.BR KEYCTL_INSTANTIATE (2const)
+.TQ
+.BR KEYCTL_INSTANTIATE_IOV (2const)
+.TQ
+.BR KEYCTL_NEGATE (2const)
+.TQ
+.BR KEYCTL_REJECT (2const)
 .TP
 .BR KEYCTL_SET_REQKEY_KEYRING " (since Linux 2.6.13)"
 Set the default keyring to which implicitly requested keys
@@ -287,11 +228,11 @@ If
 is nonzero, then it specifies the ID of an uninstantiated key for which
 authority is to be assumed.
 That key can then be instantiated using one of
-.BR KEYCTL_INSTANTIATE ,
-.BR KEYCTL_INSTANTIATE_IOV ,
-.BR KEYCTL_REJECT ,
+.BR KEYCTL_INSTANTIATE (2const),
+.BR KEYCTL_INSTANTIATE_IOV (2const),
+.BR KEYCTL_REJECT (2const),
 or
-.BR KEYCTL_NEGATE .
+.BR KEYCTL_NEGATE (2const).
 Once the key has been instantiated,
 the thread is automatically divested of authority to instantiate the key.
 .IP
@@ -443,101 +384,6 @@ This operation is exposed by
 .I libkeyutils
 via the function
 .BR keyctl_session_to_parent (3).
-.TP
-.BR KEYCTL_REJECT " (since Linux 2.6.39)"
-.\" commit fdd1b94581782a2ddf9124414e5b7a5f48ce2f9c
-Mark a key as negatively instantiated and set an expiration timer
-on the key.
-This operation provides a superset of the functionality of the earlier
-.B KEYCTL_NEGATE
-operation.
-.IP
-The ID of the key that is to be negatively instantiated is specified in
-.I arg2
-(cast to
-.IR key_serial_t ).
-The
-.I arg3
-(cast to
-.IR "unsigned int" )
-argument specifies the lifetime of the key, in seconds.
-The
-.I arg4
-argument (cast to
-.IR "unsigned int" )
-specifies the error to be returned when a search hits this key;
-typically, this is one of
-.BR EKEYREJECTED ,
-.BR EKEYREVOKED ,
-or
-.BR EKEYEXPIRED .
-.IP
-If
-.I arg5
-(cast to
-.IR key_serial_t )
-is nonzero, then, subject to the same constraints and rules as
-.BR KEYCTL_LINK (2const),
-the negatively instantiated key is linked into the keyring
-whose ID is specified in
-.IR arg5 .
-.IP
-The caller must have the appropriate authorization key.
-In other words, this operation is available only from a
-.BR request\-key (8)-style
-program.
-See
-.BR request_key (2).
-.IP
-The caller must have the appropriate authorization key,
-and once the uninstantiated key has been instantiated,
-the authorization key is revoked.
-In other words, this operation is available only from a
-.BR request\-key (8)-style
-program.
-See
-.BR request_key (2)
-for an explanation of uninstantiated keys and key instantiation.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_reject (3).
-.TP
-.BR KEYCTL_INSTANTIATE_IOV " (since Linux 2.6.39)"
-.\" commit ee009e4a0d4555ed522a631bae9896399674f063
-Instantiate an uninstantiated key with a payload specified
-via a vector of buffers.
-.IP
-This operation is the same as
-.BR KEYCTL_INSTANTIATE ,
-but the payload data is specified as an array of
-.I iovec
-structures (see
-.BR iovec (3type)).
-.IP
-The pointer to the payload vector is specified in
-.I arg3
-(cast as
-.IR "const struct iovec\~*" ).
-The number of items in the vector is specified in
-.I arg4
-(cast as
-.IR "unsigned int" ).
-.IP
-The
-.I arg2
-(key ID)
-and
-.I arg5
-(keyring ID)
-are interpreted as for
-.BR KEYCTL_INSTANTIATE .
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_instantiate_iov (3).
 .TP
 .BR KEYCTL_INVALIDATE " (since Linux 3.5)"
 .\" commit fd75815f727f157a05f4c96b5294a4617c0557da
@@ -1404,11 +1250,7 @@ main(int argc, char *argv[])
 .BR keyctl_get_persistent (3),
 .BR keyctl_get_security (3),
 .BR keyctl_get_security_alloc (3),
-.BR keyctl_instantiate (3),
-.BR keyctl_instantiate_iov (3),
 .BR keyctl_invalidate (3),
-.BR keyctl_negate (3),
-.BR keyctl_reject (3),
 .BR keyctl_session_to_parent (3),
 .BR keyctl_set_reqkey_keyring (3),
 .BR keyctl_set_timeout (3),
