@@ -20,57 +20,39 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "long syscall(SYS_keyctl, KEYCTL_SET_TIMEOUT, unsigned long " arg2 ,
-.BI "             unsigned long " arg3 ", unsigned long " arg4 ,
-.BI "             unsigned long " arg5 );
+.BI "long syscall(SYS_keyctl, KEYCTL_SET_TIMEOUT, key_serial_t " key \
+", time_t " t );
 .fi
 .SH DESCRIPTION
-.TP
-.BR KEYCTL_SET_TIMEOUT " (since Linux 2.6.16)"
 Set a timeout on a key.
-.IP
+.P
 The ID of the key is specified in
-.I arg2
-(cast to
-.IR key_serial_t ).
+.IR key .
 The timeout value, in seconds from the current time,
 is specified in
-.I arg3
-(cast to
-.IR "unsigned int" ).
+.IR t .
 The timeout is measured against the realtime clock.
-.IP
+.P
 Specifying the timeout value as 0 clears any existing timeout on the key.
-.IP
+.P
 The
 .I /proc/keys
 file displays the remaining time until each key will expire.
 (This is the only method of discovering the timeout on a key.)
-.IP
+.P
 The caller must either have the
 .I setattr
 permission on the key
 or hold an instantiation authorization token for the key (see
 .BR request_key (2)).
-.IP
+.P
 The key and any links to the key will be
 automatically garbage collected after the timeout expires.
 Subsequent attempts to access the key will then fail with the error
 .BR EKEYEXPIRED .
-.IP
+.P
 This operation cannot be used to set timeouts on revoked, expired,
 or negatively instantiated keys.
-.IP
-The arguments
-.I arg4
-and
-.I arg5
-are ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_set_timeout (3).
 .SH RETURN VALUE
 On success,
 0 is returned.
