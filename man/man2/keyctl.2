@@ -83,47 +83,8 @@ are:
 .BR KEYCTL_GET_SECURITY (2const)
 .TQ
 .BR KEYCTL_SESSION_TO_PARENT (2const)
-.TP
-.BR KEYCTL_INVALIDATE " (since Linux 3.5)"
-.\" commit fd75815f727f157a05f4c96b5294a4617c0557da
-Mark a key as invalid.
-.IP
-The ID of the key to be invalidated is specified in
-.I arg2
-(cast to
-.IR key_serial_t ).
-.IP
-To invalidate a key,
-the caller must have
-.I search
-permission on the key.
-.\" CAP_SYS_ADMIN is permitted to invalidate certain special keys
-.IP
-This operation marks the key as invalid
-and schedules immediate garbage collection.
-The garbage collector removes the invalidated key from all keyrings and
-deletes the key when its reference count reaches zero.
-After this operation,
-the key will be ignored by all searches,
-even if it is not yet deleted.
-.IP
-Keys that are marked invalid become invisible to normal key operations
-immediately, though they are still visible in
-.I /proc/keys
-(marked with an 'i' flag)
-until they are actually removed.
-.IP
-The arguments
-.IR arg3 ,
-.IR arg4 ,
-and
-.I arg5
-are ignored.
-.IP
-This operation is exposed by
-.I libkeyutils
-via the function
-.BR keyctl_invalidate (3).
+.TQ
+.BR KEYCTL_INVALIDATE (2const)
 .TP
 .BR KEYCTL_GET_PERSISTENT " (since Linux 3.13)"
 .\" commit f36f8c75ae2e7d4da34f4c908cebdb4aa42c977e
@@ -915,7 +876,6 @@ main(int argc, char *argv[])
 .BR keyctl_dh_compute (3),
 .BR keyctl_dh_compute_alloc (3),
 .BR keyctl_get_persistent (3),
-.BR keyctl_invalidate (3),
 .BR recursive_key_scan (3),
 .BR recursive_session_key_scan (3),
 .BR capabilities (7),
