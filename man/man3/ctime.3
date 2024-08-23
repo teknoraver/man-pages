@@ -241,7 +241,10 @@ expressed as a value of type
 On error,
 .BR mktime ()
 returns the value
-.IR "(time_t)\ \-1" .
+.IR "(time_t)\ \-1" ,
+and leaves the
+.I tm->tm_wday
+member unmodified.
 The remaining functions return NULL on error.
 On error,
 .I errno
@@ -412,6 +415,105 @@ Execution of any of the functions that return a pointer to one of these
 object types may overwrite the information in any object of the same type
 pointed to by the value returned from any previous call to any of them."
 This can occur in the glibc implementation.
+.SH CAVEATS
+.SS mktime()
+.I (time_t) \-1
+can represent a valid time
+(one second before the Epoch).
+To determine whether
+.BR mktime ()
+failed,
+one must use the
+.I tm->tm_wday
+field.
+See the example program in EXAMPLES.
+.SH EXAMPLES
+The following shell session shows sample runs of the program:
+.P
+.in +4n
+.EX
+.RB $\~ "TZ=UTC ./a.out 1969 12 31 23 59 59 0" ;
+\-1
+$
+.RB $\~ "export TZ=Europe/Madrid" ;
+$
+.RB $\~ "./a.out 2147483647 2147483647 00 00 00 00 -1" ;
+a.out: mktime: Value too large for defined data type
+$
+.RB $\~ "./a.out 2024 08 23 00 17 53 \-1" ;
+1724365073
+.RB $\~ "./a.out 2024 08 23 00 17 53 0" ;
+1724368673
+.RB $\~ "./a.out 2024 08 23 00 17 53 1" ;
+1724365073
+$
+.RB $\~ "./a.out 2024 02 23 00 17 53 \-1" ;
+1708643873
+.RB $\~ "./a.out 2024 02 23 00 17 53 0" ;
+1708643873
+.RB $\~ "./a.out 2024 02 23 00 17 53 1" ;
+1708640273
+$
+.RB $\~ "./a.out 2023 03 26 02 17 53 \-1" ;
+1679793473
+$
+.RB $\~ "./a.out 2023 10 29 02 17 53 \-1" ;
+1698542273
+.RB $\~ "./a.out 2023 10 29 02 17 53 0" ;
+1698542273
+.RB $\~ "./a.out 2023 10 29 02 17 53 1" ;
+1698538673
+$
+.RB $\~ "./a.out 2023 02 29 12 00 00 \-1" ;
+1677668400
+.EE
+.SS Program source: mktime.c
+\&
+.\" SRC BEGIN (mktime.c)
+.EX
+#include <err.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+\&
+#define is_signed(T)  ((T) \-1 < 1)
+\&
+int
+main(int argc, char *argv[])
+{
+    char       **p;
+    time_t     t;
+    struct tm  tm;
+\&
+    if (argc != 8) {
+        fprintf(stderr, "Usage: %s yyyy mm dd HH MM SS isdst\[rs]n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
+\&
+    p = &argv[1];
+    tm.tm_year  = atoi(*p++) \- 1900;
+    tm.tm_mon   = atoi(*p++) \- 1;
+    tm.tm_mday  = atoi(*p++);
+    tm.tm_hour  = atoi(*p++);
+    tm.tm_min   = atoi(*p++);
+    tm.tm_sec   = atoi(*p++);
+    tm.tm_isdst = atoi(*p++);
+\&
+    tm.tm_wday = \-1;
+    t = mktime(&tm);
+    if (tm.tm_wday == \-1)
+        err(EXIT_FAILURE, "mktime");
+\&
+    if (is_signed(time_t))
+        printf("%jd\[rs]n", (intmax_t) t);
+    else
+        printf("%ju\[rs]n", (uintmax_t) t);
+\&
+    exit(EXIT_SUCCESS);
+}
+.EE
+.\" SRC END
 .SH SEE ALSO
 .BR date (1),
 .BR gettimeofday (2),
