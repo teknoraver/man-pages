@@ -385,7 +385,8 @@ POSIX.1-1996.
 Marked obsolescent in POSIX.1-2008.
 Removed in POSIX.1-2024 (recommending
 .BR strftime (3)).
-.SH NOTES
+.SH CAVEATS
+.SS Thread safety
 The four functions
 .BR asctime (),
 .BR ctime (),
@@ -415,7 +416,6 @@ Execution of any of the functions that return a pointer to one of these
 object types may overwrite the information in any object of the same type
 pointed to by the value returned from any previous call to any of them."
 This can occur in the glibc implementation.
-.SH CAVEATS
 .SS mktime()
 .I (time_t) \-1
 can represent a valid time
