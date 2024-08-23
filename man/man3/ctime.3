@@ -467,6 +467,14 @@ For example, a change in the timezone definition
 may cause a clock time to be repeated or skipped
 without a corresponding DST change.
 .SH EXAMPLES
+The program below defines a wrapper that
+allows detecting invalid and ambiguous times,
+with
+.B EINVAL
+and
+.BR ENOTUNIQ ,
+respectively.
+.P
 The following shell session shows sample runs of the program:
 .P
 .in +4n
@@ -482,6 +490,7 @@ $
 .RB $\~ "./a.out 2024 08 23 00 17 53 \-1" ;
 1724365073
 .RB $\~ "./a.out 2024 08 23 00 17 53 0" ;
+a.out: my_mktime: Invalid argument
 1724368673
 .RB $\~ "./a.out 2024 08 23 00 17 53 1" ;
 1724365073
@@ -491,12 +500,15 @@ $
 .RB $\~ "./a.out 2024 02 23 00 17 53 0" ;
 1708643873
 .RB $\~ "./a.out 2024 02 23 00 17 53 1" ;
+a.out: my_mktime: Invalid argument
 1708640273
 $
 .RB $\~ "./a.out 2023 03 26 02 17 53 \-1" ;
+a.out: my_mktime: Invalid argument
 1679793473
 $
 .RB $\~ "./a.out 2023 10 29 02 17 53 \-1" ;
+a.out: my_mktime: Name not unique on network
 1698542273
 .RB $\~ "./a.out 2023 10 29 02 17 53 0" ;
 1698542273
@@ -504,6 +516,7 @@ $
 1698538673
 $
 .RB $\~ "./a.out 2023 02 29 12 00 00 \-1" ;
+a.out: my_mktime: Invalid argument
 1677668400
 .EE
 .SS Program source: mktime.c
@@ -511,12 +524,16 @@ $
 .\" SRC BEGIN (mktime.c)
 .EX
 #include <err.h>
+#include <errno.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 \&
 #define is_signed(T)  ((T) \-1 < 1)
+\&
+time_t my_mktime(struct tm *tp);
 \&
 int
 main(int argc, char *argv[])
@@ -539,10 +556,13 @@ main(int argc, char *argv[])
     tm.tm_sec   = atoi(*p++);
     tm.tm_isdst = atoi(*p++);
 \&
+    errno = 0;
     tm.tm_wday = \-1;
-    t = mktime(&tm);
+    t = my_mktime(&tm);
     if (tm.tm_wday == \-1)
         err(EXIT_FAILURE, "mktime");
+    if (errno == EINVAL || errno == ENOTUNIQ)
+        warn("my_mktime");
 \&
     if (is_signed(time_t))
         printf("%jd\[rs]n", (intmax_t) t);
@@ -550,6 +570,62 @@ main(int argc, char *argv[])
         printf("%ju\[rs]n", (uintmax_t) t);
 \&
     exit(EXIT_SUCCESS);
+}
+\&
+time_t
+my_mktime(struct tm *tp)
+{
+    int            e, isdst;
+    time_t         t;
+    struct tm      tm;
+    unsigned char  wday[sizeof(tp\->tm_wday)];
+\&
+    e = errno;
+\&
+    tm = *tp;
+    isdst = tp\->tm_isdst;
+\&
+    memcpy(wday, &tp\->tm_wday, sizeof(wday));
+    tp\->tm_wday = \-1;
+    t = mktime(tp);
+    if (tp\->tm_wday == \-1) {
+        memcpy(&tp\->tm_wday, wday, sizeof(wday));
+        return \-1;
+    }
+\&
+    if (isdst == \-1)
+        tm.tm_isdst = tp\->tm_isdst;
+\&
+    if (   tm.tm_sec   != tp\->tm_sec
+        || tm.tm_min   != tp\->tm_min
+        || tm.tm_hour  != tp\->tm_hour
+        || tm.tm_mday  != tp\->tm_mday
+        || tm.tm_mon   != tp\->tm_mon
+        || tm.tm_year  != tp\->tm_year
+        || tm.tm_isdst != tp\->tm_isdst)
+    {
+        errno = EINVAL;
+        return t;
+    }
+\&
+    if (isdst != \-1)
+        goto out;
+\&
+    tm = *tp;
+    tm.tm_isdst = !tm.tm_isdst;
+\&
+    tm.tm_wday = \-1;
+    mktime(&tm);
+    if (tm.tm_wday == \-1)
+        goto out;
+\&
+    if (tm.tm_isdst != tp\->tm_isdst) {
+        errno = ENOTUNIQ;
+        return t;
+    }
+out:
+    errno = e;
+    return t;
 }
 .EE
 .\" SRC END
