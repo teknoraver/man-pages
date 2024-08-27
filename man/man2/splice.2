@@ -260,7 +260,56 @@ to traditional 32-bit x86 and ARM platforms where
 width defaults to 32 bits.
 .SH EXAMPLES
 See
-.BR tee (2).
+.BR tee (2)
+for another example.
+.P
+.\" SRC BEGIN (splice.c)
+.EX
+\&
+#define _GNU_SOURCE
+#define _FILE_OFFSET_BITS 64
+#include <err.h>
+#include <fcntl.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+\&
+int
+main(void)
+{
+        int         fd;
+        int         pfd[2];
+        off_t       off;
+        const char  s[12] = "Hello, world";
+\&
+        fd = open("out", O_WRONLY | O_CREAT | O_EXCL, 0666);
+        if (fd == \-1)
+                err(EXIT_FAILURE, "open");
+\&
+        if (pipe(pfd) == \-1)
+                err(EXIT_FAILURE, "pipe");
+\&
+        if (write(pfd[1], s, sizeof(s)) != sizeof(s))
+                err(EXIT_FAILURE, "write");
+        if (close(pfd[1]) == \-1)
+                err(EXIT_FAILURE, "close");
+\&
+        off = 10;
+        if (splice(pfd[0], NULL, fd, &off, sizeof(s), 0) != sizeof(s))
+                err(EXIT_FAILURE, "splice");
+        if (close(pfd[0]) == \-1)
+                err(EXIT_FAILURE, "close");
+\&
+        printf("New offset is %jd\[rs]n", (intmax_t) off);
+\&
+        if (close(fd) == \-1)
+                err(EXIT_FAILURE, "close");
+        exit(EXIT_SUCCESS);
+}
+.EE
+.\" SRC END
 .SH SEE ALSO
 .BR copy_file_range (2),
 .BR sendfile (2),
