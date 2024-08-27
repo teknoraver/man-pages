@@ -48,7 +48,8 @@ GCC_CFLAGS := -fanalyzer
 CLANG_CFLAGS := \
 	-Weverything \
 	-Wno-unreachable-code \
-	-Wno-unsafe-buffer-usage
+	-Wno-unsafe-buffer-usage \
+	-Wno-used-but-marked-unused
 
 
 DEFAULT_CFLAGS := $(COMMON_CFLAGS)
