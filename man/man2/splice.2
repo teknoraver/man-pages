@@ -63,7 +63,10 @@ offset from which bytes will be read from
 .IR fd_in ;
 in this case, the file offset of
 .I fd_in
-is not changed.
+is not changed,
+and the offset pointed to by
+.I off_in
+is adjusted appropriately instead.
 .P
 Analogous statements apply for
 .I fd_out
