@@ -194,10 +194,23 @@ If this object does not define a PT_TLS segment,
 or if the calling thread has not allocated a block for it,
 NULL is placed in
 .IR *info .
+.TP
+.BR RTLD_DI_PHDR " (\fIconst ElfW(Phdr *)\fP, since glibc 2.34.1)"
+.\" glibc commit d056c212130280c0a54d9a4f72170ec621b70ce5 (2.36)
+.\" glibc commit 28ea43f8d64f0dd1f2de75525157730e1532e600 (2.35.1)
+.\" glibc commit 91c2e6c3db44297bf4cb3a2e3c40236c5b6a0b23 (2.34.1)
+Obtain the address of this shared object's program header and place it
+in
+.IR *info .
+This
+.B dlinfo
+call returns the number of program headers in the shared object.
 .SH RETURN VALUE
 On success,
 .BR dlinfo ()
-returns 0.
+returns 0
+(if not specified explicitly),
+or a positive value corresponding to the request.
 On failure, it returns \-1; the error can be diagnosed using
 .BR dlerror (3).
 .SH ATTRIBUTES
