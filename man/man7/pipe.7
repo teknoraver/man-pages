@@ -224,7 +224,9 @@ nor the
 capability).
 So long as the total number of pages allocated to pipe buffers
 for this user is at this limit,
-individual pipes created by a user will be limited to one page,
+individual pipes created by a user will be
+limited to two pages
+(one page before Linux 5.14),
 and attempts to increase a pipe's capacity will be denied.
 .IP
 When the value of this limit is zero, no soft limit is applied.
