@@ -131,6 +131,9 @@ operations.
 See
 .BR fcntl (2)
 for more information.
+Since Linux 4.5, the default pipe capacity is lower than 16 pages when the
+.I pipe\-user\-pages\-soft
+limit is exceeded.
 .P
 The following
 .BR ioctl (2)
