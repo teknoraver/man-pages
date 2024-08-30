@@ -427,6 +427,45 @@ one must use the
 .I tm->tm_wday
 field.
 See the example program in EXAMPLES.
+.P
+The handling of a non-negative
+.I tm_isdst
+in
+.BR mktime ()
+is poorly specified,
+and passing a value that is incorrect for the time specified
+yields unspecified results.
+Since
+.BR mktime ()
+is one of the few functions that knows when DST is in effect,
+providing a correct value may be difficult.
+One workaround for this is to call
+.BR mktime ()
+twice,
+once with
+.I tm_isdst
+set to zero,
+and once with
+.I tm_isdst
+set to a positive value,
+and discarding the results from the call that changes it.
+If neither call changes
+.I tm_isdst
+then the time specified probably happens during a fall-back period
+where DST begins or ends,
+and both results are valid
+but represent two different times.
+If both calls change it, that could indicate a fall-forward transition,
+or some other reason why the time specified does not exist.
+.P
+The specification of time zones and daylight saving time
+are up to regional governments, change often,
+and may include discontinuities beyond
+.IR mktime 's
+ability to document a result.
+For example, a change in the timezone definition
+may cause a clock time to be repeated or skipped
+without a corresponding DST change.
 .SH EXAMPLES
 The following shell session shows sample runs of the program:
 .P
