@@ -278,6 +278,9 @@ and
 .I tm_zone
 members of the broken-down time structure
 .BR tm (3type).
+.SH BUGS
+Since this function does not report errors,
+there's no way to know if the value of TZ represents a valid time zone.
 .SH SEE ALSO
 .BR date (1),
 .BR gettimeofday (2),
