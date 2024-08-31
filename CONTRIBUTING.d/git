@@ -16,6 +16,10 @@ Description
            $ git config --local format.to 'Alejandro Colomar <alx@kernel.org>';
            $ git config --local format.cc '<linux-man@vger.kernel.org>';
 
+       Generate patch sets as a thread.
+
+           $ git config --global format.thread true;
+
    git-send-email(1)
        If mutt(1) or neomutt(1) are configured in the system,
        git-send-email(1) can be configured to use any of them as a
