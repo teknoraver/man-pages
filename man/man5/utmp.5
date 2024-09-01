@@ -48,13 +48,17 @@ around; details depend on the version of libc):
 #define EMPTY         0 /* Record does not contain valid info
                            (formerly known as UT_UNKNOWN on Linux) */
 #define RUN_LVL       1 /* Change in system run\-level (see
-                           \fBinit\fP(1)) */
+                           \c
+.BR init (1))\ \c
+*/
 #define BOOT_TIME     2 /* Time of system boot (in \fIut_tv\fP) */
 #define NEW_TIME      3 /* Time after system clock change
                            (in \fIut_tv\fP) */
 #define OLD_TIME      4 /* Time before system clock change
                            (in \fIut_tv\fP) */
-#define INIT_PROCESS  5 /* Process spawned by \fBinit\fP(1) */
+#define INIT_PROCESS  5 /* Process spawned by \c
+.BR init (1)\ \c
+*/
 #define LOGIN_PROCESS 6 /* Session leader process for user login */
 #define USER_PROCESS  7 /* Normal process */
 #define DEAD_PROCESS  8 /* Terminated process */
@@ -81,12 +85,15 @@ struct utmp {
                                      messages */
     struct  exit_status ut_exit;  /* Exit status of a process
                                      marked as DEAD_PROCESS; not
-                                     used by Linux \fBinit\P(1) */
+                                     used by Linux \c
+.BR init (1)\ \c
+*/
     /* The ut_session and ut_tv fields must be the same size when
        compiled 32\- and 64\-bit.  This allows data files and shared
        memory to be shared between 32\- and 64\-bit applications. */
 #if __WORDSIZE == 64 && defined __WORDSIZE_COMPAT32
-    int32_t ut_session;           /* Session ID (\fBgetsid\fP(2)),
+    int32_t ut_session;           /* Session ID (\c
+.BR getsid (2) ),
                                      used for windowing */
     struct {
         int32_t tv_sec;           /* Seconds */
