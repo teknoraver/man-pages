@@ -1,0 +1,88 @@
+'\" t
+.\" SPDX-License-Identifier: 0BSD
+.\"
+.TH timespec_get 3 (date) "Linux man-pages (unreleased)"
+.SH NAME
+timespec_get,
+timespec_getres
+\-
+ISO C interface to clock and time functions
+.SH LIBRARY
+Standard C library
+.RI ( libc ,\~ \-lc ),
+.SH SYNOPSIS
+.nf
+.B #include <time.h>
+.P
+.BI "int timespec_get(struct timespec *" res ", int " base );
+.BI "int timespec_getres(struct timespec *" tp ", int " base );
+.fi
+.SH DESCRIPTION
+.I timespec_get(tp, TIME_UTC)
+is defined as
+.IR "clock_gettime(CLOCK_REALTIME, tp)" .
+.P
+.I timespec_getres(res, TIME_UTC)
+is equivalent to
+.IR "clock_getres(CLOCK_REALTIME, res)" .
+.P
+.B TIME_UTC
+is universally guaranteed to be a valid
+.IR base ,
+and is the only one supported under Linux.
+Some other systems support different time bases.
+.SH RETURN VALUE
+On success,
+.I base
+is returned.
+On error,
+\-1 is returned.
+.SH ERRORS
+Some C libraries
+.I may
+set
+.I errno
+to the same value as would be set by
+.BR clock_gettime (2)
+or
+.BR clock_getres (2).
+Neither C nor POSIX specify this,
+but they don't really indicate it shouldn't happen, either.
+Don't rely on this.
+.SH ATTRIBUTES
+For an explanation of the terms used in this section, see
+.BR attributes (7).
+.TS
+allbox;
+lbx lb lb
+l l l.
+Interface	Attribute	Value
+T{
+.na
+.nh
+.BR timespec_get (),
+.BR timespec_getres ()
+T}	Thread safety	MT-Safe
+.TE
+.SH STANDARDS
+.TP
+.BR timespec_get ()
+.TQ
+.B TIME_UTC
+C23 (though ISO C doesn't specify the time epoch),
+POSIX.1-2024.
+.TP
+.BR timespec_getres ()
+C23.
+.SH HISTORY
+.TP
+.BR timespec_get ()
+.TQ
+.B TIME_UTC
+C11, POSIX.1-2024, glibc 2.16, musl 1.1.10.
+.TP
+.BR timespec_getres ()
+C23, glibc 2.34.
+.SH SEE ALSO
+.BR clock_gettime (2),
+.BR clock_getres (2)
