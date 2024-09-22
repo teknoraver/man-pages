@@ -131,6 +131,26 @@ Description
        to the list.  See also <CONTRIBUTING.d/git> for instructions for
        configuring git-send-email(1) to use neomutt(1) as a driver.
 
+   New kernel/libc features
+       If you write a new kernel or libc feature, you should document it
+       in the same patch set that adds the feature, including any
+       patches to the manual pages.  The entire patch set consisting of
+       both the feature and its manual page should be sent to all
+       recipients for a better review process.  That can be done with
+       the following procedure:
+
+       1)  Generate the kernel or libc patch set, with a cover letter,
+           and using --thread in git-format-patch(1) (as specified in
+           our ./CONTRIBUTING.d/git).  This will generate a Message-ID
+           header field in the cover letter.
+
+       2)  Generate the man-pages patch set using
+           --in-reply-to="<message-id>", where <message-id> is the value
+           of the header field of the cover letter.
+
+       3)  Send first the kernel/libc patch set, and then the man-pages
+           one, so that they have a consistent order.
+
 See also
        CONTRIBUTING
        CONTRIBUTING.d/*
