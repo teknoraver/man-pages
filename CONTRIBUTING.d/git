@@ -30,6 +30,12 @@ Description
        or
            $ git config --global sendemail.sendmailcmd 'mutt -H - && true';
 
+   git-am(1)
+       When applying a patch received via email, store the Message-ID
+       header field in the commit message.
+
+           $ git config --global am.messageid true;
+
 See also
        git-config(1)
        git-diff(1)
