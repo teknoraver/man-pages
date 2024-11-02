@@ -54,7 +54,7 @@ man_lsfunc()
 	|mandoc -Tutf8 2>/dev/null \
 	|col -pbx \
 	|sed_rm_ccomments \
-	|pcregrep -Mn '(?s)^ [\w ]+ \**\w+\([\w\s(,)[\]*]*?(...)?\s*\); *$' \
+	|pcre2grep -Mn '(?s)^ [\w ]+ \**\w+\([\w\s(,)[\]*]*?(...)?\s*\); *$' \
 	|grep '^[0-9]' \
 	|sed -E 's/syscall\(SYS_(\w*),?/\1(/' \
 	|sed -E 's/^[^(]+ \**(\w+)\(.*/\1/' \
@@ -77,8 +77,8 @@ man_lsvar()
 	|mandoc -Tutf8 2>/dev/null \
 	|col -pbx \
 	|sed_rm_ccomments \
-	|pcregrep -Mv '(?s)^ [\w ]+ \**\w+\([\w\s(,)[\]*]+?(...)?\s*\); *$' \
-	|pcregrep -Mn \
+	|pcre2grep -Mv '(?s)^ [\w ]+ \**\w+\([\w\s(,)[\]*]+?(...)?\s*\); *$' \
+	|pcre2grep -Mn \
 	  -e '(?s)^ +extern [\w ]+ \**\(\*+[\w ]+\)\([\w\s(,)[\]*]+?\s*\); *$' \
 	  -e '^ +extern [\w ]+ \**[\w ]+; *$' \
 	|grep '^[0-9]' \
