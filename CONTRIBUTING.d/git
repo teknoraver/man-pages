@@ -26,6 +26,11 @@ Description
 
            $ git config --global format.thread true;
 
+   git-merge(1)
+       We sign all commits.  You should verify the signatures on them.
+
+           $ git config --local merge.verifySignatures true;
+
    git-send-email(1)
        If mutt(1) or neomutt(1) are configured in the system,
        git-send-email(1) can be configured to use any of them as a
