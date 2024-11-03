@@ -100,9 +100,7 @@ pdfman()
 
 	local tmp="$(mktemp -t "${!###*/}.XXXXXX")";
 
-	man -Tps "$@" \
-	|ps2pdf - - \
-	>"$tmp";
+	man -Tpdf "$@" >"$tmp";
 	xdg-open "$tmp";
 }
 
