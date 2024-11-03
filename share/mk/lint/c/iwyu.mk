@@ -34,6 +34,7 @@ _XFAIL_LINT_c_EX_iwyu := \
 	$(_MANDIR)/man2/_syscall.2.d/_syscall.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man2/timer_create.2.d/timer_create.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man2/userfaultfd.2.d/userfaultfd.c.lint-c.iwyu.touch \
+	$(_MANDIR)/man2const/TIOCMSET.2const.d/tiocmget.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/backtrace.3.d/backtrace.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/bsearch.3.d/bsearch.c.lint-c.iwyu.touch \
 	$(_MANDIR)/man3/bswap.3.d/bswap.c.lint-c.iwyu.touch \

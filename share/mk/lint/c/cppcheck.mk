@@ -31,6 +31,7 @@ _XFAIL_LINT_c_EX_cppcheck := \
 	$(_MANDIR)/man3/getaddrinfo_a.3.d/async.c.lint-c.cppcheck.touch \
 	$(_MANDIR)/man3/getdate.3.d/getdate.c.lint-c.cppcheck.touch \
 	$(_MANDIR)/man3/getgrouplist.3.d/getgrouplist.c.lint-c.cppcheck.touch \
+	$(_MANDIR)/man3/getsubopt.3.d/getsubopt.c.lint-c.cppcheck.touch \
 	$(_MANDIR)/man3/hsearch.3.d/hsearch.c.lint-c.cppcheck.touch \
 	$(_MANDIR)/man3/malloc_info.3.d/malloc_info.c.lint-c.cppcheck.touch \
 	$(_MANDIR)/man3/mallopt.3.d/mallopt.c.lint-c.cppcheck.touch \
