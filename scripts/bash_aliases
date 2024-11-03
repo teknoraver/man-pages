@@ -93,11 +93,6 @@ man_lsvar()
 
 pdfman()
 {
-	if [ $# -eq 0 ]; then
-		>&2 echo "Usage: ${FUNCNAME[0]} [man(1) options] [section] page";
-		return $EX_USAGE;
-	fi;
-
 	local tmp="$(mktemp -t "${!###*/}.XXXXXX")";
 
 	man -Tpdf "$@" >"$tmp";
