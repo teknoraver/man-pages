@@ -11,6 +11,7 @@ INSTALL := install
 
 INSTALL_DATA    := $(INSTALL) -m 644
 INSTALL_DIR     := $(INSTALL) -m 755 -d
+INSTALL_PROGRAM := $(INSTALL) -m 755
 
 
 endif  # include guard
