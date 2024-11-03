@@ -88,17 +88,6 @@ man_lsvar()
 	|uniq;
 }
 
-#  pdfman()  renders a manual page in PDF
-# Usage example:  .../man-pages$ pdfman man2/membarrier.2;
-
-pdfman()
-{
-	local tmp="$(mktemp -t "${!###*/}.XXXXXX")";
-
-	man -Tpdf "$@" >"$tmp";
-	xdg-open "$tmp";
-}
-
 #  man_gitstaged  prints a list of all files with changes staged for commit
 # (basename only if the files are within <man?/>), separated by ", ".
 # Usage example:  .../man-pages$ git commit -m "$(man_gitstaged): msg";

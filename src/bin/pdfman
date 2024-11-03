@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# Copyright 2021-2024, Alejandro Colomar <alx@kernel.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+set -Eeuo pipefail;
+
+tmp="$(mktemp -t "${!###*/}.XXXXXX")";
+
+man -Tpdf "$@" >"$tmp";
+xdg-open "$tmp";
