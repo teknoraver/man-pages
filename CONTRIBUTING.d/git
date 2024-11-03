@@ -24,7 +24,7 @@ Description
 
        Generate patch sets as a thread.
 
-           $ git config --global format.thread true;
+           $ git config --global format.thread shallow;
 
    git-merge(1)
        We sign all commits.  You should verify the signatures on them.
