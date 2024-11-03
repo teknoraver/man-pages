@@ -2,6 +2,12 @@ Name
        Git - instructions for configuring git(1)
 
 Description
+   git-am(1)
+       When applying a patch received via email, store the Message-ID
+       header field in the commit message.
+
+           $ git config --global am.messageid true;
+
    git-diff(1), gitattributes(5)
        To produce useful hunk contexts in manual pages, we need to hack
        git(1)'s idea of a function name, and also to tell git what is a
@@ -29,12 +35,6 @@ Description
                    sendemail.sendmailcmd 'neomutt -C -H - && true';
        or
            $ git config --global sendemail.sendmailcmd 'mutt -H - && true';
-
-   git-am(1)
-       When applying a patch received via email, store the Message-ID
-       header field in the commit message.
-
-           $ git config --global am.messageid true;
 
 See also
        git-config(1)
