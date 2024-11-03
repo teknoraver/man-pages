@@ -100,6 +100,7 @@ Check the condition of DTR on the serial port.
 .P
 .\" SRC BEGIN (tiocmget.c)
 .EX
+#include <asm/termbits.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <sys/ioctl.h>
