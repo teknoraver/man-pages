@@ -5,7 +5,7 @@
 
 set -Eeuo pipefail;
 
-tmp="$(mktemp -t "${!###*/}.XXXXXX")";
+tmp="$(mktemp -t "$(printf '%s\n' "${!#}" | sed 's,.*/,,').XXXXXX")";
 
 man -Tpdf "$@" >"$tmp";
 xdg-open "$tmp";
