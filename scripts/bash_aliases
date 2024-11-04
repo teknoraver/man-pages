@@ -88,15 +88,15 @@ man_lsvar()
 	|uniq;
 }
 
-#  man_gitstaged  prints a list of all files with changes staged for commit
-# (basename only if the files are within <man?/>), separated by ", ".
+# Print a list of all files with changes staged for commit
+# (basename only if the files are within <man/>), separated by ", ".
 # Usage example:  .../man-pages$ git commit -m "$(man_gitstaged): msg";
 
 man_gitstaged()
 {
 	git diff --staged --name-only					\
 	|sed 's/$/, /'							\
-	|sed 's%.*/%%'							\
+	|sed '/^man\//s%.*/%%'						\
 	|tr -d '\n'							\
-	|sed 's/, $//'
+	|sed 's/, $//';
 }
