@@ -20,48 +20,9 @@ Description
        To make your patch even more useful, please note the following
        points:
 
-       -  Sign your patch with "Signed-off-by:".  Read about the
-          "Developer's Certificate of Origin" at
-          <https://www.kernel.org/doc/Documentation/process/submitting-patches.rst>.
-          When appropriate, other tags documented in that file, such as
-          "Reported-by:", "Reviewed-by:", "Acked-by:", and
-          "Suggested-by:" can be added to the patch.  The man-pages
-          project also uses a "Cowritten-by:" tag with the obvious
-          meaning.  Example:
-
-              Signed-off-by: Alejandro Colomar <alx@kernel.org>
-
-       -  Describe how you obtained the information in your patch.  For
-          example, was it:
-
-          -  by reading (or writing) the relevant kernel or (g)libc
-             source code?  Please provide a pointer to the relevant
-             code.
-
-          -  from a commit message in the kernel or (g)libc source code
-             repository?  Please provide a commit ID.
-
-          -  by writing a test program?  Send it with the patch, but
-             please make sure it's as simple as possible, and provide
-             instructions on how to use it and/or a demo run.
-
-          -  from a standards document?  Please name the standard, and
-             quote the relevant text.
-
-          -  from other documentation?  Please provide a pointer to that
-             documentation.
-
-          -  from a mailing list or online forum?  Please provide a URL
-             if possible.
-
        -  Send patches in diff -u format in an email patch.  You may
           find it useful to employ git-format-patch(1) and
           git-send-email(1).
-
-       -  Where relevant, include source code comments that cite commit
-          hashes for relevant kernel or glibc changes:
-
-              .\" linux.git commit <40-character-git-hash>
 
        -  Send logically separate patches.  For unrelated pages, or for
           logically-separate issues in the same page, send separate
