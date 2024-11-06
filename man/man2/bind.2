@@ -147,6 +147,10 @@ is not a valid address for this socket's domain.
 The file descriptor
 .I sockfd
 does not refer to a socket.
+.TP
+.B EADDRNOTAVAIL
+A nonexistent interface was requested or the requested
+address was not local.
 .P
 The following errors are specific to UNIX domain
 .RB ( AF_UNIX )
@@ -156,10 +160,6 @@ sockets:
 Search permission is denied on a component of the path prefix.
 (See also
 .BR path_resolution (7).)
-.TP
-.B EADDRNOTAVAIL
-A nonexistent interface was requested or the requested
-address was not local.
 .TP
 .B EFAULT
 .I addr
