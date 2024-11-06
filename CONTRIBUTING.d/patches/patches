@@ -12,3 +12,7 @@ Description
 	a cover letter that gives an overview of all of the patches, and
 	each patch should be a reply to the cover-letter mail.  We
 	recommend using git-format-patch(1) for preparing the patches.
+
+	Patches should contain a description alongside the diff.  A diff
+	without a description is mostly useless.  See
+	<CONTRIBUTING.d/patches/description>.
