@@ -24,9 +24,6 @@ Description
           logically-separate issues in the same page, send separate
           emails.
 
-       -  Make patches against the latest version of the manual page.
-          Use git(1) for getting the latest version.
-
    Send the patches
        We recommend using git-send-email(1) to send the patches to the
        mailing list.  For instructions on how to configure and use it,
