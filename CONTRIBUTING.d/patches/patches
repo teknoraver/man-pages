@@ -1,15 +1,14 @@
 Name
-       Patches - instructions for contributing patches
+	patches/patches - instructions for contributing patches
 
 Description
-       If you know how to fix a problem in a manual page (if not, see
-       <CONTRIBUTING.d/bugs>), then send a patch in an email.
+	If you know how to fix a problem in a manual page (if not, see
+	<CONTRIBUTING.d/bugs>), then send a patch in an email.
 
-       -  Configure git(1) for this project.  See <CONTRIBUTING.d/git>.
+	Configure git(1) for this project.  See <CONTRIBUTING.d/git>.
 
-       To make your patch even more useful, please note the following
-       points:
-
-       -  Send logically separate patches.  For unrelated pages, or for
-          logically-separate issues in the same page, send separate
-          emails.
+	Send logically separate patches.  For logically-separate issues,
+	send separate emails.  For related issues, send a patch set with
+	a cover letter that gives an overview of all of the patches, and
+	each patch should be a reply to the cover-letter mail.  We
+	recommend using git-format-patch(1) for preparing the patches.
