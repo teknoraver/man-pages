@@ -5,11 +5,11 @@ Description
     The entire project
         To run the linters and checks for the entire project, run
 
-            $ make lint build check;
+            $ make lint build-all check;
 
         This skips tests that are known to fail.  To run those too, run
 
-            $ make lint build check SKIP_XFAIL=no;
+            $ make lint build-all check SKIP_XFAIL=no;
 
     A single page
         To run those for a single page, you can take advantage of some
