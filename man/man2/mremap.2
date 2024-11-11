@@ -106,7 +106,13 @@ remaps a mapping to a new address but does not unmap the mapping at
 .IP
 The
 .B MREMAP_DONTUNMAP
-flag can be used only with private anonymous mappings
+flag can be used only with mappings that are not
+.B VM_DONTEXPAND
+or
+.BR VM_MIXEDMAP .
+Before Linux 5.13, the
+.B MREMAP_DONTUNMAP
+flag could be used only with private anonymous mappings
 (see the description of
 .B MAP_PRIVATE
 and
