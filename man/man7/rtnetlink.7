@@ -176,7 +176,24 @@ IFA_BROADCAST:raw protocol address:broadcast address
 IFA_ANYCAST:raw protocol address:anycast address
 IFA_CACHEINFO:struct ifa_cacheinfo:Address information
 .TE
-.\" FIXME Document struct ifa_cacheinfo
+.IP
+.EX
+struct ifa_cacheinfo {
+    __u32 ifa_prefered; // Preferred lifetime remaining, in seconds
+    __u32 ifa_valid;    // Valid lifetime remaining, in seconds
+    __u32 cstamp;       // Creation timestamp, in centiseconds
+    __u32 tstamp;       // Update timestamp, in centiseconds
+};
+.EE
+.IP
+.I ifa_valid
+cannot be zero, and
+.I ifa_prefered
+cannot be greater than
+.IR ifa_valid .
+A value of
+.B UINT32_MAX
+represents an infinite lifetime.
 .TP
 .B RTM_NEWROUTE
 .TQ
