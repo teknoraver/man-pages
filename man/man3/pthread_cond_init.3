@@ -80,7 +80,7 @@ The \fImutex\fP must be locked by the calling thread
 on entrance to \fBpthread_cond_wait\fP.
 Before returning to the calling thread,
 \fBpthread_cond_wait\fP re-acquires \fImutex\fP
-(as per \fBpthread_lock_mutex\fP).
+(as per \fBpthread_mutex_lock\fP).
 .P
 Unlocking the mutex and suspending on the condition variable is done atomically.
 Thus,
