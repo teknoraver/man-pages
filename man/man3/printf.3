@@ -767,8 +767,11 @@ and otherwise is sufficiently large to distinguish values of type
 .IR double .
 The digit before the radix point is unspecified for nonnormalized
 numbers, and nonzero but otherwise unspecified for normalized numbers.
-The exponent always contains at least one
-digit; if the value is zero, the exponent is 0.
+The exponent,
+.IR d ,
+is the appropriate exponent of 2 expressed as a decimal integer;
+it always contains at least one digit;
+if the value is zero, the exponent is 0.
 .TP
 .B c
 If no
