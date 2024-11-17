@@ -671,9 +671,9 @@ effectively constant in these contexts,
 which makes the former safe.
 .TP
 .I hostid
-The function marked with
+Functions marked with
 .I hostid
-as an MT-Safety issue reads from the system-wide data structures that
+as an MT-Safety issue read from the system-wide data structures that
 hold the "host ID" of the machine.
 These data structures cannot generally be modified atomically.
 Since it is expected that the "host ID" will not normally change,
