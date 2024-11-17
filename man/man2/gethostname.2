@@ -19,8 +19,8 @@ Standard C library
 .nf
 .B #include <unistd.h>
 .P
-.BI "int gethostname(char *" name ", size_t " len );
-.BI "int sethostname(const char *" name ", size_t " len );
+.BI "int gethostname(char *" name ", size_t " size );
+.BI "int sethostname(const char *" name ", size_t " size );
 .fi
 .P
 .RS -4
@@ -55,7 +55,7 @@ process's UTS namespace.
 sets the hostname to the value given in the character array
 .IR name .
 The
-.I len
+.I size
 argument specifies the number of bytes in
 .IR name .
 (Thus,
@@ -65,8 +65,8 @@ does not require a terminating null byte.)
 .BR gethostname ()
 returns the null-terminated hostname in the character array
 .IR name ,
-which has a length of
-.I len
+which has a size of
+.I size
 bytes.
 If the null-terminated hostname is too large to fit,
 then the name is truncated, and no error is returned (but see VERSIONS below).
@@ -85,18 +85,18 @@ is set to indicate the error.
 is an invalid address.
 .TP
 .B EINVAL
-.I len
+.I size
 is negative
-.\" Can't occur for gethostbyname() wrapper, since 'len' has an
+.\" Can't occur for gethostbyname() wrapper, since 'size' has an
 .\" unsigned type; can occur for the underlying system call.
 or, for
 .BR sethostname (),
-.I len
+.I size
 is larger than the maximum allowed size.
 .TP
 .B ENAMETOOLONG
 .RB "(glibc " gethostname ())
-.I len
+.I size
 is smaller than the actual size.
 (Before glibc 2.1, glibc uses
 .B EINVAL
@@ -127,7 +127,7 @@ system call; instead, it implements
 as a library function that calls
 .BR uname (2)
 and copies up to
-.I len
+.I size
 bytes from the returned
 .I nodename
 field into
@@ -135,7 +135,7 @@ field into
 Having performed the copy, the function then checks if the length of the
 .I nodename
 was greater than or equal to
-.IR len ,
+.IR size ,
 and if it is, then the function returns \-1 with
 .I errno
 set to
@@ -161,7 +161,7 @@ Versions of glibc before glibc 2.2
 handle the case where the length of the
 .I nodename
 was greater than or equal to
-.I len
+.I size
 differently: nothing is copied into
 .I name
 and the function returns \-1 with

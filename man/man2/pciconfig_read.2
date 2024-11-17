@@ -17,10 +17,10 @@ Standard C library
 .B #include <pci.h>
 .P
 .BI "int pciconfig_read(unsigned long " bus ", unsigned long " dfn ,
-.BI "                   unsigned long " off ", unsigned long " len ,
+.BI "                   unsigned long " off ", unsigned long " size ,
 .BI "                   unsigned char *" buf );
 .BI "int pciconfig_write(unsigned long " bus ", unsigned long " dfn ,
-.BI "                   unsigned long " off ", unsigned long " len ,
+.BI "                   unsigned long " off ", unsigned long " size ,
 .BI "                   unsigned char *" buf );
 .BI "int pciconfig_iobase(int " which ", unsigned long " bus ,
 .BI "                   unsigned long " devfn );
@@ -82,7 +82,7 @@ are:
 .SH ERRORS
 .TP
 .B EINVAL
-.I len
+.I size
 value is invalid.
 This does not apply to
 .BR pciconfig_iobase ().

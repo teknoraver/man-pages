@@ -42,7 +42,7 @@ the following structure:
 .in +4n
 .EX
 struct fuse_in_header {
-    uint32_t len;       /* Total length of the data,
+    uint32_t len;       /* Total size of the data,
                            including this header */
     uint32_t opcode;    /* The kind of operation (see below) */
     uint64_t unique;    /* A unique identifier for this request */
@@ -56,7 +56,7 @@ struct fuse_in_header {
 .EE
 .in
 .P
-The header is followed by a variable-length data portion
+The header is followed by a variable-size data portion
 (which may be empty) specific to the requested operation
 (the requested operation is indicated by
 .IR opcode ).
@@ -71,7 +71,7 @@ All replies must start with the following header:
 .in +4n
 .EX
 struct fuse_out_header {
-    uint32_t len;       /* Total length of data written to
+    uint32_t len;       /* Total size of data written to
                            the file descriptor */
     int32_t  error;     /* Any error that occurred (0 if none) */
     uint64_t unique;    /* The value from the

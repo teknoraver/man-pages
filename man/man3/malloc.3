@@ -24,9 +24,9 @@ Standard C library
 .P
 .BI "void *malloc(size_t " size );
 .BI "void free(void *_Nullable " ptr );
-.BI "void *calloc(size_t " nmemb ", size_t " size );
+.BI "void *calloc(size_t " n ", size_t " size );
 .BI "void *realloc(void *_Nullable " ptr ", size_t "  size );
-.BI "void *reallocarray(void *_Nullable " ptr ", size_t " nmemb ", size_t " size );
+.BI "void *reallocarray(void *_Nullable " ptr ", size_t " n ", size_t " size );
 .fi
 .P
 .RS -4
@@ -74,13 +74,13 @@ is NULL, no operation is performed.
 The
 .BR calloc ()
 function allocates memory for an array of
-.I nmemb
+.I n
 elements of
 .I size
 bytes each and returns a pointer to the allocated memory.
 The memory is set to zero.
 If
-.I nmemb
+.I n
 or
 .I size
 is 0, then
@@ -89,7 +89,7 @@ returns a unique pointer value that can later be successfully passed to
 .BR free ().
 .P
 If the multiplication of
-.I nmemb
+.I n
 and
 .I size
 would result in integer overflow, then
@@ -102,7 +102,7 @@ with the result that an incorrectly sized block of memory would be allocated:
 .P
 .in +4n
 .EX
-malloc(nmemb * size);
+malloc(n * size);
 .EE
 .in
 .SS realloc()
@@ -151,7 +151,7 @@ function changes the size of (and possibly moves)
 the memory block pointed to by
 .I ptr
 to be large enough for an array of
-.I nmemb
+.I n
 elements, each of which is
 .I size
 bytes.
@@ -159,7 +159,7 @@ It is equivalent to the call
 .P
 .in +4n
 .EX
-realloc(ptr, nmemb * size);
+realloc(ptr, n * size);
 .EE
 .in
 .P
@@ -408,7 +408,7 @@ and
 #define MALLOCARRAY(n, type)  ((type *) my_mallocarray(n, sizeof(type)))
 #define MALLOC(type)          MALLOCARRAY(1, type)
 \&
-static inline void *my_mallocarray(size_t nmemb, size_t size);
+static inline void *my_mallocarray(size_t n, size_t size);
 \&
 int
 main(void)
@@ -424,9 +424,9 @@ main(void)
 }
 \&
 static inline void *
-my_mallocarray(size_t nmemb, size_t size)
+my_mallocarray(size_t n, size_t size)
 {
-    return reallocarray(NULL, nmemb, size);
+    return reallocarray(NULL, n, size);
 }
 .EE
 .SH SEE ALSO

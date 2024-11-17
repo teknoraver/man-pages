@@ -356,7 +356,7 @@ returns the protocol for the socket.
 .IP \[bu]
 A pointer to the socket address is placed in the
 .I ai_addr
-field, and the length of the socket address, in bytes,
+field, and the size of the socket address, in bytes,
 is placed in the
 .I ai_addrlen
 field.
@@ -763,7 +763,7 @@ main(int argc, char *argv[])
 {
     int              sfd, s;
     char             buf[BUF_SIZE];
-    size_t           len;
+    size_t           size;
     ssize_t          nread;
     struct addrinfo  hints;
     struct addrinfo  *result, *rp;
@@ -815,16 +815,16 @@ main(int argc, char *argv[])
        datagrams, and read responses from server. */
 \&
     for (size_t j = 3; j < argc; j++) {
-        len = strlen(argv[j]) + 1;
+        size = strlen(argv[j]) + 1;
                 /* +1 for terminating null byte */
 \&
-        if (len > BUF_SIZE) {
+        if (size > BUF_SIZE) {
             fprintf(stderr,
                     "Ignoring long message in argument %zu\[rs]n", j);
             continue;
         }
 \&
-        if (write(sfd, argv[j], len) != len) {
+        if (write(sfd, argv[j], size) != size) {
             fprintf(stderr, "partial/failed write\[rs]n");
             exit(EXIT_FAILURE);
         }

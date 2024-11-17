@@ -20,18 +20,18 @@ Standard C library
 .nf
 .B #include <sys/mman.h>
 .P
-.BI "int mprotect(void " addr [. len "], size_t " len ", int " prot );
+.BI "int mprotect(void " addr [. size "], size_t " size ", int " prot );
 .P
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <sys/mman.h>
 .P
-.BI "int pkey_mprotect(void " addr [. len "], size_t " len ", int " prot ", int " pkey ");"
+.BI "int pkey_mprotect(void " addr [. size "], size_t " size ", int " prot ", int " pkey ");"
 .fi
 .SH DESCRIPTION
 .BR mprotect ()
 changes the access protections for the calling process's memory pages
 containing any part of the address range in the
-interval [\fIaddr\fP,\ \fIaddr\fP+\fIlen\fP\-1].
+interval [\fIaddr\fP,\ \fIaddr\fP+\fIsize\fP\-1].
 .I addr
 must be aligned to a page boundary.
 .P
@@ -107,7 +107,7 @@ Like
 changes the protection on the pages specified by
 .I addr
 and
-.IR len .
+.IR size .
 The
 .I pkey
 argument specifies the protection key (see
@@ -173,7 +173,7 @@ Internal kernel structures could not be allocated.
 .B ENOMEM
 Addresses in the range
 .RI [ addr ,
-.IR addr + len \-1]
+.IR addr + size \-1]
 are invalid for the address space of the process,
 or specify one or more pages that are not mapped.
 (Before Linux 2.4.19, the error

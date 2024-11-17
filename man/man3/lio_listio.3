@@ -15,7 +15,7 @@ Real-time library
 .P
 .BI "int lio_listio(int " mode ,
 .BI "               struct aiocb *restrict const " aiocb_list [restrict],
-.BI "               int " nitems ", struct sigevent *restrict " sevp );
+.BI "               int " n ", struct sigevent *restrict " sevp );
 .fi
 .SH DESCRIPTION
 The
@@ -52,7 +52,7 @@ argument is an array of pointers to
 structures that describe I/O operations.
 These operations are executed in an unspecified order.
 The
-.I nitems
+.I n
 argument specifies the size of the array
 .IR aiocb_list .
 Null pointers in
@@ -138,7 +138,7 @@ Out of resources.
 .B EAGAIN
 .\" Doesn't happen in glibc(?)
 The number of I/O operations specified by
-.I nitems
+.I n
 would cause the limit
 .B AIO_MAX
 to be exceeded.
@@ -157,7 +157,7 @@ asynchronous I/O completion notification.)
 .I mode
 is invalid, or
 .\" Doesn't happen in glibc(?)
-.I nitems
+.I n
 exceeds the limit
 .BR AIO_LISTIO_MAX .
 .TP

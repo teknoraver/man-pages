@@ -18,8 +18,8 @@ Standard C library
 .P
 .BI "[[deprecated]] struct hostent *getipnodebyname(const char *" name ", int " af ,
 .BI "                                            int " flags ", int *" error_num );
-.BI "[[deprecated]] struct hostent *getipnodebyaddr(const void " addr [. len ],
-.BI "                                            size_t " len ", int " af ,
+.BI "[[deprecated]] struct hostent *getipnodebyaddr(const void " addr [. size ],
+.BI "                                            size_t " size ", int " af ,
 .BI "                                            int *" "error_num" );
 .BI "[[deprecated]] void freehostent(struct hostent *" "ip" );
 .fi
@@ -152,7 +152,7 @@ The
 argument points to a
 .I struct in_addr
 and
-.I len
+.I size
 must be set to
 .IR "sizeof(struct in_addr)" .
 .TP
@@ -162,7 +162,7 @@ The
 argument points to a
 .I struct in6_addr
 and
-.I len
+.I size
 must be set to
 .IR "sizeof(struct in6_addr)" .
 .SH RETURN VALUE

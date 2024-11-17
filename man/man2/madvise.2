@@ -22,7 +22,7 @@ Standard C library
 .nf
 .B #include <sys/mman.h>
 .P
-.BI "int madvise(void " addr [. length "], size_t " length ", int " advice );
+.BI "int madvise(void " addr [. size "], size_t " size ", int " advice );
 .fi
 .P
 .RS -4
@@ -44,13 +44,13 @@ system call is used to give advice or directions to the kernel
 about the address range beginning at address
 .I addr
 and with size
-.IR length .
+.IR size .
 .BR madvise ()
 only operates on whole pages, therefore
 .I addr
 must be page-aligned.
 The value of
-.I length
+.I size
 is rounded up to a multiple of page size.
 In most cases,
 the goal of such advice is to improve system or application performance.
@@ -146,7 +146,7 @@ map the pages into user space.)
 Support for Huge TLB pages was added in Linux v5.18.
 Addresses within a mapping backed by Huge TLB pages must be aligned
 to the underlying Huge TLB page size,
-and the range length is rounded up
+and the range size is rounded up
 to a multiple of the underlying Huge TLB page size.
 .\"
 .\" ======================================================================
@@ -241,7 +241,7 @@ restoring the default behavior, whereby a mapping is inherited across
 Poison the pages in the range specified by
 .I addr
 and
-.I length
+.I size
 and handle subsequent references to those pages
 like a hardware memory corruption.
 This operation is available only for privileged
@@ -260,7 +260,7 @@ it is available only if the kernel was configured with
 Enable Kernel Samepage Merging (KSM) for the pages in the range specified by
 .I addr
 and
-.IR length .
+.IR size .
 The kernel regularly scans those areas of user memory that have
 been marked as mergeable,
 looking for pages with identical content.
@@ -290,14 +290,14 @@ operation on the specified address range;
 KSM unmerges whatever pages it had merged in the address range specified by
 .I addr
 and
-.IR length .
+.IR size .
 .TP
 .BR MADV_SOFT_OFFLINE " (since Linux 2.6.33)"
 .\" commit afcf938ee0aac4ef95b1a23bac704c6fbeb26de6
 Soft offline the pages in the range specified by
 .I addr
 and
-.IR length .
+.IR size .
 The memory of each page in the specified range is preserved
 (i.e., when next accessed, the same content will be visible,
 but in a new physical page frame),
@@ -319,7 +319,7 @@ it is available only if the kernel was configured with
 Enable Transparent Huge Pages (THP) for pages in the range specified by
 .I addr
 and
-.IR length .
+.IR size .
 The kernel will regularly scan the areas marked as huge page candidates
 to replace them with huge pages.
 The kernel will also allocate huge pages directly when the region is
@@ -399,7 +399,7 @@ and file/shmem memory is only supported if the kernel was configured with
 Ensures that memory in the address range specified by
 .I addr
 and
-.I length
+.I size
 will not be backed by transparent hugepages.
 .TP
 .BR MADV_COLLAPSE " (since Linux 6.1)"
@@ -484,7 +484,7 @@ only the most-recently\[en]failed code will be set in
 Exclude from a core dump those pages in the range specified by
 .I addr
 and
-.IR length .
+.IR size .
 This is useful in applications that have large areas of memory
 that are known not to be useful in a core dump.
 The effect of
@@ -502,7 +502,7 @@ Undo the effect of an earlier
 The application no longer requires the pages in the range specified by
 .I addr
 and
-.IR len .
+.IR size .
 The kernel can thus free these pages,
 but the freeing could be delayed until memory pressure occurs.
 For each of the pages that has been marked to be freed
@@ -721,9 +721,9 @@ flag described elsewhere in this page).
 .B EINVAL
 .I addr
 is not page-aligned or
-.I length
+.I size
 is negative.
-.\" .I length
+.\" .I size
 .\" is zero,
 .TP
 .B EINVAL
@@ -860,7 +860,7 @@ and so on, with behavior close to the similarly named flags listed above.
 The Linux implementation requires that the address
 .I addr
 be page-aligned, and allows
-.I length
+.I size
 to be zero.
 If there are some parts of the specified address range
 that are not mapped, the Linux version of

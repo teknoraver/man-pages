@@ -26,7 +26,7 @@ Standard C library
 .EX
 .B struct uffdio_range {
 .BR "    __u64  start;" "   /* Start of range */"
-.BR "    __u64  len;" "     /* Length of range (bytes) */"
+.BR "    __u64  len;" "     /* Size of range (bytes) */"
 .B };
 \&
 .B struct uffdio_register {

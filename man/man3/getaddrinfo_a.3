@@ -21,8 +21,8 @@ Asynchronous name lookup library
 .B #include <netdb.h>
 .P
 .BI "int getaddrinfo_a(int " mode ", struct gaicb *" list [restrict],
-.BI "                  int " nitems ", struct sigevent *restrict " sevp );
-.BI "int gai_suspend(const struct gaicb *const " list "[], int " nitems ,
+.BI "                  int " n ", struct sigevent *restrict " sevp );
+.BI "int gai_suspend(const struct gaicb *const " list "[], int " n ,
 .BI "                  const struct timespec *" timeout );
 .P
 .BI "int gai_error(struct gaicb *" req );
@@ -56,7 +56,7 @@ The array
 .I list
 specifies the look-up requests to process.
 The
-.I nitems
+.I n
 argument specifies the number of elements in
 .IR list .
 The requested look-up operations are started in parallel.
@@ -165,7 +165,7 @@ function suspends execution of the calling thread,
 waiting for the completion of one or more requests in the array
 .IR list .
 The
-.I nitems
+.I n
 argument specifies the size of the array
 .IR list .
 The call blocks until one of the following occurs:
@@ -447,12 +447,12 @@ static struct gaicb **reqs = NULL;
 static size_t nreqs = 0;
 \&
 static inline void *
-reallocarrayf(void *p, size_t nmemb, size_t size)
+reallocarrayf(void *p, size_t n, size_t size)
 {
     void  *q;
 \&
-    q = reallocarray(p, nmemb, size);
-    if (q == NULL && nmemb != 0 && size != 0)
+    q = reallocarray(p, n, size);
+    if (q == NULL && n != 0 && size != 0)
         free(p);
     return q;
 }

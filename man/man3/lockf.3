@@ -17,7 +17,7 @@ Standard C library
 .nf
 .B #include <unistd.h>
 .P
-.BI "int lockf(int " fd ", int " op ", off_t " len );
+.BI "int lockf(int " fd ", int " op ", off_t " size );
 .fi
 .P
 .RS -4
@@ -39,17 +39,17 @@ The file is specified by
 a file descriptor open for writing, the action by
 .IR op ,
 and the section consists of byte positions
-.IR pos .. pos + len \-1
+.IR pos .. pos + size \-1
 if
-.I len
+.I size
 is positive, and
-.IR pos \- len .. pos \-1
+.IR pos \- size .. pos \-1
 if
-.I len
+.I size
 is negative, where
 .I pos
 is the current file position, and if
-.I len
+.I size
 is zero, the section extends from the current file position to
 infinity, encompassing the present and future end-of-file positions.
 In all cases, the section may extend past current end-of-file.

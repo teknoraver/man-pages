@@ -15,13 +15,13 @@ Standard C library
 .B #include <search.h>
 .P
 .BI "void *lfind(const void " key [. size "], \
-const void " base [*. nmemb " * ." size ],
-.BI "            size_t *" nmemb ", size_t " size ,
+const void " base [*. n " * ." size ],
+.BI "            size_t *" n ", size_t " size ,
 .BI "            int(*" compar ")(const void [." size "], \
 const void [." size ]));
 .BI "void *lsearch(const void " key [. size "], \
-void " base [*. nmemb " * ." size ],
-.BI "            size_t *" nmemb ", size_t " size ,
+void " base [*. n " * ." size ],
+.BI "            size_t *" n ", size_t " size ,
 .BI "            int(*" compar ")(const void [." size "], \
 const void [." size ]));
 .fi
@@ -34,7 +34,7 @@ perform a linear search for
 in the array
 .I base
 which has
-.I *nmemb
+.I *n
 elements of
 .I size
 bytes each.
@@ -53,7 +53,7 @@ If
 does not find a matching element, then the
 .I key
 object is inserted at the end of the table, and
-.I *nmemb
+.I *n
 is
 incremented.
 In particular, one should know that a matching element

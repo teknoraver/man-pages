@@ -20,8 +20,8 @@ Standard C library
 .B #include <stdlib.h>
 .P
 .BI "void *bsearch(const void " key [. size "], \
-const void " base [. size " * ." nmemb ],
-.BI "              size_t " nmemb ", size_t " size ,
+const void " base [. size " * ." n ],
+.BI "              size_t " n ", size_t " size ,
 .BI "              int (*" compar ")(const void [." size "], \
 const void [." size ]));
 .fi
@@ -29,7 +29,7 @@ const void [." size ]));
 The
 .BR bsearch ()
 function searches an array of
-.I nmemb
+.I n
 objects,
 the initial member of which is pointed to by
 .IR base ,

@@ -170,7 +170,7 @@ the payload follows.
 .in +4n
 .EX
 struct nlmsghdr {
-    __u32 nlmsg_len;    /* Length of message including header */
+    __u32 nlmsg_len;    /* Size of message including header */
     __u16 nlmsg_type;   /* Type of message content */
     __u16 nlmsg_flags;  /* Additional flags */
     __u32 nlmsg_seq;    /* Sequence number */
@@ -203,7 +203,7 @@ struct nlmsgerr {
      * unless NETLINK_CAP_ACK was set
      * or the ACK indicates success (error == 0).
      * For example Generic Netlink message with attributes.
-     * message length is aligned with NLMSG_ALIGN()
+     * message size is aligned with NLMSG_ALIGN()
      */
     /*
      * followed by TLVs defined in enum nlmsgerr_attrs
@@ -566,7 +566,7 @@ And the last example is about reading netlink message.
 .P
 .in +4n
 .EX
-int len;
+int size;
 /* 8192 to avoid message truncation on platforms with
    page size > 4096 */
 struct nlmsghdr buf[8192/sizeof(struct nlmsghdr)];
@@ -576,10 +576,10 @@ struct msghdr msg;
 struct nlmsghdr *nh;
 \&
 msg = { &sa, sizeof(sa), &iov, 1, NULL, 0, 0 };
-len = recvmsg(fd, &msg, 0);
+size = recvmsg(fd, &msg, 0);
 \&
-for (nh = (struct nlmsghdr *) buf; NLMSG_OK (nh, len);
-     nh = NLMSG_NEXT (nh, len)) {
+for (nh = (struct nlmsghdr *) buf; NLMSG_OK (nh, size);
+     nh = NLMSG_NEXT (nh, size)) {
     /* The end of multipart message */
     if (nh\->nlmsg_type == NLMSG_DONE)
         return;

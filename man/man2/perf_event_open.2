@@ -275,7 +275,7 @@ struct perf_event_attr {
     };
 \&
     union {
-        __u64 bp_len;           /* breakpoint length */
+        __u64 bp_len;           /* breakpoint size */
         __u64 kprobe_addr;      /* with kprobe_func == NULL */
         __u64 probe_offset;     /* for perf_[k,u]probe */
         __u64 config2;          /* extension of config1 */
@@ -1450,7 +1450,7 @@ on Linux 3.3 and later kernels.
 .IR bp_len " (since Linux 2.6.33)"
 .\" commit 24f1e32c60c45c89a997c73395b69c8af6f0a84e
 .I bp_len
-is the length of the breakpoint being measured if
+is the size of the breakpoint being measured if
 .I type
 is
 .BR PERF_TYPE_BREAKPOINT .
@@ -2223,7 +2223,7 @@ is the thread ID.
 .I addr
 is the address of the allocated memory.
 .I len
-is the length of the allocated memory.
+is the size of the allocated memory.
 .I pgoff
 is the page offset of the allocated memory.
 .I filename
@@ -2491,7 +2491,8 @@ This is the current callchain.
 If
 .B PERF_SAMPLE_RAW
 is enabled, then a 32-bit value indicating size
-is included followed by an array of 8-bit values of length size.
+is included followed by an array of 8-bit values of size
+.IR size .
 The values are padded with 0 to have 64-bit alignment.
 .IP
 This RAW record data is opaque with respect to the ABI.
@@ -2923,7 +2924,7 @@ is the thread ID.
 is the address of the allocated memory.
 .TP
 .I len
-is the length of the allocated memory.
+is the size of the allocated memory.
 .TP
 .I pgoff
 is the page offset of the allocated memory.
@@ -3176,7 +3177,7 @@ struct {
 is the address of the kernel symbol.
 .TP
 .I len
-is the length of the kernel symbol.
+is the size of the kernel symbol.
 .TP
 .I ksym_type
 is the type of the kernel symbol.
@@ -3262,7 +3263,7 @@ is the path of the cgroup from the root.
 .\" commit e17d43b93e544f5016c0251d2074c15568d5d963
 This record indicates a change in the kernel text.
 This includes addition and removal of the text
-and the corresponding length is zero in this case.
+and the corresponding size is zero in this case.
 .IP
 .in +4n
 .EX
@@ -3282,10 +3283,10 @@ struct {
 is the address of the change
 .TP
 .I old_len
-is the old length
+is the old size
 .TP
 .I new_len
-is the new length
+is the new size
 .TP
 .I bytes
 contains old bytes immediately followed by new bytes.

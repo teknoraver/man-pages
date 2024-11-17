@@ -25,7 +25,7 @@ NUMA (Non-Uniform Memory Access) policy library
 .nf
 .B "#include <numaif.h>"
 .P
-.BI "long mbind(void " addr [. len "], unsigned long " len  ", int " mode ,
+.BI "long mbind(void " addr [. size "], unsigned long " size  ", int " mode ,
 .BI "           const unsigned long " nodemask [(. maxnode " + ULONG_WIDTH - 1)"
 .B "                                        / ULONG_WIDTH],"
 .BI "           unsigned long " maxnode ", unsigned int " flags );
@@ -37,12 +37,12 @@ which consists of a policy mode and zero or more nodes,
 for the memory range starting with
 .I addr
 and continuing for
-.I len
+.I size
 bytes.
 The memory policy defines from which node memory is allocated.
 .P
 If the memory range specified by the
-.IR addr " and " len
+.IR addr " and " size
 arguments includes an "anonymous" region of memory\[em]that is
 a region of memory created using the
 .BR mmap (2)
@@ -375,7 +375,7 @@ points outside your accessible address space.
 Or, there was an unmapped hole in the specified memory range specified by
 .I addr
 and
-.IR len .
+.IR size .
 .TP
 .B EINVAL
 An invalid value was specified for
@@ -383,7 +383,7 @@ An invalid value was specified for
 or
 .IR mode ;
 or
-.I addr + len
+.I addr + size
 was less than
 .IR addr ;
 or

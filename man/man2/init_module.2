@@ -16,8 +16,8 @@ Standard C library
 .BR "#include <sys/syscall.h>" "     /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "int syscall(SYS_init_module, void " module_image [. len "], \
-unsigned long " len ,
+.BI "int syscall(SYS_init_module, void " module_image [. size "], \
+unsigned long " size ,
 .BI "            const char *" param_values );
 .BI "int syscall(SYS_finit_module, int " fd ,
 .BI "            const char *" param_values ", int " flags );
@@ -41,7 +41,7 @@ The
 .I module_image
 argument points to a buffer containing the binary image
 to be loaded;
-.I len
+.I size
 specifies the size of that buffer.
 The module image should be a valid ELF image, built for the running kernel.
 .P

@@ -18,8 +18,8 @@ Standard C library
 .nf
 .B #include <wchar.h>
 .P
-.BI "size_t mbsnrtowcs(wchar_t " dest "[restrict ." len "], const char **restrict " src ,
-.BI "                  size_t " nms ", size_t " len \
+.BI "size_t mbsnrtowcs(wchar_t " dest "[restrict ." size "], const char **restrict " src ,
+.BI "                  size_t " nms ", size_t " size \
 ", mbstate_t *restrict " ps );
 .fi
 .P
@@ -60,7 +60,7 @@ multibyte string
 to a wide-character string starting at
 .IR dest .
 At most
-.I len
+.I size
 wide characters are written to
 .IR dest .
 The shift state
@@ -95,7 +95,7 @@ The
 .I nms
 limit forces a stop,
 or
-.I len
+.I size
 non-L\[aq]\[rs]0\[aq] wide characters
 have been stored at
 .IR dest .
@@ -130,11 +130,11 @@ The glibc implementation adopts the former behavior.
 If
 .I dest
 is NULL,
-.I len
+.I size
 is ignored, and the conversion proceeds as
 above, except that the converted wide characters
 are not written out to memory,
-and that no destination length limit exists.
+and that no destination size limit exists.
 .P
 In both of the above cases, if
 .I ps
@@ -144,7 +144,7 @@ state known only to the
 function is used instead.
 .P
 The programmer must ensure that there is room for at least
-.I len
+.I size
 wide
 characters at
 .IR dest .

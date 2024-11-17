@@ -18,7 +18,7 @@ Standard C library
 .nf
 .B #include <stdlib.h>
 .P
-.BI "int getloadavg(double " loadavg[] ", int " nelem );
+.BI "int getloadavg(double " loadavg[] ", int " n );
 .fi
 .P
 .RS -4
@@ -39,7 +39,7 @@ The
 function returns the number of processes in the system run queue
 averaged over various periods of time.
 Up to
-.I nelem
+.I n
 samples are retrieved and assigned to successive elements of
 .IR loadavg[] .
 The system imposes a maximum of 3 samples, representing averages

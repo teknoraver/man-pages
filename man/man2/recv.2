@@ -20,9 +20,9 @@ Standard C library
 .nf
 .B #include <sys/socket.h>
 .P
-.BI "ssize_t recv(int " sockfd ", void " buf [. len "], size_t " len ,
+.BI "ssize_t recv(int " sockfd ", void " buf [. size "], size_t " size ,
 .BI "                 int " flags );
-.BI "ssize_t recvfrom(int " sockfd ", void " buf "[restrict ." len "], size_t " len ,
+.BI "ssize_t recvfrom(int " sockfd ", void " buf "[restrict ." size "], size_t " size ,
 .BI "                 int " flags ,
 .BI "                 struct sockaddr *_Nullable restrict " src_addr ,
 .BI "                 socklen_t *_Nullable restrict " addrlen );
@@ -57,7 +57,7 @@ Also, the following call
 .P
 .in +4n
 .EX
-recv(sockfd, buf, len, flags);
+recv(sockfd, buf, size, flags);
 .EE
 .in
 .P
@@ -65,11 +65,11 @@ is equivalent to
 .P
 .in +4n
 .EX
-recvfrom(sockfd, buf, len, flags, NULL, NULL);
+recvfrom(sockfd, buf, size, flags, NULL, NULL);
 .EE
 .in
 .P
-All three calls return the length of the message on successful
+All three calls return the size of the message on successful
 completion.
 If a message is too long to fit in the supplied buffer, excess
 bytes may be discarded depending on the type of socket the message is
@@ -230,7 +230,7 @@ netlink (since Linux 2.6.22),
 and UNIX datagram as well as sequenced-packet
 .\" commit 9f6f9af7694ede6314bed281eec74d588ba9474f
 (since Linux 3.4) sockets:
-return the real length of the packet or datagram,
+return the real size of the packet or datagram,
 even when it was longer than the passed buffer.
 .IP
 For use with Internet stream sockets, see
@@ -249,7 +249,7 @@ This flag has no effect for datagram sockets.
 places the received message into the buffer
 .IR buf .
 The caller must specify the size of the buffer in
-.IR len .
+.IR size .
 .P
 If
 .I src_addr
@@ -296,7 +296,7 @@ It is equivalent to the call:
 .P
 .in +4n
 .EX
-recvfrom(fd, buf, len, flags, NULL, 0);
+recvfrom(fd, buf, size, flags, NULL, 0);
 .EE
 .in
 .\"
@@ -317,7 +317,7 @@ struct msghdr {
     struct iovec *msg_iov;        /* Scatter/gather array */
     size_t        msg_iovlen;     /* # elements in msg_iov */
     void         *msg_control;    /* Ancillary data, see below */
-    size_t        msg_controllen; /* Ancillary data buffer len */
+    size_t        msg_controllen; /* Ancillary data buffer size */
     int           msg_flags;      /* Flags on received message */
 };
 .EE
@@ -332,7 +332,7 @@ The caller should set
 to the size of this buffer before this call;
 upon return from a successful call,
 .I msg_namelen
-will contain the length of the returned address.
+will contain the size of the returned address.
 If the application does not need to know the source address,
 .I msg_name
 can be specified as NULL.
@@ -346,7 +346,7 @@ describe scatter-gather locations, as discussed in
 .P
 The field
 .IR msg_control ,
-which has length
+which has size
 .IR msg_controllen ,
 points to a buffer for other protocol control-related messages or
 miscellaneous ancillary data.
@@ -354,9 +354,9 @@ When
 .BR recvmsg ()
 is called,
 .I msg_controllen
-should contain the length of the available buffer in
+should contain the size of the available buffer in
 .IR msg_control ;
-upon return from a successful call it will contain the length
+upon return from a successful call it will contain the size
 of the control message sequence.
 .P
 The messages are of the form:
@@ -432,7 +432,7 @@ When a stream socket peer has performed an orderly shutdown,
 the return value will be 0 (the traditional "end-of-file" return).
 .P
 Datagram sockets in various domains (e.g., the UNIX and Internet domains)
-permit zero-length datagrams.
+permit zero-size datagrams.
 When such a datagram is received, the return value is 0.
 .P
 The value 0 may also be returned if the requested number of bytes
@@ -523,7 +523,7 @@ and
 .B MSG_WAITALL
 flags.
 .SH NOTES
-If a zero-length datagram is pending,
+If a zero-size datagram is pending,
 .BR read (2)
 and
 .BR recv ()

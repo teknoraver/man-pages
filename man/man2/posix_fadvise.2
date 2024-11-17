@@ -16,7 +16,7 @@ Standard C library
 .nf
 .B #include <fcntl.h>
 .P
-.BI "int posix_fadvise(int " fd ", off_t " offset ", off_t " len \
+.BI "int posix_fadvise(int " fd ", off_t " offset ", off_t " size \
 ", int " advice ");"
 .fi
 .P
@@ -92,7 +92,7 @@ It is preferable to preserve needed data than discard unneeded data.
 If the application requires that data be considered for discarding, then
 .I offset
 and
-.I len
+.I size
 must be page-aligned.
 .IP
 The implementation
@@ -165,7 +165,7 @@ For example, since Linux 2.6.14, ARM has the following system call:
 .in +4n
 .EX
 .BI "long arm_fadvise64_64(int " fd ", int " advice ,
-.BI "                      loff_t " offset ", loff_t " len );
+.BI "                      loff_t " offset ", loff_t " size );
 .EE
 .in
 .P
@@ -195,7 +195,7 @@ depending on the setting of the
 configuration option.
 .P
 The type of the
-.I len
+.I size
 argument was changed from
 .I size_t
 to
@@ -215,7 +215,7 @@ and then applying
 to the mapping.
 .SH BUGS
 Before Linux 2.6.6, if
-.I len
+.I size
 was specified as 0, then this was interpreted literally as "zero bytes",
 rather than as meaning "all bytes through to the end of the file".
 .SH SEE ALSO

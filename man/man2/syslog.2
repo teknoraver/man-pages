@@ -23,12 +23,12 @@ Standard C library
 .BR "#include <sys/syscall.h>" "     /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "int syscall(SYS_syslog, int " type ", char *" bufp ", int " len );
+.BI "int syscall(SYS_syslog, int " type ", char *" bufp ", int " size );
 .P
 /* The glibc interface */
 .B #include <sys/klog.h>
 .P
-.BI "int klogctl(int " type ", char *" bufp ", int " len );
+.BI "int klogctl(int " type ", char *" bufp ", int " size );
 .fi
 .SH DESCRIPTION
 .IR Note :
@@ -47,7 +47,7 @@ system call, which is used to control the kernel
 buffer; the glibc wrapper function for the system call is called
 .BR klogctl ().
 .SS The kernel log buffer
-The kernel has a cyclic buffer of length
+The kernel has a cyclic buffer of size
 .B LOG_BUF_LEN
 in which messages given as arguments to the kernel function
 .BR printk ()
@@ -112,7 +112,7 @@ The call executes just the "clear ring buffer" command.
 The
 .I bufp
 and
-.I len
+.I size
 arguments are ignored.
 .IP
 This command does not really clear the ring buffer.
@@ -147,7 +147,7 @@ below.
 The
 .I bufp
 and
-.I len
+.I size
 arguments are ignored.
 .TP
 .BR SYSLOG_ACTION_CONSOLE_ON " (7)"
@@ -170,19 +170,19 @@ below.
 The
 .I bufp
 and
-.I len
+.I size
 arguments are ignored.
 .TP
 .BR SYSLOG_ACTION_CONSOLE_LEVEL " (8)"
 The call sets
 .I console_loglevel
 to the value given in
-.IR len ,
+.IR size ,
 which must be an integer between 1 and 8 (inclusive).
 The kernel silently enforces a minimum value of
 .I minimum_console_loglevel
 for
-.IR len .
+.IR size .
 See the
 .I log level
 section for details.
@@ -198,7 +198,7 @@ from the kernel log buffer via command 2
 The
 .I bufp
 and
-.I len
+.I size
 arguments are ignored.
 .TP
 .BR SYSLOG_ACTION_SIZE_BUFFER " (10) (since Linux 2.6.6)"
@@ -206,7 +206,7 @@ This command returns the total size of the kernel log buffer.
 The
 .I bufp
 and
-.I len
+.I size
 arguments are ignored.
 .P
 All commands except 3 and 10 require privilege.
@@ -334,7 +334,7 @@ or for
 .I buf
 is NULL,
 or
-.I len
+.I size
 is less than zero; or for
 .I type
 8, the

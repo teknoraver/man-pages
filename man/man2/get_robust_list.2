@@ -21,9 +21,9 @@ Standard C library
 .B #include <unistd.h>
 .P
 .BI "long syscall(SYS_get_robust_list, int " pid ,
-.BI "             struct robust_list_head **" head_ptr ", size_t *" len_ptr );
+.BI "             struct robust_list_head **" head_ptr ", size_t *" sizep );
 .B long syscall(SYS_set_robust_list,
-.BI "             struct robust_list_head *" head ", size_t " len );
+.BI "             struct robust_list_head *" head ", size_t " size );
 .fi
 .P
 .IR Note :
@@ -65,7 +65,7 @@ The list head is stored in the location pointed to by
 The size of the object pointed to by
 .I **head_ptr
 is stored in
-.IR len_ptr .
+.IR sizep .
 .P
 Permission to employ
 .BR get_robust_list ()
@@ -82,7 +82,7 @@ The
 .I head
 argument is the list head to record.
 The
-.I len
+.I size
 argument should be
 .IR sizeof(*head) .
 .SH RETURN VALUE
@@ -98,7 +98,7 @@ The
 system call can fail with the following error:
 .TP
 .B EINVAL
-.I len
+.I size
 does not equal
 .IR "sizeof(struct\ robust_list_head)" .
 .P

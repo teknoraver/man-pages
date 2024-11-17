@@ -166,7 +166,7 @@ The attribute reported in answer to this request is
 The payload associated with this attribute is the pathname to which
 the socket was bound (a sequence of bytes up to
 .B UNIX_PATH_MAX
-length).
+size).
 .TP
 .B UDIAG_SHOW_VFS
 The attribute reported in answer to this request is
@@ -232,7 +232,7 @@ The fields of this structure are as follows:
 .I udiag_rqueue
 For listening sockets:
 the number of pending connections.
-The length of the array associated with the
+The size of the array associated with the
 .B UNIX_DIAG_ICONS
 response attribute is equal to this value.
 .IP
@@ -241,7 +241,7 @@ the amount of data in incoming queue.
 .TP
 .I udiag_wqueue
 For listening sockets:
-the backlog length which equals to the value passed as the second argument to
+the backlog size which equals to the value passed as the second argument to
 .BR listen (2).
 .IP
 For established sockets:
@@ -555,7 +555,7 @@ the amount of data in the incoming queue.
 .TP
 .I idiag_wqueue
 For listening sockets:
-the backlog length.
+the backlog size.
 .IP
 For other sockets:
 the amount of memory available for sending.
@@ -681,9 +681,9 @@ send_query(int fd)
 }
 \&
 static int
-print_diag(const struct unix_diag_msg *diag, unsigned int len)
+print_diag(const struct unix_diag_msg *diag, unsigned int size)
 {
-    if (len < NLMSG_LENGTH(sizeof(*diag))) {
+    if (size < NLMSG_LENGTH(sizeof(*diag))) {
         fputs("short response\[rs]n", stderr);
         return \-1;
     }
@@ -692,7 +692,7 @@ print_diag(const struct unix_diag_msg *diag, unsigned int len)
         return \-1;
     }
 \&
-    unsigned int rta_len = len \- NLMSG_LENGTH(sizeof(*diag));
+    unsigned int rta_len = size \- NLMSG_LENGTH(sizeof(*diag));
     unsigned int peer = 0;
     size_t path_len = 0;
     char path[sizeof(((struct sockaddr_un *) 0)\->sun_path) + 1];

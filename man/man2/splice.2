@@ -17,7 +17,7 @@ Standard C library
 .P
 .BI "ssize_t splice(int " fd_in ", off_t *_Nullable " off_in ,
 .BI "               int " fd_out ", off_t *_Nullable " off_out ,
-.BI "               size_t " len ", unsigned int " flags );
+.BI "               size_t " size ", unsigned int " flags );
 .\" Return type was long before glibc 2.7
 .fi
 .SH DESCRIPTION
@@ -25,7 +25,7 @@ Standard C library
 moves data between two file descriptors
 without copying between kernel address space and user address space.
 It transfers up to
-.I len
+.I size
 bytes of data from the file descriptor
 .I fd_in
 to the file descriptor

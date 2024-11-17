@@ -37,8 +37,8 @@ Standard C library
 .B [[deprecated]] extern int h_errno;
 .P
 .BI "[[deprecated]] struct hostent *gethostbyname(const char *" name );
-.BI "[[deprecated]] struct hostent *gethostbyaddr(const void " addr [. len ],
-.BI "                                             socklen_t " len ", int " type );
+.BI "[[deprecated]] struct hostent *gethostbyaddr(const void " addr [. size ],
+.BI "                                             socklen_t " size ", int " type );
 .P
 .BI "[[deprecated]] void herror(const char *" s );
 .BI "[[deprecated]] const char *hstrerror(int " err );
@@ -56,7 +56,7 @@ Standard C library
 .BI "                 int *restrict " h_errnop );
 .P
 .B [[deprecated]]
-.BI "int gethostbyaddr_r(const void " addr "[restrict ." len "], socklen_t " len ,
+.BI "int gethostbyaddr_r(const void " addr "[restrict ." size "], socklen_t " size ,
 .BI "                 int " type ,
 .BI "                 struct hostent *restrict " ret ,
 .BI "                 char " buf "[restrict ." buflen "], size_t " buflen ,
@@ -182,7 +182,7 @@ ends in a dot.
 The
 .BR gethostbyaddr ()
 function returns a structure of type \fIhostent\fP
-for the given host address \fIaddr\fP of length \fIlen\fP and address type
+for the given host address \fIaddr\fP of size \fIlen\fP and address type
 \fItype\fP.
 Valid address types are
 .B AF_INET
@@ -239,7 +239,7 @@ struct hostent {
     char  *h_name;            /* official name of host */
     char **h_aliases;         /* alias list */
     int    h_addrtype;        /* host address type */
-    int    h_length;          /* length of address */
+    int    h_length;          /* size of address */
     char **h_addr_list;       /* list of addresses */
 }
 #define h_addr h_addr_list[0] /* for backward compatibility */
@@ -262,7 +262,7 @@ or
 at present.
 .TP
 .I h_length
-The length of the address in bytes.
+The size of the address in bytes.
 .TP
 .I h_addr_list
 An array of pointers to network addresses for the host (in network byte
@@ -447,14 +447,14 @@ Copying the
 does not suffice, since it contains pointers; a deep copy is required.
 .P
 In the original BSD implementation the
-.I len
+.I size
 argument
 of
 .BR gethostbyname ()
 was an
 .IR int .
 The SUSv2 standard is buggy and declares the
-.I len
+.I size
 argument of
 .BR gethostbyaddr ()
 to be of type

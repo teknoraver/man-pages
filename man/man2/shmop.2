@@ -456,7 +456,7 @@ main(int argc, char *argv[])
 {
     int            semid, shmid;
     char           *addr;
-    size_t         len;
+    size_t         size;
     struct sembuf  sop;
 \&
     if (argc != 4) {
@@ -464,8 +464,8 @@ main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 \&
-    len = strlen(argv[3]) + 1;  /* +1 to include trailing \[aq]\[rs]0\[aq] */
-    if (len > MEM_SIZE) {
+    size = strlen(argv[3]) + 1;  /* +1 to include trailing \[aq]\[rs]0\[aq] */
+    if (size > MEM_SIZE) {
         fprintf(stderr, "String is too big!\[rs]n");
         exit(EXIT_FAILURE);
     }
@@ -482,7 +482,7 @@ main(int argc, char *argv[])
     if (addr == (void *) \-1)
         errExit("shmat");
 \&
-    memcpy(addr, argv[3], len);
+    memcpy(addr, argv[3], size);
 \&
     /* Decrement semaphore to 0. */
 \&

@@ -425,7 +425,7 @@ main(int argc, char *argv[])
 {
     int           fd;
     char          *name, *seals_arg;
-    ssize_t       len;
+    ssize_t       size;
     unsigned int  seals;
 \&
     if (argc < 3) {
@@ -441,7 +441,7 @@ main(int argc, char *argv[])
     }
 \&
     name = argv[1];
-    len = atoi(argv[2]);
+    size = atoi(argv[2]);
     seals_arg = argv[3];
 \&
     /* Create an anonymous file in tmpfs; allow seals to be
@@ -453,7 +453,7 @@ main(int argc, char *argv[])
 \&
     /* Size the file as specified on the command line. */
 \&
-    if (ftruncate(fd, len) == \-1)
+    if (ftruncate(fd, size) == \-1)
         err(EXIT_FAILURE, "truncate");
 \&
     printf("PID: %jd; fd: %d; /proc/%jd/fd/%d\[rs]n",

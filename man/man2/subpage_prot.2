@@ -18,7 +18,7 @@ Standard C library
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "int syscall(SYS_subpage_prot, unsigned long " addr ", unsigned long " len ,
+.BI "int syscall(SYS_subpage_prot, unsigned long " addr ", unsigned long " size ,
 .BI "            uint32_t *" map );
 .fi
 .P
@@ -37,7 +37,7 @@ a page size of 64\ kB.
 The protection map is applied to the memory pages in the region starting at
 .I addr
 and continuing for
-.I len
+.I size
 bytes.
 Both of these arguments must be aligned to a 64-kB boundary.
 .P
@@ -49,7 +49,7 @@ inside a 64\ kB page
 (so, the number of 32-bit words pointed to by
 .I map
 should equate to the number of 64-kB pages specified by
-.IR len ).
+.IR size ).
 Each 2-bit field in the protection map is either 0 to allow any access,
 1 to prevent writes, or 2 or 3 to prevent all accesses.
 .SH RETURN VALUE
@@ -68,7 +68,7 @@ is not accessible.
 The
 .I addr
 or
-.I len
+.I size
 arguments are incorrect.
 Both of these arguments must be aligned to a multiple of the system page size,
 and they must not refer to a region outside of the

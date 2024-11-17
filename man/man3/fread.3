@@ -26,18 +26,18 @@ Standard C library
 .nf
 .B #include <stdio.h>
 .P
-.BI "size_t fread(void " ptr "[restrict ." size " * ." nmemb ],
-.BI "             size_t " size ", size_t " nmemb ,
+.BI "size_t fread(void " ptr "[restrict ." size " * ." n ],
+.BI "             size_t " size ", size_t " n ,
 .BI "             FILE *restrict " stream );
-.BI "size_t fwrite(const void " ptr "[restrict ." size " * ." nmemb ],
-.BI "             size_t " size ", size_t " nmemb ,
+.BI "size_t fwrite(const void " ptr "[restrict ." size " * ." n ],
+.BI "             size_t " size ", size_t " n ,
 .BI "             FILE *restrict " stream );
 .fi
 .SH DESCRIPTION
 The function
 .BR fread ()
 reads
-.I nmemb
+.I n
 items of data, each
 .I size
 bytes long, from the stream pointed to by
@@ -48,7 +48,7 @@ storing them at the location given by
 The function
 .BR fwrite ()
 writes
-.I nmemb
+.I n
 items of data, each
 .I size
 bytes long, to the stream pointed to by

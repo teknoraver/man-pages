@@ -16,8 +16,8 @@ Standard C library
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <sys/socket.h>
 .P
-.BI "int sendmmsg(int " sockfd ", struct mmsghdr *" msgvec \
-", unsigned int " vlen ","
+.BI "int sendmmsg(int " sockfd \
+", struct mmsghdr " msgvec [. n "], unsigned int " n ,
 .BI "             int " flags ");"
 .fi
 .SH DESCRIPTION
@@ -41,7 +41,7 @@ argument is a pointer to an array of
 .I mmsghdr
 structures.
 The size of this array is specified in
-.IR vlen .
+.IR n .
 .P
 The
 .I mmsghdr
@@ -81,11 +81,11 @@ The flags are the same as for
 A blocking
 .BR sendmmsg ()
 call blocks until
-.I vlen
+.I n
 messages have been sent.
 A nonblocking call sends as many messages as possible
 (up to the limit specified by
-.IR vlen )
+.IR n )
 and returns immediately.
 .P
 On return from
@@ -105,7 +105,7 @@ On success,
 returns the number of messages sent from
 .IR msgvec ;
 if this is less than
-.IR vlen ,
+.IR n ,
 the caller can retry with a further
 .BR sendmmsg ()
 call to send the remaining messages.
@@ -133,7 +133,7 @@ Linux 3.0,
 glibc 2.14.
 .SH NOTES
 The value specified in
-.I vlen
+.I n
 is capped to
 .B UIO_MAXIOV
 (1024).

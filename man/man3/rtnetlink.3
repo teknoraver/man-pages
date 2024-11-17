@@ -28,8 +28,8 @@ Standard C library
 .BI "struct rtattr *RTA_NEXT(struct rtattr *" rta \
 ", unsigned int " rtabuflen );
 .P
-.BI "unsigned int RTA_LENGTH(unsigned int " length );
-.BI "unsigned int RTA_SPACE(unsigned int "length );
+.BI "unsigned int RTA_LENGTH(unsigned int " size );
+.BI "unsigned int RTA_SPACE(unsigned int "size );
 .fi
 .SH DESCRIPTION
 All
@@ -44,7 +44,7 @@ returns true if
 .I rta
 points to a valid routing attribute;
 .I attrlen
-is the running length of the attribute buffer.
+is the running size of the attribute buffer.
 When not true then you must assume there are no more attributes in the
 message, even if
 .I attrlen
@@ -54,7 +54,7 @@ is nonzero.
 returns a pointer to the start of this attribute's data.
 .P
 .BI RTA_PAYLOAD( rta )
-returns the length of this attribute's data.
+returns the size of this attribute's data.
 .P
 .BI RTA_NEXT( rta ", " attrlen )
 gets the next attribute after
@@ -65,14 +65,14 @@ You should use
 .B RTA_OK
 to check the validity of the returned pointer.
 .P
-.BI RTA_LENGTH( len )
-returns the length which is required for
-.I len
+.BI RTA_LENGTH( size )
+returns the size which is required for
+.I size
 bytes of data plus the header.
 .P
-.BI RTA_SPACE( len )
+.BI RTA_SPACE( size )
 returns the amount of space which will be needed in a message with
-.I len
+.I size
 bytes of data.
 .SH STANDARDS
 Linux.

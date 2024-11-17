@@ -280,7 +280,7 @@ The fields of the
 structure are as follows:
 .TP
 .I event_len
-This is the length of the data for the current event and the offset
+This is the size of the data for the current event and the offset
 to the next event in the buffer.
 Unless the group identifies filesystem objects by file handles, the value of
 .I event_len
@@ -288,7 +288,7 @@ is always
 .BR FAN_EVENT_METADATA_LEN .
 For a group that identifies filesystem objects by file handles,
 .I event_len
-also includes the variable length file identifier records.
+also includes the variable size file identifier records.
 .TP
 .I vers
 This field holds a version number for the structure.
@@ -303,7 +303,7 @@ fanotify file descriptor.
 This field is not used.
 .TP
 .I metadata_len
-This is the length of the structure.
+This is the size of the structure.
 The field was introduced to facilitate the implementation of
 optional headers per event type.
 No such optional headers exist in the current implementation.
@@ -588,7 +588,7 @@ so monitoring different filesystem instances that report zero
 with the same fanotify group is not supported.
 .TP
 .I handle
-This field contains a variable-length structure of type
+This field contains a variable-size structure of type
 .IR "struct file_handle" .
 It is an opaque handle that corresponds to a specified object on a
 filesystem as returned by
@@ -704,33 +704,33 @@ fanotify event metadata returned by a
 .BR read (2)
 from an fanotify file descriptor:
 .TP
-.B FAN_EVENT_OK(meta, len)
-This macro checks the remaining length
-.I len
+.B FAN_EVENT_OK(meta, size)
+This macro checks the remaining size
+.I size
 of the buffer
 .I meta
-against the length of the metadata structure and the
+against the size of the metadata structure and the
 .I event_len
 field of the first metadata structure in the buffer.
 .TP
-.B FAN_EVENT_NEXT(meta, len)
-This macro uses the length indicated in the
+.B FAN_EVENT_NEXT(meta, size)
+This macro uses the size indicated in the
 .I event_len
 field of the metadata structure pointed to by
 .I meta
 to calculate the address of the next metadata structure that follows
 .IR meta .
-.I len
+.I size
 is the number of bytes of metadata that currently remain in the buffer.
 The macro returns a pointer to the next metadata structure that follows
 .IR meta ,
 and reduces
-.I len
+.I size
 by the number of bytes in the metadata structure that
 has been skipped over (i.e., it subtracts
 .I meta\->event_len
 from
-.IR len ).
+.IR size ).
 .P
 In addition, there is:
 .TP
@@ -1002,7 +1002,7 @@ capability is set for programs executed by unprivileged users.
 If a call to
 .BR read (2)
 processes multiple events from the fanotify queue and an error occurs,
-the return value will be the total length of the events successfully
+the return value will be the total size of the events successfully
 copied to the user-space buffer before the error occurred.
 The return value will not be \-1, and
 .I errno
@@ -1066,7 +1066,7 @@ handle_events(int fd)
 {
     const struct fanotify_event_metadata *metadata;
     struct fanotify_event_metadata buf[200];
-    ssize_t len;
+    ssize_t size;
     char path[PATH_MAX];
     ssize_t path_len;
     char procfd_path[PATH_MAX];
@@ -1078,15 +1078,15 @@ handle_events(int fd)
 \&
         /* Read some events. */
 \&
-        len = read(fd, buf, sizeof(buf));
-        if (len == \-1 && errno != EAGAIN) {
+        size = read(fd, buf, sizeof(buf));
+        if (size == \-1 && errno != EAGAIN) {
             perror("read");
             exit(EXIT_FAILURE);
         }
 \&
         /* Check if end of available data reached. */
 \&
-        if (len <= 0)
+        if (size <= 0)
             break;
 \&
         /* Point to the first event in the buffer. */
@@ -1095,7 +1095,7 @@ handle_events(int fd)
 \&
         /* Loop over all events in the buffer. */
 \&
-        while (FAN_EVENT_OK(metadata, len)) {
+        while (FAN_EVENT_OK(metadata, size)) {
 \&
             /* Check that run\-time and compile\-time structures match. */
 \&
@@ -1149,7 +1149,7 @@ handle_events(int fd)
 \&
             /* Advance to next event. */
 \&
-            metadata = FAN_EVENT_NEXT(metadata, len);
+            metadata = FAN_EVENT_NEXT(metadata, size);
         }
     }
 }
@@ -1322,7 +1322,7 @@ int
 main(int argc, char *argv[])
 {
     int fd, ret, event_fd, mount_fd;
-    ssize_t len, path_len;
+    ssize_t size, path_len;
     char path[PATH_MAX];
     char procfd_path[PATH_MAX];
     char events_buf[BUF_SIZE];
@@ -1367,8 +1367,8 @@ main(int argc, char *argv[])
 \&
     /* Read events from the event queue into a buffer. */
 \&
-    len = read(fd, events_buf, sizeof(events_buf));
-    if (len == \-1 && errno != EAGAIN) {
+    size = read(fd, events_buf, sizeof(events_buf));
+    if (size == \-1 && errno != EAGAIN) {
         perror("read");
         exit(EXIT_FAILURE);
     }
@@ -1376,8 +1376,8 @@ main(int argc, char *argv[])
     /* Process all events within the buffer. */
 \&
     for (metadata = (struct fanotify_event_metadata *) events_buf;
-            FAN_EVENT_OK(metadata, len);
-            metadata = FAN_EVENT_NEXT(metadata, len)) {
+            FAN_EVENT_OK(metadata, size);
+            metadata = FAN_EVENT_NEXT(metadata, size)) {
         fid = (struct fanotify_event_info_fid *) (metadata + 1);
         file_handle = (struct file_handle *) fid\->handle;
 \&

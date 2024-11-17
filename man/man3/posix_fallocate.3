@@ -13,7 +13,7 @@ Standard C library
 .nf
 .B #include <fcntl.h>
 .P
-.BI "int posix_fallocate(int " fd ", off_t " offset ", off_t " len );
+.BI "int posix_fallocate(int " fd ", off_t " offset ", off_t " size );
 .fi
 .P
 .ad l
@@ -35,7 +35,7 @@ file descriptor
 for the bytes in the range starting at
 .I offset
 and continuing for
-.I len
+.I size
 bytes.
 After a successful call to
 .BR posix_fallocate (),
@@ -43,7 +43,7 @@ subsequent writes to bytes in the specified range are
 guaranteed not to fail because of lack of disk space.
 .P
 If the size of the file is less than
-.IR offset + len ,
+.IR offset + size ,
 then the file is increased to this size;
 otherwise the file size is left unchanged.
 .SH RETURN VALUE
@@ -59,7 +59,7 @@ is not set.
 is not a valid file descriptor, or is not opened for writing.
 .TP
 .B EFBIG
-.I offset+len
+.I offset+size
 exceeds the maximum file size.
 .TP
 .B EINTR
@@ -68,7 +68,7 @@ A signal was caught during execution.
 .B EINVAL
 .I offset
 was less than 0, or
-.I len
+.I size
 was less than or equal to 0, or the underlying filesystem does not
 support the operation.
 .TP
@@ -120,7 +120,7 @@ POSIX.1-2008 says that an implementation
 give the
 .B EINVAL
 error if
-.I len
+.I size
 was 0, or
 .I offset
 was less than 0.
@@ -129,13 +129,13 @@ POSIX.1-2001 says that an implementation
 give the
 .B EINVAL
 error if
-.I len
+.I size
 is less than 0, or
 .I offset
 was less than 0, and
 .I may
 give the error if
-.I len
+.I size
 equals zero.
 .SH CAVEATS
 In the glibc implementation,

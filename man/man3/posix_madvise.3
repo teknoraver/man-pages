@@ -12,7 +12,7 @@ Standard C library
 .nf
 .B #include <sys/mman.h>
 .P
-.BI "int posix_madvise(void " addr [. len "], size_t " len ", int " advice );
+.BI "int posix_madvise(void " addr [. size "], size_t " size ", int " advice );
 .fi
 .P
 .RS -4
@@ -31,7 +31,7 @@ function allows an application to advise the system about its expected
 patterns of usage of memory in the address range starting at
 .I addr
 and continuing for
-.I len
+.I size
 bytes.
 The system is free to use this advice in order to improve the performance
 of memory accesses (or to ignore the advice altogether), but calling
@@ -75,7 +75,7 @@ On failure, it returns a positive error number.
 .B EINVAL
 .I addr
 is not a multiple of the system page size or
-.I len
+.I size
 is negative.
 .TP
 .B EINVAL
@@ -87,10 +87,10 @@ Addresses in the specified range are partially or completely outside
 the caller's address space.
 .SH VERSIONS
 POSIX.1 permits an implementation to generate an error if
-.I len
+.I size
 is 0.
 On Linux, specifying
-.I len
+.I size
 as 0 is permitted (as a successful no-op).
 .P
 In glibc, this function is implemented using

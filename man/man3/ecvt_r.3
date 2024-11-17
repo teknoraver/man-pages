@@ -20,17 +20,17 @@ Standard C library
 .P
 .BI "[[deprecated]] int ecvt_r(double " number ", int " ndigits ,
 .BI "                          int *restrict " decpt ", int *restrict " sign ,
-.BI "                          char *restrict " buf ", size_t " len );
+.BI "                          char *restrict " buf ", size_t " size );
 .BI "[[deprecated]] int fcvt_r(double " number ", int " ndigits ,
 .BI "                          int *restrict " decpt ", int *restrict " sign ,
-.BI "                          char *restrict " buf ", size_t " len );
+.BI "                          char *restrict " buf ", size_t " size );
 .P
 .BI "[[deprecated]] int qecvt_r(long double " number ", int " ndigits ,
 .BI "                          int *restrict " decpt ", int *restrict " sign ,
-.BI "                          char *restrict " buf ", size_t " len );
+.BI "                          char *restrict " buf ", size_t " size );
 .BI "[[deprecated]] int qfcvt_r(long double " number ", int " ndigits ,
 .BI "                          int *restrict " decpt ", int *restrict " sign ,
-.BI "                          char *restrict " buf ", size_t " len );
+.BI "                          char *restrict " buf ", size_t " size );
 .fi
 .P
 .RS -4
@@ -63,7 +63,7 @@ respectively, except that they do not return their result in a static
 buffer, but instead use the supplied
 .I buf
 of size
-.IR len .
+.IR size .
 See
 .BR ecvt (3)
 and

@@ -413,7 +413,7 @@ The specification in each line takes the form of
 three numbers delimited by white space.
 The first two numbers specify the starting user ID in
 each of the two user namespaces.
-The third number specifies the length of the mapped range.
+The third number specifies the size of the mapped range.
 In detail, the fields are interpreted as follows:
 .IP (1) 5
 The start of the range of user IDs in
@@ -446,7 +446,7 @@ to see the mapping of user IDs into the user namespace of the process
 that created this user namespace.
 .RE
 .IP (3)
-The length of the range of user IDs that is mapped between the two
+The size of the range of user IDs that is mapped between the two
 user namespaces.
 .P
 System calls that return user IDs (group IDs)\[em]for example,
@@ -483,7 +483,7 @@ $ \fBcat /proc/$$/uid_map\fP
 This mapping tells us
 that the range starting at user ID 0 in this namespace
 maps to a range starting at 0 in the (nonexistent) parent namespace,
-and the length of the range is the largest 32-bit unsigned integer.
+and the size of the range is the largest 32-bit unsigned integer.
 This leaves 4294967295 (the 32-bit signed \-1 value) unmapped.
 This is deliberate:
 .I (uid_t)\~\-1
@@ -1207,7 +1207,7 @@ usage(char *pname)
     fpe("\[rs]n");
     fpe("Map strings for \-M and \-G consist of records of the form:\[rs]n");
     fpe("\[rs]n");
-    fpe("    ID\-inside\-ns   ID\-outside\-ns   len\[rs]n");
+    fpe("    ID\-inside\-ns   ID\-outside\-ns   size\[rs]n");
     fpe("\[rs]n");
     fpe("A map string can contain multiple records, separated"
         " by commas;\[rs]n");
@@ -1222,7 +1222,7 @@ usage(char *pname)
    GID mapping consists of one or more newline\-delimited records
    of the form:
 \&
-       ID_inside\-ns    ID\-outside\-ns   length
+       ID_inside\-ns    ID\-outside\-ns   size
 \&
    Requiring the user to supply a string that contains newlines is
    of course inconvenient for command\-line use. Thus, we permit the

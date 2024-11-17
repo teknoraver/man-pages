@@ -164,13 +164,13 @@ main(void)
     char    *p;
     char    *buf1;
     char    *buf2;
-    size_t  len, maxsize;
+    size_t  len, size;
 \&
-    maxsize = strlen("Hello ") + strlen("world") + strlen("!") + 1;
-    buf1 = malloc(sizeof(*buf1) * maxsize);
+    size = strlen("Hello ") + strlen("world") + strlen("!") + 1;
+    buf1 = malloc(sizeof(*buf1) * size);
     if (buf1 == NULL)
         err(EXIT_FAILURE, "malloc()");
-    buf2 = malloc(sizeof(*buf2) * maxsize);
+    buf2 = malloc(sizeof(*buf2) * size);
     if (buf2 == NULL)
         err(EXIT_FAILURE, "malloc()");
 \&

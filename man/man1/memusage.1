@@ -54,7 +54,7 @@ contains three fields:
 Sum of \fIsize\fR arguments of all
 .BR malloc (3)
 calls,
-products of arguments (\fInmemb\fR*\fIsize\fR) of all
+products of arguments (\fIn\fR*\fIsize\fR) of all
 .BR calloc (3)
 calls,
 and sum of \fIlength\fR arguments of all
@@ -70,7 +70,7 @@ the sum of all such differences (new size minus old size) is added.
 .B "heap peak"
 Maximum of all \fIsize\fR arguments of
 .BR malloc (3),
-all products of \fInmemb\fR*\fIsize\fR of
+all products of \fIn\fR*\fIsize\fR of
 .BR calloc (3),
 all \fIsize\fR arguments of
 .BR realloc (3),

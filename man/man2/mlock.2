@@ -14,10 +14,10 @@ Standard C library
 .nf
 .B #include <sys/mman.h>
 .P
-.BI "int mlock(const void " addr [. len "], size_t " len );
-.BI "int mlock2(const void " addr [. len "], size_t " len ", \
+.BI "int mlock(const void " addr [. size "], size_t " size );
+.BI "int mlock2(const void " addr [. size "], size_t " size ", \
 unsigned int " flags );
-.BI "int munlock(const void " addr [. len "], size_t " len );
+.BI "int munlock(const void " addr [. size "], size_t " size );
 .P
 .BI "int mlockall(int " flags );
 .B int munlockall(void);
@@ -45,7 +45,7 @@ Memory locking and unlocking are performed in units of whole pages.
 locks pages in the address range starting at
 .I addr
 and continuing for
-.I len
+.I size
 bytes.
 All pages that contain a part of the specified address range are
 guaranteed to be resident in RAM when the call returns successfully;
@@ -58,7 +58,7 @@ the pages are guaranteed to stay in RAM until later unlocked.
 also locks pages in the specified range starting at
 .I addr
 and continuing for
-.I len
+.I size
 bytes.
 However, the state of the pages contained in that range after the call
 returns successfully will depend on the value in the
@@ -85,7 +85,7 @@ behaves exactly the same as
 unlocks pages in the address range starting at
 .I addr
 and continuing for
-.I len
+.I size
 bytes.
 After this call, all pages that contain a part of the specified
 memory range can be moved to external swap space again by the kernel.
@@ -182,7 +182,7 @@ Some or all of the specified address range could not be locked.
 and
 .BR munlock ())
 The result of the addition
-.IR addr + len
+.IR addr + size
 was less than
 .I addr
 (e.g., the addition may have resulted in an overflow).
@@ -457,7 +457,7 @@ a bug in the kernel's accounting of locked memory for unprivileged processes
 meant that if the region specified by
 .I addr
 and
-.I len
+.I size
 overlapped an existing lock,
 then the already locked bytes in the overlapping region were counted twice
 when checking against the limit.

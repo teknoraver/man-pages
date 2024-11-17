@@ -15,7 +15,7 @@ Real-time library
 .P
 .B "#include <aio.h>"
 .P
-.BI "int aio_suspend(const struct aiocb *const " aiocb_list "[], int " nitems ,
+.BI "int aio_suspend(const struct aiocb *const " aiocb_list "[], int " n ,
 .BI "                const struct timespec *restrict " timeout );
 .fi
 .SH DESCRIPTION
@@ -37,7 +37,7 @@ structure, see
 .BR nanosleep (2).)
 .P
 The
-.I nitems
+.I n
 argument specifies the number of items in
 .IR aiocb_list .
 Each item in the list pointed to by

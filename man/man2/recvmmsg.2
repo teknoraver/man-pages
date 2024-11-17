@@ -19,8 +19,8 @@ Standard C library
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <sys/socket.h>
 .P
-.BI "int recvmmsg(int " sockfd ", struct mmsghdr *" msgvec \
-", unsigned int " vlen ","
+.BI "int recvmmsg(int " sockfd \
+", struct mmsghdr " msgvec [. n "], unsigned int " n ,
 .BI "             int " flags ", struct timespec *" timeout ");"
 .fi
 .SH DESCRIPTION
@@ -45,7 +45,7 @@ argument is a pointer to an array of
 .I mmsghdr
 structures.
 The size of this array is specified in
-.IR vlen .
+.IR n .
 .P
 The
 .I mmsghdr
@@ -105,12 +105,12 @@ is NULL, then the operation blocks indefinitely.
 A blocking
 .BR recvmmsg ()
 call blocks until
-.I vlen
+.I n
 messages have been received
 or until the timeout expires.
 A nonblocking call reads as many messages as are available
 (up to the limit specified by
-.IR vlen )
+.IR n )
 and returns immediately.
 .P
 On return from
@@ -158,7 +158,7 @@ argument does not work as intended.
 .\" http://thread.gmane.org/gmane.linux.man/5677
 The timeout is checked only after the receipt of each datagram,
 so that if up to
-.I vlen\-1
+.I n\-1
 datagrams are received before the timeout expires,
 but then no further datagrams are received, the call will block forever.
 .P

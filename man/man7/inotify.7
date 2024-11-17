@@ -134,10 +134,10 @@ The
 field counts all of the bytes in
 .IR name ,
 including the null bytes;
-the length of each
+the size of each
 .I inotify_event
 structure is thus
-.IR "sizeof(struct inotify_event)+len" .
+.IR "sizeof(struct inotify_event)+size" .
 .P
 The behavior when the buffer given to
 .BR read (2)
@@ -910,7 +910,7 @@ Listening for events stopped.
 \&
 /* Read all available inotify events from the file descriptor \[aq]fd\[aq].
    wd is the table of watch descriptors for the directories in argv.
-   argc is the length of wd and argv.
+   argc is the size of wd and argv.
    argv is the list of watched directories.
    Entry 0 of wd and argv is unused. */
 \&
@@ -926,7 +926,7 @@ handle_events(int fd, int *wd, int argc, char* argv[])
     char buf[4096]
         __attribute__ ((aligned(__alignof__(struct inotify_event))));
     const struct inotify_event *event;
-    ssize_t len;
+    ssize_t size;
 \&
     /* Loop while events can be read from inotify file descriptor. */
 \&
@@ -934,8 +934,8 @@ handle_events(int fd, int *wd, int argc, char* argv[])
 \&
         /* Read some events. */
 \&
-        len = read(fd, buf, sizeof(buf));
-        if (len == \-1 && errno != EAGAIN) {
+        size = read(fd, buf, sizeof(buf));
+        if (size == \-1 && errno != EAGAIN) {
             perror("read");
             exit(EXIT_FAILURE);
         }
@@ -944,12 +944,12 @@ handle_events(int fd, int *wd, int argc, char* argv[])
            it returns \-1 with errno set to EAGAIN. In that case,
            we exit the loop. */
 \&
-        if (len <= 0)
+        if (size <= 0)
             break;
 \&
         /* Loop over all events in the buffer. */
 \&
-        for (char *ptr = buf; ptr < buf + len;
+        for (char *ptr = buf; ptr < buf + size;
                 ptr += sizeof(struct inotify_event) + event\->len) {
 \&
             event = (const struct inotify_event *) ptr;

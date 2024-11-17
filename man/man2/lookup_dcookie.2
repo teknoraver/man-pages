@@ -15,8 +15,8 @@ Standard C library
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "int syscall(SYS_lookup_dcookie, uint64_t " cookie ", char *" buffer ,
-.BI "            size_t " len );
+.BI "int syscall(SYS_lookup_dcookie, uint64_t " cookie ", char " buffer [. size ],
+.BI "            size_t " size );
 .fi
 .P
 .IR Note :

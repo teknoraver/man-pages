@@ -80,12 +80,12 @@ Linux provides this system call, with different arguments:
 M68K:
 .nf
 .BI "int cacheflush(unsigned long " addr ", int " scope ", int " cache ,
-.BI "               unsigned long " len );
+.BI "               unsigned long " size );
 .fi
 .TP
 SH:
 .nf
-.BI "int cacheflush(unsigned long " addr ", unsigned long " len ", int " op );
+.BI "int cacheflush(unsigned long " addr ", unsigned long " size ", int " op );
 .fi
 .TP
 NDS32:

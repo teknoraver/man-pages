@@ -19,9 +19,9 @@ Standard C library
 .nf
 .B #include <wchar.h>
 .P
-.BI "size_t wcsrtombs(char " dest "[restrict ." len "], \
+.BI "size_t wcsrtombs(char " dest "[restrict ." size "], \
 const wchar_t **restrict " src ,
-.BI "                 size_t " len ", mbstate_t *restrict " ps );
+.BI "                 size_t " size ", mbstate_t *restrict " ps );
 .fi
 .SH DESCRIPTION
 If
@@ -35,7 +35,7 @@ the wide-character string
 to a multibyte string starting at
 .IR dest .
 At most
-.I len
+.I size
 bytes are written to
 .IR dest .
 The shift state
@@ -65,7 +65,7 @@ and
 is set to
 .BR EILSEQ .
 .IP \[bu]
-The length limit forces a stop.
+The size limit forces a stop.
 In this case,
 .I *src
 is left pointing
@@ -90,11 +90,11 @@ is returned.
 If
 .I dest
 is NULL,
-.I len
+.I size
 is ignored,
 and the conversion proceeds as above, except that the converted bytes
 are not written out to memory, and that
-no length limit exists.
+no size limit exists.
 .P
 In both of the above cases,
 if
@@ -105,7 +105,7 @@ state known only to the
 function is used instead.
 .P
 The programmer must ensure that there is room for at least
-.I len
+.I size
 bytes
 at
 .IR dest .

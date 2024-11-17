@@ -19,9 +19,9 @@ Standard C library
 .nf
 .B #include <sys/socket.h>
 .P
-.BI "ssize_t send(int " sockfd ", const void " buf [. len "], size_t " len \
+.BI "ssize_t send(int " sockfd ", const void " buf [. size "], size_t " size \
 ", int " flags );
-.BI "ssize_t sendto(int " sockfd ", const void " buf [. len "], size_t " len \
+.BI "ssize_t sendto(int " sockfd ", const void " buf [. size "], size_t " size \
 ", int " flags ,
 .BI "               const struct sockaddr *" dest_addr ", socklen_t " addrlen );
 .BI "ssize_t sendmsg(int " sockfd ", const struct msghdr *" msg \
@@ -56,7 +56,7 @@ Also, the following call
 .P
 .in +4n
 .EX
-send(sockfd, buf, len, flags);
+send(sockfd, buf, size, flags);
 .EE
 .in
 .P
@@ -64,7 +64,7 @@ is equivalent to
 .P
 .in +4n
 .EX
-sendto(sockfd, buf, len, flags, NULL, 0);
+sendto(sockfd, buf, size, flags, NULL, 0);
 .EE
 .in
 .P
@@ -106,8 +106,8 @@ and
 .BR sendto (),
 the message is found in
 .I buf
-and has length
-.IR len .
+and has size
+.IR size .
 For
 .BR sendmsg (),
 the message is pointed to by the elements of the array
@@ -282,7 +282,7 @@ struct msghdr {
     struct iovec *msg_iov;        /* Scatter/gather array */
     size_t        msg_iovlen;     /* # elements in msg_iov */
     void         *msg_control;    /* Ancillary data, see below */
-    size_t        msg_controllen; /* Ancillary data buffer len */
+    size_t        msg_controllen; /* Ancillary data buffer size */
     int           msg_flags;      /* Flags (unused) */
 };
 .EE
@@ -310,7 +310,7 @@ You may send control information (ancillary data) using the
 and
 .I msg_controllen
 members.
-The maximum control buffer length the kernel can process is limited
+The maximum control buffer size the kernel can process is limited
 per socket by the value in
 .IR /proc/sys/net/core/optmem_max ;
 see

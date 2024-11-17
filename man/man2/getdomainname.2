@@ -16,8 +16,8 @@ Standard C library
 .nf
 .B #include <unistd.h>
 .P
-.BI "int getdomainname(char *" name ", size_t " len );
-.BI "int setdomainname(const char *" name ", size_t " len );
+.BI "int getdomainname(char *" name ", size_t " size );
+.BI "int setdomainname(const char *" name ", size_t " size );
 .fi
 .P
 .RS -4
@@ -46,7 +46,7 @@ process's UTS namespace.
 sets the domain name to the value given in the character array
 .IR name .
 The
-.I len
+.I size
 argument specifies the number of bytes in
 .IR name .
 (Thus,
@@ -56,8 +56,8 @@ does not require a terminating null byte.)
 .BR getdomainname ()
 returns the null-terminated domain name in the character array
 .IR name ,
-which has a length of
-.I len
+which has a size of
+.I size
 bytes.
 If the null-terminated domain name requires more than \fIlen\fP bytes,
 .BR getdomainname ()
@@ -76,7 +76,7 @@ can fail with the following errors:
 pointed outside of user address space.
 .TP
 .B EINVAL
-.I len
+.I size
 was negative or too large.
 .TP
 .B EPERM
@@ -95,8 +95,8 @@ under libc:
 .I name
 is NULL or
 .I name
-is longer than
-.I len
+is equal or longer than
+.I size
 bytes.
 .SH VERSIONS
 On most Linux architectures (including x86),
@@ -112,7 +112,7 @@ field returned from a call to
 None.
 .\" But they appear on most systems...
 .SH HISTORY
-Since Linux 1.0, the limit on the length of a domain name,
+Since Linux 1.0, the limit on the size of a domain name,
 including the terminating null byte, is 64 bytes.
 In older kernels, it was 8 bytes.
 .SH SEE ALSO

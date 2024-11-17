@@ -109,7 +109,7 @@ flag is passed to
 .BR recv (2),
 or
 .BR recvfrom (2),
-the real length of the packet on the wire is always returned,
+the real size of the packet on the wire is always returned,
 even when it is longer than the buffer.
 .SS Address types
 The
@@ -124,7 +124,7 @@ struct sockaddr_ll {
     int            sll_ifindex;  /* Interface number */
     unsigned short sll_hatype;   /* ARP hardware type */
     unsigned char  sll_pkttype;  /* Packet type */
-    unsigned char  sll_halen;    /* Length of address */
+    unsigned char  sll_halen;    /* Size of address */
     unsigned char  sll_addr[8];  /* Physical\-layer address */
 };
 .EE
@@ -169,7 +169,7 @@ These types make sense only for receiving.
 .I sll_addr
 .TQ
 .I sll_halen
-contain the physical-layer (e.g., IEEE 802.3) address and its length.
+contain the physical-layer (e.g., IEEE 802.3) address and its size.
 The exact interpretation depends on the device.
 .P
 When you send packets, it is enough to specify
@@ -210,7 +210,7 @@ structure as argument:
 struct packet_mreq {
     int            mr_ifindex;    /* interface index */
     unsigned short mr_type;       /* action */
-    unsigned short mr_alen;       /* address length */
+    unsigned short mr_alen;       /* address size */
     unsigned char  mr_address[8]; /* physical\-layer address */
 };
 .EE
@@ -255,8 +255,8 @@ It is defined as
 .EX
 struct tpacket_auxdata {
     __u32 tp_status;
-    __u32 tp_len;      /* packet length */
-    __u32 tp_snaplen;  /* captured length */
+    __u32 tp_len;      /* packet size */
+    __u32 tp_snaplen;  /* captured size */
     __u16 tp_mac;
     __u16 tp_net;
     __u16 tp_vlan_tci;
@@ -569,7 +569,7 @@ header for a IEEE 802.3 frame.
 When
 .B ETH_P_802_3
 is specified as protocol for sending the kernel creates the
-802.3 frame and fills out the length field; the user has to supply the LLC
+802.3 frame and fills out the size field; the user has to supply the LLC
 header to get a fully conforming packet.
 Incoming 802.3 packets are not multiplexed on the DSAP/SSAP protocol
 fields; instead they are supplied to the user as protocol
@@ -647,7 +647,7 @@ which is 16 bytes and describes the system limit for a network interface name.
 This means the names of network devices longer than 14 bytes
 will be truncated to fit into
 .IR spkt_device .
-All these lengths include the terminating null byte (\[aq]\[rs]0\[aq])).
+All these sizes include the terminating null byte (\[aq]\[rs]0\[aq])).
 .P
 Issues from this with old code typically show up with
 very long interface names used by the

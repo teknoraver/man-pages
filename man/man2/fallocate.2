@@ -18,7 +18,7 @@ Standard C library
 .B #include <fcntl.h>
 .P
 .BI "int fallocate(int " fd ", int " mode ", off_t " offset \
-", off_t " len ");"
+", off_t " size );
 .fi
 .SH DESCRIPTION
 This is a nonportable, Linux-specific system call.
@@ -33,7 +33,7 @@ for the file referred to by
 for the byte range starting at
 .I offset
 and continuing for
-.I len
+.I size
 bytes.
 .P
 The
@@ -48,16 +48,16 @@ is zero) of
 allocates the disk space within the range specified by
 .I offset
 and
-.IR len .
+.IR size .
 The file size (as reported by
 .BR stat (2))
 will be changed if
-.IR offset + len
+.IR offset + size
 is greater than the file size.
 Any subregion within the range specified by
 .I offset
 and
-.I len
+.I size
 that did not contain data before the call will be initialized to zero.
 This default behavior closely resembles the behavior of the
 .BR posix_fallocate (3)
@@ -67,7 +67,7 @@ and is intended as a method of optimally implementing that function.
 After a successful call, subsequent writes into the range specified by
 .I offset
 and
-.I len
+.I size
 are guaranteed not to fail because of lack of disk space.
 .P
 If the
@@ -76,7 +76,7 @@ flag is specified in
 .IR mode ,
 the behavior of the call is similar,
 but the file size will not be changed even if
-.IR offset + len
+.IR offset + size
 is greater than the file size.
 Preallocating zeroed blocks beyond the end of the file in this manner
 is useful for optimizing append workloads.
@@ -103,7 +103,7 @@ deallocates space (i.e., creates a hole)
 in the byte range starting at
 .I offset
 and continuing for
-.I len
+.I size
 bytes.
 Within the specified range, partial filesystem blocks are zeroed,
 and whole filesystem blocks are removed from the file.
@@ -150,15 +150,15 @@ removes a byte range from a file, without leaving a hole.
 The byte range to be collapsed starts at
 .I offset
 and continues for
-.I len
+.I size
 bytes.
 At the completion of the operation,
 the contents of the file starting at the location
-.I offset+len
+.I offset+size
 will be appended at the location
 .IR offset ,
 and the file will be
-.I len
+.I size
 bytes smaller.
 .P
 A filesystem may place limitations on the granularity of the operation,
@@ -166,7 +166,7 @@ in order to ensure efficient implementation.
 Typically,
 .I offset
 and
-.I len
+.I size
 must be a multiple of the filesystem logical block size,
 which varies according to the filesystem type and configuration.
 If a filesystem has such a requirement,
@@ -178,7 +178,7 @@ if this requirement is violated.
 If the region specified by
 .I offset
 plus
-.I len
+.I size
 reaches or passes the end of file, an error is returned;
 instead, use
 .BR ftruncate (2)
@@ -206,7 +206,7 @@ in
 zeros space in the byte range starting at
 .I offset
 and continuing for
-.I len
+.I size
 bytes.
 Within the specified range, blocks are preallocated for the regions
 that span the holes in the file.
@@ -225,7 +225,7 @@ flag is additionally specified in
 .IR mode ,
 the behavior of the call is similar,
 but the file size will not be changed even if
-.IR offset + len
+.IR offset + size
 is greater than the file size.
 This behavior is the same as when preallocating space with
 .B FALLOC_FL_KEEP_SIZE
@@ -260,15 +260,15 @@ overwriting any existing data.
 The hole will start at
 .I offset
 and continue for
-.I len
+.I size
 bytes.
 When inserting the hole inside file, the contents of the file starting at
 .I offset
 will be shifted upward (i.e., to a higher file offset) by
-.I len
+.I size
 bytes.
 Inserting a hole inside a file increases the file size by
-.I len
+.I size
 bytes.
 .P
 This mode has the same limitations as
@@ -313,7 +313,7 @@ is set to indicate the error.
 is not a valid file descriptor, or is not opened for writing.
 .TP
 .B EFBIG
-.IR offset + len
+.IR offset + size
 exceeds the maximum file size.
 .TP
 .B EFBIG
@@ -329,10 +329,10 @@ A signal was caught during execution; see
 .B EINVAL
 .I offset
 was less than 0, or
-.I len
-.\" FIXME . (raise a kernel bug) Probably the len==0 case should be
+.I size
+.\" FIXME . (raise a kernel bug) Probably the size==0 case should be
 .\" a no-op, rather than an error. That would be consistent with
-.\" similar APIs for the len==0 case.
+.\" similar APIs for the size==0 case.
 .\" See "Re: [PATCH] fallocate.2: add FALLOC_FL_PUNCH_HOLE flag definition"
 .\" 21 Sep 2012
 .\" http://thread.gmane.org/gmane.linux.file-systems/48331/focus=1193526
@@ -345,7 +345,7 @@ is
 and the range specified by
 .I offset
 plus
-.I len
+.I size
 reaches or passes the end of the file.
 .TP
 .B EINVAL
@@ -365,7 +365,7 @@ or
 but either
 .I offset
 or
-.I len
+.I size
 is not a multiple of the filesystem block size.
 .TP
 .B EINVAL
