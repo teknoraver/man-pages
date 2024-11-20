@@ -64,7 +64,13 @@ The specified data will be accessed only once.
 .IP
 Before Linux 2.6.18, \fBPOSIX_FADV_NOREUSE\fP had the
 same semantics as \fBPOSIX_FADV_WILLNEED\fP.
-This was probably a bug; since Linux 2.6.18, this flag is a no-op.
+This was probably a bug;
+from Linux 2.6.18 until Linux 6.2 this flag was a no-op.
+Since Linux 6.3,
+.B POSIX_FADV_NOREUSE
+signals that the kernel page replacement algorithm
+can ignore access to mapped page cache marked by this flag.
+This is useful, for example, while streaming large files.
 .TP
 .B POSIX_FADV_WILLNEED
 The specified data will be accessed in the near future.
@@ -130,6 +136,8 @@ in this case.)
 Under Linux, \fBPOSIX_FADV_NORMAL\fP sets the readahead window to the
 default size for the backing device; \fBPOSIX_FADV_SEQUENTIAL\fP doubles
 this size, and \fBPOSIX_FADV_RANDOM\fP disables file readahead entirely.
+.B POSIX_FADV_NOREUSE
+does not modify the readahead window size.
 These changes affect the entire file, not just the specified region
 (but other open file handles to the same file are unaffected).
 .SS C library/kernel differences
