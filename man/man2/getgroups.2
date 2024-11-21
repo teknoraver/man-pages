@@ -209,6 +209,67 @@ cannot be larger than one more than this value.
 Since Linux 2.6.4, the maximum number of supplementary group IDs is also
 exposed via the Linux-specific read-only file,
 .IR /proc/sys/kernel/ngroups_max .
+.SH EXAMPLES
+.\" SRC BEGIN (agetgroups.c)
+.EX
+#include <err.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+\&
+#define MALLOC(n, T)  ((T *) reallocarray(NULL, n, sizeof(T)))
+\&
+static gid_t *agetgroups(size_t *ngids);
+\&
+int
+main(void)
+{
+    gid_t   *gids;
+    size_t  n;
+\&
+    gids = agetgroups(&n);
+    if (gids == NULL)
+        err(EXIT_FAILURE, "agetgroups");
+\&
+    if (n != 0) {
+        printf("%jd", (intmax_t) gids[0]);
+        for (size_t i = 1; i < n; i++)
+            printf(" %jd", (intmax_t) gids[i]);
+    }
+    puts("");
+\&
+    free(gids);
+    exit(EXIT_SUCCESS);
+}
+\&
+static gid_t *
+agetgroups(size_t *ngids)
+{
+    int    n;
+    gid_t  *gids;
+\&
+    n = getgroups(0, NULL);
+    if (n == \-1)
+        return NULL;
+\&
+    gids = MALLOC(n, gid_t);
+    if (gids == NULL)
+        return NULL;
+\&
+    n = getgroups(n, gids);
+    if (n == \-1) {
+        free(gids);
+        return NULL;
+    }
+\&
+    *ngids = n;
+    return gids;
+}
+.EE
+.\" SRC END
 .SH SEE ALSO
 .BR getgid (2),
 .BR setgid (2),
