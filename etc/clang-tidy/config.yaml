@@ -28,6 +28,7 @@ Checks: >
     -clang-analyzer-security.insecureAPI.strcpy,
     -clang-analyzer-unix.Malloc,
     -clang-diagnostic-c2x-extensions,
+    -clang-diagnostic-sign-conversion,
     -concurrency-mt-unsafe,
     -cppcoreguidelines-avoid-non-const-global-variables,
     -cppcoreguidelines-init-variables,
