@@ -14,6 +14,7 @@ Standard C library
 .nf
 .BR "#include <linux/landlock.h>" "  /* Definition of " LANDLOCK_* " constants */"
 .BR "#include <sys/syscall.h>" "     /* Definition of " SYS_* " constants */"
+.B #include <unistd.h>
 .P
 .B int syscall(SYS_landlock_create_ruleset,
 .BI "            const struct landlock_ruleset_attr *" attr ,
