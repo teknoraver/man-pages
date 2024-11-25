@@ -1,0 +1,35 @@
+#!/bin/bash
+#
+# Copyright 2024, Alejandro Colomar <alx@kernel.org>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+set -Eeuo pipefail;
+shopt -s lastpipe;
+
+err()
+{
+	>&2 echo "$(basename "$0"): error: $*";
+	exit 1;
+}
+
+if test $# -ne 2; then
+	err "Expected two arguments.";
+fi;
+
+p1="$(man -w "$1")";
+p2="$(man -w "$2")";
+
+printf '%s\n' "$1.XXXXXX" \
+| sed 's,.*/,,' \
+| xargs mktemp -t \
+| read -r t1;
+
+printf '%s\n' "$2.XXXXXX" \
+| sed 's,.*/,,' \
+| xargs mktemp -t \
+| read -r t2;
+
+groff -man -Tutf8 <"$p1" >"$t1";
+groff -man -Tutf8 <"$p2" >"$t2";
+
+diff -u "$t1" "$t2";

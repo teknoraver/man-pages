@@ -1,0 +1,38 @@
+.\" Copyright 2024, Alejandro Colomar <alx@kernel.org>
+.\"
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.\"
+.TH diffman 1 (date) "Linux man-pages (unreleased)"
+.SH NAME
+diffman
+\-
+compare formatted manual pages line by line
+.SH SYNOPSIS
+.SY diffman
+.I page1
+.I page2
+.YS
+.SH DESCRIPTION
+The
+.B diffman
+command
+formats two manual pages,
+and then runs
+.BR diff (1)
+on the formatted outputs.
+.P
+The pages are specified with the same syntax that
+.BR man (1)
+accepts.
+.P
+The output is suitable for piping to
+.IR less\~\-R .
+.SH EXAMPLES
+.EX
+.RB $\~ "diffman membarrier man2/membarrier.2 | less \-R" ;
+$
+.EE
+.SH SEE ALSO
+.BR diff (1),
+.BR man (1),
+.BR less (1)
