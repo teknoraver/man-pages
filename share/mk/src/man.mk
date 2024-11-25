@@ -24,7 +24,6 @@ MANPAGES := $(shell $(FIND) $(MANDIR)/* -type f \
 
 
 MANINTROPAGES := $(shell $(FIND) $(MANDIR)/* -type f \
-		| $(GREP) -E '$(MANEXT)' \
 		| $(GREP) -E '/intro$(MANEXT)' \
 		| $(SORTMAN) \
 		| $(SED) 's,:,\\:,g')
