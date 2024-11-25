@@ -14,18 +14,18 @@ include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 include $(MAKEFILEDIR)/src/sortman.mk
 
 
-MANEXT := \(\.[[:digit:]]\([[:alpha:]][[:alnum:]]*\)\?\>\|\.man\)\+\(\.man\|\.in\)*$
+MANEXT := (\.[[:digit:]]([[:alpha:]][[:alnum:]]*)?\>|\.man)+(\.man|\.in)*$
 
 
 MANPAGES := $(shell $(FIND) $(MANDIR)/* -type f \
-		| $(GREP) '$(MANEXT)' \
+		| $(GREP) -E '$(MANEXT)' \
 		| $(SORTMAN) \
 		| $(SED) 's,:,\\:,g')
 
 
 MANINTROPAGES := $(shell $(FIND) $(MANDIR)/* -type f \
-		| $(GREP) '$(MANEXT)' \
-		| $(GREP) '/intro$(MANEXT)' \
+		| $(GREP) -E '$(MANEXT)' \
+		| $(GREP) -E '/intro$(MANEXT)' \
 		| $(SORTMAN) \
 		| $(SED) 's,:,\\:,g')
 
@@ -44,12 +44,12 @@ $(foreach s, $(MANSECTIONS),                                                  \
 
 
 NONSO_MAN := $(shell $(FIND) $(MANDIR)/* -type f \
-		| $(GREP) '$(MANEXT)' \
+		| $(GREP) -E '$(MANEXT)' \
 		| $(XARGS) $(GREP) -l '^\.TH ' \
 		| $(SORTMAN) \
 		| $(SED) 's,:,\\:,g')
 NONSO_MDOC := $(shell $(FIND) $(MANDIR)/* -type f \
-		| $(GREP) '$(MANEXT)' \
+		| $(GREP) -E '$(MANEXT)' \
 		| $(XARGS) $(GREP) -l '^\.Dt ' \
 		| $(SORTMAN) \
 		| $(SED) 's,:,\\:,g')

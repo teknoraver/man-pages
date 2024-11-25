@@ -21,7 +21,7 @@ _EX_TU_src := \
 	$(patsubst $(MANDIR)/%, $(_MANDIR)/%, \
 		$(shell \
 			$(FIND) $(MANDIR)/* -type f \
-			| $(GREP) '$(MANEXT)' \
+			| $(GREP) -E '$(MANEXT)' \
 			| $(XARGS) $(GREP) -H '^\.\\" SRC BEGIN ' \
 			| $(SED) 's,:\.\\" SRC BEGIN (,.d/,' \
 			| $(SED) 's/)//' \
