@@ -6,7 +6,10 @@ ifndef MAKEFILE_SRC_SORTMAN_INCLUDED
 MAKEFILE_SRC_SORTMAN_INCLUDED := 1
 
 
-SORTMAN := $(CURDIR)/scripts/sortman
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
+
+
+SORTMAN := $(SRCBINDIR)/sortman
 
 
 endif  # include guard
