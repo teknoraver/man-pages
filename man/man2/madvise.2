@@ -702,6 +702,13 @@ The map exists, but the area maps something that isn't a file.
 .BR MADV_COLLAPSE )
 Could not charge hugepage to cgroup: cgroup limit exceeded.
 .TP
+.B EBUSY
+(for
+.BR MADV_SOFT_OFFLINE )
+Any pages within the specified address range
+could not be offlined.
+This might occur if the page is currently in use or locked.
+.TP
 .B EFAULT
 .I advice
 is
