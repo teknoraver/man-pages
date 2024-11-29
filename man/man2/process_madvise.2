@@ -54,7 +54,9 @@ This value must be less than or equal to
 or accessible via the call
 .IR sysconf(_SC_IOV_MAX) ).
 .P
-The
+If manipulating another process,
+or before Linux 6.13,
+the
 .I advice
 argument is one of the following values:
 .TP
@@ -73,6 +75,10 @@ See
 .B MADV_WILLNEED
 See
 .BR madvise (2).
+.P
+Since Linux 6.13,
+when manipulating the calling process,
+any advice flag is permitted.
 .P
 The
 .I flags
