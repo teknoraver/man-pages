@@ -41,7 +41,9 @@ Description
     Style guide
 	URIs should always be enclosed in <>.
 
-	The correct inter-sentence space amount is two.
+	The correct inter-sentence space amount is two.  See some
+	history about this:
+	<https://web.archive.org/web/20171217060354/http://www.heracliteanriver.com/?p=324>
 
     Trailer
 	Sign your patch with "Signed-off-by:".  Read about the
