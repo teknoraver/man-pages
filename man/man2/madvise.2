@@ -676,6 +676,100 @@ or secret memory regions created using
 Note that with
 .BR MADV_POPULATE_WRITE ,
 the process can be killed at any moment when the system runs out of memory.
+.TP
+.BR MADV_GUARD_INSTALL " (since Linux 6.13)"
+Install a lightweight guard region
+into the range specified by
+.I addr
+and
+.IR size ,
+causing any read or write in the range to result in a
+.B SIGSEGV
+signal being raised.
+.IP
+If the region maps memory pages
+they will be cleared as part of the operation,
+though if
+.B MADV_GUARD_INSTALL
+is applied to regions
+containing pre-existing lightweight guard regions,
+they are left in place.
+.IP
+This operation is supported
+only for writable anonymous private mappings
+which have not been mlock'd.
+An
+.B EINVAL
+error is returned if it is attempted on any other kind of mapping.
+.IP
+This operation is more efficient than mapping a new region of memory
+.BR PROT_NONE ,
+as it does not require the establishment of new mappings.
+Instead,
+regions of an existing mapping
+simply have their page tables
+manipulated to establish the desired behavior.
+No additional memory is used.
+.IP
+Lightweight guard regions remain on fork
+(except for any parts which have had
+.B MADV_WIPEONFORK
+applied to them),
+and are not removed by
+.BR MADV_DONTNEED ,
+.BR MADV_FREE ,
+.BR MADV_PAGEOUT ,
+or
+.BR MADV_COLD .
+.IP
+Attempting to
+.BR mlock (2)
+lightweight guard regions will fail,
+as will
+.B MADV_POPULATE_READ
+or
+.BR MADV_POPULATE_WRITE .
+.IP
+If the mapping has its attributes changed,
+or is split or partially unmapped,
+any existing guard regions remain in place
+(except if they are unmapped).
+.IP
+If a mapping is moved using
+.BR mremap (2),
+lightweight guard regions are moved with it.
+.IP
+Lightweight guard regions are removed when unmapped,
+on process teardown,
+or when the
+.B MADV_GUARD_REMOVE
+operation is applied to them.
+.TP
+.BR MADV_GUARD_REMOVE " (since Linux 6.13)"
+Remove any lightweight guard regions
+which exist in the range specified by
+.I addr
+and
+.IR size .
+.IP
+All mappings in the range
+other than lightweight guard regions
+are left in place
+(including mlock'd mappings).
+The operation is,
+however,
+valid only for writable anonymous private mappings,
+returning an
+.B EINVAL
+error otherwise.
+.IP
+When lightweight guard regions are removed,
+they act as empty regions of the containing mapping.
+Since only writable anonymous private mappings are supported,
+they therefore become zero-fill-on-demand pages.
+.IP
+If any transparent huge pages are encountered in the operation,
+they are left in place.
 .SH RETURN VALUE
 On success,
 .BR madvise ()
@@ -793,6 +887,14 @@ or
 .BR VM_PFNMAP ,
 or secret memory regions created using
 .BR memfd_secret(2) .
+.TP
+.B EINVAL
+.I advice
+is
+.B MADV_GUARD_INSTALL
+or
+.BR MADV_GUARD_REMOVE ,
+but the specified address range contains an unsupported mapping.
 .TP
 .B EIO
 (for
