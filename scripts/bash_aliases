@@ -114,7 +114,7 @@ duffman()
 	| while read f; do \
 		local sys="$(basename "$f")";
 
-		diffman "$sys" "$f";
+		diffman "$@" "$sys" "$f";
 	done \
 	| less -R;
 
