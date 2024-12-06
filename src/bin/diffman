@@ -8,6 +8,7 @@ shopt -s lastpipe;
 
 
 # Defaults:
+u='-u';
 w='';
 
 
@@ -18,8 +19,9 @@ err()
 }
 
 
-while getopts "w" opt; do
+while getopts "U:w" opt; do
 	case "$opt" in
+	U)	u="-U$OPTARG";	;;&
 	w)	w='-w';		;;&
 	\?)	exit 1;		;;&
 	esac;
@@ -48,7 +50,7 @@ groff -man -Tutf8 <"$p1" >"$t1";
 groff -man -Tutf8 <"$p2" >"$t2";
 
 
-opts=($w -u);
+opts=($w $u);
 
 
 diff "${opts[@]}" "$t1" "$t2";
