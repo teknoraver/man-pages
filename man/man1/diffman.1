@@ -9,6 +9,7 @@ diffman
 compare formatted manual pages line by line
 .SH SYNOPSIS
 .SY diffman
+.RI [ diff-options \~.\|.\|.\&]
 .I page1
 .I page2
 .YS
@@ -27,6 +28,10 @@ accepts.
 .P
 The output is suitable for piping to
 .IR less\~\-R .
+.SH OPTIONS
+.TP
+.B \-w
+Ignore all white space.
 .SH EXAMPLES
 .EX
 .RB $\~ "diffman membarrier man2/membarrier.2 | less \-R" ;
