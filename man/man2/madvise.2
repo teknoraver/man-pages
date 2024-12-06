@@ -688,7 +688,8 @@ causing any read or write in the range to result in a
 signal being raised.
 .IP
 If the region maps memory pages
-they will be cleared as part of the operation,
+those mappings will be replaced
+as part of the operation,
 though if
 .B MADV_GUARD_INSTALL
 is applied to regions
