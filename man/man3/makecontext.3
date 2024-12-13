@@ -16,10 +16,10 @@ Standard C library
 .nf
 .B #include <ucontext.h>
 .P
-.BI "void makecontext(ucontext_t *" ucp ", void (*" func ")(), int " argc \
-", ...);"
+.BI "void makecontext(ucontext_t *" ucp ", void (*" func ")(int " arg0 ", ...),"
+.BI "                 int " argc ", ...);"
 .BI "int swapcontext(ucontext_t *restrict " oucp ,
-.BI "                const ucontext_t *restrict " ucp );
+.BI "                 const ucontext_t *restrict " ucp );
 .fi
 .SH DESCRIPTION
 In a System V-like environment, one has the type
