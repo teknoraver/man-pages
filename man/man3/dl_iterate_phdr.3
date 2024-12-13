@@ -15,9 +15,9 @@ Standard C library
 .B #include <link.h>
 .P
 .B int dl_iterate_phdr(
-.BI "          int (*" callback ")(struct dl_phdr_info *" info ,
-.BI "                          size_t " size ", void *" data ),
-.BI "          void *" data );
+.BI "         typeof(int (struct dl_phdr_info *" info ", size_t " size ", void *" data ))
+.BI "             *" callback ,
+.BI "         void *" data );
 .fi
 .SH DESCRIPTION
 The

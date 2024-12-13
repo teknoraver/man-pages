@@ -20,8 +20,9 @@ Standard C library
 .BI "MPOOL *mpool_open(DBT *" key ", int " fd ", pgno_t " pagesize \
 ", pgno_t " maxcache );
 .P
-.BI "void mpool_filter(MPOOL *" mp ", void (*pgin)(void *, pgno_t, void *),"
-.BI "                  void (*" pgout ")(void *, pgno_t, void *),"
+.BI "void mpool_filter(MPOOL *" mp ,
+.BI "                  typeof(void (void *, pgno_t, void *)) *" pgin ,
+.BI "                  typeof(void (void *, pgno_t, void *)) *" pgout ,
 .BI "                  void *" pgcookie );
 .P
 .BI "void *mpool_new(MPOOL *" mp ", pgno_t *" pgnoaddr );

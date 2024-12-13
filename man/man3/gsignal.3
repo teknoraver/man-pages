@@ -15,7 +15,7 @@ Standard C library
 .nf
 .B #include <signal.h>
 .P
-.B typedef void (*sighandler_t)(int);
+.B "typedef typeof(void (int))  *sighandler_t;"
 .P
 .BI "[[deprecated]] int gsignal(int " signum );
 .P

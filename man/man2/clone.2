@@ -51,12 +51,13 @@ Standard C library
 .B #define _GNU_SOURCE
 .B #include <sched.h>
 .P
-.BI "int clone(int (*" "fn" ")(void *_Nullable), void *" stack \
-", int " flags ,
-.BI "          void *_Nullable " "arg" ", ..." \
-"  \fR/*\fP" " pid_t *_Nullable " parent_tid ,
-.BI "                                       void *_Nullable " tls ,
-.BI "                                       pid_t *_Nullable " child_tid " \fR*/\fP );"
+.BI "int clone(typeof(int (void *_Nullable)) *" fn ,
+.BI "          void *" stack ,
+.BI "          int " flags ,
+.BI "          void *_Nullable " arg ", ..."
+.BI "          \f[R]/*\f[] pid_t *_Nullable " parent_tid ,
+.BI "             void *_Nullable " tls ,
+.BI "             pid_t *_Nullable " child_tid " \f[R]*/\f[] );"
 .P
 /* For the prototype of the raw clone() system call, see VERSIONS. */
 .P

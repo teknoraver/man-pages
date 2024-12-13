@@ -13,7 +13,7 @@ Standard C library
 .nf
 .B #include <signal.h>
 .P
-.B typedef void (*sighandler_t)(int);
+.B "typedef typeof(void (int))  *sighandler_t;"
 .P
 .BI "sighandler_t bsd_signal(int " signum ", sighandler_t " handler );
 .fi

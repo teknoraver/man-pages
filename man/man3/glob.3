@@ -23,7 +23,7 @@ Standard C library
 .B #include <glob.h>
 .P
 .BI "int glob(const char *restrict " pattern ", int " flags ,
-.BI "         int (*" errfunc ")(const char *" epath ", int " eerrno ),
+.BI "         typeof(int (const char *" epath ", int " eerrno ")) *" errfunc ,
 .BI "         glob_t *restrict " pglob );
 .BI "void globfree(glob_t *" pglob );
 .fi

@@ -15,24 +15,25 @@ Standard C library
 .P
 .B typedef enum { preorder, postorder, endorder, leaf } VISIT;
 .P
-.BI "void *tsearch(const void *" key ", void **" rootp ,
-.BI "                int (*" compar ")(const void *, const void *));"
 .BI "void *tfind(const void *" key ", void *const *" rootp ,
-.BI "                int (*" compar ")(const void *, const void *));"
+.BI "            typeof(int (const void *, const void *)) *" compar );
+.BI "void *tsearch(const void *" key ", void **" rootp ,
+.BI "            typeof(int (const void *, const void *)) *" compar );
 .BI "void *tdelete(const void *restrict " key ", void **restrict " rootp ,
-.BI "                int (*" compar ")(const void *, const void *));"
+.BI "            typeof(int (const void *, const void *)) *" compar );
 .BI "void twalk(const void *" root ,
-.BI "                void (*" action ")(const void *" nodep ", VISIT " which ,
-.BI "                               int " depth ));
+.BI "            typeof(void (const void *" nodep ", VISIT " which ", int " depth ))
+.BI "                *" action );
 .P
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <search.h>
 .P
 .BI "void twalk_r(const void *" root ,
-.BI "                void (*" action ")(const void *" nodep ", VISIT " which ,
-.BI "                               void *" closure ),
-.BI "                void *" closure );
-.BI "void tdestroy(void *" root ", void (*" free_node ")(void *" nodep ));
+.BI "            typeof(void (const void *" nodep ", VISIT " which ", void *" closure ))
+.BI "                *" action ,
+.BI "            void *" closure );
+.BI "void tdestroy(void *" root ,
+.BI "            typeof(void (void *" nodep ")) *" free_node );
 .fi
 .SH DESCRIPTION
 .BR tsearch (),

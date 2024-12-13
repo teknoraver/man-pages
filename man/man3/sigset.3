@@ -13,7 +13,7 @@ Standard C library
 .nf
 .B #include <signal.h>
 .P
-.B typedef void (*sighandler_t)(int);
+.B "typedef typeof(void (int))  *sighandler_t;"
 .P
 .BI "[[deprecated]] sighandler_t sigset(int " sig ", sighandler_t " disp );
 .P

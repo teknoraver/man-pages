@@ -14,7 +14,8 @@ POSIX threads library
 .nf
 .B #include <pthread.h>
 .P
-.BI "void pthread_cleanup_push_defer_np(void (*" routine ")(void *), void *" arg );
+.BI "void pthread_cleanup_push_defer_np(typeof(void (void *)) *" routine ,
+.BI "                                   void *" arg );
 .BI "void pthread_cleanup_pop_restore_np(int " execute );
 .fi
 .P

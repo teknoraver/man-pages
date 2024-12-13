@@ -12,8 +12,9 @@ POSIX threads library
 .nf
 .B  #include <pthread.h>
 .P
-.BI "int pthread_atfork(void (*" prepare ")(void), void (*" parent ")(void),"
-.BI "                   void (*" child ")(void));"
+.BI "int pthread_atfork(typeof(void (void)) *" prepare ,
+.BI "                   typeof(void (void)) *" parent ,
+.BI "                   typeof(void (void)) *" child );
 .fi
 .SH DESCRIPTION
 The

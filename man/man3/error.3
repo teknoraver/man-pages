@@ -43,7 +43,7 @@ Standard C library
 .BI "extern unsigned int " error_message_count ;
 .BI "extern int " error_one_per_line ;
 .P
-.BI "extern void (*" error_print_progname ")(void);"
+.BI "extern typeof(void (void))  *" error_print_progname ;
 .fi
 .SH DESCRIPTION
 .BR error ()

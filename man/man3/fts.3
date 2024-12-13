@@ -24,7 +24,8 @@ Standard C library
 .B #include <fts.h>
 .P
 .BI "FTS *fts_open(char *const *" path_argv ", int " options ,
-.BI "              int (*_Nullable " compar ")(const FTSENT **, const FTSENT **));"
+.B  "              typeof(int (const FTSENT **, const FTSENT **))"
+.BI "                  *_Nullable " compar );
 .P
 .BI "FTSENT *fts_read(FTS *" ftsp );
 .P

@@ -21,7 +21,7 @@ Standard C library
 .nf
 .B #include <stdlib.h>
 .P
-.BI "int atexit(void (*" function )(void));
+.BI "int atexit(typeof(void (void)) *" function );
 .fi
 .SH DESCRIPTION
 The

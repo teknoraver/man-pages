@@ -17,19 +17,20 @@ Standard C library
 .nf
 .B "#include <malloc.h>"
 .P
-.BI "void *(*volatile __malloc_hook)(size_t " size ", const void *" caller );
+.BI "typeof(void *(size_t " size ", const void *" caller ))
+.B  "    *volatile  __malloc_hook;"
 .P
-.BI "void *(*volatile __realloc_hook)(void *" ptr ", size_t " size ,
-.BI "                         const void *" caller );
+.BI "typeof(void *(void *" p ", size_t " size ", const void *" caller ))
+.B  "    *volatile  __realloc_hook;"
 .P
-.BI "void *(*volatile __memalign_hook)(size_t " alignment ", size_t " size ,
-.BI "                         const void *" caller );
+.BI "typeof(void *(size_t " align ", size_t " size ", const void *" caller ))
+.B  "    *volatile  __memalign_hook;"
 .P
-.BI "void (*volatile __free_hook)(void *" ptr ", const void *" caller );
+.BI "typeof(void *(void *" p ", const void *" caller ))
+.B  "    *volatile  __free_hook;"
 .P
-.B "void (*__malloc_initialize_hook)(void);"
-.P
-.B "void (*volatile __after_morecore_hook)(void);"
+.B "typeof(void (void))            *__malloc_initialize_hook;"
+.B "typeof(void (void)) *volatile   __after_mrecore_hook;"
 .fi
 .SH DESCRIPTION
 The GNU C library lets you modify the behavior of

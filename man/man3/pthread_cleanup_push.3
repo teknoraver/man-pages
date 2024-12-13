@@ -15,7 +15,7 @@ POSIX threads library
 .nf
 .B #include <pthread.h>
 .P
-.BI "void pthread_cleanup_push(void (*" routine ")(void *), void *" arg );
+.BI "void pthread_cleanup_push(typeof(void (void *)) *" routine ", void *" arg );
 .BI "void pthread_cleanup_pop(int " execute );
 .fi
 .SH DESCRIPTION

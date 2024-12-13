@@ -13,8 +13,9 @@ Standard C library
 .nf
 .B #include <mcheck.h>
 .P
-.BI "int mcheck(void (*" abortfunc ")(enum mcheck_status " mstatus ));
-.BI "int mcheck_pedantic(void (*" abortfunc ")(enum mcheck_status " mstatus ));
+.BI "int mcheck(typeof(void (enum mcheck_status " mstatus ")) *" abortfunc );
+.B  "int mcheck_pedantic("
+.BI "           typeof(void (enum mcheck_status " mstatus ")) *" abortfunc );
 .B void mcheck_check_all(void);
 .P
 .BI "enum mcheck_status mprobe(void *" ptr );

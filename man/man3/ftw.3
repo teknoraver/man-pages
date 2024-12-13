@@ -26,14 +26,16 @@ Standard C library
 .B #include <ftw.h>
 .P
 .BI "int nftw(const char *" dirpath ,
-.BI "        int (*" fn ")(const char *" fpath ", const struct stat *" sb ,
-.BI "                  int " typeflag ", struct FTW *" ftwbuf ),
+.BI "        typeof(int (const char *" fpath ", const struct stat *" sb,
+.BI "                    int " typeflag ", struct FTW *" ftwbuf ))
+.BI "            *" fn,
 .BI "        int " nopenfd ", int " flags );
 .P
 .B [[deprecated]]
 .BI "int ftw(const char *" dirpath ,
-.BI "        int (*" fn ")(const char *" fpath ", const struct stat *" sb ,
-.BI "                  int " typeflag ),
+.BI "        typeof(int (const char *" fpath ", const struct stat *" sb ,
+.BI "                    int " typeflag ))
+.BI "            *" fn,
 .BI "        int " nopenfd );
 .fi
 .P

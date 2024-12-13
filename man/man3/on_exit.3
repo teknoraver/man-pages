@@ -19,7 +19,7 @@ Standard C library
 .nf
 .B #include <stdlib.h>
 .P
-.BI "int on_exit(void (*" function ")(int, void *), void *" arg );
+.BI "int on_exit(typeof(void (int, void *)) *" function ", void *" arg );
 .fi
 .P
 .RS -4

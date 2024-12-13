@@ -16,7 +16,7 @@ POSIX threads library
 .P
 .BI "int pthread_create(pthread_t *restrict " thread ,
 .BI "                   const pthread_attr_t *restrict " attr ,
-.BI "                   void *(*" start_routine ")(void *),"
+.BI "                   typeof(void *(void *)) *" start_routine ,
 .BI "                   void *restrict " arg );
 .fi
 .SH DESCRIPTION

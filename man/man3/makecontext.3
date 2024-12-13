@@ -16,7 +16,7 @@ Standard C library
 .nf
 .B #include <ucontext.h>
 .P
-.BI "void makecontext(ucontext_t *" ucp ", void (*" func ")(int " arg0 ", ...),"
+.BI "void makecontext(ucontext_t *" ucp ", typeof(void (int " arg0 ", ...)) *" func ,
 .BI "                 int " argc ", ...);"
 .BI "int swapcontext(ucontext_t *restrict " oucp ,
 .BI "                 const ucontext_t *restrict " ucp );
