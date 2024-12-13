@@ -24,6 +24,7 @@ while getopts "U:w" opt; do
 	U)	u="-U$OPTARG";	;;&
 	w)	w='-w';		;;&
 	\?)	exit 1;		;;&
+	*)	exit 1;		;;&
 	esac;
 done;
 shift $((OPTIND-1));
