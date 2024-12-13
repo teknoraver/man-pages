@@ -51,6 +51,7 @@ groff -man -Tutf8 <"$p1" >"$t1";
 groff -man -Tutf8 <"$p2" >"$t2";
 
 
+# shellcheck disable=SC2206  # We want only non-empty variables in the array.
 opts=($w $u);
 
 
