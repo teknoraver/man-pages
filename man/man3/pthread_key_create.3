@@ -20,7 +20,7 @@ management of thread-specific data
 .B #include <pthread.h>
 .P
 .BI "int pthread_key_create(pthread_key_t *" key ,
-.BI "                       void (*" destr_function ") (void *));"
+.BI "                       typeof(void (void *)) *" destr_function ;
 .BI "int pthread_key_delete(pthread_key_t " key );
 .BI "int pthread_setspecific(pthread_key_t " key ", const void *" pointer );
 .BI "void * pthread_getspecific(pthread_key_t " key );
