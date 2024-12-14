@@ -18,7 +18,7 @@ NUMA (Non-Uniform Memory Access) policy library
 .nf
 .P
 .BI "long get_mempolicy(int *" mode ,
-.BI "                   unsigned long " nodemask [(. maxnode " + ULONG_WIDTH - 1)"
+.BI "                   unsigned long " nodemask [(. maxnode " + ULONG_WIDTH \- 1)"
 .B "                                          / ULONG_WIDTH],"
 .BI "                   unsigned long " maxnode ", void *" addr ,
 .BI "                   unsigned long " flags );
