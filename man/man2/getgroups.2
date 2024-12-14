@@ -19,11 +19,11 @@ Standard C library
 .nf
 .B #include <unistd.h>
 .P
-.BI "int getgroups(int " size ", gid_t " list []);
+.BI "int getgroups(int " size ", gid_t " list "[_Nullable ." size ]);
 .P
 .B #include <grp.h>
 .P
-.BI "int setgroups(size_t " size ", const gid_t *_Nullable " list );
+.BI "int setgroups(size_t " size ", const gid_t " list "[_Nullable ." size ]);
 .fi
 .P
 .RS -4
