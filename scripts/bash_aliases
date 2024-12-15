@@ -118,5 +118,5 @@ duffman()
 	done \
 	| less -R;
 
-	cd -;
+	cd - >/dev/null;
 }
