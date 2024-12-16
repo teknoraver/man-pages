@@ -95,11 +95,13 @@ but not including the terminating null byte (\[aq]\[rs]0\[aq]).
 This value can be used
 to handle embedded null bytes in the line read.
 .P
-Both functions return \-1 on failure to read a line (including end-of-file
-condition).
-In the event of a failure,
+At end of file,
+both functions return \-1 with the file stream end-of-file indicator set.
+On error,
+both functions return \-1 with the file stream error indicator set,
+and with
 .I errno
-is set to indicate the error.
+set to indicate the error.
 .P
 If
 .I *lineptr
