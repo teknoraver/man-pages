@@ -18,25 +18,14 @@ Standard C library
 .BI "int strverscmp(const char *" s1 ", const char *" s2 );
 .fi
 .SH DESCRIPTION
-Often one has files
+For a dataset like
 .IR jan1 ", " jan2 ", ..., " jan9 ", " jan10 ", ..."
-and it feels wrong when
-.BR ls (1)
-orders them
+sorting it lexicographically yields
 .IR jan1 ", " jan10 ", ..., " jan2 ", ..., " jan9 .
 .\" classical solution: "rename jan jan0 jan?"
-In order to rectify this, GNU introduced the
-.I \-v
-option to
-.BR ls (1),
-which is implemented using
-.BR versionsort (3),
-which again uses
-.BR strverscmp ().
-.P
-Thus, the task of
+The task of
 .BR strverscmp ()
-is to compare two strings and find the "right" order, while
+is to compare two strings yielding the former order, while
 .BR strcmp (3)
 finds only the lexicographic order.
 This function does not use
@@ -44,6 +33,10 @@ the locale category
 .BR LC_COLLATE ,
 so is meant mostly for situations
 where the strings are expected to be in ASCII.
+This is different from the ordering produced by
+.BR sort (1)
+.BR -V .
+.\" sort -V sorts a-1.0a < a-1.0.1a; strverscmp() does not
 .P
 What this function does is the following.
 If both strings are equal, return 0.
