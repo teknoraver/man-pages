@@ -14,6 +14,7 @@ Description
        manual page.
 
            $ git config --global diff.man.xfuncname '^\.S[SHsh] .*$';
+           $ mkdir -p ~/.config/git/;
            $ echo '*.[0-9]* diff=man' >>~/.config/git/attributes;
 
    git-format-patch(1)
