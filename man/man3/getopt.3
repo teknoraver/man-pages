@@ -318,15 +318,6 @@ ambiguous match or an extraneous parameter.
 .B POSIXLY_CORRECT
 If this is set, then option processing stops as soon as a nonoption
 argument is encountered.
-.TP
-.B _<PID>_GNU_nonoption_argv_flags_
-This variable was used by
-.BR bash (1)
-2.0 to communicate to glibc which arguments are the results of
-wildcard expansion and so should not be considered as options.
-This behavior was removed in
-.BR bash (1)
-2.01, but the support remains in glibc.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -391,6 +382,12 @@ POSIX.1-1996 marked the use of
 for this purpose as LEGACY.
 POSIX.1-2001 does not require the declaration to appear in
 .IR <stdio.h> .
+.P
+Very old versions of glibc were affected by a
+.UR https://\:sourceware.org/\:git/\:?p=glibc.git;a=commitdiff;h=bf079e19f50d64aa5e05
+.BI _ PID _GNU_nonoption_argv_flags_
+environment variable
+.UE .
 .SH NOTES
 A program that scans multiple argument vectors,
 or rescans the same vector more than once,
