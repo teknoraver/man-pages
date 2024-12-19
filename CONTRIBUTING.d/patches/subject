@@ -6,14 +6,11 @@ Description
 	the commit message).
 
     File names
-	Mention the name(s) of the file(s) being patched.
+	Mention the name(s) of the file(s) being patched.  Write the
+	full path.  When several files in a directory are modified,
+	write the name of the directory, with a trailing '/'.  Example:
 
-	When the files are manual pages, you should write only the
-	basename(1).  Otherwise, write the full path.  When several
-	files in a directory are modified, write the name of the
-	directory, with a trailing '/'.  Example:
-
-		[PATCH v1] shmop.2: Add "(void *)" cast to RETURN VALUE
+		[PATCH v1] man/man2/shmop.2: Add "(void *)" cast to RETURN VALUE
 
     English sentence
 	The subject line after the file-name prefix should be a correct
