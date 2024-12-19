@@ -15,6 +15,9 @@ Description
            Cc: <linux-man@vger.kernel.org>
 
 Files
+   CONTRIBUTING.d/git
+       Instructions for configuring git(1).
+
    CONTRIBUTING.d/mail
        Instructions for sending emails to the project
 
