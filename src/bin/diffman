@@ -52,13 +52,13 @@ printf '%s\n' "$2.XXXXXX" \
 preconv <"$p1" \
 | tbl \
 | eqn -Tutf8 \
-| troff -man -Tutf8 \
+| troff -mandoc -Tutf8 \
 | grotty >"$t1";
 
 preconv <"$p2" \
 | tbl \
 | eqn -Tutf8 \
-| troff -man -Tutf8 \
+| troff -mandoc -Tutf8 \
 | grotty >"$t2";
 
 
