@@ -22,11 +22,11 @@ err()
 
 while getopts "sU:w" opt; do
 	case "$opt" in
-	s)	s='-s';		;;&
-	U)	u="-U$OPTARG";	;;&
-	w)	w='-w';		;;&
-	\?)	exit 1;		;;&
-	*)	exit 1;		;;&
+	s)	s='-s';		;;
+	U)	u="-U$OPTARG";	;;
+	w)	w='-w';		;;
+	\?)	exit 1;		;;
+	*)	exit 1;		;;
 	esac;
 done;
 shift $((OPTIND-1));
