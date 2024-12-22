@@ -49,8 +49,17 @@ printf '%s\n' "$2.XXXXXX" \
 | xargs mktemp -t \
 | read -r t2;
 
-groff -man -Tutf8 <"$p1" >"$t1";
-groff -man -Tutf8 <"$p2" >"$t2";
+preconv <"$p1" \
+| tbl \
+| eqn -Tutf8 \
+| troff -man -Tutf8 \
+| grotty >"$t1";
+
+preconv <"$p2" \
+| tbl \
+| eqn -Tutf8 \
+| troff -man -Tutf8 \
+| grotty >"$t2";
 
 
 # shellcheck disable=SC2206  # We want only non-empty variables in the array.
