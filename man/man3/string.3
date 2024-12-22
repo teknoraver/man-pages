@@ -19,172 +19,98 @@ Standard C library
 .SH SYNOPSIS
 .B #include <strings.h>
 .TP
-.BI "int strcasecmp(const char *" s1 ", const char *" s2 );
-Compare the strings
-.I s1
-and
-.I s2
+.BR strcasecmp (3)
+Compare two strings,
 ignoring case.
 .TP
-.BI "int strncasecmp(const char " s1 [. n "], const char " s2 [. n "], \
-size_t " n );
-Compare the first
-.I n
-bytes of the strings
-.I s1
-and
-.I s2
+.BR strncasecmp (3)
+Compare the first bytes of two strings,
 ignoring case.
 .TP
-.BI "char *index(const char *" s ", int " c );
+.BR index (3)
 Identical to
 .BR strchr (3).
 .TP
-.BI "char *rindex(const char *" s ", int " c );
+.BR rindex (3)
 Identical to
 .BR strrchr (3).
-.TP
+.P
 .B #include <string.h>
 .TP
-.BI "char *stpcpy(char *restrict " dest ", const char *restrict " src );
-Copy a string from
-.I src
-to
-.IR dest ,
-returning a pointer to the end of the resulting string at
-.IR dest .
+.BR stpcpy (3)
+Copy a string,
+returning a pointer to the end of the resulting string.
 .TP
-.BI "char *strcat(char *restrict " dest ", const char *restrict " src );
-Append the string
-.I src
-to the string
-.IR dest ,
-returning a pointer
-.IR dest .
+.BR strcat (3)
+Append a string into an existing string.
 .TP
-.BI "char *strchr(const char *" s ", int " c );
-Return a pointer to the first occurrence of the character
-.I c
-in the string
-.IR s .
+.BR strchr (3)
+Find the first occurrence of a character
+in a string.
 .TP
-.BI "int strcmp(const char *" s1 ", const char *" s2 );
-Compare the strings
-.I s1
-with
-.IR s2 .
+.BR strcmp (3)
+Compare two strings.
 .TP
-.BI "int strcoll(const char *" s1 ", const char *" s2 );
-Compare the strings
-.I s1
-with
-.I s2
+.BR strcoll (3)
+Compare two strings,
 using the current locale.
 .TP
-.BI "char *strcpy(char *restrict " dest ", const char *restrict " src );
-Copy the string
-.I src
-to
-.IR dest ,
-returning a pointer to the start of
-.IR dest .
+.BR strcpy (3)
+Copy a string.
 .TP
-.BI "size_t strcspn(const char *" s ", const char *" reject );
-Calculate the length of the initial segment of the string
-.I s
-which does not contain any of bytes in the string
-.IR reject ,
+.BR strcspn (3)
+Calculate the length of the initial segment of a string
+which does not contain any of the rejected bytes.
 .TP
-.BI "char *strdup(const char *" s );
-Return a duplicate of the string
-.I s
+.BR strdup (3)
+Duplicate a string
 in memory allocated using
 .BR malloc (3).
 .TP
-.BI "char *strfry(char *" string );
-Randomly swap the characters in
-.IR string .
+.BR strfry (3)
+Randomly swap the characters in a string.
 .TP
-.BI "size_t strlen(const char *" s );
-Return the length of the string
-.IR s .
+.BR strlen (3)
+Return the length of a string.
 .TP
-.nf
-.BI "char *strncat(char " dest "[restrict strlen(." dest ") + ." n " + 1],"
-.BI "       const char " src "[restrict ." n ],
-.BI "       size_t " n );
-.fi
-Append at most
-.I n
-bytes from the unterminated string
-.I src
-to the string
-.IR dest ,
-returning a pointer to
-.IR dest .
+.BR strncat (3)
+Append non-null bytes from an array
+to a string,
+and null-terminate the result.
 .TP
-.BI "int strncmp(const char " s1 [. n "], const char " s2 [. n "], size_t " n );
-Compare at most
-.I n
-bytes of the strings
-.I s1
-and
-.IR s2 .
+.BR strncmp (3)
+Compare the first bytes of two strings.
 .TP
-.BI "char *strpbrk(const char *" s ", const char *" accept );
-Return a pointer to the first occurrence in the string
-.I s
-of one of the bytes in the string
-.IR accept .
+.BR strpbrk (3)
+Find the first occurrence in a string
+of one of the bytes in the accepted bytes.
 .TP
-.BI "char *strrchr(const char *" s ", int " c );
-Return a pointer to the last occurrence of the character
-.I c
-in the string
-.IR s .
+.BR strrchr (3)
+Find the last occurrence of a character
+in a string.
 .TP
-.BI "char *strsep(char **restrict " stringp ", const char *restrict " delim );
-Extract the initial token in
-.I stringp
-that is delimited by one of the bytes in
-.IR delim .
+.BR strsep (3)
+Extract the initial field in a string
+that is delimited by one of the delimiter bytes.
 .TP
-.BI "size_t strspn(const char *" s ", const char *" accept );
-Calculate the length of the starting segment in the string
-.I s
-that consists entirely of bytes in
-.IR accept .
+.BR strspn (3)
+Calculate the length of the initial segment of a string
+that consists entirely of accepted bytes.
 .TP
-.BI "char *strstr(const char *" haystack ", const char *" needle );
-Find the first occurrence of the substring
-.I needle
-in the string
-.IR haystack ,
-returning a pointer to the found substring.
+.BR strstr (3)
+Find the first occurrence of a substring
+in a string.
 .TP
-.BI "char *strtok(char *restrict " s ", const char *restrict " delim );
-Extract tokens from the string
-.I s
-that are delimited by one of the bytes in
-.IR delim .
+.BR strtok (3)
+Extract tokens from a string
+that are delimited by one of the delimiter bytes.
 .TP
-.nf
-.BI "size_t strxfrm(char " dest "[restrict ." n "], \
-const char " src "[restrict ." n ],
-.BI "        size_t " n );
-.fi
-Transforms
-.I src
-to the current locale and copies the first
-.I n
-bytes to
-.IR dest .
+.BR strxfrm (3)
+Transforms a string
+to the current locale
+and copies the first bytes to a buffer.
 .TP
-.nf
-.BI "char *strncpy(char " dest "[restrict ." n "], \
-const char " src "[restrict ." n ],
-.BI "       size_t " n );
-.fi
+.BR strncpy (3)
 Fill a fixed-size buffer with leading non-null bytes from a source array,
 padding with null bytes as needed.
 .SH DESCRIPTION
