@@ -10,8 +10,8 @@ ioctl_pipe \- ioctl() operations for General notification mechanism
 .BR "#include <linux/watch_queue.h>" "  /* Definition of " IOC_WATCH_QUEUE_ "* */"
 .B #include <sys/ioctl.h>
 .P
-.BI "int ioctl(int " pipefd "[1], IOC_WATCH_QUEUE_SET_SIZE, int " size );
-.BI "int ioctl(int " pipefd "[1], IOC_WATCH_QUEUE_SET_FILTER,"
+.BI "int ioctl(int " pipefd ", IOC_WATCH_QUEUE_SET_SIZE, int " size );
+.BI "int ioctl(int " pipefd ", IOC_WATCH_QUEUE_SET_FILTER,"
 .BI "          struct watch_notification_filter *" filter );
 .fi
 .SH DESCRIPTION
