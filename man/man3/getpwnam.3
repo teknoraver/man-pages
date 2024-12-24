@@ -31,10 +31,10 @@ Standard C library
 .P
 .BI "int getpwnam_r(const char *restrict " name ", \
 struct passwd *restrict " pwd ,
-.BI "               char " buf "[restrict ." buflen "], size_t " buflen ,
+.BI "               char " buf "[restrict ." size "], size_t " size ,
 .BI "               struct passwd **restrict " result );
 .BI "int getpwuid_r(uid_t " uid ", struct passwd *restrict " pwd ,
-.BI "               char " buf "[restrict ." buflen "], size_t " buflen ,
+.BI "               char " buf "[restrict ." size "], size_t " size ,
 .BI "               struct passwd **restrict " result );
 .fi
 .P
@@ -104,7 +104,7 @@ The string fields pointed to by the members of the
 structure are stored in the buffer
 .I buf
 of size
-.IR buflen .
+.IR size .
 A pointer to the result (in case of success) or NULL (in case no entry
 was found or an error occurred) is stored in
 .IR *result .

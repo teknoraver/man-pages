@@ -16,7 +16,7 @@ Standard C library
 .B #include <stdlib.h>
 .P
 .BI "char *ptsname(int " fd );
-.BI "int ptsname_r(int " fd ", char " buf [. buflen "], size_t " buflen );
+.BI "int ptsname_r(int " fd ", char " buf [. size "], size_t " size );
 .fi
 .P
 .RS -4
@@ -52,7 +52,7 @@ It returns the name of the slave pseudoterminal device as a
 null-terminated string in the buffer pointed to by
 .IR buf .
 The
-.I buflen
+.I size
 argument specifies the number of bytes available in
 .IR buf .
 .SH RETURN VALUE

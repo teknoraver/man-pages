@@ -32,10 +32,10 @@ Standard C library
 .BI "const char *strerrorname_np(int " errnum );
 .BI "const char *strerrordesc_np(int " errnum );
 .P
-.BI "int strerror_r(int " errnum ", char " buf [. buflen "], size_t " buflen );
+.BI "int strerror_r(int " errnum ", char " buf [. size "], size_t " size );
                /* XSI-compliant */
 .P
-.BI "char *strerror_r(int " errnum ", char " buf [. buflen "], size_t " buflen );
+.BI "char *strerror_r(int " errnum ", char " buf [. size "], size_t " size );
                /* GNU-specific */
 .P
 .BI "char *strerror_l(int " errnum ", locale_t " locale );
@@ -132,8 +132,8 @@ The XSI-compliant
 is preferred for portable applications.
 It returns the error string in the user-supplied buffer
 .I buf
-of length
-.IR buflen .
+of size
+.IR size .
 .P
 The GNU-specific
 .BR strerror_r ()
@@ -147,9 +147,9 @@ is unused).
 If the function stores a string in
 .IR buf ,
 then at most
-.I buflen
+.I size
 bytes are stored (the string may be truncated if
-.I buflen
+.I size
 is too small and
 .I errnum
 is unknown).

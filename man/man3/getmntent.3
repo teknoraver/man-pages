@@ -38,7 +38,7 @@ Standard C library
 .P
 .BI "struct mntent *getmntent_r(FILE *restrict " streamp ,
 .BI "              struct mntent *restrict " mntbuf ,
-.BI "              char " buf "[restrict ." buflen "], int " buflen );
+.BI "              char " buf "[restrict ." size "], int " size );
 .fi
 .P
 .RS -4
@@ -135,7 +135,7 @@ and stores the strings pointed to by the entries in that structure
 in the provided array
 .I buf
 of size
-.IR buflen .
+.IR size .
 .P
 The
 .I mntent

@@ -14,11 +14,11 @@ Standard C library
 .B #include <pwd.h>
 .P
 .BI "int getpwent_r(struct passwd *restrict " pwbuf ,
-.BI "               char " buf "[restrict ." buflen "], size_t " buflen ,
+.BI "               char " buf "[restrict ." size "], size_t " size ,
 .BI "               struct passwd **restrict " pwbufp );
 .BI "int fgetpwent_r(FILE *restrict " stream \
 ", struct passwd *restrict " pwbuf ,
-.BI "               char " buf "[restrict ." buflen "], size_t " buflen ,
+.BI "               char " buf "[restrict ." size "], size_t " size ,
 .BI "               struct passwd **restrict " pwbufp );
 .fi
 .P
@@ -88,7 +88,7 @@ that can hold a \fIstruct passwd\fP.
 And next the buffer
 .I buf
 of size
-.I buflen
+.I size
 that can hold additional strings.
 The result of these functions, the \fIstruct passwd\fP read from the stream,
 is stored in the provided buffer
@@ -152,7 +152,7 @@ Other systems use the prototype
 .in +4n
 .EX
 struct passwd *
-getpwent_r(struct passwd *pwd, char *buf, int buflen);
+getpwent_r(struct passwd *pwd, char buf[.size], int size);
 .EE
 .in
 .P
@@ -161,7 +161,7 @@ or, better,
 .in +4n
 .EX
 int
-getpwent_r(struct passwd *pwd, char *buf, int buflen,
+getpwent_r(struct passwd *pwd, char buf[.size], int size,
            FILE **pw_fp);
 .EE
 .in

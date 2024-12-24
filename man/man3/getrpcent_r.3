@@ -15,14 +15,14 @@ Standard C library
 .nf
 .B #include <netdb.h>
 .P
-.BI "int getrpcent_r(struct rpcent *" result_buf ", char " buf [. buflen ],
-.BI "                size_t " buflen ", struct rpcent **" result );
+.BI "int getrpcent_r(struct rpcent *" result_buf ", char " buf [. size ],
+.BI "                size_t " size ", struct rpcent **" result );
 .BI "int getrpcbyname_r(const char *" name ,
-.BI "                struct rpcent *" result_buf ", char " buf [. buflen ],
-.BI "                size_t " buflen ", struct rpcent **" result );
+.BI "                struct rpcent *" result_buf ", char " buf [. size ],
+.BI "                size_t " size ", struct rpcent **" result );
 .BI "int getrpcbynumber_r(int " number ,
-.BI "                struct rpcent *" result_buf ", char " buf [. buflen ],
-.BI "                size_t " buflen ", struct rpcent **" result );
+.BI "                struct rpcent *" result_buf ", char " buf [. size ],
+.BI "                size_t " size ", struct rpcent **" result );
 .P
 .fi
 .RS -4
@@ -70,13 +70,13 @@ array is used to store the string fields pointed to by the returned
 structure.
 (The nonreentrant functions allocate these strings in static storage.)
 The size of this array is specified in
-.IR buflen .
+.IR size .
 If
 .I buf
 is too small, the call fails with the error
 .BR ERANGE ,
 and the caller must try again with a larger buffer.
-(A buffer of length 1024 bytes should be sufficient for most applications.)
+(A buffer of size 1024 bytes should be sufficient for most applications.)
 .\" I can find no information on the required/recommended buffer size;
 .\" the nonreentrant functions use a 1024 byte buffer -- mtk.
 .P
@@ -109,7 +109,7 @@ No more records in database.
 is too small.
 Try again with a larger buffer
 (and increased
-.IR buflen ).
+.IR size ).
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).

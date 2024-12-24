@@ -14,10 +14,10 @@ Standard C library
 .B #include <grp.h>
 .P
 .BI "int getgrent_r(struct group *restrict " gbuf ,
-.BI "               char " buf "[restrict ." buflen "], size_t " buflen ,
+.BI "               char " buf "[restrict ." size "], size_t " size ,
 .BI "               struct group **restrict " gbufp );
 .BI "int fgetgrent_r(FILE *restrict " stream ", struct group *restrict " gbuf ,
-.BI "               char " buf "[restrict ." buflen "], size_t " buflen ,
+.BI "               char " buf "[restrict ." size "], size_t " size ,
 .BI "               struct group **restrict " gbufp );
 .fi
 .P
@@ -83,7 +83,7 @@ that can hold a \fIstruct group\fP.
 And next the buffer
 .I buf
 of size
-.I buflen
+.I size
 that can hold additional strings.
 The result of these functions, the \fIstruct group\fP read from the stream,
 is stored in the provided buffer
@@ -150,8 +150,8 @@ Other systems use the prototype
 .P
 .in +4n
 .EX
-struct group *getgrent_r(struct group *grp, char *buf,
-                         int buflen);
+struct group *getgrent_r(struct group *grp, char buf[.size],
+                         int size);
 .EE
 .in
 .P
@@ -159,7 +159,7 @@ or, better,
 .P
 .in +4n
 .EX
-int getgrent_r(struct group *grp, char *buf, int buflen,
+int getgrent_r(struct group *grp, char buf[.size], int size,
                FILE **gr_fp);
 .EE
 .in

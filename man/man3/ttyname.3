@@ -17,7 +17,7 @@ Standard C library
 .B #include <unistd.h>
 .P
 .BI "char *ttyname(int " fd );
-.BI "int ttyname_r(int " fd ", char " buf [. buflen "], size_t " buflen );
+.BI "int ttyname_r(int " fd ", char " buf [. size "], size_t " size );
 .fi
 .SH DESCRIPTION
 The function
@@ -31,8 +31,8 @@ The function
 .BR ttyname_r ()
 stores this pathname in the buffer
 .I buf
-of length
-.IR buflen .
+of size
+.IR size .
 .SH RETURN VALUE
 The function
 .BR ttyname ()
@@ -60,7 +60,7 @@ does not refer to a terminal device.
 .TP
 .B ERANGE
 .RB ( ttyname_r ())
-.I buflen
+.I size
 was too small to allow storing the pathname.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see

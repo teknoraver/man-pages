@@ -51,7 +51,7 @@ Standard C library
 .BI "struct hostent *gethostbyname2(const char *" name ", int " af );
 .P
 .BI "int gethostent_r(struct hostent *restrict " ret ,
-.BI "                 char " buf "[restrict ." buflen "], size_t " buflen ,
+.BI "                 char " buf "[restrict ." bufsize "], size_t " bufsize ,
 .BI "                 struct hostent **restrict " result ,
 .BI "                 int *restrict " h_errnop );
 .P
@@ -59,19 +59,19 @@ Standard C library
 .BI "int gethostbyaddr_r(const void " addr "[restrict ." size "], socklen_t " size ,
 .BI "                 int " type ,
 .BI "                 struct hostent *restrict " ret ,
-.BI "                 char " buf "[restrict ." buflen "], size_t " buflen ,
+.BI "                 char " buf "[restrict ." bufsize "], size_t " bufsize ,
 .BI "                 struct hostent **restrict " result ,
 .BI "                 int *restrict " h_errnop );
 .B [[deprecated]]
 .BI "int gethostbyname_r(const char *restrict " name ,
 .BI "                 struct hostent *restrict " ret ,
-.BI "                 char " buf "[restrict ." buflen "], size_t " buflen ,
+.BI "                 char " buf "[restrict ." bufsize "], size_t " bufsize ,
 .BI "                 struct hostent **restrict " result ,
 .BI "                 int *restrict " h_errnop );
 .B [[deprecated]]
 .BI "int gethostbyname2_r(const char *restrict " name ", int " af,
 .BI "                 struct hostent *restrict " ret ,
-.BI "                 char " buf "[restrict ." buflen "], size_t " buflen ,
+.BI "                 char " buf "[restrict ." bufsize "], size_t " bufsize ,
 .BI "                 struct hostent **restrict " result ,
 .BI "                 int *restrict " h_errnop );
 .fi
@@ -512,7 +512,7 @@ structure
 which will be filled in on success, and a temporary work buffer
 .I buf
 of size
-.IR buflen .
+.IR bufsize .
 After the call,
 .I result
 will point to the result on success.

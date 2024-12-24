@@ -35,17 +35,17 @@ Standard C library
 .B #include <shadow.h>
 .P
 .BI "int getspent_r(struct spwd *" spbuf ,
-.BI "               char " buf [. buflen "], size_t " buflen ", \
+.BI "               char " buf [. size "], size_t " size ", \
 struct spwd **" spbufp );
 .BI "int getspnam_r(const char *" name ", struct spwd *" spbuf ,
-.BI "               char " buf [. buflen "], size_t " buflen ", \
+.BI "               char " buf [. size "], size_t " size ", \
 struct spwd **" spbufp );
 .P
 .BI "int fgetspent_r(FILE *" stream ", struct spwd *" spbuf ,
-.BI "               char " buf [. buflen "], size_t " buflen ", \
+.BI "               char " buf [. size "], size_t " size ", \
 struct spwd **" spbufp );
 .BI "int sgetspent_r(const char *" s ", struct spwd *" spbuf ,
-.BI "               char " buf [. buflen "], size_t " buflen ", \
+.BI "               char " buf [. size "], size_t " size ", \
 struct spwd **" spbufp );
 .fi
 .P
@@ -169,7 +169,7 @@ This shadow password structure contains pointers to strings, and these strings
 are stored in the buffer
 .I buf
 of size
-.IR buflen .
+.IR size .
 A pointer to the result (in case of success) or NULL (in case no entry
 was found or an error occurred) is stored in
 .IR *spbufp .

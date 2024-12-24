@@ -16,17 +16,17 @@ Standard C library
 .B #include <netdb.h>
 .P
 .BI "int getnetent_r(struct netent *restrict " result_buf ,
-.BI "                char " buf "[restrict ." buflen "], size_t " buflen ,
+.BI "                char " buf "[restrict ." size "], size_t " size ,
 .BI "                struct netent **restrict " result ,
 .BI "                int *restrict " h_errnop );
 .BI "int getnetbyname_r(const char *restrict " name ,
 .BI "                struct netent *restrict " result_buf ,
-.BI "                char " buf "[restrict ." buflen "], size_t " buflen ,
+.BI "                char " buf "[restrict ." size "], size_t " size ,
 .BI "                struct netent **restrict " result ,
 .BI "                int *restrict " h_errnop );
 .BI "int getnetbyaddr_r(uint32_t " net ", int " type ,
 .BI "                struct netent *restrict " result_buf ,
-.BI "                char " buf "[restrict ." buflen "], size_t " buflen ,
+.BI "                char " buf "[restrict ." size "], size_t " size ,
 .BI "                struct netent **restrict " result ,
 .BI "                int *restrict " h_errnop );
 .P
@@ -76,13 +76,13 @@ array is used to store the string fields pointed to by the returned
 structure.
 (The nonreentrant functions allocate these strings in static storage.)
 The size of this array is specified in
-.IR buflen .
+.IR size .
 If
 .I buf
 is too small, the call fails with the error
 .BR ERANGE ,
 and the caller must try again with a larger buffer.
-(A buffer of length 1024 bytes should be sufficient for most applications.)
+(A buffer of size 1024 bytes should be sufficient for most applications.)
 .\" I can find no information on the required/recommended buffer size;
 .\" the nonreentrant functions use a 1024 byte buffer -- mtk.
 .P
@@ -123,7 +123,7 @@ No more records in database.
 is too small.
 Try again with a larger buffer
 (and increased
-.IR buflen ).
+.IR size ).
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).

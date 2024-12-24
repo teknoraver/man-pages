@@ -21,15 +21,15 @@ Standard C library
 .P
 .B "struct aliasent *getaliasent(void);"
 .BI "int getaliasent_r(struct aliasent *restrict " result ,
-.BI "                     char " buffer "[restrict ." buflen "], \
-size_t " buflen ,
+.BI "                     char " buffer "[restrict ." size "], \
+size_t " size ,
 .BI "                     struct aliasent **restrict " res );
 .P
 .BI "struct aliasent *getaliasbyname(const char *" name );
 .BI "int getaliasbyname_r(const char *restrict " name ,
 .BI "                     struct aliasent *restrict " result ,
-.BI "                     char " buffer "[restrict ." buflen "], \
-size_t " buflen ,
+.BI "                     char " buffer "[restrict ." size "], \
+size_t " size ,
 .BI "                     struct aliasent **restrict " res );
 .fi
 .SH DESCRIPTION
