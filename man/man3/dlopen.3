@@ -582,7 +582,7 @@ main(void)
        POSIX.1\-2001 and POSIX.1\-2008 accepted this state of affairs and
        proposed the following workaround:
 \&
-           *(void **) (&cosine) = dlsym(handle, "cos");
+           *(void **) &cosine = dlsym(handle, "cos");
 \&
        This (clumsy) cast conforms with the ISO C standard and will
        avoid any compiler warnings.
