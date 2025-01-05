@@ -116,7 +116,7 @@ is the somewhat harder to read:
 .P
 .in +4n
 .EX
-.BI "void ( *" signal "(int " signum ", void (*" handler ")(int)) ) (int);"
+.BI "typeof(void (int)) *signal(int " signum ", typeof(void (int)) *" handler );
 .EE
 .in
 .SS Portability

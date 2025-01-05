@@ -564,7 +564,7 @@ int
 main(void)
 {
     void *handle;
-    double (*cosine)(double);
+    typeof(double (double)) *cosine;
     char *error;
 \&
     handle = dlopen(LIBM_SO, RTLD_LAZY);
@@ -575,7 +575,7 @@ main(void)
 \&
     dlerror();    /* Clear any existing error */
 \&
-    cosine = (double (*)(double)) dlsym(handle, "cos");
+    cosine = (typeof(double (double)) *) dlsym(handle, "cos");
 \&
     /* According to the ISO C standard, casting between function
        pointers and \[aq]void *\[aq], as done above, produces undefined results.

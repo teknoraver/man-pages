@@ -29,7 +29,7 @@ and make use of the following types:
 .EX
 .BI "typedef int " bool_t ;
 .P
-.BI "typedef bool_t (*" xdrproc_t ")(XDR *, void *,...);"
+.BI "typedef typeof(bool_t (XDR *, void *, ...))  *" xdrproc_t ;
 .EE
 .RE
 .P
@@ -264,8 +264,8 @@ linked lists.
 .nf
 .BI "void xdrrec_create(XDR *" xdrs ", unsigned int " sendsize ,
 .BI "                   unsigned int " recvsize ", char *" handle ,
-.BI "                   int (*" readit ")(char *, char *, int),"
-.BI "                   int (*" writeit ")(char *, char *, int));"
+.BI "                   typeof(int (char *, char *, int)) *" readit ,
+.BI "                   typeof(int (char *, char *, int)) *" writeit );
 .fi
 .IP
 This routine initializes the XDR stream object pointed to by

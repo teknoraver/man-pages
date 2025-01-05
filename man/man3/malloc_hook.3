@@ -52,7 +52,7 @@ the application with a definition like the following:
 .P
 .in +4n
 .EX
-void (*__malloc_initialize_hook)(void) = my_init_hook;
+typeof(void (void))  *__malloc_initialize_hook = my_init_hook;
 .EE
 .in
 .P
@@ -112,10 +112,10 @@ static void my_init_hook(void);
 static void *my_malloc_hook(size_t, const void *);
 \&
 /* Variables to save original hooks */
-static void *(*old_malloc_hook)(size_t, const void *);
+static typeof(void *(size_t, const void *))  *old_malloc_hook;
 \&
 /* Override initializing hook from the C library */
-void (*__malloc_initialize_hook)(void) = my_init_hook;
+typeof(void (void))  *__malloc_initialize_hook = my_init_hook;
 \&
 static void
 my_init_hook(void)

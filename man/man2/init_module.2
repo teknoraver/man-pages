@@ -358,8 +358,8 @@ struct module {
     struct module_symbol *syms;
     struct module_ref    *deps;
     struct module_ref    *refs;
-    int                 (*init)(void);
-    void                (*cleanup)(void);
+    typeof(int (void))   *init;
+    typeof(void (void))  *cleanup;
     const struct exception_table_entry *ex_table_start;
     const struct exception_table_entry *ex_table_end;
 #ifdef __alpha__

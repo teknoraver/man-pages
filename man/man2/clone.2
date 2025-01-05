@@ -1683,7 +1683,7 @@ On ia64, a different interface is used:
 .P
 .in +4n
 .EX
-.BI "int __clone2(int (*" "fn" ")(void *),"
+.BI "int __clone2(typeof(int (void *)) *" fn ,
 .BI "             void *" stack_base ", size_t " stack_size ,
 .BI "             int " flags ", void *" "arg" ", ..."
 .BI "          \fR/*\fP pid_t *" parent_tid ", struct user_desc *" tls ,
