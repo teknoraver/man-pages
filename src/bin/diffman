@@ -36,9 +36,6 @@ if test $# -ne 2; then
 	err "Expected two arguments.";
 fi;
 
-p1="$(man -w "$1")";
-p2="$(man -w "$2")";
-
 printf '%s\n' "$1.XXXXXX" \
 | sed 's,.*/,,' \
 | xargs mktemp -t \
@@ -49,17 +46,11 @@ printf '%s\n' "$2.XXXXXX" \
 | xargs mktemp -t \
 | read -r t2;
 
-preconv <"$p1" \
-| tbl \
-| eqn -Tutf8 \
-| troff -mandoc -Tutf8 \
-| grotty >"$t1";
+test -v MAN_KEEP_FORMATTING \
+|| export MAN_KEEP_FORMATTING=1;
 
-preconv <"$p2" \
-| tbl \
-| eqn -Tutf8 \
-| troff -mandoc -Tutf8 \
-| grotty >"$t2";
+man "$1" >"$t1";
+man "$2" >"$t2";
 
 
 # shellcheck disable=SC2206  # We want only non-empty variables in the array.
