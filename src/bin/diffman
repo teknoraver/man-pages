@@ -36,14 +36,9 @@ if test $# -ne 2; then
 	err "Expected two arguments.";
 fi;
 
-printf '%s\n' "$1.XXXXXX" \
-| sed 's,.*/,,' \
-| xargs mktemp -t \
+mktemp -t "a.XXXXXX" \
 | read -r t1;
-
-printf '%s\n' "$2.XXXXXX" \
-| sed 's,.*/,,' \
-| xargs mktemp -t \
+mktemp -t "b.XXXXXX" \
 | read -r t2;
 
 test -v MAN_KEEP_FORMATTING \
