@@ -57,4 +57,4 @@ man "$2" >"$t2";
 opts=($s $w $u);
 
 
-diff "${opts[@]}" "$t1" "$t2";
+diff --label "$1" --label "$2" "${opts[@]}" "$t1" "$t2";
