@@ -15,9 +15,8 @@ POSIX threads library
 .BR "#include <sys/stat.h>" "        /* For mode constants */"
 .B #include <semaphore.h>
 .P
-.BI "sem_t *sem_open(const char *" name ", int " oflag );
-.BI "sem_t *sem_open(const char *" name ", int " oflag ,
-.BI "                mode_t " mode ", unsigned int " value );
+.BI "sem_t *sem_open(const char *" name ", int " oflag ", ..."
+.BI "                \fR/*\fP mode_t " mode ", unsigned int " value " \fR*/\fP );"
 .fi
 .SH DESCRIPTION
 .BR sem_open ()
