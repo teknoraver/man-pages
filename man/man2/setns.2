@@ -237,7 +237,17 @@ Using
 to change the caller's cgroup namespace does not change
 the caller's cgroup memberships.
 .TP
-Network, IPC, time, and UTS namespaces
+Time namespaces
+In order to reassociate itself with a new time namespace,
+the caller must have the
+.B CAP_SYS_ADMIN
+capability both in its own user namespace and in the user namespace
+that owns the target namespace.
+.IP
+A multithreaded process may not change time namespace with
+.BR setns ().
+.TP
+Network, IPC, and UTS namespaces
 In order to reassociate itself with a new network, IPC, time, or UTS namespace,
 the caller must have the
 .B CAP_SYS_ADMIN
