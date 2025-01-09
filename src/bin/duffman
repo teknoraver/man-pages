@@ -27,7 +27,8 @@ if test $# -gt 2; then
 	exit 1;
 fi;
 
-cd $(git rev-parse --show-toplevel);
+git rev-parse --show-toplevel | read -r dir;
+cd "$dir";
 
 test -v MAN_KEEP_FORMATTING || export MAN_KEEP_FORMATTING=1;
 
