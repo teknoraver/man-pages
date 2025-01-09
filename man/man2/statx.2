@@ -76,6 +76,9 @@ struct statx {
     __u32 stx_atomic_write_unit_min;
     __u32 stx_atomic_write_unit_max;
     __u32 stx_atomic_write_segments_max;
+\&
+    /* File offset alignment for direct I/O reads */
+    __u32   stx_dio_read_offset_align;
 };
 .EE
 .in
@@ -261,7 +264,7 @@ STATX_BTIME	Want stx_btime
 STATX_ALL	The same as STATX_BASIC_STATS | STATX_BTIME.
 	It is deprecated and should not be used.
 STATX_MNT_ID	Want stx_mnt_id (since Linux 5.8)
-STATX_DIOALIGN	Want stx_dio_mem_align and stx_dio_offset_align
+STATX_DIOALIGN	Want stx_dio_mem_align and stx_dio_offset_align.
 	(since Linux 6.1; support varies by filesystem)
 STATX_MNT_ID_UNIQUE	Want unique stx_mnt_id (since Linux 6.8)
 STATX_SUBVOL	Want stx_subvol
@@ -270,6 +273,8 @@ STATX_WRITE_ATOMIC	Want stx_atomic_write_unit_min,
 	stx_atomic_write_unit_max,
 	and stx_atomic_write_segments_max.
 	(since Linux 6.11; support varies by filesystem)
+STATX_DIO_READ_ALIGN	Want stx_dio_read_offset_align.
+	(since Linux 6.14; support varies by filesystem)
 .TE
 .in
 .P
@@ -466,6 +471,28 @@ or 0 if direct I/O is not supported on this file.
 This will only be nonzero if
 .I stx_dio_mem_align
 is nonzero, and vice versa.
+.TP
+.I stx_dio_read_offset_align
+The alignment (in bytes) required for file offsets and I/O segment lengths for
+direct I/O reads
+.RB ( O_DIRECT )
+on this file.
+If zero,
+the limit in
+.I stx_dio_offset_align
+applies for reads as well.
+If non-zero,
+this value must be smaller than or equal to
+.I stx_dio_offset_align
+which must be provided by the file system
+if requested by the application.
+The memory alignment in
+.I stx_dio_mem_align
+is not affected by this value.
+.IP
+.B STATX_DIO_READ_ALIGN
+.RI ( stx_dio_offset_align )
+is supported by xfs on regular files since Linux 6.14.
 .TP
 .I stx_subvol
 Subvolume number of the current file.
