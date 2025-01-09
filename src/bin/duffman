@@ -22,7 +22,7 @@ while getopts "sU:w" opt; do
 done;
 shift $((OPTIND-1));
 
-if test $# -gt 0; then
+if test $# -gt 1; then
 	>&2 echo "$(basename "$0"): error: Too many arguments.";
 	exit 1;
 fi;
@@ -34,14 +34,22 @@ test -v MAN_KEEP_FORMATTING || export MAN_KEEP_FORMATTING=1;
 # shellcheck disable=SC2206  # We want only non-empty variables in the array.
 opts=($s $w $u);
 
-git diff --name-only \
+case $# in
+0)  git diff --name-only;
+*)  git diff --name-only "$1^..$1";
+esac \
 | grep -E '(\.[[:digit:]]([[:alpha:]][[:alnum:]]*)?\>|\.man)+(\.man|\.in)*$' \
 | sortman \
 | while read f; do \
-	old="HEAD:$f";
-	new="./$f";
+	case $# in
+	0)  old="HEAD:$f";  new="./$f";   ;;
+	*)  old="$1^:$f";   new="$1:$f";  ;;
+	esac;
 
-	cat "$new" \
+	case $# in
+	0)  cat "$new";       ;;
+	*)  git show "$new";  ;;
+	esac \
 	| man /dev/stdin \
 	| diff --label "$old" --label "$new" "${opts[@]}" \
 		<(git show "$old" | man /dev/stdin) \
