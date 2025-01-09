@@ -4,17 +4,48 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 set -Eeuo pipefail;
+shopt -s lastpipe;
 
-# diff all modified pages against the system ones.
+# Defaults:
+s='';
+u='-u';
+w='';
+
+while getopts "sU:w" opt; do
+	case "$opt" in
+	s)	s='-s';		;;
+	U)	u="-U$OPTARG";	;;
+	w)	w='-w';		;;
+	\?)	exit 1;		;;
+	*)	exit 1;		;;
+	esac;
+done;
+shift $((OPTIND-1));
+
+if test $# -gt 0; then
+	>&2 echo "$(basename "$0"): error: Too many arguments.";
+	exit 1;
+fi;
 
 cd $(git rev-parse --show-toplevel);
+
+test -v MAN_KEEP_FORMATTING || export MAN_KEEP_FORMATTING=1;
+
+# shellcheck disable=SC2206  # We want only non-empty variables in the array.
+opts=($s $w $u);
 
 git diff --name-only \
 | grep -E '(\.[[:digit:]]([[:alpha:]][[:alnum:]]*)?\>|\.man)+(\.man|\.in)*$' \
 | sortman \
 | while read f; do \
-	sys="$(basename "$f")";
+	old="HEAD:$f";
+	new="./$f";
 
-	diffman "$@" "$sys" "$f" || true;
+	cat "$new" \
+	| man /dev/stdin \
+	| diff --label "$old" --label "$new" "${opts[@]}" \
+		<(git show "$old" | man /dev/stdin) \
+		/dev/stdin \
+	|| true;
 done \
 | less -R;
