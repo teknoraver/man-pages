@@ -42,7 +42,7 @@ case $# in
 esac \
 | grep -E '(\.[[:digit:]]([[:alpha:]][[:alnum:]]*)?\>|\.man)+(\.man|\.in)*$' \
 | sortman \
-| while read f; do \
+| while read -r f; do \
 	case $# in
 	0)  old="HEAD:$f";  new="./$f";   ;;
 	1)  old="$1^:$f";   new="$1:$f";  ;;
