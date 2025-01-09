@@ -58,5 +58,4 @@ esac \
 		<(git show "$old" | man /dev/stdin) \
 		/dev/stdin \
 	|| true;
-done \
-| less -R;
+done;
