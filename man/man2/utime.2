@@ -12,12 +12,12 @@ Standard C library
 .nf
 .B #include <utime.h>
 .P
-.BI "int utime(const char *" filename ,
+.BI "int utime(const char *" path ,
 .BI "          const struct utimbuf *_Nullable " times );
 .P
 .B #include <sys/time.h>
 .P
-.BI "int utimes(const char *" filename ,
+.BI "int utimes(const char *" path ,
 .BI "          const struct timeval " times "[_Nullable 2]);"
 .fi
 .SH DESCRIPTION
@@ -29,7 +29,7 @@ The
 .BR utime ()
 system call
 changes the access and modification times of the inode specified by
-.I filename
+.I path
 to the
 .IR actime " and " modtime
 fields of
@@ -127,11 +127,11 @@ or the
 capability).
 .TP
 .B EFAULT
-.I filename
+.I path
 points to an invalid address.
 .TP
 .B ENOENT
-.I filename
+.I path
 does not exist.
 .TP
 .B EPERM

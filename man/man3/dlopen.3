@@ -14,14 +14,14 @@ Dynamic linking library
 .nf
 .B #include <dlfcn.h>
 .P
-.BI "void *dlopen(const char *" filename ", int " flags );
+.BI "void *dlopen(const char *" path ", int " flags );
 .BI "int dlclose(void *" handle );
 .P
 .B #define _GNU_SOURCE
 .br
 .B #include <dlfcn.h>
 .P
-.BI "void *dlmopen(Lmid_t " lmid ", const char *" filename ", int " flags );
+.BI "void *dlmopen(Lmid_t " lmid ", const char *" path ", int " flags );
 .fi
 .SH DESCRIPTION
 .SS dlopen()
@@ -30,7 +30,7 @@ The function
 loads the dynamic shared object (shared library)
 file named by the null-terminated
 string
-.I filename
+.I path
 and returns an opaque "handle" for the loaded object.
 This handle is employed with other functions in the dlopen API, such as
 .BR dlsym (3),
@@ -40,17 +40,17 @@ and
 .BR dlclose ().
 .P
 If
-.I filename
+.I path
 .\" FIXME On Solaris, when handle is NULL, we seem to get back
 .\" a handle for (something like) the root of the namespace.
 .\" The point here is that if we do a dlmopen(LM_ID_NEWLM), then
-.\" the filename==NULL case returns a different handle than
+.\" the path==NULL case returns a different handle than
 .\" in the initial namespace. But, on glibc, the same handle is
 .\" returned. This is probably a bug in glibc.
 .\"
 is NULL, then the returned handle is for the main program.
 If
-.I filename
+.I path
 contains a slash ("/"), then it is interpreted as a (relative
 or absolute) pathname.
 Otherwise, the dynamic linker searches for the object as follows
@@ -81,7 +81,7 @@ The cache file
 (maintained by
 .BR ldconfig (8))
 is checked to see whether it contains an entry for
-.IR filename .
+.IR path .
 .IP \[bu]
 The directories
 .I /lib
@@ -90,7 +90,7 @@ and
 are searched (in that order).
 .P
 If the object specified by
-.I filename
+.I path
 has dependencies on other shared objects,
 then these are also automatically loaded by the dynamic linker
 using the same rules.
@@ -167,7 +167,7 @@ its own symbols in preference to global symbols with the same name
 contained in objects that have already been loaded.
 .P
 If
-.I filename
+.I path
 is NULL, then the returned handle is for the main program.
 When given to
 .BR dlsym (3),
@@ -235,7 +235,7 @@ fails for any reason, it returns NULL.
 .SS dlmopen()
 This function performs the same task as
 .BR dlopen ()\[em]the
-.I filename
+.I path
 and
 .I flags
 arguments, as well as the return value, are the same,
@@ -280,7 +280,7 @@ to reference all of the other shared objects that it requires,
 since the new namespace is initially empty.
 .P
 If
-.I filename
+.I path
 is NULL, then the only permitted value for
 .I lmid
 is

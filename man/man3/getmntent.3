@@ -15,7 +15,7 @@ Standard C library
 .B #include <stdio.h>
 .B #include <mntent.h>
 .P
-.BI "FILE *setmntent(const char *" filename ", const char *" type );
+.BI "FILE *setmntent(const char *" path ", const char *" type );
 .P
 .BI "struct mntent *getmntent(FILE *" stream );
 .P
@@ -56,7 +56,7 @@ and the mounted filesystem description file
 The
 .BR setmntent ()
 function opens the filesystem description file
-.I filename
+.I path
 and returns a file pointer which can be used by
 .BR getmntent ().
 The argument

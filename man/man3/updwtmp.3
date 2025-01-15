@@ -13,7 +13,7 @@ System utilities library
 .nf
 .B #include <utmp.h>
 .P
-.BI "void updwtmp(const char *" wtmp_file ", const struct utmp *" ut );
+.BI "void updwtmp(const char *" wtmp_path ", const struct utmp *" ut );
 .BI "void logwtmp(const char *" line ", const char *" name \
 ", const char *" host );
 .fi
@@ -58,7 +58,7 @@ glibc provides (since glibc 2.1):
 .EX
 .BR "#define _GNU_SOURCE          " "/* See feature_test_macros(7) */"
 .B #include <utmpx.h>
-.BI "void updwtmpx (const char *" wtmpx_file ", const struct utmpx *" utx );
+.BI "void updwtmpx (const char *" wtmpx_path ", const struct utmpx *" utx );
 .EE
 .in
 .P

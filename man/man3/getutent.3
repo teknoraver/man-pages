@@ -23,18 +23,18 @@ Standard C library
 .B void setutent(void);
 .B void endutent(void);
 .P
-.BI "int utmpname(const char *" file );
+.BI "int utmpname(const char *" path );
 .fi
 .SH DESCRIPTION
 New applications should use the POSIX.1-specified "utmpx" versions of
 these functions; see STANDARDS.
 .P
 .BR utmpname ()
-sets the name of the utmp-format file for the other utmp
+sets the pathname of the utmp-format file for the other utmp
 functions to access.
 If
 .BR utmpname ()
-is not used to set the filename
+is not used to set the pathname
 before the other functions are used, they assume
 .BR _PATH_UTMP ,
 as defined in
