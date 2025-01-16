@@ -724,6 +724,11 @@ in the group terminates.
 .P
 When autogrouping is enabled, all of the members of an autogroup
 are placed in the same kernel scheduler "task group".
+When disabled,
+the group creation happens as above,
+and autogroup membership is still visible in
+.IR /proc ,
+but the autogroups are not used.
 The CFS scheduler employs an algorithm that equalizes the
 distribution of CPU cycles across task groups.
 The benefits of this for interactive desktop performance
