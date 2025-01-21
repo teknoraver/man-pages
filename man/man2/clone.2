@@ -1912,6 +1912,8 @@ main(int argc, char *argv[])
     pid = clone(childFunc, stackTop, CLONE_NEWUTS | SIGCHLD, argv[1]);
     if (pid == \-1)
         err(EXIT_FAILURE, "clone");
+    if (munmap(stack, STACK_SIZE))
+        err(EXIT_FAILURE, "munmap");
     printf("clone() returned %jd\[rs]n", (intmax_t) pid);
 \&
     /* Parent falls through to here */
