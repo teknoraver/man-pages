@@ -57043,27 +57043,27 @@ man2/
 
 man2const/
 	KEYCTL_ASSUME_AUTHORITY.2const		(previously, keyctl.2)
-	KEYCTL_CHOWN.2cons			(previously, keyctl.2)t
-	KEYCTL_CLEAR.2cons			(previously, keyctl.2)t
-	KEYCTL_DESCRIBE.2cons			(previously, keyctl.2)t
-	KEYCTL_DH_COMPUTE.2cons			(previously, keyctl.2)t
-	KEYCTL_GET_KEYRING_ID.2cons		(previously, keyctl.2)t
-	KEYCTL_GET_PERSISTENT.2cons		(previously, keyctl.2)t
-	KEYCTL_GET_SECURITY.2cons		(previously, keyctl.2)t
-	KEYCTL_INSTANTIATE.2cons		(previously, keyctl.2)t
-	KEYCTL_INVALIDATE.2cons			(previously, keyctl.2)t
-	KEYCTL_JOIN_SESSION_KEYRING.2cons	(previously, keyctl.2)t
-	KEYCTL_LINK.2cons			(previously, keyctl.2)t
-	KEYCTL_READ.2cons			(previously, keyctl.2)t
-	KEYCTL_RESTRICT_KEYRING.2cons		(previously, keyctl.2)t
-	KEYCTL_REVOKE.2cons			(previously, keyctl.2)t
-	KEYCTL_SEARCH.2cons			(previously, keyctl.2)t
-	KEYCTL_SESSION_TO_PARENT.2cons		(previously, keyctl.2)t
-	KEYCTL_SETPERM.2cons			(previously, keyctl.2)t
-	KEYCTL_SET_REQKEY_KEYRING.2cons		(previously, keyctl.2)t
-	KEYCTL_SET_TIMEOUT.2cons		(previously, keyctl.2)t
-	KEYCTL_UNLINK.2cons			(previously, keyctl.2)t
-	KEYCTL_UPDATE.2cons			(previously, keyctl.2)t
+	KEYCTL_CHOWN.2const			(previously, keyctl.2)
+	KEYCTL_CLEAR.2const			(previously, keyctl.2)
+	KEYCTL_DESCRIBE.2const			(previously, keyctl.2)
+	KEYCTL_DH_COMPUTE.2const		(previously, keyctl.2)
+	KEYCTL_GET_KEYRING_ID.2const		(previously, keyctl.2)
+	KEYCTL_GET_PERSISTENT.2const		(previously, keyctl.2)
+	KEYCTL_GET_SECURITY.2const		(previously, keyctl.2)
+	KEYCTL_INSTANTIATE.2const		(previously, keyctl.2)
+	KEYCTL_INVALIDATE.2const		(previously, keyctl.2)
+	KEYCTL_JOIN_SESSION_KEYRING.2const	(previously, keyctl.2)
+	KEYCTL_LINK.2const			(previously, keyctl.2)
+	KEYCTL_READ.2const			(previously, keyctl.2)
+	KEYCTL_RESTRICT_KEYRING.2const		(previously, keyctl.2)
+	KEYCTL_REVOKE.2const			(previously, keyctl.2)
+	KEYCTL_SEARCH.2const			(previously, keyctl.2)
+	KEYCTL_SESSION_TO_PARENT.2const		(previously, keyctl.2)
+	KEYCTL_SETPERM.2const			(previously, keyctl.2)
+	KEYCTL_SET_REQKEY_KEYRING.2const	(previously, keyctl.2)
+	KEYCTL_SET_TIMEOUT.2const		(previously, keyctl.2)
+	KEYCTL_UNLINK.2const			(previously, keyctl.2)
+	KEYCTL_UPDATE.2const			(previously, keyctl.2)
 	PR_RISCV_SET_ICACHE_FLUSH_CTX.2const
 
 man3/
