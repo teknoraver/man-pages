@@ -184,7 +184,7 @@ sub BuildPage
 				# Add a level two bookmark. We don't set it in the TH macro since the name passed
 				# may be different from the filename, i.e. file = unimplemented.2, TH = UNIMPLEMENTED 2
 
-				print ".pdfbookmark -T $bkmark 2 $nm($sec)\n";
+				print ".pdfhref M -N $bkmark\n";
 
 				next;
 			}
