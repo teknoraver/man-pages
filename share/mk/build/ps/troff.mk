@@ -42,6 +42,7 @@ _XFAIL_PSMAN_MAN_set := \
 	$(_MANDIR)/man7/iso_8859-16.7.ps.set \
 	$(_MANDIR)/man7/koi8-r.7.ps.set \
 	$(_MANDIR)/man7/koi8-u.7.ps.set \
+	$(_MANDIR)/man7/pathname.7.ps.set \
 	$(_MANDIR)/man7/vdso.7.ps.set
 
 

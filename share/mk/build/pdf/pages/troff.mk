@@ -42,6 +42,7 @@ _XFAIL_PDFMAN_MAN_set := \
 	$(_MANDIR)/man7/iso_8859-16.7.pdf.set \
 	$(_MANDIR)/man7/koi8-r.7.pdf.set \
 	$(_MANDIR)/man7/koi8-u.7.pdf.set \
+	$(_MANDIR)/man7/pathname.7.pdf.set \
 	$(_MANDIR)/man7/vdso.7.pdf.set
 
 
