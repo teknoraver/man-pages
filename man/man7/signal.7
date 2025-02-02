@@ -360,7 +360,8 @@ Linux supports the standard signals listed below.
 The second column of the table indicates which standard (if any)
 specified the signal: "P1990" indicates that the signal is described
 in the original POSIX.1-1990 standard;
-"P2001" indicates that the signal was added in SUSv2 and POSIX.1-2001.
+"P2001" indicates that the signal was added or its definition changed
+in SUSv2 and POSIX.1-2001.
 .TS
 l c c l
 ____
@@ -369,7 +370,7 @@ Signal	Standard	Action	Comment
 SIGABRT	P1990	Core	Abort signal from \fBabort\fP(3)
 SIGALRM	P1990	Term	Timer signal from \fBalarm\fP(2)
 SIGBUS	P2001	Core	Bus error (bad memory access)
-SIGCHLD	P1990	Ign	Child stopped or terminated
+SIGCHLD	P2001	Ign	Child stopped, terminated, or continued
 SIGCLD	\-	Ign	A synonym for \fBSIGCHLD\fP
 SIGCONT	P1990	Cont	Continue if stopped
 SIGEMT	\-	Term	Emulator trap
