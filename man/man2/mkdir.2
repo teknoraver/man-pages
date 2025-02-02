@@ -203,6 +203,10 @@ does not support the creation of directories.
 .B EROFS
 .I pathname
 refers to a file on a read-only filesystem.
+.B EOVERFLOW
+UID or GID mappings (see
+.BR user_namespaces (7))
+have not been configured.
 .SH VERSIONS
 Under Linux, apart from the permission bits, the
 .B S_ISVTX
