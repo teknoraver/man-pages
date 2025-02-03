@@ -1,9 +1,16 @@
-# Copyright 2021-2024, Alejandro Colomar <alx@kernel.org>
+# Copyright 2021-2025, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
 SHELL       := bash
 .SHELLFLAGS := -Eeuo pipefail -c
+
+
+ifneq (4.4.999,$(firstword $(sort 4.4.999 $(MAKE_VERSION))))
+  ifneq (R,$(findstring R, $(firstword -$(MAKEFLAGS))))
+    $(error Please run make(1) with the '-R' option)
+  endif
+endif
 
 
 MAKEFLAGS += --no-builtin-rules
@@ -38,7 +45,7 @@ nothing:;
 .PHONY: help
 help:
 	$(info	$(INFO_)To see a list of targets, run:)
-	$(info	$(INFO_)	$$ make nothing -p \)
+	$(info	$(INFO_)	$$ make -R -p nothing \)
 	$(info	$(INFO_)	| grep '^\.PHONY:' \)
 	$(info	$(INFO_)	| tr ' ' '\n' \)
 	$(info	$(INFO_)	| grep -v '^\.PHONY:' \)
