@@ -14,9 +14,9 @@ DEFAULT_CLANG_TIDYFLAGS := \
 	--config-file=$(CLANG_TIDY_CONF) \
 	--quiet \
 	--use-color
-CLANG_TIDYFLAGS         :=
-CLANG_TIDYFLAGS_        := $(DEFAULT_CLANG_TIDYFLAGS) $(CLANG_TIDYFLAGS)
-CLANG_TIDY              := clang-tidy
+CLANG_TIDYFLAGS         ?=
+CLANG_TIDYFLAGS_        ?= $(DEFAULT_CLANG_TIDYFLAGS) $(CLANG_TIDYFLAGS)
+CLANG_TIDY              ?= clang-tidy
 
 
 endif  # include guard

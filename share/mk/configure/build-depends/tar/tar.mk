@@ -14,9 +14,9 @@ DEFAULT_TARFLAGS := \
 	--owner=root:0 \
 	--group=root:0 \
 	--mtime='$(DISTDATE)'
-TARFLAGS         :=
-TARFLAGS_        := $(DEFAULT_TARFLAGS) $(TARFLAGS)
-TAR              := tar
+TARFLAGS         ?=
+TARFLAGS_        ?= $(DEFAULT_TARFLAGS) $(TARFLAGS)
+TAR              ?= tar
 
 
 endif  # include guard

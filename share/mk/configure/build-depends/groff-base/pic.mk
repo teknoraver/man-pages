@@ -7,9 +7,9 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_BASE_PIC_INCLUDED := 1
 
 
 DEFAULT_PICFLAGS :=
-PICFLAGS         :=
-PICFLAGS_        := $(DEFAULT_PICFLAGS) $(PICFLAGS)
-PIC              := pic
+PICFLAGS         ?=
+PICFLAGS_        ?= $(DEFAULT_PICFLAGS) $(PICFLAGS)
+PIC              ?= pic
 
 
 endif  # include guard

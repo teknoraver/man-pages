@@ -6,7 +6,7 @@ ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_TEXLIVE_FONTS_EXTRA_LINKS_TINOS_REGULAR_
 MAKEFILE_CONFIGURE_BUILD_DEPENDS_TEXLIVE_FONTS_EXTRA_LINKS_TINOS_REGULAR_TTF_INCLUDED := 1
 
 
-TINOSR_TTF := /usr/share/texlive/texmf-dist/fonts/truetype/google/tinos/Tinos-Regular.ttf
+TINOSR_TTF ?= /usr/share/texlive/texmf-dist/fonts/truetype/google/tinos/Tinos-Regular.ttf
 
 
 endif  # include guard

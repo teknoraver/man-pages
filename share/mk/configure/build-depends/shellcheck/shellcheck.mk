@@ -11,9 +11,9 @@ include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 
 SHELLCHECK_CONF         := $(SYSCONFDIR)/shellcheck/shellcheckrc
 DEFAULT_SHELLCHECKFLAGS := -o all
-SHELLCHECKFLAGS         :=
-SHELLCHECKFLAGS_        := $(DEFAULT_SHELLCHECKFLAGS) $(SHELLCHECKFLAGS)
-SHELLCHECK              := shellcheck
+SHELLCHECKFLAGS         ?=
+SHELLCHECKFLAGS_        ?= $(DEFAULT_SHELLCHECKFLAGS) $(SHELLCHECKFLAGS)
+SHELLCHECK              ?= shellcheck
 
 
 endif  # include guard

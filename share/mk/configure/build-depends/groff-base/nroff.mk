@@ -13,9 +13,9 @@ include $(MAKEFILEDIR)/configure/build-depends/libc-bin/locale.mk
 include $(MAKEFILEDIR)/configure/build-depends/man/man.mk
 
 
-NROFF_CHECKSTYLE_LVL := 3
-NROFF_LINE_LENGTH    := $(shell $(EXPR) $(MANWIDTH) - 2)
-NROFF_OUT_DEVICE     := \
+NROFF_CHECKSTYLE_LVL ?= 3
+NROFF_LINE_LENGTH    ?= $(shell $(EXPR) $(MANWIDTH) - 2)
+NROFF_OUT_DEVICE     ?= \
 	$(shell $(LOCALE) charmap \
 		| $(GREP) -i 'utf-*8' >/dev/null \
 		&& $(ECHO) utf8 \
@@ -28,8 +28,8 @@ DEFAULT_NROFFFLAGS := \
 	-rLL=$(NROFF_LINE_LENGTH)n \
 	-rCHECKSTYLE=$(NROFF_CHECKSTYLE_LVL) \
 	-ww
-NROFFFLAGS         :=
-NROFFFLAGS_        := $(DEFAULT_NROFFFLAGS) $(NROFFFLAGS)
+NROFFFLAGS         ?=
+NROFFFLAGS_        ?= $(DEFAULT_NROFFFLAGS) $(NROFFFLAGS)
 
 
 endif  # include guard

@@ -7,9 +7,9 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_BASE_GROPS_INCLUDED := 1
 
 
 DEFAULT_GROPSFLAGS :=
-GROPSFLAGS         :=
-GROPSFLAGS_        := $(DEFAULT_GROPSFLAGS) $(GROPSFLAGS)
-GROPS              := grops
+GROPSFLAGS         ?=
+GROPSFLAGS_        ?= $(DEFAULT_GROPSFLAGS) $(GROPSFLAGS)
+GROPS              ?= grops
 
 
 endif  # include guard

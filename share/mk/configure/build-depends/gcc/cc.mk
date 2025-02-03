@@ -11,7 +11,7 @@ include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 
 
-CC := gcc
+CC ?= gcc
 
 
 CC_VENDOR := \
@@ -61,8 +61,8 @@ else ifeq ($(CC_VENDOR),clang)
 DEFAULT_CFLAGS += $(CLANG_CFLAGS)
 endif
 
-CFLAGS         :=
-CFLAGS_        := $(DEFAULT_CFLAGS) $(CFLAGS)
+CFLAGS         ?=
+CFLAGS_        ?= $(DEFAULT_CFLAGS) $(CFLAGS)
 
 
 endif  # include guard

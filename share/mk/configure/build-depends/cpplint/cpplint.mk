@@ -11,9 +11,9 @@ include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 
 CPPLINT_CONF         := $(SYSCONFDIR)/cpplint/cpplint.cfg
 DEFAULT_CPPLINTFLAGS :=
-CPPLINTFLAGS         :=
-CPPLINTFLAGS_        := $(DEFAULT_CPPLINTFLAGS) $(CPPLINTFLAGS)
-CPPLINT              := cpplint
+CPPLINTFLAGS         ?=
+CPPLINTFLAGS_        ?= $(DEFAULT_CPPLINTFLAGS) $(CPPLINTFLAGS)
+CPPLINT              ?= cpplint
 
 
 endif  # include guard

@@ -17,9 +17,9 @@ DEFAULT_CPPCHECKFLAGS := \
 	--check-level=exhaustive \
 	--quiet \
 	--suppressions-list=$(CPPCHECK_SUPPRESS)
-CPPCHECKFLAGS         :=
-CPPCHECKFLAGS_        := $(DEFAULT_CPPCHECKFLAGS) $(CPPCHECKFLAGS)
-CPPCHECK              := cppcheck
+CPPCHECKFLAGS         ?=
+CPPCHECKFLAGS_        ?= $(DEFAULT_CPPCHECKFLAGS) $(CPPCHECKFLAGS)
+CPPCHECK              ?= cppcheck
 
 
 endif  # include guard

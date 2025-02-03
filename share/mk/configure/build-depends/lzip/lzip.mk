@@ -7,9 +7,9 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_LZIP_LZIP_INCLUDED := 1
 
 
 DEFAULT_LZIPFLAGS :=
-LZIPFLAGS         :=
-LZIPFLAGS_        := $(DEFAULT_LZIPFLAGS) $(LZIPFLAGS)
-LZIP              := lzip
+LZIPFLAGS         ?=
+LZIPFLAGS_        ?= $(DEFAULT_LZIPFLAGS) $(LZIPFLAGS)
+LZIP              ?= lzip
 
 
 endif  # include guard

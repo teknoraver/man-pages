@@ -6,7 +6,7 @@ ifndef MAKEFILE_CONFIGURE_DIRECTORY_VARIABLES_BUILD_INCLUDED
 MAKEFILE_CONFIGURE_DIRECTORY_VARIABLES_BUILD_INCLUDED := 1
 
 
-builddir := .tmp
+builddir ?= .tmp
 
 
 endif  # include guard

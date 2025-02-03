@@ -10,9 +10,9 @@ DEFAULT_TROFFFLAGS := \
 	-wbreak \
 	-rS12 \
 	-rU0
-TROFFFLAGS         :=
-TROFFFLAGS_        := $(DEFAULT_TROFFFLAGS) $(TROFFFLAGS)
-TROFF              := troff
+TROFFFLAGS         ?=
+TROFFFLAGS_        ?= $(DEFAULT_TROFFFLAGS) $(TROFFFLAGS)
+TROFF              ?= troff
 
 
 endif  # include guard

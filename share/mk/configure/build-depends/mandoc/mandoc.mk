@@ -7,9 +7,9 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_MANDOC_MANDOC_INCLUDED := 1
 
 
 DEFAULT_MANDOCFLAGS := -Tlint
-MANDOCFLAGS         :=
-MANDOCFLAGS_        := $(DEFAULT_MANDOCFLAGS) $(MANDOCFLAGS)
-MANDOC              := mandoc
+MANDOCFLAGS         ?=
+MANDOCFLAGS_        ?= $(DEFAULT_MANDOCFLAGS) $(MANDOCFLAGS)
+MANDOC              ?= mandoc
 
 
 endif  # include guard

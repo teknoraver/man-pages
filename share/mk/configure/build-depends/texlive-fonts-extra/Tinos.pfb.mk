@@ -6,7 +6,7 @@ ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_TEXLIVE_FONTS_EXTRA_TINOS_PFB_INCLUDED
 MAKEFILE_CONFIGURE_BUILD_DEPENDS_TEXLIVE_FONTS_EXTRA_TINOS_PFB_INCLUDED := 1
 
 
-TINOS_PFB := /usr/share/texlive/texmf-dist/fonts/type1/google/tinos/Tinos.pfb
+TINOS_PFB ?= /usr/share/texlive/texmf-dist/fonts/type1/google/tinos/Tinos.pfb
 
 
 endif  # include guard

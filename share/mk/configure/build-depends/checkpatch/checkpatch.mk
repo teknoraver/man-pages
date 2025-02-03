@@ -11,9 +11,9 @@ include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 
 CHECKPATCH_CONF         := $(SYSCONFDIR)/checkpatch/checkpatch.conf
 DEFAULT_CHECKPATCHFLAGS :=
-CHECKPATCHFLAGS         :=
-CHECKPATCHFLAGS_        := $(DEFAULT_CHECKPATCHFLAGS) $(CHECKPATCHFLAGS)
-CHECKPATCH              := checkpatch
+CHECKPATCHFLAGS         ?=
+CHECKPATCHFLAGS_        ?= $(DEFAULT_CHECKPATCHFLAGS) $(CHECKPATCHFLAGS)
+CHECKPATCH              ?= checkpatch
 
 
 endif  # include guard

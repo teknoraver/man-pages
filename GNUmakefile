@@ -18,7 +18,7 @@ MAKEFLAGS += --no-builtin-variables
 MAKEFLAGS += --warn-undefined-variables
 
 
-srcdir      := .
+srcdir      ?= .
 MAKEFILEDIR := $(CURDIR)/share/mk
 
 

@@ -10,9 +10,9 @@ DEFAULT_COLFLAGS := \
 	-b \
 	-p \
 	-x
-COLFLAGS         :=
-COLFLAGS_        := $(DEFAULT_COLFLAGS) $(COLFLAGS)
-COL              := col
+COLFLAGS         ?=
+COLFLAGS_        ?= $(DEFAULT_COLFLAGS) $(COLFLAGS)
+COL              ?= col
 
 
 endif  # include guard

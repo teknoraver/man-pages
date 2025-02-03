@@ -7,9 +7,9 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_BZIP2_BZIP2_INCLUDED := 1
 
 
 DEFAULT_BZIP2FLAGS :=
-BZIP2FLAGS         :=
-BZIP2FLAGS_        := $(DEFAULT_BZIP2FLAGS) $(BZIP2FLAGS)
-BZIP2              := bzip2
+BZIP2FLAGS         ?=
+BZIP2FLAGS_        ?= $(DEFAULT_BZIP2FLAGS) $(BZIP2FLAGS)
+BZIP2              ?= bzip2
 
 
 endif  # include guard

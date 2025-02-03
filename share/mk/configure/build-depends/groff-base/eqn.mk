@@ -7,9 +7,9 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_BASE_EQN_INCLUDED := 1
 
 
 DEFAULT_EQNFLAGS :=
-EQNFLAGS         :=
-EQNFLAGS_        := $(DEFAULT_EQNFLAGS) $(EQNFLAGS)
-EQN              := eqn
+EQNFLAGS         ?=
+EQNFLAGS_        ?= $(DEFAULT_EQNFLAGS) $(EQNFLAGS)
+EQN              ?= eqn
 
 
 endif  # include guard

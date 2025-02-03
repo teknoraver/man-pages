@@ -13,7 +13,7 @@ include $(MAKEFILEDIR)/configure/build-depends/pkgconf/pkgconf.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 
 
-CPP := $(CC) $(CFLAGS_) -E
+CPP ?= $(CC) $(CFLAGS_) -E
 
 
 CPP_HAS_ALREADY_D_FORTIFY_SOURCE := \
@@ -30,8 +30,8 @@ DEFAULT_CPPFLAGS := \
 ifeq ($(CPP_HAS_ALREADY_D_FORTIFY_SOURCE),no)
 DEFAULT_CPPFLAGS += -D_FORTIFY_SOURCE=2
 endif
-CPPFLAGS         :=
-CPPFLAGS_        := $(DEFAULT_CPPFLAGS) $(CPPFLAGS)
+CPPFLAGS         ?=
+CPPFLAGS_        ?= $(DEFAULT_CPPFLAGS) $(CPPFLAGS)
 
 
 endif  # include guard

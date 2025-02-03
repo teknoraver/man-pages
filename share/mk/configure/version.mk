@@ -19,12 +19,12 @@ include $(MAKEFILEDIR)/configure/verbose.mk
 
 
 projname      := man-pages
-VERSION       := $(shell $(GIT) describe --dirty | $(SED) 's/$(projname)-//')
-EXTRAVERSION  :=
+VERSION       ?= $(shell $(GIT) describe --dirty | $(SED) 's/$(projname)-//')
+EXTRAVERSION  ?=
 
 
-DISTVERSION   := $(VERSION)$(EXTRAVERSION)
-DISTNAME      := $(projname)-$(DISTVERSION)
+DISTVERSION   ?= $(VERSION)$(EXTRAVERSION)
+DISTNAME      ?= $(projname)-$(DISTVERSION)
 
 
 DISTFILESCMD := \
@@ -47,7 +47,7 @@ DISTDATECMD := \
 	fi;
 
 
-DISTDATE := $(shell $(DISTDATECMD))
+DISTDATE ?= $(shell $(DISTDATECMD))
 
 
 MANPAGEDATECMD = $(GIT) log --format=%cs -1 -- $< $(HIDE_ERR)

@@ -7,9 +7,9 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_XZ_UTILS_XZ_INCLUDED := 1
 
 
 DEFAULT_XZFLAGS :=
-XZFLAGS         :=
-XZFLAGS_        := $(DEFAULT_XZFLAGS) $(XZFLAGS)
-XZ              := xz
+XZFLAGS         ?=
+XZFLAGS_        ?= $(DEFAULT_XZFLAGS) $(XZFLAGS)
+XZ              ?= xz
 
 
 endif  # include guard

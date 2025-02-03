@@ -7,9 +7,9 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_GZIP_GZIP_INCLUDED := 1
 
 
 DEFAULT_GZIPFLAGS := -n
-GZIPFLAGS         :=
-GZIPFLAGS_        := $(DEFAULT_GZIPFLAGS) $(GZIPFLAGS)
-GZIP              := gzip
+GZIPFLAGS         ?=
+GZIPFLAGS_        ?= $(DEFAULT_GZIPFLAGS) $(GZIPFLAGS)
+GZIP              ?= gzip
 
 
 endif  # include guard

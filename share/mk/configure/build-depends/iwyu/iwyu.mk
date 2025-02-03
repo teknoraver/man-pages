@@ -9,9 +9,9 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_IWYU_IWYU_INCLUDED := 1
 DEFAULT_IWYUFLAGS := \
 	-Xiwyu --no_fwd_decls \
 	-Xiwyu --error
-IWYUFLAGS         :=
-IWYUFLAGS_        := $(DEFAULT_IWYUFLAGS) $(IWYUFLAGS)
-IWYU              := iwyu
+IWYUFLAGS         ?=
+IWYUFLAGS_        ?= $(DEFAULT_IWYUFLAGS) $(IWYUFLAGS)
+IWYU              ?= iwyu
 
 
 endif  # include guard
