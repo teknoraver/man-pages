@@ -18,37 +18,48 @@ Standard C library
 .BI "int timespec_getres(struct timespec *" tp ", int " base );
 .fi
 .SH DESCRIPTION
-.I timespec_get(tp, TIME_UTC)
-is defined as
-.IR "clock_gettime(CLOCK_REALTIME, tp)" .
+The
+.BR timespec_get ()
+function stores the current time, based on the specified time base, in the
+.BR timespec (3type)
+structure pointed to by
+.IR res .
 .P
-.I timespec_getres(res, TIME_UTC)
-is equivalent to
-.IR "clock_getres(CLOCK_REALTIME, res)" .
+The
+.BR timespec_getres ()
+function stores the resolution of times retrieved by
+.BR timespec_get ()
+with the specified time base in the
+.BR timespec (3type)
+structure pointed to by
+.IR tp ,
+if
+.I tp
+is non-NULL.
+For a particular time base,
+the resolution is constant for the lifetime of the calling process.
 .P
 .B TIME_UTC
-is universally guaranteed to be a valid
-.IR base ,
-and is the only one supported under Linux.
-Some other systems support different time bases.
+is always a supported time base,
+and is the only time base supported on Linux.
+The time and resolution in this time base
+are the same as those retrieved by
+.I clock_gettime(CLOCK_REALTIME,\~res)
+and
+.IR clock_getres(CLOCK_REALTIME,\~tp) ,
+respectively.
+Other systems may support additional time bases.
 .SH RETURN VALUE
-On success,
+.BR timespec_get ()
+returns the nonzero
 .I base
-is returned.
-On error,
-\-1 is returned.
-.SH ERRORS
-Some C libraries
-.I may
-set
-.I errno
-to the same value as would be set by
-.BR clock_gettime (2)
-or
-.BR clock_getres (2).
-Neither C nor POSIX specify this,
-but they don't really indicate it shouldn't happen, either.
-Don't rely on this.
+if it is a supported time base
+and the current time was successfully retrieved, or 0 otherwise.
+.P
+.BR timespec_getres ()
+returns the nonzero
+.I base
+if it is a supported time base, or 0 otherwise.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
