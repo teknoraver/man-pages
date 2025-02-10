@@ -14,7 +14,7 @@ include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 
 
 BIN_sh := $(shell $(FIND) $(SRCBINDIR) -type f \
-		| $(XARGS) $(GREP) -l '^#!/bin/\(sh\|bash\)\>' \
+		| $(XARGS) $(GREP) -l '^\#!/bin/\(sh\|bash\)\>' \
 		| $(SORT))
 
 
