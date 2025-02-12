@@ -88,19 +88,30 @@ Description
 
                    $ make -Bj4 dist-tar dist-xz dist-gz
 
-            -  Sign the tarball:
+            -  Create the PDF book:
+
+                   $ make -Bj4 build-pdf-book
+
+            -  Sign the tarball and book:
 
                    $ cd .tmp/
                    $ gpg --detach-sign --armor man-pages-$new.tar
+                   $ gpg --detach-sign --armor man-pages-$new.pdf
 
-            -  Verify the signature:
+            -  Verify the signatures:
 
                    $ gpg --verify man-pages-$new.tar{.asc,}
+                   $ gpg --verify man-pages-$new.pdf{.asc,}
 
             -  Upload the tarball:
 
                    $ kup put man-pages-$new.tar.{xz,asc} \
                              /pub/linux/docs/man-pages/
+
+            -  Upload the book:
+
+                   $ kup put man-pages-$new.pdf{,.asc} \
+                             /pub/linux/docs/man-pages/book/
                    $ cd ..
 
        (5)  LSM
