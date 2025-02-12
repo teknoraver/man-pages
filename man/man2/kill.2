@@ -79,7 +79,9 @@ it suffices when the sending and receiving
 processes belong to the same session.
 (Historically, the rules were different; see HISTORY.)
 .SH RETURN VALUE
-On success (at least one signal was sent), zero is returned.
+On success, zero is returned.
+If signals were sent to a process group,
+success means that at least one signal was delivered.
 On error, \-1 is returned, and
 .I errno
 is set to indicate the error.
