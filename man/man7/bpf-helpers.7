@@ -27,7 +27,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
-.TH "BPF-HELPERS" 7 "2024-01-23" "Linux v6.9"
+.TH "BPF-HELPERS" "7" "2024-10-10" "Linux v6.13"
 .SH NAME
 BPF-HELPERS \- list of eBPF helper functions
 .\" Copyright (C) All BPF authors and contributors from 2014 to present.
@@ -1354,7 +1354,7 @@ It supports the following \fIlevel\fPs:
 \fBTCP_SYNCNT\fP, \fBTCP_USER_TIMEOUT\fP, \fBTCP_NOTSENT_LOWAT\fP,
 \fBTCP_NODELAY\fP, \fBTCP_MAXSEG\fP, \fBTCP_WINDOW_CLAMP\fP,
 \fBTCP_THIN_LINEAR_TIMEOUTS\fP, \fBTCP_BPF_DELACK_MAX\fP,
-\fBTCP_BPF_RTO_MIN\fP\&.
+\fBTCP_BPF_RTO_MIN\fP, \fBTCP_BPF_SOCK_OPS_CB_FLAGS\fP\&.
 .IP \(bu 2
 \fBIPPROTO_IP\fP, which supports \fIoptname\fP \fBIP_TOS\fP\&.
 .IP \(bu 2
@@ -1659,10 +1659,6 @@ restrictions. It is only available if the kernel was compiled
 with the \fBCONFIG_BPF_KPROBE_OVERRIDE\fP configuration
 option, and in this case it only works on functions tagged with
 \fBALLOW_ERROR_INJECTION\fP in the kernel code.
-.sp
-Also, the helper is only available for the architectures having
-the CONFIG_FUNCTION_ERROR_INJECTION option. As of this writing,
-x86 architecture is the only one to support this feature.
 .TP
 .B Return
 0
@@ -2030,6 +2026,11 @@ Derive and set source IP addr in \fIparams\fP\->ipv{4,6}_src
 for the nexthop. If the src addr cannot be derived,
 \fBBPF_FIB_LKUP_RET_NO_SRC_ADDR\fP is returned. In this
 case, \fIparams\fP\->dmac and \fIparams\fP\->smac are not set either.
+.TP
+.B \fBBPF_FIB_LOOKUP_MARK\fP
+Use the mark present in \fIparams\fP\->mark for the fib lookup.
+This option should not be used with BPF_FIB_LOOKUP_DIRECT,
+as it only has meaning for full lookups.
 .UNINDENT
 .sp
 \fIctx\fP is either \fBstruct xdp_md\fP for XDP programs or
@@ -4100,7 +4101,7 @@ bytes will be copied to \fIdst\fP
 .TP
 .B Return
 The \fBhash_algo\fP is returned on success,
-\fB\-EOPNOTSUP\fP if IMA is disabled or \fB\-EINVAL\fP if
+\fB\-EOPNOTSUPP\fP if IMA is disabled or \fB\-EINVAL\fP if
 invalid arguments are passed.
 .UNINDENT
 .TP
@@ -4529,7 +4530,7 @@ The \fBflags\fP is used to control certain aspects of the helper.
 Currently, the \fBflags\fP must be 0. Currently, nr_loops is
 limited to 1 << 23 (~8 million) loops.
 .sp
-long (*callback_fn)(u32 index, void *ctx);
+long (*callback_fn)(u64 index, void *ctx);
 .sp
 where \fBindex\fP is the current index in the loop. The index
 is zero\-indexed.
@@ -4705,7 +4706,7 @@ mono delivery time to __sk_buff\->tstamp and then
 bpf_redirect_*() to the egress of an iface.  For example,
 changing the (rcv) timestamp in __sk_buff\->tstamp at
 ingress to a mono delivery time and then bpf_redirect_*()
-to \fI\%sch_fq@phy\-dev\fP\&.
+to  <sch_fq@phy\-dev> \&.
 .TP
 .B Return
 0 on success.
@@ -4723,17 +4724,18 @@ bytes will be copied to \fIdst\fP
 .TP
 .B Return
 The \fBhash_algo\fP is returned on success,
-\fB\-EOPNOTSUP\fP if the hash calculation failed or \fB\-EINVAL\fP if
+\fB\-EOPNOTSUPP\fP if the hash calculation failed or \fB\-EINVAL\fP if
 invalid arguments are passed.
 .UNINDENT
 .TP
-.B \fBvoid *bpf_kptr_xchg(void *\fP\fImap_value\fP\fB, void *\fP\fIptr\fP\fB)\fP
+.B \fBvoid *bpf_kptr_xchg(void *\fP\fIdst\fP\fB, void *\fP\fIptr\fP\fB)\fP
 .INDENT 7.0
 .TP
 .B Description
-Exchange kptr at pointer \fImap_value\fP with \fIptr\fP, and return the
-old value. \fIptr\fP can be NULL, otherwise it must be a referenced
-pointer which will be released when this helper is called.
+Exchange kptr at pointer \fIdst\fP with \fIptr\fP, and return the old value.
+\fIdst\fP can be map value or local kptr. \fIptr\fP can be NULL, otherwise
+it must be a referenced pointer which will be released when this helper
+is called.
 .TP
 .B Return
 The old value of kptr (which can be NULL). The returned pointer
