@@ -1,10 +1,13 @@
-==================== Changes in man-pages-?.?? ====================
+==================== Changes in man-pages-6.11 ====================
 
-Released: ????-??-??, ??Location??
+Released: 2025-02-14, Aldaya
 
 
 New and rewritten pages
 -----------------------
+
+man7/
+	pathname.7
 
 
 Newly documented interfaces in existing pages
@@ -25,6 +28,40 @@ Removed links
 
 Global changes
 --------------
+
+-  Build system:
+   -  [Breaking change!]
+      Require the user to pass '-R' to make(1).  This is necessary to be
+      able to do the following change.  When GNU make(1) releases a new
+      version, it will not be necessary to pass -R, but in current
+      versions of make(1) it is necessary.
+
+   -  [Breaking change!]
+      Use '?=' assignments instead of ':=', to support setting make(1)
+      variables in the environment.  Now one can do this:
+
+	$ export prefix=/usr
+	$ make -R
+	$ sudo make install -R
+
+      (The -R is only necessary in GNU make(1) versions prior to the
+       yet-unreleased 4.5.)
+
+   -  Escape '#' in regexes, to support old versions of GNU make(1).
+      This fixes a regression in man-pages-6.10, which caused issues in
+      users with an old-enough version of GNU make(1), such as the one
+      present in Debian old-old-stable.
+
+   -  Fix duplicate overview-panel entries in the PDF book.
+
+-  CONTRIBUTING.d/:
+   -  Add C coding style guide.
+
+-  RELEASE:
+   -  Document the production of the book.
+
+-  man/:
+   -  Refresh bpf-helpers(7) from Linux v6.13.
 
 
 Changes to individual files
