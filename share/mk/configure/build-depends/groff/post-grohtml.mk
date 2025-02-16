@@ -1,4 +1,4 @@
-# Copyright 2024, Alejandro Colomar <alx@kernel.org>
+# Copyright 2024-2025, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -7,9 +7,15 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_GROFF_POST_GROHTML_INCLUDED := 1
 
 
 DEFAULT_POST_GROHTMLFLAGS :=
-POST_GROHTMLFLAGS         ?=
-POST_GROHTMLFLAGS_        ?= $(DEFAULT_POST_GROHTMLFLAGS) $(POST_GROHTMLFLAGS)
-POST_GROHTML              ?= post-grohtml
+ifndef POST_GROHTMLFLAGS
+POST_GROHTMLFLAGS         :=
+endif
+ifndef POST_GROHTMLFLAGS_
+POST_GROHTMLFLAGS_        := $(DEFAULT_POST_GROHTMLFLAGS) $(POST_GROHTMLFLAGS)
+endif
+ifndef POST_GROHTML
+POST_GROHTML              := post-grohtml
+endif
 
 
 endif  # include guard

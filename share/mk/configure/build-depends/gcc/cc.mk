@@ -1,4 +1,4 @@
-# Copyright 2024, Alejandro Colomar <alx@kernel.org>
+# Copyright 2024-2025, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -11,7 +11,9 @@ include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 
 
-CC ?= gcc
+ifndef CC
+CC := gcc
+endif
 
 
 CC_VENDOR := \
@@ -61,8 +63,12 @@ else ifeq ($(CC_VENDOR),clang)
 DEFAULT_CFLAGS += $(CLANG_CFLAGS)
 endif
 
-CFLAGS         ?=
-CFLAGS_        ?= $(DEFAULT_CFLAGS) $(CFLAGS)
+ifndef CFLAGS
+CFLAGS         :=
+endif
+ifndef CFLAGS_
+CFLAGS_        := $(DEFAULT_CFLAGS) $(CFLAGS)
+endif
 
 
 endif  # include guard

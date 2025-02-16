@@ -1,4 +1,4 @@
-# Copyright 2022-2024, Alejandro Colomar <alx@kernel.org>
+# Copyright 2022-2025, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -13,7 +13,9 @@ include $(MAKEFILEDIR)/configure/build-depends/pkgconf/pkgconf.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 
 
-CPP ?= $(CC) $(CFLAGS_) -E
+ifndef CPP
+CPP := $(CC) $(CFLAGS_) -E
+endif
 
 
 CPP_HAS_ALREADY_D_FORTIFY_SOURCE := \
@@ -30,8 +32,12 @@ DEFAULT_CPPFLAGS := \
 ifeq ($(CPP_HAS_ALREADY_D_FORTIFY_SOURCE),no)
 DEFAULT_CPPFLAGS += -D_FORTIFY_SOURCE=2
 endif
-CPPFLAGS         ?=
-CPPFLAGS_        ?= $(DEFAULT_CPPFLAGS) $(CPPFLAGS)
+ifndef CPPFLAGS
+CPPFLAGS         :=
+endif
+ifndef CPPFLAGS_
+CPPFLAGS_        := $(DEFAULT_CPPFLAGS) $(CPPFLAGS)
+endif
 
 
 endif  # include guard

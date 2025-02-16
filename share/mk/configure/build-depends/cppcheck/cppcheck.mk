@@ -1,4 +1,4 @@
-# Copyright 2022-2024, Alejandro Colomar <alx@kernel.org>
+# Copyright 2022-2025, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -17,9 +17,15 @@ DEFAULT_CPPCHECKFLAGS := \
 	--check-level=exhaustive \
 	--quiet \
 	--suppressions-list=$(CPPCHECK_SUPPRESS)
-CPPCHECKFLAGS         ?=
-CPPCHECKFLAGS_        ?= $(DEFAULT_CPPCHECKFLAGS) $(CPPCHECKFLAGS)
-CPPCHECK              ?= cppcheck
+ifndef CPPCHECKFLAGS
+CPPCHECKFLAGS         :=
+endif
+ifndef CPPCHECKFLAGS_
+CPPCHECKFLAGS_        := $(DEFAULT_CPPCHECKFLAGS) $(CPPCHECKFLAGS)
+endif
+ifndef CPPCHECK
+CPPCHECK              := cppcheck
+endif
 
 
 endif  # include guard

@@ -1,4 +1,4 @@
-# Copyright 2021-2024, Alejandro Colomar <alx@kernel.org>
+# Copyright 2021-2025, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -9,15 +9,33 @@ MAKEFILE_CONFIGURE_DIRECTORY_VARIABLES_INSTALL_INCLUDED := 1
 include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 
 
-DESTDIR     ?=
-prefix      ?= /usr/local
-exec_prefix ?= $(prefix)
-datarootdir ?= $(prefix)/share
-mandir      ?= $(datarootdir)/man
-docdir      ?= $(datarootdir)/doc
-htmldir     ?= $(docdir)/html/man
-pdfdir      ?= $(docdir)/pdf
-bindir      ?= $(exec_prefix)/bin
+ifndef DESTDIR
+DESTDIR     :=
+endif
+ifndef prefix
+prefix      := /usr/local
+endif
+ifndef exec_prefix
+exec_prefix := $(prefix)
+endif
+ifndef datarootdir
+datarootdir := $(prefix)/share
+endif
+ifndef mandir
+mandir      := $(datarootdir)/man
+endif
+ifndef docdir
+docdir      := $(datarootdir)/doc
+endif
+ifndef htmldir
+htmldir     := $(docdir)/html/man
+endif
+ifndef pdfdir
+pdfdir      := $(docdir)/pdf
+endif
+ifndef bindir
+bindir      := $(exec_prefix)/bin
+endif
 
 
 $(foreach s, $(MANSECTIONS),                                                  \

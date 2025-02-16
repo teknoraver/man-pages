@@ -1,4 +1,4 @@
-# Copyright 2021-2024, Alejandro Colomar <alx@kernel.org>
+# Copyright 2021-2025, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -14,9 +14,15 @@ DEFAULT_TARFLAGS := \
 	--owner=root:0 \
 	--group=root:0 \
 	--mtime='$(DISTDATE)'
-TARFLAGS         ?=
-TARFLAGS_        ?= $(DEFAULT_TARFLAGS) $(TARFLAGS)
-TAR              ?= tar
+ifndef TARFLAGS
+TARFLAGS         :=
+endif
+ifndef TARFLAGS_
+TARFLAGS_        := $(DEFAULT_TARFLAGS) $(TARFLAGS)
+endif
+ifndef TAR
+TAR              := tar
+endif
 
 
 endif  # include guard

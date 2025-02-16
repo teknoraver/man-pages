@@ -1,4 +1,4 @@
-# Copyright 2024, Alejandro Colomar <alx@kernel.org>
+# Copyright 2024-2025, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -13,14 +13,20 @@ include $(MAKEFILEDIR)/configure/build-depends/libc-bin/locale.mk
 include $(MAKEFILEDIR)/configure/build-depends/man/man.mk
 
 
-NROFF_CHECKSTYLE_LVL ?= 3
-NROFF_LINE_LENGTH    ?= $(shell $(EXPR) $(MANWIDTH) - 2)
-NROFF_OUT_DEVICE     ?= \
+ifndef NROFF_CHECKSTYLE_LVL
+NROFF_CHECKSTYLE_LVL := 3
+endif
+ifndef NROFF_LINE_LENGTH
+NROFF_LINE_LENGTH    := $(shell $(EXPR) $(MANWIDTH) - 2)
+endif
+ifndef NROFF_OUT_DEVICE
+NROFF_OUT_DEVICE     := \
 	$(shell $(LOCALE) charmap \
 		| $(GREP) -i 'utf-*8' >/dev/null \
 		&& $(ECHO) utf8 \
 		|| $(ECHO) ascii \
 	)
+endif
 
 
 DEFAULT_NROFFFLAGS := \
@@ -28,8 +34,12 @@ DEFAULT_NROFFFLAGS := \
 	-rLL=$(NROFF_LINE_LENGTH)n \
 	-rCHECKSTYLE=$(NROFF_CHECKSTYLE_LVL) \
 	-ww
-NROFFFLAGS         ?=
-NROFFFLAGS_        ?= $(DEFAULT_NROFFFLAGS) $(NROFFFLAGS)
+ifndef NROFFFLAGS
+NROFFFLAGS         :=
+endif
+ifndef NROFFFLAGS_
+NROFFFLAGS_        := $(DEFAULT_NROFFFLAGS) $(NROFFFLAGS)
+endif
 
 
 endif  # include guard

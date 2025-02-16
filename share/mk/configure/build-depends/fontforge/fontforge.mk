@@ -1,4 +1,4 @@
-# Copyright 2024, Alejandro Colomar <alx@kernel.org>
+# Copyright 2024-2025, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -7,9 +7,15 @@ MAKEFILE_CONFIGURE_BUILD_DEPENDS_FONTFORGE_FONTFORGE_INCLUDED := 1
 
 
 DEFAULT_FONTFORGEFLAGS :=
-FONTFORGEFLAGS         ?=
-FONTFORGEFLAGS_        ?= $(DEFAULT_FONTFORGEFLAGS) $(FONTFORGEFLAGS)
-FONTFORGE              ?= fontforge
+ifndef FONTFORGEFLAGS
+FONTFORGEFLAGS         :=
+endif
+ifndef FONTFORGEFLAGS_
+FONTFORGEFLAGS_        := $(DEFAULT_FONTFORGEFLAGS) $(FONTFORGEFLAGS)
+endif
+ifndef FONTFORGE
+FONTFORGE              := fontforge
+endif
 
 
 endif  # include guard

@@ -1,4 +1,4 @@
-# Copyright 2022-2024, Alejandro Colomar <alx@kernel.org>
+# Copyright 2022-2025, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -14,9 +14,15 @@ DEFAULT_CLANG_TIDYFLAGS := \
 	--config-file=$(CLANG_TIDY_CONF) \
 	--quiet \
 	--use-color
-CLANG_TIDYFLAGS         ?=
-CLANG_TIDYFLAGS_        ?= $(DEFAULT_CLANG_TIDYFLAGS) $(CLANG_TIDYFLAGS)
-CLANG_TIDY              ?= clang-tidy
+ifndef CLANG_TIDYFLAGS
+CLANG_TIDYFLAGS         :=
+endif
+ifndef CLANG_TIDYFLAGS_
+CLANG_TIDYFLAGS_        := $(DEFAULT_CLANG_TIDYFLAGS) $(CLANG_TIDYFLAGS)
+endif
+ifndef CLANG_TIDY
+CLANG_TIDY              := clang-tidy
+endif
 
 
 endif  # include guard
