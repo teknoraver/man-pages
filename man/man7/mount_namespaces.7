@@ -1128,7 +1128,7 @@ in the following step:
 .EX
 # \fBunshare \-\-user \-\-map\-root\-user \-\-mount \[rs]\fP
                \fBstrace \-o /tmp/log \[rs]\fP
-               \fBumount /mnt/dir\fP
+               \fBumount /etc/shadow\fP
 umount: /etc/shadow: not mounted.
 # \fBgrep \[aq]\[ha]umount\[aq] /tmp/log\fP
 umount2("/etc/shadow", 0)     = \-1 EINVAL (Invalid argument)
