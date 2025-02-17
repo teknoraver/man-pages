@@ -50,6 +50,7 @@ my $dir2=$dir;
 $dir2=~tr[.][_];
 my %files;
 my %aliases;
+my $secQ=qr/\.\d+[\w.]*/;
 
 foreach my $al (`find "$dir"/man*/ -type f \\
 		| grep "\\.[[:digit:]]\\([[:alpha:]][[:alnum:]]*\\)\\?\\>\$" \\
@@ -58,7 +59,7 @@ foreach my $al (`find "$dir"/man*/ -type f \\
 	#$al=~tr[.][_];
 	$al=~m/^$dir\/man\d[a-z]*\/(.*):\.\s*so\s*man\d[a-z]*\/(.*)/o;
 
-	$aliases{$1}=$2;
+	$aliases{$1}=$2 if defined($1) and defined($2);
 }
 
 while (my ($k,$v)=each %aliases)
@@ -66,6 +67,8 @@ while (my ($k,$v)=each %aliases)
 	while (exists($aliases{$v})) {
 		$v=$aliases{$v};
 	}
+
+	$aliases{$k}=$v;
 }
 
 foreach my $fn (`find "$dir"/man*/ -type f \\
@@ -73,7 +76,7 @@ foreach my $fn (`find "$dir"/man*/ -type f \\
 {
 	$fn=~s/\n//;
 
-	my ($nm,$sec)=GetNmSec($fn,qr/\.\d[a-z]*/);
+	my ($nm,$sec)=GetNmSec($fn,$secQ);
 	$files{"${nm}.$sec"}=[$fn,(exists($aliases{"${nm}.$sec"}))?$aliases{"${nm}.$sec"}:"${nm}.$sec"];
 }
 
@@ -95,7 +98,7 @@ sub BuildPage
 	my $bkmark=shift;
 
 	my $fn=$files{$bkmark}->[0];
-	my ($nm,$sec,$srt)=GetNmSec($bkmark,qr/\.[\da-z]+/);
+	my ($nm,$sec,$srt)=GetNmSec($bkmark,$secQ);
 
 	my $title= "$nm\\($sec\\)";
 
@@ -106,8 +109,9 @@ sub BuildPage
 	# if new section add top level bookmark
 
 	if ($sec ne $Section) {
+		my $SecHd=(exists($Sections{$sec}))?$Sections{$sec}:"Section $sec";
 		print ".nr PDFOUTLINE.FOLDLEVEL 1\n";
-		print ".pdfbookmark 1 $Sections{$sec}\n";
+		print ".pdfbookmark 1 $SecHd\n";
 		print ".nr PDFOUTLINE.FOLDLEVEL 2\n";
 		$Section=$sec;
 	}
@@ -126,6 +130,19 @@ sub BuildPage
 
 			chomp;
 
+			# typo fixes for v10!!
+			s/^\.PD0/.PD 0/;
+			s/^\.ta1i/.ta 1i/;
+			s/\\fL/\f[CB]/g;
+			s/^\.ft\s*L/.ft CB/;
+			s/^\.ne(\d+)/.ne $1/;
+			s/^\.ft(\S)/.ft $1/;
+			s/^\.ps(\S)/.ps $1/;
+			s/^\.vs(\S)/.vs $1/;
+			s/^\.ti(\S)/.ti $1/;
+			s/\.if([tn])/.if $1/;
+			next if m/\.SH\s*$/;
+
 			# This code is to determine whether we are within a tbl block and in a text block
 			# T{ and T}. This is fudge code particularly for the syscalls(7) page.
 
@@ -135,12 +152,13 @@ sub BuildPage
 			next if !$_;
 #			s/^\s+//;
 
-			s/\\-/-/g if /^\.[BM]R\s+/;
+			s/\\-/-/g if /^\.[BMI]R\s+/;
 
-			if (m/^\.BR\s+([-\w\\.]+)\s+\((.+?)\)(.*)/ or m/^\.MR\s+([-\w\\.]+)\s+(\w+)\s+(.*)/ or m/^\\fB([-\w\\.]+)\\fR\((.+?)\)(.*)$/) {
+			if (m/^\.[BI]R\s+([-\w\\.]+)\s+\((.+?)\)(.*)/ or m/^\.MR\s+([-\w\\.]+)\s+(\w+)\s+(.*)/ or m/^\\fB([-\w\\.]+)\\fR\((.+?)\)(.*)$/) {
 				my $bkmark="$1";
 				my $sec=$2;
-				my $after=$3;
+				$sec=~s/\.\d//;
+				my $after=$3 || '';
 				$after=~s/\s\\".*//;
 				my $dest=$bkmark;
 				$dest=~s/\\-/-/g;
@@ -206,16 +224,25 @@ sub doMR
 	}
 }
 
+sub ns
+{
+    my $sec=shift;
+    $sec=~m/^(\d+)/;
+    $sec="0$1" if $1 < 10;
+    return $sec;
+}
+
 sub GetNmSec
 {
 	my ($nm,$pth,$sec)=fileparse($_[0],$_[1]);
 	$sec=substr($sec,1);
+	$sec=int($sec) if $sec=~m/^\d+\.\d+$/;
 	my $srt=$nm;
 	$srt=~s/\..+?$//;
 	$srt=~s/^_+//;
 	$srt=$1.sprintf("%04d",$2) if $srt=~m/^(.+)(\d+)$/;
 	#$srt="$sec/$srt";
-	return($nm,$sec,$srt);
+	return($nm,$sec,$srt,ns($sec));
 }
 
 # add rpmvercmp
@@ -226,16 +253,18 @@ sub sortman
 {
 # Sort - ignore case but frig it so that intro is the first entry.
 
-	my (undef,$s1,$c)=GetNmSec($a,qr/\.\d[a-z]*/);
-	my (undef,$s2,$d)=GetNmSec($b,qr/\.\d[a-z]*/);
+	my (undef,$s1,$c,$ns1)=GetNmSec($a,$secQ);
+	my (undef,$s2,$d,$ns2)=GetNmSec($b,$secQ);
 
-	my $cmp=$s1 cmp $s2;
+	my $cmp=$ns1 cmp $ns2;
 
 	return $cmp if $cmp;
 	return -1 if ($c=~m/^intro/ and $d!~m/^intro/);
 	return  1 if ($d=~m/^intro/ and $c!~m/^intro/);
 	$c=~tr[-_(][!" ];
 	$d=~tr[-_(][!" ];
+	$cmp=$s1 cmp $s2;
+	return($cmp) if $cmp;
 	$cmp=lc($c) cmp lc($d);
 	return($c cmp $d) if $cmp == 0;
 	return($cmp);
