@@ -7,7 +7,7 @@ MAKEFILE_DIST_CHECK_DIFFOSCOPE_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
-include $(MAKEFILEDIR)/configure/build-depends/diffoscope/diffoscope.mk
+include $(MAKEFILEDIR)/configure/build-depends/diffoscope-minimal/diffoscope.mk
 include $(MAKEFILEDIR)/configure/directory_variables/build.mk
 include $(MAKEFILEDIR)/dist/check/dist.mk
 include $(MAKEFILEDIR)/dist/tar.mk
