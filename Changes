@@ -1,6 +1,6 @@
-==================== Changes in man-pages-6.12 ====================
+==================== Changes in man-pages-?.?? ====================
 
-Released: 2025-02-22, Venezia Santa Lucia
+Released: ????-??-??, ??Location??
 
 
 New and rewritten pages
@@ -9,12 +9,6 @@ New and rewritten pages
 
 Newly documented interfaces in existing pages
 ---------------------------------------------
-
-man2/
-	mbind.2
-		MPOL_PREFERRED_MANY
-	set_mempolicy.2
-		MPOL_PREFERRED_MANY
 
 
 New and changed links
@@ -31,10 +25,6 @@ Removed links
 
 Global changes
 --------------
-
--  Build system:
-   -  Use ifndef and := instead of ?= (fixes regression introduced in
-      6.11, which affected at least the version string).
 
 
 Changes to individual files
