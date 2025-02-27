@@ -21,7 +21,7 @@ endif
 CPP_HAS_ALREADY_D_FORTIFY_SOURCE := \
 	$(shell \
 		$(CPP) -dM - -Wno-error </dev/null \
-		| $(GREP) '\#define _FORTIFY_SOURCE ' >/dev/null \
+		| $(GREP) ''\#'define _FORTIFY_SOURCE ' >/dev/null \
 		&& $(ECHO) yes \
 		|| $(ECHO) no; \
 	)
