@@ -57302,3 +57302,55 @@ Changes to individual files
 The manual pages and other files in the repository have been improved
 beyond what this changelog covers.  To learn more about changes applied
 to individual pages, or the authors of changes, use git(1).
+
+
+==================== Changes in man-pages-6.13 ====================
+
+Released: 2025-03-06, Vinaròs
+
+
+New and rewritten pages
+-----------------------
+
+
+Newly documented interfaces in existing pages
+---------------------------------------------
+
+man7/
+	landlock.7
+		Landlock ABI v6
+		LANDLOCK_SCOPE_ABSTRACT_UNIX_SOCKET
+		LANDLOCK_SCOPE_SIGNAL
+
+
+New and changed links
+---------------------
+
+
+Removed pages
+-------------
+
+
+Removed links
+-------------
+
+
+Global changes
+--------------
+
+-  Build system:
+   -  PDF book:
+      -  Add support for UNIX V10 sources.
+   -  Makefiles:
+      -  Don't pass an escaped # to grep(1).  Use a trick to work with
+         both new and old systems.  This fixes a regressions in the
+         build system from man-pages-6.11, which was itself introduced
+         while fixing a regression introduced in man-pages-6.10.
+
+
+Changes to individual files
+---------------------------
+
+The manual pages and other files in the repository have been improved
+beyond what this changelog covers.  To learn more about changes applied
+to individual pages, or the authors of changes, use git(1).
