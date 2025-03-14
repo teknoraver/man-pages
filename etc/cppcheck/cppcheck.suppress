@@ -6,6 +6,7 @@ knownConditionTrueFalse
 missingIncludeSystem
 nullPointerOutOfMemory
 redundantContinue
+staticFunction
 unassignedVariable
 uninitvar
 unknownMacro
