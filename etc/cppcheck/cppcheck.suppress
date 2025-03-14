@@ -4,6 +4,7 @@ constParameter
 constParameterCallback
 knownConditionTrueFalse
 missingIncludeSystem
+nullPointerOutOfMemory
 redundantContinue
 unassignedVariable
 uninitvar
