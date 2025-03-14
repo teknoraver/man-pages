@@ -4,40 +4,6 @@
 .\"
 .\" SPDX-License-Identifier: GPL-1.0-or-later
 .\"
-.\" Modified by Michael Haardt <michael@moria.de>
-.\" Modified 24 Jul 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified 21 Aug 1994 by Michael Chastain <mec@shell.portal.com>:
-.\"   New man page (copied from 'fork.2').
-.\" Modified 10 June 1995 by Andries Brouwer <aeb@cwi.nl>
-.\" Modified 25 April 1998 by Xavier Leroy <Xavier.Leroy@inria.fr>
-.\" Modified 26 Jun 2001 by Michael Kerrisk
-.\"     Mostly upgraded to Linux 2.4.x
-.\"     Added prototype for sys_clone() plus description
-.\"	Added CLONE_THREAD with a brief description of thread groups
-.\"	Added CLONE_PARENT and revised entire page remove ambiguity
-.\"		between "calling process" and "parent process"
-.\"	Added CLONE_PTRACE and CLONE_VFORK
-.\"	Added EPERM and EINVAL error codes
-.\"	Renamed "__clone" to "clone" (which is the prototype in <sched.h>)
-.\"	various other minor tidy ups and clarifications.
-.\" Modified 26 Jun 2001 by Michael Kerrisk <mtk.manpages@gmail.com>
-.\"	Updated notes for 2.4.7+ behavior of CLONE_THREAD
-.\" Modified 15 Oct 2002 by Michael Kerrisk <mtk.manpages@gmail.com>
-.\"	Added description for CLONE_NEWNS, which was added in Linux 2.4.19
-.\" Slightly rephrased, aeb.
-.\" Modified 1 Feb 2003 - added CLONE_SIGHAND restriction, aeb.
-.\" Modified 1 Jan 2004 - various updates, aeb
-.\" Modified 2004-09-10 - added CLONE_PARENT_SETTID etc. - aeb.
-.\" 2005-04-12, mtk, noted the PID caching behavior of NPTL's getpid()
-.\"	wrapper under BUGS.
-.\" 2005-05-10, mtk, added CLONE_SYSVSEM, CLONE_UNTRACED, CLONE_STOPPED.
-.\" 2005-05-17, mtk, Substantially enhanced discussion of CLONE_THREAD.
-.\" 2008-11-18, mtk, order CLONE_* flags alphabetically
-.\" 2008-11-18, mtk, document CLONE_NEWPID
-.\" 2008-11-19, mtk, document CLONE_NEWUTS
-.\" 2008-11-19, mtk, document CLONE_NEWIPC
-.\" 2008-11-19, Jens Axboe, mtk, document CLONE_IO
-.\"
 .TH clone 2 (date) "Linux man-pages (unreleased)"
 .SH NAME
 clone, __clone2, clone3 \- create a child process

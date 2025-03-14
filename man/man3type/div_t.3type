@@ -3,7 +3,6 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\"
 .TH div_t 3type (date) "Linux man-pages (unreleased)"
 .SH NAME
 div_t, ldiv_t, lldiv_t, imaxdiv_t \-

@@ -3,7 +3,6 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\"
 .TH blkcnt_t 3type (date) "Linux man-pages (unreleased)"
 .SH NAME
 blkcnt_t \- file block counts

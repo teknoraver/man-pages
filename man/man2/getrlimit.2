@@ -4,44 +4,6 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\" Modified by Michael Haardt <michael@moria.de>
-.\" Modified 1993-07-23 by Rik Faith <faith@cs.unc.edu>
-.\" Modified 1996-01-13 by Arnt Gulbrandsen <agulbra@troll.no>
-.\" Modified 1996-01-22 by aeb, following a remark by
-.\"          Tigran Aivazian <tigran@sco.com>
-.\" Modified 1996-04-14 by aeb, following a remark by
-.\"          Robert Bihlmeyer <robbe@orcus.ping.at>
-.\" Modified 1996-10-22 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified 2001-05-04 by aeb, following a remark by
-.\"          Håvard Lygre <hklygre@online.no>
-.\" Modified 2001-04-17 by Michael Kerrisk <mtk.manpages@gmail.com>
-.\" Modified 2002-06-13 by Michael Kerrisk <mtk.manpages@gmail.com>
-.\"     Added note on nonstandard behavior when SIGCHLD is ignored.
-.\" Modified 2002-07-09 by Michael Kerrisk <mtk.manpages@gmail.com>
-.\"	Enhanced descriptions of 'resource' values
-.\" Modified 2003-11-28 by aeb, added RLIMIT_CORE
-.\" Modified 2004-03-26 by aeb, added RLIMIT_AS
-.\" Modified 2004-06-16 by Michael Kerrisk <mtk.manpages@gmail.com>
-.\"     Added notes on CAP_SYS_RESOURCE
-.\"
-.\" 2004-11-16 -- mtk: the getrlimit.2 page, which formally included
-.\" coverage of getrusage(2), has been split, so that the latter
-.\" is now covered in its own getrusage.2.
-.\"
-.\" Modified 2004-11-16, mtk: A few other minor changes
-.\" Modified 2004-11-23, mtk
-.\"	Added notes on RLIMIT_MEMLOCK, RLIMIT_NPROC, and RLIMIT_RSS
-.\"		to "CONFORMING TO"
-.\" Modified 2004-11-25, mtk
-.\"	Rewrote discussion on RLIMIT_MEMLOCK to incorporate kernel
-.\"		2.6.9 changes.
-.\"	Added note on RLIMIT_CPU error in older kernels
-.\" 2004-11-03, mtk, Added RLIMIT_SIGPENDING
-.\" 2005-07-13, mtk, documented RLIMIT_MSGQUEUE limit.
-.\" 2005-07-28, mtk, Added descriptions of RLIMIT_NICE and RLIMIT_RTPRIO
-.\" 2008-05-07, mtk / Peter Zijlstra, Added description of RLIMIT_RTTIME
-.\" 2010-11-06, mtk: Added documentation of prlimit()
-.\"
 .TH getrlimit 2 (date) "Linux man-pages (unreleased)"
 .SH NAME
 getrlimit, setrlimit, prlimit \- get/set resource limits

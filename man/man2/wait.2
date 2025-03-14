@@ -3,29 +3,6 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\" Modified Sat Jul 24 13:30:06 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified Sun Aug 21 17:42:42 1994 by Rik Faith <faith@cs.unc.edu>
-.\"          (Thanks to Koen Holtman <koen@win.tue.nl>)
-.\" Modified Wed May 17 15:54:12 1995 by Rik Faith <faith@cs.unc.edu>
-.\"           To remove *'s from status in macros (Thanks to Michael Shields).
-.\" Modified as suggested by Nick Duffek <nsd@bbc.com>, aeb, 960426
-.\" Modified Mon Jun 23 14:09:52 1997 by aeb - add EINTR.
-.\" Modified Thu Nov 26 02:12:45 1998 by aeb - add SIGCHLD stuff.
-.\" Modified Mon Jul 24 21:37:38 2000 by David A. Wheeler
-.\"          <dwheeler@dwheeler.com> - noted thread issues.
-.\" Modified 26 Jun 01 by Michael Kerrisk
-.\"          Added __WCLONE, __WALL, and __WNOTHREAD descriptions
-.\" Modified 2001-09-25, aeb
-.\" Modified 26 Jun 01 by Michael Kerrisk, <mtk.manpages@gmail.com>
-.\"	Updated notes on setting disposition of SIGCHLD to SIG_IGN
-.\" 2004-11-11, mtk
-.\"	Added waitid(2); added WCONTINUED and WIFCONTINUED()
-.\"	Added text on SA_NOCLDSTOP
-.\"	Updated discussion of SA_NOCLDWAIT to reflect 2.6 behavior
-.\"	Much other text rewritten
-.\" 2005-05-10, mtk, __W* flags can't be used with waitid()
-.\" 2008-07-04, mtk, removed erroneous text about SA_NOCLDSTOP
-.\"
 .TH wait 2 (date) "Linux man-pages (unreleased)"
 .SH NAME
 wait, waitpid, waitid \- wait for process to change state

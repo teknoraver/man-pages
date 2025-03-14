@@ -1,29 +1,9 @@
 .\" Copyright (c) 1993 Michael Haardt <michael@moria.de>
-.\" Fri Apr  2 11:32:09 MET DST 1993
-.\"
-.\" and changes Copyright (C) 1999 Mike Coleman (mkc@acm.org)
-.\" -- major revision to fully document ptrace semantics per recent Linux
-.\"    kernel (2.2.10) and glibc (2.1.2)
-.\" Sun Nov  7 03:18:35 CST 1999
-.\"
+.\" Copyright 1999, Mike Coleman <mkc@acm.org>
 .\" and Copyright (c) 2011, Denys Vlasenko <vda.linux@googlemail.com>
 .\" and Copyright (c) 2015, 2016, Michael Kerrisk <mtk.manpages@gmail.com>
 .\"
 .\" SPDX-License-Identifier: GPL-2.0-or-later
-.\"
-.\" Modified Fri Jul 23 23:47:18 1993 by Rik Faith <faith@cs.unc.edu>
-.\" Modified Fri Jan 31 16:46:30 1997 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Thu Oct  7 17:28:49 1999 by Andries Brouwer <aeb@cwi.nl>
-.\" Modified, 27 May 2004, Michael Kerrisk <mtk.manpages@gmail.com>
-.\"     Added notes on capability requirements
-.\"
-.\" 2006-03-24, Chuck Ebbert <76306.1226@compuserve.com>
-.\"    Added    PTRACE_SETOPTIONS, PTRACE_GETEVENTMSG, PTRACE_GETSIGINFO,
-.\"        PTRACE_SETSIGINFO, PTRACE_SYSEMU, PTRACE_SYSEMU_SINGLESTEP
-.\"    (Thanks to Blaisorblade, Daniel Jacobowitz and others who helped.)
-.\" 2011-09, major update by Denys Vlasenko <vda.linux@googlemail.com>
-.\" 2015-01, Kees Cook <keescook@chromium.org>
-.\"    Added PTRACE_O_TRACESECCOMP, PTRACE_EVENT_SECCOMP
 .\"
 .\" FIXME The following are undocumented:
 .\"

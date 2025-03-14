@@ -3,7 +3,6 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\"
 .TH dev_t 3type (date) "Linux man-pages (unreleased)"
 .SH NAME
 dev_t \- device ID

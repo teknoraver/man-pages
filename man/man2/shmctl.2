@@ -5,25 +5,6 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\" Modified 1993-07-28, Rik Faith <faith@cs.unc.edu>
-.\" Modified 1993-11-28, Giorgio Ciucci <giorgio@crcc.it>
-.\" Modified 1997-01-31, Eric S. Raymond <esr@thyrsus.com>
-.\" Modified 2001-02-18, Andries Brouwer <aeb@cwi.nl>
-.\" Modified 2002-01-05, 2004-05-27, 2004-06-17,
-.\"    Michael Kerrisk <mtk.manpages@gmail.com>
-.\" Modified 2004-10-11, aeb
-.\" Modified, Nov 2004, Michael Kerrisk <mtk.manpages@gmail.com>
-.\"	Language and formatting clean-ups
-.\"	Updated shmid_ds structure definitions
-.\"	Added information on SHM_DEST and SHM_LOCKED flags
-.\"	Noted that CAP_IPC_LOCK is not required for SHM_UNLOCK
-.\"		since Linux 2.6.9
-.\" Modified, 2004-11-25, mtk, notes on 2.6.9 RLIMIT_MEMLOCK changes
-.\" 2005-04-25, mtk -- noted aberrant Linux behavior w.r.t. new
-.\"	attaches to a segment that has already been marked for deletion.
-.\" 2005-08-02, mtk: Added IPC_INFO, SHM_INFO, SHM_STAT descriptions.
-.\" 2018-03-20, dbueso: Added SHM_STAT_ANY description.
-.\"
 .TH shmctl 2 (date) "Linux man-pages (unreleased)"
 .SH NAME
 shmctl \- System V shared memory control

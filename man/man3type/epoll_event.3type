@@ -2,7 +2,6 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\"
 .TH epoll_event 3type (date) "Linux man-pages (unreleased)"
 .SH NAME
 epoll_event, epoll_data, epoll_data_t

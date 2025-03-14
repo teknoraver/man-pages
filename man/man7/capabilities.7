@@ -2,29 +2,6 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\" 6 Aug 2002 - Initial Creation
-.\" Modified 2003-05-23, Michael Kerrisk, <mtk.manpages@gmail.com>
-.\" Modified 2004-05-27, Michael Kerrisk, <mtk.manpages@gmail.com>
-.\" 2004-12-08, mtk Added O_NOATIME for CAP_FOWNER
-.\" 2005-08-16, mtk, Added CAP_AUDIT_CONTROL and CAP_AUDIT_WRITE
-.\" 2008-07-15, Serge Hallyn <serue@us.bbm.com>
-.\"     Document file capabilities, per-process capability
-.\"     bounding set, changed semantics for CAP_SETPCAP,
-.\"     and other changes in Linux 2.6.2[45].
-.\"     Add CAP_MAC_ADMIN, CAP_MAC_OVERRIDE, CAP_SETFCAP.
-.\" 2008-07-15, mtk
-.\"     Add text describing circumstances in which CAP_SETPCAP
-.\"     (theoretically) permits a thread to change the
-.\"     capability sets of another thread.
-.\"     Add section describing rules for programmatically
-.\"     adjusting thread capability sets.
-.\"     Describe rationale for capability bounding set.
-.\"     Document "securebits" flags.
-.\"     Add text noting that if we set the effective flag for one file
-.\"     capability, then we must also set the effective flag for all
-.\"     other capabilities where the permitted or inheritable bit is set.
-.\" 2011-09-07, mtk/Serge hallyn: Add CAP_SYSLOG
-.\"
 .TH Capabilities 7 (date) "Linux man-pages (unreleased)"
 .SH NAME
 capabilities \- overview of Linux capabilities

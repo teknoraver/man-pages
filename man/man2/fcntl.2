@@ -8,42 +8,6 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\" Modified 1993-07-24 by Rik Faith <faith@cs.unc.edu>
-.\" Modified 1995-09-26 by Andries Brouwer <aeb@cwi.nl>
-.\" and again on 960413 and 980804 and 981223.
-.\" Modified 1998-12-11 by Jamie Lokier <jamie@imbolc.ucc.ie>
-.\" Applied correction by Christian Ehrhardt - aeb, 990712
-.\" Modified 2002-04-23 by Michael Kerrisk <mtk.manpages@gmail.com>
-.\"	Added note on F_SETFL and O_DIRECT
-.\"	Complete rewrite + expansion of material on file locking
-.\"	Incorporated description of F_NOTIFY, drawing on
-.\"		Stephen Rothwell's notes in Documentation/dnotify.txt.
-.\"	Added description of F_SETLEASE and F_GETLEASE
-.\" Corrected and polished, aeb, 020527.
-.\" Modified 2004-03-03 by Michael Kerrisk <mtk.manpages@gmail.com>
-.\"     Modified description of file leases: fixed some errors of detail
-.\"     Replaced the term "lease contestant" by "lease breaker"
-.\" Modified, 27 May 2004, Michael Kerrisk <mtk.manpages@gmail.com>
-.\"     Added notes on capability requirements
-.\" Modified 2004-12-08, added O_NOATIME after note from Martin Pool
-.\" 2004-12-10, mtk, noted F_GETOWN bug after suggestion from aeb.
-.\" 2005-04-08 Jamie Lokier <jamie@shareable.org>, mtk
-.\"	Described behavior of F_SETOWN/F_SETSIG in
-.\"	multithreaded processes, and generally cleaned
-.\"	up the discussion of F_SETOWN.
-.\" 2005-05-20, Johannes Nicolai <johannes.nicolai@hpi.uni-potsdam.de>,
-.\"	mtk: Noted F_SETOWN bug for socket file descriptor in Linux 2.4
-.\"	and earlier.  Added text on permissions required to send signal.
-.\" 2009-09-30, Michael Kerrisk
-.\"     Note obsolete F_SETOWN behavior with threads.
-.\"     Document F_SETOWN_EX and F_GETOWN_EX
-.\" 2010-06-17, Michael Kerrisk
-.\"	Document F_SETPIPE_SZ and F_GETPIPE_SZ.
-.\" 2014-07-08, David Herrmann <dh.herrmann@gmail.com>
-.\"     Document F_ADD_SEALS and F_GET_SEALS
-.\" 2017-06-26, Jens Axboe <axboe@kernel.dk>
-.\"     Document F_{GET,SET}_RW_HINT and F_{GET,SET}_FILE_RW_HINT
-.\"
 .TH fcntl 2 (date) "Linux man-pages (unreleased)"
 .SH NAME
 fcntl \- manipulate file descriptor

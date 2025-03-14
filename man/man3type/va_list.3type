@@ -3,7 +3,6 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\"
 .TH va_list 3type (date) "Linux man-pages (unreleased)"
 .SH NAME
 va_list \- variable argument list

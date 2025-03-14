@@ -2,11 +2,7 @@
 .\" Copyright (c) 1996 Joerg Wunsch
 .\" Copyright (c) 2022 Alejandro Colomar <alx@kernel.org>
 .\"
-.\" All rights reserved.
-.\"
 .\" SPDX-License-Identifier: BSD-2-Clause
-.\"
-.\" Rewritten for the Linux man-pages by Alejandro Colomar
 .\"
 .TH sysexits.h 3head (date) "Linux man-pages (unreleased)"
 .SH NAME

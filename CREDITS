@@ -1,0 +1,201 @@
+Alan Cox <iiitac@pyramid.swansea.ac.uk>
+Alastair McKinstry
+Albert Cahalan
+Alejandro Colomar <alx@kernel.org>
+Aleksa Sarai <cyphar@cyphar.com>
+Alex Baranowski <alex@euro-linux.com>
+Alexandre Oliva <aoliva@redhat.com>
+Alexey Kuznetsov
+Anand Kumria
+Andi Kleen
+Andreas Jaeger <aj@suse.de>
+Andrew Morton
+Andries E. Brouwer <aeb@cwi.nl>
+Ariel Scolnicov <ariels@compugen.co.il>
+Arnd Bergmann <arndb@de.ibm.com>
+Arnt Gulbrandsen <agulbra@troll.no>
+Austin Donnelly <and1000@debian.org>
+Bas V. de Bakker <bas@phys.uva.nl>
+Ben Bacarisse <software@bsb.me.uk>
+Ben Collins <bcollins@debian.org>
+Ben Woodard <ben@zork.net>
+Bernhard R. Link
+Bert Hubert <ahu@ds9a.nl>
+Blaisorblade
+Bruno Haible <bruno@clisp.org>
+C. Scott Ananian
+Charles Livingston
+Chris Pepper <pepper@tgg.com>
+Chris Torek
+Christian Ehrhardt
+Christoph Hellwig <hch@lst.de>
+Christoph Lameter <clameter@sgi.com>
+Chuck Ebbert <76306.1226@compuserve.com>
+Daniel Jacobowitz
+Daniel Quinlan <quinlan@yggdrasil.com>
+Dave Hansen
+David A. Holland <dholland@burgundy.eecs.harvard.edu>
+David A. Wheeler <dwheeler@dwheeler.com>
+David Brownell
+David Engel <david@ods.com>
+David Herrmann <dh.herrmann@gmail.com>
+David Howells <dhowells@redhat.com>
+David Malcolm <dmalcolm@redhat.com>
+David Metcalfe
+David N. Welton
+David Starner <dstarner98@aasaa.ofe.org>
+Davide Libenzi <davidel@xmailserver.org>
+Davidlohr Bueso <dbueso@suse.de>
+Denys Vlasenko <vda.linux@googlemail.com>
+<dhw@gamgee.acad.emich.edu>
+Dimitri Papadopoulos <dpo@club-internet.fr>
+<dminer@nyx.cs.du.edu>
+Doug Goldstein <cardoe@cardoe.com>
+Drew Eckhardt <drew@cs.colorado.edu>
+Eduardo M. Fleury <efleury@br.ibm.com>
+Eli Zaretskii <eliz@gnu.org>
+<emmanuel.colbus@ensimag.imag.fr>
+Eric Estievenart <eric.estievenart@free.fr>
+Eric S. Raymond <esr@thyrsus.com>
+Eric W. Biederman <ebiederm@xmission.com>
+Eric Young
+Ernie Petrides <petrides@redhat.com>
+Esa Hyyti <ehyytia@snakemail.hut.fi>
+Eugene Syromyatnikov <evgsyr@gmail.com>
+Evan Jones <ejones@uwaterloo.ca>
+Fabian Kreutz <kreutz@dbs.uni-hannover.de>
+Francesco Potorti <F.Potorti@cnuce.cnr.it>
+George Spelvin <linux@horizon.com>
+Giorgio Ciucci <giorgio@crcc.it>
+<gordon.jin@intel.com>
+Greg Banks <gbanks@linkedin.com>
+Guillem Jover <guillem@hadrons.org>
+Gwenole Beauchesne
+Hacksaw <hacksaw@hacksaw.org>
+Heinrich Schuchardt <xypron.glpk@gmx.de>
+<Helmut.Geyer@iwr.uni-heidelberg.de>
+Hugh Dickins
+Håvard Lygre <hklygre@online.no>
+Ian Jackson <iwj10@cus.cam.ac.uk>
+Ian Redfern <redferni@logica.com>
+Ivana Varekova <varekova@redhat.com>
+J. "MUFTI" Scheurich <mufti@csv.ica.uni-stuttgart.de>
+Jakub Jelinek <jakub@redhat.com>
+James Hawtin
+James R. Van Zandt <jrv@vanzandt.mv.com>
+Jamie Lokier <jamie@imbolc.ucc.ie>
+Jean Tourrilhes <jt@hplb.hpl.hp.com>
+Jens Axboe <axboe@kernel.dk>
+Jeremy Kerr <jk@ozlabs.org>
+Jeremy Phelps <jphelps@notreached.net>
+<jmv@lucifer.dorms.spbu.ru>
+Jochen Hein <jochen.hein@delphi.central.de>
+Jochen Karrer <cip307@cip.physik.uni-wuerzburg.de>
+Johannes Nicolai <johannes.nicolai@hpi.uni-potsdam.de>
+John Kristoff
+John Levon <moz@compsoc.man.ac.uk>
+John S. Kallal <kallal@voicenet.com>
+John V. Belmonte
+Joseph S. Myers <jsm28@cam.ac.uk>
+Justin Pryzby <justinpryzby@users.sf.net>
+Kai Mäkisara <Kai.Makisara@kolumbus.fi>
+Karl M. Hegbloom <karlheg@debian.org>
+Kees Cook <keescook@chromium.org>
+Kevin Barnett <kevin.barnett@microchip.com>
+Koen Holtman <koen@win.tue.nl>
+<kromJx@crosswinds.net>
+Kurt Wall
+Lars Brinkhoff <lars@nocrew.org>
+Lars Wirzenius <liw@iki.fi>
+Lee Schermerhorn <Lee.Schermerhorn@hp.com>
+Linus Torvalds
+<linux@syskonnect.de>
+Luc Van Oostenryck
+Luigi P. Bai <lpb@softint.com>
+Mark Hills <mark@pogo.org.uk>
+Mark R. Bannister <cambridge@users.sourceforge.net>
+Marko Kohtala <marko.kohtala@gmail.com>
+Markus Kuhn <mskuhn@cip.informatik.uni-erlangen.de>
+Martin Michlmayr
+Martin Pool <mbp@sourcefrog.net>
+Martin Schulze <joey@debian.org>
+Martin Vicente <martin@netadmin.dgac.fr>
+Matt Domsch
+Matt Mackall <mpm@selenic.com>
+Matthew Wilcox <willy@bofh.ai>
+Matthias Lang <matthias@corelatus.se>
+Michael Chastain <mec@shell.portal.com>
+Michael Haardt <michael@moria.de>
+Michael Kerrisk <mtk.manpages@gmail.com>
+Michael Shields
+Miguel Barreiro <enano@avalon.yaix.es>
+Mike Battersby <mib@deakin.edu.au>
+Mike Coleman <mkc@acm.org>
+Mike Frysinger <vapier@gentoo.org>
+Mitchum DSouza <m.dsouza@mrc-apu.cam.ac.uk>
+<morgan@kernel.org>
+Nanno Langstraat <nal@ii.nl>
+Nick Duffek <nsd@bbc.com>
+Nicolás Lichtmaier <nick@debian.org>
+Niki A. Rahimi <narahimi@us.ibm.com>
+Nikos Mavrogiannopoulos <nmav@redhat.com>
+Ollie Wild <aaw@google.com>
+<pacman@cqc.com>
+Paul Gortmaker <gpg109@rsphy1.anu.edu.au>
+Paul Jackson
+Paul Mackerras <paulus@samba.org>
+Paul Slootman <paul@wurtel.demon.nl>
+Pawel Krawczyk
+Peter Memishian <meem@gnu.ai.mit.edu>
+Peter Schiffer <pschiffe@redhat.com>
+Peter Tobias <tobias@et-inf.fho-emden.de>
+Peter Zijlstra
+Petr Baudis <pasky@suse.cz>
+Petter Reinholdtsen
+Rachael Munns <vashti@dream.org.uk>
+Reed H. Petty <rhp@draper.net>
+Richard Braakman
+Richard Gooch <rgooch@atnf.CSIRO.AU>
+Richard Kettlewell <richard@greenend.org.uk>
+Rickard E. Faith <faith@cs.unc.edu>
+Robert Bihlmeyer <robbe@orcus.ping.at>
+Robert Love <rlove@rlove.org>
+Robert Schweikert
+Roger Luethi <rl@hellgate.ch>
+Roman Czyborra
+Sam Varshavchik <mrsam@courier-mta.com>
+Samuel Thibault <samuel.thibault@ens-lyon.org>
+Scott Burkett <scottb@IntNet.net>
+Serge Hallyn <serue@us.bbm.com>
+Seth W. Klein  <sk@sethwklein.net>
+Sripathi Kodi <sripathik@in.ibm.com>
+Stephen Rothwell
+Stephen Tweedie
+Tammy Fox <tfox@redhat.com>
+Terran Melconian
+Thanomsub Noppaburana <donga.nb@gmail.com>
+Theodore Ts'o <tytso@mit.edu>
+Thomas E. Dickey
+Thomas K. Dyas <tdyas@eden.rutgers.edu>
+Thomas Koenig <ig25@rz.uni-karlsruhe.de>
+Tigran Aivazian <tigran@sco.com>
+Timo Sirainen <tss@iki.fi>
+Timothy S. Nelson <wayland@wayland.id.au>
+Todd Larason <jtl@molehill.org>
+Tom Bjorkholm <tomb@mydata.se>
+Tomáš Pospíšek <tpo_deb@sourcepole.ch>
+Trond Myklebust <trond.myklebust@fys.uio.no>
+Ulrich Drepper <drepper@redhat.com>
+Urs Thuermann <urs@isnogud.escape.de>
+Walter Harms <walter.harms@informatik.uni-oldenburg.de>
+Werner Almesberger
+Wilf <G.Wilford@ee.surrey.ac.uk>
+<william@tuffbizz.com>
+Wolfgang Franke
+Wolfram Gloger <wmglo@dent.med.uni-muenchen.de>
+Xavier Leroy <Xavier.Leroy@inria.fr>
+Yuichi SATO <sato@complex.eng.hokudai.ac.jp>
+Zack Weinberg
+
+Debian
+LTC Security Development

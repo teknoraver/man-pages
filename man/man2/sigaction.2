@@ -1,29 +1,7 @@
 .\" Copyright (c) 1994,1995 Mike Battersby <mib@deakin.edu.au>
 .\" and Copyright 2004, 2005 Michael Kerrisk <mtk.manpages@gmail.com>
-.\" based on work by faith@cs.unc.edu
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
-.\"
-.\" Modified, aeb, 960424
-.\" Modified Fri Jan 31 17:31:20 1997 by Eric S. Raymond <esr@thyrsus.com>
-.\" Modified Thu Nov 26 02:12:45 1998 by aeb - add SIGCHLD stuff.
-.\" Modified Sat May  8 17:40:19 1999 by Matthew Wilcox
-.\"	add POSIX.1b signals
-.\" Modified Sat Dec 29 01:44:52 2001 by Evan Jones <ejones@uwaterloo.ca>
-.\"	SA_ONSTACK
-.\" Modified 2004-11-11 by Michael Kerrisk <mtk.manpages@gmail.com>
-.\"	Added mention of SIGCONT under SA_NOCLDSTOP
-.\"	Added SA_NOCLDWAIT
-.\" Modified 2004-11-17 by Michael Kerrisk <mtk.manpages@gmail.com>
-.\"	Updated discussion for POSIX.1-2001 and SIGCHLD and sa_flags.
-.\"	Formatting fixes
-.\" 2004-12-09, mtk, added SI_TKILL + other minor changes
-.\" 2005-09-15, mtk, split sigpending(), sigprocmask(), sigsuspend()
-.\"	out of this page into separate pages.
-.\" 2010-06-11 Andi Kleen, add hwpoison signal extensions
-.\" 2010-06-11 mtk, improvements to discussion of various siginfo_t fields.
-.\" 2015-01-17, Kees Cook <keescook@chromium.org>
-.\"	Added notes on ptrace SIGTRAP and SYS_SECCOMP.
 .\"
 .TH sigaction 2 (date) "Linux man-pages (unreleased)"
 .SH NAME

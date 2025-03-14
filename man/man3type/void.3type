@@ -3,7 +3,6 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.\"
 .TH void 3type (date) "Linux man-pages (unreleased)"
 .SH NAME
 void \- abstract type
