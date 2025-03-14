@@ -24,7 +24,7 @@ Standard C library
 .B #include <sys/socket.h>
 .P
 .BI "int getsockopt(int " sockfd ", int " level ", int " optname ,
-.BI "               void " optval "[restrict *." optlen ],
+.BI "               void " optval "[_Nullable restrict *." optlen ],
 .BI "               socklen_t *restrict " optlen );
 .BI "int setsockopt(int " sockfd ", int " level ", int " optname ,
 .BI "               const void " optval [. optlen ],
