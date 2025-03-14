@@ -536,7 +536,7 @@ a.out: my_mktime: Invalid argument
 \&
 #define is_signed(T)  ((T) \-1 < 1)
 \&
-time_t my_mktime(struct tm *tp);
+static time_t my_mktime(struct tm *tp);
 \&
 int
 main(int argc, char *argv[])
@@ -575,7 +575,7 @@ main(int argc, char *argv[])
     exit(EXIT_SUCCESS);
 }
 \&
-time_t
+static time_t
 my_mktime(struct tm *tp)
 {
     int            e, isdst;

@@ -1181,7 +1181,7 @@ otherwise.
 #include <stdlib.h>
 #include <unistd.h>
 \&
-void
+static void
 handler(int signo, siginfo_t *info, void *context)
 {
     struct sigaction oldact;
