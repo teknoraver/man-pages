@@ -20,12 +20,14 @@ Standard C library
 .nf
 .B #include <sys/mman.h>
 .P
-.BI "int mprotect(void " addr [. size "], size_t " size ", int " prot );
+.BI "int mprotect(size_t " size ;
+.BI "             void " addr [ size "], size_t " size ", int " prot );
 .P
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <sys/mman.h>
 .P
-.BI "int pkey_mprotect(void " addr [. size "], size_t " size ", int " prot ", int " pkey ");"
+.BI "int pkey_mprotect(size_t " size ;
+.BI "             void " addr [ size "], size_t " size ", int " prot ", int " pkey ");"
 .fi
 .SH DESCRIPTION
 .BR mprotect ()

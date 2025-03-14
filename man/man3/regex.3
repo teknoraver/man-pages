@@ -25,11 +25,12 @@ Standard C library
 .BI "int regexec(const regex_t *restrict " preg \
 ", const char *restrict " string ,
 .BI "            size_t " nmatch ", \
-regmatch_t " pmatch "[_Nullable restrict ." nmatch ],
+regmatch_t " pmatch "[_Nullable restrict " nmatch ],
 .BI "            int " eflags );
 .P
-.BI "size_t regerror(int " errcode ", const regex_t *_Nullable restrict " preg ,
-.BI "            char " errbuf "[_Nullable restrict ." errbuf_size ],
+.BI "size_t regerror(size_t " errbuf_size ;
+.BI "            int " errcode ", const regex_t *_Nullable restrict " preg ,
+.BI "            char " errbuf "[_Nullable restrict " errbuf_size ],
 .BI "            size_t " errbuf_size );
 .BI "void regfree(regex_t *" preg );
 .P

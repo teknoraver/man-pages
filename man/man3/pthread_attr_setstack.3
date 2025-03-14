@@ -15,8 +15,9 @@ POSIX threads library
 .nf
 .B #include <pthread.h>
 .P
-.BI "int pthread_attr_setstack(pthread_attr_t *" attr ,
-.BI "                          void " stackaddr [. stacksize ],
+.BI "int pthread_attr_setstack(size_t " stacksize ;
+.BI "                          pthread_attr_t *" attr ,
+.BI "                          void " stackaddr [ stacksize ],
 .BI "                          size_t " stacksize );
 .BI "int pthread_attr_getstack(const pthread_attr_t *restrict " attr ,
 .BI "                          void **restrict " stackaddr ,

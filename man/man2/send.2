@@ -19,9 +19,11 @@ Standard C library
 .nf
 .B #include <sys/socket.h>
 .P
-.BI "ssize_t send(int " sockfd ", const void " buf [. size "], size_t " size \
+.BI "ssize_t send(size_t " size ;
+.BI "               int " sockfd ", const void " buf [ size "], size_t " size \
 ", int " flags );
-.BI "ssize_t sendto(int " sockfd ", const void " buf [. size "], size_t " size \
+.BI "ssize_t sendto(size_t " size ;
+.BI "               int " sockfd ", const void " buf [ size "], size_t " size \
 ", int " flags ,
 .BI "               const struct sockaddr *" dest_addr ", socklen_t " addrlen );
 .BI "ssize_t sendmsg(int " sockfd ", const struct msghdr *" msg \

@@ -19,8 +19,9 @@ Standard C library
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <string.h>
 .P
-.BI "void *memmem(const void " haystack [. haystacklen "], size_t " haystacklen ,
-.BI "             const void " needle [. needlelen "], size_t " needlelen  );
+.BI "void *memmem(size_t " hsize ", size_t " nsize ;
+.BI "             const void " haystack [ hsize "], size_t " hsize ,
+.BI "             const void " needle [ nsize "], size_t " nsize  );
 .fi
 .SH DESCRIPTION
 The
@@ -28,13 +29,13 @@ The
 function finds the start of the first occurrence
 of the substring
 .I needle
-of length
-.I needlelen
+of size
+.I nsize
 in the memory
 area
 .I haystack
-of length
-.IR haystacklen .
+of size
+.IR hsize .
 .SH RETURN VALUE
 The
 .BR memmem ()

@@ -31,7 +31,8 @@ Standard C library
 .BI "            const char *restrict " format ", ...);"
 .BI "int sprintf(char *restrict " str ,
 .BI "            const char *restrict " format ", ...);"
-.BI "int snprintf(char " str "[restrict ." size "], size_t " size ,
+.BI "int snprintf(size_t " size ;
+.BI "            char " str "[restrict " size "], size_t " size ,
 .BI "            const char *restrict " format ", ...);"
 .P
 .BI "int vprintf(const char *restrict " format ", va_list " ap );
@@ -41,7 +42,8 @@ Standard C library
 .BI "            const char *restrict " format ", va_list " ap );
 .BI "int vsprintf(char *restrict " str ,
 .BI "            const char *restrict " format ", va_list " ap );
-.BI "int vsnprintf(char " str "[restrict ." size "], size_t " size ,
+.BI "int vsnprintf(size_t " size ;
+.BI "            char " str "[restrict " size "], size_t " size ,
 .BI "            const char *restrict " format ", va_list " ap );
 .fi
 .P

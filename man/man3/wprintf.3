@@ -24,13 +24,15 @@ Standard C library
 .BI "int wprintf(const wchar_t *restrict " format ", ...);"
 .BI "int fwprintf(FILE *restrict " stream ,
 .BI "             const wchar_t *restrict " format ", ...);"
-.BI "int swprintf(wchar_t " wcs "[restrict ." maxlen "], size_t " maxlen ,
+.BI "int swprintf(size_t " n ;
+.BI "             wchar_t " wcs "[restrict " n "], size_t " n ,
 .BI "             const wchar_t *restrict " format ", ...);"
 .P
 .BI "int vwprintf(const wchar_t *restrict " format ", va_list " args );
 .BI "int vfwprintf(FILE *restrict " stream ,
 .BI "             const wchar_t *restrict " format ", va_list " args );
-.BI "int vswprintf(wchar_t " wcs "[restrict ." maxlen "], size_t " maxlen ,
+.BI "int vswprintf(size_t " n ;
+.BI "             wchar_t " wcs "[restrict " n "], size_t " n ,
 .BI "             const wchar_t *restrict " format ", va_list " args );
 .fi
 .P
@@ -93,7 +95,7 @@ perform wide-character output
 to an array of wide characters.
 The programmer must ensure that there is
 room for at least
-.I maxlen
+.I n
 wide
 characters at
 .IR wcs .
@@ -122,7 +124,7 @@ The output consists of wide characters, not bytes.
 and
 .BR vswprintf ()
 take a
-.I maxlen
+.I n
 argument,
 .BR sprintf (3)
 and
@@ -132,7 +134,7 @@ do not.
 and
 .BR vsnprintf (3)
 take a
-.I maxlen
+.I n
 argument, but these functions do not return \-1 upon
 buffer overflow on Linux.)
 .P

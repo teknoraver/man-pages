@@ -21,7 +21,8 @@ Standard C library
 .nf
 .B #include <sys/mman.h>
 .P
-.BI "int mincore(void " addr [. length "], size_t " length ", unsigned char *" vec );
+.BI "int mincore(size_t " length ;
+.BI "            void " addr [ length "], size_t " length ", unsigned char *" vec );
 .fi
 .P
 .RS -4

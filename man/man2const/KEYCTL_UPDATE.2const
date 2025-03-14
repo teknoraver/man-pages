@@ -20,8 +20,9 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "long syscall(SYS_keyctl, KEYCTL_UPDATE, key_serial_t " key ,
-.BI "             void " payload [. size "], size_t " size );
+.BI "long syscall(size_t " size ;
+.BI "             SYS_keyctl, KEYCTL_UPDATE, key_serial_t " key ,
+.BI "             void " payload [ size "], size_t " size );
 .fi
 .SH DESCRIPTION
 Update a key's data payload.

@@ -21,11 +21,13 @@ Standard C library
 .BI "void cfree(void *" ptr );
 .P
 /* In SCO OpenServer */
-.BI "void cfree(char " ptr [. size " * ." n "], unsigned int " n ", \
+.BI "void cfree(unsigned int " n ", unsigned int " size ;
+.BI "           char " ptr [ size " * " n "], unsigned int " n ", \
 unsigned int " size );
 .P
 /* In Solaris watchmalloc.so.1 */
-.BI "void cfree(void " ptr [. size " * ." n "], size_t " n ", size_t " size );
+.BI "void cfree(size_t " n ", size_t " size ;
+.BI "           void " ptr [ size " * " n "], size_t " n ", size_t " size );
 .fi
 .P
 .RS -4

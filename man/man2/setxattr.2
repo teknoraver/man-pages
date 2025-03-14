@@ -13,12 +13,15 @@ Standard C library
 .nf
 .B #include <sys/xattr.h>
 .P
-.BI "int setxattr(const char *" path ", const char *" name ,
-.BI "              const void " value [. size "], size_t " size ", int " flags );
-.BI "int lsetxattr(const char *" path ", const char *" name ,
-.BI "              const void " value [. size "], size_t " size ", int " flags );
-.BI "int fsetxattr(int " fd ", const char *" name ,
-.BI "              const void " value [. size "], size_t " size ", int " flags );
+.BI "int setxattr(size_t " size ;
+.BI "              const char *" path ", const char *" name ,
+.BI "              const void " value [ size "], size_t " size ", int " flags );
+.BI "int lsetxattr(size_t " size ;
+.BI "              const char *" path ", const char *" name ,
+.BI "              const void " value [ size "], size_t " size ", int " flags );
+.BI "int fsetxattr(size_t " size ;
+.BI "              int " fd ", const char *" name ,
+.BI "              const void " value [ size "], size_t " size ", int " flags );
 .fi
 .SH DESCRIPTION
 Extended attributes are

@@ -12,7 +12,8 @@ Standard C library
 .nf
 .B #include <sys/mman.h>
 .P
-.BI "int posix_madvise(void " addr [. size "], size_t " size ", int " advice );
+.BI "int posix_madvise(size_t " size ;
+.BI "                  void " addr [ size "], size_t " size ", int " advice );
 .fi
 .P
 .RS -4

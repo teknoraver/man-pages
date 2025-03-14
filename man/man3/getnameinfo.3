@@ -19,11 +19,12 @@ Standard C library
 .B #include <sys/socket.h>
 .B #include <netdb.h>
 .P
-.BI "int getnameinfo(const struct sockaddr *restrict " addr \
+.BI "int getnameinfo(socklen_t " hostlen ", socklen_t " servlen ;
+.BI "                const struct sockaddr *restrict " addr \
 ", socklen_t " addrlen ,
-.BI "                char " host "[_Nullable restrict ." hostlen ],
+.BI "                char " host "[_Nullable restrict " hostlen ],
 .BI "                socklen_t " hostlen ,
-.BI "                char " serv "[_Nullable restrict ." servlen ],
+.BI "                char " serv "[_Nullable restrict " servlen ],
 .BI "                socklen_t " servlen ,
 .BI "                int " flags );
 .fi

@@ -20,9 +20,11 @@ Standard C library
 .nf
 .B #include <sys/socket.h>
 .P
-.BI "ssize_t recv(int " sockfd ", void " buf [. size "], size_t " size ,
+.BI "ssize_t recv(size_t " size ;
+.BI "                 int " sockfd ", void " buf [ size "], size_t " size ,
 .BI "                 int " flags );
-.BI "ssize_t recvfrom(int " sockfd ", void " buf "[restrict ." size "], size_t " size ,
+.BI "ssize_t recvfrom(size_t " size ;
+.BI "                 int " sockfd ", void " buf "[restrict " size "], size_t " size ,
 .BI "                 int " flags ,
 .BI "                 struct sockaddr *_Nullable restrict " src_addr ,
 .BI "                 socklen_t *_Nullable restrict " addrlen );

@@ -21,11 +21,14 @@ Standard C library
 .nf
 .B #include <stdlib.h>
 .P
-.BI "int strfromd(char " str "[restrict ." n "], size_t " n ,
+.BI "int strfromd(size_t " n ;
+.BI "             char " str "[restrict " n "], size_t " n ,
 .BI "             const char *restrict " format ", double " fp ");"
-.BI "int strfromf(char " str "[restrict ." n "], size_t " n ,
+.BI "int strfromf(size_t " n ;
+.BI "             char " str "[restrict " n "], size_t " n ,
 .BI "             const char *restrict " format ", float "fp ");"
-.BI "int strfroml(char " str "[restrict ." n "], size_t " n ,
+.BI "int strfroml(size_t " n ;
+.BI "             char " str "[restrict " n "], size_t " n ,
 .BI "             const char *restrict " format ", long double " fp ");"
 .fi
 .P

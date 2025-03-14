@@ -19,7 +19,8 @@ Standard C library
 .nf
 .B #include <wchar.h>
 .P
-.BI "size_t wcsrtombs(char " dest "[restrict ." size "], \
+.BI "size_t wcsrtombs(size_t " size ;
+.BI "                 char " dest "[restrict " size "], \
 const wchar_t **restrict " src ,
 .BI "                 size_t " size ", mbstate_t *restrict " ps );
 .fi

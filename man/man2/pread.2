@@ -12,9 +12,11 @@ Standard C library
 .nf
 .B #include <unistd.h>
 .P
-.BI "ssize_t pread(int " fd ", void " buf [. count "], size_t " count ,
+.BI "ssize_t pread(size_t " count ;
+.BI "              int " fd ", void " buf [ count "], size_t " count ,
 .BI "              off_t " offset );
-.BI "ssize_t pwrite(int " fd ", const void " buf [. count "], size_t " count ,
+.BI "ssize_t pwrite(size_t " count ;
+.BI "              int " fd ", const void " buf [ count "], size_t " count ,
 .BI "              off_t " offset );
 .fi
 .P

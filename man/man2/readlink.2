@@ -23,14 +23,16 @@ Standard C library
 .nf
 .B #include <unistd.h>
 .P
-.BI "ssize_t readlink(const char *restrict " pathname ,
-.BI "                 char " buf "[restrict ." bufsiz "], size_t " bufsiz );
+.BI "ssize_t readlink(size_t " bufsiz ;
+.BI "                 const char *restrict " pathname ,
+.BI "                 char " buf "[restrict " bufsiz "], size_t " bufsiz );
 .P
 .BR "#include <fcntl.h>            " "/* Definition of " AT_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "ssize_t readlinkat(int " dirfd ", const char *restrict " pathname ,
-.BI "                 char " buf "[restrict ." bufsiz "], size_t " bufsiz );
+.BI "ssize_t readlinkat(size_t " bufsiz ;
+.BI "                 int " dirfd ", const char *restrict " pathname ,
+.BI "                 char " buf "[restrict " bufsiz "], size_t " bufsiz );
 .P
 .fi
 .RS -4

@@ -15,7 +15,8 @@ Standard C library
 .nf
 .B #include <dirent.h>
 .P
-.BI "ssize_t getdirentries(int " fd ", char " buf "[restrict ." nbytes "], \
+.BI "ssize_t getdirentries(size_t " nbytes ;
+.BI "                      int " fd ", char " buf "[restrict " nbytes "], \
 size_t " nbytes ,
 .BI "                      off_t *restrict " basep );
 .fi

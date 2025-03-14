@@ -15,7 +15,8 @@ Standard C library
 .nf
 .B #include <sys/mman.h>
 .P
-.BI "ssize_t process_madvise(int " pidfd ", const struct iovec " iovec [. n ],
+.BI "ssize_t process_madvise(size_t " n ;
+.BI "                        int " pidfd ", const struct iovec " iovec [ n ],
 .BI "                        size_t " n ", int " advice \
 ", unsigned int " flags );
 .fi

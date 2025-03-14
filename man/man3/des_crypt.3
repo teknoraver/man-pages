@@ -23,12 +23,12 @@ Standard C library
 .\" .B #include <des_crypt.h>
 .B #include <rpc/des_crypt.h>
 .P
-.BI "[[deprecated]] int ecb_crypt(char *" key ", char " data [. datalen ],
-.BI "                             unsigned int " datalen ", \
-unsigned int " mode );
-.BI "[[deprecated]] int cbc_crypt(char *" key ", char " data [. datalen ],
-.BI "                             unsigned int " datalen ", \
-unsigned int " mode ,
+.BI "[[deprecated]] int ecb_crypt(unsigned int " datalen ;
+.BI "                             char *" key ", char " data [ datalen ],
+.BI "                             unsigned int " datalen ", unsigned int " mode );
+.BI "[[deprecated]] int cbc_crypt(unsigned int " datalen ;
+.BI "                             char *" key ", char " data [ datalen ],
+.BI "                             unsigned int " datalen ", unsigned int " mode ,
 .BI "                             char *" ivec );
 .P
 .BI "[[deprecated]] void des_setparity(char *" key );

@@ -20,9 +20,10 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.B long syscall(SYS_keyctl, KEYCTL_DH_COMPUTE,
+.BI "long syscall(size_t " n ;
+.B "             SYS_keyctl, KEYCTL_DH_COMPUTE,"
 .BI "             struct keyctl_dh_params *" dh_params ,
-.BI "             char " buf [. n "], size_t " n ,
+.BI "             char " buf [ n "], size_t " n ,
 .BI "             struct keyctl_kdf_params *_Nullable " kdf_params );
 .fi
 .SH DESCRIPTION

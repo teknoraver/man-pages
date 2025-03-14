@@ -20,29 +20,39 @@ Standard C library
 .nf
 .B #include <string.h>
 .P
-.BI "int bcmp(const void " s1 [. n "], const void " s2 [. n "], size_t " n );
+.BI "int bcmp(size_t " n ;
+.BI "         const void " s1 [ n "], const void " s2 [ n "], size_t " n );
 .P
-.BI "void bcopy(const void " src [. n "], void " dest [. n "], size_t " n );
+.BI "void bcopy(size_t " n ;
+.BI "         const void " src [ n "], void " dest [ n "], size_t " n );
 .P
-.BI "void bzero(void " s [. n "], size_t " n );
+.BI "void bzero(size_t " n ;
+.BI "         void " s [ n "], size_t " n );
 .P
-.BI "void *memccpy(void " dest [. n "], const void " src [. n "], int " c ", \
-size_t " n );
+.BI "void *memccpy(size_t " n ;
+.BI "         void " dest [ n "], const void " src [ n "], int " c ", size_t " n );
 .P
-.BI "void *memchr(const void " s [. n "], int " c ", size_t " n );
+.BI "void *memchr(size_t " n ;
+.BI "         const void " s [ n "], int " c ", size_t " n );
 .P
-.BI "int memcmp(const void " s1 [. n "], const void " s2 [. n "], size_t " n );
+.BI "int memcmp(size_t " n ;
+.BI "         const void " s1 [ n "], const void " s2 [ n "], size_t " n );
 .P
-.BI "void *memcpy(void " dest [. n "], const void " src [. n "], size_t " n );
+.BI "void *memcpy(size_t " n ;
+.BI "         void " dest [ n "], const void " src [ n "], size_t " n );
 .P
-.BI "void *memfrob(void " s [. n "], size_t " n );
+.BI "void *memfrob(size_t " n ;
+.BI "         void " s [ n "], size_t " n );
 .P
-.BI "void *memmem(const void " haystack [. haystacklen "], size_t " haystacklen ,
-.BI "             const void " needle [. needlelen "], size_t " needlelen );
+.BI "void *memmem(size_t " hsize ", size_t " nsize ;
+.BI "             const void " haystack [ hsize "], size_t " hsize ,
+.BI "             const void " needle [ nsize "], size_t " nsize );
 .P
-.BI "void *memmove(void " dest [. n "], const void " src [. n "], size_t " n );
+.BI "void *memmove(size_t " n ;
+.BI "         void " dest [ n "], const void " src [ n "], size_t " n );
 .P
-.BI "void *memset(void " s [. n "], int " c ", size_t " n );
+.BI "void *memset(size_t " n ;
+.BI "         void " s [ n "], int " c ", size_t " n );
 .fi
 .SH DESCRIPTION
 The byte string functions perform operations on strings (byte arrays)
