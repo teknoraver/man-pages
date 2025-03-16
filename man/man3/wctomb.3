@@ -42,10 +42,12 @@ that is, the number of
 bytes written at
 .IR s .
 .P
-The programmer must ensure that there is
-room for at least
+At most
 .B MB_CUR_MAX
-bytes at
+bytes will be written at
+.IR s .
+The programmer must ensure that there is enough room to store the
+multibyte sequence at
 .IR s .
 .P
 If
