@@ -192,6 +192,7 @@ POSIX.1-2001, C89, SVr4, 4.3BSD.
 .BR strtoll ()
 POSIX.1-2001, C99.
 .SH CAVEATS
+.SS Range checks
 Since
 .BR strtol ()
 can legitimately return 0,
@@ -210,6 +211,19 @@ and then determine if an error occurred by checking whether
 .I errno == ERANGE
 after the call.
 .P
+.in +4n
+.EX
+errno = 0;
+n = strtol(s, &end, base);
+if (end == s)
+	goto no_number;
+if ((errno == ERANGE && n == LONG_MIN) || n < min)
+	goto too_low;
+if ((errno == ERANGE && n == LONG_MAX) || n > max)
+	goto too_high;
+.EE
+.in
+.SS base
 If the
 .I base
 needs to be tested,
