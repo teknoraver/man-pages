@@ -224,6 +224,13 @@ if (errno == EINVAL)
     goto unsupported_base;
 .EE
 .in
+.SH BUGS
+.SS White space
+These functions silently accept leading white space.
+To reject white space, call
+.BR isspace (3)
+before
+.BR strtol ().
 .SH EXAMPLES
 The program shown below demonstrates the use of
 .BR strtol ().

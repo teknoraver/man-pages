@@ -204,11 +204,19 @@ to 0 before the call,
 and then determine if an error occurred by checking whether
 .I errno
 has a nonzero value after the call.
-.P
-Negative values are considered valid input and are
-silently converted to the equivalent
-.I "unsigned long"
-value.
+.SH BUGS
+.SS Signed numbers
+Some negative values
+are considered valid input and
+are silently converted to
+.IR "\%unsigned\ long" .
+.SS White space
+These functions silently accept leading whitespace.
+.SS isalnum(3)
+To reject white space and/or a sign, call
+.BR isalnum (3)
+before
+.BR strtoul ().
 .SH EXAMPLES
 See the example on the
 .BR strtol (3)
