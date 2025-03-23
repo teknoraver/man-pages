@@ -53,8 +53,13 @@ followed by a single optional \[aq]+\[aq] or \[aq]\-\[aq] sign.
 If
 .I base
 is zero or 16, the string may then include a
-"0x" or "0X" prefix, and the number will be read in base 16; otherwise, a
-zero
+"0x" or "0X" prefix, and the number will be read in base 16;
+if
+.I base
+is zero or 2, the string may then include a
+"0b" or "0B" prefix, and the number will be read in base 2;
+otherwise,
+a zero
 .I base
 is taken as 10 (decimal) unless the next character
 is \[aq]0\[aq], in which case it is taken as 8 (octal).
@@ -183,7 +188,7 @@ may be equivalent to
 or to
 .BR strtol ().
 .SH STANDARDS
-C11, POSIX.1-2008.
+C23, POSIX.1-2024.
 .SH HISTORY
 .TP
 .BR strtol ()
@@ -191,6 +196,11 @@ POSIX.1-2001, C89, SVr4, 4.3BSD.
 .TP
 .BR strtoll ()
 POSIX.1-2001, C99.
+.TP
+"0b", "0B"
+C23.
+glibc 2.38.
+(Not in POSIX.)
 .SH CAVEATS
 .SS Range checks
 Since
