@@ -38,8 +38,8 @@ file data in a specific pattern in the future, thus allowing the kernel
 to perform appropriate optimizations.
 .P
 The \fIadvice\fP applies to a (not necessarily existent) region starting
-at \fIoffset\fP and extending for \fIlen\fP bytes (or until the end of
-the file if \fIlen\fP is 0) within the file referred to by \fIfd\fP.
+at \fIoffset\fP and extending for \fIsize\fP bytes (or until the end of
+the file if \fIsize\fP is 0) within the file referred to by \fIfd\fP.
 The \fIadvice\fP is not binding;
 it merely constitutes an expectation on behalf of
 the application.
@@ -148,7 +148,7 @@ The underlying system call is called
 (or, on some architectures,
 .BR fadvise64_64 ());
 the difference between the two is that the former system call
-assumes that the type of the \fIlen\fP argument is \fIsize_t\fP,
+assumes that the type of the \fIsize\fP argument is \fIsize_t\fP,
 while the latter expects \fIloff_t\fP there.
 .SS Architecture-specific variants
 Some architectures require
