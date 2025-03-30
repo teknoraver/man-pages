@@ -14,7 +14,7 @@ Standard C library
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <fcntl.h>
 .P
-.BI "int name_to_handle_at(int " dirfd ", const char *" pathname ,
+.BI "int name_to_handle_at(int " dirfd ", const char *" path ,
 .BI "                      struct file_handle *" handle ,
 .BI "                      int *" mount_id ", int " flags );
 .BI "int open_by_handle_at(int " mount_fd ", struct file_handle *" handle ,
@@ -43,7 +43,7 @@ system call returns a file handle and a mount ID corresponding to
 the file specified by the
 .I dirfd
 and
-.I pathname
+.I path
 arguments.
 The file handle is returned via the argument
 .IR handle ,
@@ -148,14 +148,14 @@ with the returned
 may fail.
 .P
 Together, the
-.I pathname
+.I path
 and
 .I dirfd
 arguments identify the file for which a handle is to be obtained.
 There are four distinct cases:
 .IP \[bu] 3
 If
-.I pathname
+.I path
 is a nonempty string containing an absolute pathname,
 then a handle is returned for the file referred to by that pathname.
 In this case,
@@ -163,22 +163,22 @@ In this case,
 is ignored.
 .IP \[bu]
 If
-.I pathname
+.I path
 is a nonempty string containing a relative pathname and
 .I dirfd
 has the special value
 .BR AT_FDCWD ,
 then
-.I pathname
+.I path
 is interpreted relative to the current working directory of the caller,
 and a handle is returned for the file to which it refers.
 .IP \[bu]
 If
-.I pathname
+.I path
 is a nonempty string containing a relative pathname and
 .I dirfd
 is a file descriptor referring to a directory, then
-.I pathname
+.I path
 is interpreted relative to the directory referred to by
 .IR dirfd ,
 and a handle is returned for the file to which it refers.
@@ -187,7 +187,7 @@ and a handle is returned for the file to which it refers.
 for an explanation of why "directory file descriptors" are useful.)
 .IP \[bu]
 If
-.I pathname
+.I path
 is an empty string and
 .I flags
 specifies the value
@@ -204,7 +204,7 @@ The
 .I mount_id
 argument returns an identifier for the filesystem
 mount that corresponds to
-.IR pathname .
+.IR path .
 This corresponds to the first field in one of the records in
 .IR /proc/self/mountinfo .
 Opening the pathname in the fifth field of that record yields a file
@@ -219,13 +219,13 @@ in the error
 By default,
 .BR name_to_handle_at ()
 does not dereference
-.I pathname
+.I path
 if it is a symbolic link, and thus returns a handle for the link itself.
 If
 .B AT_SYMLINK_FOLLOW
 is specified in
 .IR flags ,
-.I pathname
+.I path
 is dereferenced if it is a symbolic link
 (so that the call returns a handle for the file referred to by the link).
 .P
@@ -303,7 +303,7 @@ In addition, they can fail with the errors noted below.
 can fail with the following errors:
 .TP
 .B EFAULT
-.IR pathname ,
+.IR path ,
 .IR mount_id ,
 or
 .I handle
@@ -319,7 +319,7 @@ is greater than
 .BR MAX_HANDLE_SZ .
 .TP
 .B ENOENT
-.I pathname
+.I path
 is an empty string, but
 .B AT_EMPTY_PATH
 was not specified in
@@ -334,7 +334,7 @@ and it is not the case that both
 includes
 .B AT_EMPTY_PATH
 and
-.I pathname
+.I path
 is an empty string.
 .TP
 .B EOPNOTSUPP
@@ -358,7 +358,7 @@ can fail with the following errors:
 is not an open file descriptor.
 .TP
 .B EBADF
-.I pathname
+.I path
 is relative but
 .I dirfd
 is neither
@@ -441,7 +441,7 @@ This sort of functionality allows a user-space file server to operate in
 a stateless fashion with respect to the files it serves.
 .P
 If
-.I pathname
+.I path
 refers to a symbolic link and
 .I flags
 does not specify
@@ -574,15 +574,15 @@ int
 main(int argc, char *argv[])
 {
     int                 mount_id, fhsize, flags, dirfd;
-    char                *pathname;
+    char                *path;
     struct file_handle  *fhp;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s pathname\[rs]n", argv[0]);
+        fprintf(stderr, "Usage: %s path\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&
-    pathname = argv[1];
+    path = argv[1];
 \&
     /* Allocate file_handle structure. */
 \&
@@ -597,8 +597,7 @@ main(int argc, char *argv[])
     dirfd = AT_FDCWD;           /* For name_to_handle_at() calls */
     flags = 0;                  /* For name_to_handle_at() calls */
     fhp\->handle_bytes = 0;
-    if (name_to_handle_at(dirfd, pathname, fhp,
-                          &mount_id, flags) != \-1
+    if (name_to_handle_at(dirfd, path, fhp, &mount_id, flags) != \-1
         || errno != EOVERFLOW)
     {
         fprintf(stderr, "Unexpected result from name_to_handle_at()\[rs]n");
@@ -614,7 +613,7 @@ main(int argc, char *argv[])
 \&
     /* Get file handle from pathname supplied on command line. */
 \&
-    if (name_to_handle_at(dirfd, pathname, fhp, &mount_id, flags) == \-1)
+    if (name_to_handle_at(dirfd, path, fhp, &mount_id, flags) == \-1)
         err(EXIT_FAILURE, "name_to_handle_at");
 \&
     /* Write mount ID, file handle size, and file handle to stdout,

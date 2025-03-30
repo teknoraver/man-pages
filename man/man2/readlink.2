@@ -24,14 +24,14 @@ Standard C library
 .B #include <unistd.h>
 .P
 .BI "ssize_t readlink(size_t " bufsiz ;
-.BI "                 const char *restrict " pathname ,
+.BI "                 const char *restrict " path ,
 .BI "                 char " buf "[restrict " bufsiz "], size_t " bufsiz );
 .P
 .BR "#include <fcntl.h>            " "/* Definition of " AT_* " constants */"
 .B #include <unistd.h>
 .P
 .BI "ssize_t readlinkat(size_t " bufsiz ;
-.BI "                 int " dirfd ", const char *restrict " pathname ,
+.BI "                 int " dirfd ", const char *restrict " path ,
 .BI "                 char " buf "[restrict " bufsiz "], size_t " bufsiz );
 .P
 .fi
@@ -57,7 +57,7 @@ Feature Test Macro Requirements for glibc (see
 .SH DESCRIPTION
 .BR readlink ()
 places the contents of the symbolic link
-.I pathname
+.I path
 in the buffer
 .IR buf ,
 which has size
@@ -75,8 +75,8 @@ system call operates in exactly the same way as
 .BR readlink (),
 except for the differences described here.
 .P
-If the pathname given in
-.I pathname
+If
+.I path
 is relative, then it is interpreted relative to the directory
 referred to by the file descriptor
 .I dirfd
@@ -86,26 +86,26 @@ the calling process, as is done by
 for a relative pathname).
 .P
 If
-.I pathname
+.I path
 is relative and
 .I dirfd
 is the special value
 .BR AT_FDCWD ,
 then
-.I pathname
+.I path
 is interpreted relative to the current working
 directory of the calling process (like
 .BR readlink ()).
 .P
 If
-.I pathname
+.I path
 is absolute, then
 .I dirfd
 is ignored.
 .P
 Since Linux 2.6.39,
 .\" commit 65cfc6722361570bfe255698d9cd4dccaf47570d
-.I pathname
+.I path
 can be an empty string,
 in which case the call operates on the symbolic link referred to by
 .I dirfd
@@ -139,7 +139,7 @@ Search permission is denied for a component of the path prefix.
 .TP
 .B EBADF
 .RB ( readlinkat ())
-.I pathname
+.I path
 is relative but
 .I dirfd
 is neither
@@ -161,7 +161,7 @@ is not positive.
 .TP
 .B EINVAL
 The named file (i.e., the final filename component of
-.IR pathname )
+.IR path )
 is not a symbolic link.
 .TP
 .B EIO
@@ -184,7 +184,7 @@ A component of the path prefix is not a directory.
 .TP
 .B ENOTDIR
 .RB ( readlinkat ())
-.I pathname
+.I path
 is relative and
 .I dirfd
 is a file descriptor referring to a file other than a directory.
@@ -215,8 +215,8 @@ On older kernels where
 is unavailable, the glibc wrapper function falls back to the use of
 .BR readlink ().
 When
-.I pathname
-is a relative pathname,
+.I path
+is relative,
 glibc constructs a pathname based on the symbolic link in
 .I /proc/self/fd
 that corresponds to the
@@ -273,7 +273,7 @@ main(int argc, char *argv[])
     struct stat  sb;
 \&
     if (argc != 2) {
-        fprintf(stderr, "Usage: %s <pathname>\[rs]n", argv[0]);
+        fprintf(stderr, "Usage: %s <path>\[rs]n", argv[0]);
         exit(EXIT_FAILURE);
     }
 \&

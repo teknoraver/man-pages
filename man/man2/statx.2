@@ -20,7 +20,7 @@ Standard C library
 .BR "#include <fcntl.h>           " "/* Definition of " AT_* " constants */"
 .B #include <sys/stat.h>
 .P
-.BI "int statx(int " dirfd ", const char *_Nullable restrict " pathname ,
+.BI "int statx(int " dirfd ", const char *_Nullable restrict " path ,
 .BI "          int " flags ", unsigned int " mask ,
 .BI "          struct statx *restrict " statxbuf );
 .fi
@@ -101,12 +101,12 @@ but in the case of
 .BR statx ()
 with a pathname,
 execute (search) permission is required on all of the directories in
-.I pathname
+.I path
 that lead to the file.
 .P
 .BR statx ()
 uses
-.IR pathname ,
+.IR path ,
 .IR dirfd ,
 and
 .I flags
@@ -114,7 +114,7 @@ to identify the target file in one of the following ways:
 .TP
 An absolute pathname
 If
-.I pathname
+.I path
 begins with a slash,
 then it is an absolute pathname that identifies the target file.
 In this case,
@@ -123,23 +123,23 @@ is ignored.
 .TP
 A relative pathname
 If
-.I pathname
+.I path
 is a string that begins with a character other than a slash and
 .I dirfd
 is
 .BR AT_FDCWD ,
 then
-.I pathname
+.I path
 is a relative pathname that is interpreted relative to the process's
 current working directory.
 .TP
 A directory-relative pathname
 If
-.I pathname
+.I path
 is a string that begins with a character other than a slash and
 .I dirfd
 is a file descriptor that refers to a directory, then
-.I pathname
+.I path
 is a relative pathname that is interpreted relative to the directory
 referred to by
 .IR dirfd .
@@ -149,7 +149,7 @@ for an explanation of why this is useful.)
 .TP
 By file descriptor
 If
-.I pathname
+.I path
 is an empty string (or NULL since Linux 6.11) and the
 .B AT_EMPTY_PATH
 flag is specified in
@@ -167,7 +167,7 @@ is constructed by ORing together zero or more of the following constants:
 .B AT_EMPTY_PATH
 .\" commit 65cfc6722361570bfe255698d9cd4dccaf47570d
 If
-.I pathname
+.I path
 is an empty string (or NULL since Linux 6.11),
 operate on the file referred to by
 .I dirfd
@@ -187,7 +187,7 @@ the call operates on the current working directory.
 .TP
 .B AT_NO_AUTOMOUNT
 Don't automount the terminal ("basename") component of
-.I pathname
+.I path
 if it is a directory that is an automount point.
 This allows the caller to gather attributes of an automount point
 (rather than the location it would mount).
@@ -209,7 +209,7 @@ was set.
 .TP
 .B AT_SYMLINK_NOFOLLOW
 If
-.I pathname
+.I path
 is a symbolic link, do not dereference it:
 instead return information about the link itself, like
 .BR lstat (2).
@@ -625,12 +625,12 @@ is set to indicate the error.
 .B EACCES
 Search permission is denied for one of the directories
 in the path prefix of
-.IR pathname .
+.IR path .
 (See also
 .BR path_resolution (7).)
 .TP
 .B EBADF
-.I pathname
+.I path
 is relative but
 .I dirfd
 is neither
@@ -638,7 +638,7 @@ is neither
 nor a valid file descriptor.
 .TP
 .B EFAULT
-.I pathname
+.I path
 or
 .I statxbuf
 points to a location outside the process's accessible address space
@@ -647,7 +647,8 @@ or is NULL
 .B AT_EMPTY_PATH
 is specified in
 .IR flags ,
-pathname is allowed to be NULL).
+.I path
+is allowed to be NULL).
 .TP
 .B EINVAL
 Invalid flag specified in
@@ -664,14 +665,14 @@ with the value 0x80000000U.)
 Too many symbolic links encountered while traversing the pathname.
 .TP
 .B ENAMETOOLONG
-.I pathname
+.I path
 is too long.
 .TP
 .B ENOENT
 A component of
-.I pathname
+.I path
 does not exist, or
-.I pathname
+.I path
 is an empty string and
 .B AT_EMPTY_PATH
 was not specified in
@@ -682,9 +683,9 @@ Out of memory (i.e., kernel memory).
 .TP
 .B ENOTDIR
 A component of the path prefix of
-.I pathname
+.I path
 is not a directory or
-.I pathname
+.I path
 is relative and
 .I dirfd
 is a file descriptor referring to a file other than a directory.

@@ -16,20 +16,20 @@ Standard C library
 .nf
 .B #include <sys/inotify.h>
 .P
-.BI "int inotify_add_watch(int " fd ", const char *" pathname ", uint32_t " mask );
+.BI "int inotify_add_watch(int " fd ", const char *" path ", uint32_t " mask );
 .fi
 .SH DESCRIPTION
 .BR inotify_add_watch ()
 adds a new watch, or modifies an existing watch,
 for the file whose location is specified in
-.IR pathname ;
+.IR path ;
 the caller must have read permission for this file.
 The
 .I fd
 argument is a file descriptor referring to the
 inotify instance whose watch list is to be modified.
 The events to be monitored for
-.I pathname
+.I path
 are specified in the
 .I mask
 bit-mask argument.
@@ -42,7 +42,7 @@ A successful call to
 .BR inotify_add_watch ()
 returns a unique watch descriptor for this inotify instance,
 for the filesystem object (inode) that corresponds to
-.IR pathname .
+.IR path .
 If the filesystem object
 was not previously being watched by this inotify instance,
 then the watch descriptor is newly allocated.
@@ -80,12 +80,12 @@ The given file descriptor is not valid.
 contains
 .B IN_MASK_CREATE
 and
-.I pathname
+.I path
 refers to a file already being watched by the same
 .IR fd .
 .TP
 .B EFAULT
-.I pathname
+.I path
 points outside of the process's accessible address space.
 .TP
 .B EINVAL
@@ -100,12 +100,12 @@ or
 is not an inotify file descriptor.
 .TP
 .B ENAMETOOLONG
-.I pathname
+.I path
 is too long.
 .TP
 .B ENOENT
 A directory component in
-.I pathname
+.I path
 does not exist or is a dangling symbolic link.
 .TP
 .B ENOMEM
@@ -120,7 +120,7 @@ kernel failed to allocate a needed resource.
 contains
 .B IN_ONLYDIR
 and
-.I pathname
+.I path
 is not a directory.
 .SH STANDARDS
 Linux.

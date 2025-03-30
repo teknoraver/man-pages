@@ -20,8 +20,7 @@ Standard C library
 .BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "int syscall(SYS_spu_create, const char *" pathname \
-", unsigned int " flags ,
+.BI "int syscall(SYS_spu_create, const char *" path ", unsigned int " flags ,
 .BI "            mode_t " mode ", int " neighbor_fd );
 .fi
 .P
@@ -37,16 +36,16 @@ system call is used on PowerPC machines that implement the
 Cell Broadband Engine Architecture in order to access Synergistic
 Processor Units (SPUs).
 It creates a new logical context for an SPU in
-.I pathname
+.I path
 and returns a file descriptor associated with it.
-.I pathname
+.I path
 must refer to a nonexistent directory in the mount point of
 the SPU filesystem
 .RB ( spufs ).
 If
 .BR spu_create ()
 is successful, a directory is created at
-.I pathname
+.I path
 and it is populated with the files described in
 .BR spufs (7).
 .P
@@ -63,7 +62,7 @@ or closed;
 other operations are not defined.
 A logical SPU
 context is destroyed (along with all files created within the context's
-.I pathname
+.I path
 directory) once the last reference to the context has gone;
 this usually occurs when the file descriptor returned by
 .BR spu_create ()
@@ -107,7 +106,7 @@ In the future, gang scheduling may be implemented causing
 the group to be switched in and out as a single unit.)
 .IP
 A new directory will be created at the location specified by the
-.I pathname
+.I path
 argument.
 This gang may be used to hold other SPU contexts, by providing
 a pathname that is within the gang directory to further calls to
@@ -181,25 +180,25 @@ mount point.
 An SPU context already exists at the given pathname.
 .TP
 .B EFAULT
-.I pathname
+.I path
 is not a valid string pointer in the
 calling process's address space.
 .TP
 .B EINVAL
-.I pathname
+.I path
 is not a directory in the
 .BR spufs (7)
 mount point, or invalid flags have been provided.
 .TP
 .B ELOOP
 Too many symbolic links were found while resolving
-.IR pathname .
+.IR path .
 .TP
 .B EMFILE
 The per-process limit on the number of open file descriptors has been reached.
 .TP
 .B ENAMETOOLONG
-.I pathname
+.I path
 is too long.
 .TP
 .B ENFILE
@@ -211,7 +210,7 @@ SPU isolation.
 .TP
 .B ENOENT
 Part of
-.I pathname
+.I path
 could not be resolved.
 .TP
 .B ENOMEM
@@ -229,7 +228,7 @@ loaded.
 .TP
 .B ENOTDIR
 A part of
-.I pathname
+.I path
 is not a directory.
 .TP
 .B EPERM
@@ -239,7 +238,7 @@ flag has been given, but the user does not have the
 .B CAP_SYS_NICE
 capability.
 .SH FILES
-.I pathname
+.I path
 must point to a location beneath the mount point of
 .BR spufs .
 By convention, it gets mounted in

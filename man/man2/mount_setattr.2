@@ -15,7 +15,7 @@ Standard C library
 .BR "#include <sys/syscall.h>" " /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "int syscall(SYS_mount_setattr, int " dirfd ", const char *" pathname ,
+.BI "int syscall(SYS_mount_setattr, int " dirfd ", const char *" path ,
 .BI "            unsigned int " flags ", struct mount_attr *" attr \
 ", size_t " size );
 .fi
@@ -30,8 +30,8 @@ The
 .BR mount_setattr ()
 system call changes the mount properties of a mount or an entire mount tree.
 If
-.I pathname
-is a relative pathname,
+.I path
+is relative,
 then it is interpreted relative to
 the directory referred to by the file descriptor
 .IR dirfd .
@@ -40,11 +40,11 @@ If
 is the special value
 .BR AT_FDCWD ,
 then
-.I pathname
+.I path
 is interpreted relative to
 the current working directory of the calling process.
 If
-.I pathname
+.I path
 is the empty string and
 .B AT_EMPTY_PATH
 is specified in
@@ -104,7 +104,7 @@ The supported values are:
 .TP
 .B AT_EMPTY_PATH
 If
-.I pathname
+.I path
 is the empty string,
 change the mount properties on
 .I dirfd
@@ -394,7 +394,7 @@ is set to indicate the error.
 .SH ERRORS
 .TP
 .B EBADF
-.I pathname
+.I path
 is relative but
 .I dirfd
 is neither
@@ -421,7 +421,7 @@ but the mount still holds files open for writing.
 The pathname specified via the
 .I dirfd
 and
-.I pathname
+.I path
 arguments to
 .BR mount_setattr ()
 isn't a mount point.
@@ -924,10 +924,10 @@ with a structure which has every byte nonzero
 #include <unistd.h>
 \&
 static inline int
-mount_setattr(int dirfd, const char *pathname, unsigned int flags,
+mount_setattr(int dirfd, const char *path, unsigned int flags,
               struct mount_attr *attr, size_t size)
 {
-    return syscall(SYS_mount_setattr, dirfd, pathname, flags,
+    return syscall(SYS_mount_setattr, dirfd, path, flags,
                    attr, size);
 }
 \&
@@ -938,11 +938,11 @@ open_tree(int dirfd, const char *filename, unsigned int flags)
 }
 \&
 static inline int
-move_mount(int from_dirfd, const char *from_pathname,
-           int to_dirfd, const char *to_pathname, unsigned int flags)
+move_mount(int from_dirfd, const char *from_path,
+           int to_dirfd, const char *to_path, unsigned int flags)
 {
-    return syscall(SYS_move_mount, from_dirfd, from_pathname,
-                   to_dirfd, to_pathname, flags);
+    return syscall(SYS_move_mount, from_dirfd, from_path,
+                   to_dirfd, to_path, flags);
 }
 \&
 static const struct option longopts[] = {
