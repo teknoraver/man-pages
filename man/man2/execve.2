@@ -331,11 +331,6 @@ The
 .I interpreter
 must be a valid pathname for an executable file.
 .P
-If the
-.I pathname
-argument of
-.BR execve ()
-specifies an interpreter script, then
 .I interpreter
 will be invoked with the following arguments:
 .P
@@ -348,10 +343,6 @@ will be invoked with the following arguments:
 .in
 .P
 where
-.I pathname
-is the pathname of the file specified as the first argument of
-.BR execve (),
-and
 .I arg...
 is the series of words pointed to by the
 .I argv
