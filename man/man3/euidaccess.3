@@ -14,15 +14,15 @@ Standard C library
 .BR "#define _GNU_SOURCE" "             /* See feature_test_macros(7) */"
 .B #include <unistd.h>
 .P
-.BI "int euidaccess(const char *" pathname ", int " mode );
-.BI "int eaccess(const char *" pathname ", int " mode );
+.BI "int euidaccess(const char *" path ", int " mode );
+.BI "int eaccess(const char *" path ", int " mode );
 .fi
 .SH DESCRIPTION
 Like
 .BR access (2),
 .BR euidaccess ()
 checks permissions and existence of the file identified by its argument
-.IR pathname .
+.IR path .
 However, whereas
 .BR access (2)
 performs checks using the real user and group identifiers of the process,

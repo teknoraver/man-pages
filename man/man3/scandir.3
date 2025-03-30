@@ -118,7 +118,7 @@ function operates in exactly the same way as
 .BR scandir (),
 except for the differences described here.
 .P
-If the pathname given in
+If
 .I dirp
 is relative, then it is interpreted relative to the directory
 referred to by the file descriptor
@@ -193,7 +193,7 @@ is not a directory.
 .B ENOTDIR
 .RB ( scandirat ())
 .I dirp
-is a relative pathname and
+is relative and
 .I dirfd
 is a file descriptor referring to a file other than a directory.
 .SH ATTRIBUTES

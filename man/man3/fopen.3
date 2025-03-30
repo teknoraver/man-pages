@@ -24,11 +24,9 @@ Standard C library
 .nf
 .B #include <stdio.h>
 .P
-.BI "FILE *fopen(const char *restrict " pathname \
-", const char *restrict " mode );
+.BI "FILE *fopen(const char *restrict " path ", const char *restrict " mode );
 .BI "FILE *fdopen(int " fd ", const char *" mode );
-.BI "FILE *freopen(const char *restrict " pathname \
-", const char *restrict " mode ,
+.BI "FILE *freopen(const char *restrict " path ", const char *restrict " mode ,
 .BI "              FILE *restrict " stream );
 .fi
 .P
@@ -45,7 +43,7 @@ Feature Test Macro Requirements for glibc (see
 The
 .BR fopen ()
 function opens the file whose name is the string pointed to by
-.I pathname
+.I path
 and associates a stream with it.
 .P
 The argument
@@ -179,7 +177,7 @@ to a shared memory object is undefined.
 The
 .BR freopen ()
 function opens the file whose name is the string pointed to by
-.I pathname
+.I path
 and associates the stream pointed to by
 .I stream
 with it.
@@ -190,9 +188,9 @@ argument is used just as in the
 .BR fopen ()
 function.
 .P
-If the
-.I pathname
-argument is a null pointer,
+If
+.I path
+is a null pointer,
 .BR freopen ()
 changes the mode of the stream to that specified in
 .IR mode ;
