@@ -84,6 +84,40 @@ Select line-by-line,
 expanding the selection outwards to select full lines.
 The indicated screen characters are highlighted
 and saved in a kernel buffer.
+.TP
+.B TIOCL_SELPOINTER
+Show the pointer at position
+.RI ( xs ,\~ ys )
+or
+.RI ( xe ,\~ ye ),
+whichever is later in text flow order.
+.TP
+.B TIOCL_SELCLEAR
+Remove the current selection highlight, if any,
+from the console holding the selection.
+.IP
+This does not affect the stored selected text.
+.TP
+.B TIOCL_SELMOUSEREPORT
+Make the terminal report
+.RI ( xs ,\~ ys )
+as the current mouse location
+using the
+.BR xterm (1)
+mouse tracking protocol
+(see
+.BR console_codes (4)).
+The lower 4 bits of
+.I sel_mode
+.RB ( TIOCL_SELBUTTONMASK )
+indicate the desired button press and
+modifier key information for the mouse event.
+.\" <https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Normal-tracking-mode>
+.IP
+If mouse reporting is not enabled for the terminal,
+this operation yields an
+.B EINVAL
+error.
 .RE
 .IP
 Since Linux 6.7, using this subcode requires the
