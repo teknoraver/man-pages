@@ -526,13 +526,22 @@ are as follows:
 .I info_type
 A unique integer value representing
 the type of information record object received for an event.
-The value of this field can be set to one of the following:
-.BR FAN_EVENT_INFO_TYPE_FID ,
-.BR FAN_EVENT_INFO_TYPE_DFID ,
-.BR FAN_EVENT_INFO_TYPE_DFID_NAME ,
-.BR FAN_EVENT_INFO_TYPE_PIDFD ,
-.BR FAN_EVENT_INFO_TYPE_ERROR ,
-.BR FAN_EVENT_INFO_TYPE_RANGE .
+The value of this field can be set to one of the following.
+.RS
+.TP
+.B FAN_EVENT_INFO_TYPE_FID
+.TQ
+.B FAN_EVENT_INFO_TYPE_DFID
+.TQ
+.B FAN_EVENT_INFO_TYPE_DFID_NAME
+.TQ
+.B FAN_EVENT_INFO_TYPE_PIDFD
+.TQ
+.B FAN_EVENT_INFO_TYPE_ERROR
+.TQ
+.B FAN_EVENT_INFO_TYPE_RANGE
+.RE
+.IP
 The value set for this field
 is dependent on the flags that have been supplied to
 .BR fanotify_init (2).
