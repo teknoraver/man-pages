@@ -41,7 +41,7 @@ such that any valid
 value can be converted to this type and then converted back.
 It is capable of storing values in the range
 .RB [ 0 ,
-.BR INTPTR_MAX ].
+.BR UINTPTR_MAX ].
 .P
 The macros
 .RB [ U ] INTPTR_WIDTH
