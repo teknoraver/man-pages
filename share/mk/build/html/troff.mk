@@ -27,6 +27,7 @@ _XFAIL_HTMLMAN_MAN_set := \
 	$(_MANDIR)/man7/charsets.7.html.set \
 	$(_MANDIR)/man7/iso_8859-16.7.html.set \
 	$(_MANDIR)/man7/iso_8859-6.7.html.set \
+	$(_MANDIR)/man7/vdso.7.html.set \
 	$(_MANDIR)/man8/zic.8.html.set
 
 

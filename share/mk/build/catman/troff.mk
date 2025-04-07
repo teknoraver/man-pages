@@ -43,6 +43,7 @@ _XFAIL_CATMAN_MAN_set := \
 	$(_MANDIR)/man7/iso_8859-14.7.cat.set \
 	$(_MANDIR)/man7/iso_8859-15.7.cat.set \
 	$(_MANDIR)/man7/iso_8859-16.7.cat.set \
+	$(_MANDIR)/man7/vdso.7.cat.set \
 	$(_MANDIR)/man8/tzselect.8.cat.set \
 	$(_MANDIR)/man8/zdump.8.cat.set \
 	$(_MANDIR)/man8/zic.8.cat.set
