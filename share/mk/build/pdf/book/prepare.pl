@@ -7,7 +7,7 @@
 #
 #               $1 = Directory holding the man pages
 #
-# (C) Copyright 2022, Deri James
+# Copyright, The contributors to the Linux man-pages project
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License

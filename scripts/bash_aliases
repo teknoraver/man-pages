@@ -1,18 +1,5 @@
+# Copyright, The contributors to the Linux man-pages project
 # SPDX-License-Identifier: GPL-2.0-only
-########################################################################
-#
-# (C) Copyright 2020-2022, Alejandro Colomar
-# These functions are free software; you can redistribute them and/or
-# modify them under the terms of the GNU General Public License
-# as published by the Free Software Foundation; version 2.
-#
-# These functions are distributed in the hope that they will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details
-# (http://www.gnu.org/licenses/gpl-2.0.html).
-#
-########################################################################
 
 ########################################################################
 #	Exit status
