@@ -14,7 +14,10 @@
 .\"
 .TH abs 3 (date) "Linux man-pages (unreleased)"
 .SH NAME
-abs, labs, llabs, imaxabs, uabs, ulabs, ullabs, uimaxabs \- compute the absolute value of an integer
+abs, labs, llabs, imaxabs,
+uabs, ulabs, ullabs, uimaxabs
+\-
+compute the absolute value of an integer
 .SH LIBRARY
 Standard C library
 .RI ( libc ,\~ \-lc )
@@ -54,23 +57,14 @@ Feature Test Macro Requirements for glibc (see
     _ISOC2Y_SOURCE
 .fi
 .SH DESCRIPTION
-The
-.BR abs (),
-.BR labs (),
-.BR llabs (),
-.BR imaxabs (),
-.BR uabs (),
-.BR ulabs (),
-.BR \%ullabs (),
-and
-.BR \%uimaxabs ()
-functions compute the absolute value of the argument
+These functions
+compute the absolute value of the argument
 .I j
 of the
 appropriate integer type for the function.
 .SH RETURN VALUE
-Returns the absolute value of the integer argument, of the appropriate
-integer type for the function.
+Returns the absolute value of the integer argument,
+of the appropriate integer type for the function.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
@@ -93,63 +87,50 @@ T{
 T}	Thread safety	MT-Safe
 .TE
 .SH STANDARDS
-C2Y.
-.SH HISTORY
-POSIX.1-2001, C99, SVr4, 4.3BSD.
-.\" POSIX.1 (1996 edition) requires only the
-.\" .BR abs ()
-.\" function.
-.P
-C89 only
-includes the
+.TP
 .BR abs ()
-and
+.TQ
 .BR labs ()
-functions; the functions
+.TQ
 .BR llabs ()
-and
+.TQ
 .BR imaxabs ()
-were added in C99.
-The functions
-.BR uabs (),
-.BR ulabs (),
-.BR \%ullabs (),
-and
+C23, POSIX.1-2024
+.SH HISTORY
+.TP
+.BR abs ()
+C89, POSIX.1-1996, SVr4, 4.3BSD.
+.TP
+.BR labs ()
+C89, POSIX.1-2001.
+.TP
+.BR llabs ()
+C99, POSIX.1-2001;
+glibc 2.0.
+.TP
+.BR imaxabs ()
+C99, POSIX.1-2001;
+glibc 2.1.1.
+.TP
+.BR uabs ()
+.TQ
+.BR ulabs ()
+.TQ
+.BR \%ullabs ()
+.TQ
 .BR \%uimaxabs ()
-were added in C2Y.
-.SH NOTES
+C2y;
+glibc 2.42.
+.SH BUGS
 For
 .BR abs (),
 .BR labs (),
 .BR llabs (),
 and
-.BR imaxabs ()
+.BR imaxabs (),
 trying to take the absolute value of the most negative integer
 is not defined.
-.P
-The
-.BR llabs ()
-function is included since glibc 2.0.
-The
-.BR imaxabs ()
-function is included since glibc 2.1.1.
-The
-.BR uabs (),
-.BR ulabs (),
-.BR \%ullabs (),
-and
-.BR \%uimaxabs ()
-functions are included since glibc 2.42.
-.P
-For
-.BR llabs ()
-to be declared, it may be necessary to define
-.B _ISOC99_SOURCE
-or
-.B _ISOC9X_SOURCE
-(depending on the version of glibc)
-before including any standard headers.
-.P
+.SH NOTES
 By default,
 GCC handles
 .BR abs (),
