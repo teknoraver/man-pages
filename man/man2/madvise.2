@@ -697,9 +697,24 @@ is applied to regions
 containing pre-existing lightweight guard regions,
 they are left in place.
 .IP
-This operation is supported
-only for writable anonymous private mappings
-which have not been mlock'd.
+Prior to Linux 6.15,
+this operation was supported
+only for writable anonymous private mappings.
+Since Linux 6.15,
+both anonymous and file-backed mappings are supported,
+including read-only mappings.
+.IP
+The mapping must not be mlock'd,
+map hugetlb ranges,
+nor contain special mappings.
+For example,
+mappings marked with kernel-internal flags such as
+.B VM_PFNMAP
+or
+.BR VM_IO ,
+or secret memory regions created using
+.BR memfd_secret (2).
+.IP
 An
 .B EINVAL
 error is returned if it is attempted on any other kind of mapping.
@@ -756,19 +771,23 @@ and
 .IP
 All mappings in the range
 other than lightweight guard regions
-are left in place
-(including mlock'd mappings).
-The operation is,
-however,
-valid only for writable anonymous private mappings,
+are left in place.
+The operation is supported on those mappings
+permitted by
+.B MADV_GUARD_INSTALL
+in addition to mlock()'d mappings,
 returning an
 .B EINVAL
 error otherwise.
 .IP
 When lightweight guard regions are removed,
 they act as empty regions of the containing mapping.
-Since only writable anonymous private mappings are supported,
-they therefore become zero-fill-on-demand pages.
+Therefore,
+anonymous private mappings become
+zero-fill-on-demand pages,
+and file-backed mappings are repopulated with the
+memory contents from the up-to-date contents of the
+underlying mapped file.
 .IP
 If any transparent huge pages are encountered in the operation,
 they are left in place.
