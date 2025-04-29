@@ -881,6 +881,30 @@ and
 .I length
 must both be a multiple of the underlying huge page size.
 .\"
+.SH CAVEATS
+Unlike typical
+.BR malloc (3)
+implementations,
+.BR mmap ()
+does not prevent creating objects larger than
+.BR PTRDIFF_MAX .
+Objects that are larger than
+.B PTRDIFF_MAX
+only work in limited ways in C
+(in particular,
+pointer subtraction results in undefined behavior
+if the result would be bigger than
+.BR PTRDIFF_MAX ).
+On top of that,
+GCC also assumes that no object is bigger than
+.BR PTRDIFF_MAX .
+.B PTRDIFF_MAX
+is usually half of the address space size;
+so for 32-bit processes,
+it is usually
+.B 0x7fffffff
+(almost 2 GiB).
+.\"
 .SH BUGS
 On Linux, there are no guarantees like those suggested above under
 .BR MAP_NORESERVE .
