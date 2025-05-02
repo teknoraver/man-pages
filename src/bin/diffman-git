@@ -31,6 +31,7 @@ git rev-parse --show-toplevel | read -r dir;
 cd "$dir";
 
 test -v MAN_KEEP_FORMATTING || export MAN_KEEP_FORMATTING=1;
+test -v MANROFFOPT          || export MANROFFOPT='-d AD=l';
 
 # shellcheck disable=SC2206  # We want only non-empty variables in the array.
 opts=($s $w $u);
