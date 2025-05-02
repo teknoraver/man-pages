@@ -72,18 +72,30 @@ may be one of the following operations:
 Select character-by-character.
 The indicated screen characters are highlighted
 and saved in a kernel buffer.
+.IP
+Since Linux 6.7, using this selection mode requires the
+.B CAP_SYS_ADMIN
+capability.
 .TP
 .B TIOCL_SELWORD
 Select word-by-word,
 expanding the selection outwards to align with word boundaries.
 The indicated screen characters are highlighted
 and saved in a kernel buffer.
+.IP
+Since Linux 6.7, using this selection mode requires the
+.B CAP_SYS_ADMIN
+capability.
 .TP
 .B TIOCL_SELLINE
 Select line-by-line,
 expanding the selection outwards to select full lines.
 The indicated screen characters are highlighted
 and saved in a kernel buffer.
+.IP
+Since Linux 6.7, using this selection mode requires the
+.B CAP_SYS_ADMIN
+capability.
 .TP
 .B TIOCL_SELPOINTER
 Show the pointer at position
@@ -118,11 +130,11 @@ If mouse reporting is not enabled for the terminal,
 this operation yields an
 .B EINVAL
 error.
-.RE
 .IP
-Since Linux 6.7, using this subcode requires the
+Since Linux 6.7, using this selection mode requires the
 .B CAP_SYS_ADMIN
 capability.
+.RE
 .TP
 .BR subcode = TIOCL_PASTESEL
 Paste selection.
