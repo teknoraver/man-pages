@@ -56931,12 +56931,6 @@ man2/
 	ioctl_pagemap_scan.2		(moved to PAGEMAP_SCAN.2const)
 
 
-Removed links
--------------
-
-None.
-
-
 Global changes
 --------------
 
@@ -56957,12 +56951,6 @@ to individual pages, or the authors of changes, use git(1).
 Released: 2024-06-17, Aldaya
 
 
-New and rewritten pages
------------------------
-
-None.
-
-
 Newly documented interfaces in existing pages
 ---------------------------------------------
 
@@ -56980,18 +56968,6 @@ man2const/
 man3type/
 	rlimit.3type			(getrlimit(2))
 	rlim_t.3type			(getrlimit(2))
-
-
-Removed pages
--------------
-
-None.
-
-
-Removed links
--------------
-
-None.
 
 
 Global changes
@@ -57137,14 +57113,6 @@ man3/
 	wcsncasecmp.3				(wcscasecmp(3))
 
 
-Removed pages
--------------
-
-
-Removed links
--------------
-
-
 Global changes
 --------------
 
@@ -57193,22 +57161,6 @@ New and rewritten pages
 
 man7/
 	pathname.7
-
-
-Newly documented interfaces in existing pages
----------------------------------------------
-
-
-New and changed links
----------------------
-
-
-Removed pages
--------------
-
-
-Removed links
--------------
 
 
 Global changes
@@ -57262,10 +57214,6 @@ to individual pages, or the authors of changes, use git(1).
 Released: 2025-02-22, Venezia
 
 
-New and rewritten pages
------------------------
-
-
 Newly documented interfaces in existing pages
 ---------------------------------------------
 
@@ -57274,18 +57222,6 @@ man2/
 		MPOL_PREFERRED_MANY
 	set_mempolicy.2
 		MPOL_PREFERRED_MANY
-
-
-New and changed links
----------------------
-
-
-Removed pages
--------------
-
-
-Removed links
--------------
 
 
 Global changes
@@ -57309,10 +57245,6 @@ to individual pages, or the authors of changes, use git(1).
 Released: 2025-03-06, Vinaròs
 
 
-New and rewritten pages
------------------------
-
-
 Newly documented interfaces in existing pages
 ---------------------------------------------
 
@@ -57321,18 +57253,6 @@ man7/
 		Landlock ABI v6
 		LANDLOCK_SCOPE_ABSTRACT_UNIX_SOCKET
 		LANDLOCK_SCOPE_SIGNAL
-
-
-New and changed links
----------------------
-
-
-Removed pages
--------------
-
-
-Removed links
--------------
 
 
 Global changes
