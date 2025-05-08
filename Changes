@@ -1,82 +1,30 @@
-==================== Changes in man-pages-6.14 ====================
+==================== Changes in man-pages-?.?? ====================
 
-Released: 2025-05-09, Aldaya
+Released: ????-??-??, ??Location??
 
 
 New and rewritten pages
 -----------------------
 
-man2const/
-	UFFDIO_MOVE.2const
-
-man7/
-	mctp.7
-
 
 Newly documented interfaces in existing pages
 ---------------------------------------------
-
-man2/
-	fanotify_init.2
-		FAN_REPORT_FD_ERROR
-		FAN_REPORT_MNT
-	fanotify_mark.2
-		FAN_PRE_ACCESS
-		FAN_MARK_MNTNS
-		FAN_MNT_ATTACH, FAN_MNT_DETACH
-	open_by_handle_at.2
-		AT_HANDLE_CONNECTABLE
-		AT_HANDLE_MNT_ID_UNIQUE
-
-man2const/
-	TIOCLINUX.2const
-		TIOCL_SELCHAR
-		TIOCL_SELWORD
-		TIOCL_SELLINE
-		TIOCL_SELPOINTER
-		TIOCL_SELCLEAR
-		TIOCL_SELMOUSEREPORT
-
-man3/
-	abs.3
-		uabs(3)
-		ulabs(3)
-		ullabs(3)
-		uimaxabs(3)
-
-man7/
-	fanotify.7
-		FAN_DENY_ERRNO()
-		FAN_REPORT_FD_ERROR
-		FAN_PRE_ACCESS
-		FAN_RESPONSE_INFO_AUDIT_RULE
-		FAN_REPORT_MNT
-		FAN_MNT_ATTACH, FAN_MNT_DETACH
-		FAN_EVENT_INFO_TYPE_MNT
 
 
 New and changed links
 ---------------------
 
-man3/
-	uabs.3					(abs(3))
-	ulabs.3					(abs(3))
-	ullabs.3				(abs(3))
-	uimaxabs.3				(abs(3))
+
+Removed pages
+-------------
+
+
+Removed links
+-------------
 
 
 Global changes
 --------------
-
--  CREDITS, *
-   -  Move in-source contribution records to a new CREDITS file, and
-      update copyright notices to be uniform across the project.
-
--  man/
-   -  Use GNU forward declarations of parameters for sizes of array
-      parameters.
-   -  \fX => \f[X]
-   -  Use 'path' instead of 'pathname' for parameters.
 
 
 Changes to individual files
