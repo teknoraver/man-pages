@@ -12,10 +12,10 @@ Standard C library
 .nf
 .B #include <assert.h>
 .P
-.BI "void static_assert(scalar " constant-expression ", const char *" msg );
+.BI "void static_assert(bool " constant-expression ", const char *" msg );
 .P
 /* Since C23: */
-.BI "void static_assert(scalar " constant-expression );
+.BI "void static_assert(bool " constant-expression );
 .fi
 .SH DESCRIPTION
 This macro is similar to

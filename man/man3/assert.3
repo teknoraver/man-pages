@@ -13,7 +13,7 @@ Standard C library
 .nf
 .B #include <assert.h>
 .P
-.BI "void assert(scalar " expression );
+.BI "void assert(bool " expression );
 .fi
 .SH DESCRIPTION
 This macro can help programmers find bugs in their programs,
@@ -76,7 +76,8 @@ In C89,
 .I expression
 is required to be of type
 .I int
-and undefined behavior results if it is not, but in C99
+and undefined behavior results if it is not,
+but in C99
 it may have any scalar type.
 .\" See Defect Report 107 for more details.
 .SH BUGS
