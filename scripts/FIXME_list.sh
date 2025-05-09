@@ -4,7 +4,7 @@
 #
 # Display FIXME segments from man-pages source files
 #
-# Copyright, The contributors to the Linux man-pages project
+# Copyright, The authors of the Linux man-pages project
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2

@@ -1,4 +1,4 @@
-# Copyright, The contributors to the Linux man-pages project
+# Copyright, The authors of the Linux man-pages project
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
