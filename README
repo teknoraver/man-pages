@@ -54,7 +54,7 @@ Files
        Configuration files for (linter) programs called by the build
        system.
 
-   man*/*
+   man/*
        Manual pages.
 
    scripts/*
