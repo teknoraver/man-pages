@@ -16,6 +16,10 @@ Description
        a few pages in sections 5 and 8 for the timezone utilities.
 
 Files
+   AUTHORS
+       List of individuals and organizations that have contributed
+       content to the project.
+
    CONTRIBUTING
    CONTRIBUTING.d/*
        Instructions for reporting bugs and contributing.
