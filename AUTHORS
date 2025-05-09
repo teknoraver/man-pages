@@ -60,7 +60,7 @@ Andrei Vagin <avagin@openvz.org>
 Andrew Clayton <andrew@digital-domain.net>
 Andrew Lutomirski
 Andrew Morgan <morgan@kernel.org>
-Andrew Morton <akpm@osdl.org>
+Andrew Morton <akpm@linux-foundation.org>
 Andrew Persons <andrewscottpersons@gmail.com>
 Andrew Price <andy@andrewprice.me.uk>
 Andrey Vagin <avagin@openvz.org>
@@ -144,7 +144,7 @@ Christian Franke <nobody@nowhere.ws>
 Christian von Roques <roques@mti.ag>
 Christoph Hellwig <hch@lst.de>
 Christoph J. Thompson <obituary@linuxbe.org>
-Christoph Lameter <cl@linux-foundation.org>
+Christoph Lameter <cl@gentwo.org>
 Christopher Hall <chall0@gmail.com>
 Christopher M. Riedl <cmr@informatik.wtf>
 Christopher Yeoh <cyeoh@au1.ibm.com>
@@ -428,7 +428,7 @@ Kai Mäkisara <Kai.Makisara@kolumbus.fi>
 Kang-Che Sung <explorer09@gmail.com>
 Karl M. Hegbloom <karlheg@debian.org>
 Karsten Weiss <knweiss@gmail.com>
-Kees Cook <keescook@chromium.org>
+Kees Cook <kees@kernel.org>
 Keith Thompson <Keith.S.Thompson@gmail.com>
 Ken Pizzini <ken@gnu.org>
 Keno Fischer <keno@juliacomputing.com>
@@ -801,7 +801,7 @@ Thomas Kuhn
 Thomas Piekarski <t.piekarski@deloquencia.de>
 Thomas Voss <mail@thomasvoss.com>
 Thomas Weißschuh <linux@weissschuh.net>
-Thorsten Kukuk <kukuk@vt.uni-paderborn.de>
+Thorsten Kukuk <kukuk@suse.de>
 Tigran Aivazian <tigran@sco.com>
 Tilman Schmidt <tilman@imap.cc>
 Timo Sirainen <tss@iki.fi>
