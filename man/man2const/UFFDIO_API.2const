@@ -205,6 +205,12 @@ ioctl.
 If this feature bit is set,
 the write protection faults would be asynchronously resolved
 by the kernel.
+.TP
+.BR UFFD_FEATURE_MOVE " (since Linux 6.8)"
+If this feature bit is set,
+the kernel supports resolving faults with the
+.B UFFDIO_MOVE
+ioctl.
 .P
 The returned
 .I argp->ioctls
