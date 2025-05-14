@@ -42,25 +42,6 @@ fields to bit masks representing all the available features and the generic
 .BR ioctl (2)
 operations available.
 .P
-Since Linux 4.11,
-applications should use the
-.I features
-field to perform a two-step handshake.
-First,
-.B UFFDIO_API
-is called with the
-.I features
-field set to zero.
-The kernel responds by setting all supported feature bits.
-.P
-Applications which do not require any specific features
-can begin using the userfaultfd immediately.
-Applications which do need specific features
-should call
-.B UFFDIO_API
-again with a subset of the reported feature bits set
-to enable those features.
-.P
 Before Linux 4.11, the
 .I features
 field must be initialized to zero before the call to
@@ -69,6 +50,31 @@ and zero (i.e., no feature bits) is placed in the
 .I features
 field by the kernel upon return from
 .BR ioctl (2).
+.P
+Since Linux 4.11,
+userfaultfd supports features that need to be enabled explicitly.
+To enable any of the features,
+one needs to set the corresponding feature bits in
+.I features
+when issuing the
+.B UFFDIO_API
+ioctl.
+.P
+For historical reasons,
+a temporary userfaultfd is needed to probe
+what userfaultfd features the kernel supports.
+The application needs to create a temporary userfaultfd,
+issue an
+.B UFFDIO_API
+ioctl with
+.I features
+set to zero.
+After the
+.B UFFDIO_API
+ioctl returns successfully,
+.I features
+should contain all the userfaultfd features that the kernel supports.
+The temporary userfaultfd can be safely closed after the probe.
 .P
 If the application sets unsupported feature bits,
 the kernel will zero out the returned
