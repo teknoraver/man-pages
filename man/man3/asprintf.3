@@ -37,10 +37,18 @@ to release the allocated storage when it is no longer needed.
 When successful, these functions return the number of bytes printed,
 just like
 .BR sprintf (3).
-If memory allocation wasn't possible, or some other error occurs,
-these functions will return \-1, and the contents of
+On error,
+\-1 is returned,
+.I errno
+is set to indicate the error,
+and the contents of
 .I strp
 are undefined.
+.SH ERRORS
+See
+.BR sprintf (3)
+and
+.BR malloc (3).
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).

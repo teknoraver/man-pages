@@ -198,7 +198,30 @@ case of the functions
 .BR swprintf ()
 and
 .BR vswprintf ().
-They return \-1 when an error occurs.
+On error,
+\-1 is returned,
+and
+.I errno
+is set to indicate the error.
+.SH ERRORS
+See
+.BR write (2)
+and
+.BR putwc (3).
+In addition, the following error may occur:
+.TP
+.B EOVERFLOW
+The value to be returned is greater than
+.BR INT_MAX .
+.P
+The
+.BR fwprintf ()
+and
+.BR wprintf ()
+functions may fail additionally if:
+.TP
+.B ENOMEM
+Insufficient storage space is available.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).

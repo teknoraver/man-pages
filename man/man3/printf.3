@@ -904,7 +904,30 @@ Thus, a return value of
 or more means that the output was truncated.
 (See also below under CAVEATS.)
 .P
-If an output error is encountered, a negative value is returned.
+On error,
+a negative value is returned,
+and
+.I errno
+is set to indicate the error.
+.SH ERRORS
+See
+.BR write (2)
+and
+.BR putwc (3).
+In addition, the following error may occur:
+.TP
+.B EOVERFLOW
+The value to be returned is greater than
+.BR INT_MAX .
+.P
+The
+.BR dprintf ()
+function may fail additionally if:
+.TP
+.B EBADF
+The
+.I fd
+argument is not a valid file descriptor.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
