@@ -190,8 +190,8 @@ superh	trapa #31	r3	r0	r1	-	4, 6
 sparc/32	t 0x10	g1	o0	o1	psr/csr	1, 6
 sparc/64	t 0x6d	g1	o0	o1	psr/csr	1, 6
 tile	swint1	R10	R00	-	R01	1
-x86-64	syscall	rax	rax	rdx	-	5
-x32	syscall	rax	rax	rdx	-	5
+x86-64	syscall	eax	rax	rdx	-	5
+x32	syscall	eax	rax	rdx	-	5
 xtensa	syscall	a2	a2	-	-
 .TE
 .P
