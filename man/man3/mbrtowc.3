@@ -161,10 +161,10 @@ if an invalid multibyte sequence was
 encountered.
 It returns
 .I "(size_t)\ \-2"
-if it couldn't parse a complete multibyte
-character, meaning that
+if the consumed
 .I n
-should be increased.
+bytes form a valid partial character sequence;
+more subsequent data needs to be fed in.
 .SH ATTRIBUTES
 For an explanation of the terms used in this section, see
 .BR attributes (7).
