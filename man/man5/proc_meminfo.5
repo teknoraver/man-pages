@@ -150,7 +150,11 @@ such as libraries.
 .IR Shmem " %lu (since Linux 2.6.32)"
 Amount of memory consumed in
 .BR tmpfs (5)
-filesystems.
+filesystems,
+System V,
+and POSIX shared memory,
+as well as shared anonymous mappings
+.RI ( MAP_SHARED|MAP_ANONYMOUS ).
 .TP
 .IR KReclaimable " %lu (since Linux 4.20)"
 Kernel allocations that the kernel will attempt to reclaim
