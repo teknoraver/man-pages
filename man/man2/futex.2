@@ -489,8 +489,11 @@ Typical values to specify for
 .I val
 are 0 or 1.
 (Specifying
+.I val
+as
 .B INT_MAX
-is not useful, because it would make the
+is not useful,
+because it would make the
 .B FUTEX_CMP_REQUEUE
 operation equivalent to
 .BR FUTEX_WAKE .)
@@ -498,7 +501,10 @@ The limit value specified via
 .I val2
 is typically either 1 or
 .BR INT_MAX .
-(Specifying the argument as 0 is not useful, because it would make the
+(Specifying
+.I val2
+as 0 is not useful,
+because it would make the
 .B FUTEX_CMP_REQUEUE
 operation equivalent to
 .BR FUTEX_WAKE .)
