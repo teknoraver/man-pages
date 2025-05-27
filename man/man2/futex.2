@@ -134,8 +134,8 @@ no explicit initialization or destruction is necessary to use futexes;
 the kernel maintains a futex
 (i.e., the kernel-internal implementation artifact)
 only while operations such as
-.BR FUTEX_WAIT ,
-described below, are being performed on a particular futex word.
+.BR FUTEX_WAIT (2const)
+are being performed on a particular futex word.
 .\"
 .SS Arguments
 The
@@ -231,7 +231,7 @@ This option bit can be employed only with the
 .BR FUTEX_WAIT_REQUEUE_PI ,
 (since Linux 4.5)
 .\" commit 337f13046ff03717a9e99675284a817527440a49
-.BR FUTEX_WAIT ,
+.BR FUTEX_WAIT (2const),
 and
 (since Linux 5.14)
 .\" commit bf22a6976897977b0a3f1aeba6823c959fc4fdae
@@ -257,98 +257,14 @@ is one of the following:
 .\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 .\"
 .TP
-.BR FUTEX_WAIT " (since Linux 2.6.0)"
-.\" Strictly speaking, since some time in Linux 2.5.x
-This operation tests that the value at the
-futex word pointed to by the address
-.I uaddr
-still contains the expected value
-.IR val ,
-and if so, then sleeps waiting for a
-.B FUTEX_WAKE
-operation on the futex word.
-The load of the value of the futex word is an atomic memory
-access (i.e., using atomic machine instructions of the respective
-architecture).
-This load, the comparison with the expected value, and
-starting to sleep are performed atomically
-.\" FIXME: Torvald, I think we may need to add some explanation of
-.\" "totally ordered" here.
-and totally ordered
-with respect to other futex operations on the same futex word.
-If the thread starts to sleep,
-it is considered a waiter on this futex word.
-If the futex value does not match
-.IR val ,
-then the call fails immediately with the error
-.BR EAGAIN .
-.IP
-The purpose of the comparison with the expected value is to prevent lost
-wake-ups.
-If another thread changed the value of the futex word after the
-calling thread decided to block based on the prior value,
-and if the other thread executed a
-.B FUTEX_WAKE
-operation (or similar wake-up) after the value change and before this
-.B FUTEX_WAIT
-operation, then the calling thread will observe the
-value change and will not start to sleep.
-.IP
-If the
-.I timeout
-is not NULL, the structure it points to specifies a
-timeout for the wait.
-(This interval will be rounded up to the system clock granularity,
-and is guaranteed not to expire early.)
-If
-.I timeout
-is NULL, the call blocks indefinitely.
-.IP
-.IR Note :
-for
-.BR FUTEX_WAIT ,
-.I timeout
-is interpreted as a
-.I relative
-value.
-This differs from other futex operations, where
-.I timeout
-is interpreted as an absolute value.
-To obtain the equivalent of
-.B FUTEX_WAIT
-with an absolute timeout, employ
-.B FUTEX_WAIT_BITSET
-with
-.I val3
-specified as
-.BR FUTEX_BITSET_MATCH_ANY .
-.IP
-The arguments
-.I uaddr2
-and
-.I val3
-are ignored.
-.\" FIXME . (Torvald) I think we should remove this.  Or maybe adapt to a
-.\" different example.
-.\"
-.\"     For
-.\"     .BR futex (7),
-.\"     this call is executed if decrementing the count gave a negative value
-.\"     (indicating contention),
-.\"     and will sleep until another process or thread releases
-.\"     the futex and executes the
-.\"     .B FUTEX_WAKE
-.\"     operation.
-.\"
-.\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-.\"
+.BR FUTEX_WAIT (2const)
 .TP
 .BR FUTEX_WAKE " (since Linux 2.6.0)"
 .\" Strictly speaking, since Linux 2.5.x
 This operation wakes at most
 .I val
 of the waiters that are waiting (e.g., inside
-.BR FUTEX_WAIT )
+.BR FUTEX_WAIT (2const))
 on the futex word at the address
 .IR uaddr .
 Most commonly,
@@ -701,7 +617,7 @@ plus the number of waiters woken on the futex
 .BR FUTEX_WAIT_BITSET " (since Linux 2.6.25)"
 .\" commit cd689985cf49f6ff5c8eddc48d98b9d581d9475d
 This operation is like
-.B FUTEX_WAIT
+.BR FUTEX_WAIT (2const)
 except that
 .I val3
 is used to provide a 32-bit bit mask to the kernel.
@@ -782,7 +698,7 @@ and
 Other than differences in the handling of the
 .I timeout
 argument, the
-.B FUTEX_WAIT
+.BR FUTEX_WAIT (2const)
 operation is equivalent to
 .B FUTEX_WAIT_BITSET
 with
@@ -1268,7 +1184,7 @@ operation in another task) onto a PI futex at
 The wait operation on
 .I uaddr
 is the same as for
-.BR FUTEX_WAIT .
+.BR FUTEX_WAIT (2const).
 .IP
 The waiter can be removed from the wait on
 .I uaddr
@@ -1347,17 +1263,6 @@ is set to indicate the error.
 The return value on success depends on the operation,
 as described in the following list:
 .TP
-.B FUTEX_WAIT
-Returns 0 if the caller was woken up.
-Note that a wake-up can also be caused by common futex usage patterns
-in unrelated code that happened to have previously used the futex word's
-memory location (e.g., typical futex-based implementations of
-Pthreads mutexes can cause this under some conditions).
-Therefore, callers should always conservatively assume that a return
-value of 0 can mean a spurious wake-up, and use the futex word's value
-(i.e., the user-space synchronization scheme)
-to decide whether to continue to block or not.
-.TP
 .B FUTEX_WAKE
 Returns the number of waiters that were woken up.
 .TP
@@ -1388,7 +1293,7 @@ and
 .B FUTEX_WAIT_BITSET
 Returns 0 if the caller was woken up.
 See
-.B FUTEX_WAIT
+.BR FUTEX_WAIT (2const)
 for how to interpret this correctly in practice.
 .TP
 .B FUTEX_WAKE_BITSET
@@ -1429,8 +1334,7 @@ the futex word at
 No read access to the memory of a futex word.
 .TP
 .B EAGAIN
-.RB ( FUTEX_WAIT ,
-.BR FUTEX_WAIT_BITSET ,
+.RB ( FUTEX_WAIT_BITSET ,
 .BR FUTEX_WAIT_REQUEUE_PI )
 The value pointed to by
 .I uaddr
@@ -1503,8 +1407,6 @@ did not point to a valid user-space address.
 .TP
 .B EINTR
 A
-.B FUTEX_WAIT
-or
 .B FUTEX_WAIT_BITSET
 operation was interrupted by a signal (see
 .BR signal (7)).
@@ -1582,7 +1484,7 @@ This indicates either state corruption
 or that the kernel found a waiter on
 .I uaddr
 which is waiting via
-.B FUTEX_WAIT
+.BR FUTEX_WAIT (2const)
 or
 .BR FUTEX_WAIT_BITSET .
 .TP
@@ -1595,7 +1497,7 @@ and the kernel state;
 .\"	The kernel sees: I have non PI state for a futex you tried to
 .\"     tell me was PI
 that is, the kernel detected a waiter which waits via
-.B FUTEX_WAIT
+.BR FUTEX_WAIT (2const)
 or
 .B FUTEX_WAIT_BITSET
 on
@@ -1607,7 +1509,7 @@ The kernel detected an inconsistency between the user-space state at
 .I uaddr
 and the kernel state;
 that is, the kernel detected a waiter which waits via
-.B FUTEX_WAIT
+.BR FUTEX_WAIT (2const)
 or
 .B FUTEX_WAIT_BITSET
 on
@@ -1667,7 +1569,6 @@ The
 option was specified in
 .IR futex_op ,
 but the accompanying operation was neither
-.BR FUTEX_WAIT ,
 .BR FUTEX_WAIT_BITSET ,
 .BR FUTEX_WAIT_REQUEUE_PI ,
 nor
