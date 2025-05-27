@@ -19,9 +19,8 @@ Standard C library
 .RI ( libc ,\~ \-lc )
 .SH SYNOPSIS
 .nf
-.P
-.BR "#include <linux/futex.h>" "      /* Definition of " FUTEX_* " constants */"
-.BR "#include <sys/syscall.h>" "      /* Definition of " SYS_* " constants */"
+.BR "#include <linux/futex.h>" "  /* Definition of " FUTEX_* " constants */"
+.BR "#include <sys/syscall.h>" "  /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
 .BI "long syscall(SYS_futex, uint32_t *" uaddr ", int " futex_op \
@@ -30,12 +29,6 @@ Standard C library
 ",   \f[R]/* or:\f[] uint32_t " val2 " \f[R]*/\f[]"
 .BI "             uint32_t *" uaddr2 ", uint32_t " val3 );
 .fi
-.P
-.IR Note :
-glibc provides no wrapper for
-.BR futex (),
-necessitating the use of
-.BR syscall (2).
 .SH DESCRIPTION
 The
 .BR futex ()
@@ -1353,13 +1346,11 @@ operation.
 .\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 .\"
 .SH RETURN VALUE
-In the event of an error (and assuming that
-.BR futex ()
-was invoked via
-.BR syscall (2)),
-all operations return \-1 and set
+On error,
+\-1 is returned,
+and
 .I errno
-to indicate the error.
+is set to indicate the error.
 .P
 The return value on success depends on the operation,
 as described in the following list:
@@ -1508,8 +1499,11 @@ While requeueing a waiter to the PI futex for the futex word at
 the kernel detected a deadlock.
 .TP
 .B EFAULT
+.I uaddr
+did not point to a valid user-space address.
+.TP
+.B EFAULT
 A required pointer argument (i.e.,
-.IR uaddr ,
 .IR uaddr2 ,
 or
 .IR timeout )
@@ -1537,13 +1531,16 @@ was less than zero, or
 was not less than 1,000,000,000).
 .TP
 .B EINVAL
+.I uaddr
+does not point to a valid object\[em]that is,
+the address is not four-byte-aligned.
+.TP
+.B EINVAL
 The operation specified in
 .I futex_op
-employs one or both of the pointers
-.I uaddr
-and
+employs
 .IR uaddr2 ,
-but one of these does not point to a valid object\[em]that is,
+but it does not point to a valid object\[em]that is,
 the address is not four-byte-aligned.
 .TP
 .B EINVAL
