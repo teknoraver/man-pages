@@ -20,12 +20,9 @@ Standard C library
 .BI "             uint32_t " val ", uint32_t " val2 ", uint32_t *" uaddr2 );
 .fi
 .SH DESCRIPTION
-.TP
-.BR FUTEX_REQUEUE " (since Linux 2.6.0)"
 This operation performs the same task as
-.B FUTEX_CMP_REQUEUE
-(see below), except that no check is made using the value in
-.IR  val3 .
+.BR FUTEX_CMP_REQUEUE (2const),
+except that the futex word isn't compared.
 .\"
 .SH RETURN VALUE
 On error,
@@ -36,7 +33,7 @@ is set to indicate the error.
 .P
 On success,
 .B FUTEX_REQUEUE
-Returns the number of waiters that were woken up.
+returns the number of waiters that were woken up.
 .SH ERRORS
 See
 .BR futex (2).
@@ -54,9 +51,9 @@ the address is not four-byte-aligned.
 The kernel detected an inconsistency between the user-space state at
 .I uaddr
 and the kernel state\[em]that is, it detected a waiter which waits in
-.B FUTEX_LOCK_PI
+.BR FUTEX_LOCK_PI (2const)
 or
-.B FUTEX_LOCK_PI2
+.BR FUTEX_LOCK_PI2 (2const)
 on
 .IR uaddr .
 .SH STANDARDS
