@@ -21,8 +21,6 @@ Standard C library
 .BI "             uint32_t " val3 );
 .fi
 .SH DESCRIPTION
-.TP
-.BR FUTEX_CMP_REQUEUE " (since Linux 2.6.7)"
 This operation first checks whether the location
 .I uaddr
 still contains the value
@@ -45,7 +43,7 @@ The
 argument specifies an upper limit on the number of waiters
 that are requeued to the futex at
 .IR uaddr2 .
-.IP
+.P
 .\" FIXME(Torvald) Is the following correct?  Or is just the decision
 .\" which threads to wake or requeue part of the atomic operation?
 The load from
@@ -61,7 +59,7 @@ ordered with respect to other operations on the same futex word.
 .\"	source and target futex. No other waiter can enqueue itself
 .\"	for waiting and no other waiter can dequeue itself because of
 .\"	a timeout or signal.
-.IP
+.P
 Typical values to specify for
 .I val
 are 0 or 1.
@@ -85,7 +83,7 @@ because it would make the
 .B FUTEX_CMP_REQUEUE
 operation equivalent to
 .BR FUTEX_WAKE (2const).)
-.IP
+.P
 The
 .B FUTEX_CMP_REQUEUE
 operation was added as a replacement for the earlier
@@ -102,7 +100,7 @@ conditions, which allows race conditions to be avoided in certain use cases.
 .\"     To: Darren Hart <dvhart@infradead.org>
 .\"     CC: libc-alpha@sourceware.org, ...
 .\"     Subject: Re: Add futex wrapper to glibc?
-.IP
+.P
 Both
 .BR FUTEX_REQUEUE (2const)
 and
@@ -114,7 +112,7 @@ another futex.
 Consider the following scenario,
 where multiple waiter threads are waiting on B,
 a wait queue implemented using a futex:
-.IP
+.P
 .in +4n
 .EX
 lock(A)
@@ -126,7 +124,7 @@ while (!check_value(V)) {
 unlock(A);
 .EE
 .in
-.IP
+.P
 If a waker thread used
 .BR FUTEX_WAKE (2const),
 then all waiters waiting on B would be woken up,
@@ -146,7 +144,7 @@ is set to indicate the error.
 .P
 On success,
 .B FUTEX_CMP_REQUEUE
-Returns the total number of waiters that were woken up or
+returns the total number of waiters that were woken up or
 requeued to the futex for the futex word at
 .IR uaddr2 .
 If this value is greater than
@@ -177,13 +175,14 @@ the address is not four-byte-aligned.
 The kernel detected an inconsistency between the user-space state at
 .I uaddr
 and the kernel state\[em]that is, it detected a waiter which waits in
-.B FUTEX_LOCK_PI
+.BR FUTEX_LOCK_PI (2const)
 or
-.B FUTEX_LOCK_PI2
+.BR FUTEX_LOCK_PI2 (2const)
 on
 .IR uaddr .
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.6.7.
 .SH SEE ALSO
 .BR futex (2)
