@@ -300,14 +300,6 @@ is not NULL, the structure it points to specifies a
 timeout for the wait.
 (This interval will be rounded up to the system clock granularity,
 and is guaranteed not to expire early.)
-The timeout is by default measured according to the
-.B CLOCK_MONOTONIC
-clock, but, since Linux 4.5, the
-.B CLOCK_REALTIME
-clock can be selected by specifying
-.B FUTEX_CLOCK_REALTIME
-in
-.IR futex_op .
 If
 .I timeout
 is NULL, the call blocks indefinitely.
@@ -1093,7 +1085,16 @@ argument provides a timeout for the lock attempt.
 If
 .I timeout
 is not NULL, the structure it points to specifies
-an absolute timeout, measured against the
+an absolute timeout.
+If
+.I timeout
+is NULL, the operation will block indefinitely.
+.IP
+.IR Caveat :
+Unlike other
+.BR futex (2)
+operations,
+the timeout is measured against the
 .B CLOCK_REALTIME
 clock.
 .\" 2016-07-07 response from Thomas Gleixner on LKML:
@@ -1112,9 +1113,6 @@ clock.
 .\" The reason is that phtread_mutex_timedlock() uses absolute timeouts based on
 .\" CLOCK_REALTIME. glibc folks asked to make that the default behaviour back
 .\" then when we added LOCK_PI.
-If
-.I timeout
-is NULL, the operation will block indefinitely.
 .IP
 The
 .IR uaddr2 ,
@@ -1137,12 +1135,6 @@ By default, the (absolute) timeout specified in
 .I timeout
 is measured against the
 .B CLOCK_MONOTONIC
-clock, but if the
-.B FUTEX_CLOCK_REALTIME
-flag is specified in
-.IR futex_op ,
-then the timeout is measured against the
-.B CLOCK_REALTIME
 clock.
 .\"
 .\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
