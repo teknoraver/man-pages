@@ -214,7 +214,7 @@ As a convenience,
 defines a set of constants with the suffix
 .B _PRIVATE
 that are equivalents of all of the operations listed below,
-.\" except the obsolete FUTEX_FD, for which the "private" flag was
+.\" except the obsolete FUTEX_FD(2const), for which the "private" flag was
 .\" meaningless
 but with the
 .B FUTEX_PRIVATE_FLAG
@@ -260,43 +260,8 @@ is one of the following:
 .BR FUTEX_WAIT (2const)
 .TQ
 .BR FUTEX_WAKE (2const)
-.TP
-.BR FUTEX_FD " (from Linux 2.6.0 up to and including Linux 2.6.25)"
-.\" Strictly speaking, from Linux 2.5.x to Linux 2.6.25
-This operation creates a file descriptor that is associated with
-the futex at
-.IR uaddr .
-The caller must close the returned file descriptor after use.
-When another process or thread performs a
-.BR FUTEX_WAKE (2const)
-on the futex word, the file descriptor indicates as being readable with
-.BR select (2),
-.BR poll (2),
-and
-.BR epoll (7)
-.IP
-The file descriptor can be used to obtain asynchronous notifications: if
-.I val
-is nonzero, then, when another process or thread executes a
-.BR FUTEX_WAKE (2const),
-the caller will receive the signal number that was passed in
-.IR val .
-.IP
-The arguments
-.IR timeout ,
-.IR uaddr2 ,
-and
-.I val3
-are ignored.
-.IP
-Because it was inherently racy,
-.B FUTEX_FD
-has been removed
-.\" commit 82af7aca56c67061420d618cc5a30f0fd4106b80
-from Linux 2.6.26 onward.
-.\"
-.\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-.\"
+.TQ
+.BR FUTEX_FD (2const)
 .TP
 .BR FUTEX_REQUEUE " (since Linux 2.6.0)"
 This operation performs the same task as
@@ -1227,9 +1192,6 @@ is set to indicate the error.
 The return value on success depends on the operation,
 as described in the following list:
 .TP
-.B FUTEX_FD
-Returns the new file descriptor associated with the futex.
-.TP
 .B FUTEX_REQUEUE
 Returns the number of waiters that were woken up.
 .TP
@@ -1413,12 +1375,6 @@ equals
 (i.e., an attempt was made to requeue to the same futex).
 .TP
 .B EINVAL
-.RB ( FUTEX_FD )
-The signal number supplied in
-.I val
-is invalid.
-.TP
-.B EINVAL
 .RB ( FUTEX_WAKE_OP ,
 .BR FUTEX_WAKE_BITSET ,
 .BR FUTEX_REQUEUE ,
@@ -1507,10 +1463,6 @@ argument is not 1.
 .TP
 .B EINVAL
 Invalid argument.
-.TP
-.B ENFILE
-.RB ( FUTEX_FD )
-The system-wide limit on the total number of open files has been reached.
 .TP
 .B ENOMEM
 .RB ( FUTEX_LOCK_PI ,
