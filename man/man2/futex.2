@@ -258,44 +258,8 @@ is one of the following:
 .\"
 .TP
 .BR FUTEX_WAIT (2const)
-.TP
-.BR FUTEX_WAKE " (since Linux 2.6.0)"
-.\" Strictly speaking, since Linux 2.5.x
-This operation wakes at most
-.I val
-of the waiters that are waiting (e.g., inside
-.BR FUTEX_WAIT (2const))
-on the futex word at the address
-.IR uaddr .
-Most commonly,
-.I val
-is specified as either 1 (wake up a single waiter) or
-.B INT_MAX
-(wake up all waiters).
-No guarantee is provided about which waiters are awoken
-(e.g., a waiter with a higher scheduling priority is not guaranteed
-to be awoken in preference to a waiter with a lower priority).
-.IP
-The arguments
-.IR timeout ,
-.IR uaddr2 ,
-and
-.I val3
-are ignored.
-.\" FIXME . (Torvald) I think we should remove this.  Or maybe adapt to
-.\" a different example.
-.\"
-.\"     For
-.\"     .BR futex (7),
-.\"     this is executed if incrementing the count showed that
-.\"     there were waiters,
-.\"     once the futex value has been set to 1
-.\"     (indicating that it is available).
-.\"
-.\" How does "incrementing the count show that there were waiters"?
-.\"
-.\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-.\"
+.TQ
+.BR FUTEX_WAKE (2const)
 .TP
 .BR FUTEX_FD " (from Linux 2.6.0 up to and including Linux 2.6.25)"
 .\" Strictly speaking, from Linux 2.5.x to Linux 2.6.25
@@ -304,7 +268,7 @@ the futex at
 .IR uaddr .
 The caller must close the returned file descriptor after use.
 When another process or thread performs a
-.B FUTEX_WAKE
+.BR FUTEX_WAKE (2const)
 on the futex word, the file descriptor indicates as being readable with
 .BR select (2),
 .BR poll (2),
@@ -314,7 +278,7 @@ and
 The file descriptor can be used to obtain asynchronous notifications: if
 .I val
 is nonzero, then, when another process or thread executes a
-.BR FUTEX_WAKE ,
+.BR FUTEX_WAKE (2const),
 the caller will receive the signal number that was passed in
 .IR val .
 .IP
@@ -397,7 +361,7 @@ is not useful,
 because it would make the
 .B FUTEX_CMP_REQUEUE
 operation equivalent to
-.BR FUTEX_WAKE .)
+.BR FUTEX_WAKE (2const).)
 The limit value specified via
 .I val2
 is typically either 1 or
@@ -408,7 +372,7 @@ as 0 is not useful,
 because it would make the
 .B FUTEX_CMP_REQUEUE
 operation equivalent to
-.BR FUTEX_WAKE .)
+.BR FUTEX_WAKE (2const).)
 .IP
 The
 .B FUTEX_CMP_REQUEUE
@@ -432,7 +396,7 @@ Both
 and
 .B FUTEX_CMP_REQUEUE
 can be used to avoid "thundering herd" wake-ups that could occur when using
-.B FUTEX_WAKE
+.BR FUTEX_WAKE (2const)
 in cases where all of the waiters that are woken need to acquire
 another futex.
 Consider the following scenario,
@@ -452,7 +416,7 @@ unlock(A);
 .in
 .IP
 If a waker thread used
-.BR FUTEX_WAKE ,
+.BR FUTEX_WAKE (2const),
 then all waiters waiting on B would be woken up,
 and they would all try to acquire lock A.
 However, waking all of the threads in this manner would be pointless because
@@ -645,7 +609,7 @@ argument is ignored.
 .BR FUTEX_WAKE_BITSET " (since Linux 2.6.25)"
 .\" commit cd689985cf49f6ff5c8eddc48d98b9d581d9475d
 This operation is the same as
-.B FUTEX_WAKE
+.BR FUTEX_WAKE (2const)
 except that the
 .I val3
 argument is used to provide a 32-bit bit mask to the kernel.
@@ -707,7 +671,7 @@ specified as
 .BR FUTEX_BITSET_MATCH_ANY ;
 that is, allow a wake-up by any waker.
 The
-.B FUTEX_WAKE
+.BR FUTEX_WAKE (2const)
 operation is equivalent to
 .B FUTEX_WAKE_BITSET
 with
@@ -1191,7 +1155,7 @@ The waiter can be removed from the wait on
 without requeueing on
 .I uaddr2
 via a
-.B FUTEX_WAKE
+.BR FUTEX_WAKE (2const)
 operation in another task.
 In this case, the
 .B FUTEX_WAIT_REQUEUE_PI
@@ -1262,9 +1226,6 @@ is set to indicate the error.
 .P
 The return value on success depends on the operation,
 as described in the following list:
-.TP
-.B FUTEX_WAKE
-Returns the number of waiters that were woken up.
 .TP
 .B FUTEX_FD
 Returns the new file descriptor associated with the futex.
@@ -1458,8 +1419,7 @@ The signal number supplied in
 is invalid.
 .TP
 .B EINVAL
-.RB ( FUTEX_WAKE ,
-.BR FUTEX_WAKE_OP ,
+.RB ( FUTEX_WAKE_OP ,
 .BR FUTEX_WAKE_BITSET ,
 .BR FUTEX_REQUEUE ,
 .BR FUTEX_CMP_REQUEUE )
