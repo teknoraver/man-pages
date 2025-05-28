@@ -264,124 +264,8 @@ is one of the following:
 .BR FUTEX_FD (2const)
 .TQ
 .BR FUTEX_REQUEUE (2const)
-.TP
-.BR FUTEX_CMP_REQUEUE " (since Linux 2.6.7)"
-This operation first checks whether the location
-.I uaddr
-still contains the value
-.IR val3 .
-If not, the operation fails with the error
-.BR EAGAIN .
-Otherwise, the operation wakes up a maximum of
-.I val
-waiters that are waiting on the futex at
-.IR uaddr .
-If there are more than
-.I val
-waiters, then the remaining waiters are removed
-from the wait queue of the source futex at
-.I uaddr
-and added to the wait queue of the target futex at
-.IR uaddr2 .
-The
-.I val2
-argument specifies an upper limit on the number of waiters
-that are requeued to the futex at
-.IR uaddr2 .
-.IP
-.\" FIXME(Torvald) Is the following correct?  Or is just the decision
-.\" which threads to wake or requeue part of the atomic operation?
-The load from
-.I uaddr
-is an atomic memory access (i.e., using atomic machine instructions of
-the respective architecture).
-This load, the comparison with
-.IR val3 ,
-and the requeueing of any waiters are performed atomically and totally
-ordered with respect to other operations on the same futex word.
-.\" Notes from a f2f conversation with Thomas Gleixner (Aug 2015): ###
-.\"	The operation is serialized with respect to operations on both
-.\"	source and target futex. No other waiter can enqueue itself
-.\"	for waiting and no other waiter can dequeue itself because of
-.\"	a timeout or signal.
-.IP
-Typical values to specify for
-.I val
-are 0 or 1.
-(Specifying
-.I val
-as
-.B INT_MAX
-is not useful,
-because it would make the
-.B FUTEX_CMP_REQUEUE
-operation equivalent to
-.BR FUTEX_WAKE (2const).)
-The limit value specified via
-.I val2
-is typically either 1 or
-.BR INT_MAX .
-(Specifying
-.I val2
-as 0 is not useful,
-because it would make the
-.B FUTEX_CMP_REQUEUE
-operation equivalent to
-.BR FUTEX_WAKE (2const).)
-.IP
-The
-.B FUTEX_CMP_REQUEUE
-operation was added as a replacement for the earlier
-.BR FUTEX_REQUEUE (2const).
-The difference is that the check of the value at
-.I uaddr
-can be used to ensure that requeueing happens only under certain
-conditions, which allows race conditions to be avoided in certain use cases.
-.\" But, as Rich Felker points out, there remain valid use cases for
-.\" FUTEX_REQUEUE, for example, when the calling thread is requeuing
-.\" the target(s) to a lock that the calling thread owns
-.\"     From: Rich Felker <dalias@libc.org>
-.\"     Date: Wed, 29 Oct 2014 22:43:17 -0400
-.\"     To: Darren Hart <dvhart@infradead.org>
-.\"     CC: libc-alpha@sourceware.org, ...
-.\"     Subject: Re: Add futex wrapper to glibc?
-.IP
-Both
-.BR FUTEX_REQUEUE (2const)
-and
-.B FUTEX_CMP_REQUEUE
-can be used to avoid "thundering herd" wake-ups that could occur when using
-.BR FUTEX_WAKE (2const)
-in cases where all of the waiters that are woken need to acquire
-another futex.
-Consider the following scenario,
-where multiple waiter threads are waiting on B,
-a wait queue implemented using a futex:
-.IP
-.in +4n
-.EX
-lock(A)
-while (!check_value(V)) {
-    unlock(A);
-    block_on(B);
-    lock(A);
-};
-unlock(A);
-.EE
-.in
-.IP
-If a waker thread used
-.BR FUTEX_WAKE (2const),
-then all waiters waiting on B would be woken up,
-and they would all try to acquire lock A.
-However, waking all of the threads in this manner would be pointless because
-all except one of the threads would immediately block on lock A again.
-By contrast, a requeue operation wakes just one waiter and moves
-the other waiters to lock A,
-and when the woken waiter unlocks A then the next waiter can proceed.
-.\"
-.\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-.\"
+.TQ
+.BR FUTEX_CMP_REQUEUE (2const)
 .TP
 .BR FUTEX_WAKE_OP " (since Linux 2.6.14)"
 .\" commit 4732efbeb997189d9f9b04708dc26bf8613ed721
@@ -1045,7 +929,7 @@ arguments are ignored.
 .BR FUTEX_CMP_REQUEUE_PI " (since Linux 2.6.31)"
 .\" commit 52400ba946759af28442dee6265c5c0180ac7122
 This operation is a PI-aware variant of
-.BR FUTEX_CMP_REQUEUE .
+.BR FUTEX_CMP_REQUEUE (2const).
 It requeues waiters that are blocked via
 .B FUTEX_WAIT_REQUEUE_PI
 on
@@ -1056,7 +940,7 @@ to a PI target futex
 .RI ( uaddr2 ).
 .IP
 As with
-.BR FUTEX_CMP_REQUEUE ,
+.BR FUTEX_CMP_REQUEUE (2const),
 this operation wakes up a maximum of
 .I val
 waiters that are waiting on the futex at
@@ -1079,7 +963,7 @@ The
 and
 .I val3
 arguments serve the same purposes as for
-.BR FUTEX_CMP_REQUEUE .
+.BR FUTEX_CMP_REQUEUE (2const).
 .\"
 .\"       The page at http://locklessinc.com/articles/futex_cheat_sheet/
 .\"       notes that "priority-inheritance Futex to priority-inheritance
@@ -1182,16 +1066,6 @@ is set to indicate the error.
 The return value on success depends on the operation,
 as described in the following list:
 .TP
-.B FUTEX_CMP_REQUEUE
-Returns the total number of waiters that were woken up or
-requeued to the futex for the futex word at
-.IR uaddr2 .
-If this value is greater than
-.IR val ,
-then the difference is the number of waiters requeued to the futex for the
-futex word at
-.IR uaddr2 .
-.TP
 .B FUTEX_WAKE_OP
 Returns the total number of waiters that were woken up.
 This is the sum of the woken waiters on the two futexes for
@@ -1261,8 +1135,7 @@ and
 have the same value.
 .TP
 .B EAGAIN
-.RB ( FUTEX_CMP_REQUEUE ,
-.BR FUTEX_CMP_REQUEUE_PI )
+.RB ( FUTEX_CMP_REQUEUE_PI )
 The value pointed to by
 .I uaddr
 is not equal to the expected value
@@ -1363,8 +1236,7 @@ equals
 .TP
 .B EINVAL
 .RB ( FUTEX_WAKE_OP ,
-.BR FUTEX_WAKE_BITSET ,
-.BR FUTEX_CMP_REQUEUE )
+.BR FUTEX_WAKE_BITSET )
 The kernel detected an inconsistency between the user-space state at
 .I uaddr
 and the kernel state\[em]that is, it detected a waiter which waits in
