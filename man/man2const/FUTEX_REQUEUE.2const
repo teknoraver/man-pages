@@ -1,0 +1,67 @@
+.\" Copyright, the authors of the Linux man-pages project
+.\"
+.\" %%%LICENSE_START(FREELY_REDISTRIBUTABLE)
+.\" may be freely modified and distributed
+.\" %%%LICENSE_END
+.\"
+.TH FUTEX_REQUEUE 2const (date) "Linux man-pages (unreleased)"
+.SH NAME
+FUTEX_REQUEUE \- wake some waiters, and requeue others
+.SH LIBRARY
+Standard C library
+.RI ( libc ,\~ \-lc )
+.SH SYNOPSIS
+.nf
+.BR "#include <linux/futex.h>" "  /* Definition of " FUTEX_* " constants */"
+.BR "#include <sys/syscall.h>" "  /* Definition of " SYS_* " constants */"
+.B #include <unistd.h>
+.P
+.BI "long syscall(SYS_futex, uint32_t *" uaddr ", FUTEX_REQUEUE,"
+.BI "             uint32_t " val ", uint32_t " val2 ", uint32_t *" uaddr2 );
+.fi
+.SH DESCRIPTION
+.TP
+.BR FUTEX_REQUEUE " (since Linux 2.6.0)"
+This operation performs the same task as
+.B FUTEX_CMP_REQUEUE
+(see below), except that no check is made using the value in
+.IR  val3 .
+.\"
+.SH RETURN VALUE
+On error,
+\-1 is returned,
+and
+.I errno
+is set to indicate the error.
+.P
+On success,
+.B FUTEX_REQUEUE
+Returns the number of waiters that were woken up.
+.SH ERRORS
+See
+.BR futex (2).
+.TP
+.B EFAULT
+.I uaddr2
+did not point to a valid user-space address.
+.TP
+.B EINVAL
+.I uaddr2
+does not point to a valid object\[em]that is,
+the address is not four-byte-aligned.
+.TP
+.B EINVAL
+The kernel detected an inconsistency between the user-space state at
+.I uaddr
+and the kernel state\[em]that is, it detected a waiter which waits in
+.B FUTEX_LOCK_PI
+or
+.B FUTEX_LOCK_PI2
+on
+.IR uaddr .
+.SH STANDARDS
+Linux.
+.SH HISTORY
+Linux 2.6.0.
+.SH SEE ALSO
+.BR futex (2)
