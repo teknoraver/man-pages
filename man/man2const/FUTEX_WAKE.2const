@@ -19,20 +19,19 @@ Standard C library
 .BI "long syscall(SYS_futex, uint32_t *" uaddr ", FUTEX_WAKE, uint32_t " val );
 .fi
 .SH DESCRIPTION
-.TP
-.BR FUTEX_WAKE " (since Linux 2.6.0)"
-.\" Strictly speaking, since Linux 2.5.x
 This operation wakes at most
 .I val
 of the waiters that are waiting (e.g., inside
 .BR FUTEX_WAIT (2const))
 on the futex word at the address
 .IR uaddr .
+.P
 Most commonly,
 .I val
 is specified as either 1 (wake up a single waiter) or
 .B INT_MAX
 (wake up all waiters).
+.P
 No guarantee is provided about which waiters are awoken
 (e.g., a waiter with a higher scheduling priority is not guaranteed
 to be awoken in preference to a waiter with a lower priority).
@@ -55,8 +54,9 @@ and
 .I errno
 is set to indicate the error.
 .P
+On success,
 .B FUTEX_WAKE
-Returns the number of waiters that were woken up.
+returns the number of waiters that were woken up.
 .SH ERRORS
 See
 .BR futex (2).
@@ -65,14 +65,15 @@ See
 The kernel detected an inconsistency between the user-space state at
 .I uaddr
 and the kernel state\[em]that is, it detected a waiter which waits in
-.B FUTEX_LOCK_PI
+.BR FUTEX_LOCK_PI (2const)
 or
-.B FUTEX_LOCK_PI2
+.BR FUTEX_LOCK_PI2 (2const)
 on
 .IR uaddr .
 .SH STANDARDS
 Linux.
 .SH HISTORY
 Linux 2.6.0.
+.\" Strictly speaking, since Linux 2.5.x
 .SH SEE ALSO
 .BR futex (2)
