@@ -20,14 +20,11 @@ Standard C library
 .BI "             const struct timespec *" timeout );
 .fi
 .SH DESCRIPTION
-.TP
-.BR FUTEX_LOCK_PI " (since Linux 2.6.18)"
-.\" commit c87e2837be82df479a6bae9f155c43516d2feebc
 This operation is used after an attempt to acquire
 the lock via an atomic user-mode instruction failed
 because the futex word has a nonzero value\[em]specifically,
 because it contained the (PID-namespace-specific) TID of the lock owner.
-.IP
+.P
 The operation checks the value of the futex word at the address
 .IR uaddr .
 If the value is 0, then the kernel tries to atomically set
@@ -70,7 +67,6 @@ user space atomically by setting the futex value to 0.
 .\"     	block();
 .\"
 After that, the kernel:
-.RS
 .IP (1) 5
 Tries to find the thread which is associated with the owner TID.
 .IP (2)
@@ -82,8 +78,7 @@ If there are existing waiters, then the existing state is reused.)
 .IP (3)
 Attaches the waiter to the futex
 (i.e., the waiter is enqueued on the RT-mutex waiter list).
-.RE
-.IP
+.P
 If more than one waiter exists,
 the enqueueing of the waiter is in descending priority order.
 (For information on priority ordering, see the discussion of the
@@ -110,7 +105,7 @@ This inheritance follows the lock chain in the case of nested locking
 .\" (i.e., task 1 blocks on lock A, held by task 2,
 .\" while task 2 blocks on lock B, held by task 3)
 and performs deadlock detection.
-.IP
+.P
 The
 .I timeout
 argument provides a timeout for the lock attempt.
@@ -121,31 +116,6 @@ an absolute timeout.
 If
 .I timeout
 is NULL, the operation will block indefinitely.
-.IP
-.IR Caveat :
-Unlike other
-.BR futex (2)
-operations,
-the timeout is measured against the
-.B CLOCK_REALTIME
-clock.
-.\" 2016-07-07 response from Thomas Gleixner on LKML:
-.\" From: Thomas Gleixner <tglx@linutronix.de>
-.\" Date: 6 July 2016 at 20:57
-.\" Subject: Re: futex: Allow FUTEX_CLOCK_REALTIME with FUTEX_WAIT op
-.\"
-.\" On Thu, 23 Jun 2016, Michael Kerrisk (man-pages) wrote:
-.\" > On 06/23/2016 08:28 PM, Darren Hart wrote:
-.\" > > And as a follow-on, what is the reason for FUTEX_LOCK_PI only using
-.\" > > CLOCK_REALTIME? It seems reasonable to me that a user may want to wait a
-.\" > > specific amount of time, regardless of wall time.
-.\" >
-.\" > Yes, that's another weird inconsistency.
-.\"
-.\" The reason is that phtread_mutex_timedlock() uses absolute timeouts based on
-.\" CLOCK_REALTIME. glibc folks asked to make that the default behaviour back
-.\" then when we added LOCK_PI.
-.\"
 .SH RETURN VALUE
 On error,
 \-1 is returned,
@@ -155,7 +125,7 @@ is set to indicate the error.
 .P
 On success,
 .B FUTEX_LOCK_PI
-Returns 0 if the futex was successfully locked.
+returns 0 if the futex was successfully locked.
 .SH ERRORS
 See
 .BR futex (2).
@@ -221,5 +191,31 @@ The timeout expired before the operation completed.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.6.18.
+.\" commit c87e2837be82df479a6bae9f155c43516d2feebc
+.SH CAVEATS
+Unlike other
+.BR futex (2)
+operations,
+the timeout is measured against the
+.B CLOCK_REALTIME
+clock.
+.\" 2016-07-07 response from Thomas Gleixner on LKML:
+.\" From: Thomas Gleixner <tglx@linutronix.de>
+.\" Date: 6 July 2016 at 20:57
+.\" Subject: Re: futex: Allow FUTEX_CLOCK_REALTIME with FUTEX_WAIT op
+.\"
+.\" On Thu, 23 Jun 2016, Michael Kerrisk (man-pages) wrote:
+.\" > On 06/23/2016 08:28 PM, Darren Hart wrote:
+.\" > > And as a follow-on, what is the reason for FUTEX_LOCK_PI only using
+.\" > > CLOCK_REALTIME? It seems reasonable to me that a user may want to wait a
+.\" > > specific amount of time, regardless of wall time.
+.\" >
+.\" > Yes, that's another weird inconsistency.
+.\"
+.\" The reason is that phtread_mutex_timedlock() uses absolute timeouts based on
+.\" CLOCK_REALTIME. glibc folks asked to make that the default behaviour back
+.\" then when we added LOCK_PI.
+.\"
 .SH SEE ALSO
 .BR futex (2)
