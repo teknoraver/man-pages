@@ -361,7 +361,7 @@ value to 0 if the previous value was the expected TID.
 .P
 If a futex is already acquired (i.e., has a nonzero value),
 waiters must employ the
-.B FUTEX_LOCK_PI
+.BR FUTEX_LOCK_PI (2const)
 or
 .B FUTEX_LOCK_PI2
 operations to acquire the lock.
@@ -423,7 +423,7 @@ PI futexes are operated on by specifying one of the values listed below in
 Note that the PI futex operations must be used as paired operations
 and are subject to some additional requirements:
 .IP \[bu] 3
-.BR FUTEX_LOCK_PI ,
+.BR FUTEX_LOCK_PI (2const),
 .BR FUTEX_LOCK_PI2 ,
 and
 .B FUTEX_TRYLOCK_PI
@@ -454,145 +454,12 @@ The PI futex operations are as follows:
 .\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 .\"
 .TP
-.BR FUTEX_LOCK_PI " (since Linux 2.6.18)"
-.\" commit c87e2837be82df479a6bae9f155c43516d2feebc
-This operation is used after an attempt to acquire
-the lock via an atomic user-mode instruction failed
-because the futex word has a nonzero value\[em]specifically,
-because it contained the (PID-namespace-specific) TID of the lock owner.
-.IP
-The operation checks the value of the futex word at the address
-.IR uaddr .
-If the value is 0, then the kernel tries to atomically set
-the futex value to the caller's TID.
-If the futex word's value is nonzero,
-the kernel atomically sets the
-.B FUTEX_WAITERS
-bit, which signals the futex owner that it cannot unlock the futex in
-user space atomically by setting the futex value to 0.
-.\" tglx (July 2015):
-.\"     The operation here is similar to the FUTEX_WAIT logic. When the user
-.\"     space atomic acquire does not succeed because the futex value was non
-.\"     zero, then the waiter goes into the kernel, takes the kernel internal
-.\"     lock and retries the acquisition under the lock. If the acquisition
-.\"     does not succeed either, then it sets the FUTEX_WAITERS bit, to signal
-.\"     the lock owner that it needs to go into the kernel. Here is the pseudo
-.\"     code:
-.\"
-.\"     	lock(kernel_lock);
-.\"     retry:
-.\"
-.\"     	/*
-.\"     	 * Owner might have unlocked in user space before we
-.\"     	 * were able to set the waiter bit.
-.\"              */
-.\"             if (atomic_acquire(futex) == SUCCESS) {
-.\"     	   unlock(kernel_lock());
-.\"     	   return 0;
-.\"     	}
-.\"
-.\"     	/*
-.\"     	 * Owner might have unlocked after the above atomic_acquire()
-.\"     	 * attempt.
-.\"     	 */
-.\"     	if (atomic_set_waiters_bit(futex) != SUCCESS)
-.\"     	   goto retry;
-.\"
-.\"     	queue_waiter();
-.\"     	unlock(kernel_lock);
-.\"     	block();
-.\"
-After that, the kernel:
-.RS
-.IP (1) 5
-Tries to find the thread which is associated with the owner TID.
-.IP (2)
-Creates or reuses kernel state on behalf of the owner.
-(If this is the first waiter, there is no kernel state for this
-futex, so kernel state is created by locking the RT-mutex
-and the futex owner is made the owner of the RT-mutex.
-If there are existing waiters, then the existing state is reused.)
-.IP (3)
-Attaches the waiter to the futex
-(i.e., the waiter is enqueued on the RT-mutex waiter list).
-.RE
-.IP
-If more than one waiter exists,
-the enqueueing of the waiter is in descending priority order.
-(For information on priority ordering, see the discussion of the
-.BR SCHED_DEADLINE ,
-.BR SCHED_FIFO ,
-and
-.B SCHED_RR
-scheduling policies in
-.BR sched (7).)
-The owner inherits either the waiter's CPU bandwidth
-(if the waiter is scheduled under the
-.B SCHED_DEADLINE
-policy) or the waiter's priority (if the waiter is scheduled under the
-.B SCHED_RR
-or
-.B SCHED_FIFO
-policy).
-.\" August 2015:
-.\"     mtk: If the realm is restricted purely to SCHED_OTHER (SCHED_NORMAL)
-.\"          processes, does the nice value come into play also?
-.\"
-.\"     tglx: No. SCHED_OTHER/NORMAL tasks are handled in FIFO order
-This inheritance follows the lock chain in the case of nested locking
-.\" (i.e., task 1 blocks on lock A, held by task 2,
-.\" while task 2 blocks on lock B, held by task 3)
-and performs deadlock detection.
-.IP
-The
-.I timeout
-argument provides a timeout for the lock attempt.
-If
-.I timeout
-is not NULL, the structure it points to specifies
-an absolute timeout.
-If
-.I timeout
-is NULL, the operation will block indefinitely.
-.IP
-.IR Caveat :
-Unlike other
-.BR futex (2)
-operations,
-the timeout is measured against the
-.B CLOCK_REALTIME
-clock.
-.\" 2016-07-07 response from Thomas Gleixner on LKML:
-.\" From: Thomas Gleixner <tglx@linutronix.de>
-.\" Date: 6 July 2016 at 20:57
-.\" Subject: Re: futex: Allow FUTEX_CLOCK_REALTIME with FUTEX_WAIT op
-.\"
-.\" On Thu, 23 Jun 2016, Michael Kerrisk (man-pages) wrote:
-.\" > On 06/23/2016 08:28 PM, Darren Hart wrote:
-.\" > > And as a follow-on, what is the reason for FUTEX_LOCK_PI only using
-.\" > > CLOCK_REALTIME? It seems reasonable to me that a user may want to wait a
-.\" > > specific amount of time, regardless of wall time.
-.\" >
-.\" > Yes, that's another weird inconsistency.
-.\"
-.\" The reason is that phtread_mutex_timedlock() uses absolute timeouts based on
-.\" CLOCK_REALTIME. glibc folks asked to make that the default behaviour back
-.\" then when we added LOCK_PI.
-.IP
-The
-.IR uaddr2 ,
-.IR val ,
-and
-.I val3
-arguments are ignored.
-.\"
-.\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-.\"
+.BR FUTEX_LOCK_PI (2const)
 .TP
 .BR FUTEX_LOCK_PI2 " (since Linux 5.14)"
 .\" commit bf22a6976897977b0a3f1aeba6823c959fc4fdae
 This operation is the same as
-.BR FUTEX_LOCK_PI ,
+.BR FUTEX_LOCK_PI (2const),
 except that the clock against which
 .I timeout
 is measured is selectable.
@@ -650,7 +517,7 @@ arguments are ignored.
 .BR FUTEX_UNLOCK_PI " (since Linux 2.6.18)"
 .\" commit c87e2837be82df479a6bae9f155c43516d2feebc
 This operation wakes the top priority waiter that is waiting in
-.B FUTEX_LOCK_PI
+.BR FUTEX_LOCK_PI (2const)
 or
 .B FUTEX_LOCK_PI2
 on the futex address provided by the
@@ -812,9 +679,6 @@ is set to indicate the error.
 The return value on success depends on the operation,
 as described in the following list:
 .TP
-.B FUTEX_LOCK_PI
-Returns 0 if the futex was successfully locked.
-.TP
 .B FUTEX_LOCK_PI2
 Returns 0 if the futex was successfully locked.
 .TP
@@ -870,8 +734,7 @@ is not equal to the expected value
 .IR val3 .
 .TP
 .B EAGAIN
-.RB ( FUTEX_LOCK_PI ,
-.BR FUTEX_LOCK_PI2 ,
+.RB ( FUTEX_LOCK_PI2 ,
 .BR FUTEX_TRYLOCK_PI ,
 .BR FUTEX_CMP_REQUEUE_PI )
 The futex owner thread ID of
@@ -884,8 +747,7 @@ but has not yet handled the internal state cleanup.
 Try again.
 .TP
 .B EDEADLK
-.RB ( FUTEX_LOCK_PI ,
-.BR FUTEX_LOCK_PI2 ,
+.RB ( FUTEX_LOCK_PI2 ,
 .BR FUTEX_TRYLOCK_PI ,
 .BR FUTEX_CMP_REQUEUE_PI )
 The futex word at
@@ -948,8 +810,7 @@ equals
 (i.e., an attempt was made to requeue to the same futex).
 .TP
 .B EINVAL
-.RB ( FUTEX_LOCK_PI ,
-.BR FUTEX_LOCK_PI2 ,
+.RB ( FUTEX_LOCK_PI2 ,
 .BR FUTEX_TRYLOCK_PI ,
 .BR FUTEX_UNLOCK_PI )
 The kernel detected an inconsistency between the user-space state at
@@ -998,7 +859,7 @@ and the kernel state;
 that is, the kernel detected a waiter which waits on
 .I uaddr
 via
-.B FUTEX_LOCK_PI
+.BR FUTEX_LOCK_PI (2const)
 or
 .B FUTEX_LOCK_PI2
 (instead of
@@ -1024,8 +885,7 @@ argument is not 1.
 Invalid argument.
 .TP
 .B ENOMEM
-.RB ( FUTEX_LOCK_PI ,
-.BR FUTEX_LOCK_PI2 ,
+.RB ( FUTEX_LOCK_PI2 ,
 .BR FUTEX_TRYLOCK_PI ,
 .BR FUTEX_CMP_REQUEUE_PI )
 The kernel could not allocate memory to hold state information.
@@ -1046,8 +906,7 @@ nor
 .BR FUTEX_LOCK_PI2 .
 .TP
 .B ENOSYS
-.RB ( FUTEX_LOCK_PI ,
-.BR FUTEX_LOCK_PI2 ,
+.RB ( FUTEX_LOCK_PI2 ,
 .BR FUTEX_TRYLOCK_PI ,
 .BR FUTEX_UNLOCK_PI ,
 .BR FUTEX_CMP_REQUEUE_PI ,
@@ -1057,8 +916,7 @@ The PI-futex operations are not implemented on all architectures and
 are not supported on some CPU variants.
 .TP
 .B EPERM
-.RB ( FUTEX_LOCK_PI ,
-.BR FUTEX_LOCK_PI2 ,
+.RB ( FUTEX_LOCK_PI2 ,
 .BR FUTEX_TRYLOCK_PI ,
 .BR FUTEX_CMP_REQUEUE_PI )
 The caller is not allowed to attach itself to the futex at
@@ -1074,8 +932,7 @@ the futex at
 The caller does not own the lock represented by the futex word.
 .TP
 .B ESRCH
-.RB ( FUTEX_LOCK_PI ,
-.BR FUTEX_LOCK_PI2 ,
+.RB ( FUTEX_LOCK_PI2 ,
 .BR FUTEX_TRYLOCK_PI ,
 .BR FUTEX_CMP_REQUEUE_PI )
 The thread ID in the futex word at
