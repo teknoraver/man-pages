@@ -24,10 +24,6 @@ Standard C library
 .BI "             uint32_t *" uaddr2 );
 .fi
 .SH DESCRIPTION
-.TP
-.BR FUTEX_WAIT_REQUEUE_PI " (since Linux 2.6.31)"
-.\" commit 52400ba946759af28442dee6265c5c0180ac7122
-.\"
 Wait on a non-PI futex at
 .I uaddr
 and potentially be requeued (via a
@@ -38,7 +34,7 @@ The wait operation on
 .I uaddr
 is the same as for
 .BR FUTEX_WAIT (2const).
-.IP
+.P
 The waiter can be removed from the wait on
 .I uaddr
 without requeueing on
@@ -50,7 +46,7 @@ In this case, the
 .B FUTEX_WAIT_REQUEUE_PI
 operation fails with the error
 .BR EAGAIN .
-.IP
+.P
 If
 .I timeout
 is not NULL, the structure it points to specifies
@@ -68,7 +64,7 @@ is set to indicate the error.
 .P
 On success,
 .B FUTEX_WAIT_REQUEUE_PI
-Returns 0 if the caller was successfully requeued to the futex for
+returns 0 if the caller was successfully requeued to the futex for
 the futex word at
 .IR uaddr2 .
 .\"
@@ -122,5 +118,7 @@ The timeout expired before the operation completed.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.6.31.
+.\" commit 52400ba946759af28442dee6265c5c0180ac7122
 .SH SEE ALSO
 .BR futex (2)
