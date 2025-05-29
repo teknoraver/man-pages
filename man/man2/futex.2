@@ -437,7 +437,7 @@ results.
 .IP \[bu]
 .B FUTEX_WAIT_REQUEUE_PI
 pairs with
-.BR FUTEX_CMP_REQUEUE_PI .
+.BR FUTEX_CMP_REQUEUE_PI (2const).
 This must be performed from a non-PI futex to a distinct PI futex
 (or the error
 .B EINVAL
@@ -461,55 +461,8 @@ The PI futex operations are as follows:
 .BR FUTEX_TRYLOCK_PI (2const)
 .TQ
 .BR FUTEX_UNLOCK_PI (2const)
-.TP
-.BR FUTEX_CMP_REQUEUE_PI " (since Linux 2.6.31)"
-.\" commit 52400ba946759af28442dee6265c5c0180ac7122
-This operation is a PI-aware variant of
-.BR FUTEX_CMP_REQUEUE (2const).
-It requeues waiters that are blocked via
-.B FUTEX_WAIT_REQUEUE_PI
-on
-.I uaddr
-from a non-PI source futex
-.RI ( uaddr )
-to a PI target futex
-.RI ( uaddr2 ).
-.IP
-As with
-.BR FUTEX_CMP_REQUEUE (2const),
-this operation wakes up a maximum of
-.I val
-waiters that are waiting on the futex at
-.IR uaddr .
-However, for
-.BR FUTEX_CMP_REQUEUE_PI ,
-.I val
-is required to be 1
-(since the main point is to avoid a thundering herd).
-The remaining waiters are removed from the wait queue of the source futex at
-.I uaddr
-and added to the wait queue of the target futex at
-.IR uaddr2 .
-.IP
-The
-.I val2
-.\" val2 is the cap on the number of requeued waiters.
-.\" In the glibc pthread_cond_broadcast() implementation, this argument
-.\" is specified as INT_MAX, and for pthread_cond_signal() it is 0.
-and
-.I val3
-arguments serve the same purposes as for
-.BR FUTEX_CMP_REQUEUE (2const).
-.\"
-.\"       The page at http://locklessinc.com/articles/futex_cheat_sheet/
-.\"       notes that "priority-inheritance Futex to priority-inheritance
-.\"       Futex requeues are currently unsupported". However, probably
-.\"       the page does not need to say nothing about this, since
-.\"       Thomas Gleixner commented (July 2015): "they never will be
-.\"       supported because they make no sense at all"
-.\"
-.\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-.\"
+.TQ
+.BR FUTEX_CMP_REQUEUE_PI (2const)
 .TP
 .BR FUTEX_WAIT_REQUEUE_PI " (since Linux 2.6.31)"
 .\" commit 52400ba946759af28442dee6265c5c0180ac7122
@@ -517,7 +470,7 @@ arguments serve the same purposes as for
 Wait on a non-PI futex at
 .I uaddr
 and potentially be requeued (via a
-.B FUTEX_CMP_REQUEUE_PI
+.BR FUTEX_CMP_REQUEUE_PI (2const)
 operation in another task) onto a PI futex at
 .IR uaddr2 .
 The wait operation on
@@ -552,7 +505,7 @@ argument is ignored.
 The
 .B FUTEX_WAIT_REQUEUE_PI
 and
-.B FUTEX_CMP_REQUEUE_PI
+.BR FUTEX_CMP_REQUEUE_PI (2const)
 were added to support a fairly specific use case:
 support for priority-inheritance-aware POSIX threads condition variables.
 The idea is that these operations should always be paired,
@@ -561,7 +514,7 @@ Thus, in the
 .B FUTEX_WAIT_REQUEUE_PI
 operation, the user-space application pre-specifies the target
 of the requeue that takes place in the
-.B FUTEX_CMP_REQUEUE_PI
+.BR FUTEX_CMP_REQUEUE_PI (2const)
 operation.
 .\"
 .\" Darren Hart notes that a patch to allow glibc to fully support
@@ -602,16 +555,6 @@ is set to indicate the error.
 The return value on success depends on the operation,
 as described in the following list:
 .TP
-.B FUTEX_CMP_REQUEUE_PI
-Returns the total number of waiters that were woken up or
-requeued to the futex for the futex word at
-.IR uaddr2 .
-If this value is greater than
-.IR val ,
-then difference is the number of waiters requeued to the futex for
-the futex word at
-.IR uaddr2 .
-.TP
 .B FUTEX_WAIT_REQUEUE_PI
 Returns 0 if the caller was successfully requeued to the futex for
 the futex word at
@@ -639,40 +582,6 @@ and
 .B EWOULDBLOCK
 (both of which appear in different parts of the kernel futex code)
 have the same value.
-.TP
-.B EAGAIN
-.RB ( FUTEX_CMP_REQUEUE_PI )
-The value pointed to by
-.I uaddr
-is not equal to the expected value
-.IR val3 .
-.TP
-.B EAGAIN
-.RB ( FUTEX_CMP_REQUEUE_PI )
-The futex owner thread ID of
-.I uaddr2
-is about to exit,
-but has not yet handled the internal state cleanup.
-Try again.
-.TP
-.B EDEADLK
-.RB ( FUTEX_CMP_REQUEUE_PI )
-The futex word at
-.I uaddr
-is already locked by the caller.
-.TP
-.B EDEADLK
-.\" FIXME . I see that kernel/locking/rtmutex.c uses EDEADLK in some
-.\"       places, and EDEADLOCK in others. On almost all architectures
-.\"       these constants are synonymous. Is there a reason that both
-.\"       names are used?
-.\"
-.\"       tglx (July 2015): "No. We should probably fix that."
-.\"
-.RB ( FUTEX_CMP_REQUEUE_PI )
-While requeueing a waiter to the PI futex for the futex word at
-.IR uaddr2 ,
-the kernel detected a deadlock.
 .TP
 .B EFAULT
 .I uaddr
@@ -710,75 +619,7 @@ but it does not point to a valid object\[em]that is,
 the address is not four-byte-aligned.
 .TP
 .B EINVAL
-.RB ( FUTEX_CMP_REQUEUE_PI )
-.I uaddr
-equals
-.I uaddr2
-(i.e., an attempt was made to requeue to the same futex).
-.TP
-.B EINVAL
-.RB ( FUTEX_CMP_REQUEUE_PI )
-The kernel detected an inconsistency between the user-space state at
-.I uaddr2
-and the kernel state;
-.\" From a conversation with Thomas Gleixner (Aug 2015): ###
-.\"	The kernel sees: I have non PI state for a futex you tried to
-.\"     tell me was PI
-that is, the kernel detected a waiter which waits via
-.BR FUTEX_WAIT (2const)
-or
-.BR FUTEX_WAIT_BITSET (2const)
-on
-.IR uaddr2 .
-.TP
-.B EINVAL
-.RB ( FUTEX_CMP_REQUEUE_PI )
-The kernel detected an inconsistency between the user-space state at
-.I uaddr
-and the kernel state;
-that is, the kernel detected a waiter which waits via
-.BR FUTEX_WAIT (2const)
-or
-.BR FUTEX_WAIT_BITSET (2const)
-on
-.IR uaddr .
-.TP
-.B EINVAL
-.RB ( FUTEX_CMP_REQUEUE_PI )
-The kernel detected an inconsistency between the user-space state at
-.I uaddr
-and the kernel state;
-that is, the kernel detected a waiter which waits on
-.I uaddr
-via
-.BR FUTEX_LOCK_PI (2const)
-or
-.BR FUTEX_LOCK_PI2 (2const)
-(instead of
-.BR FUTEX_WAIT_REQUEUE_PI ).
-.TP
-.B EINVAL
-.RB ( FUTEX_CMP_REQUEUE_PI )
-.\" This deals with the case:
-.\"     wait_requeue_pi(A, B);
-.\"     requeue_pi(A, C);
-An attempt was made to requeue a waiter to a futex other than that
-specified by the matching
-.B FUTEX_WAIT_REQUEUE_PI
-call for that waiter.
-.TP
-.B EINVAL
-.RB ( FUTEX_CMP_REQUEUE_PI )
-The
-.I val
-argument is not 1.
-.TP
-.B EINVAL
 Invalid argument.
-.TP
-.B ENOMEM
-.RB ( FUTEX_CMP_REQUEUE_PI )
-The kernel could not allocate memory to hold state information.
 .TP
 .B ENOSYS
 Invalid operation specified in
@@ -796,29 +637,10 @@ nor
 .BR FUTEX_LOCK_PI2 (2const).
 .TP
 .B ENOSYS
-.RB ( FUTEX_CMP_REQUEUE_PI ,
-.BR FUTEX_WAIT_REQUEUE_PI )
+.RB ( FUTEX_WAIT_REQUEUE_PI )
 A run-time check determined that the operation is not available.
 The PI-futex operations are not implemented on all architectures and
 are not supported on some CPU variants.
-.TP
-.B EPERM
-.RB ( FUTEX_CMP_REQUEUE_PI )
-The caller is not allowed to attach itself to the futex at
-.IR uaddr2 .
-(This may be caused by a state corruption in user space.)
-.TP
-.B ESRCH
-.RB ( FUTEX_CMP_REQUEUE_PI )
-The thread ID in the futex word at
-.I uaddr
-does not exist.
-.TP
-.B ESRCH
-.RB ( FUTEX_CMP_REQUEUE_PI )
-The thread ID in the futex word at
-.I uaddr2
-does not exist.
 .TP
 .B ETIMEDOUT
 The operation in
