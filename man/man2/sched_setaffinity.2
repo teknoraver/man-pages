@@ -370,7 +370,7 @@ main(int argc, char *argv[])
     case 0:             /* Child */
         CPU_SET(childCPU, &set);
 \&
-        if (sched_setaffinity(getpid(), sizeof(set), &set) == \-1)
+        if (sched_setaffinity(0, sizeof(set), &set) == \-1)
             err(EXIT_FAILURE, "sched_setaffinity");
 \&
         for (unsigned int j = 0; j < nloops; j++)
@@ -381,7 +381,7 @@ main(int argc, char *argv[])
     default:            /* Parent */
         CPU_SET(parentCPU, &set);
 \&
-        if (sched_setaffinity(getpid(), sizeof(set), &set) == \-1)
+        if (sched_setaffinity(0, sizeof(set), &set) == \-1)
             err(EXIT_FAILURE, "sched_setaffinity");
 \&
         for (unsigned int j = 0; j < nloops; j++)
