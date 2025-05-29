@@ -23,11 +23,7 @@ Standard C library
 .BR "#include <sys/syscall.h>" "  /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI "long syscall(SYS_futex, uint32_t *" uaddr ", int " futex_op \
-", uint32_t " val ,
-.BI "             const struct timespec *" timeout \
-",   \f[R]/* or:\f[] uint32_t " val2 " \f[R]*/\f[]"
-.BI "             uint32_t *" uaddr2 ", uint32_t " val3 );
+.BI "long syscall(SYS_futex, uint32_t *" uaddr ", int " op ", ...);"
 .fi
 .SH DESCRIPTION
 The
@@ -144,58 +140,20 @@ argument points to the futex word.
 On all platforms, futexes are four-byte
 integers that must be aligned on a four-byte boundary.
 The operation to perform on the futex is specified in the
-.I futex_op
-argument;
-.I val
-is a value whose meaning and purpose depends on
-.IR futex_op .
-.P
-The remaining arguments
-.RI ( timeout ,
-.IR uaddr2 ,
-and
-.IR val3 )
-are required only for certain of the futex operations described below.
-Where one of these arguments is not required, it is ignored.
-.P
-For several blocking operations, the
-.I timeout
-argument is a pointer to a
-.I timespec
-structure that specifies a timeout for the operation.
-However,  notwithstanding the prototype shown above, for some operations,
-the least significant four bytes of this argument are instead
-used as an integer whose meaning is determined by the operation.
-For these operations, the kernel casts the
-.I timeout
-value first to
-.IR "unsigned long",
-then to
-.IR uint32_t ,
-and in the remainder of this page, this argument is referred to as
-.I val2
-when interpreted in this fashion.
-.P
-Where it is required, the
-.I uaddr2
-argument is a pointer to a second futex word that is employed
-by the operation.
-.P
-The interpretation of the final integer argument,
-.IR val3 ,
-depends on the operation.
+.I op
+argument.
 .\"
 .\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 .\"
 .SS Futex operations
 The
-.I futex_op
+.I op
 argument consists of two parts:
 a command that specifies the operation to be performed,
 bitwise ORed with zero or more options that
 modify the behaviour of the operation.
 The options that may be included in
-.I futex_op
+.I op
 are as follows:
 .TP
 .BR FUTEX_PRIVATE_FLAG " (since Linux 2.6.22)"
@@ -251,7 +209,7 @@ against the
 clock.
 .P
 The operation specified in
-.I futex_op
+.I op
 is one of the following:
 .\"
 .\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -419,7 +377,7 @@ the dead owner.
 .\"     PI futexes.
 .P
 PI futexes are operated on by specifying one of the values listed below in
-.IR futex_op .
+.IR op .
 Note that the PI futex operations must be used as paired operations
 and are subject to some additional requirements:
 .IP \[bu] 3
@@ -443,8 +401,7 @@ This must be performed from a non-PI futex to a distinct PI futex
 .B EINVAL
 results).
 Additionally,
-.I val
-(the number of waiters to be woken) must be 1
+the number of waiters to be woken must be 1
 (or the error
 .B EINVAL
 results).
@@ -539,13 +496,13 @@ Invalid argument.
 .TP
 .B ENOSYS
 Invalid operation specified in
-.IR futex_op .
+.IR op .
 .TP
 .B ENOSYS
 The
 .B FUTEX_CLOCK_REALTIME
 option was specified in
-.IR futex_op ,
+.IR op ,
 but the accompanying operation was neither
 .BR FUTEX_WAIT_BITSET (2const),
 .BR FUTEX_WAIT_REQUEUE_PI (2const),
@@ -625,10 +582,10 @@ Child  (18535) 4
 static uint32_t *futex1, *futex2, *iaddr;
 \&
 static int
-futex(uint32_t *uaddr, int futex_op, uint32_t val,
+futex(uint32_t *uaddr, int op, uint32_t val,
       const struct timespec *timeout, uint32_t *uaddr2, uint32_t val3)
 {
-    return syscall(SYS_futex, uaddr, futex_op, val,
+    return syscall(SYS_futex, uaddr, op, val,
                    timeout, uaddr2, val3);
 }
 \&
