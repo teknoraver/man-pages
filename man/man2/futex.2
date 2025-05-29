@@ -426,7 +426,7 @@ and are subject to some additional requirements:
 .BR FUTEX_LOCK_PI (2const),
 .BR FUTEX_LOCK_PI2 (2const),
 and
-.B FUTEX_TRYLOCK_PI
+.BR FUTEX_TRYLOCK_PI (2const)
 pair with
 .BR FUTEX_UNLOCK_PI .
 .B FUTEX_UNLOCK_PI
@@ -457,48 +457,8 @@ The PI futex operations are as follows:
 .BR FUTEX_LOCK_PI (2const)
 .TQ
 .BR FUTEX_LOCK_PI2 (2const)
-.TP
-.BR FUTEX_TRYLOCK_PI " (since Linux 2.6.18)"
-.\" commit c87e2837be82df479a6bae9f155c43516d2feebc
-This operation tries to acquire the lock at
-.IR uaddr .
-It is invoked when a user-space atomic acquire did not
-succeed because the futex word was not 0.
-.IP
-Because the kernel has access to more state information than user space,
-acquisition of the lock might succeed if performed by the
-kernel in cases where the futex word
-(i.e., the state information accessible to use-space) contains stale state
-.RB ( FUTEX_WAITERS
-and/or
-.BR FUTEX_OWNER_DIED ).
-This can happen when the owner of the futex died.
-User space cannot handle this condition in a race-free manner,
-but the kernel can fix this up and acquire the futex.
-.\" Paraphrasing a f2f conversation with Thomas Gleixner about the
-.\" above point (Aug 2015): ###
-.\"	There is a rare possibility of a race condition involving an
-.\"	uncontended futex with no owner, but with waiters.  The
-.\"	kernel-user-space contract is that if a futex is nonzero, you must
-.\"	go into kernel.  The futex was owned by a task, and that task dies
-.\"	but there are no waiters, so the futex value is non zero.
-.\"	Therefore, the next locker has to go into the kernel,
-.\"	so that the kernel has a chance to clean up. (CMXCH on zero
-.\"	in user space would fail, so kernel has to clean up.)
-.\" Darren Hart (Oct 2015):
-.\"     The trylock in the kernel has more state, so it can independently
-.\"     verify the flags that user space must trust implicitly.
-.IP
-The
-.IR uaddr2 ,
-.IR val ,
-.IR timeout ,
-and
-.I val3
-arguments are ignored.
-.\"
-.\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-.\"
+.TQ
+.BR FUTEX_TRYLOCK_PI (2const)
 .TP
 .BR FUTEX_UNLOCK_PI " (since Linux 2.6.18)"
 .\" commit c87e2837be82df479a6bae9f155c43516d2feebc
@@ -665,9 +625,6 @@ is set to indicate the error.
 The return value on success depends on the operation,
 as described in the following list:
 .TP
-.B FUTEX_TRYLOCK_PI
-Returns 0 if the futex was successfully locked.
-.TP
 .B FUTEX_UNLOCK_PI
 Returns 0 if the futex was successfully unlocked.
 .TP
@@ -717,20 +674,15 @@ is not equal to the expected value
 .IR val3 .
 .TP
 .B EAGAIN
-.RB ( FUTEX_TRYLOCK_PI ,
-.BR FUTEX_CMP_REQUEUE_PI )
+.RB ( FUTEX_CMP_REQUEUE_PI )
 The futex owner thread ID of
-.I uaddr
-(for
-.BR FUTEX_CMP_REQUEUE_PI :
-.IR uaddr2 )
+.I uaddr2
 is about to exit,
 but has not yet handled the internal state cleanup.
 Try again.
 .TP
 .B EDEADLK
-.RB ( FUTEX_TRYLOCK_PI ,
-.BR FUTEX_CMP_REQUEUE_PI )
+.RB ( FUTEX_CMP_REQUEUE_PI )
 The futex word at
 .I uaddr
 is already locked by the caller.
@@ -791,8 +743,7 @@ equals
 (i.e., an attempt was made to requeue to the same futex).
 .TP
 .B EINVAL
-.RB ( FUTEX_TRYLOCK_PI ,
-.BR FUTEX_UNLOCK_PI )
+.RB ( FUTEX_UNLOCK_PI )
 The kernel detected an inconsistency between the user-space state at
 .I uaddr
 and the kernel state.
@@ -865,8 +816,7 @@ argument is not 1.
 Invalid argument.
 .TP
 .B ENOMEM
-.RB ( FUTEX_TRYLOCK_PI ,
-.BR FUTEX_CMP_REQUEUE_PI )
+.RB ( FUTEX_CMP_REQUEUE_PI )
 The kernel could not allocate memory to hold state information.
 .TP
 .B ENOSYS
@@ -885,8 +835,7 @@ nor
 .BR FUTEX_LOCK_PI2 (2const).
 .TP
 .B ENOSYS
-.RB ( FUTEX_TRYLOCK_PI ,
-.BR FUTEX_UNLOCK_PI ,
+.RB ( FUTEX_UNLOCK_PI ,
 .BR FUTEX_CMP_REQUEUE_PI ,
 .BR FUTEX_WAIT_REQUEUE_PI )
 A run-time check determined that the operation is not available.
@@ -894,14 +843,9 @@ The PI-futex operations are not implemented on all architectures and
 are not supported on some CPU variants.
 .TP
 .B EPERM
-.RB ( FUTEX_TRYLOCK_PI ,
-.BR FUTEX_CMP_REQUEUE_PI )
+.RB ( FUTEX_CMP_REQUEUE_PI )
 The caller is not allowed to attach itself to the futex at
-.I uaddr
-(for
-.BR FUTEX_CMP_REQUEUE_PI :
-the futex at
-.IR uaddr2 ).
+.IR uaddr2 .
 (This may be caused by a state corruption in user space.)
 .TP
 .B EPERM
@@ -909,8 +853,7 @@ the futex at
 The caller does not own the lock represented by the futex word.
 .TP
 .B ESRCH
-.RB ( FUTEX_TRYLOCK_PI ,
-.BR FUTEX_CMP_REQUEUE_PI )
+.RB ( FUTEX_CMP_REQUEUE_PI )
 The thread ID in the futex word at
 .I uaddr
 does not exist.
