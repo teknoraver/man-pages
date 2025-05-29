@@ -23,36 +23,29 @@ Standard C library
 .BI "             uint32_t " val3 );
 .fi
 .SH DESCRIPTION
-.TP
-.BR FUTEX_CMP_REQUEUE_PI " (since Linux 2.6.31)"
-.\" commit 52400ba946759af28442dee6265c5c0180ac7122
 This operation is a PI-aware variant of
 .BR FUTEX_CMP_REQUEUE (2const).
 It requeues waiters that are blocked via
-.B FUTEX_WAIT_REQUEUE_PI
+.BR FUTEX_WAIT_REQUEUE_PI (2const)
 on
 .I uaddr
 from a non-PI source futex
 .RI ( uaddr )
 to a PI target futex
 .RI ( uaddr2 ).
-.IP
-As with
+.P
+Unlike with
 .BR FUTEX_CMP_REQUEUE (2const),
 this operation wakes up a maximum of
-.I val
-waiters that are waiting on the futex at
-.IR uaddr .
-However, for
-.BR FUTEX_CMP_REQUEUE_PI ,
-.I val
-is required to be 1
+1
+waiter that is waiting on the futex at
+.I uaddr
 (since the main point is to avoid a thundering herd).
 The remaining waiters are removed from the wait queue of the source futex at
 .I uaddr
 and added to the wait queue of the target futex at
 .IR uaddr2 .
-.IP
+.P
 The
 .I val2
 .\" val2 is the cap on the number of requeued waiters.
@@ -82,8 +75,7 @@ On success,
 Returns the total number of waiters that were woken up or
 requeued to the futex for the futex word at
 .IR uaddr2 .
-If this value is greater than
-.IR val ,
+If this value is greater than 1,
 then difference is the number of waiters requeued to the futex for
 the futex word at
 .IR uaddr2 .
@@ -185,7 +177,7 @@ call for that waiter.
 .TP
 .B EINVAL
 The
-.I val
+fourth
 argument is not 1.
 .TP
 .B ENOMEM
@@ -213,5 +205,7 @@ does not exist.
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.6.31.
+.\" commit 52400ba946759af28442dee6265c5c0180ac7122
 .SH SEE ALSO
 .BR futex (2)
