@@ -369,7 +369,7 @@ If other threads are waiting for the lock, then the
 .B FUTEX_WAITERS
 bit is set in the futex value;
 in this case, the lock owner must employ the
-.B FUTEX_UNLOCK_PI
+.BR FUTEX_UNLOCK_PI (2const)
 operation to release the lock.
 .P
 In the cases where callers are forced into the kernel
@@ -428,8 +428,8 @@ and are subject to some additional requirements:
 and
 .BR FUTEX_TRYLOCK_PI (2const)
 pair with
-.BR FUTEX_UNLOCK_PI .
-.B FUTEX_UNLOCK_PI
+.BR FUTEX_UNLOCK_PI (2const).
+.BR FUTEX_UNLOCK_PI (2const)
 must be called only on a futex owned by the calling thread,
 as defined by the value policy, otherwise the error
 .B EPERM
@@ -459,31 +459,8 @@ The PI futex operations are as follows:
 .BR FUTEX_LOCK_PI2 (2const)
 .TQ
 .BR FUTEX_TRYLOCK_PI (2const)
-.TP
-.BR FUTEX_UNLOCK_PI " (since Linux 2.6.18)"
-.\" commit c87e2837be82df479a6bae9f155c43516d2feebc
-This operation wakes the top priority waiter that is waiting in
-.BR FUTEX_LOCK_PI (2const)
-or
-.BR FUTEX_LOCK_PI2 (2const)
-on the futex address provided by the
-.I uaddr
-argument.
-.IP
-This is called when the user-space value at
-.I uaddr
-cannot be changed atomically from a TID (of the owner) to 0.
-.IP
-The
-.IR uaddr2 ,
-.IR val ,
-.IR timeout ,
-and
-.I val3
-arguments are ignored.
-.\"
-.\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-.\"
+.TQ
+.BR FUTEX_UNLOCK_PI (2const)
 .TP
 .BR FUTEX_CMP_REQUEUE_PI " (since Linux 2.6.31)"
 .\" commit 52400ba946759af28442dee6265c5c0180ac7122
@@ -625,9 +602,6 @@ is set to indicate the error.
 The return value on success depends on the operation,
 as described in the following list:
 .TP
-.B FUTEX_UNLOCK_PI
-Returns 0 if the futex was successfully unlocked.
-.TP
 .B FUTEX_CMP_REQUEUE_PI
 Returns the total number of waiters that were woken up or
 requeued to the futex for the futex word at
@@ -743,19 +717,6 @@ equals
 (i.e., an attempt was made to requeue to the same futex).
 .TP
 .B EINVAL
-.RB ( FUTEX_UNLOCK_PI )
-The kernel detected an inconsistency between the user-space state at
-.I uaddr
-and the kernel state.
-This indicates either state corruption
-or that the kernel found a waiter on
-.I uaddr
-which is waiting via
-.BR FUTEX_WAIT (2const)
-or
-.BR FUTEX_WAIT_BITSET (2const).
-.TP
-.B EINVAL
 .RB ( FUTEX_CMP_REQUEUE_PI )
 The kernel detected an inconsistency between the user-space state at
 .I uaddr2
@@ -835,8 +796,7 @@ nor
 .BR FUTEX_LOCK_PI2 (2const).
 .TP
 .B ENOSYS
-.RB ( FUTEX_UNLOCK_PI ,
-.BR FUTEX_CMP_REQUEUE_PI ,
+.RB ( FUTEX_CMP_REQUEUE_PI ,
 .BR FUTEX_WAIT_REQUEUE_PI )
 A run-time check determined that the operation is not available.
 The PI-futex operations are not implemented on all architectures and
@@ -847,10 +807,6 @@ are not supported on some CPU variants.
 The caller is not allowed to attach itself to the futex at
 .IR uaddr2 .
 (This may be caused by a state corruption in user space.)
-.TP
-.B EPERM
-.RB ( FUTEX_UNLOCK_PI )
-The caller does not own the lock represented by the futex word.
 .TP
 .B ESRCH
 .RB ( FUTEX_CMP_REQUEUE_PI )
