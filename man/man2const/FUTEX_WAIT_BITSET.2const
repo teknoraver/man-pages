@@ -29,8 +29,7 @@ Standard C library
 .fi
 .SH DESCRIPTION
 .TP
-.BR FUTEX_WAIT_BITSET " (since Linux 2.6.25)"
-.\" commit cd689985cf49f6ff5c8eddc48d98b9d581d9475d
+.B FUTEX_WAIT_BITSET
 This operation is like
 .BR FUTEX_WAIT (2const)
 except that
@@ -53,8 +52,7 @@ is NULL, the operation can block indefinitely.
 .\""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 .\"
 .TP
-.BR FUTEX_WAKE_BITSET " (since Linux 2.6.25)"
-.\" commit cd689985cf49f6ff5c8eddc48d98b9d581d9475d
+.B FUTEX_WAKE_BITSET
 This operation is the same as
 .BR FUTEX_WAKE (2const)
 except that the
@@ -201,9 +199,9 @@ is zero.
 The kernel detected an inconsistency between the user-space state at
 .I uaddr
 and the kernel state\[em]that is, it detected a waiter which waits in
-.B FUTEX_LOCK_PI
+.BR FUTEX_LOCK_PI (2const)
 or
-.B FUTEX_LOCK_PI2
+.BR FUTEX_LOCK_PI2 (2const)
 on
 .IR uaddr .
 .TP
@@ -214,5 +212,6 @@ The timeout expired before the operation completed.
 Linux.
 .SH HISTORY
 Linux 2.6.25.
+.\" commit cd689985cf49f6ff5c8eddc48d98b9d581d9475d
 .SH SEE ALSO
 .BR futex (2)
