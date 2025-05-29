@@ -21,8 +21,6 @@ Standard C library
 .BI "             uint32_t " val3 );
 .fi
 .SH DESCRIPTION
-.TP
-.BR FUTEX_WAKE_OP " (since Linux 2.6.14)"
 .\" commit 4732efbeb997189d9f9b04708dc26bf8613ed721
 .\"	Author: Jakub Jelinek <jakub@redhat.com>
 .\"	Date:   Tue Sep 6 15:16:25 2005 -0700
@@ -40,13 +38,13 @@ of the wait queue associated with the condition variable.
 .B FUTEX_WAKE_OP
 allows such cases to be implemented without leading to
 high rates of contention and context switching.
-.IP
+.P
 The
 .B FUTEX_WAKE_OP
 operation is equivalent to executing the following code atomically
 and totally ordered with respect to other futex operations on
 any of the two supplied futex words:
-.IP
+.P
 .in +4n
 .EX
 uint32_t oldval = *(uint32_t *) uaddr2;
@@ -56,11 +54,10 @@ if (oldval \f[I]cmp\f[] \f[I]cmparg\f[])
     futex(uaddr2, FUTEX_WAKE, val2, 0, 0, 0);
 .EE
 .in
-.IP
+.P
 In other words,
 .B FUTEX_WAKE_OP
 does the following:
-.RS
 .IP \[bu] 3
 saves the original value of the futex word at
 .I uaddr2
@@ -82,13 +79,12 @@ wakes up a maximum of
 .I val2
 waiters on the futex for the futex word at
 .IR uaddr2 .
-.RE
-.IP
+.P
 The operation and comparison that are to be performed are encoded
 in the bits of the argument
 .IR val3 .
 Pictorially, the encoding is:
-.IP
+.P
 .in +4n
 .EX
 +---+---+-----------+-----------+
@@ -97,9 +93,9 @@ Pictorially, the encoding is:
   4   4       12          12    <== # of bits
 .EE
 .in
-.IP
+.P
 Expressed in code, the encoding is:
-.IP
+.P
 .in +4n
 .EX
 #define FUTEX_OP(op, oparg, cmp, cmparg) \[rs]
@@ -109,7 +105,7 @@ Expressed in code, the encoding is:
                 (cmparg & 0xfff))
 .EE
 .in
-.IP
+.P
 In the above,
 .I op
 and
@@ -120,11 +116,11 @@ The
 and
 .I cmparg
 components are literal numeric values, except as noted below.
-.IP
+.P
 The
 .I op
 component has one of the following values:
-.IP
+.P
 .in +4n
 .EX
 FUTEX_OP_SET        0  /* uaddr2 = oparg; */
@@ -134,23 +130,23 @@ FUTEX_OP_ANDN       3  /* uaddr2 &= \[ti]oparg; */
 FUTEX_OP_XOR        4  /* uaddr2 \[ha]= oparg; */
 .EE
 .in
-.IP
+.P
 In addition, bitwise ORing the following value into
 .I op
 causes
 .I (1\~<<\~oparg)
 to be used as the operand:
-.IP
+.P
 .in +4n
 .EX
 FUTEX_OP_ARG_SHIFT  8  /* Use (1 << oparg) as operand */
 .EE
 .in
-.IP
+.P
 The
 .I cmp
 field is one of the following:
-.IP
+.P
 .in +4n
 .EX
 FUTEX_OP_CMP_EQ     0  /* if (oldval == cmparg) wake */
@@ -161,7 +157,7 @@ FUTEX_OP_CMP_GT     4  /* if (oldval > cmparg) wake */
 FUTEX_OP_CMP_GE     5  /* if (oldval >= cmparg) wake */
 .EE
 .in
-.IP
+.P
 The return value of
 .B FUTEX_WAKE_OP
 is the sum of the number of waiters woken on the futex
@@ -201,13 +197,14 @@ the address is not four-byte-aligned.
 The kernel detected an inconsistency between the user-space state at
 .I uaddr
 and the kernel state\[em]that is, it detected a waiter which waits in
-.B FUTEX_LOCK_PI
+.BR FUTEX_LOCK_PI (2const)
 or
-.B FUTEX_LOCK_PI2
+.BR FUTEX_LOCK_PI2 (2const)
 on
 .IR uaddr .
 .SH STANDARDS
 Linux.
 .SH HISTORY
+Linux 2.6.14.
 .SH SEE ALSO
 .BR futex (2)
