@@ -1068,6 +1068,16 @@ was specified.
 .TP
 .B EINVAL
 .B O_CREAT
+and
+.B O_DIRECTORY
+were both specified in
+.I flags ,
+and the Linux kernel version is 6.4 or later.
+(Earlier kernels were inconsistent in this area,
+and POSIX does not specify the behavior.)
+.TP
+.B EINVAL
+.B O_CREAT
 was specified in
 .I flags
 and the final component ("basename") of the new file's
@@ -1882,20 +1892,6 @@ and
 when trying to determine whether the kernel supports
 .B O_TMPFILE
 functionality.
-.P
-When both
-.B O_CREAT
-and
-.B O_DIRECTORY
-are specified in
-.I flags
-and the file specified by
-.I path
-does not exist,
-.BR open ()
-will create a regular file (i.e.,
-.B O_DIRECTORY
-is ignored).
 .SH SEE ALSO
 .BR chmod (2),
 .BR chown (2),
