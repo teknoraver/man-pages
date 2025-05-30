@@ -12,8 +12,10 @@ Standard C library
 .nf
 .B #include <unistd.h>
 .P
-.BI "int getdomainname(char *" name ", size_t " size );
-.BI "int setdomainname(const char *" name ", size_t " size );
+.BI "int getdomainname(size_t " size ;
+.BI "                  char " name [ size "], size_t " size );
+.BI "int setdomainname(size_t " size ;
+.BI "                  const char " name [ size "], size_t " size );
 .fi
 .P
 .RS -4

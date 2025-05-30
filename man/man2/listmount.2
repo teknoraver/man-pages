@@ -15,8 +15,9 @@ Standard C library
 .BR "#include <linux/mount.h>" "  /* Definition of struct mnt_id_req constants */"
 .B #include <unistd.h>
 .P
-.BI "int syscall(SYS_listmount, struct mnt_id_req *" req ,
-.BI "            uint64_t *" mnt_ids ", size_t " nr_mnt_ids ,
+.BI "int syscall(size_t " n ;
+.BI "            SYS_listmount, struct mnt_id_req *" req ,
+.BI "            uint64_t " mnt_ids [ n "], size_t " n ,
 .BI "            unsigned long " flags );
 .P
 .B #include <linux/mount.h>
