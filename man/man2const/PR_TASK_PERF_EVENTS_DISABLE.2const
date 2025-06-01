@@ -2,7 +2,7 @@
 .\"
 .\" SPDX-License-Identifier: Linux-man-pages-copyleft
 .\"
-.TH PR_TASK_PERF_EVENTS_DISABLE 2 (date) "Linux man-pages (unreleased)"
+.TH PR_TASK_PERF_EVENTS_DISABLE 2const (date) "Linux man-pages (unreleased)"
 .SH NAME
 PR_TASK_PERF_EVENTS_DISABLE,
 PR_TASK_PERF_EVENTS_ENABLE
