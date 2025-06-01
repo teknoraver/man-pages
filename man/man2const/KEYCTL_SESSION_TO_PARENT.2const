@@ -16,7 +16,7 @@ Standard C library
 .BR "#include <sys/syscall.h>" "   /* Definition of " SYS_* " constants */"
 .B #include <unistd.h>
 .P
-.BI long syscall(SYS_keyctl, KEYCTL_SESSION_TO_PARENT);
+.B long syscall(SYS_keyctl, KEYCTL_SESSION_TO_PARENT);
 .fi
 .SH DESCRIPTION
 Replace the session keyring to which the
