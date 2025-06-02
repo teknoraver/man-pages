@@ -15,11 +15,11 @@ Standard C library
 .B #include <unistd.h>
 .P
 .BI "long syscall(SYS_kexec_load, unsigned long " entry ,
-.BI "             unsigned long " nr_segments \
-", struct kexec_segment *" segments ,
+.BI "             unsigned long " nr_segments ,
+.BI "             struct kexec_segment " segments [ nr_segments ],
 .BI "             unsigned long " flags );
 .BI "long syscall(SYS_kexec_file_load, int " kernel_fd ", int " initrd_fd ,
-.BI "             unsigned long " cmdline_len ", const char *" cmdline ,
+.BI "             unsigned long " cmdline_len ", const char " cmdline [ cmdline_len ],
 .BI "             unsigned long " flags );
 .fi
 .P

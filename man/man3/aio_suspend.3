@@ -14,7 +14,8 @@ Real-time library
 .P
 .B "#include <aio.h>"
 .P
-.BI "int aio_suspend(const struct aiocb *const " aiocb_list "[], int " n ,
+.BI "int aio_suspend(int " n ;
+.BI "                const struct aiocb *const " aiocb_list [ n "], int " n ,
 .BI "                const struct timespec *restrict " timeout );
 .fi
 .SH DESCRIPTION

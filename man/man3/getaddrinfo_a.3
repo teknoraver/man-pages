@@ -15,9 +15,9 @@ Asynchronous name lookup library
 .BR "#define _GNU_SOURCE" "         /* See feature_test_macros(7) */"
 .B #include <netdb.h>
 .P
-.BI "int getaddrinfo_a(int " mode ", struct gaicb *" list [restrict],
+.BI "int getaddrinfo_a(int " mode ", struct gaicb *" list "[restrict " n ],
 .BI "                  int " n ", struct sigevent *restrict " sevp );
-.BI "int gai_suspend(const struct gaicb *const " list "[], int " n ,
+.BI "int gai_suspend(const struct gaicb *const " list [ n "], int " n ,
 .BI "                  const struct timespec *" timeout );
 .P
 .BI "int gai_error(struct gaicb *" req );
