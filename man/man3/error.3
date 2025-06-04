@@ -34,8 +34,8 @@ Standard C library
 .B #include <error.h>
 .P
 .BI "void error(int " status ", int " errnum ", const char *" format ", ...);"
-.BI "void error_at_line(int " status ", int " errnum ", const char *" filename ,
-.BI "                   unsigned int " linenum ", const char *" format ", ...);"
+.BI "void error_at_line(int " status ", int " errnum ", const char *" file ,
+.BI "                   unsigned int " line ", const char *" format ", ...);"
 .P
 .BI "extern unsigned int " error_message_count ;
 .BI "extern int " error_one_per_line ;
@@ -90,15 +90,15 @@ The
 function is exactly the same as
 .BR error (),
 except for the addition of the arguments
-.I filename
+.I file
 and
-.IR linenum .
+.IR line .
 The output produced is as for
 .BR error (),
 except that after the program name are written: a colon, the value of
-.IR filename ,
+.IR file ,
 a colon, and the value of
-.IR linenum .
+.IR line .
 The preprocessor values
 .B __LINE__
 and
@@ -115,9 +115,9 @@ a sequence of
 .BR error_at_line ()
 calls with the
 same value of
-.I filename
+.I file
 and
-.I linenum
+.I line
 will result in only
 one message (the first) being output.
 .P

@@ -13,9 +13,9 @@ Standard C library
 .nf
 .B #include <mcheck.h>
 .P
-.BI "int mcheck(typeof(void (enum mcheck_status " mstatus ")) *" abortfunc );
+.BI "int mcheck(typeof(void (enum mcheck_status " mstatus ")) *" f );
 .B  "int mcheck_pedantic("
-.BI "           typeof(void (enum mcheck_status " mstatus ")) *" abortfunc );
+.BI "           typeof(void (enum mcheck_status " mstatus ")) *" f );
 .B void mcheck_check_all(void);
 .P
 .BI "enum mcheck_status mprobe(void *" ptr );
@@ -61,12 +61,12 @@ is called beforehand.
 .P
 If the system detects an inconsistency in the heap,
 the caller-supplied function pointed to by
-.I abortfunc
+.I f
 is invoked with a single argument,
 .IR mstatus ,
 that indicates what type of inconsistency was detected.
 If
-.I abortfunc
+.I f
 is NULL, a default function prints an error message on
 .I stderr
 and calls
@@ -89,7 +89,7 @@ The following list describes the values returned by
 or passed as the
 .I mstatus
 argument when
-.I abortfunc
+.I f
 is invoked:
 .TP
 .BR MCHECK_DISABLED " (" mprobe "() only)"
